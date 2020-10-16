@@ -8,10 +8,11 @@
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
    
 </head>
-<body>
+<body class="bg-gray-200">
     <div id="app">
         <nav-component></nav-component>
         @yield('content')
+        
     </div>
     <script src="{{asset('js/app.js')}}"></script>
 </body>

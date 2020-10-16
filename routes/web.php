@@ -20,3 +20,9 @@ Route::get('/', function () {
 Route::get('home',function (){
     return view('dashboard');
 });
+
+//productos 
+
+use App\Http\Controllers\ProductController;
+
+Route::resource('products',ProductController::class);
