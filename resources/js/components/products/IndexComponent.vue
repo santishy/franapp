@@ -1,6 +1,6 @@
 <template>
     <div class="grid  grid-cols-3 gap-4 mt-10">
-        <product-card  v-for="product in products" :key="product.id"/>
+        <product-card  v-for="product in products" :key="product.id" :product="product"/>
         <infinite-loading @infinite="getProducts"></infinite-loading>
     </div>
 </template>
