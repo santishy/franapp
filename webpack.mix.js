@@ -15,3 +15,10 @@ mix.js('resources/js/app.js', 'public/js')
     .postCss('resources/css/app.css', 'public/css', [
         require('tailwindcss'),
     ]);
+mix.browserSync({
+        proxy: 'http://franapp.test',
+        open: false,
+        browser:'Google chrome',
+        ghostMode: false,
+        watch:true,
+    });

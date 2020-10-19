@@ -17,10 +17,10 @@
             <div class="flex items-center border-b border-teal-500 py-2">
                 <input v-model="form.retail_price" name="retail_price" class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" type="number" placeholder="PRECIO AL POR MENOR" aria-label="Full name">
             </div>
-            <div class="flex items-center border-b border-teal-500 py-2">
+            <div :class="['flex','items-center','border-b',this.errors ? 'border-transparent' :'border-teal-500','py-2']">
                 <input v-model="form.distributor_price" name="distributor_price" class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" type="number" placeholder="PRECIO DISTRIBUIDOR" aria-label="Full name">
             </div>
-            <div v-if="errors"  class="flex items-center border-b border-teal-500 py-2">
+            <div v-if="errors"  class="flex items-center mb-3">
                  <errors-component  :errors="errors" />
             </div>
            
@@ -43,24 +43,38 @@ export default {
         }
     },
     mounted(){
-     
+        if(!!this.product){
+            this.form = this.product;
+        }
     },
     props:{
         method:{
             type:String
+        },
+        product:{
+            type:Object
         }
     },
     methods:{
         submit(){
-            
-            axios[this.method]('/products',this.form)
+            var message="EL producto se creo correctamente"
+            var url = "/products"
+             if(this.method == 'put'){
+                message = 'El producto se modifico correctamente'
+                this.form._method='put';
+                url=`/products/${this.product.id}`
+            }
+            console.log(this.form)
+            axios['post'](url,this.form)
                 .then((res) => {
+                   
                     this.$notify({
                         group: 'foo',
                         title: 'Productos',
-                        text: 'El producto se creo correctamente'
+                        text: message
                     });
-                    this.form={};
+                    if(this.method == 'post')
+                        this.form={};
                     this.errors=null;
                 })
                 .catch((err) => {

@@ -16,11 +16,8 @@
             v-if="isOpen"
             class="bg-transparent w-full md:bg-white static md:w-40 rounded-md md:absolute md:shadow-md md:mt-3 "
         >
-            <a href="/products/create" class="pl-1 text-white block md:text-gray-800 md:p-2 hover:text-red-400"
-                >Añadir</a
-            >
-            <a href="" class="pl-1 text-white block md:text-gray-800 md:p-2"
-                >Listar</a
+            <a v-for="item in items" :key="item.name" :href="item.url" class="pl-1 text-white block md:text-gray-800 md:p-2 hover:text-red-400"
+                >{{item.name}}</a
             >
         </div>
     </a>
@@ -32,7 +29,13 @@ export default {
             isOpen: false
         };
     },
+    props:{
+        items:{
+            type:Array
+        }
+    },
     created() {
+        console.log(this.items)
         const handleEscape = e => {
             if (e.key == "Esc" || e.key == "Escape") {
                 this.isOpen = false;

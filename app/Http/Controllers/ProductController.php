@@ -21,6 +21,18 @@ class ProductController extends Controller
         $this->validateProduct($request);
         return Product::create($request->all());
     }
+    public function edit(Product $product){
+        return view('products.edit',compact('product'));
+    }
+    public function update(Request $request,Product $product){
+        
+        $this->validateProduct($request);
+        $product->update($request->except('_method'));
+        return ProductResource::make($product);
+    }
+    public function destroy(Product $product){
+        return $product->delete();
+    }
     public function validateProduct($request)
     {
         return $request->validate([

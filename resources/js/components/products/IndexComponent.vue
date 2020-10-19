@@ -1,6 +1,6 @@
 <template>
     <div class="grid  grid-cols-3 gap-4 mt-10">
-        <product-card  v-for="product in products" :key="product.id" :product="product"/>
+        <product-card  v-for="(product,index) in products" :key="product.id" :product="product" :index="index"/>
         <infinite-loading @infinite="getProducts"></infinite-loading>
     </div>
 </template>
@@ -13,6 +13,9 @@ export default {
             products:[],
             page:1
         }
+    },
+      mounted(){
+        EventBus.$on('product-removed',this.removeFromArray)
     },
     components:{
         'product-card':ProductCardComponent,
@@ -38,6 +41,9 @@ export default {
                 .catch((err) => {
                     console.log(err)
                 })
+        },
+        removeFromArray(index){
+            this.products.splice(index,1);
         }
     }
 }

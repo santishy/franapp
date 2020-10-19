@@ -1,5 +1,7 @@
 require('./bootstrap');
 window.Vue = require('vue');
+window.EventBus = new Vue();
+
 console.log('hola')
 Vue.component('nav-component',require('./components/NavComponent.vue').default)
 Vue.component('errors-component',require('./components/ErrorsComponent.vue').default)
