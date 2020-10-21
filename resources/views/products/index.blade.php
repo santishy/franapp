@@ -1,4 +1,7 @@
 @extends('layouts.app')
 @section('content')
-    <products-index/>
+    <div class="container mx-auto">
+        <products-index/>
+    </div>
+    
 @endsection

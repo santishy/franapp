@@ -6,14 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Franapp</title>
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
-    
    
 </head>
 <body class="bg-gray-200">
-    <div id="app">
+    <div id="app" class="mt-20">
     <nav-component></nav-component>
         @yield('content')
-        
     </div>
  
     <script src="{{asset('js/app.js')}}"></script>

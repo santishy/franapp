@@ -1,7 +1,9 @@
 require('./bootstrap');
 window.Vue = require('vue');
 window.EventBus = new Vue();
+import Vuex from 'vuex'
 
+Vue.use(Vuex)
 console.log('hola')
 Vue.component('nav-component',require('./components/NavComponent.vue').default)
 Vue.component('errors-component',require('./components/ErrorsComponent.vue').default)
@@ -11,6 +13,8 @@ Vue.component('products-index',require('./components/products/IndexComponent.vue
 import Notifications from 'vue-notification'
 Vue.component('notifications',Notifications);
 Vue.use(Notifications);
+import {store} from './vuex/store.js';
 const app = new Vue({
-    el : "#app"
+    el : "#app",
+    store,
 });
