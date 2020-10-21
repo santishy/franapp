@@ -26,3 +26,9 @@ Route::get('home',function (){
 use App\Http\Controllers\ProductController;
 
 Route::resource('products',ProductController::class);
+
+//Buscador de productos
+
+use App\Http\Controllers\ProductsSearchController;
+
+Route::get('searching-products',[ProductsSearchController::class,'index'])->name('searching-produts.index')->middleware('auth');

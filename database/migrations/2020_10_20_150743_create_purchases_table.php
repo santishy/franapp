@@ -16,7 +16,7 @@ class CreatePurchasesTable extends Migration
         Schema::create('purchases', function (Blueprint $table) {
             $table->id();
             $table->float('total',8,2)->default(0);
-            $table->string('status');
+            $table->enum('status',['pending','completed','cancelled'])->default('pending');
             $table->timestamps();
         });
     }

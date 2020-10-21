@@ -1941,6 +1941,9 @@ __webpack_require__.r(__webpack_exports__);
   props: {
     items: {
       type: Array
+    },
+    name: {
+      type: String
     }
   },
   created: function created() {
@@ -2024,21 +2027,50 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       productsMenu: [{
-        name: 'Añadir',
-        url: '/products/create'
+        name: "Añadir",
+        url: "/products/create"
       }, {
-        name: 'Listar',
-        url: '/products'
+        name: "Listar",
+        url: "/products"
+      }],
+      shoppingMenu: [{
+        name: "Comprar",
+        url: "/purchases/create"
       }]
     };
   },
   methods: {
     toggleNavegation: function toggleNavegation() {
-      document.querySelector('#navegation').classList.toggle('hidden');
+      document.querySelector("#navegation").classList.toggle("hidden");
     }
   }
 });
@@ -19982,7 +20014,7 @@ var render = function() {
             }
           }
         },
-        [_vm._v("\n        Productos\n    ")]
+        [_vm._v("\n        " + _vm._s(_vm.name) + "\n    ")]
       ),
       _vm._v(" "),
       _vm.isOpen
@@ -20118,6 +20150,7 @@ var render = function() {
                 },
                 [
                   _c("title", [_vm._v("Menu")]),
+                  _vm._v(" "),
                   _c("path", {
                     attrs: { d: "M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" }
                   })
@@ -20142,18 +20175,13 @@ var render = function() {
             [
               _c("dropdown-component", {
                 staticClass: "md:relative",
-                attrs: { items: _vm.productsMenu }
+                attrs: { name: "Productos", items: _vm.productsMenu }
               }),
               _vm._v(" "),
-              _c(
-                "a",
-                {
-                  staticClass:
-                    "block mt-4 lg:inline-block lg:mt-0 text-gray-200 hover:text-white mr-4",
-                  attrs: { href: "#responsive-header" }
-                },
-                [_vm._v("\n          Examples\n        ")]
-              ),
+              _c("dropdown-component", {
+                staticClass: "md:relative",
+                attrs: { name: "Compras", items: _vm.shoppingMenu }
+              }),
               _vm._v(" "),
               _c(
                 "a",
@@ -20162,7 +20190,7 @@ var render = function() {
                     "block mt-4 lg:inline-block lg:mt-0 text-gray-200 hover:text-white",
                   attrs: { href: "#responsive-header" }
                 },
-                [_vm._v("\n          Blog\n        ")]
+                [_vm._v("\n                Blog\n            ")]
               )
             ],
             1
@@ -34556,8 +34584,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\laragon\www\franapp\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\laragon\www\franapp\resources\css\app.css */"./resources/css/app.css");
+__webpack_require__(/*! /home/vagrant/code/franapp/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/vagrant/code/franapp/resources/css/app.css */"./resources/css/app.css");
 
 
 /***/ })
