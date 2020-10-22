@@ -41,7 +41,7 @@ export default {
             this.products.splice(index, 1);
         },
         infiniteHandler($state,promise=null) {
-            if(this.wantedProduct){
+            if(this.wantedProduct || this.wantedProduct === ''){
                 this.$refs.search.handleSearh(this.page)
                     .then((res) => {
                         if(res.products.length){

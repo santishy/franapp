@@ -2142,7 +2142,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       var promise = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
 
-      if (this.wantedProduct) {
+      if (this.wantedProduct || this.wantedProduct === '') {
         this.$refs.search.handleSearh(this.page).then(function (res) {
           if (res.products.length) {
             _this.page += 1;
@@ -2399,7 +2399,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      sku: ''
+      sku: null
     };
   },
   methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(['search'])), {}, {
