@@ -17,8 +17,10 @@ mix.js('resources/js/app.js', 'public/js')
     ]);
 mix.browserSync({
         proxy: 'http://franapp.test',
+        host: 'franapp.test',
         open: false,
         browser:'Google chrome',
         ghostMode: false,
+        online:true,
         watch:true,
     });
