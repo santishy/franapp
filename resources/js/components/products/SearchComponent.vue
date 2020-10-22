@@ -8,24 +8,41 @@
     />
 </template>
 <script>
+import {mapActions} from 'vuex';
 export default {
     data(){
         return{
-            sku:null,
+            sku:'',
         }
     },
     methods:{
-        handleSearh(){
-            const search = new Promise((resolve,reject) => {
-                this.search()
+        ...mapActions(['search']),
+          handleSearh (e,page = 1){
+            let obj = new Object();
+            obj.sku = this.sku;
+            obj.page = page;
+            console.log(e);
+            return new Promise((resolve,reject) => {
+                this.search(obj)
                     .then ((res) => {
-                        resolve(res)
+                        console.log(page)
+                        if(page==1){
+                            console.log('entro')
+                            obj.products = res.data.data;
+                            console.log(res)
+                            EventBus.$emit('matching-products',obj);
+                        }
+                        else{
+                            console.log('no entro')
+                        }
+                        
+                       resolve(res)
                     })
                     .catch((err) => {
                         reject(err)
                     })
             });
-            EventBus.$emit('matching-products',search);
+            
         }
     }
 }

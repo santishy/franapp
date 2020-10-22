@@ -1,7 +1,7 @@
 <template>
     <div class="grid  grid-cols-1 sm:grid-cols-3 gap-4 mt-10">
         <div class="col-span-3 flex justify-center border py-8">
-            <search-component class="md:w-1/4 w-3/4" />
+            <search-component ref="search" class="md:w-1/4 w-3/4" />
         </div>
         <product-card
             v-for="(product, index) in products"
@@ -23,11 +23,12 @@ export default {
         return {
             products: [],
             page: 1,
+            wantedProduct:null,
         };
     },
     mounted() {
         EventBus.$on("product-removed", this.removeFromArray);
-        EventBus.$on("matching-products", this.infiniteHandler);
+        EventBus.$on("matching-products", this.matchingProducts);
     },
     components: {
         "product-card": ProductCardComponent,
@@ -40,8 +41,21 @@ export default {
             this.products.splice(index, 1);
         },
         infiniteHandler($state,promise=null) {
-            if(typeof promise != null){
-                promise
+            if(this.wantedProduct){
+                this.$refs.search.handleSearh(this.page)
+                    .then((res) => {
+                        if(res.products.length){
+                            this.page += 1;
+                            this.products = this.products.concat(res.products);
+                            $state.loaded();
+                        }
+                        else{
+                            $state.complete();
+                        }
+                    })
+                    .catch((err) => {
+                        console.log(err)
+                    })
             }
             this.getProducts(this.page)
                 .then(res => {
@@ -58,6 +72,11 @@ export default {
                     console.log(error);
                 });
         },
+        matchingProducts(data){
+            this.products = data.products;
+            this.wantedProduct = data.sku;
+            this.page = data.page + 1;
+        }
        
     }
 };
