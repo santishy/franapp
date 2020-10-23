@@ -2234,6 +2234,24 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
@@ -20439,77 +20457,10 @@ var render = function() {
     "div",
     { staticClass: " rounded overflow-hidden shadow-lg bg-white" },
     [
-      _c("div", { staticClass: "text-center" }, [
+      _c("div", { staticClass: "text-justify" }, [
         _c(
           "div",
-          {
-            staticClass:
-              "font-bold text-xl mb-2  p-4 border-b-2 border-teal-400"
-          },
-          [_vm._v(_vm._s(_vm.product.sku))]
-        ),
-        _vm._v(" "),
-        _c(
-          "p",
-          {
-            staticClass:
-              "text-gray-700 text-base  p-4 border-b-2 border-teal-400"
-          },
-          [
-            _vm._v(
-              "\n            " + _vm._s(_vm.product.description) + "\n        "
-            )
-          ]
-        ),
-        _vm._v(" "),
-        _c(
-          "p",
-          {
-            staticClass:
-              "text-gray-700 text-base border-b-2 p-4 border-teal-400"
-          },
-          [
-            _vm._v(
-              "\n            " +
-                _vm._s(_vm.product.formatted_wholesale_price) +
-                "\n        "
-            )
-          ]
-        ),
-        _vm._v(" "),
-        _c(
-          "p",
-          {
-            staticClass:
-              "text-gray-700 text-base border-b-2 p-4 border-teal-400"
-          },
-          [
-            _vm._v(
-              "\n            " +
-                _vm._s(_vm.product.formatted_retail_price) +
-                "\n        "
-            )
-          ]
-        ),
-        _vm._v(" "),
-        _c(
-          "p",
-          {
-            staticClass:
-              "text-gray-700 text-base border-b-2 p-4 border-teal-400"
-          },
-          [
-            _vm._v(
-              "\n            " +
-                _vm._s(_vm.product.formatted_distributor_price) +
-                "\n        "
-            )
-          ]
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "px-6 pt-4 pb-2" },
+          { staticClass: "px-6 pt-4 pb-2 text-center" },
           [
             _c(
               "a",
@@ -20529,7 +20480,75 @@ var render = function() {
             })
           ],
           1
-        )
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: " p-4 border-b-2 border-teal-400" }, [
+          _c("p", { staticClass: "text-gray-800 font-bold mb-1" }, [
+            _vm._v("SKU")
+          ]),
+          _vm._v(" "),
+          _c("p", { staticClass: "text-gray-700 text-base " }, [
+            _vm._v(
+              "\n                " + _vm._s(_vm.product.sku) + "\n            "
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: " p-4 border-b-2 border-teal-400" }, [
+          _c("p", { staticClass: "text-gray-800 font-bold mb-1" }, [
+            _vm._v("Descripción")
+          ]),
+          _vm._v(" "),
+          _c("p", { staticClass: "text-gray-700 text-base " }, [
+            _vm._v(
+              "\n                " +
+                _vm._s(_vm.product.description) +
+                "\n            "
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: " p-4 border-b-2 border-teal-400" }, [
+          _c("p", { staticClass: "text-gray-800 font-bold mb-1" }, [
+            _vm._v("Precio al por mayor")
+          ]),
+          _vm._v(" "),
+          _c("p", { staticClass: "text-gray-700 text-base " }, [
+            _vm._v(
+              "\n                " +
+                _vm._s(_vm.product.formatted_wholesale_price) +
+                "\n            "
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: " p-4 border-b-2 border-teal-400" }, [
+          _c("p", { staticClass: "text-gray-800 font-bold mb-1" }, [
+            _vm._v("Precio al por menor")
+          ]),
+          _vm._v(" "),
+          _c("p", { staticClass: "text-gray-700 text-base " }, [
+            _vm._v(
+              "\n                " +
+                _vm._s(_vm.product.formatted_retail_price) +
+                "\n            "
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: " p-4 border-b-2 border-teal-400" }, [
+          _c("p", { staticClass: "text-gray-800 font-bold mb-1" }, [
+            _vm._v("Precio al por mayor")
+          ]),
+          _vm._v(" "),
+          _c("p", { staticClass: "text-gray-700 text-base " }, [
+            _vm._v(
+              "\n                " +
+                _vm._s(_vm.product.formatted_distributor_price) +
+                "\n            "
+            )
+          ])
+        ])
       ])
     ]
   )
@@ -20853,7 +20872,7 @@ var render = function() {
       { name: "model", rawName: "v-model", value: _vm.sku, expression: "sku" }
     ],
     staticClass:
-      "shadow  appearance-none py-5 px-4 rounded leading-tight focus:outline-none focus:shadow-outline",
+      "shadow border-l-4 border-purple-500 appearance-none py-5 px-4 rounded leading-tight focus:outline-none",
     attrs: { type: "text", placeholder: "Busca por el SKU del producto" },
     domProps: { value: _vm.sku },
     on: {
