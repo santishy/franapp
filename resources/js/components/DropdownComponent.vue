@@ -38,7 +38,6 @@ export default {
         }
     },
     created() {
-        console.log(this.items)
         const handleEscape = e => {
             if (e.key == "Esc" || e.key == "Escape") {
                 this.isOpen = false;

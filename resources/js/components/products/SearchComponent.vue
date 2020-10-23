@@ -12,33 +12,38 @@ import { mapActions } from "vuex";
 export default {
     data() {
         return {
-            sku: null
+            sku:'',
+            page:1
         };
     },
+ 
     methods: {
         ...mapActions(["search"]),
-        // handleSearh(e, page = 1) {
-        //     let obj = new Object();
-        //     obj.sku = this.sku;
-        //     obj.page = page;
-           
-        //     return EventBus.$emit("matching-products", obj);
-        
-        //     return new Promise((resolve, reject,obj) => {
-        //         console.log('entro a promesa'+this.sku)
-        //         this.search(obj)
-        //             .then(res => {
-        //                 if (page == 1) {
-        //                     obj.products = res.data.data;
-        //                     EventBus.$emit("matching-products", obj);
-        //                 }
-        //                 resolve(res);
-        //             })
-        //             .catch(err => {
-        //                 reject(err);
-        //             });
-        //     });
-        // }
+        handleSearh(e) {
+            if(this.sku == '' || this.sku == "")
+            {
+                return EventBus.$emit('empty-search');
+            }
+            return new Promise((resolve, reject) => {
+                var obj = new Object();
+                obj.sku = this.sku;
+                obj.page = this.page;
+                this.search(obj)
+                    .then(res => {
+                        if (this.page == 1) {
+                            obj.products = res.data.data;
+                            EventBus.$emit("matching-products", obj);
+                        }
+                        resolve(res);
+                    })
+                    .catch(err => {
+                        reject(err);
+                    });
+            });
+        },
+        setPage(page){
+            this.page = page; 
+        }
     }
 };
 </script>

@@ -24,12 +24,14 @@ export default {
             products: [],
             page: 1,
             wantedProduct:null,
-            infiniteId:1
+            infiniteId:1,
+            obj:new Object(),
         };
     },
     mounted() {
         EventBus.$on("product-removed", this.removeFromArray);
         EventBus.$on("matching-products", this.matchingProducts);
+        EventBus.$on("empty-search",this.reloadIndex);
     },
     components: {
         "product-card": ProductCardComponent,
@@ -43,22 +45,23 @@ export default {
         },
         infiniteHandler($state) {
           
-            if(this.wantedProduct || typeof this.wantedProduct == null){
-              
-                // this.$refs.search.handleSearh(this.page)
-                //     .then((res) => {
-                //         if(res.data.data.length){
-                //             this.page += 1;
-                //             this.products = this.products.concat(res.data.data);
-                //             $state.loaded();
-                //         }
-                //         else{
-                //             $state.complete();
-                //         }
-                //     })
-                //     .catch((err) => {
-                //         console.log(err)
-                //     })
+            if(this.wantedProduct){
+                this.obj.sku = this.wantedProduct;
+                this.obj.page = this.page;
+                this.search(this.obj)
+                    .then((res) => {
+                        if(res.data.data.length){
+                            this.page += 1;
+                            this.products.push(...res.data.data)
+                            $state.loaded()
+                        }
+                        else{
+                            $state.complete();
+                        }
+                    })
+                    .catch((err) => {
+
+                    })
             }
             else{
                 this.getProducts(this.page)
@@ -81,9 +84,12 @@ export default {
             this.products = data.products;
             this.wantedProduct = data.sku;
             this.page =  data.page + 1;
-            console.log(this.page + ' pagina')
             this.infiniteId++;
-            console.log(this.infiniteId + ' infiniteID')
+        },
+        reloadIndex(){
+            this.infiniteId++;
+            this.wantedProduct = null;
+            this.page = 1;
         }
        
     }

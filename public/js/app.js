@@ -1949,8 +1949,6 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     var _this = this;
 
-    console.log(this.items);
-
     var handleEscape = function handleEscape(e) {
       if (e.key == "Esc" || e.key == "Escape") {
         _this.isOpen = false;
@@ -2091,6 +2089,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_infinite_loading__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue_infinite_loading__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _SearchComponent_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./SearchComponent.vue */ "./resources/js/components/products/SearchComponent.vue");
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -2122,12 +2132,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       products: [],
       page: 1,
       wantedProduct: null,
-      infiniteId: 1
+      infiniteId: 1,
+      obj: new Object()
     };
   },
   mounted: function mounted() {
     EventBus.$on("product-removed", this.removeFromArray);
     EventBus.$on("matching-products", this.matchingProducts);
+    EventBus.$on("empty-search", this.reloadIndex);
   },
   components: {
     "product-card": _ProductCardComponent_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
@@ -2141,20 +2153,22 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     infiniteHandler: function infiniteHandler($state) {
       var _this = this;
 
-      if (this.wantedProduct || typeof this.wantedProduct == null) {// this.$refs.search.handleSearh(this.page)
-        //     .then((res) => {
-        //         if(res.data.data.length){
-        //             this.page += 1;
-        //             this.products = this.products.concat(res.data.data);
-        //             $state.loaded();
-        //         }
-        //         else{
-        //             $state.complete();
-        //         }
-        //     })
-        //     .catch((err) => {
-        //         console.log(err)
-        //     })
+      if (this.wantedProduct) {
+        this.obj.sku = this.wantedProduct;
+        this.obj.page = this.page;
+        this.search(this.obj).then(function (res) {
+          if (res.data.data.length) {
+            var _this$products;
+
+            _this.page += 1;
+
+            (_this$products = _this.products).push.apply(_this$products, _toConsumableArray(res.data.data));
+
+            $state.loaded();
+          } else {
+            $state.complete();
+          }
+        })["catch"](function (err) {});
       } else {
         this.getProducts(this.page).then(function (res) {
           if (res.data.data.length) {
@@ -2173,9 +2187,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.products = data.products;
       this.wantedProduct = data.sku;
       this.page = data.page + 1;
-      console.log(this.page + ' pagina');
       this.infiniteId++;
-      console.log(this.infiniteId + ' infiniteID');
+    },
+    reloadIndex: function reloadIndex() {
+      this.infiniteId++;
+      this.wantedProduct = null;
+      this.page = 1;
     }
   })
 });
@@ -2403,10 +2420,39 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      sku: null
+      sku: '',
+      page: 1
     };
   },
-  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(["search"]))
+  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(["search"])), {}, {
+    handleSearh: function handleSearh(e) {
+      var _this = this;
+
+      if (this.sku == '' || this.sku == "") {
+        return EventBus.$emit('empty-search');
+      }
+
+      return new Promise(function (resolve, reject) {
+        var obj = new Object();
+        obj.sku = _this.sku;
+        obj.page = _this.page;
+
+        _this.search(obj).then(function (res) {
+          if (_this.page == 1) {
+            obj.products = res.data.data;
+            EventBus.$emit("matching-products", obj);
+          }
+
+          resolve(res);
+        })["catch"](function (err) {
+          reject(err);
+        });
+      });
+    },
+    setPage: function setPage(page) {
+      this.page = page;
+    }
+  })
 });
 
 /***/ }),
@@ -35457,7 +35503,6 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 window.EventBus = new Vue();
 
 Vue.use(vuex__WEBPACK_IMPORTED_MODULE_0__["default"]);
-console.log('hola');
 Vue.component('nav-component', __webpack_require__(/*! ./components/NavComponent.vue */ "./resources/js/components/NavComponent.vue")["default"]);
 Vue.component('errors-component', __webpack_require__(/*! ./components/ErrorsComponent.vue */ "./resources/js/components/ErrorsComponent.vue")["default"]);
 Vue.component('dropdown-component', __webpack_require__(/*! ./components/DropdownComponent.vue */ "./resources/js/components/DropdownComponent.vue")["default"]);
@@ -36085,6 +36130,7 @@ var getProducts = function getProducts(_ref, page) {
 var search = function search(_ref2, data) {
   var context = _ref2.context;
   return new Promise(function (resolve, reject) {
+    console.log('action ' + data.sku);
     axios.get('/searching-products', {
       params: {
         sku: data.sku,
@@ -36167,8 +36213,8 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/vagrant/code/franapp/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/vagrant/code/franapp/resources/css/app.css */"./resources/css/app.css");
+__webpack_require__(/*! C:\laragon\www\franapp\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\laragon\www\franapp\resources\css\app.css */"./resources/css/app.css");
 
 
 /***/ })

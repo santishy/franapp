@@ -4,7 +4,7 @@ window.EventBus = new Vue();
 import Vuex from 'vuex'
 
 Vue.use(Vuex)
-console.log('hola')
+
 Vue.component('nav-component',require('./components/NavComponent.vue').default)
 Vue.component('errors-component',require('./components/ErrorsComponent.vue').default)
 Vue.component('dropdown-component',require('./components/DropdownComponent.vue').default);
