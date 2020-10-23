@@ -2121,7 +2121,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     return {
       products: [],
       page: 1,
-      wantedProduct: null
+      wantedProduct: null,
+      infiniteId: 1
     };
   },
   mounted: function mounted() {
@@ -2140,38 +2141,41 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     infiniteHandler: function infiniteHandler($state) {
       var _this = this;
 
-      var promise = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
-
-      if (this.wantedProduct || this.wantedProduct === '') {
-        this.$refs.search.handleSearh(this.page).then(function (res) {
-          if (res.products.length) {
+      if (this.wantedProduct || typeof this.wantedProduct == null) {// this.$refs.search.handleSearh(this.page)
+        //     .then((res) => {
+        //         if(res.data.data.length){
+        //             this.page += 1;
+        //             this.products = this.products.concat(res.data.data);
+        //             $state.loaded();
+        //         }
+        //         else{
+        //             $state.complete();
+        //         }
+        //     })
+        //     .catch((err) => {
+        //         console.log(err)
+        //     })
+      } else {
+        this.getProducts(this.page).then(function (res) {
+          if (res.data.data.length) {
             _this.page += 1;
-            _this.products = _this.products.concat(res.products);
+            _this.products = _this.products.concat(res.data.data);
             $state.loaded();
           } else {
             $state.complete();
           }
-        })["catch"](function (err) {
-          console.log(err);
+        })["catch"](function (error) {
+          console.log(error);
         });
       }
-
-      this.getProducts(this.page).then(function (res) {
-        if (res.data.data.length) {
-          _this.page += 1;
-          _this.products = _this.products.concat(res.data.data);
-          $state.loaded();
-        } else {
-          $state.complete();
-        }
-      })["catch"](function (error) {
-        console.log(error);
-      });
     },
     matchingProducts: function matchingProducts(data) {
       this.products = data.products;
       this.wantedProduct = data.sku;
       this.page = data.page + 1;
+      console.log(this.page + ' pagina');
+      this.infiniteId++;
+      console.log(this.infiniteId + ' infiniteID');
     }
   })
 });
@@ -2402,35 +2406,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       sku: null
     };
   },
-  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(['search'])), {}, {
-    handleSearh: function handleSearh(e) {
-      var _this = this;
-
-      var page = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
-      var obj = new Object();
-      obj.sku = this.sku;
-      obj.page = page;
-      console.log(e);
-      return new Promise(function (resolve, reject) {
-        _this.search(obj).then(function (res) {
-          console.log(page);
-
-          if (page == 1) {
-            console.log('entro');
-            obj.products = res.data.data;
-            console.log(res);
-            EventBus.$emit('matching-products', obj);
-          } else {
-            console.log('no entro');
-          }
-
-          resolve(res);
-        })["catch"](function (err) {
-          reject(err);
-        });
-      });
-    }
-  })
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(["search"]))
 });
 
 /***/ }),
@@ -20383,7 +20359,10 @@ var render = function() {
         })
       }),
       _vm._v(" "),
-      _c("infinite-loading", { on: { infinite: _vm.infiniteHandler } })
+      _c("infinite-loading", {
+        attrs: { identifier: _vm.infiniteId },
+        on: { infinite: _vm.infiniteHandler }
+      })
     ],
     2
   )
@@ -36106,7 +36085,7 @@ var getProducts = function getProducts(_ref, page) {
 var search = function search(_ref2, data) {
   var context = _ref2.context;
   return new Promise(function (resolve, reject) {
-    axios.get('searching-products', {
+    axios.get('/searching-products', {
       params: {
         sku: data.sku,
         page: data.page
@@ -36188,8 +36167,8 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\laragon\www\franapp\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\laragon\www\franapp\resources\css\app.css */"./resources/css/app.css");
+__webpack_require__(/*! /home/vagrant/code/franapp/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/vagrant/code/franapp/resources/css/app.css */"./resources/css/app.css");
 
 
 /***/ })

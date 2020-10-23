@@ -10,7 +10,7 @@
             :index="index"
             class="col-span-3 md:col-span-1"
         />
-        <infinite-loading @infinite="infiniteHandler"></infinite-loading>
+        <infinite-loading :identifier="infiniteId" @infinite="infiniteHandler"></infinite-loading>
     </div>
 </template>
 <script>
@@ -24,6 +24,7 @@ export default {
             products: [],
             page: 1,
             wantedProduct:null,
+            infiniteId:1
         };
     },
     mounted() {
@@ -40,27 +41,29 @@ export default {
         removeFromArray(index) {
             this.products.splice(index, 1);
         },
-        infiniteHandler($state,promise=null) {
-            if(this.wantedProduct || this.wantedProduct === ''){
-                this.$refs.search.handleSearh(this.page)
-                    .then((res) => {
-                        if(res.products.length){
-                            this.page += 1;
-                            this.products = this.products.concat(res.products);
-                            $state.loaded();
-                        }
-                        else{
-                            $state.complete();
-                        }
-                    })
-                    .catch((err) => {
-                        console.log(err)
-                    })
+        infiniteHandler($state) {
+          
+            if(this.wantedProduct || typeof this.wantedProduct == null){
+              
+                // this.$refs.search.handleSearh(this.page)
+                //     .then((res) => {
+                //         if(res.data.data.length){
+                //             this.page += 1;
+                //             this.products = this.products.concat(res.data.data);
+                //             $state.loaded();
+                //         }
+                //         else{
+                //             $state.complete();
+                //         }
+                //     })
+                //     .catch((err) => {
+                //         console.log(err)
+                //     })
             }
-            this.getProducts(this.page)
+            else{
+                this.getProducts(this.page)
                 .then(res => {
-                    if (res.data.data.length) {
-                        
+                    if (res.data.data.length) {                    
                         this.page += 1;
                         this.products = this.products.concat(res.data.data);
                         $state.loaded();
@@ -71,11 +74,16 @@ export default {
                 .catch(error => {
                     console.log(error);
                 });
+            }
+            
         },
         matchingProducts(data){
             this.products = data.products;
             this.wantedProduct = data.sku;
-            this.page = data.page + 1;
+            this.page =  data.page + 1;
+            console.log(this.page + ' pagina')
+            this.infiniteId++;
+            console.log(this.infiniteId + ' infiniteID')
         }
        
     }

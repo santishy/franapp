@@ -16,7 +16,7 @@ const getProducts = ({ context }, page) => {
 const search = ({ context }, data) => {
     return new Promise((resolve, reject) => {
 
-        axios.get('searching-products', {
+        axios.get('/searching-products', {
             params: {
                 sku:data.sku,
                 page:data.page
