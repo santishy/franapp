@@ -32,3 +32,10 @@ Route::resource('products',ProductController::class);
 use App\Http\Controllers\ProductsSearchController;
 
 Route::get('searching-products',[ProductsSearchController::class,'index'])->name('searching-produts.index')->middleware('auth');
+
+
+// compras 
+
+use App\Http\Controllers\PurchaseController;
+
+Route::resource('purchases',PurchaseController::class);

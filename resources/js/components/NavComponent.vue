@@ -27,16 +27,11 @@
                     :items="productsMenu"
                     class="md:relative"
                 />
-                <dropdown-component
-                    name="Compras"
-                    :items="shoppingMenu"
-                    class="md:relative"
-                />
                 <a
                     href="#responsive-header"
                     class="block mt-4 lg:inline-block lg:mt-0 text-gray-200 hover:text-white"
                 >
-                    Blog
+                    Realizar Compra
                 </a>
             </div>
             <div>
@@ -63,12 +58,6 @@ export default {
                     url: "/products"
                 }
             ],
-            shoppingMenu:[
-              {
-                  name:"Comprar",
-                  url: "/purchases/create"
-              }
-            ]
         };
     },
     methods: {

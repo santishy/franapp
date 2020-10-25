@@ -1,7 +1,8 @@
 <template>
     <div class=" rounded overflow-hidden shadow-lg bg-white">
         <div class="text-justify">
-            <div class="px-6 pt-4 pb-2 text-center">
+            <div class="px-6 pt-4 pb-2 text-center flex justify-between">
+                <add-to-purchase :product_id="product.id"/>
                 <a :href="`/products/${product.id}/edit`" class="bg-blue-500 inline-block cursor-pointer hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
                     <i class="far fa-edit"></i> Editar
                 </a>
@@ -43,6 +44,7 @@
 </template>
 <script>
 import RemoveProductComponent from './RemoveProductComponent.vue';
+import AddToPurchase from '../purchases/AddToPurchase.vue'
 export default {
     props:{
         product:{
@@ -53,7 +55,8 @@ export default {
         }
     },
     components:{
-        'remove-product':RemoveProductComponent
+        'remove-product':RemoveProductComponent,
+        'add-to-purchase':AddToPurchase,
     }
 }
 </script>
