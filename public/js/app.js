@@ -2124,13 +2124,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       page: 1,
       wantedProduct: null,
       infiniteId: 1,
-      obj: new Object()
+      obj: new Object(),
+      arr: new Array()
     };
   },
   mounted: function mounted() {
     EventBus.$on("product-removed", this.removeFromArray);
     EventBus.$on("matching-products", this.matchingProducts);
     EventBus.$on("empty-search", this.reloadIndex);
+    this.arr.push({
+      'index': 2
+    });
+    console.log(this.arr.index);
   },
   components: {
     "product-card": _ProductCardComponent_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
@@ -2479,6 +2484,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -2489,6 +2501,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     product_id: {
@@ -2500,13 +2513,13 @@ __webpack_require__.r(__webpack_exports__);
       axios.post('/purchases', {
         product_id: this.product_id
       }).then(function (res) {
-        console.log(res);
-        localStorage.setItem('numberOfProductsInPurchase', res.data.data);
+        localStorage.setItem('numberOfProductsInPurchase', res.data);
       })["catch"](function (err) {
         console.log(err);
       });
     }
-  }
+  },
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['getNumberOfProductsInPurchase']))
 });
 
 /***/ }),
@@ -20968,7 +20981,11 @@ var render = function() {
           staticClass:
             "bg-purple-500 border-purple-900 border-b-4 hover:bg-purple-700 text-white font-bold py-1 px-4 rounded-full text-2xl"
         },
-        [_vm._v("\n        C\n    ")]
+        [
+          _vm._v("\n        C "),
+          _c("i", { staticClass: "fas fa-arrow-right" }),
+          _vm._v(" " + _vm._s(_vm.getNumberOfProductsInPurchase) + "\n    ")
+        ]
       )
     ]
   )
@@ -36322,10 +36339,18 @@ var search = function search(_ref2, data) {
 /*!**************************************!*\
   !*** ./resources/js/vuex/getters.js ***!
   \**************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+var getNumberOfProductsInPurchase = function getNumberOfProductsInPurchase(state) {
+  return state.numberOfProductsInPurchase;
+};
 
+/* harmony default export */ __webpack_exports__["default"] = ({
+  getNumberOfProductsInPurchase: getNumberOfProductsInPurchase
+});
 
 /***/ }),
 
@@ -36357,7 +36382,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _mutations__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./mutations */ "./resources/js/vuex/mutations.js");
 /* harmony import */ var _mutations__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_mutations__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _getters__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./getters */ "./resources/js/vuex/getters.js");
-/* harmony import */ var _getters__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_getters__WEBPACK_IMPORTED_MODULE_4__);
 
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__["default"]);
@@ -36366,11 +36390,11 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
 
 var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
   state: {
-    numberOfProductsInPurchase: localStorage.getItem('numberOfProductsInPurchase')
+    productsInPurchase: []
   },
   mutations: _mutations__WEBPACK_IMPORTED_MODULE_3___default.a,
   actions: _actions__WEBPACK_IMPORTED_MODULE_2__["default"],
-  getters: _getters__WEBPACK_IMPORTED_MODULE_4___default.a
+  getters: _getters__WEBPACK_IMPORTED_MODULE_4__["default"]
 });
 
 /***/ }),
