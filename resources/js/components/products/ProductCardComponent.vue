@@ -2,7 +2,7 @@
     <div class=" rounded overflow-hidden shadow-lg bg-white">
         <div class="text-justify">
             <div class="px-6 pt-4 pb-2 text-center flex justify-between">
-                <add-to-purchase :product_id="product.id"/>
+                <add-to-purchase :product_id="product.id" :purchase_price="product.distributor_price"/>
                 <a :href="`/products/${product.id}/edit`" class="bg-blue-500 inline-block cursor-pointer hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
                     <i class="far fa-edit"></i> Editar
                 </a>

@@ -4,7 +4,7 @@
         class="block  mt-0 transition-all duration-500 ease-in-out mt-4 lg:inline-block lg:mt-0 text-gray-200 hover:text-white mr-4"
     >
         <div @click="isOpen = !isOpen" class="z-10 relative">
-            {{name}}
+            {{ name }}
         </div>
         <button
             v-if="isOpen"
@@ -16,8 +16,12 @@
             v-if="isOpen"
             class="bg-transparent w-full md:bg-white static md:w-40 rounded-md md:absolute md:shadow-md md:mt-3 "
         >
-            <a v-for="item in items" :key="item.name" :href="item.url" class="pl-1 text-white block md:text-gray-800 md:p-2 hover:text-red-400"
-                >{{item.name}}</a
+            <a
+                v-for="item in items"
+                :key="item.name"
+                :href="item.url"
+                class="pl-1 text-white block md:text-gray-800 md:p-2 hover:text-red-400"
+                >{{ item.name }}</a
             >
         </div>
     </a>
@@ -29,12 +33,12 @@ export default {
             isOpen: false
         };
     },
-    props:{
-        items:{
-            type:Array
+    props: {
+        items: {
+            type: Array
         },
-        name:{
-            type:String
+        name: {
+            type: String
         }
     },
     created() {

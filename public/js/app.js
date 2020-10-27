@@ -1932,6 +1932,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2501,25 +2505,68 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     product_id: {
       type: Number
+    },
+    purchase_price: {
+      type: Number
     }
+  },
+  data: function data() {
+    return {
+      productsInPurchase: []
+    };
+  },
+  mounted: function mounted() {
+    console.log(localStorage.getItem("productsInPurchase"));
   },
   methods: {
     submit: function submit() {
-      axios.post('/purchases', {
-        product_id: this.product_id
+      var _this = this;
+
+      axios.post("/purchases", {
+        product_id: this.product_id,
+        purchase_price: this.purchase_price
       }).then(function (res) {
-        localStorage.setItem('numberOfProductsInPurchase', res.data);
+        var _this$productsInPurch;
+
+        if (!(localStorage.getItem("productsInPurchase") === null)) {
+          _this.productsInPurchase = localStorage.getItem("productsInPurchase");
+        }
+
+        (_this$productsInPurch = _this.productsInPurchase).push.apply(_this$productsInPurch, [{
+          product_id: _this.product_id,
+          qty: res.data
+        }]);
+
+        localStorage.setItem("productsInPurchase", JSON.stringify(_this.productsInPurchase));
       })["catch"](function (err) {
         console.log(err);
       });
     }
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['getNumberOfProductsInPurchase']))
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["getNumberOfProductsInPurchase"])), {}, {
+    getPurchaseAmount: function getPurchaseAmount() {
+      var _this2 = this;
+
+      if (!(localStorage.getItem("productsInPurchase") === null)) {
+        var product = JSON.parse(localStorage.getItem("productsInPurchase")).find(function (product) {
+          return product.product_id === _this2.product_id;
+        });
+        var index = JSON.parse(localStorage.getItem("productsInPurchase")).indexOf(product);
+        return JSON.parse(localStorage.getItem("productsInPurchase"))[index].qty;
+      }
+
+      return null;
+    }
+  })
 });
 
 /***/ }),
@@ -20506,7 +20553,12 @@ var render = function() {
           "div",
           { staticClass: "px-6 pt-4 pb-2 text-center flex justify-between" },
           [
-            _c("add-to-purchase", { attrs: { product_id: _vm.product.id } }),
+            _c("add-to-purchase", {
+              attrs: {
+                product_id: _vm.product.id,
+                purchase_price: _vm.product.distributor_price
+              }
+            }),
             _vm._v(" "),
             _c(
               "a",
@@ -20982,9 +21034,14 @@ var render = function() {
             "bg-purple-500 border-purple-900 border-b-4 hover:bg-purple-700 text-white font-bold py-1 px-4 rounded-full text-2xl"
         },
         [
-          _vm._v("\n        C "),
-          _c("i", { staticClass: "fas fa-arrow-right" }),
-          _vm._v(" " + _vm._s(_vm.getNumberOfProductsInPurchase) + "\n    ")
+          _vm._v("\n        C\n        "),
+          _vm.getPurchaseAmount
+            ? _c("div", { staticClass: "inline-block" }, [
+                _c("i", { staticClass: "fas fa-arrow-right" }),
+                _vm._v(" "),
+                _c("span", [_vm._v(_vm._s(_vm.getNumberOfProductsInPurchase))])
+              ])
+            : _vm._e()
         ]
       )
     ]
@@ -36406,8 +36463,8 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\laragon\www\franapp\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\laragon\www\franapp\resources\css\app.css */"./resources/css/app.css");
+__webpack_require__(/*! /home/vagrant/code/franapp/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/vagrant/code/franapp/resources/css/app.css */"./resources/css/app.css");
 
 
 /***/ })
