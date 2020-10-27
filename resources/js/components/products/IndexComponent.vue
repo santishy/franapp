@@ -33,8 +33,8 @@ export default {
         EventBus.$on("product-removed", this.removeFromArray);
         EventBus.$on("matching-products", this.matchingProducts);
         EventBus.$on("empty-search",this.reloadIndex);
-        this.arr.push({'index':2,});
-        console.log(this.arr.index)
+     
+        
     },
     components: {
         "product-card": ProductCardComponent,

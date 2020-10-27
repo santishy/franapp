@@ -7,7 +7,7 @@
             C
             <div v-if="getPurchaseAmount" class="inline-block">
                 <i class="fas fa-arrow-right"></i>
-                <span>{{ getNumberOfProductsInPurchase }}</span>
+                <span>{{ getPurchaseAmount }}</span>
             </div>
         </button>
     </form>
@@ -25,10 +25,13 @@ export default {
     },
     data() {
         return {
-            productsInPurchase: []
+            productsInPurchase: [],
+            qty: null
         };
     },
-    mounted() {},
+    mounted() {
+        console.log(this.getPurchaseAmount);
+    },
 
     methods: {
         submit() {
@@ -39,19 +42,31 @@ export default {
                 })
                 .then(res => {
                     if (
-                        !(localStorage.getItem("productsInPurchase") === null)
+                        this.hasProductsInPurchase
                     ) {
-                        this.productsInPurchase = localStorage.getItem(
-                            "productsInPurchase"
+                        this.productsInPurchase = JSON.parse(
+                            localStorage.getItem("productsInPurchase")
                         );
+                        var index = JSON.parse(
+                            localStorage.getItem("productsInPurchase")
+                        ).findIndex(
+                            product => product.product_id == this.product_id
+                        );
+                       
                     }
-                    this.productsInPurchase.push(
-                        ...[{ product_id: this.product_id, qty: res.data }]
-                    );
+                     if (index != -1)
+                            this.productsInPurchase[index].qty = res.data;
+                        else
+                            this.productsInPurchase.push({
+                                product_id: this.product_id,
+                                qty: res.data
+                            });
                     localStorage.setItem(
                         "productsInPurchase",
                         JSON.stringify(this.productsInPurchase)
                     );
+                    console.log(res.data + ' cantidad')
+                    Vue.set(this.$data,'qty',res.data);
                 })
                 .catch(err => {
                     console.log(err);
@@ -59,21 +74,20 @@ export default {
         }
     },
     computed: {
-        ...mapGetters(["getNumberOfProductsInPurchase"]),
+        ...mapGetters(['hasProductsInPurchase']),
         getPurchaseAmount() {
             if (!(localStorage.getItem("productsInPurchase") === null)) {
-                var product = JSON.parse(
-                    localStorage.getItem("productsInPurchase")
-                ).find(product => product.product_id == this.product_id);
-                console.log(product)
                 var index = JSON.parse(
                     localStorage.getItem("productsInPurchase")
-                ).indexOf(product);
-                console.log(index)
-                if (index != -1)
-                    return JSON.parse(
+                ).findIndex(product => product.product_id === this.product_id);
+                if (index != -1){
+                    this.qty = JSON.parse(
                         localStorage.getItem("productsInPurchase")
                     )[index].qty;
+                    console.log('hi')
+                    return this.qty
+                }
+                    
             }
             return null;
         }

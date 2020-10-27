@@ -2136,10 +2136,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     EventBus.$on("product-removed", this.removeFromArray);
     EventBus.$on("matching-products", this.matchingProducts);
     EventBus.$on("empty-search", this.reloadIndex);
-    this.arr.push({
-      'index': 2
-    });
-    console.log(this.arr.index);
   },
   components: {
     "product-card": _ProductCardComponent_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
@@ -2521,10 +2517,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   data: function data() {
     return {
-      productsInPurchase: []
+      productsInPurchase: [],
+      qty: null
     };
   },
-  mounted: function mounted() {},
+  mounted: function mounted() {
+    console.log(this.getPurchaseAmount);
+  },
   methods: {
     submit: function submit() {
       var _this = this;
@@ -2533,35 +2532,39 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         product_id: this.product_id,
         purchase_price: this.purchase_price
       }).then(function (res) {
-        var _this$productsInPurch;
-
-        if (!(localStorage.getItem("productsInPurchase") === null)) {
-          _this.productsInPurchase = localStorage.getItem("productsInPurchase");
+        if (_this.hasProductsInPurchase) {
+          _this.productsInPurchase = JSON.parse(localStorage.getItem("productsInPurchase"));
+          var index = JSON.parse(localStorage.getItem("productsInPurchase")).findIndex(function (product) {
+            return product.product_id == _this.product_id;
+          });
         }
 
-        (_this$productsInPurch = _this.productsInPurchase).push.apply(_this$productsInPurch, [{
+        if (index != -1) _this.productsInPurchase[index].qty = res.data;else _this.productsInPurchase.push({
           product_id: _this.product_id,
           qty: res.data
-        }]);
-
+        });
         localStorage.setItem("productsInPurchase", JSON.stringify(_this.productsInPurchase));
+        console.log(res.data + ' cantidad');
+        Vue.set(_this.$data, 'qty', res.data);
       })["catch"](function (err) {
         console.log(err);
       });
     }
   },
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["getNumberOfProductsInPurchase"])), {}, {
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['hasProductsInPurchase'])), {}, {
     getPurchaseAmount: function getPurchaseAmount() {
       var _this2 = this;
 
       if (!(localStorage.getItem("productsInPurchase") === null)) {
-        var product = JSON.parse(localStorage.getItem("productsInPurchase")).find(function (product) {
-          return product.product_id == _this2.product_id;
+        var index = JSON.parse(localStorage.getItem("productsInPurchase")).findIndex(function (product) {
+          return product.product_id === _this2.product_id;
         });
-        console.log(product);
-        var index = JSON.parse(localStorage.getItem("productsInPurchase")).indexOf(product);
-        console.log(index);
-        if (index != -1) return JSON.parse(localStorage.getItem("productsInPurchase"))[index].qty;
+
+        if (index != -1) {
+          this.qty = JSON.parse(localStorage.getItem("productsInPurchase"))[index].qty;
+          console.log('hi');
+          return this.qty;
+        }
       }
 
       return null;
@@ -21039,7 +21042,7 @@ var render = function() {
             ? _c("div", { staticClass: "inline-block" }, [
                 _c("i", { staticClass: "fas fa-arrow-right" }),
                 _vm._v(" "),
-                _c("span", [_vm._v(_vm._s(_vm.getNumberOfProductsInPurchase))])
+                _c("span", [_vm._v(_vm._s(_vm.getPurchaseAmount))])
               ])
             : _vm._e()
         ]
@@ -36405,8 +36408,13 @@ var getNumberOfProductsInPurchase = function getNumberOfProductsInPurchase(state
   return state.numberOfProductsInPurchase;
 };
 
+var hasProductsInPurchase = function hasProductsInPurchase(state) {
+  return !(state.productsInPurchase === null);
+};
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-  getNumberOfProductsInPurchase: getNumberOfProductsInPurchase
+  getNumberOfProductsInPurchase: getNumberOfProductsInPurchase,
+  hasProductsInPurchase: hasProductsInPurchase
 });
 
 /***/ }),
@@ -36447,7 +36455,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
 
 var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
   state: {
-    productsInPurchase: []
+    productsInPurchase: localStorage.getItem('productsInPurchase')
   },
   mutations: _mutations__WEBPACK_IMPORTED_MODULE_3___default.a,
   actions: _actions__WEBPACK_IMPORTED_MODULE_2__["default"],
@@ -36463,8 +36471,8 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/vagrant/code/franapp/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/vagrant/code/franapp/resources/css/app.css */"./resources/css/app.css");
+__webpack_require__(/*! C:\laragon\www\franapp\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\laragon\www\franapp\resources\css\app.css */"./resources/css/app.css");
 
 
 /***/ })
