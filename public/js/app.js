@@ -2524,9 +2524,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       productsInPurchase: []
     };
   },
-  mounted: function mounted() {
-    console.log(localStorage.getItem("productsInPurchase"));
-  },
+  mounted: function mounted() {},
   methods: {
     submit: function submit() {
       var _this = this;
@@ -2558,10 +2556,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       if (!(localStorage.getItem("productsInPurchase") === null)) {
         var product = JSON.parse(localStorage.getItem("productsInPurchase")).find(function (product) {
-          return product.product_id === _this2.product_id;
+          return product.product_id == _this2.product_id;
         });
+        console.log(product);
         var index = JSON.parse(localStorage.getItem("productsInPurchase")).indexOf(product);
-        return JSON.parse(localStorage.getItem("productsInPurchase"))[index].qty;
+        console.log(index);
+        if (index != -1) return JSON.parse(localStorage.getItem("productsInPurchase"))[index].qty;
       }
 
       return null;
