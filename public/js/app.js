@@ -2515,16 +2515,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       type: Number
     }
   },
-  data: function data() {
-    return {
-      productsInPurchase: [],
-      qty: null
-    };
-  },
   mounted: function mounted() {
-    console.log(this.getPurchaseAmount);
+    console.log(this.productExistsInPurchase(this.product_id));
   },
-  methods: {
+  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapMutations"])(['setProductsInPurchase'])), {}, {
     submit: function submit() {
       var _this = this;
 
@@ -2532,44 +2526,23 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         product_id: this.product_id,
         purchase_price: this.purchase_price
       }).then(function (res) {
-        if (_this.hasProductsInPurchase) {
-          _this.productsInPurchase = JSON.parse(localStorage.getItem("productsInPurchase"));
-          var index = JSON.parse(localStorage.getItem("productsInPurchase")).findIndex(function (product) {
-            return product.product_id == _this.product_id;
-          });
-        }
+        var obj = new Object();
+        obj.hasProductsInPurchase = _this.hasProductsInPurchase;
+        console.log('esto es  obj.hasProductsInPurchase ' + obj.hasProductsInPurchase);
+        obj.index = _this.productExistsInPurchase(_this.product_id);
+        console.log('index' + obj.index);
+        obj.productInPurchase = {
+          qty: res.data,
+          product_id: _this.product_id
+        };
 
-        if (index != -1) _this.productsInPurchase[index].qty = res.data;else _this.productsInPurchase.push({
-          product_id: _this.product_id,
-          qty: res.data
-        });
-        localStorage.setItem("productsInPurchase", JSON.stringify(_this.productsInPurchase));
-        console.log(res.data + ' cantidad');
-        Vue.set(_this.$data, 'qty', res.data);
+        _this.setProductsInPurchase(obj);
       })["catch"](function (err) {
         console.log(err);
       });
     }
-  },
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['hasProductsInPurchase'])), {}, {
-    getPurchaseAmount: function getPurchaseAmount() {
-      var _this2 = this;
-
-      if (!(localStorage.getItem("productsInPurchase") === null)) {
-        var index = JSON.parse(localStorage.getItem("productsInPurchase")).findIndex(function (product) {
-          return product.product_id === _this2.product_id;
-        });
-
-        if (index != -1) {
-          this.qty = JSON.parse(localStorage.getItem("productsInPurchase"))[index].qty;
-          console.log('hi');
-          return this.qty;
-        }
-      }
-
-      return null;
-    }
-  })
+  }),
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["hasProductsInPurchase", "productExistsInPurchase", "qtyPurchase"]))
 });
 
 /***/ }),
@@ -21038,11 +21011,19 @@ var render = function() {
         },
         [
           _vm._v("\n        C\n        "),
-          _vm.getPurchaseAmount
+          _vm.qtyPurchase(_vm.productExistsInPurchase(_vm.product_id))
             ? _c("div", { staticClass: "inline-block" }, [
                 _c("i", { staticClass: "fas fa-arrow-right" }),
                 _vm._v(" "),
-                _c("span", [_vm._v(_vm._s(_vm.getPurchaseAmount))])
+                _c("span", [
+                  _vm._v(
+                    _vm._s(
+                      _vm.qtyPurchase(
+                        _vm.productExistsInPurchase(_vm.product_id)
+                      )
+                    )
+                  )
+                ])
               ])
             : _vm._e()
         ]
@@ -36404,17 +36385,30 @@ var search = function search(_ref2, data) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-var getNumberOfProductsInPurchase = function getNumberOfProductsInPurchase(state) {
-  return state.numberOfProductsInPurchase;
-};
-
 var hasProductsInPurchase = function hasProductsInPurchase(state) {
   return !(state.productsInPurchase === null);
 };
 
+var productExistsInPurchase = function productExistsInPurchase(state) {
+  if (state.productsInPurchase === null) return -1;
+  return function (product_id) {
+    return state.productsInPurchase.findIndex(function (product) {
+      return product.product_id === product_id;
+    });
+  };
+};
+
+var qtyPurchase = function qtyPurchase(state) {
+  return function (index) {
+    if (index == -1) return null;
+    return state.productsInPurchase[index].qty;
+  };
+};
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-  getNumberOfProductsInPurchase: getNumberOfProductsInPurchase,
-  hasProductsInPurchase: hasProductsInPurchase
+  hasProductsInPurchase: hasProductsInPurchase,
+  productExistsInPurchase: productExistsInPurchase,
+  qtyPurchase: qtyPurchase
 });
 
 /***/ }),
@@ -36423,10 +36417,34 @@ var hasProductsInPurchase = function hasProductsInPurchase(state) {
 /*!****************************************!*\
   !*** ./resources/js/vuex/mutations.js ***!
   \****************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+var setProductsInPurchase = function setProductsInPurchase(state, data) {
+  var localProductsInPurchase = JSON.parse(localStorage.getItem('productsInPurchase'));
 
+  if (data.hasProductsinPurchase) {
+    if (data.index == -1) {
+      localProductsInPurchase.push(data.productInPurchase);
+    } else {
+      console.log('holaaaaaaaaaaaa');
+      localProductsInPurchase[data.index].qty = data.productInPurchase.qty;
+      console.log(localProductsInPurchase);
+    }
+  } else {
+    localProductsInPurchase = [];
+    localProductsInPurchase.push(data.productInPurchase);
+  }
+
+  localStorage.setItem('productsInPurchase', JSON.stringify(localProductsInPurchase));
+  state.productsInPurchase = JSON.parse(localStorage.getItem('productsInPurchase')); //Vue.set(state.productsInPurchase,state.productsInPurchase[])
+};
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  setProductsInPurchase: setProductsInPurchase
+});
 
 /***/ }),
 
@@ -36445,7 +36463,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./actions */ "./resources/js/vuex/actions.js");
 /* harmony import */ var _mutations__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./mutations */ "./resources/js/vuex/mutations.js");
-/* harmony import */ var _mutations__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_mutations__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _getters__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./getters */ "./resources/js/vuex/getters.js");
 
 
@@ -36455,9 +36472,9 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
 
 var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
   state: {
-    productsInPurchase: localStorage.getItem('productsInPurchase')
+    productsInPurchase: JSON.parse(localStorage.getItem('productsInPurchase'))
   },
-  mutations: _mutations__WEBPACK_IMPORTED_MODULE_3___default.a,
+  mutations: _mutations__WEBPACK_IMPORTED_MODULE_3__["default"],
   actions: _actions__WEBPACK_IMPORTED_MODULE_2__["default"],
   getters: _getters__WEBPACK_IMPORTED_MODULE_4__["default"]
 });
@@ -36471,8 +36488,8 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\laragon\www\franapp\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\laragon\www\franapp\resources\css\app.css */"./resources/css/app.css");
+__webpack_require__(/*! /home/vagrant/code/franapp/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/vagrant/code/franapp/resources/css/app.css */"./resources/css/app.css");
 
 
 /***/ })

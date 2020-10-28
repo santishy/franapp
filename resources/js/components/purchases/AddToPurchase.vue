@@ -5,15 +5,15 @@
             class="bg-purple-500 border-purple-900 border-b-4 hover:bg-purple-700 text-white font-bold py-1 px-4 rounded-full text-2xl"
         >
             C
-            <div v-if="getPurchaseAmount" class="inline-block">
+            <div v-if="qtyPurchase(productExistsInPurchase(product_id))" class="inline-block">
                 <i class="fas fa-arrow-right"></i>
-                <span>{{ getPurchaseAmount }}</span>
+                <span>{{ qtyPurchase(productExistsInPurchase(product_id)) }}</span>
             </div>
         </button>
     </form>
 </template>
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapMutations } from "vuex";
 export default {
     props: {
         product_id: {
@@ -23,17 +23,11 @@ export default {
             type: Number
         }
     },
-    data() {
-        return {
-            productsInPurchase: [],
-            qty: null
-        };
+    mounted(){
+        console.log(this.productExistsInPurchase(this.product_id))
     },
-    mounted() {
-        console.log(this.getPurchaseAmount);
-    },
-
     methods: {
+        ...mapMutations(['setProductsInPurchase']),
         submit() {
             axios
                 .post("/purchases", {
@@ -41,32 +35,13 @@ export default {
                     purchase_price: this.purchase_price
                 })
                 .then(res => {
-                    if (
-                        this.hasProductsInPurchase
-                    ) {
-                        this.productsInPurchase = JSON.parse(
-                            localStorage.getItem("productsInPurchase")
-                        );
-                        var index = JSON.parse(
-                            localStorage.getItem("productsInPurchase")
-                        ).findIndex(
-                            product => product.product_id == this.product_id
-                        );
-                       
-                    }
-                     if (index != -1)
-                            this.productsInPurchase[index].qty = res.data;
-                        else
-                            this.productsInPurchase.push({
-                                product_id: this.product_id,
-                                qty: res.data
-                            });
-                    localStorage.setItem(
-                        "productsInPurchase",
-                        JSON.stringify(this.productsInPurchase)
-                    );
-                    console.log(res.data + ' cantidad')
-                    Vue.set(this.$data,'qty',res.data);
+                    var obj = new Object();
+                    obj.hasProductsInPurchase = this.hasProductsInPurchase;
+                    console.log('esto es  obj.hasProductsInPurchase '+ obj.hasProductsInPurchase)
+                    obj.index = this.productExistsInPurchase(this.product_id);
+                    console.log('index'+obj.index)
+                    obj.productInPurchase = { qty: res.data,product_id:this.product_id };
+                    this.setProductsInPurchase(obj);
                 })
                 .catch(err => {
                     console.log(err);
@@ -74,23 +49,22 @@ export default {
         }
     },
     computed: {
-        ...mapGetters(['hasProductsInPurchase']),
-        getPurchaseAmount() {
-            if (!(localStorage.getItem("productsInPurchase") === null)) {
-                var index = JSON.parse(
-                    localStorage.getItem("productsInPurchase")
-                ).findIndex(product => product.product_id === this.product_id);
-                if (index != -1){
-                    this.qty = JSON.parse(
-                        localStorage.getItem("productsInPurchase")
-                    )[index].qty;
-                    console.log('hi')
-                    return this.qty
-                }
-                    
-            }
-            return null;
+        ...mapGetters(["hasProductsInPurchase", "productExistsInPurchase","qtyPurchase"]),
+        // getPurchaseAmount() {
+        //     if (!(localStorage.getItem("productsInPurchase") === null)) {
+        //         var index = JSON.parse(
+        //             localStorage.getItem("productsInPurchase")
+        //         ).findIndex(product => product.product_id === this.product_id);
+        //         if (index != -1) {
+        //             this.qty = JSON.parse(
+        //                 localStorage.getItem("productsInPurchase")
+        //             )[index].qty;
+        //             console.log("hi");
+        //             return this.qty;
+        //         }
+        //     }
+        //     return null;
         }
     }
-};
+
 </script>

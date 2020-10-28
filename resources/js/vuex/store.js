@@ -8,7 +8,7 @@ import getters from './getters';
 
 export const store = new Vuex.Store({
   state:{
-    productsInPurchase:localStorage.getItem('productsInPurchase'),
+    productsInPurchase:JSON.parse(localStorage.getItem('productsInPurchase')),
   },
   mutations,
   actions,
