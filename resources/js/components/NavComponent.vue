@@ -28,7 +28,7 @@
                     class="md:relative"
                 />
                 <a
-                    href="#responsive-header"
+                    :href="`/purchases/${purchase}`"
                     class="block mt-4 lg:inline-block lg:mt-0 text-gray-200 hover:text-white"
                 >
                     Realizar Compra
@@ -56,9 +56,15 @@ export default {
                 {
                     name: "Listar",
                     url: "/products"
-                }
+                },
+                
             ],
+            purchase:null,
         };
+    },
+    mounted(){
+        this.purchase =  document.head.querySelector('meta[name="purchase_id"]').content;
+        console.log(this.purchase)
     },
     methods: {
         toggleNavegation() {

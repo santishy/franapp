@@ -2,12 +2,11 @@
     <form @submit.prevent="submit">
         <input type="hidden" name="product_id" />
         <button
-            class="bg-purple-500 border-purple-900 border-b-4 hover:bg-purple-700 text-white font-bold py-1 px-4 rounded-full text-2xl"
+            class="bg-purple-500 border-purple-900 border-b-4 hover:bg-purple-700 text-white font-bold py-1 px-4 rounded text-2xl"
         >
             C
             <div v-if="qtyPurchase(productExistsInPurchase(product_id))" class="inline-block">
-                <i class="fas fa-arrow-right"></i>
-                <span>{{ qtyPurchase(productExistsInPurchase(product_id)) }}</span>
+                <span class="bg-purple-900 rounded-full py-0 px-2 text-xl">{{ qtyPurchase(productExistsInPurchase(product_id)) }}</span>
             </div>
         </button>
     </form>
@@ -28,7 +27,8 @@ export default {
     },
     methods: {
         ...mapMutations(['setProductsInPurchase']),
-        submit() {
+        submit(e) {
+            e.target.disabled=true;
             axios
                 .post("/purchases", {
                     product_id: this.product_id,
@@ -37,9 +37,9 @@ export default {
                 .then(res => {
                     var obj = new Object();
                     obj.hasProductsInPurchase = this.hasProductsInPurchase;
-                    console.log('esto es  obj.hasProductsInPurchase '+ obj.hasProductsInPurchase)
-                    obj.index = this.productExistsInPurchase(this.product_id);
-                    console.log('index'+obj.index)
+                   
+                    obj.index = this.productExistsInPurchase(this.product_id)
+    
                     obj.productInPurchase = { qty: res.data,product_id:this.product_id };
                     this.setProductsInPurchase(obj);
                 })
@@ -50,20 +50,6 @@ export default {
     },
     computed: {
         ...mapGetters(["hasProductsInPurchase", "productExistsInPurchase","qtyPurchase"]),
-        // getPurchaseAmount() {
-        //     if (!(localStorage.getItem("productsInPurchase") === null)) {
-        //         var index = JSON.parse(
-        //             localStorage.getItem("productsInPurchase")
-        //         ).findIndex(product => product.product_id === this.product_id);
-        //         if (index != -1) {
-        //             this.qty = JSON.parse(
-        //                 localStorage.getItem("productsInPurchase")
-        //             )[index].qty;
-        //             console.log("hi");
-        //             return this.qty;
-        //         }
-        //     }
-        //     return null;
         }
     }
 

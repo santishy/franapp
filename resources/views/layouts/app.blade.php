@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="purchase_id" content="{{ session()->get('purchase_id') }}">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Franapp</title>
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
@@ -11,7 +12,10 @@
 <body class="bg-gray-200">
     <div id="app" class="mt-20">
     <nav-component></nav-component>
-        @yield('content')
+        <div class="container mx-auto py-2">
+            @yield('content')
+        </div>
+       
     </div>
  
     <script src="{{asset('js/app.js')}}"></script>

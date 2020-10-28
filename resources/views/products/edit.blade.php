@@ -3,5 +3,6 @@
     <product-form 
         :product="{{$product}}" 
         method="put"
+        
     />
 @endsection

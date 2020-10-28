@@ -1,13 +1,15 @@
 const setProductsInPurchase = (state, data) => {
     var localProductsInPurchase = JSON.parse(localStorage.getItem('productsInPurchase'));
-    if (data.hasProductsinPurchase) {
-        if (data.index == -1) {
-            localProductsInPurchase.push(data.productInPurchase);
-            
-        } else {
-            console.log('holaaaaaaaaaaaa')
+    if (data.hasProductsInPurchase) {
+        console.log('me duele la muela')
+        if (data.index != -1) {
+            console.log('holaaaaaaaaaaaa '+data.index)
             localProductsInPurchase[data.index].qty = data.productInPurchase.qty;
             console.log(localProductsInPurchase)
+           
+            
+        } else {
+            localProductsInPurchase.push(data.productInPurchase);
         }
 
     }

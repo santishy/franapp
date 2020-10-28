@@ -1,5 +1,5 @@
 <template>
-    <div class="grid  grid-cols-1 sm:grid-cols-3 gap-4 mt-10">
+    <div class="grid  grid-cols-1 md:grid-cols-3 gap-4 mt-10">
         <div class="col-span-3 flex justify-center border py-8">
             <search-component ref="search" class="md:w-1/4 w-3/4" />
         </div>

@@ -33,6 +33,8 @@ class PurchaseController extends Controller
 
     public function show(Purchase $purchase)
     {
+        $productsInPurchase = $purchase->products()->get();
+        return view('purchases.show',compact('productsInPurchase'));
     }
     public function edit(Purchase $purchase)
     {
