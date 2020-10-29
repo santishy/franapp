@@ -28,6 +28,7 @@
                 <i class="far fa-edit"></i>
             </button>
             <button
+                @click="destroy"
                 class="bg-red-500 hover:bg-red-400 p-2 rounded border-b-4 border-red-700"
             >
                 <i class="fas fa-minus-circle"></i>
@@ -40,6 +41,9 @@ export default {
     props: {
         product: {
             type: Object
+        },
+        index:{
+            type:Number
         }
     },
     data() {
@@ -55,6 +59,18 @@ export default {
             })
             .then((res) => {
                 console.log(res)
+            })
+            .catch((res) => {
+                console.log(res)
+            });
+        },
+        destroy(){
+            axios.delete(`/products-in-purchases/${this.localProduct.id}`)
+            .then((res) => {
+                console.log(res)
+                if(res.data){
+                    EventBus.$emit('deleted-from-purchase',this.index)
+                }
             })
             .catch((res) => {
                 console.log(res)

@@ -20,4 +20,7 @@ class ProductInPurchaseController extends Controller
             'purchase_price' => $request->pivot['purchase_id'],
         ]);
     }
+    public function destroy(Product $product){
+        return Purchase::find(session()->get('purchase_id'))->products()->detach($product->id);
+    }
 }

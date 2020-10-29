@@ -46,3 +46,4 @@ Route::resource('purchases',PurchaseController::class);
 Use App\Http\Controllers\ProductInPurchaseController;
 
 Route::put('products-in-purchases/{product}',[ProductInPurchaseController::class,'update']);
+Route::delete('products-in-purchases/{product}',[ProductInPurchaseController::class,'destroy']);

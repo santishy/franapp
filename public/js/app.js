@@ -2630,10 +2630,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     product: {
       type: Object
+    },
+    index: {
+      type: Number
     }
   },
   data: function data() {
@@ -2647,6 +2651,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         _method: "PUT"
       })).then(function (res) {
         console.log(res);
+      })["catch"](function (res) {
+        console.log(res);
+      });
+    },
+    destroy: function destroy() {
+      var _this = this;
+
+      axios["delete"]("/products-in-purchases/".concat(this.localProduct.id)).then(function (res) {
+        console.log(res);
+
+        if (res.data) {
+          EventBus.$emit('deleted-from-purchase', _this.index);
+        }
       })["catch"](function (res) {
         console.log(res);
       });
@@ -2675,6 +2692,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -2685,10 +2703,16 @@ __webpack_require__.r(__webpack_exports__);
       type: Array
     }
   },
+  mounted: function mounted() {
+    EventBus.$on('deleted-from-purchase', this.removeProductFromPurchase);
+  },
   data: function data() {
     return {
       localProductsInPurchase: this.productsInPurchase
     };
+  },
+  removeProductFromPurchase: function removeProductFromPurchase(index) {
+    this.localProductsInPurchase.splice(index, 1);
   }
 });
 
@@ -21286,27 +21310,21 @@ var render = function() {
             [_c("i", { staticClass: "far fa-edit" })]
           ),
           _vm._v(" "),
-          _vm._m(0)
+          _c(
+            "button",
+            {
+              staticClass:
+                "bg-red-500 hover:bg-red-400 p-2 rounded border-b-4 border-red-700",
+              on: { click: _vm.destroy }
+            },
+            [_c("i", { staticClass: "fas fa-minus-circle" })]
+          )
         ]
       )
     ]
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "button",
-      {
-        staticClass:
-          "bg-red-500 hover:bg-red-400 p-2 rounded border-b-4 border-red-700"
-      },
-      [_c("i", { staticClass: "fas fa-minus-circle" })]
-    )
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -21331,10 +21349,10 @@ var render = function() {
   return _c(
     "div",
     { staticClass: "grid md:grid-cols-5 gap-4" },
-    _vm._l(_vm.productsInPurchase, function(product) {
+    _vm._l(_vm.productsInPurchase, function(product, index) {
       return _c("product-in-purchase", {
         key: product.id,
-        attrs: { product: product }
+        attrs: { product: product, index: index }
       })
     }),
     1

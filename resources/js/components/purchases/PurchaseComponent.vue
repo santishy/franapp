@@ -1,8 +1,9 @@
 <template>
     <div class="grid md:grid-cols-5 gap-4">
         <product-in-purchase
-            v-for="product in productsInPurchase"
+            v-for="(product,index) in productsInPurchase"
             :product='product'
+            :index="index"
             :key="product.id"
         />
     </div>
@@ -18,10 +19,16 @@ export default {
             type:Array
         }
     },
+    mounted(){
+        EventBus.$on('deleted-from-purchase',this.removeProductFromPurchase)
+    },
     data(){
         return{
             localProductsInPurchase:this.productsInPurchase
         }
+    },
+    removeProductFromPurchase(index){
+        this.localProductsInPurchase.splice(index,1);
     }
 }
 </script>
