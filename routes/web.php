@@ -39,3 +39,9 @@ Route::get('searching-products',[ProductsSearchController::class,'index'])->name
 use App\Http\Controllers\PurchaseController;
 
 Route::resource('purchases',PurchaseController::class);
+
+//Productos en compra
+
+Use App\Http\Controllers\ProductInPurchaseController;
+
+Route::put('products-in-purchase/{product}',[ProductInPurchaseController::class,'update']);

@@ -3,11 +3,8 @@ const setProductsInPurchase = (state, data) => {
     if (data.hasProductsInPurchase) {
         console.log('me duele la muela')
         if (data.index != -1) {
-            console.log('holaaaaaaaaaaaa '+data.index)
+
             localProductsInPurchase[data.index].qty = data.productInPurchase.qty;
-            console.log(localProductsInPurchase)
-           
-            
         } else {
             localProductsInPurchase.push(data.productInPurchase);
         }
@@ -22,6 +19,6 @@ const setProductsInPurchase = (state, data) => {
     //Vue.set(state.productsInPurchase,state.productsInPurchase[])
 }
 
-export default{
+export default {
     setProductsInPurchase
 }
