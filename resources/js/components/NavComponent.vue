@@ -28,7 +28,7 @@
                     class="md:relative"
                 />
                 <a
-                    :href="`/purchases/${purchase}`"
+                    :href="purchase ? `/purchases/${purchase}` : '#'"
                     class="block mt-4 lg:inline-block lg:mt-0 text-gray-200 hover:text-white"
                 >
                     Realizar Compra
@@ -64,11 +64,15 @@ export default {
     },
     mounted(){
         this.purchase =  document.head.querySelector('meta[name="purchase_id"]').content;
-        console.log(this.purchase)
+        EventBus.$on('purchase-created',this.setPurchaseId);
     },
     methods: {
         toggleNavegation() {
             document.querySelector("#navegation").classList.toggle("hidden");
+        },
+        setPurchaseId(id){
+            this.purchase = id;
+            console.log(this.purchase + ' uuuu')
         }
     }
 };

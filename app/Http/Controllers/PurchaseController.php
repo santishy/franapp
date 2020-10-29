@@ -23,18 +23,21 @@ class PurchaseController extends Controller
         if ($productInPurchase->exists()) {
             $productInPurchase->updateExistingPivot($request->product_id, ['qty' => ($productInPurchase->first()->pivot->qty + 1)]);
         } else {
-            $purchase->products()->attach($request->product_id,[
+            $purchase->products()->attach($request->product_id, [
                 'purchase_price' => $request->purchase_price,
                 'qty' => 1
             ]);
         }
-        return $purchase->products()->where('product_id', $request->product_id)->sum('qty');
+        return response()->json([
+            'qty' => $purchase->products()->where('product_id', $request->product_id)->sum('qty'),
+            'purchase_id' => $purchase->id,
+        ]);
     }
 
     public function show(Purchase $purchase)
     {
         $productsInPurchase = $purchase->products()->get();
-        return view('purchases.show',compact('productsInPurchase'));
+        return view('purchases.show', compact('productsInPurchase'));
     }
     public function edit(Purchase $purchase)
     {

@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+    session()->flush();
     return view('welcome');
 });
 
@@ -44,4 +45,4 @@ Route::resource('purchases',PurchaseController::class);
 
 Use App\Http\Controllers\ProductInPurchaseController;
 
-Route::put('products-in-purchase/{product}',[ProductInPurchaseController::class,'update']);
+Route::put('products-in-purchases/{product}',[ProductInPurchaseController::class,'update']);

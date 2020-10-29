@@ -10,7 +10,10 @@
             :index="index"
             class="col-span-3 md:col-span-1"
         />
-        <infinite-loading :identifier="infiniteId" @infinite="infiniteHandler"></infinite-loading>
+        <infinite-loading
+            :identifier="infiniteId"
+            @infinite="infiniteHandler"
+        ></infinite-loading>
     </div>
 </template>
 <script>
@@ -23,18 +26,21 @@ export default {
         return {
             products: [],
             page: 1,
-            wantedProduct:null,
-            infiniteId:1,
-            obj:new Object(),
-            arr : new Array()
+            wantedProduct: null,
+            infiniteId: 1,
+            obj: new Object(),
+            arr: new Array()
         };
     },
     mounted() {
         EventBus.$on("product-removed", this.removeFromArray);
         EventBus.$on("matching-products", this.matchingProducts);
-        EventBus.$on("empty-search",this.reloadIndex);
-     
-        
+        EventBus.$on("empty-search", this.reloadIndex);
+        if (
+            document.head.querySelector('meta[name="purchase_id"]').content ==
+            ""
+        )
+            localStorage.removeItem("productsInPurchase");
     },
     components: {
         "product-card": ProductCardComponent,
@@ -47,54 +53,47 @@ export default {
             this.products.splice(index, 1);
         },
         infiniteHandler($state) {
-          
-            if(this.wantedProduct){
+            if (this.wantedProduct) {
                 this.obj.sku = this.wantedProduct;
                 this.obj.page = this.page;
                 this.search(this.obj)
-                    .then((res) => {
-                        if(res.data.data.length){
+                    .then(res => {
+                        if (res.data.data.length) {
                             this.page += 1;
-                            this.products.push(...res.data.data)
-                            $state.loaded()
-                        }
-                        else{
+                            this.products.push(...res.data.data);
+                            $state.loaded();
+                        } else {
                             $state.complete();
                         }
                     })
-                    .catch((err) => {
-
-                    })
-            }
-            else{
+                    .catch(err => {});
+            } else {
                 this.getProducts(this.page)
-                .then(res => {
-                    if (res.data.data.length) {                    
-                        this.page += 1;
-                        this.products = this.products.concat(res.data.data);
-                        $state.loaded();
-                    } else {
-                        $state.complete();
-                    }
-                })
-                .catch(error => {
-                    console.log(error);
-                });
+                    .then(res => {
+                        if (res.data.data.length) {
+                            this.page += 1;
+                            this.products = this.products.concat(res.data.data);
+                            $state.loaded();
+                        } else {
+                            $state.complete();
+                        }
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    });
             }
-            
         },
-        matchingProducts(data){
+        matchingProducts(data) {
             this.products = data.products;
             this.wantedProduct = data.sku;
-            this.page =  data.page + 1;
+            this.page = data.page + 1;
             this.infiniteId++;
         },
-        reloadIndex(){
+        reloadIndex() {
             this.infiniteId++;
             this.wantedProduct = null;
             this.page = 1;
         }
-       
     }
 };
 </script>

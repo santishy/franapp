@@ -2064,11 +2064,15 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     this.purchase = document.head.querySelector('meta[name="purchase_id"]').content;
-    console.log(this.purchase);
+    EventBus.$on('purchase-created', this.setPurchaseId);
   },
   methods: {
     toggleNavegation: function toggleNavegation() {
       document.querySelector("#navegation").classList.toggle("hidden");
+    },
+    setPurchaseId: function setPurchaseId(id) {
+      this.purchase = id;
+      console.log(this.purchase + ' uuuu');
     }
   }
 });
@@ -2122,6 +2126,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
 
 
 
@@ -2141,6 +2148,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     EventBus.$on("product-removed", this.removeFromArray);
     EventBus.$on("matching-products", this.matchingProducts);
     EventBus.$on("empty-search", this.reloadIndex);
+    if (document.head.querySelector('meta[name="purchase_id"]').content == "") localStorage.removeItem("productsInPurchase");
   },
   components: {
     "product-card": _ProductCardComponent_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
@@ -2529,9 +2537,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       type: Number
     }
   },
-  // mounted() {
-  //     console.log(this.productExistsInPurchase(this.product_id));
-  // },
+  data: function data() {
+    return {
+      purchase_id: null
+    };
+  },
+  mounted: function mounted() {
+    this.purchase_id = document.head.querySelector('meta[name="purchase_id"]').content;
+  },
   methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapMutations"])(["setProductsInPurchase"])), {}, {
     submit: function submit(e) {
       var _this = this;
@@ -2545,9 +2558,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         obj.hasProductsInPurchase = _this.hasProductsInPurchase;
         obj.index = _this.productExistsInPurchase(_this.product_id);
         obj.productInPurchase = {
-          qty: res.data,
+          qty: res.data.qty,
           product_id: _this.product_id
         };
+
+        if (_this.purchase_id == "") {
+          EventBus.$emit("purchase-created", res.data.purchase_id);
+          document.head.querySelector('meta[name="purchase_id"]').content = res.data.purchase_id;
+        }
 
         _this.setProductsInPurchase(obj);
       })["catch"](function (err) {
@@ -2569,6 +2587,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
 //
 //
 //
@@ -2618,10 +2643,9 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     update: function update() {
-      axios.post("/products-in-purchases/".concat(this.localProduct.id), {
-        product: this.localProduct,
-        _method: "put"
-      }).then(function (res) {
+      axios.post("/products-in-purchases/".concat(this.localProduct.id), _objectSpread(_objectSpread({}, this.localProduct), {
+        _method: "PUT"
+      })).then(function (res) {
         console.log(res);
       })["catch"](function (res) {
         console.log(res);
@@ -20522,7 +20546,9 @@ var render = function() {
                 {
                   staticClass:
                     "block mt-4 lg:inline-block lg:mt-0 text-gray-200 hover:text-white",
-                  attrs: { href: "/purchases/" + _vm.purchase }
+                  attrs: {
+                    href: _vm.purchase ? "/purchases/" + _vm.purchase : "#"
+                  }
                 },
                 [_vm._v("\n                Realizar Compra\n            ")]
               )
@@ -21246,7 +21272,23 @@ var render = function() {
         })
       ]),
       _vm._v(" "),
-      _vm._m(0)
+      _c(
+        "div",
+        { staticClass: " p-2 border-b-2 border-teal-400 flex justify-center" },
+        [
+          _c(
+            "button",
+            {
+              staticClass:
+                "bg-blue-500 rounded px-2 py-2 text-center hover:bg-blue-400 border-b-4 border-blue-700 mr-4",
+              on: { click: _vm.update }
+            },
+            [_c("i", { staticClass: "far fa-edit" })]
+          ),
+          _vm._v(" "),
+          _vm._m(0)
+        ]
+      )
     ]
   )
 }
@@ -21256,27 +21298,12 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c(
-      "div",
-      { staticClass: " p-2 border-b-2 border-teal-400 flex justify-center" },
-      [
-        _c(
-          "button",
-          {
-            staticClass:
-              "bg-blue-500 rounded px-2 py-2 text-center hover:bg-blue-400 border-b-4 border-blue-700 mr-4"
-          },
-          [_c("i", { staticClass: "far fa-edit" })]
-        ),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass:
-              "bg-red-500 hover:bg-red-400 p-2 rounded border-b-4 border-red-700"
-          },
-          [_c("i", { staticClass: "fas fa-minus-circle" })]
-        )
-      ]
+      "button",
+      {
+        staticClass:
+          "bg-red-500 hover:bg-red-400 p-2 rounded border-b-4 border-red-700"
+      },
+      [_c("i", { staticClass: "fas fa-minus-circle" })]
     )
   }
 ]
@@ -36909,8 +36936,8 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/vagrant/code/franapp/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/vagrant/code/franapp/resources/css/app.css */"./resources/css/app.css");
+__webpack_require__(/*! C:\laragon\www\franapp\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\laragon\www\franapp\resources\css\app.css */"./resources/css/app.css");
 
 
 /***/ })

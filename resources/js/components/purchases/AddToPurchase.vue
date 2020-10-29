@@ -27,9 +27,16 @@ export default {
             type: Number
         }
     },
-    // mounted() {
-    //     console.log(this.productExistsInPurchase(this.product_id));
-    // },
+    data() {
+        return {
+            purchase_id: null
+        };
+    },
+    mounted() {
+        this.purchase_id = document.head.querySelector(
+            'meta[name="purchase_id"]'
+        ).content;
+    },
     methods: {
         ...mapMutations(["setProductsInPurchase"]),
         submit(e) {
@@ -46,9 +53,18 @@ export default {
                     obj.index = this.productExistsInPurchase(this.product_id);
 
                     obj.productInPurchase = {
-                        qty: res.data,
+                        qty: res.data.qty,
                         product_id: this.product_id
                     };
+                    if (this.purchase_id == "") {
+                        EventBus.$emit(
+                            "purchase-created",
+                            res.data.purchase_id
+                        );
+                        document.head.querySelector(
+                            'meta[name="purchase_id"]'
+                        ).content = res.data.purchase_id;
+                    }
                     this.setProductsInPurchase(obj);
                 })
                 .catch(err => {

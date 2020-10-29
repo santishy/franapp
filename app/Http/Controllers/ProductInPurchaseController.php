@@ -9,13 +9,15 @@ use Illuminate\Http\Request;
 class ProductInPurchaseController extends Controller
 {
     //corregir parametro en el update
-    public function update(Product $product,Request $request){
-
-        request()->validate($request->all(),[
-            'id' => 'required|exists:product,id',
-            'qty' => 'required|numeric|min:1',
-            'purchase_price' => 'required|numeric|min:1',
+    public function update(Request $request,Product $product){
+        request()->validate([
+            'id' => 'required|exists:products,id',
+            'pivot.qty' => 'required|numeric|min:1',
+            'pivot.purchase_price' => 'required|numeric|min:1',
         ]);
-        Purchase::find(session()->get('purchase_id'))->udpate()
+        Purchase::find(session()->get('purchase_id'))->products()->updateExistingPivot($request->id,[
+            'qty' => $request->pivot['qty'],
+            'purchase_price' => $request->pivot['purchase_id'],
+        ]);
     }
 }

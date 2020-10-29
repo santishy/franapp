@@ -22,6 +22,7 @@
         </div>
         <div class=" p-2 border-b-2 border-teal-400 flex justify-center">
             <button
+                @click="update"
                 class="bg-blue-500 rounded px-2 py-2 text-center hover:bg-blue-400 border-b-4 border-blue-700 mr-4"
             >
                 <i class="far fa-edit"></i>
@@ -49,8 +50,8 @@ export default {
     methods: {
         update() {
             axios.post(`/products-in-purchases/${this.localProduct.id}`, {
-                product: this.localProduct,
-                _method: "put"
+                 ...this.localProduct,
+                ...{_method: "PUT"}
             })
             .then((res) => {
                 console.log(res)
