@@ -69,7 +69,7 @@ export default {
             .then((res) => {
                 console.log(res)
                 if(res.data){
-                    EventBus.$emit('deleted-from-purchase',this.index)
+                    EventBus.$emit('purchase-extracted',this.index)
                 }
             })
             .catch((res) => {

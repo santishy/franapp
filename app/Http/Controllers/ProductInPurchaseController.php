@@ -17,7 +17,7 @@ class ProductInPurchaseController extends Controller
         ]);
         Purchase::find(session()->get('purchase_id'))->products()->updateExistingPivot($request->id,[
             'qty' => $request->pivot['qty'],
-            'purchase_price' => $request->pivot['purchase_id'],
+            'purchase_price' => $request->pivot['purchase_id']
         ]);
     }
     public function destroy(Product $product){

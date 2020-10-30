@@ -20,7 +20,7 @@ export default {
         }
     },
     mounted(){
-        EventBus.$on('deleted-from-purchase',this.removeProductFromPurchase)
+        EventBus.$on('purchase-extracted',this.removeProductFromPurchase)
     },
     data(){
         return{

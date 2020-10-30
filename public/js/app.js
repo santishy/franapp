@@ -2144,11 +2144,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       arr: new Array()
     };
   },
+  created: function created() {
+    if (document.head.querySelector('meta[name="purchase_id"]').content == "" || document.head.querySelector('meta[name="purchase_id"]').content == null) localStorage.removeItem("productsInPurchase");
+  },
   mounted: function mounted() {
     EventBus.$on("product-removed", this.removeFromArray);
     EventBus.$on("matching-products", this.matchingProducts);
     EventBus.$on("empty-search", this.reloadIndex);
-    if (document.head.querySelector('meta[name="purchase_id"]').content == "") localStorage.removeItem("productsInPurchase");
   },
   components: {
     "product-card": _ProductCardComponent_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
@@ -2662,7 +2664,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         console.log(res);
 
         if (res.data) {
-          EventBus.$emit('deleted-from-purchase', _this.index);
+          EventBus.$emit('purchase-extracted', _this.index);
         }
       })["catch"](function (res) {
         console.log(res);
@@ -2704,7 +2706,7 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   mounted: function mounted() {
-    EventBus.$on('deleted-from-purchase', this.removeProductFromPurchase);
+    EventBus.$on('purchase-extracted', this.removeProductFromPurchase);
   },
   data: function data() {
     return {
@@ -36954,8 +36956,8 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\laragon\www\franapp\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\laragon\www\franapp\resources\css\app.css */"./resources/css/app.css");
+__webpack_require__(/*! /home/vagrant/code/franapp/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/vagrant/code/franapp/resources/css/app.css */"./resources/css/app.css");
 
 
 /***/ })

@@ -32,15 +32,18 @@ export default {
             arr: new Array()
         };
     },
+    created(){
+         if (
+            document.head.querySelector('meta[name="purchase_id"]').content ==
+            "" || document.head.querySelector('meta[name="purchase_id"]').content == null
+        )
+            localStorage.removeItem("productsInPurchase");
+    },
     mounted() {
         EventBus.$on("product-removed", this.removeFromArray);
         EventBus.$on("matching-products", this.matchingProducts);
         EventBus.$on("empty-search", this.reloadIndex);
-        if (
-            document.head.querySelector('meta[name="purchase_id"]').content ==
-            ""
-        )
-            localStorage.removeItem("productsInPurchase");
+       
     },
     components: {
         "product-card": ProductCardComponent,
