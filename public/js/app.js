@@ -2661,10 +2661,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var _this = this;
 
       axios["delete"]("/products-in-purchases/".concat(this.localProduct.id)).then(function (res) {
-        console.log(res);
-
         if (res.data) {
-          EventBus.$emit('purchase-extracted', _this.index);
+          EventBus.$emit("purchase-extracted", _this.index);
         }
       })["catch"](function (res) {
         console.log(res);
@@ -2684,7 +2682,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _ProductInPurchase_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ProductInPurchase.vue */ "./resources/js/components/purchases/ProductInPurchase.vue");
 //
 //
 //
@@ -2695,26 +2692,32 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-
+//
+//
+//
+//import ProductInPurchase from './ProductInPurchase.vue';
 /* harmony default export */ __webpack_exports__["default"] = ({
-  components: {
-    'product-in-purchase': _ProductInPurchase_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
-  },
+  // components:{
+  //     'product-in-purchase':ProductInPurchase
+  // },
   props: {
     productsInPurchase: {
       type: Array
     }
   },
   mounted: function mounted() {
-    EventBus.$on('purchase-extracted', this.removeProductFromPurchase);
+    EventBus.$on("purchase-extracted", this.removeProductFromPurchase);
   },
   data: function data() {
     return {
       localProductsInPurchase: this.productsInPurchase
     };
   },
-  removeProductFromPurchase: function removeProductFromPurchase(index) {
-    this.localProductsInPurchase.splice(index, 1);
+  methods: {
+    removeProductFromPurchase: function removeProductFromPurchase(index) {
+      console.log(index);
+      this.localProductsInPurchase.splice(index, 1);
+    }
   }
 });
 
@@ -21350,14 +21353,18 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "grid md:grid-cols-5 gap-4" },
-    _vm._l(_vm.productsInPurchase, function(product, index) {
-      return _c("product-in-purchase", {
-        key: product.id,
-        attrs: { product: product, index: index }
+    { staticClass: "grid md:grid-cols-5 md:grid-rows-2 gap-4 " },
+    [
+      _c("div", { staticClass: "col-span-2 row-span-2 shadow" }),
+      _vm._v(" "),
+      _vm._l(_vm.localProductsInPurchase, function(product, index) {
+        return _c("product-in-purchase", {
+          key: product.id,
+          attrs: { product: product, index: index }
+        })
       })
-    }),
-    1
+    ],
+    2
   )
 }
 var staticRenderFns = []
@@ -35994,6 +36001,7 @@ Vue.component('dropdown-component', __webpack_require__(/*! ./components/Dropdow
 Vue.component('product-form', __webpack_require__(/*! ./components/products/ProductForm.vue */ "./resources/js/components/products/ProductForm.vue")["default"]);
 Vue.component('products-index', __webpack_require__(/*! ./components/products/IndexComponent.vue */ "./resources/js/components/products/IndexComponent.vue")["default"]);
 Vue.component('purchase-component', __webpack_require__(/*! ./components/purchases/PurchaseComponent.vue */ "./resources/js/components/purchases/PurchaseComponent.vue")["default"]);
+Vue.component('product-in-purchase', __webpack_require__(/*! ./components/purchases/ProductInPurchase.vue */ "./resources/js/components/purchases/ProductInPurchase.vue")["default"]);
 
 Vue.component('notifications', vue_notification__WEBPACK_IMPORTED_MODULE_1___default.a);
 Vue.use(vue_notification__WEBPACK_IMPORTED_MODULE_1___default.a);

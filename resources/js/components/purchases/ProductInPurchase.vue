@@ -42,8 +42,8 @@ export default {
         product: {
             type: Object
         },
-        index:{
-            type:Number
+        index: {
+            type: Number
         }
     },
     data() {
@@ -53,28 +53,29 @@ export default {
     },
     methods: {
         update() {
-            axios.post(`/products-in-purchases/${this.localProduct.id}`, {
-                 ...this.localProduct,
-                ...{_method: "PUT"}
-            })
-            .then((res) => {
-                console.log(res)
-            })
-            .catch((res) => {
-                console.log(res)
-            });
+            axios
+                .post(`/products-in-purchases/${this.localProduct.id}`, {
+                    ...this.localProduct,
+                    ...{ _method: "PUT" }
+                })
+                .then(res => {
+                    console.log(res);
+                })
+                .catch(res => {
+                    console.log(res);
+                });
         },
-        destroy(){
-            axios.delete(`/products-in-purchases/${this.localProduct.id}`)
-            .then((res) => {
-                console.log(res)
-                if(res.data){
-                    EventBus.$emit('purchase-extracted',this.index)
-                }
-            })
-            .catch((res) => {
-                console.log(res)
-            });
+        destroy() {
+            axios
+                .delete(`/products-in-purchases/${this.localProduct.id}`)
+                .then(res => {
+                    if (res.data) {
+                        EventBus.$emit("purchase-extracted", this.index);
+                    }
+                })
+                .catch(res => {
+                    console.log(res);
+                });
         }
     }
 };
