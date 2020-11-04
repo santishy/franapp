@@ -2072,7 +2072,6 @@ __webpack_require__.r(__webpack_exports__);
     },
     setPurchaseId: function setPurchaseId(id) {
       this.purchase = id;
-      console.log(this.purchase + ' uuuu');
     }
   }
 });
@@ -2652,7 +2651,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       axios.post("/products-in-purchases/".concat(this.localProduct.id), _objectSpread(_objectSpread({}, this.localProduct), {
         _method: "PUT"
       })).then(function (res) {
-        console.log(res);
+        console.log(res.data.totalPurchase);
+
+        if (res.data.totalPurchase) {
+          EventBus.$emit('total-updated-purchase', res.data.totalPurchase);
+        }
       })["catch"](function (res) {
         console.log(res);
       });
@@ -2695,6 +2698,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 //import ProductInPurchase from './ProductInPurchase.vue';
 /* harmony default export */ __webpack_exports__["default"] = ({
   // components:{
@@ -2703,20 +2712,28 @@ __webpack_require__.r(__webpack_exports__);
   props: {
     productsInPurchase: {
       type: Array
+    },
+    totalPurchase: {
+      type: Number
     }
   },
   mounted: function mounted() {
     EventBus.$on("purchase-extracted", this.removeProductFromPurchase);
+    EventBus.$on("total-updated-purchase", this.changeTotal);
   },
   data: function data() {
     return {
-      localProductsInPurchase: this.productsInPurchase
+      localProductsInPurchase: this.productsInPurchase,
+      localTotalPurchase: this.totalPurchase
     };
   },
   methods: {
     removeProductFromPurchase: function removeProductFromPurchase(index) {
       console.log(index);
       this.localProductsInPurchase.splice(index, 1);
+    },
+    changeTotal: function changeTotal(newTotalPurchase) {
+      this.localTotalPurchase = newTotalPurchase;
     }
   }
 });
@@ -21251,22 +21268,22 @@ var render = function() {
             {
               name: "model",
               rawName: "v-model",
-              value: _vm.localProduct.distributor_price,
-              expression: "localProduct.distributor_price"
+              value: _vm.localProduct.pivot.purchase_price,
+              expression: "localProduct.pivot.purchase_price"
             }
           ],
           staticClass:
             "appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none",
           attrs: { type: "number" },
-          domProps: { value: _vm.localProduct.distributor_price },
+          domProps: { value: _vm.localProduct.pivot.purchase_price },
           on: {
             input: function($event) {
               if ($event.target.composing) {
                 return
               }
               _vm.$set(
-                _vm.localProduct,
-                "distributor_price",
+                _vm.localProduct.pivot,
+                "purchase_price",
                 $event.target.value
               )
             }
@@ -21355,7 +21372,44 @@ var render = function() {
     "div",
     { staticClass: "grid md:grid-cols-5 md:grid-rows-2 gap-4 " },
     [
-      _c("div", { staticClass: "col-span-2 row-span-2 shadow" }),
+      _c(
+        "div",
+        {
+          staticClass: "col-span-2 row-span-1 shadow bg-white rounded px-2 py-4"
+        },
+        [
+          _c(
+            "h3",
+            {
+              staticClass: "text-2xl font-semibold text-center py-2 px-2 mb-4"
+            },
+            [_vm._v("Compra")]
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "grid md:grid-cols-2 text-center" }, [
+            _c("p", { staticClass: "mr-4 text-2xl text-gray-800" }, [
+              _vm._v("Total Compra:")
+            ]),
+            _vm._v(" "),
+            _c("p", { staticClass: "text-2xl text-gray-800" }, [
+              _vm._v(
+                "$" +
+                  _vm._s(
+                    new Intl.NumberFormat("es-MX").format(
+                      _vm.localTotalPurchase
+                    )
+                  )
+              )
+            ]),
+            _vm._v(" "),
+            _c("p", { staticClass: "text-xl text-right text-gray-800" }, [
+              _vm._v("Status:")
+            ]),
+            _vm._v(" "),
+            _c("p")
+          ])
+        ]
+      ),
       _vm._v(" "),
       _vm._l(_vm.localProductsInPurchase, function(product, index) {
         return _c("product-in-purchase", {
@@ -36964,8 +37018,8 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\laragon\www\franapp\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\laragon\www\franapp\resources\css\app.css */"./resources/css/app.css");
+__webpack_require__(/*! /home/vagrant/code/franapp/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/vagrant/code/franapp/resources/css/app.css */"./resources/css/app.css");
 
 
 /***/ })

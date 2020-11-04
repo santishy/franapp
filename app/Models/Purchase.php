@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Purchase extends Model
 {
@@ -20,5 +21,8 @@ class Purchase extends Model
     }
     public function products(){
         return $this->belongsToMany(Product::class)->withPivot('qty','purchase_price');
+    }
+    public function totalPurchase(){
+        return $this->products()->sum(DB::raw('qty * purchase_price'));
     }
 }

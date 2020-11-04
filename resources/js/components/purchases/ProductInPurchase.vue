@@ -8,7 +8,7 @@
             <p>Precio de compra</p>
             <input
                 type="number"
-                v-model="localProduct.distributor_price"
+                v-model="localProduct.pivot.purchase_price"
                 class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
             />
         </div>
@@ -59,7 +59,10 @@ export default {
                     ...{ _method: "PUT" }
                 })
                 .then(res => {
-                    console.log(res);
+                    console.log(res.data.totalPurchase);
+                    if(res.data.totalPurchase){
+                        EventBus.$emit('total-updated-purchase',res.data.totalPurchase);
+                    }
                 })
                 .catch(res => {
                     console.log(res);

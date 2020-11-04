@@ -72,7 +72,6 @@ export default {
         },
         setPurchaseId(id){
             this.purchase = id;
-            console.log(this.purchase + ' uuuu')
         }
     }
 };

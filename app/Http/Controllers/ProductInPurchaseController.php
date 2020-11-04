@@ -15,10 +15,15 @@ class ProductInPurchaseController extends Controller
             'pivot.qty' => 'required|numeric|min:1',
             'pivot.purchase_price' => 'required|numeric|min:1',
         ]);
-        Purchase::find(session()->get('purchase_id'))->products()->updateExistingPivot($request->id,[
+        $purchase = Purchase::find(session()->get('purchase_id'));
+        $purchase->products()->updateExistingPivot($request->id,[
             'qty' => $request->pivot['qty'],
-            'purchase_price' => $request->pivot['purchase_id']
+            'purchase_price' => $request->pivot['purchase_price']
         ]);
+        return response()->json([
+            'totalPurchase' => $purchase->totalPurchase()
+        ]);
+        
     }
     public function destroy(Product $product){
         return Purchase::find(session()->get('purchase_id'))->products()->detach($product->id);
