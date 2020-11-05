@@ -2579,6 +2579,49 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/purchases/CompletePurchaseButton.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/purchases/CompletePurchaseButton.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    purchase: {
+      type: Object
+    },
+    totalPurchase: {
+      type: Number
+    }
+  },
+  methods: {
+    completePurchase: function completePurchase() {
+      axios.post("/purchases/".concat(this.purchase.id), {
+        status: "completed",
+        total: this.totalPurchase,
+        _method: "PUT"
+      }).then(function (res) {
+        console.log(res);
+      })["catch"](function (err) {
+        console.log(err);
+      });
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/purchases/ProductInPurchase.vue?vue&type=script&lang=js&":
 /*!**************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/purchases/ProductInPurchase.vue?vue&type=script&lang=js& ***!
@@ -2685,6 +2728,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _CompletePurchaseButton_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CompletePurchaseButton.vue */ "./resources/js/components/purchases/CompletePurchaseButton.vue");
 //
 //
 //
@@ -2704,28 +2748,44 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//import ProductInPurchase from './ProductInPurchase.vue';
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-  // components:{
-  //     'product-in-purchase':ProductInPurchase
-  // },
+  components: {
+    "complete-purchase-btn": _CompletePurchaseButton_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
   props: {
     productsInPurchase: {
       type: Array
     },
     totalPurchase: {
       type: Number
+    },
+    purchase: {
+      type: Object
     }
-  },
-  mounted: function mounted() {
-    EventBus.$on("purchase-extracted", this.removeProductFromPurchase);
-    EventBus.$on("total-updated-purchase", this.changeTotal);
   },
   data: function data() {
     return {
       localProductsInPurchase: this.productsInPurchase,
-      localTotalPurchase: this.totalPurchase
+      localTotalPurchase: this.totalPurchase,
+      localPurchase: this.purchase
     };
+  },
+  mounted: function mounted() {
+    EventBus.$on("purchase-extracted", this.removeProductFromPurchase);
+    EventBus.$on("total-updated-purchase", this.changeTotal);
   },
   methods: {
     removeProductFromPurchase: function removeProductFromPurchase(index) {
@@ -2734,6 +2794,12 @@ __webpack_require__.r(__webpack_exports__);
     },
     changeTotal: function changeTotal(newTotalPurchase) {
       this.localTotalPurchase = newTotalPurchase;
+    }
+  },
+  computed: {
+    translateStatus: function translateStatus() {
+      if (this.localPurchase.status === "pending") return "Pendiente";
+      return "Completado";
     }
   }
 });
@@ -21235,6 +21301,38 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/purchases/CompletePurchaseButton.vue?vue&type=template&id=60d80434&":
+/*!***********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/purchases/CompletePurchaseButton.vue?vue&type=template&id=60d80434& ***!
+  \***********************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "button",
+    {
+      staticClass:
+        "rounded px-2 py-4 bg-teal-400 hover:bg-teal-600 text-white font-bold",
+      on: { click: _vm.completePurchase }
+    },
+    [_vm._v("\n    Completar\n")]
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/purchases/ProductInPurchase.vue?vue&type=template&id=3b1d5186&":
 /*!******************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/purchases/ProductInPurchase.vue?vue&type=template&id=3b1d5186& ***!
@@ -21374,40 +21472,47 @@ var render = function() {
     [
       _c(
         "div",
-        {
-          staticClass: "col-span-2 row-span-1 shadow bg-white rounded px-2 py-4"
-        },
+        { staticClass: "col-span-2 row-span-1  bg-white rounded px-2 py-4" },
         [
           _c(
             "h3",
             {
               staticClass: "text-2xl font-semibold text-center py-2 px-2 mb-4"
             },
-            [_vm._v("Compra")]
+            [_vm._v("\n            Compra Actual\n        ")]
           ),
           _vm._v(" "),
-          _c("div", { staticClass: "grid md:grid-cols-2 text-center" }, [
-            _c("p", { staticClass: "mr-4 text-2xl text-gray-800" }, [
-              _vm._v("Total Compra:")
-            ]),
-            _vm._v(" "),
-            _c("p", { staticClass: "text-2xl text-gray-800" }, [
-              _vm._v(
-                "$" +
-                  _vm._s(
-                    new Intl.NumberFormat("es-MX").format(
-                      _vm.localTotalPurchase
-                    )
-                  )
-              )
-            ]),
-            _vm._v(" "),
-            _c("p", { staticClass: "text-xl text-right text-gray-800" }, [
-              _vm._v("Status:")
-            ]),
-            _vm._v(" "),
-            _c("p")
-          ])
+          _c(
+            "div",
+            { staticClass: "grid md:grid-cols-1 text-center" },
+            [
+              _c("p", { staticClass: "text-xl text-gray-800 mb-2" }, [
+                _c("span", [_vm._v("Total Compra:")]),
+                _vm._v(
+                  " $" +
+                    _vm._s(
+                      new Intl.NumberFormat("es-MX").format(
+                        _vm.localTotalPurchase
+                      )
+                    ) +
+                    "\n            "
+                )
+              ]),
+              _vm._v(" "),
+              _c("p", { staticClass: "text-xl text-gray-800 mb-4" }, [
+                _c("span", [_vm._v("Status:")]),
+                _vm._v(" " + _vm._s(_vm.translateStatus) + "\n            ")
+              ]),
+              _vm._v(" "),
+              _c("complete-purchase-btn", {
+                attrs: {
+                  purchase: _vm.purchase,
+                  "total-purchase": _vm.localTotalPurchase
+                }
+              })
+            ],
+            1
+          )
         ]
       ),
       _vm._v(" "),
@@ -36720,6 +36825,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/purchases/CompletePurchaseButton.vue":
+/*!**********************************************************************!*\
+  !*** ./resources/js/components/purchases/CompletePurchaseButton.vue ***!
+  \**********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _CompletePurchaseButton_vue_vue_type_template_id_60d80434___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CompletePurchaseButton.vue?vue&type=template&id=60d80434& */ "./resources/js/components/purchases/CompletePurchaseButton.vue?vue&type=template&id=60d80434&");
+/* harmony import */ var _CompletePurchaseButton_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CompletePurchaseButton.vue?vue&type=script&lang=js& */ "./resources/js/components/purchases/CompletePurchaseButton.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _CompletePurchaseButton_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _CompletePurchaseButton_vue_vue_type_template_id_60d80434___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _CompletePurchaseButton_vue_vue_type_template_id_60d80434___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/purchases/CompletePurchaseButton.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/purchases/CompletePurchaseButton.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************!*\
+  !*** ./resources/js/components/purchases/CompletePurchaseButton.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CompletePurchaseButton_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./CompletePurchaseButton.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/purchases/CompletePurchaseButton.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CompletePurchaseButton_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/purchases/CompletePurchaseButton.vue?vue&type=template&id=60d80434&":
+/*!*****************************************************************************************************!*\
+  !*** ./resources/js/components/purchases/CompletePurchaseButton.vue?vue&type=template&id=60d80434& ***!
+  \*****************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CompletePurchaseButton_vue_vue_type_template_id_60d80434___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./CompletePurchaseButton.vue?vue&type=template&id=60d80434& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/purchases/CompletePurchaseButton.vue?vue&type=template&id=60d80434&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CompletePurchaseButton_vue_vue_type_template_id_60d80434___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CompletePurchaseButton_vue_vue_type_template_id_60d80434___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/purchases/ProductInPurchase.vue":
 /*!*****************************************************************!*\
   !*** ./resources/js/components/purchases/ProductInPurchase.vue ***!
@@ -37002,7 +37176,8 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
 
 var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
   state: {
-    productsInPurchase: JSON.parse(localStorage.getItem('productsInPurchase'))
+    productsInPurchase: JSON.parse(localStorage.getItem('productsInPurchase')),
+    purchaseStatus: ''
   },
   mutations: _mutations__WEBPACK_IMPORTED_MODULE_3__["default"],
   actions: _actions__WEBPACK_IMPORTED_MODULE_2__["default"],

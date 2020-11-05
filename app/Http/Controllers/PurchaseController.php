@@ -37,16 +37,19 @@ class PurchaseController extends Controller
     public function show(Purchase $purchase)
     {
         $productsInPurchase = $purchase->products()->get();
+        //dd($productsInPurchase);
         $totalPurchase = $purchase->totalPurchase();
         return view('purchases.show')
             ->with(compact('productsInPurchase'))
-            ->with(compact('totalPurchase'));
+            ->with(compact('totalPurchase'))
+            ->with(compact('purchase'));
     }
     public function edit(Purchase $purchase)
     {
     }
     public function update(Purchase $purchase, Request $request)
     {
+        return $purchase->update($request->all());
     }
     public function destroy(Purchase $purchase)
     {
