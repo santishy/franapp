@@ -15,10 +15,13 @@
                 <p class="text-xl text-gray-800 mb-4">
                     <span>Status:</span> {{ translateStatus }}
                 </p>
-                <complete-purchase-btn
-                    :purchase="purchase"
-                    :total-purchase="localTotalPurchase"
-                />
+                <div class="w-full">
+                    <complete-purchase-btn
+                        :purchase="purchase"
+                        :total-purchase="localTotalPurchase"
+                    />
+                    <cancel-purchase-btn/>
+                </div>
             </div>
         </div>
         <product-in-purchase
@@ -31,9 +34,11 @@
 </template>
 <script>
 import CompletePurchaseButton from "./CompletePurchaseButton.vue";
+import CancelPurchaseButton from "./CancelPurchaseButton";
 export default {
     components: {
-        "complete-purchase-btn": CompletePurchaseButton
+        "complete-purchase-btn": CompletePurchaseButton,
+        "cancel-purchase-btn":CancelPurchaseButton
     },
     props: {
         productsInPurchase: {
@@ -46,7 +51,7 @@ export default {
             type: Object
         }
     },
-     data() {
+    data() {
         return {
             localProductsInPurchase: this.productsInPurchase,
             localTotalPurchase: this.totalPurchase,
@@ -56,11 +61,13 @@ export default {
     mounted() {
         EventBus.$on("purchase-extracted", this.removeProductFromPurchase);
         EventBus.$on("total-updated-purchase", this.changeTotal);
+        EventBus.$on("purchase-completed", purchase => {
+            this.localPurchase.status = purchase.status;
+        });
     },
-   
+
     methods: {
         removeProductFromPurchase(index) {
-            console.log(index);
             this.localProductsInPurchase.splice(index, 1);
         },
         changeTotal(newTotalPurchase) {

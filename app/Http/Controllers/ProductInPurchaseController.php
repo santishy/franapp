@@ -21,7 +21,7 @@ class ProductInPurchaseController extends Controller
             'purchase_price' => $request->pivot['purchase_price']
         ]);
         return response()->json([
-            'totalPurchase' => $purchase->totalPurchase()
+            'totalPurchase' => $purchase->totalPurchase(),
         ]);
         
     }

@@ -23,13 +23,13 @@
         <div class=" p-2 border-b-2 border-teal-400 flex justify-center">
             <button
                 @click="update"
-                class="bg-blue-500 rounded px-2 py-2 text-center hover:bg-blue-400 border-b-4 border-blue-700 mr-4"
+                class="bg-blue-500 rounded px-2 py-0 text-center hover:bg-blue-400 mr-4"
             >
                 <i class="far fa-edit"></i>
             </button>
             <button
                 @click="destroy"
-                class="bg-red-500 hover:bg-red-400 p-2 rounded border-b-4 border-red-700"
+                class="bg-red-500 hover:bg-red-400 p-2 rounded "
             >
                 <i class="fas fa-minus-circle"></i>
             </button>
@@ -37,6 +37,7 @@
     </div>
 </template>
 <script>
+import {mapMutations,mapGetters} from 'vuex';
 export default {
     props: {
         product: {
@@ -52,6 +53,7 @@ export default {
         };
     },
     methods: {
+        ...mapMutations(['setProductsInPurchase']),
         update() {
             axios
                 .post(`/products-in-purchases/${this.localProduct.id}`, {
@@ -59,9 +61,23 @@ export default {
                     ...{ _method: "PUT" }
                 })
                 .then(res => {
-                    console.log(res.data.totalPurchase);
-                    if(res.data.totalPurchase){
-                        EventBus.$emit('total-updated-purchase',res.data.totalPurchase);
+                    if (res.data.totalPurchase) {
+                        EventBus.$emit(
+                            "total-updated-purchase",
+                            res.data.totalPurchase
+                        );
+                        var obj = new Object();
+                        obj.hasProductsInPurchase = this.hasProductsInPurchase;
+
+                        obj.index = this.productExistsInPurchase(
+                            this.localProduct.id
+                        );
+
+                        obj.productInPurchase = {
+                            qty: this.localProduct.pivot.qty,
+                            product_id: this.localProduct.id
+                        };
+                        this.setProductsInPurchase(obj);
                     }
                 })
                 .catch(res => {
@@ -80,6 +96,9 @@ export default {
                     console.log(res);
                 });
         }
+    },
+    computed:{
+        ...mapGetters(['hasProductsInPurchase','productExistsInPurchase'])
     }
 };
 </script>

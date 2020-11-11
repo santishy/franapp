@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\PurchaseResource;
 use App\Models\Purchase;
 use Illuminate\Http\Request;
 
@@ -49,7 +50,11 @@ class PurchaseController extends Controller
     }
     public function update(Purchase $purchase, Request $request)
     {
-        return $purchase->update($request->all());
+        if($request->status === 'completed')
+            $request->session()->forget('purchase_id');
+            
+        $purchase->update($request->all());
+        return new PurchaseResource($purchase);
     }
     public function destroy(Purchase $purchase)
     {

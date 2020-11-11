@@ -1,9 +1,7 @@
 const setProductsInPurchase = (state, data) => {
     var localProductsInPurchase = JSON.parse(localStorage.getItem('productsInPurchase'));
     if (data.hasProductsInPurchase) {
-        console.log('me duele la muela')
         if (data.index != -1) {
-
             localProductsInPurchase[data.index].qty = data.productInPurchase.qty;
         } else {
             localProductsInPurchase.push(data.productInPurchase);

@@ -35,11 +35,14 @@
                 </a>
             </div>
             <div>
-                <a
-                    href="#"
-                    class="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0"
-                    >Download</a
-                >
+                <form action="/logout" method="POST">
+                    <input type="hidden" name="_token" :value="crfsToken">
+                    <button
+                        href="/logout"
+                        class="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0"
+                        >Cerrar sesión</button
+                    >
+                </form>
             </div>
         </div>
     </nav>
@@ -59,12 +62,17 @@ export default {
                 },
                 
             ],
+            crfsToken:document.querySelector('meta[name="csrf-token"]').content,
             purchase:null,
         };
+    },
+    created(){
+        this.cleanLocalStorage();
     },
     mounted(){
         this.purchase =  document.head.querySelector('meta[name="purchase_id"]').content;
         EventBus.$on('purchase-created',this.setPurchaseId);
+        this.cleanLocalStorage();
     },
     methods: {
         toggleNavegation() {
@@ -72,6 +80,13 @@ export default {
         },
         setPurchaseId(id){
             this.purchase = id;
+        },
+        cleanLocalStorage(){
+            if (
+            document.head.querySelector('meta[name="purchase_id"]').content ==
+            "" || document.head.querySelector('meta[name="purchase_id"]').content == null
+        )
+            localStorage.removeItem("productsInPurchase");
         }
     }
 };

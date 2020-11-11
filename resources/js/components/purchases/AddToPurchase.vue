@@ -2,7 +2,7 @@
     <form @submit.prevent="submit">
         <input type="hidden" name="product_id" />
         <button
-            class="bg-purple-500 border-purple-900 border-b-4 hover:bg-purple-700 text-white font-bold py-1 px-4 rounded text-2xl"
+            class="bg-purple-500  hover:bg-purple-700 text-white font-bold py-1 px-4 rounded text-2xl"
         >
             C
             <div

@@ -8,9 +8,9 @@
                 />
                 <a
                     :href="`/products/${product.id}/edit`"
-                    class="bg-blue-500 inline-block cursor-pointer hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
+                    class="bg-blue-500 inline-block cursor-pointer hover:bg-blue-400 text-white font-bold py-2 px-4 hover:border-blue-500 rounded"
                 >
-                    <i class="far fa-edit"></i> Editar
+                    <i class="far fa-edit"></i>
                 </a>
                 <remove-product :product="product" :index="index" />
             </div>

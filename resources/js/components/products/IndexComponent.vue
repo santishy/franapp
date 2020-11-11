@@ -33,13 +33,10 @@ export default {
         };
     },
     created(){
-         if (
-            document.head.querySelector('meta[name="purchase_id"]').content ==
-            "" || document.head.querySelector('meta[name="purchase_id"]').content == null
-        )
-            localStorage.removeItem("productsInPurchase");
+         this.cleanLocalStorage();
     },
     mounted() {
+        this.cleanLocalStorage();
         EventBus.$on("product-removed", this.removeFromArray);
         EventBus.$on("matching-products", this.matchingProducts);
         EventBus.$on("empty-search", this.reloadIndex);
@@ -96,6 +93,13 @@ export default {
             this.infiniteId++;
             this.wantedProduct = null;
             this.page = 1;
+        },
+        cleanLocalStorage(){
+            if (
+            document.head.querySelector('meta[name="purchase_id"]').content ==
+            "" || document.head.querySelector('meta[name="purchase_id"]').content == null
+        )
+            localStorage.removeItem("productsInPurchase");
         }
     }
 };

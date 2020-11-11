@@ -2049,6 +2049,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2059,12 +2062,17 @@ __webpack_require__.r(__webpack_exports__);
         name: "Listar",
         url: "/products"
       }],
+      crfsToken: document.querySelector('meta[name="csrf-token"]').content,
       purchase: null
     };
+  },
+  created: function created() {
+    this.cleanLocalStorage();
   },
   mounted: function mounted() {
     this.purchase = document.head.querySelector('meta[name="purchase_id"]').content;
     EventBus.$on('purchase-created', this.setPurchaseId);
+    this.cleanLocalStorage();
   },
   methods: {
     toggleNavegation: function toggleNavegation() {
@@ -2072,6 +2080,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     setPurchaseId: function setPurchaseId(id) {
       this.purchase = id;
+    },
+    cleanLocalStorage: function cleanLocalStorage() {
+      if (document.head.querySelector('meta[name="purchase_id"]').content == "" || document.head.querySelector('meta[name="purchase_id"]').content == null) localStorage.removeItem("productsInPurchase");
     }
   }
 });
@@ -2144,9 +2155,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     };
   },
   created: function created() {
-    if (document.head.querySelector('meta[name="purchase_id"]').content == "" || document.head.querySelector('meta[name="purchase_id"]').content == null) localStorage.removeItem("productsInPurchase");
+    this.cleanLocalStorage();
   },
   mounted: function mounted() {
+    this.cleanLocalStorage();
     EventBus.$on("product-removed", this.removeFromArray);
     EventBus.$on("matching-products", this.matchingProducts);
     EventBus.$on("empty-search", this.reloadIndex);
@@ -2203,6 +2215,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.infiniteId++;
       this.wantedProduct = null;
       this.page = 1;
+    },
+    cleanLocalStorage: function cleanLocalStorage() {
+      if (document.head.querySelector('meta[name="purchase_id"]').content == "" || document.head.querySelector('meta[name="purchase_id"]').content == null) localStorage.removeItem("productsInPurchase");
     }
   })
 });
@@ -2579,6 +2594,31 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/purchases/CancelPurchaseButton.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/purchases/CancelPurchaseButton.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  methods: {
+    cancelPurchase: function cancelPurchase() {}
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/purchases/CompletePurchaseButton.vue?vue&type=script&lang=js&":
 /*!*******************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/purchases/CompletePurchaseButton.vue?vue&type=script&lang=js& ***!
@@ -2612,7 +2652,12 @@ __webpack_require__.r(__webpack_exports__);
         total: this.totalPurchase,
         _method: "PUT"
       }).then(function (res) {
-        console.log(res);
+        EventBus.$emit('purchase-completed', res.data.data);
+        console.log('status ' + res.data.data.status);
+
+        if (res.data.data.status === 'COMPLETADA') {
+          localStorage.removeItem('productsInPurchase');
+        }
       })["catch"](function (err) {
         console.log(err);
       });
@@ -2631,6 +2676,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -2675,6 +2721,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     product: {
@@ -2689,32 +2736,42 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       localProduct: this.product
     };
   },
-  methods: {
+  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapMutations"])(['setProductsInPurchase'])), {}, {
     update: function update() {
+      var _this = this;
+
       axios.post("/products-in-purchases/".concat(this.localProduct.id), _objectSpread(_objectSpread({}, this.localProduct), {
         _method: "PUT"
       })).then(function (res) {
-        console.log(res.data.totalPurchase);
-
         if (res.data.totalPurchase) {
-          EventBus.$emit('total-updated-purchase', res.data.totalPurchase);
+          EventBus.$emit("total-updated-purchase", res.data.totalPurchase);
+          var obj = new Object();
+          obj.hasProductsInPurchase = _this.hasProductsInPurchase;
+          obj.index = _this.productExistsInPurchase(_this.localProduct.id);
+          obj.productInPurchase = {
+            qty: _this.localProduct.pivot.qty,
+            product_id: _this.localProduct.id
+          };
+
+          _this.setProductsInPurchase(obj);
         }
       })["catch"](function (res) {
         console.log(res);
       });
     },
     destroy: function destroy() {
-      var _this = this;
+      var _this2 = this;
 
       axios["delete"]("/products-in-purchases/".concat(this.localProduct.id)).then(function (res) {
         if (res.data) {
-          EventBus.$emit("purchase-extracted", _this.index);
+          EventBus.$emit("purchase-extracted", _this2.index);
         }
       })["catch"](function (res) {
         console.log(res);
       });
     }
-  }
+  }),
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['hasProductsInPurchase', 'productExistsInPurchase']))
 });
 
 /***/ }),
@@ -2729,6 +2786,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _CompletePurchaseButton_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CompletePurchaseButton.vue */ "./resources/js/components/purchases/CompletePurchaseButton.vue");
+/* harmony import */ var _CancelPurchaseButton__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CancelPurchaseButton */ "./resources/js/components/purchases/CancelPurchaseButton.vue");
+//
+//
+//
 //
 //
 //
@@ -2761,9 +2822,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    "complete-purchase-btn": _CompletePurchaseButton_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+    "complete-purchase-btn": _CompletePurchaseButton_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
+    "cancel-purchase-btn": _CancelPurchaseButton__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
   props: {
     productsInPurchase: {
@@ -2784,12 +2847,16 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {
+    var _this = this;
+
     EventBus.$on("purchase-extracted", this.removeProductFromPurchase);
     EventBus.$on("total-updated-purchase", this.changeTotal);
+    EventBus.$on("purchase-completed", function (purchase) {
+      _this.localPurchase.status = purchase.status;
+    });
   },
   methods: {
     removeProductFromPurchase: function removeProductFromPurchase(index) {
-      console.log(index);
       this.localProductsInPurchase.splice(index, 1);
     },
     changeTotal: function changeTotal(newTotalPurchase) {
@@ -20668,7 +20735,24 @@ var render = function() {
             1
           ),
           _vm._v(" "),
-          _vm._m(1)
+          _c("div", [
+            _c("form", { attrs: { action: "/logout", method: "POST" } }, [
+              _c("input", {
+                attrs: { type: "hidden", name: "_token" },
+                domProps: { value: _vm.crfsToken }
+              }),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass:
+                    "inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0",
+                  attrs: { href: "/logout" }
+                },
+                [_vm._v("Cerrar sesión")]
+              )
+            ])
+          ])
         ]
       )
     ]
@@ -20688,22 +20772,6 @@ var staticRenderFns = [
         ])
       ]
     )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [
-      _c(
-        "a",
-        {
-          staticClass:
-            "inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0",
-          attrs: { href: "#" }
-        },
-        [_vm._v("Download")]
-      )
-    ])
   }
 ]
 render._withStripped = true
@@ -20801,13 +20869,10 @@ var render = function() {
               "a",
               {
                 staticClass:
-                  "bg-blue-500 inline-block cursor-pointer hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded",
+                  "bg-blue-500 inline-block cursor-pointer hover:bg-blue-400 text-white font-bold py-2 px-4 hover:border-blue-500 rounded",
                 attrs: { href: "/products/" + _vm.product.id + "/edit" }
               },
-              [
-                _c("i", { staticClass: "far fa-edit" }),
-                _vm._v(" Editar\n            ")
-              ]
+              [_c("i", { staticClass: "far fa-edit" })]
             ),
             _vm._v(" "),
             _c("remove-product", {
@@ -21172,10 +21237,10 @@ var render = function() {
     "button",
     {
       staticClass:
-        "bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:border-red-500 rounded",
+        "bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4  hover:border-red-500 rounded",
       on: { click: _vm.deleteProduct }
     },
-    [_c("i", { staticClass: "far fa-trash-alt" }), _vm._v(" Eliminar\n")]
+    [_c("i", { staticClass: "far fa-trash-alt" })]
   )
 }
 var staticRenderFns = []
@@ -21266,7 +21331,7 @@ var render = function() {
         "button",
         {
           staticClass:
-            "bg-purple-500 border-purple-900 border-b-4 hover:bg-purple-700 text-white font-bold py-1 px-4 rounded text-2xl"
+            "bg-purple-500  hover:bg-purple-700 text-white font-bold py-1 px-4 rounded text-2xl"
         },
         [
           _vm._v("\n        C\n        "),
@@ -21301,6 +21366,38 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/purchases/CancelPurchaseButton.vue?vue&type=template&id=77e92196&":
+/*!*********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/purchases/CancelPurchaseButton.vue?vue&type=template&id=77e92196& ***!
+  \*********************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "button",
+    {
+      staticClass:
+        "rounded px-4 py-2 bg-red-600 hover:bg-red-400 text-white font-bold",
+      on: { click: _vm.cancelPurchase }
+    },
+    [_c("i", { staticClass: "far fa-times-circle" })]
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/purchases/CompletePurchaseButton.vue?vue&type=template&id=60d80434&":
 /*!***********************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/purchases/CompletePurchaseButton.vue?vue&type=template&id=60d80434& ***!
@@ -21320,10 +21417,10 @@ var render = function() {
     "button",
     {
       staticClass:
-        "rounded px-2 py-4 bg-teal-400 hover:bg-teal-600 text-white font-bold",
+        "rounded px-4 py-2 bg-teal-600 hover:bg-teal-400 text-white font-bold mr-4",
       on: { click: _vm.completePurchase }
     },
-    [_vm._v("\n    Completar\n")]
+    [_c("i", { staticClass: "far fa-check-circle" })]
   )
 }
 var staticRenderFns = []
@@ -21424,7 +21521,7 @@ var render = function() {
             "button",
             {
               staticClass:
-                "bg-blue-500 rounded px-2 py-2 text-center hover:bg-blue-400 border-b-4 border-blue-700 mr-4",
+                "bg-blue-500 rounded px-2 py-0 text-center hover:bg-blue-400 mr-4",
               on: { click: _vm.update }
             },
             [_c("i", { staticClass: "far fa-edit" })]
@@ -21433,8 +21530,7 @@ var render = function() {
           _c(
             "button",
             {
-              staticClass:
-                "bg-red-500 hover:bg-red-400 p-2 rounded border-b-4 border-red-700",
+              staticClass: "bg-red-500 hover:bg-red-400 p-2 rounded ",
               on: { click: _vm.destroy }
             },
             [_c("i", { staticClass: "fas fa-minus-circle" })]
@@ -21482,37 +21578,41 @@ var render = function() {
             [_vm._v("\n            Compra Actual\n        ")]
           ),
           _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "grid md:grid-cols-1 text-center" },
-            [
-              _c("p", { staticClass: "text-xl text-gray-800 mb-2" }, [
-                _c("span", [_vm._v("Total Compra:")]),
-                _vm._v(
-                  " $" +
-                    _vm._s(
-                      new Intl.NumberFormat("es-MX").format(
-                        _vm.localTotalPurchase
-                      )
-                    ) +
-                    "\n            "
-                )
-              ]),
-              _vm._v(" "),
-              _c("p", { staticClass: "text-xl text-gray-800 mb-4" }, [
-                _c("span", [_vm._v("Status:")]),
-                _vm._v(" " + _vm._s(_vm.translateStatus) + "\n            ")
-              ]),
-              _vm._v(" "),
-              _c("complete-purchase-btn", {
-                attrs: {
-                  purchase: _vm.purchase,
-                  "total-purchase": _vm.localTotalPurchase
-                }
-              })
-            ],
-            1
-          )
+          _c("div", { staticClass: "grid md:grid-cols-1 text-center" }, [
+            _c("p", { staticClass: "text-xl text-gray-800 mb-2" }, [
+              _c("span", [_vm._v("Total Compra:")]),
+              _vm._v(
+                " $" +
+                  _vm._s(
+                    new Intl.NumberFormat("es-MX").format(
+                      _vm.localTotalPurchase
+                    )
+                  ) +
+                  "\n            "
+              )
+            ]),
+            _vm._v(" "),
+            _c("p", { staticClass: "text-xl text-gray-800 mb-4" }, [
+              _c("span", [_vm._v("Status:")]),
+              _vm._v(" " + _vm._s(_vm.translateStatus) + "\n            ")
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "w-full" },
+              [
+                _c("complete-purchase-btn", {
+                  attrs: {
+                    purchase: _vm.purchase,
+                    "total-purchase": _vm.localTotalPurchase
+                  }
+                }),
+                _vm._v(" "),
+                _c("cancel-purchase-btn")
+              ],
+              1
+            )
+          ])
         ]
       ),
       _vm._v(" "),
@@ -36825,6 +36925,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/purchases/CancelPurchaseButton.vue":
+/*!********************************************************************!*\
+  !*** ./resources/js/components/purchases/CancelPurchaseButton.vue ***!
+  \********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _CancelPurchaseButton_vue_vue_type_template_id_77e92196___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CancelPurchaseButton.vue?vue&type=template&id=77e92196& */ "./resources/js/components/purchases/CancelPurchaseButton.vue?vue&type=template&id=77e92196&");
+/* harmony import */ var _CancelPurchaseButton_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CancelPurchaseButton.vue?vue&type=script&lang=js& */ "./resources/js/components/purchases/CancelPurchaseButton.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _CancelPurchaseButton_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _CancelPurchaseButton_vue_vue_type_template_id_77e92196___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _CancelPurchaseButton_vue_vue_type_template_id_77e92196___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/purchases/CancelPurchaseButton.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/purchases/CancelPurchaseButton.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************************!*\
+  !*** ./resources/js/components/purchases/CancelPurchaseButton.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CancelPurchaseButton_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./CancelPurchaseButton.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/purchases/CancelPurchaseButton.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CancelPurchaseButton_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/purchases/CancelPurchaseButton.vue?vue&type=template&id=77e92196&":
+/*!***************************************************************************************************!*\
+  !*** ./resources/js/components/purchases/CancelPurchaseButton.vue?vue&type=template&id=77e92196& ***!
+  \***************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CancelPurchaseButton_vue_vue_type_template_id_77e92196___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./CancelPurchaseButton.vue?vue&type=template&id=77e92196& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/purchases/CancelPurchaseButton.vue?vue&type=template&id=77e92196&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CancelPurchaseButton_vue_vue_type_template_id_77e92196___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CancelPurchaseButton_vue_vue_type_template_id_77e92196___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/purchases/CompletePurchaseButton.vue":
 /*!**********************************************************************!*\
   !*** ./resources/js/components/purchases/CompletePurchaseButton.vue ***!
@@ -37130,8 +37299,6 @@ var setProductsInPurchase = function setProductsInPurchase(state, data) {
   var localProductsInPurchase = JSON.parse(localStorage.getItem('productsInPurchase'));
 
   if (data.hasProductsInPurchase) {
-    console.log('me duele la muela');
-
     if (data.index != -1) {
       localProductsInPurchase[data.index].qty = data.productInPurchase.qty;
     } else {
