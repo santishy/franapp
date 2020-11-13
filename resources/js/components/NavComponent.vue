@@ -29,10 +29,15 @@
                 />
                 <a
                     :href="purchase ? `/purchases/${purchase}` : '#'"
-                    class="block mt-4 lg:inline-block lg:mt-0 text-gray-200 hover:text-white"
+                    class="block mt-4 lg:inline-block lg:mt-0 text-gray-200 hover:text-white mr-4"
                 >
                     Realizar Compra
                 </a>
+                 <dropdown-component
+                    name="Clientes"
+                    :items="clientsMenu"
+                    class="md:relative"
+                />
             </div>
             <div>
                 <form action="/logout" method="POST">
@@ -59,6 +64,17 @@ export default {
                 {
                     name: "Listar",
                     url: "/products"
+                },
+                
+            ],
+            clientsMenu: [
+                {
+                    name: "Nuevo",
+                    url: "/clients/create"
+                },
+                {
+                    name: "Listar",
+                    url: "/clients"
                 },
                 
             ],

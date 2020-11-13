@@ -12,6 +12,8 @@ Vue.component('product-form', require('./components/products/ProductForm.vue').d
 Vue.component('products-index', require('./components/products/IndexComponent.vue').default);
 Vue.component('purchase-component', require('./components/purchases/PurchaseComponent.vue').default)
 Vue.component('product-in-purchase', require('./components/purchases/ProductInPurchase.vue').default)
+Vue.component('client-form', require('./components/clients/ClientForm.vue').default)
+Vue.component('client-list', require('./components/clients/ClientList.vue').default)
 import Notifications from 'vue-notification'
 Vue.component('notifications', Notifications);
 Vue.use(Notifications);
