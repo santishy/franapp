@@ -1,41 +1,36 @@
 <template>
-    <table class="table-auto">
-        <thead>
-            <tr>
-                <th class="px-4 py-2">Nombre</th>
-                <th class="px-4 py-2">Dirección</th>
-                <th class="px-4 py-2">Número tel.</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td class="border px-4 py-2">Intro to CSS</td>
-                <td class="border px-4 py-2">Adam</td>
-                <td class="border px-4 py-2">858</td>
-            </tr>
-            <tr class="bg-gray-100">
-                <td class="border px-4 py-2">
-                    A Long and Winding Tour of the History of UI Frameworks and
-                    Tools and the Impact on Design
-                </td>
-                <td class="border px-4 py-2">Adam</td>
-                <td class="border px-4 py-2">112</td>
-            </tr>
-            <tr>
-                <td class="border px-4 py-2">Intro to JavaScript</td>
-                <td class="border px-4 py-2">Chris</td>
-                <td class="border px-4 py-2">1,280</td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="w-full flex justify-center mt-20 ">
+        <div class="bg-white shadow rounded max-w-full">
+            <table class="table-auto overflow-x-auto max-w-full">
+                <thead>
+                    <tr class="bg-danger">
+                        <th class="px-4 py-2">Nombre</th>
+                        <th class="px-4 py-2">Dirección</th>
+                        <th class="px-4 py-2">Número tel.</th>
+                        <th class="px-4 py-2">Email</th>
+                        <th class="px-4 py-2">Empresa</th>
+                        <th class="px-4 py-2">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <client-list-item
+                        v-for="client in clients.data"
+                        :key="client.id"
+                        :client="client"
+                    />
+                </tbody>
+            </table>
+        </div>
+    </div>
 </template>
 <script>
+import ClientListItem from "./ClientListItem.vue";
 export default {
-    props:{
-        clients:{
-            type:Array,
-            required:true
+    components: { ClientListItem },
+    props: {
+        clients: {
+            type: Object
         }
     }
-}
+};
 </script>
