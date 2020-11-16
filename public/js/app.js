@@ -2257,6 +2257,19 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ClientListItem_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ClientListItem.vue */ "./resources/js/components/clients/ClientListItem.vue");
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+//
 //
 //
 //
@@ -2287,9 +2300,32 @@ __webpack_require__.r(__webpack_exports__);
   components: {
     ClientListItem: _ClientListItem_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
-  props: {
-    clients: {
-      type: Object
+  data: function data() {
+    return {
+      clients: []
+    };
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    EventBus.$on('client-removed', function (index) {
+      _this.clients.splice(index, 1);
+    });
+    this.getClients();
+  },
+  methods: {
+    getClients: function getClients() {
+      var _this2 = this;
+
+      axios.get('/clients').then(function (res) {
+        var _this2$clients;
+
+        (_this2$clients = _this2.clients).push.apply(_this2$clients, _toConsumableArray(res.data.data));
+
+        console.log(res.data.data);
+      })["catch"](function (err) {
+        console.log(err);
+      });
     }
   }
 });
@@ -2322,11 +2358,34 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     client: {
       type: Object,
       required: true
+    },
+    index: {
+      type: Number,
+      required: true
+    }
+  },
+  methods: {
+    deleteClient: function deleteClient() {
+      var _this = this;
+
+      axios["delete"]("/clients/".concat(this.client.id)).then(function (res) {
+        if (res.data) {
+          EventBus.$emit("client-removed", _this.index);
+        }
+      })["catch"](function (err) {
+        console.log(err);
+      });
     }
   }
 });
@@ -2365,6 +2424,8 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
 //
 //
 //
@@ -21305,22 +21366,29 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "w-full flex justify-center mt-20 " }, [
-    _c("div", { staticClass: "bg-white shadow rounded max-w-full" }, [
-      _c("table", { staticClass: "table-auto overflow-x-auto max-w-full" }, [
-        _vm._m(0),
-        _vm._v(" "),
-        _c(
-          "tbody",
-          _vm._l(_vm.clients.data, function(client) {
-            return _c("client-list-item", {
-              key: client.id,
-              attrs: { client: client }
-            })
-          }),
-          1
-        )
-      ])
-    ])
+    _c(
+      "div",
+      {
+        staticClass:
+          "bg-white shadow rounded max-w-full sm:overflow-x-hidden overflow-x-auto"
+      },
+      [
+        _c("table", { staticClass: "table-auto" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c(
+            "tbody",
+            _vm._l(_vm.clients, function(client, index) {
+              return _c("client-list-item", {
+                key: client.id,
+                attrs: { client: client, index: index }
+              })
+            }),
+            1
+          )
+        ])
+      ]
+    )
   ])
 }
 var staticRenderFns = [
@@ -21396,6 +21464,16 @@ var render = function() {
           attrs: { href: "/clients/" + _vm.client.id + "/edit" }
         },
         [_c("i", { staticClass: "far fa-edit" })]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass:
+            "bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4  hover:border-red-500 rounded",
+          on: { click: _vm.deleteClient }
+        },
+        [_c("i", { staticClass: "far fa-trash-alt" })]
       )
     ])
   ])

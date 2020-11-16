@@ -3,6 +3,7 @@
         <div class="col-span-3 flex justify-center border py-8">
             <search-component ref="search" class="md:w-1/4 w-3/4" />
         </div>
+
         <product-card
             v-for="(product, index) in products"
             :key="product.id"
@@ -10,6 +11,7 @@
             :index="index"
             class="col-span-3 md:col-span-1"
         />
+
         <infinite-loading
             :identifier="infiniteId"
             @infinite="infiniteHandler"
@@ -32,15 +34,14 @@ export default {
             arr: new Array()
         };
     },
-    created(){
-         this.cleanLocalStorage();
+    created() {
+        this.cleanLocalStorage();
     },
     mounted() {
         this.cleanLocalStorage();
         EventBus.$on("product-removed", this.removeFromArray);
         EventBus.$on("matching-products", this.matchingProducts);
         EventBus.$on("empty-search", this.reloadIndex);
-       
     },
     components: {
         "product-card": ProductCardComponent,
@@ -94,12 +95,14 @@ export default {
             this.wantedProduct = null;
             this.page = 1;
         },
-        cleanLocalStorage(){
+        cleanLocalStorage() {
             if (
-            document.head.querySelector('meta[name="purchase_id"]').content ==
-            "" || document.head.querySelector('meta[name="purchase_id"]').content == null
-        )
-            localStorage.removeItem("productsInPurchase");
+                document.head.querySelector('meta[name="purchase_id"]')
+                    .content == "" ||
+                document.head.querySelector('meta[name="purchase_id"]')
+                    .content == null
+            )
+                localStorage.removeItem("productsInPurchase");
         }
     }
 };

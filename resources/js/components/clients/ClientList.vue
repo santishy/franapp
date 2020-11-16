@@ -1,7 +1,7 @@
 <template>
     <div class="w-full flex justify-center mt-20 ">
-        <div class="bg-white shadow rounded max-w-full">
-            <table class="table-auto overflow-x-auto max-w-full">
+        <div class="bg-white shadow rounded max-w-full sm:overflow-x-hidden overflow-x-auto">
+            <table class="table-auto">
                 <thead>
                     <tr class="bg-danger">
                         <th class="px-4 py-2">Nombre</th>
@@ -14,9 +14,10 @@
                 </thead>
                 <tbody>
                     <client-list-item
-                        v-for="client in clients.data"
+                        v-for="(client,index) in clients"
                         :key="client.id"
                         :client="client"
+                        :index="index"
                     />
                 </tbody>
             </table>
@@ -27,9 +28,30 @@
 import ClientListItem from "./ClientListItem.vue";
 export default {
     components: { ClientListItem },
-    props: {
-        clients: {
-            type: Object
+
+    data(){
+        return {
+            clients:[]
+        }
+    },
+    
+    mounted(){
+        EventBus.$on('client-removed',index => {
+            this.clients.splice(index,1);
+        });
+        this.getClients();
+    },
+    methods:{
+        getClients(){
+            axios
+                .get('/clients')
+                .then( res => {
+                    this.clients.push(...res.data.data)
+                    console.log(res.data.data)
+                })
+                .catch( err => {
+                    console.log(err)
+                })
         }
     }
 };

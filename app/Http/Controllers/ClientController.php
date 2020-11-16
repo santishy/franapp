@@ -9,8 +9,9 @@ use App\Http\Resources\ClientResource;
 class ClientController extends Controller
 {
     public function index(){
-        $clients = new ClientResource(Client::paginate(20));
-        return view('clients.index',compact('clients'));
+        if(request()->wantsJson())
+            return new ClientResource(Client::paginate(20));
+        return view('clients.index');
     }
 
     public function create(){
@@ -30,7 +31,7 @@ class ClientController extends Controller
             'name' => 'required',
             'address' => 'required',
             'phone_number' => 'required',
-            'email' => 'required|email',
+            'email' => "required|email|unique:clients,email,$request->id",
             'company' => 'required'
         ],
         [
@@ -39,6 +40,7 @@ class ClientController extends Controller
             'phone_number.required' => 'El número telefonico es requerido',
             'email.required' => 'El email es requerido',
             'email.email' => 'El email debe ser valido',
+            'email.unique' => 'El email ya existe en la base de datos',
             'company.required' => 'La empresa o negocio es requerido.'
         ]);
     }
@@ -52,7 +54,7 @@ class ClientController extends Controller
         return new ClientResource($client);
     }
 
-    public function destroy(){
-
+    public function destroy(Client $client){
+        return $client->delete();
     }
 }

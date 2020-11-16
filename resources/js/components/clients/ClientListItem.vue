@@ -12,6 +12,12 @@
             >
                 <i class="far fa-edit"></i>
             </a>
+            <button
+                @click="deleteClient"
+                class="bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4  hover:border-red-500 rounded"
+            >
+                <i class="far fa-trash-alt"></i>
+            </button>
         </td>
     </tr>
 </template>
@@ -21,6 +27,24 @@ export default {
         client: {
             type: Object,
             required: true
+        },
+        index:{
+            type:Number,
+            required:true
+        }
+    },
+    methods: {
+        deleteClient() {
+            axios
+                .delete(`/clients/${this.client.id}`)
+                .then(res => {
+                    if (res.data) {
+                        EventBus.$emit("client-removed", this.index);
+                    }
+                })
+                .catch(err => {
+                    console.log(err);
+                });
         }
     }
 };
