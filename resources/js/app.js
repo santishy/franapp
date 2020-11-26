@@ -15,6 +15,10 @@ Vue.component('product-in-purchase', require('./components/purchases/ProductInPu
 Vue.component('client-form', require('./components/clients/ClientForm.vue').default)
 Vue.component('client-list', require('./components/clients/ClientList.vue').default)
 
+//CATEGORIES COMPONENTS
+Vue.component('category-form', require('./components/categories/CategoryForm.vue').default)
+
+
 import Notifications from 'vue-notification'
 Vue.component('notifications', Notifications);
 Vue.use(Notifications);

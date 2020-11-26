@@ -30,7 +30,7 @@ class ClientController extends Controller
         return $request->validate([
             'name' => 'required',
             'address' => 'required',
-            'phone_number' => 'required',
+            'phone_number' => 'required|unique:clients,phone_number,$request->id',
             'email' => "required|email|unique:clients,email,$request->id",
             'company' => 'required'
         ],
@@ -38,6 +38,7 @@ class ClientController extends Controller
             'name.required' => 'El nombre es requerido',
             'address.required' => 'La dirección es requerida',
             'phone_number.required' => 'El número telefonico es requerido',
+            'phone_number.unique' => 'El número telefonico ya existe en la base de datos',
             'email.required' => 'El email es requerido',
             'email.email' => 'El email debe ser valido',
             'email.unique' => 'El email ya existe en la base de datos',
