@@ -17,6 +17,11 @@ const setProductsInPurchase = (state, data) => {
     //Vue.set(state.productsInPurchase,state.productsInPurchase[])
 }
 
+const toggleActiveSearchCategory = (state,status) => {
+    state.activeSearchCategory = status;
+}
+
 export default {
-    setProductsInPurchase
+    setProductsInPurchase,
+    toggleActiveSearchCategory
 }

@@ -17,6 +17,7 @@ Vue.component('client-list', require('./components/clients/ClientList.vue').defa
 
 //CATEGORIES COMPONENTS
 Vue.component('category-form', require('./components/categories/CategoryForm.vue').default)
+Vue.component('category-search', require('./components/categories/CategorySearch.vue').default)
 
 
 import Notifications from 'vue-notification'

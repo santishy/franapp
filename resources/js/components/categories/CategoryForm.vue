@@ -1,6 +1,7 @@
 <template>
-    <div class="w-full  flex justify-center mt-20 bg-transparent">
+    <!-- <div class="w-4/5 flex justify-center mt-20 bg-transparent"> -->
         <form
+            v-if="!activeSearchCategory"
             @submit.prevent="submit"
             class="w-full max-w-md shadow-lg rounded-lg bg-white px-6 py-8"
         >
@@ -8,11 +9,18 @@
                 class="flex items-center py-2 text-dark text-center justify-center text-xl font-bold border-b border-teal-500"
             >
                 Añadir categoría
+                 <button
+                @click.prevent="disableCategorySearch"
+                class="ml-4 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-0 px-2 border border-blue-500 hover:border-transparent rounded"
+            >
+                <i class="fas fa-search"></i>
+            </button>
             </div>
             <div class="flex items-center border-b border-teal-500 py-2">
                 <input
                     v-model="form.name"
                     name="name"
+                     class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
                     :class="[
                         'flex',
                         'items-center',
@@ -24,10 +32,11 @@
                     placeholder="CATEGORÍA"
                     aria-label="Full name"
                 />
-                <div v-if="errors" class="flex items-center mb-3">
+                
+            </div>
+            <div v-if="errors" class="flex items-center mb-3">
                     <errors-component :errors="errors" />
                 </div>
-            </div>
 
             <div class="flex justify-center mt-0 mb-0">
                 <button
@@ -38,13 +47,35 @@
             </div>
             <notifications group="foo"></notifications>
         </form>
-    </div>
+    <!-- </div> -->
 </template>
 <script>
+import {mapState,mapMutations} from 'vuex';
 export default {
     data: () => ({
         form: {},
         errors: null
-    })
+    }),
+    methods:{
+        ...mapMutations(['toggleActiveSearchCategory']),
+        submit(){
+            axios
+                .post('/categories',{'name':this.form.name})
+                .then((res) => {
+                    console.log(res.data)
+                })
+                .catch((err) => {
+                    this.errors = Object.values(
+                        err.response.data.errors
+                    ).flat();
+                })
+        },
+        disableCategorySearch(){
+            this.toggleActiveSearchCategory(true);
+        }
+    },
+    computed:{
+        ...mapState(['activeSearchCategory'])
+    }
 };
 </script>

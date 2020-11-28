@@ -53,3 +53,15 @@ Route::delete('products-in-purchases/{product}',[ProductInPurchaseController::cl
 use App\Http\Controllers\ClientController;
 
 Route::resource('clients', ClientController::class);
+
+//categories 
+
+use App\Http\Controllers\CategoryController;
+
+Route::post('categories',[CategoryController::class,'store'])->name('categories.store');
+
+//Busquedas sobre categorías
+
+use App\Http\Controllers\CategorySearchController;
+
+Route::get('category-search',[CategorySearchController::class,'index']);

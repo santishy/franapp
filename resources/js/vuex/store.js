@@ -9,7 +9,8 @@ import getters from './getters';
 export const store = new Vuex.Store({
   state:{
     productsInPurchase:JSON.parse(localStorage.getItem('productsInPurchase')),
-    purchaseStatus:''
+    purchaseStatus:'',
+    activeSearchCategory:true,
   },
   mutations,
   actions,
