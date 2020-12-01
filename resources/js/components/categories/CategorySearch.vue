@@ -42,7 +42,15 @@
             >
                 Buscar
             </button>
+           
         </div>
+         <div v-if="categories.length" class="mt-4">
+                <ul>
+                    <li v-for="category in categories" :key="category.id">
+                        {{category.name}}
+                    </li>
+                </ul>
+            </div>
         <notifications group="foo"></notifications>
     </form>
 </template>
@@ -51,7 +59,8 @@ import { mapMutations, mapState } from "vuex";
 export default {
     data: () => ({
         name:'',
-        errors: null
+        errors: null,
+        categories: []
     }),
     computed: {
         ...mapState(["activeSearchCategory"])
@@ -62,9 +71,11 @@ export default {
             this.toggleActiveSearchCategory(false);
         },
         search(){
-            axios('category-search',{name:this.name})
+            axios.get('/categories',{params:{'filter[search]':this.name}})
                 .then((res) => {
-
+                    if(res.data.data.length){
+                        this.categories = res.data.data;
+                    }
                 })
                 .catch((err) => {
                     

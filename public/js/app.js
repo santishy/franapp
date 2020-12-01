@@ -2166,8 +2166,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -2176,12 +2174,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       errors: null
     };
   },
-  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapMutations"])(['toggleActiveSearchCategory'])), {}, {
+  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapMutations"])(["toggleActiveSearchCategory"])), {}, {
     submit: function submit() {
       var _this = this;
 
-      axios.post('/categories', {
-        'name': this.form.name
+      axios.post("/categories", {
+        name: this.form.name
       }).then(function (res) {
         console.log(res.data);
       })["catch"](function (err) {
@@ -2192,7 +2190,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.toggleActiveSearchCategory(true);
     }
   }),
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])(['activeSearchCategory']))
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])(["activeSearchCategory"]))
 });
 
 /***/ }),
@@ -2261,12 +2259,21 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       name: '',
-      errors: null
+      errors: null,
+      categories: []
     };
   },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])(["activeSearchCategory"])),
@@ -2275,9 +2282,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.toggleActiveSearchCategory(false);
     },
     search: function search() {
-      axios('category-search', {
-        name: this.name
-      }).then(function (res) {})["catch"](function (err) {});
+      var _this = this;
+
+      axios.get('/categories', {
+        params: {
+          'filter[search]': this.name
+        }
+      }).then(function (res) {
+        if (res.data.data.length) {
+          _this.categories = res.data.data;
+        }
+      })["catch"](function (err) {});
     }
   })
 });
@@ -21360,7 +21375,7 @@ var render = function() {
                 "flex items-center py-2 text-dark text-center justify-center text-xl font-bold border-b border-teal-500"
             },
             [
-              _vm._v("\n            Añadir categoría\n             "),
+              _vm._v("\n        Añadir categoría\n        "),
               _c(
                 "button",
                 {
@@ -21448,7 +21463,7 @@ var staticRenderFns = [
           staticClass:
             "bg-transparent transition-all duration-500 ease-in-out hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border-b-2 border-blue-500 hover:border-transparent w-full"
         },
-        [_vm._v("\n                Guardar\n            ")]
+        [_vm._v("\n            Guardar\n        ")]
       )
     ])
   }
@@ -21564,6 +21579,24 @@ var render = function() {
             : _vm._e(),
           _vm._v(" "),
           _vm._m(0),
+          _vm._v(" "),
+          _vm.categories.length
+            ? _c("div", { staticClass: "mt-4" }, [
+                _c(
+                  "ul",
+                  _vm._l(_vm.categories, function(category) {
+                    return _c("li", { key: category.id }, [
+                      _vm._v(
+                        "\n                    " +
+                          _vm._s(category.name) +
+                          "\n                "
+                      )
+                    ])
+                  }),
+                  0
+                )
+              ])
+            : _vm._e(),
           _vm._v(" "),
           _c("notifications", { attrs: { group: "foo" } })
         ],

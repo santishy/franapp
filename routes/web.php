@@ -60,8 +60,5 @@ use App\Http\Controllers\CategoryController;
 
 Route::post('categories',[CategoryController::class,'store'])->name('categories.store');
 
-//Busquedas sobre categorías
+Route::get('categories',[CategoryController::class,'index'])->name('categories.index');
 
-use App\Http\Controllers\CategorySearchController;
-
-Route::get('category-search',[CategorySearchController::class,'index']);

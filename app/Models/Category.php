@@ -2,12 +2,21 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Category extends Model
 {
     use HasFactory;
 
     public $fillable = ['name'];
+
+    public function scopeSearch(Builder $query){
+        $values = Str::of(request('filter.search'))->explode(' ');
+        foreach($values as $value){
+            $query->orWhere('name','LIKE',"%{$value}%");
+        }
+    }
 }
