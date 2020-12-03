@@ -5,9 +5,9 @@ namespace App\Providers;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
-use JsonApiBuilder;
+use App\JsonApi\JsonApiBuilder;
 
-class JsonProvider extends ServiceProvider
+class JsonApiProvider extends ServiceProvider
 {
     public function register()
     {
@@ -21,6 +21,6 @@ class JsonProvider extends ServiceProvider
      */
     public function boot()
     {
-      Builder::mixin(new JsonApiBuilder());
+      Builder::mixin(new JsonApiBuilder);
     }
 }

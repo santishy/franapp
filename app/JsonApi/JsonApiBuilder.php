@@ -1,10 +1,15 @@
 <?php 
 
+namespace App\JsonApi;
+
 class JsonApiBuilder{
 
-    public function search(){
+    public function applyFilters(){
         return function(){
-            return $this->model->search();
+            foreach(request('filter',[]) as $filter => $value){
+                $this->{$filter}($value);
+            }
+            return $this;
         };
     }
 }

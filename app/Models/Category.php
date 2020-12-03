@@ -13,8 +13,8 @@ class Category extends Model
 
     public $fillable = ['name'];
 
-    public function scopeSearch(Builder $query){
-        $values = Str::of(request('filter.search'))->explode(' ');
+    public function scopeSearch(Builder $query,$value){
+        $values = Str::of($value)->explode(' ');
         foreach($values as $value){
             $query->orWhere('name','LIKE',"%{$value}%");
         }

@@ -9,8 +9,8 @@ use Illuminate\Http\Request;
 class CategoryController extends Controller
 {
     public function index(){
-
-        return CategoryResource::collection(Category::search()->paginate(20));
+        $categoryQuery = Category::query();
+        return CategoryResource::collection($categoryQuery->applyFilters()->paginate(20));
     }
     public function store(Request $request)
     {
