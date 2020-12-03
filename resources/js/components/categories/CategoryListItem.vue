@@ -1,7 +1,7 @@
 <template>
     <li class="flex justify-between">
-        {{ category }} 
-        <button @click.prevent="">
+        {{ categorys.name }} 
+        <button>
             <span>
                 <i class="far fa-circle"></i>
             </span>
@@ -12,7 +12,8 @@
 export default {
     props:{
         category:{
-            type:Object
+            type:Object,
+            required:true
         }
     }
 }

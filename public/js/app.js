@@ -2217,7 +2217,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     category: {
-      type: Object
+      type: Object,
+      required: true
     }
   }
 });
@@ -21520,18 +21521,8 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("li", { staticClass: "flex justify-between" }, [
-    _vm._v("\n    " + _vm._s(_vm.category) + " \n    "),
-    _c(
-      "button",
-      {
-        on: {
-          click: function($event) {
-            $event.preventDefault()
-          }
-        }
-      },
-      [_vm._m(0)]
-    )
+    _vm._v("\n    " + _vm._s(_vm.categorys.name) + " \n    "),
+    _vm._m(0)
   ])
 }
 var staticRenderFns = [
@@ -21539,7 +21530,9 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("span", [_c("i", { staticClass: "far fa-circle" })])
+    return _c("button", [
+      _c("span", [_c("i", { staticClass: "far fa-circle" })])
+    ])
   }
 ]
 render._withStripped = true
