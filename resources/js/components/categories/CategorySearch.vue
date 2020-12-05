@@ -52,7 +52,7 @@
 </template>
 <script>
 import { mapMutations, mapState } from "vuex";
-import CategoryList from './CategoryListItem'
+import CategoryList from './CategoryList'
 export default {
     data: () => ({
         name: "",
