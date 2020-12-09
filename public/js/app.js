@@ -3006,11 +3006,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       form: {},
-      errors: null
+      errors: null,
+      category_name: ''
     };
   },
   mounted: function mounted() {
@@ -3020,9 +3022,8 @@ __webpack_require__.r(__webpack_exports__);
       this.form = this.product;
     }
 
-    this.form.category_id = 5;
     EventBus.$on('selected-category', function (category) {
-      console.log('entro');
+      _this.category_name = category.name;
       _this.form.category_id = category.id;
     });
   },
@@ -3060,6 +3061,14 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (err) {
         _this2.errors = Object.values(err.response.data.errors).flat();
       });
+    }
+  },
+  computed: {
+    categoryName: function categoryName() {
+      return this.category_name;
+    },
+    hidden: function hidden() {
+      return this.form.category_id ? '' : 'hidden';
     }
   }
 });
@@ -3138,7 +3147,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      sku: '',
+      sku: "",
       page: 1
     };
   },
@@ -3146,8 +3155,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     handleSearh: function handleSearh(e) {
       var _this = this;
 
-      if (this.sku == '' || this.sku == "") {
-        return EventBus.$emit('empty-search');
+      if (this.sku == "" || this.sku == "") {
+        return EventBus.$emit("empty-search");
       }
 
       return new Promise(function (resolve, reject) {
@@ -22414,15 +22423,21 @@ var render = function() {
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "flex items-center border-b border-teal-500 py-2" },
+        {
+          staticClass: "flex items-center border-b border-teal-500 py-2 ",
+          class: _vm.hidden
+        },
         [
+          _vm._v(
+            "\n            " + _vm._s(_vm.categoryName) + "\n            "
+          ),
           _c("input", {
             directives: [
               {
                 name: "model",
                 rawName: "v-model",
-                value: _vm.form.category_id,
-                expression: "form.category_id"
+                value: this.form.category_id,
+                expression: "this.form.category_id"
               }
             ],
             staticClass:
@@ -22430,17 +22445,17 @@ var render = function() {
             attrs: {
               name: "category_id",
               disabled: true,
-              type: "text",
+              type: "hidden",
               placeholder: "Busca o agrega una categoría",
               "aria-label": "Full name"
             },
-            domProps: { value: _vm.form.category_id },
+            domProps: { value: this.form.category_id },
             on: {
               input: function($event) {
                 if ($event.target.composing) {
                   return
                 }
-                _vm.$set(_vm.form, "category_id", $event.target.value)
+                _vm.$set(this.form, "category_id", $event.target.value)
               }
             }
           })
@@ -39162,7 +39177,6 @@ var getProducts = function getProducts(_ref, page) {
 var search = function search(_ref2, data) {
   var context = _ref2.context;
   return new Promise(function (resolve, reject) {
-    console.log('action ' + data.sku);
     axios.get('/searching-products', {
       params: {
         sku: data.sku,

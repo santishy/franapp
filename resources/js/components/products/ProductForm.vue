@@ -9,13 +9,14 @@
             >
                 Añadir producto
             </div>
-            <div class="flex items-center border-b border-teal-500 py-2">
+            <div :class="hidden" class="flex items-center border-b border-teal-500 py-2 ">
+                {{categoryName}}
                 <input
-                    v-model="form.category_id"
+                    v-model="this.form.category_id"
                     name="category_id"
                     :disabled="true"
                     class="appearance-none bg-gray-200 border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
-                    type="text"
+                    type="hidden"
                     placeholder="Busca o agrega una categoría"
                     aria-label="Full name"
                 />
@@ -101,17 +102,17 @@ export default {
     data() {
         return {
             form: {},
-            errors: null
+            errors: null,
+            category_name:''
         };
     },
     mounted() {
         if (!!this.product) {
             this.form = this.product;
         }
-        this.form.category_id = 5;
         EventBus.$on('selected-category',category => {
-            console.log('entro')
-            this.form.category_id = category.id
+            this.category_name = category.name;
+            this.form.category_id = category.id;
         })
     },
     props: {
@@ -147,6 +148,14 @@ export default {
                         err.response.data.errors
                     ).flat();
                 });
+        }
+    },
+    computed:{
+        categoryName(){
+            return this.category_name;
+        },
+        hidden(){
+            return this.form.category_id ? '' : 'hidden'
         }
     }
 };

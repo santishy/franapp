@@ -12,17 +12,16 @@ import { mapActions } from "vuex";
 export default {
     data() {
         return {
-            sku:'',
-            page:1
+            sku: "",
+            page: 1
         };
     },
- 
+
     methods: {
         ...mapActions(["search"]),
         handleSearh(e) {
-            if(this.sku == '' || this.sku == "")
-            {
-                return EventBus.$emit('empty-search');
+            if (this.sku == "" || this.sku == "") {
+                return EventBus.$emit("empty-search");
             }
             return new Promise((resolve, reject) => {
                 var obj = new Object();
@@ -41,8 +40,8 @@ export default {
                     });
             });
         },
-        setPage(page){
-            this.page = page; 
+        setPage(page) {
+            this.page = page;
         }
     }
 };

@@ -8,29 +8,35 @@ use App\Models\Product;
 
 class ProductController extends Controller
 {
-    public function index(){
-        if(request()->wantsJson()){
+    public function index()
+    {
+        if (request()->wantsJson()) {
             return ProductResource::collection(Product::paginate(21));
         }
         return view('products.index');
     }
-    public function create(){
+    public function create()
+    {
         return view('products.create');
     }
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         $this->validateProduct($request);
         return Product::create($request->all());
     }
-    public function edit(Product $product){
-        return view('products.edit',compact('product'));
+    public function edit(Product $product)
+    {
+        return view('products.edit', compact('product'));
     }
-    public function update(Request $request,Product $product){
-        
+    public function update(Request $request, Product $product)
+    {
+
         $this->validateProduct($request);
         $product->update($request->except('_method'));
         return ProductResource::make($product);
     }
-    public function destroy(Product $product){
+    public function destroy(Product $product)
+    {
         return $product->delete();
     }
     public function validateProduct($request)
@@ -41,7 +47,8 @@ class ProductController extends Controller
             'description' => 'required',
             'wholesale_price' => 'required|numeric',
             'retail_price' => 'required|numeric',
-            'distributor_price' => 'required|numeric'
+            'distributor_price' => 'required|numeric',
+            'category_id' => 'required|numeric'
         ], [
             'description.required' => 'La descripción es requerida',
             'sku.required' => 'El SKU es requerido',
@@ -52,7 +59,8 @@ class ProductController extends Controller
             'retail_price.numeric' => 'El precio al por menor debe ser un valor númerico',
             'distributor_price.required' => 'El precio distribuidor es requerido',
             'distributor_price.numeric' => 'El precio distribuidor debe ser un valor númerico',
-
+            'category_id.requerid' => 'La categoría es obligatoría.',
+            'category_id.numeric' => 'El identificador de la categoría debe ser numerico.',
         ]);
     }
 }
