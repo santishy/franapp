@@ -39179,7 +39179,7 @@ var search = function search(_ref2, data) {
   return new Promise(function (resolve, reject) {
     axios.get('/searching-products', {
       params: {
-        sku: data.sku,
+        'filter[search]': data.sku,
         page: data.page
       }
     }).then(function (res) {

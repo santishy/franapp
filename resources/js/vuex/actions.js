@@ -17,7 +17,7 @@ const search = ({ context }, data) => {
     return new Promise((resolve, reject) => {
         axios.get('/searching-products', {
             params: {
-                sku:data.sku,
+                'filter[search]':data.sku,
                 page:data.page
             }
         })

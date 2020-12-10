@@ -11,7 +11,8 @@ class ProductsSearchController extends Controller
     public function index(Request $request)
     {
         return ProductResource::collection(
-            Product::where('sku', 'like', "%$request->sku%")->paginate(6)
+            Product::applyFilters()->paginate(6)
+            //Product::where('sku', 'like', "%$request->sku%")->paginate(6)
         );
     }
 }
