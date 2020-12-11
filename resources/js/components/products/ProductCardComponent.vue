@@ -53,7 +53,8 @@ import AddToPurchase from "../purchases/AddToPurchase.vue";
 export default {
     props: {
         product: {
-            type: Object
+            type: Object,
+            required:true
         },
         index: {
             type: Number

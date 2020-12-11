@@ -19,11 +19,15 @@ Vue.component('client-list', require('./components/clients/ClientList.vue').defa
 Vue.component('category-form', require('./components/categories/CategoryForm.vue').default)
 Vue.component('category-search', require('./components/categories/CategorySearch.vue').default)
 
+//VENTAS COMPONENTES
+Vue.component('sale-component',require('./components/sales/SaleComponent').default)
+
 
 import Notifications from 'vue-notification'
 Vue.component('notifications', Notifications);
 Vue.use(Notifications);
 import { store } from './vuex/store.js';
+import VueNotification from 'vue-notification';
 const app = new Vue({
     el: "#app",
     store,

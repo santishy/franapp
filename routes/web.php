@@ -57,8 +57,13 @@ Route::resource('clients', ClientController::class);
 //categories 
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\SaleController;
 
 Route::post('categories',[CategoryController::class,'store'])->name('categories.store');
 
 Route::get('categories',[CategoryController::class,'index'])->name('categories.index');
+
+//ventas
+
+Route::get('sales/create',[SaleController::class,'create'])->name('sales.create');
 
