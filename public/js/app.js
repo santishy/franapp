@@ -3102,6 +3102,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -3112,14 +3121,15 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     var _this = this;
 
-    EventBus.$on('matching-products', function (obj) {
+    EventBus.$on("matching-products", function (obj) {
       _this.products = obj.products;
       console.log(obj.products);
     });
   },
   components: {
-    'product-card': _ProductCardComponent__WEBPACK_IMPORTED_MODULE_0__["default"]
-  }
+    "product-card": _ProductCardComponent__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
+  computed: {}
 });
 
 /***/ }),
@@ -22805,16 +22815,35 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    _vm._l(_vm.products, function(product) {
-      return _c("product-card", {
-        key: product.id,
-        attrs: { product: product }
-      })
-    }),
-    1
-  )
+  return _vm.products.length
+    ? _c("div", [
+        _c(
+          "div",
+          {
+            staticClass:
+              "fixed inset-0 z-50  overflow-x-hidden overflow-y-auto flex justify-center p-4 "
+          },
+          [
+            _c(
+              "div",
+              {
+                staticClass:
+                  "grid  overflow-y-auto grid-cols-1 md:grid-cols-3 gap-4 p-4 relative w-3/4 bg-white"
+              },
+              _vm._l(_vm.products, function(product) {
+                return _c("product-card", {
+                  key: product.id,
+                  attrs: { product: product }
+                })
+              }),
+              1
+            )
+          ]
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "absolute inset-0 opacity-25 bg-black z-40" })
+      ])
+    : _vm._e()
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -23255,9 +23284,9 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "w-full grid " },
+    { staticClass: "w-full" },
     [
-      _c("search-component"),
+      _c("search-component", { staticClass: "w-full mx-2" }),
       _vm._v(" "),
       _c("product-matching"),
       _vm._v(" "),
@@ -39436,15 +39465,14 @@ __webpack_require__.r(__webpack_exports__);
 /*!*********************************************************!*\
   !*** ./resources/js/components/sales/SaleComponent.vue ***!
   \*********************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _SaleComponent_vue_vue_type_template_id_51019918___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./SaleComponent.vue?vue&type=template&id=51019918& */ "./resources/js/components/sales/SaleComponent.vue?vue&type=template&id=51019918&");
 /* harmony import */ var _SaleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SaleComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/sales/SaleComponent.vue?vue&type=script&lang=js&");
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _SaleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _SaleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -39474,7 +39502,7 @@ component.options.__file = "resources/js/components/sales/SaleComponent.vue"
 /*!**********************************************************************************!*\
   !*** ./resources/js/components/sales/SaleComponent.vue?vue&type=script&lang=js& ***!
   \**********************************************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

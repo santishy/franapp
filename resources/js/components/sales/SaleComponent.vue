@@ -1,6 +1,6 @@
 <template>
-    <div class="w-full grid ">
-        <search-component></search-component>
+    <div class="w-full">
+        <search-component class="w-full mx-2"></search-component>
         <product-matching></product-matching>
         <sale-form></sale-form>
     </div>
