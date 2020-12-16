@@ -3109,13 +3109,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      products: []
+      products: [],
+      isOpen: false
     };
   },
   created: function created() {
@@ -3123,7 +3122,7 @@ __webpack_require__.r(__webpack_exports__);
 
     EventBus.$on("matching-products", function (obj) {
       _this.products = obj.products;
-      console.log(obj.products);
+      _this.isOpen = true;
     });
   },
   components: {
@@ -22815,34 +22814,42 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm.products.length
-    ? _c("div", [
-        _c(
-          "div",
-          {
-            staticClass:
-              "fixed inset-0 z-50  overflow-x-hidden overflow-y-auto flex justify-center p-4 "
-          },
-          [
-            _c(
-              "div",
-              {
-                staticClass:
-                  "grid  overflow-y-auto grid-cols-1 md:grid-cols-3 gap-4 p-4 relative w-3/4 bg-white"
-              },
-              _vm._l(_vm.products, function(product) {
-                return _c("product-card", {
-                  key: product.id,
-                  attrs: { product: product }
-                })
-              }),
-              1
-            )
-          ]
-        ),
-        _vm._v(" "),
-        _c("div", { staticClass: "absolute inset-0 opacity-25 bg-black z-40" })
-      ])
+  return _vm.isOpen
+    ? _c(
+        "div",
+        { staticClass: "absolute inset-0 flex items-center justify-center" },
+        [
+          _c("div", {
+            staticClass: "fixed inset-0 z-10",
+            on: {
+              click: function($event) {
+                _vm.isOpen = false
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass:
+                "w-10/12 rounded-md shadow z-20 overflow-y-scroll overflow-x-hidden  bg-white"
+            },
+            [
+              _c(
+                "div",
+                { staticClass: "grid md:grid-cols-3 grid-cols-1 gap-4 " },
+                _vm._l(_vm.products, function(product) {
+                  return _c("product-card", {
+                    key: product.id,
+                    attrs: { product: product }
+                  })
+                }),
+                1
+              )
+            ]
+          )
+        ]
+      )
     : _vm._e()
 }
 var staticRenderFns = []
@@ -23286,7 +23293,7 @@ var render = function() {
     "div",
     { staticClass: "w-full" },
     [
-      _c("search-component", { staticClass: "w-full mx-2" }),
+      _c("search-component", { staticClass: "w-full mx-auto" }),
       _vm._v(" "),
       _c("product-matching"),
       _vm._v(" "),

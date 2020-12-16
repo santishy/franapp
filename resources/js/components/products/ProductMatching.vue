@@ -1,8 +1,10 @@
 <template>
-    <div v-if="products.length">
-        
-        <div class="fixed inset-0 z-50  overflow-x-hidden overflow-y-auto flex justify-center p-4 ">
-            <div class="grid  overflow-y-auto grid-cols-1 md:grid-cols-3 gap-4 p-4 relative w-3/4 bg-white">
+    <div v-if="isOpen" class="absolute inset-0 flex items-center justify-center">
+        <div @click="isOpen = false" class="fixed inset-0 z-10"></div>
+        <div
+            class="w-10/12 rounded-md shadow z-20 overflow-y-scroll overflow-x-hidden  bg-white"
+        >
+            <div class="grid md:grid-cols-3 grid-cols-1 gap-4 ">
                 <product-card
                     v-for="product in products"
                     :key="product.id"
@@ -11,10 +13,6 @@
                 </product-card>
             </div>
         </div>
-        <div
-            
-            class="absolute inset-0 opacity-25 bg-black z-40"
-        ></div>
     </div>
 </template>
 <script>
@@ -22,13 +20,14 @@ import ProductCardComponent from "./ProductCardComponent";
 export default {
     data() {
         return {
-            products: []
+            products: [],
+            isOpen: false,
         };
     },
     created() {
         EventBus.$on("matching-products", obj => {
             this.products = obj.products;
-            console.log(obj.products);
+            this.isOpen = true;
         });
     },
     components: {
