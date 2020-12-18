@@ -10,3 +10,24 @@
         </form>
     </form>
 </template>
+<script>
+export default {
+    props:{
+        product:{
+            type:Object
+        },
+    },
+    methods:{
+        submit(){
+            axios
+                .post(`/product/${this.product.id}/sale`)
+                .then((res) => {
+                    console.log(res)
+                })
+                .catch((err) => {
+                    console.log(err)
+                })
+        }
+    }
+}
+</script>

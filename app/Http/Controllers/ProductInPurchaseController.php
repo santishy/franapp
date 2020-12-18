@@ -23,7 +23,6 @@ class ProductInPurchaseController extends Controller
         return response()->json([
             'totalPurchase' => $purchase->totalPurchase(),
         ]);
-        
     }
     public function destroy(Product $product){
         return Purchase::find(session()->get('purchase_id'))->products()->detach($product->id);
