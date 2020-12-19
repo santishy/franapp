@@ -13,14 +13,22 @@ class JsonApiBuilder{
         };
     }
 
-    // public function transactions($model){
-    //     $model = $model::find(session()->get('purchase_id'));
-    //     $model->products()->updateExistingPivot(request()->id,[
-    //         'qty' => request()->pivot['qty'],
-    //         'purchase_price' => request()->pivot['purchase_price']
-    //     ]);
-    //     return response()->json([
-    //         'totalPurchase' => request()->totalPurchase(),
-    //     ]);
-    // }
+    public function transactions(){
+
+        return function(){
+            $transaction = $this->findOrCreateTheTransaction();
+            $products = $transaction
+                ->products()
+                ->where(['product_id' => request()->product_id]);
+            if ($products->exists()) {
+                $products->updateExistingPivot(
+                    request()->product_id, 
+                    ['qty' => ($products->first()->pivot->qty + 1)]
+                );
+            } else {
+                $transaction->products()->add();
+            }
+            return $this;
+        };
+    }
 }
