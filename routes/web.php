@@ -67,3 +67,5 @@ Route::get('categories',[CategoryController::class,'index'])->name('categories.i
 
 Route::get('sales/create',[SaleController::class,'create'])->name('sales.create');
 
+
+

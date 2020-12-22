@@ -3639,7 +3639,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     submit: function submit() {
-      axios.post("/product/".concat(this.product.id, "/sale")).then(function (res) {
+      axios.post("/products/".concat(this.product.id, "/sales")).then(function (res) {
         console.log(res);
       })["catch"](function (err) {
         console.log(err);
