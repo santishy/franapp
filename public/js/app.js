@@ -3639,7 +3639,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     submit: function submit() {
-      axios.post("/products/".concat(this.product.id, "/sales")).then(function (res) {
+      console.log(this.product);
+      axios.post("/sales/".concat(this.product.id, "/products")).then(function (res) {
         console.log(res);
       })["catch"](function (err) {
         console.log(err);
@@ -22490,7 +22491,7 @@ var render = function() {
               attrs: { product: _vm.product, index: _vm.index }
             }),
             _vm._v(" "),
-            _c("add-to-sale")
+            _c("add-to-sale", { attrs: { product: _vm.product } })
           ],
           1
         ),

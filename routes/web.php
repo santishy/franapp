@@ -1,17 +1,15 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\SaleController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProductsSearchController;
+Use App\Http\Controllers\ProductInPurchaseController;
+use App\Http\Controllers\ClientController;
+use App\Http\Controllers\PurchaseController;
+use App\Http\Controllers\ProductsInSaleController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
 Route::get('/', function () {
     session()->flush();
@@ -24,40 +22,34 @@ Route::get('home',function (){
 
 //productos 
 
-use App\Http\Controllers\ProductController;
 
 Route::resource('products',ProductController::class);
 
-//Buscador de productos
+//productos en venta 
 
-use App\Http\Controllers\ProductsSearchController;
+Route::post('sales/{product}/products',[ProductsInSaleController::class,'store']);
+
+//Buscador de productos
 
 Route::get('searching-products',[ProductsSearchController::class,'index'])->name('searching-produts.index')->middleware('auth');
 
 
 // compras 
 
-use App\Http\Controllers\PurchaseController;
-
 Route::resource('purchases',PurchaseController::class);
 
 //Productos en compra
-
-Use App\Http\Controllers\ProductInPurchaseController;
 
 Route::put('products-in-purchases/{product}',[ProductInPurchaseController::class,'update']);
 Route::delete('products-in-purchases/{product}',[ProductInPurchaseController::class,'destroy']);
 
 //clientes 
 
-use App\Http\Controllers\ClientController;
 
 Route::resource('clients', ClientController::class);
 
 //categories 
 
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\SaleController;
 
 Route::post('categories',[CategoryController::class,'store'])->name('categories.store');
 
@@ -66,6 +58,5 @@ Route::get('categories',[CategoryController::class,'index'])->name('categories.i
 //ventas
 
 Route::get('sales/create',[SaleController::class,'create'])->name('sales.create');
-
 
 

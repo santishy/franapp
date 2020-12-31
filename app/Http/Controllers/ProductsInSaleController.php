@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 class ProductsInSaleController extends Controller
 {
     public function store(Product $product){
+
         
+        return $product;
     }
 }

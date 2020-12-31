@@ -19,8 +19,9 @@ export default {
     },
     methods:{
         submit(){
+            console.log(this.product)
             axios
-                .post(`/products/${this.product.id}/sales`)
+                .post(`/sales/${this.product.id}/products`)
                 .then((res) => {
                     console.log(res)
                 })
