@@ -8,7 +8,6 @@ use App\Http\Controllers\ProductsSearchController;
 Use App\Http\Controllers\ProductInPurchaseController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\PurchaseController;
-use App\Http\Controllers\ProductsInSaleController;
 
 
 Route::get('/', function () {
@@ -27,7 +26,7 @@ Route::resource('products',ProductController::class);
 
 //productos en venta 
 
-Route::post('sales/{product}/products',[ProductsInSaleController::class,'store']);
+Route::post('sales/{product}/products',[SaleController::class,'store']);
 
 //Buscador de productos
 

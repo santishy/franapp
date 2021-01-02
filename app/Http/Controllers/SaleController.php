@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Sale; 
+use App\Models\Sale;
+use App\Models\Product; 
 
 class SaleController extends Controller
 {
@@ -11,9 +12,8 @@ class SaleController extends Controller
         return view('sales.create');
     }
 
-    public function store(Request $request){
-        
-        $sale = Sale::transactions();
+    public function store(Product $product){
+        $sale = Sale::getTransaction();
         return response()->json([
             'qty' => $sale->products()->where('product_id', $request->product_id)->sum('qty'),
             'sale_id' => $sale->id,
