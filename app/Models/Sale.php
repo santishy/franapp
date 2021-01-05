@@ -10,6 +10,8 @@ class Sale extends Model
 {
     use HasFactory;
 
+    protected $guarded = ['id'];
+
     public function scopeAdd(Builder $query){
         $query->attach(request()->product_id, [
             'purchase_price' => request()->purchase_price,
