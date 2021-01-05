@@ -18,11 +18,16 @@ class Sale extends Model
     }
 
     public function scopeFindOrCreateTheTransaction(Builder $query){
-        if(session()->has('purchase_id')){
+        if(session()->has('sale_id')){
             return $query->find(session()->get('purchase_id'));
         }
         $sale = $query->create();
-        session()->put('purchase_id',$sale->id);
+        session()->put('sale_id',$sale->id);
         return $sale;
+    }
+
+    public function products()
+    {
+        return $this->belongsToMany('App\Models\Product');
     }
 }

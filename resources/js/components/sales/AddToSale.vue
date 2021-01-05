@@ -12,23 +12,23 @@
 </template>
 <script>
 export default {
-    props:{
-        product:{
-            type:Object
-        },
+    props: {
+        product: {
+            type: Object
+        }
     },
-    methods:{
-        submit(){
-            console.log(this.product)
+    methods: {
+        submit() {
+            console.log(this.product);
             axios
                 .post(`/sales/${this.product.id}/products`)
-                .then((res) => {
-                    console.log(res)
+                .then(res => {
+                    console.log(res);
                 })
-                .catch((err) => {
-                    console.log(err)
-                })
+                .catch(err => {
+                    console.log(err);
+                });
         }
     }
-}
+};
 </script>

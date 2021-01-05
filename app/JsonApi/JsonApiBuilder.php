@@ -32,7 +32,7 @@ class JsonApiBuilder{
     public function getTransaction(){
         return function(){
             $this->findOrCreateTheTransaction();
-            return ;
+            return $this;
         };
     }
 }
