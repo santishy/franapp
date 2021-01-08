@@ -17,6 +17,8 @@ class CreateProductSaleTable extends Migration
             $table->id();
             $table->integer('qty')->default(0);
             $table->float('sale_price',8,2)->nullable();
+            $table->foreignId('product_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('sale_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }
