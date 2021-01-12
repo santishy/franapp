@@ -31,4 +31,8 @@ class Sale extends Model
     {
         return $this->belongsToMany('App\Models\Product');
     }
+
+    public function productInTransaction($product){
+        return $this->products()->where('product_id',$product->id);
+    }
 }

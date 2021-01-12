@@ -13,7 +13,7 @@ class SaleController extends Controller
     }
 
     public function store(Product $product){
-        return Sale::getTransaction()->products()->get();
+        return Sale::getTransaction()->transactions($product);
         return response()->json([
             'qty' => $sale->products()->where('product_id', $request->product_id)->sum('qty'),
             'sale_id' => $sale->id,
