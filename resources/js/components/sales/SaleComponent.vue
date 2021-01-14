@@ -14,6 +14,14 @@ import ProductMatching from "../products/ProductMatching.vue";
 import SearchComponent from "../products/SearchComponent.vue";
 import SaleForm from "./SaleForm";
 export default {
-    components: { SearchComponent, SaleForm, ProductMatching }
+    components: { SearchComponent, SaleForm, ProductMatching },
+    props:{
+        sale:{
+            type:Object
+        }
+    },
+    created(){
+        console.log(this.sale)
+    }
 };
 </script>

@@ -16,15 +16,20 @@ class JsonApiBuilder{
     public function transactions(){
         return function($product)  {
             $transaction = $this->model->products();
-            if($transaction->where('product_id',$product->id)->exists){
-                $transaction->updateExistingPivot($product->id, ['qty' => ($transaction->first()->pivot->qty + 1)]);
+            if($transaction->where('product_id',$product->id)->exists()){
+                $transaction->updateExistingPivot(
+                    $product->id, [
+                            'qty' => ($transaction->first()->pivot->qty + 1),
+                            'sale_price' => $product->retail_price
+                        ]
+                );
                 return $this;
             }
             $transaction->attach($product->id, [
-                'purchase_price' => $product->sale_price,
+                'sale_price' => $product->retail_price,
                 'qty' => 1
             ]);
-
+            return $this;
         };
     }
 

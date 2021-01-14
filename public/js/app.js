@@ -3682,6 +3682,14 @@ __webpack_require__.r(__webpack_exports__);
     SearchComponent: _products_SearchComponent_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
     SaleForm: _SaleForm__WEBPACK_IMPORTED_MODULE_2__["default"],
     ProductMatching: _products_ProductMatching_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
+  props: {
+    sale: {
+      type: Object
+    }
+  },
+  created: function created() {
+    console.log(this.sale);
   }
 });
 

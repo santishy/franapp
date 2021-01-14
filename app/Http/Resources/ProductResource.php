@@ -24,6 +24,9 @@ class ProductResource extends JsonResource
             'formatted_wholesale_price' =>'$'.number_format($this->wholesale_price,2),
             'formatted_retail_price' => '$'.number_format($this->retail_price,2),
             'formatted_distributor_price' => '$'.number_format($this->distributor_price,2),
+            'sale_quantity' => $this->whenPivotLoaded('product_sale',function(){
+                return $this->pivot->qty;
+            }),
         ];
     }
 }

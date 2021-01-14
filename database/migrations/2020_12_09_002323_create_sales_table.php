@@ -16,6 +16,7 @@ class CreateSalesTable extends Migration
         Schema::create('sales', function (Blueprint $table) {
             $table->id();
             $table->float('total',8,2)->default(0);
+            $table->enum('status',['pending','completed','cancelled'])->default('pending');
             $table->foreignId('client_id')
                 ->nullable()
                 ->constrained()

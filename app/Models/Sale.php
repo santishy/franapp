@@ -29,7 +29,7 @@ class Sale extends Model
 
     public function products()
     {
-        return $this->belongsToMany('App\Models\Product');
+        return $this->belongsToMany('App\Models\Product')->withPivot('qty', 'sale_price');
     }
 
     public function productInTransaction($product){
