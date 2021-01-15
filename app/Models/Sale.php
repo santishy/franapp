@@ -35,4 +35,14 @@ class Sale extends Model
     public function productInTransaction($product){
         return $this->products()->where('product_id',$product->id);
     }
+
+    public function scopeUpdateTransactionProduct(Builder $query,$transaction,$product){
+        $transaction->updateExistingPivot(
+            $product->id,
+            [
+                'qty' => ($query->first()->pivot->qty + 1),
+                'sale_price' => $product->retail_price
+            ]
+        );
+    }
 }
