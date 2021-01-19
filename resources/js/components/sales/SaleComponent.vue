@@ -1,10 +1,12 @@
 <template>
     <div class="w-full">
-        <search-component class="w-full mx-auto"></search-component>
+        <div class="flex justify-center">
+            <search-component class="sm:w-64 w-4/5 mx-auto"></search-component>
+        </div>
         <product-matching></product-matching>
         <div class="flex justify-center items-center mt-4">
-            <div class="bg-white px-4 py-2 w-3/4">
-                <sale-form></sale-form>
+            <div class="bg-white px-4 py-2 w-4/5">
+                <sale-form :sale="sale"></sale-form>
             </div>
         </div>
     </div>
@@ -15,13 +17,13 @@ import SearchComponent from "../products/SearchComponent.vue";
 import SaleForm from "./SaleForm";
 export default {
     components: { SearchComponent, SaleForm, ProductMatching },
-    props:{
-        sale:{
-            type:Object
+    props: {
+        sale: {
+            type: Object
         }
     },
-    created(){
-        console.log(this.sale)
+    created() {
+        console.log(this.sale);
     }
 };
 </script>

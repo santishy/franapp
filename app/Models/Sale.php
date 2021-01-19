@@ -40,7 +40,9 @@ class Sale extends Model
         $transaction->updateExistingPivot(
             $product->id,
             [
-                'qty' => ($query->first()->pivot->qty + 1),
+                'qty' => (
+                    $transaction->where('product_id',$product->id)->first()->pivot->qty + 1
+                ),
                 'sale_price' => $product->retail_price
             ]
         );

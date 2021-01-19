@@ -3674,6 +3674,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 
@@ -3718,11 +3720,31 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       form: {}
     };
+  },
+  props: {
+    sale: {
+      type: Object
+    }
   }
 });
 
@@ -23425,15 +23447,20 @@ var render = function() {
     "div",
     { staticClass: "w-full" },
     [
-      _c("search-component", { staticClass: "w-full mx-auto" }),
+      _c(
+        "div",
+        { staticClass: "flex justify-center" },
+        [_c("search-component", { staticClass: "sm:w-64 w-4/5 mx-auto" })],
+        1
+      ),
       _vm._v(" "),
       _c("product-matching"),
       _vm._v(" "),
       _c("div", { staticClass: "flex justify-center items-center mt-4" }, [
         _c(
           "div",
-          { staticClass: "bg-white px-4 py-2 w-3/4" },
-          [_c("sale-form")],
+          { staticClass: "bg-white px-4 py-2 w-4/5" },
+          [_c("sale-form", { attrs: { sale: _vm.sale } })],
           1
         )
       ])
@@ -23463,41 +23490,83 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("form", [
-    _c(
-      "div",
-      { staticClass: "flex items-center border-b border-teal-500 py-2" },
-      [
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.form.sku,
-              expression: "form.sku"
-            }
-          ],
-          staticClass:
-            "appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none",
-          attrs: {
-            name: "sku",
-            type: "number",
-            placeholder: "Número del cliente",
-            "aria-label": "Full name"
-          },
-          domProps: { value: _vm.form.sku },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
+  return _c(
+    "form",
+    [
+      _c(
+        "div",
+        { staticClass: "flex items-center border-b border-teal-500 py-2" },
+        [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.form.sku,
+                expression: "form.sku"
               }
-              _vm.$set(_vm.form, "sku", $event.target.value)
+            ],
+            staticClass:
+              "appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none",
+            attrs: {
+              name: "sku",
+              type: "number",
+              placeholder: "Número del cliente",
+              "aria-label": "Full name"
+            },
+            domProps: { value: _vm.form.sku },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.form, "sku", $event.target.value)
+              }
             }
-          }
-        })
-      ]
-    )
-  ])
+          })
+        ]
+      ),
+      _vm._v(" "),
+      _vm._l(_vm.sale.products, function(product) {
+        return _c("div", { key: product.id }, [
+          _c("div", [
+            _c("p", { staticClass: "text-gray-700" }, [
+              _vm._v(_vm._s(product.description))
+            ]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.form.sku,
+                  expression: "form.sku"
+                }
+              ],
+              staticClass:
+                "appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none",
+              attrs: {
+                name: "sku",
+                type: "number",
+                placeholder: "Número del cliente",
+                "aria-label": "Full name"
+              },
+              domProps: { value: _vm.form.sku },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.form, "sku", $event.target.value)
+                }
+              }
+            })
+          ])
+        ])
+      })
+    ],
+    2
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
