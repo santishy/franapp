@@ -3674,6 +3674,31 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     product: {
@@ -3688,6 +3713,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   created: function created() {
     this.form.qty = this.product.sale_quantity;
+    this.form.sale_price = this.product.retail_price;
   }
 });
 
@@ -23485,41 +23511,103 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "mt-2" }, [
-    _c("p", { staticClass: "text-gray-700 mb-2" }, [
-      _vm._v(_vm._s(_vm.product.description))
+  return _c("div", { staticClass: "mt-2 flex  flex-wrap items-center" }, [
+    _c("p", { staticClass: "text-gray-700 mb-2 w-full col-span-2 flex-none" }, [
+      _vm._v("\n        " + _vm._s(_vm.product.description) + "\n    ")
     ]),
     _vm._v(" "),
-    _c("input", {
-      directives: [
-        {
-          name: "model",
-          rawName: "v-model",
-          value: _vm.form.qty,
-          expression: "form.qty"
-        }
-      ],
-      staticClass:
-        "appearance-none bg-transparent border-gray-600 border-2 rounded-sm w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none",
-      attrs: {
-        name: "qty",
-        type: "number",
-        placeholder: "Cantidad de venta",
-        "aria-label": "Full name"
-      },
-      domProps: { value: _vm.form.qty },
-      on: {
-        input: function($event) {
-          if ($event.target.composing) {
-            return
+    _vm._m(0),
+    _vm._v(" "),
+    _c("div", { staticClass: "w-2/3 flex-grow" }, [
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.form.qty,
+            expression: "form.qty"
           }
-          _vm.$set(_vm.form, "qty", $event.target.value)
+        ],
+        staticClass:
+          "appearance-none bg-transparent border-gray-600 border-2 rounded-sm w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none",
+        attrs: {
+          name: "qty",
+          type: "number",
+          placeholder: "Cantidad de venta",
+          "aria-label": "Full name"
+        },
+        domProps: { value: _vm.form.qty },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.$set(_vm.form, "qty", $event.target.value)
+          }
         }
-      }
-    })
+      })
+    ]),
+    _vm._v(" "),
+    _vm._m(1),
+    _vm._v(" "),
+    _c("div", { staticClass: "w-2/3 flex-grow mt-2" }, [
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.form.sale_price,
+            expression: "form.sale_price"
+          }
+        ],
+        staticClass:
+          "appearance-none bg-transparent border-gray-600 border-2 rounded-sm w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none",
+        attrs: {
+          name: "qty",
+          type: "number",
+          placeholder: "Precio de venta",
+          "aria-label": "Full name"
+        },
+        domProps: { value: _vm.form.sale_price },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.$set(_vm.form, "sale_price", $event.target.value)
+          }
+        }
+      })
+    ]),
+    _vm._v(" "),
+    _c(
+      "button",
+      {
+        staticClass:
+          "bg-blue-300 mt-2 rounded transition-all duration-500 ease-in-out hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border-b-2 border-blue-500 hover:border-transparent w-full"
+      },
+      [_vm._v("\n        Modificar\n    ")]
+    )
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "w-1/3 flex-grow" }, [
+      _c("label", [_vm._v(" Cantidad ")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "w-1/3 flex-grow mt-2" }, [
+      _c("label", [_vm._v(" Precio ")])
+    ])
+  }
+]
 render._withStripped = true
 
 
