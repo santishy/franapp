@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Sale extends Model
 {
@@ -46,5 +47,9 @@ class Sale extends Model
                 'sale_price' => $product->retail_price
             ]
         );
+    }
+
+    public function scopeTotal(Builder $query){
+        $this->sum(DB::raw('qty * sale_price'));
     }
 }
