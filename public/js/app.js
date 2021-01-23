@@ -3818,7 +3818,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      form: {}
+      form: {},
+      products: []
     };
   },
   props: {
@@ -3828,7 +3829,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   created: function created() {
     if (this.sale != null) {
-      console.log(this.sale);
+      this.products = this.sale.products;
     }
   }
 });
@@ -23772,7 +23773,7 @@ var render = function() {
     _vm.sale !== null
       ? _c(
           "div",
-          _vm._l(_vm.sale.products, function(product) {
+          _vm._l(_vm.products, function(product) {
             return _c("cart-product", {
               key: product.id,
               attrs: { product: product }

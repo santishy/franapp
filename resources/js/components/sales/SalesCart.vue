@@ -24,7 +24,7 @@
         </form>
         <div v-if="sale !== null">
             <cart-product
-                v-for="product in sale.products"
+                v-for="product in products"
                 :key="product.id"
                 :product="product"
             >
@@ -38,7 +38,8 @@ export default {
     components: { "cart-product": CartProduct },
     data() {
         return {
-            form: {}
+            form: {},
+            products:[]
         };
     },
     props: {
@@ -48,7 +49,7 @@ export default {
     },
     created() {
         if (this.sale != null) {
-            console.log(this.sale);
+            this.products = this.sale.products ; 
         }
     }
 };
