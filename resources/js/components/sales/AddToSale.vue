@@ -23,7 +23,7 @@ export default {
             axios
                 .post(`/sales/${this.product.id}/products`)
                 .then(res => {
-                    console.log(res);
+                    EventBus.$emit('product-added-sales-cart',res.data.transaction);
                 })
                 .catch(err => {
                     console.log(err);

@@ -3641,7 +3641,7 @@ __webpack_require__.r(__webpack_exports__);
     submit: function submit() {
       console.log(this.product);
       axios.post("/sales/".concat(this.product.id, "/products")).then(function (res) {
-        console.log(res);
+        EventBus.$emit('product-added-sales-cart', res.data.transaction);
       })["catch"](function (err) {
         console.log(err);
       });
@@ -3819,7 +3819,8 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       form: {},
-      products: []
+      products: [],
+      localSale: null
     };
   },
   props: {
@@ -3829,8 +3830,17 @@ __webpack_require__.r(__webpack_exports__);
   },
   created: function created() {
     if (this.sale != null) {
+      this.localSale = this.localSale;
       this.products = this.sale.products;
     }
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    EventBus.$on('product-added-sales-cart', function (res) {
+      _this.localSale = res;
+      _this.products = res.products;
+    });
   }
 });
 
@@ -23720,11 +23730,13 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", [
     _c("form", { staticClass: "py-4" }, [
-      _c("div", { staticClass: " flex flex-wrap " }, [
-        _c("label", { staticClass: "mr-4" }, [_vm._v("Total")]),
-        _vm._v(" "),
-        _c("p", [_vm._v(_vm._s(_vm.sale.total))])
-      ]),
+      _vm.localSale != null
+        ? _c("div", { staticClass: " flex flex-wrap " }, [
+            _c("label", { staticClass: "mr-4" }, [_vm._v("Total")]),
+            _vm._v(" "),
+            _c("p", [_vm._v(_vm._s(_vm.sale.total))])
+          ])
+        : _vm._e(),
       _vm._v(" "),
       _c(
         "div",
@@ -23770,7 +23782,7 @@ var render = function() {
       )
     ]),
     _vm._v(" "),
-    _vm.sale !== null
+    _vm.localSale !== null
       ? _c(
           "div",
           _vm._l(_vm.products, function(product) {

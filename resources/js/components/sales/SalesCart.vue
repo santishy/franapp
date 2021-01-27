@@ -1,7 +1,7 @@
 <template>
     <div>
         <form class="py-4">
-            <div class=" flex flex-wrap ">
+            <div v-if="localSale != null" class=" flex flex-wrap ">
                 <label class="mr-4">Total</label>
                 <p>{{ sale.total }}</p>
             </div>
@@ -22,7 +22,7 @@
                 Completar
             </button>
         </form>
-        <div v-if="sale !== null">
+        <div v-if="localSale !== null">
             <cart-product
                 v-for="product in products"
                 :key="product.id"
@@ -39,7 +39,8 @@ export default {
     data() {
         return {
             form: {},
-            products:[]
+            products:[],
+            localSale:null
         };
     },
     props: {
@@ -49,8 +50,16 @@ export default {
     },
     created() {
         if (this.sale != null) {
+            this.localSale = this.localSale ;
             this.products = this.sale.products ; 
+
         }
+    },
+    mounted(){
+        EventBus.$on('product-added-sales-cart',(res)=>{
+            this.localSale = res;
+            this.products = res.products;
+        })
     }
 };
 </script>
