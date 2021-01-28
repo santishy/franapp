@@ -24,4 +24,13 @@ class SaleController extends Controller
         $request->product = $product;
         return new TransactionResponse($sale);
     }
+
+    public function update(Request $request, Sale $sale)
+    {
+        $request->validate([
+            'status' => 'required|regex:/accepted|cancelled|pending/',
+            'total' => 'numeric|required',
+            'phone_number' => 'exists:clients,phone|required'
+        ]);
+    }
 }

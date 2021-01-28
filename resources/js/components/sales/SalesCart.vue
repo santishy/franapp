@@ -3,7 +3,8 @@
         <form class="py-4">
             <div v-if="localSale != null" class=" flex flex-wrap ">
                 <label class="mr-4">Total</label>
-                <p>{{ sale.total }}</p>
+                <p>{{ getTotal }}</p>
+                <input name="total" type="hidden" :value="getTotal">
             </div>
 
             <div class="flex items-center border-b border-teal-500 py-2 mb-4">
@@ -50,7 +51,7 @@ export default {
     },
     created() {
         if (this.sale != null) {
-            this.localSale = this.localSale ;
+            this.localSale = this.sale ;
             this.products = this.sale.products ; 
 
         }
@@ -60,6 +61,15 @@ export default {
             this.localSale = res;
             this.products = res.products;
         })
+    },
+    computed:{
+        getTotal(){
+            var total=0;
+            this.products.map( product => {
+                total += product.retail_price * product.sale_quantity;
+            })
+            return total;
+        }
     }
 };
 </script>

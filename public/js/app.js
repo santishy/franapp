@@ -3811,6 +3811,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -3830,7 +3831,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   created: function created() {
     if (this.sale != null) {
-      this.localSale = this.localSale;
+      this.localSale = this.sale;
       this.products = this.sale.products;
     }
   },
@@ -3841,6 +3842,15 @@ __webpack_require__.r(__webpack_exports__);
       _this.localSale = res;
       _this.products = res.products;
     });
+  },
+  computed: {
+    getTotal: function getTotal() {
+      var total = 0;
+      this.products.map(function (product) {
+        total += product.retail_price * product.sale_quantity;
+      });
+      return total;
+    }
   }
 });
 
@@ -23734,7 +23744,12 @@ var render = function() {
         ? _c("div", { staticClass: " flex flex-wrap " }, [
             _c("label", { staticClass: "mr-4" }, [_vm._v("Total")]),
             _vm._v(" "),
-            _c("p", [_vm._v(_vm._s(_vm.sale.total))])
+            _c("p", [_vm._v(_vm._s(_vm.getTotal))]),
+            _vm._v(" "),
+            _c("input", {
+              attrs: { name: "total", type: "hidden" },
+              domProps: { value: _vm.getTotal }
+            })
           ])
         : _vm._e(),
       _vm._v(" "),

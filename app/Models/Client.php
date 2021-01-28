@@ -10,4 +10,9 @@ class Client extends Model
     use HasFactory;
 
     protected $fillable = ['name','phone_number','address','email','company'];
+
+    public function getRouteKeyName()
+    {
+        return 'phone_number';
+    }
 }
