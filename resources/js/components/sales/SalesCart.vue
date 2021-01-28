@@ -1,16 +1,16 @@
 <template>
     <div>
-        <form class="py-4">
+        <form class="py-4" @submit.prevent="submit">
             <div v-if="localSale != null" class=" flex flex-wrap ">
                 <label class="mr-4">Total</label>
                 <p>{{ getTotal }}</p>
-                <input name="total" type="hidden" :value="getTotal">
+                <input name="total" type="hidden" :v-model="form.total" />
             </div>
 
             <div class="flex items-center border-b border-teal-500 py-2 mb-4">
                 <input
-                    v-model="form.sku"
-                    name="sku"
+                    v-model="form.phone_number"
+                    name="phone_number"
                     class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
                     type="number"
                     placeholder="Número del cliente"
@@ -40,8 +40,8 @@ export default {
     data() {
         return {
             form: {},
-            products:[],
-            localSale:null
+            products: [],
+            localSale: null
         };
     },
     props: {
@@ -51,24 +51,32 @@ export default {
     },
     created() {
         if (this.sale != null) {
-            this.localSale = this.sale ;
-            this.products = this.sale.products ; 
-
+            this.localSale = this.sale;
+            this.products = this.sale.products;
         }
     },
-    mounted(){
-        EventBus.$on('product-added-sales-cart',(res)=>{
+    mounted() {
+        EventBus.$on("product-added-sales-cart", res => {
             this.localSale = res;
             this.products = res.products;
-        })
+        });
     },
-    computed:{
-        getTotal(){
-            var total=0;
-            this.products.map( product => {
+    computed: {
+        getTotal() {
+            var total = 0;
+            this.products.map(product => {
                 total += product.retail_price * product.sale_quantity;
-            })
+            });
             return total;
+        }
+    },
+    methods: {
+        submit() {
+            this.form._method = "patch";
+            axios.post(`/sales/${this.localSale.id}`, this.form)
+                .then(res => {
+                    console.log(res.data);
+                });
         }
     }
 };

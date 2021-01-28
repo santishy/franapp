@@ -3838,7 +3838,7 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this = this;
 
-    EventBus.$on('product-added-sales-cart', function (res) {
+    EventBus.$on("product-added-sales-cart", function (res) {
       _this.localSale = res;
       _this.products = res.products;
     });
@@ -3850,6 +3850,14 @@ __webpack_require__.r(__webpack_exports__);
         total += product.retail_price * product.sale_quantity;
       });
       return total;
+    }
+  },
+  methods: {
+    submit: function submit() {
+      this.form._method = "patch";
+      axios.post("/sales/".concat(this.localSale.id), this.form).then(function (res) {
+        console.log(res.data);
+      });
     }
   }
 });
@@ -23739,63 +23747,80 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("form", { staticClass: "py-4" }, [
-      _vm.localSale != null
-        ? _c("div", { staticClass: " flex flex-wrap " }, [
-            _c("label", { staticClass: "mr-4" }, [_vm._v("Total")]),
-            _vm._v(" "),
-            _c("p", [_vm._v(_vm._s(_vm.getTotal))]),
-            _vm._v(" "),
-            _c("input", {
-              attrs: { name: "total", type: "hidden" },
-              domProps: { value: _vm.getTotal }
-            })
-          ])
-        : _vm._e(),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "flex items-center border-b border-teal-500 py-2 mb-4" },
-        [
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.form.sku,
-                expression: "form.sku"
-              }
-            ],
-            staticClass:
-              "appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none",
-            attrs: {
-              name: "sku",
-              type: "number",
-              placeholder: "Número del cliente",
-              "aria-label": "Full name"
-            },
-            domProps: { value: _vm.form.sku },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
+    _c(
+      "form",
+      {
+        staticClass: "py-4",
+        on: {
+          submit: function($event) {
+            $event.preventDefault()
+            return _vm.submit($event)
+          }
+        }
+      },
+      [
+        _vm.localSale != null
+          ? _c("div", { staticClass: " flex flex-wrap " }, [
+              _c("label", { staticClass: "mr-4" }, [_vm._v("Total")]),
+              _vm._v(" "),
+              _c("p", [_vm._v(_vm._s(_vm.getTotal))]),
+              _vm._v(" "),
+              _c("input", {
+                attrs: {
+                  name: "total",
+                  type: "hidden",
+                  "v-model": _vm.form.total
                 }
-                _vm.$set(_vm.form, "sku", $event.target.value)
+              })
+            ])
+          : _vm._e(),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "flex items-center border-b border-teal-500 py-2 mb-4"
+          },
+          [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.form.phone_number,
+                  expression: "form.phone_number"
+                }
+              ],
+              staticClass:
+                "appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none",
+              attrs: {
+                name: "phone_number",
+                type: "number",
+                placeholder: "Número del cliente",
+                "aria-label": "Full name"
+              },
+              domProps: { value: _vm.form.phone_number },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.form, "phone_number", $event.target.value)
+                }
               }
-            }
-          })
-        ]
-      ),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass:
-            " bg-green-300 rounded transition-all duration-500 ease-in-out hover:bg-green-500 text-green-700 font-semibold hover:text-white py-2 px-4 border-l-2 border-r-2 border-green-500 hover:border-transparent w-full"
-        },
-        [_vm._v("\n            Completar\n        ")]
-      )
-    ]),
+            })
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass:
+              " bg-green-300 rounded transition-all duration-500 ease-in-out hover:bg-green-500 text-green-700 font-semibold hover:text-white py-2 px-4 border-l-2 border-r-2 border-green-500 hover:border-transparent w-full"
+          },
+          [_vm._v("\n            Completar\n        ")]
+        )
+      ]
+    ),
     _vm._v(" "),
     _vm.localSale !== null
       ? _c(
@@ -40386,8 +40411,8 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/vagrant/code/franapp/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/vagrant/code/franapp/resources/css/app.css */"./resources/css/app.css");
+__webpack_require__(/*! C:\xampp\htdocs\franapp\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\franapp\resources\css\app.css */"./resources/css/app.css");
 
 
 /***/ })

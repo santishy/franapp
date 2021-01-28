@@ -57,5 +57,6 @@ Route::get('categories',[CategoryController::class,'index'])->name('categories.i
 //ventas
 
 Route::get('sales/create',[SaleController::class,'create'])->name('sales.create');
+Route::put('sales/{sale}',[SaleController::class,'update'])->name('sales.update');
 
 

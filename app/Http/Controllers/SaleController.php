@@ -32,5 +32,8 @@ class SaleController extends Controller
             'total' => 'numeric|required',
             'phone_number' => 'exists:clients,phone|required'
         ]);
+
+        $sale->status = $request->status;
+        $sale->
     }
 }
