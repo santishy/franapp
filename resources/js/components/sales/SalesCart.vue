@@ -4,7 +4,7 @@
             <div v-if="localSale != null" class=" flex flex-wrap ">
                 <label class="mr-4">Total</label>
                 <p>{{ getTotal }}</p>
-                <input name="total" type="hidden" :v-model="form.total" />
+                <input name="total" type="hidden" :v-model="form.total = getTotal" />
             </div>
 
             <div class="flex items-center border-b border-teal-500 py-2 mb-4">
@@ -72,7 +72,8 @@ export default {
     },
     methods: {
         submit() {
-            this.form._method = "patch";
+            this.form._method = "put";
+            this.form.status = "completed"
             axios.post(`/sales/${this.localSale.id}`, this.form)
                 .then(res => {
                     console.log(res.data);

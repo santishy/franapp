@@ -27,13 +27,13 @@ class SaleController extends Controller
 
     public function update(Request $request, Sale $sale)
     {
-        $request->validate([
-            'status' => 'required|regex:/accepted|cancelled|pending/',
+        $fields = $request->validate([
+            'status' => ['required','regex:/completed|cancelled|pending/'],
             'total' => 'numeric|required',
-            'phone_number' => 'exists:clients,phone|required'
+            'phone_number' => 'exists:clients,phone_number|required'
         ]);
-
-        $sale->status = $request->status;
-        $sale->
+        
+        return $sale->update($fields);
+        
     }
 }
