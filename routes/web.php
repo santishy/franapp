@@ -7,7 +7,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductsSearchController;
 Use App\Http\Controllers\ProductInPurchaseController;
 use App\Http\Controllers\ClientController;
-use App\Http\Controllers\PurchaseController;
+use App\Http\Controllers\{PurchaseController,ProductInSaleController};
 
 
 Route::get('/', function () {
@@ -26,7 +26,7 @@ Route::resource('products',ProductController::class);
 
 //productos en venta 
 
-Route::post('sales/{product}/products',[SaleController::class,'store']);
+Route::post('sales/{product}/products',[ProductInSaleController::class,'store']);
 
 //Buscador de productos
 
@@ -57,6 +57,6 @@ Route::get('categories',[CategoryController::class,'index'])->name('categories.i
 //ventas
 
 Route::get('sales/create',[SaleController::class,'create'])->name('sales.create');
-Route::put('sales/{sale}',[SaleController::class,'update'])->name('sales.update');
+Route::post('sales/{sale}/client/{client:phone_number}',[SaleController::class,'store'])->name('sales.store');
 
 

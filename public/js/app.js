@@ -3854,9 +3854,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     submit: function submit() {
-      this.form._method = "put";
       this.form.status = "completed";
-      axios.post("/sales/".concat(this.localSale.id), this.form).then(function (res) {
+      axios.post("/sales/".concat(this.localSale.id, "/client/").concat(this.form.phone_number), this.form).then(function (res) {
         console.log(res.data);
       });
     }
@@ -40412,8 +40411,8 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/vagrant/code/franapp/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/vagrant/code/franapp/resources/css/app.css */"./resources/css/app.css");
+__webpack_require__(/*! C:\xampp\htdocs\franapp\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\franapp\resources\css\app.css */"./resources/css/app.css");
 
 
 /***/ })

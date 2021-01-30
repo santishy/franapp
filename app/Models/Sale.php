@@ -20,6 +20,10 @@ class Sale extends Model
         ]);
     }
 
+    public function client(){
+        return $this->belongsTo(Sale::class);
+    }
+
     public function scopeFindOrCreateTheTransaction(Builder $query){
         if(! session()->has('sale_id')){
             $sale = $query->create();

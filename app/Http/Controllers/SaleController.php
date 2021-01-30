@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Client;
 use Illuminate\Http\Request;
-use App\Models\Sale;
-use App\Models\Product;
-use App\Http\Resources\ProductResource;
 use App\Http\Resources\TransactionResource;
-use App\Http\Responses\TransactionResponse;
+use App\Models\Sale;
+
 
 class SaleController extends Controller
 {
@@ -17,23 +16,21 @@ class SaleController extends Controller
         return view('sales.create', ['sale' => $sale ? TransactionResource::make($sale) : null]);
     }
 
-    public function store(Request $request, Product $product)
-    {
-        $sale = Sale::getTransaction();
-        $sale->transactions($product);
-        $request->product = $product;
-        return new TransactionResponse($sale);
-    }
 
-    public function update(Request $request, Sale $sale)
+
+    public function store(Sale $sale, Client $client)
     {
+
+        return $client;
         $fields = $request->validate([
-            'status' => ['required','regex:/completed|cancelled|pending/'],
+            'status' => ['required', 'regex:/completed|cancelled|pending/'],
             'total' => 'numeric|required',
             'phone_number' => 'exists:clients,phone_number|required'
         ]);
-        
-        return $sale->update($fields);
-        
+        $sale->update($fields);
+        $sale->client()->associate($client);
+        return response()->json([
+            'sale_status' => $sale->status
+        ]);
     }
 }

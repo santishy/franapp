@@ -72,9 +72,8 @@ export default {
     },
     methods: {
         submit() {
-            this.form._method = "put";
             this.form.status = "completed"
-            axios.post(`/sales/${this.localSale.id}`, this.form)
+            axios.post(`/sales/${this.localSale.id}/client/${this.form.phone_number}`, this.form)
                 .then(res => {
                     console.log(res.data);
                 });
