@@ -3812,6 +3812,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -3821,7 +3833,8 @@ __webpack_require__.r(__webpack_exports__);
     return {
       form: {},
       products: [],
-      localSale: null
+      localSale: null,
+      sale_status: null
     };
   },
   props: {
@@ -3850,12 +3863,15 @@ __webpack_require__.r(__webpack_exports__);
         total += product.retail_price * product.sale_quantity;
       });
       return total;
+    },
+    getStatus: function getStatus() {
+      return this.sale_status ? this.sale_status : this.sale.status;
     }
   },
   methods: {
     submit: function submit() {
       this.form.status = "completed";
-      axios.post("/sales/".concat(this.localSale.id, "/client/").concat(this.form.phone_number), this.form).then(function (res) {
+      axios.post("/sales/".concat(this.localSale.id), this.form).then(function (res) {
         console.log(res.data);
       });
     }
@@ -23760,19 +23776,38 @@ var render = function() {
       },
       [
         _vm.localSale != null
-          ? _c("div", { staticClass: " flex flex-wrap " }, [
-              _c("label", { staticClass: "mr-4" }, [_vm._v("Total")]),
-              _vm._v(" "),
-              _c("p", [_vm._v(_vm._s(_vm.getTotal))]),
-              _vm._v(" "),
-              _c("input", {
-                attrs: {
-                  name: "total",
-                  type: "hidden",
-                  "v-model": (_vm.form.total = _vm.getTotal)
-                }
-              })
-            ])
+          ? _c(
+              "div",
+              {
+                staticClass:
+                  " flex flex-wrap justify-center items-center text-center"
+              },
+              [
+                _c("div", { staticClass: "w-full flex flex-wrap" }, [
+                  _c("p", { staticClass: "w-4/12" }, [_vm._v("Status:")]),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "w-4/12" }, [
+                    _vm._v(_vm._s(_vm.getStatus))
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("label", { staticClass: "mr-4 text-2xl" }, [
+                  _vm._v("Total")
+                ]),
+                _vm._v(" "),
+                _c("p", { staticClass: "text-gray-700 text-3xl" }, [
+                  _vm._v("$" + _vm._s(_vm.getTotal))
+                ]),
+                _vm._v(" "),
+                _c("input", {
+                  attrs: {
+                    name: "total",
+                    type: "hidden",
+                    "v-model": (_vm.form.total = _vm.getTotal)
+                  }
+                })
+              ]
+            )
           : _vm._e(),
         _vm._v(" "),
         _c(
@@ -40411,8 +40446,8 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\htdocs\franapp\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\franapp\resources\css\app.css */"./resources/css/app.css");
+__webpack_require__(/*! /home/vagrant/code/franapp/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/vagrant/code/franapp/resources/css/app.css */"./resources/css/app.css");
 
 
 /***/ })

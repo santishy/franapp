@@ -18,17 +18,19 @@ class SaleController extends Controller
 
 
 
-    public function store(Sale $sale, Client $client)
+    public function store(Request $request, Sale $sale)
     {
-
-        return $client;
         $fields = $request->validate([
             'status' => ['required', 'regex:/completed|cancelled|pending/'],
             'total' => 'numeric|required',
             'phone_number' => 'exists:clients,phone_number|required'
         ]);
         $sale->update($fields);
-        $sale->client()->associate($client);
+        $sale->client()
+            ->associate(
+                Client::where('phone_number', 
+                $fields['phone_number'])->first()
+        );
         return response()->json([
             'sale_status' => $sale->status
         ]);

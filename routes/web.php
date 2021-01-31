@@ -5,9 +5,9 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SaleController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductsSearchController;
-Use App\Http\Controllers\ProductInPurchaseController;
+use App\Http\Controllers\ProductInPurchaseController;
 use App\Http\Controllers\ClientController;
-use App\Http\Controllers\{PurchaseController,ProductInSaleController};
+use App\Http\Controllers\{PurchaseController, ProductInSaleController};
 
 
 Route::get('/', function () {
@@ -15,32 +15,32 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('home',function (){
+Route::get('home', function () {
     return view('dashboard');
 });
 
 //productos 
 
 
-Route::resource('products',ProductController::class);
+Route::resource('products', ProductController::class);
 
 //productos en venta 
 
-Route::post('sales/{product}/products',[ProductInSaleController::class,'store']);
+Route::post('sales/{product}/products', [ProductInSaleController::class, 'store']);
 
 //Buscador de productos
 
-Route::get('searching-products',[ProductsSearchController::class,'index'])->name('searching-produts.index')->middleware('auth');
+Route::get('searching-products', [ProductsSearchController::class, 'index'])->name('searching-produts.index')->middleware('auth');
 
 
 // compras 
 
-Route::resource('purchases',PurchaseController::class);
+Route::resource('purchases', PurchaseController::class);
 
 //Productos en compra
 
-Route::put('products-in-purchases/{product}',[ProductInPurchaseController::class,'update']);
-Route::delete('products-in-purchases/{product}',[ProductInPurchaseController::class,'destroy']);
+Route::put('products-in-purchases/{product}', [ProductInPurchaseController::class, 'update']);
+Route::delete('products-in-purchases/{product}', [ProductInPurchaseController::class, 'destroy']);
 
 //clientes 
 
@@ -50,13 +50,11 @@ Route::resource('clients', ClientController::class);
 //categories 
 
 
-Route::post('categories',[CategoryController::class,'store'])->name('categories.store');
+Route::post('categories', [CategoryController::class, 'store'])->name('categories.store');
 
-Route::get('categories',[CategoryController::class,'index'])->name('categories.index');
+Route::get('categories', [CategoryController::class, 'index'])->name('categories.index');
 
 //ventas
 
-Route::get('sales/create',[SaleController::class,'create'])->name('sales.create');
-Route::post('sales/{sale}/client/{client:phone_number}',[SaleController::class,'store'])->name('sales.store');
-
-
+Route::get('sales/create', [SaleController::class, 'create'])->name('sales.create');
+Route::post('sales/{sale}', [SaleController::class, 'store'])->name('sales.store');

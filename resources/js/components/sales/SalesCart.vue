@@ -1,10 +1,22 @@
 <template>
     <div>
         <form class="py-4" @submit.prevent="submit">
-            <div v-if="localSale != null" class=" flex flex-wrap ">
-                <label class="mr-4">Total</label>
-                <p>{{ getTotal }}</p>
-                <input name="total" type="hidden" :v-model="form.total = getTotal" />
+            <div
+                v-if="localSale != null"
+                class=" flex flex-wrap justify-center items-center text-center"
+            >
+                <div class="w-full flex flex-wrap">
+                    <p class="w-4/12">Status:</p>
+                    <p class="w-4/12">{{ getStatus }}</p>
+                </div>
+
+                <label class="mr-4 text-2xl">Total</label>
+                <p class="text-gray-700 text-3xl">${{ getTotal }}</p>
+                <input
+                    name="total"
+                    type="hidden"
+                    :v-model="(form.total = getTotal)"
+                />
             </div>
 
             <div class="flex items-center border-b border-teal-500 py-2 mb-4">
@@ -41,7 +53,8 @@ export default {
         return {
             form: {},
             products: [],
-            localSale: null
+            localSale: null,
+            sale_status: null
         };
     },
     props: {
@@ -68,15 +81,17 @@ export default {
                 total += product.retail_price * product.sale_quantity;
             });
             return total;
+        },
+        getStatus() {
+            return this.sale_status ? this.sale_status : this.sale.status;
         }
     },
     methods: {
         submit() {
-            this.form.status = "completed"
-            axios.post(`/sales/${this.localSale.id}/client/${this.form.phone_number}`, this.form)
-                .then(res => {
-                    console.log(res.data);
-                });
+            this.form.status = "completed";
+            axios.post(`/sales/${this.localSale.id}`, this.form).then(res => {
+                console.log(res.data);
+            });
         }
     }
 };

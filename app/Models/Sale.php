@@ -56,4 +56,6 @@ class Sale extends Model
     public function scopeTotal(Builder $query){
         $this->sum(DB::raw('qty * sale_price'));
     }
+
+    
 }
