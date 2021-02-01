@@ -1,24 +1,23 @@
 <template>
     <div>
         <form class="py-4" @submit.prevent="submit">
-            <div
-                v-if="localSale != null"
-                class=" flex flex-wrap justify-center items-center text-center"
-            >
-                <div class="w-full flex flex-wrap">
-                    <p class="w-4/12">Status:</p>
-                    <p class="w-4/12">{{ getStatus }}</p>
+            <div v-if="localSale != null">
+                <div class="w-full flex flex-wrap justify-end mb-4">
+                    <p class="mr-2">Status: </p>
+                    <p>{{ getStatus }}</p>
                 </div>
-
-                <label class="mr-4 text-2xl">Total</label>
-                <p class="text-gray-700 text-3xl">${{ getTotal }}</p>
-                <input
-                    name="total"
-                    type="hidden"
-                    :v-model="(form.total = getTotal)"
-                />
+                <div
+                    class=" flex flex-wrap justify-center items-center text-center"
+                >
+                    <label class="mr-4 text-2xl">Total</label>
+                    <p class="text-gray-700 text-3xl">${{ getTotal }}</p>
+                    <input
+                        name="total"
+                        type="hidden"
+                        :v-model="(form.total = getTotal)"
+                    />
+                </div>
             </div>
-
             <div class="flex items-center border-b border-teal-500 py-2 mb-4">
                 <input
                     v-model="form.phone_number"
@@ -83,7 +82,7 @@ export default {
             return total;
         },
         getStatus() {
-            return this.sale_status ? this.sale_status : this.sale.status;
+            return this.sale_status ? this.sale_status : this.localSale.status;
         }
     },
     methods: {

@@ -3704,6 +3704,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     product: {
@@ -3719,6 +3725,17 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     this.form.qty = this.product.sale_quantity;
     this.form.sale_price = this.product.retail_price;
+  },
+  methods: {
+    submit: function submit() {
+      this.form._method = "put";
+      this.form.id = this.product.id;
+      axios.post("/sales/".concat(this.product.id, "/products")).then(function (res) {
+        console.log(res.data);
+      })["catch"](function (err) {
+        console.log(err);
+      });
+    }
   }
 });
 
@@ -3823,7 +3840,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -3865,7 +3881,7 @@ __webpack_require__.r(__webpack_exports__);
       return total;
     },
     getStatus: function getStatus() {
-      return this.sale_status ? this.sale_status : this.sale.status;
+      return this.sale_status ? this.sale_status : this.localSale.status;
     }
   },
   methods: {
@@ -23574,91 +23590,111 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "div",
+    "form",
     {
-      staticClass:
-        "mt-2 flex  flex-wrap items-center justify-center bg-gray-200 px-2 py-4 rounded"
+      on: {
+        submit: function($event) {
+          $event.preventDefault()
+          return _vm.submit($event)
+        }
+      }
     },
     [
       _c(
-        "p",
-        { staticClass: "text-gray-700 mb-2 w-full col-span-2 flex-none" },
-        [_vm._v("\n        " + _vm._s(_vm.product.description) + "\n    ")]
-      ),
-      _vm._v(" "),
-      _vm._m(0),
-      _vm._v(" "),
-      _c("div", { staticClass: "w-2/3 flex-grow" }, [
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.form.qty,
-              expression: "form.qty"
-            }
-          ],
-          staticClass:
-            "appearance-none bg-white border-gray-600 border-2 rounded-sm w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none",
-          attrs: {
-            name: "qty",
-            type: "number",
-            placeholder: "Cantidad de venta",
-            "aria-label": "Full name"
-          },
-          domProps: { value: _vm.form.qty },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.$set(_vm.form, "qty", $event.target.value)
-            }
-          }
-        })
-      ]),
-      _vm._v(" "),
-      _vm._m(1),
-      _vm._v(" "),
-      _c("div", { staticClass: "w-2/3 flex-grow mt-2" }, [
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.form.sale_price,
-              expression: "form.sale_price"
-            }
-          ],
-          staticClass:
-            "appearance-none bg-white border-gray-600 border-2 rounded-sm w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none",
-          attrs: {
-            name: "qty",
-            type: "number",
-            placeholder: "Precio de venta",
-            "aria-label": "Full name"
-          },
-          domProps: { value: _vm.form.sale_price },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.$set(_vm.form, "sale_price", $event.target.value)
-            }
-          }
-        })
-      ]),
-      _vm._v(" "),
-      _vm._m(2),
-      _vm._v(" "),
-      _c(
-        "button",
+        "div",
         {
           staticClass:
-            " bg-blue-300 mt-2 rounded transition-all duration-500 ease-in-out hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border-b-2 border-blue-500 hover:border-transparent w-2/3"
+            "mt-2 flex  flex-wrap items-center justify-center bg-gray-200 px-2 py-4 rounded"
         },
-        [_vm._v("\n        Modificar\n    ")]
+        [
+          _c(
+            "p",
+            { staticClass: "text-gray-700 mb-2 w-full col-span-2 flex-none" },
+            [
+              _vm._v(
+                "\n            " +
+                  _vm._s(_vm.product.description) +
+                  "\n        "
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _vm._m(0),
+          _vm._v(" "),
+          _c("div", { staticClass: "w-2/3 flex-grow" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.form.qty,
+                  expression: "form.qty"
+                }
+              ],
+              staticClass:
+                "appearance-none bg-white border-gray-600 border-2 rounded-sm w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none",
+              attrs: {
+                name: "qty",
+                type: "number",
+                placeholder: "Cantidad de venta",
+                "aria-label": "Full name"
+              },
+              domProps: { value: _vm.form.qty },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.form, "qty", $event.target.value)
+                }
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _vm._m(1),
+          _vm._v(" "),
+          _c("div", { staticClass: "w-2/3 flex-grow mt-2" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.form.sale_price,
+                  expression: "form.sale_price"
+                }
+              ],
+              staticClass:
+                "appearance-none bg-white border-gray-600 border-2 rounded-sm w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none",
+              attrs: {
+                name: "qty",
+                type: "number",
+                placeholder: "Precio de venta",
+                "aria-label": "Full name"
+              },
+              domProps: { value: _vm.form.sale_price },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.form, "sale_price", $event.target.value)
+                }
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _vm._m(2),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass:
+                " bg-blue-300 mt-2 rounded transition-all duration-500 ease-in-out hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border-b-2 border-blue-500 hover:border-transparent w-2/3",
+              attrs: { type: "submit" }
+            },
+            [_vm._v("\n            Modificar\n        ")]
+          )
+        ]
       )
     ]
   )
@@ -23776,38 +23812,42 @@ var render = function() {
       },
       [
         _vm.localSale != null
-          ? _c(
-              "div",
-              {
-                staticClass:
-                  " flex flex-wrap justify-center items-center text-center"
-              },
-              [
-                _c("div", { staticClass: "w-full flex flex-wrap" }, [
-                  _c("p", { staticClass: "w-4/12" }, [_vm._v("Status:")]),
+          ? _c("div", [
+              _c(
+                "div",
+                { staticClass: "w-full flex flex-wrap justify-end mb-4" },
+                [
+                  _c("p", { staticClass: "mr-2" }, [_vm._v("Status: ")]),
                   _vm._v(" "),
-                  _c("p", { staticClass: "w-4/12" }, [
-                    _vm._v(_vm._s(_vm.getStatus))
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("label", { staticClass: "mr-4 text-2xl" }, [
-                  _vm._v("Total")
-                ]),
-                _vm._v(" "),
-                _c("p", { staticClass: "text-gray-700 text-3xl" }, [
-                  _vm._v("$" + _vm._s(_vm.getTotal))
-                ]),
-                _vm._v(" "),
-                _c("input", {
-                  attrs: {
-                    name: "total",
-                    type: "hidden",
-                    "v-model": (_vm.form.total = _vm.getTotal)
-                  }
-                })
-              ]
-            )
+                  _c("p", [_vm._v(_vm._s(_vm.getStatus))])
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass:
+                    " flex flex-wrap justify-center items-center text-center"
+                },
+                [
+                  _c("label", { staticClass: "mr-4 text-2xl" }, [
+                    _vm._v("Total")
+                  ]),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "text-gray-700 text-3xl" }, [
+                    _vm._v("$" + _vm._s(_vm.getTotal))
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    attrs: {
+                      name: "total",
+                      type: "hidden",
+                      "v-model": (_vm.form.total = _vm.getTotal)
+                    }
+                  })
+                ]
+              )
+            ])
           : _vm._e(),
         _vm._v(" "),
         _c(
@@ -40446,8 +40486,8 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/vagrant/code/franapp/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/vagrant/code/franapp/resources/css/app.css */"./resources/css/app.css");
+__webpack_require__(/*! C:\xampp\htdocs\franapp\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\franapp\resources\css\app.css */"./resources/css/app.css");
 
 
 /***/ })

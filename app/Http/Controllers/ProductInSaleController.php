@@ -18,4 +18,20 @@ class ProductInSaleController extends Controller
         $request->product = $product;
         return new TransactionResponse($sale);
     }
+
+    public function update(Request $request, Product $product)
+    {
+        $fields = $request->validate([
+            'qty' => 'numeric|required|min:1',
+            'sale_price' => 'numeric|required|min:1',
+            'product_id' => 'required|exists:product_sale,id'
+        ]);
+        
+        $sale = Sale::find(session()->get('sale_id'));
+        $sale->updateTransactionProduct($sale,$request)
+
+
+
+
+    }
 }

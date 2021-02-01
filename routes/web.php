@@ -27,6 +27,7 @@ Route::resource('products', ProductController::class);
 //productos en venta 
 
 Route::post('sales/{product}/products', [ProductInSaleController::class, 'store']);
+Route::put('sales/{product}/products', [ProductInSaleController::class, 'update']);
 
 //Buscador de productos
 
