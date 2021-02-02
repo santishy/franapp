@@ -2,7 +2,7 @@
     <div>
         <form class="py-4" @submit.prevent="submit">
             <div v-if="localSale != null">
-                <div class="w-full flex flex-wrap justify-end mb-4">
+                <div class="w-full flex flex-wrap justify-end mb-4 text-gray-600">
                     <p class="mr-2">Status: </p>
                     <p>{{ getStatus }}</p>
                 </div>

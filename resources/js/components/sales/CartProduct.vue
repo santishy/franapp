@@ -70,7 +70,7 @@ export default {
             this.form._method = "put";
             this.form.product_id = this.product.id;
             axios
-                .post(`/sales/${this.product.id}/products`,this.form)
+                .post(`/sales/${this.product.id}/products`, this.form)
                 .then(res => {
                     console.log(res.data);
                 })
