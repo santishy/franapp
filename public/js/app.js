@@ -3729,8 +3729,8 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     submit: function submit() {
       this.form._method = "put";
-      this.form.id = this.product.id;
-      axios.post("/sales/".concat(this.product.id, "/products")).then(function (res) {
+      this.form.product_id = this.product.id;
+      axios.post("/sales/".concat(this.product.id, "/products"), this.form).then(function (res) {
         console.log(res.data);
       })["catch"](function (err) {
         console.log(err);
@@ -23667,7 +23667,7 @@ var render = function() {
                 "appearance-none bg-white border-gray-600 border-2 rounded-sm w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none",
               attrs: {
                 name: "qty",
-                type: "number",
+                type: "text",
                 placeholder: "Precio de venta",
                 "aria-label": "Full name"
               },
@@ -40486,8 +40486,8 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\htdocs\franapp\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\franapp\resources\css\app.css */"./resources/css/app.css");
+__webpack_require__(/*! /home/vagrant/code/franapp/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/vagrant/code/franapp/resources/css/app.css */"./resources/css/app.css");
 
 
 /***/ })

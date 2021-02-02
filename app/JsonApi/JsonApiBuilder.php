@@ -19,14 +19,20 @@ class JsonApiBuilder
     {
         return function ($product) {
             $transaction = $this->model->products();
-            if ($transaction->where('product_id', $product->id)->exists()) {
-                $this->updateTransactionProduct($transaction,$product); // la respuesta de sale es diferente al recargar la pagina en sale.create es diferente a la de cuando vas vendiendo un producto con vue
-                return $this;
+            if (! $transaction->where('product_id', $product->id)->exists()) {
+
+                $transaction->attach($product->id, [
+                    'sale_price' => $product->retail_price,
+                    'qty' => 1
+                ]);
+                // return $this;
+                // $this->updateTransactionProduct($transaction,$product); // la respuesta de sale es diferente al recargar la pagina en sale.create es diferente a la de cuando vas vendiendo un producto con vue
+                // return $this;
             }
-            $transaction->attach($product->id, [
-                'sale_price' => $product->retail_price,
-                'qty' => 1
-            ]);
+            // $transaction->attach($product->id, [
+            //     'sale_price' => $product->retail_price,
+            //     'qty' => 1
+            // ]);
             return $this;
         };
     }

@@ -24,14 +24,15 @@ class ProductInSaleController extends Controller
         $fields = $request->validate([
             'qty' => 'numeric|required|min:1',
             'sale_price' => 'numeric|required|min:1',
-            'product_id' => 'required|exists:product_sale,id'
+            'product_id' => 'required|exists:product_sale,product_id'
         ]);
-        
+
         $sale = Sale::find(session()->get('sale_id'));
-        $sale->updateTransactionProduct($sale,$request)
 
-
-
-
+        $sale->products()
+            ->updateExistingPivot(
+                $request->product_id,
+                $request->except('product_id','_method')
+            );
     }
 }

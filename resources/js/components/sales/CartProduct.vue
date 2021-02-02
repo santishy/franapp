@@ -28,7 +28,7 @@
                     v-model="form.sale_price"
                     name="qty"
                     class="appearance-none bg-white border-gray-600 border-2 rounded-sm w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
-                    type="number"
+                    type="text"
                     placeholder="Precio de venta"
                     aria-label="Full name"
                 />
@@ -68,9 +68,9 @@ export default {
     methods: {
         submit() {
             this.form._method = "put";
-            this.form.id = this.product.id;
+            this.form.product_id = this.product.id;
             axios
-                .post(`/sales/${this.product.id}/products`)
+                .post(`/sales/${this.product.id}/products`,this.form)
                 .then(res => {
                     console.log(res.data);
                 })
