@@ -21,7 +21,11 @@ const toggleActiveSearchCategory = (state,status) => {
     state.activeSearchCategory = status;
 }
 
+const setSalePriceOption = (state,value) => {
+    state.salePriceOption = value;
+}
 export default {
     setProductsInPurchase,
-    toggleActiveSearchCategory
+    toggleActiveSearchCategory,
+    setSalePriceOption,
 }

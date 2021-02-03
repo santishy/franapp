@@ -11,6 +11,7 @@ export const store = new Vuex.Store({
     productsInPurchase:JSON.parse(localStorage.getItem('productsInPurchase')),
     purchaseStatus:'',
     activeSearchCategory:true,
+    salePriceOption:null,
   },
   mutations,
   actions,
