@@ -3815,6 +3815,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({});
 
 /***/ }),
@@ -23844,11 +23847,30 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", {
-    staticClass: "mt-4 bg-white w-4/5 shaddow rounded-sm border py-4 px-2"
-  })
+  return _vm._m(0)
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass: "mt-4 bg-white w-4/5 shaddow rounded-sm border py-4 px-2"
+      },
+      [
+        _c("p", [_vm._v("Tipo de venta")]),
+        _vm._v(" "),
+        _c("div", { staticClass: "flex justify-center" }, [
+          _c("button", [_vm._v("Al por mayor")]),
+          _vm._v(" "),
+          _c("button", [_vm._v("Al por menor")])
+        ])
+      ]
+    )
+  }
+]
 render._withStripped = true
 
 
@@ -40636,8 +40658,8 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/vagrant/code/franapp/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/vagrant/code/franapp/resources/css/app.css */"./resources/css/app.css");
+__webpack_require__(/*! C:\xampp\htdocs\franapp\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\franapp\resources\css\app.css */"./resources/css/app.css");
 
 
 /***/ })
