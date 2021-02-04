@@ -3818,6 +3818,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({});
 
 /***/ }),
@@ -23860,12 +23868,26 @@ var staticRenderFns = [
         staticClass: "mt-4 bg-white w-4/5 shaddow rounded-sm border py-4 px-2"
       },
       [
-        _c("p", [_vm._v("Tipo de venta")]),
+        _c("p", { staticClass: "text-center" }, [_vm._v("Tipo de venta")]),
         _vm._v(" "),
         _c("div", { staticClass: "flex justify-center" }, [
-          _c("button", [_vm._v("Al por mayor")]),
+          _c(
+            "button",
+            {
+              staticClass:
+                "bg-blue-500 rounded transition-all duration-500 ease-in-out hover:bg-blue-700 text-blue-900 font-semibold hover:text-white py-4 px-6 border-2 border-r-2 border-blue-700 hover:border-transparent w-full mr-2"
+            },
+            [_vm._v("\n            Al por menor\n        ")]
+          ),
           _vm._v(" "),
-          _c("button", [_vm._v("Al por menor")])
+          _c(
+            "button",
+            {
+              staticClass:
+                "bg-yellow-500 rounded transition-all duration-500 ease-in-out hover:bg-yellow-900 text-yellow-900 font-semibold hover:text-white py-4 px-6 border-2  border-yellow-900 hover:border-transparent w-full"
+            },
+            [_vm._v("\n            Al por mayor\n        ")]
+          )
         ])
       ]
     )
