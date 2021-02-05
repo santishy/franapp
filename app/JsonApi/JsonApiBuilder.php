@@ -22,7 +22,7 @@ class JsonApiBuilder
             if (! $transaction->where('product_id', $product->id)->exists()) {
 
                 $transaction->attach($product->id, [
-                    'sale_price' => $product->retail_price,
+                    'sale_price' => $product->{request('salePriceOption')},
                     'qty' => 1
                 ]);
                 // return $this;

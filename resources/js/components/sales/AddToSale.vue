@@ -11,6 +11,7 @@
     </form>
 </template>
 <script>
+import {mapState} from "vuex";
 export default {
     props: {
         product: {
@@ -21,7 +22,7 @@ export default {
         submit() {
             console.log(this.product);
             axios
-                .post(`/sales/${this.product.id}/products`)
+                .post(`/sales/${this.product.id}/products`,{salePriceOption:this.salePriceOption})
                 .then(res => {
                     EventBus.$emit('product-added-sales-cart',res.data.transaction);
                 })
@@ -29,6 +30,9 @@ export default {
                     console.log(err);
                 });
         }
+    },
+    computed:{
+        ...mapState(['salePriceOption'])
     }
 };
 </script>

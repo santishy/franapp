@@ -46,6 +46,7 @@
 </template>
 <script>
 import CartProduct from "./CartProduct";
+import {mapState} from "vuex"
 export default {
     components: { "cart-product": CartProduct },
     data() {
@@ -77,13 +78,14 @@ export default {
         getTotal() {
             var total = 0;
             this.products.map(product => {
-                total += product.retail_price * product.sale_quantity;
+                total += product[this.salePriceOption] * product.sale_quantity;
             });
             return total;
         },
         getStatus() {
             return this.sale_status ? this.sale_status : this.localSale.status;
-        }
+        },
+        ...mapState(['salePriceOption'])
     },
     methods: {
         submit() {

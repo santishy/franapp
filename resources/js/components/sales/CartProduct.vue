@@ -49,6 +49,7 @@
 </template>
 
 <script>
+import {mapState} from 'vuex'
 export default {
     props: {
         product: {
@@ -63,7 +64,7 @@ export default {
     },
     created() {
         this.form.qty = this.product.sale_quantity;
-        this.form.sale_price = this.product.retail_price;
+        this.form.sale_price = this.product.sale_price;
     },
     methods: {
         submit() {
@@ -78,6 +79,9 @@ export default {
                     console.log(err);
                 });
         }
+    },
+    computed:{
+        ...mapState(['salePriceOption'])
     }
 };
 </script>
