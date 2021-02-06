@@ -28,13 +28,15 @@ class ProductInSaleController extends Controller
         ]);
 
         $sale = Sale::find(session()->get('sale_id'));
+
         $sale->products()
             ->updateExistingPivot(
                 $request->product_id,
                 $request->except('product_id','_method')
             );
-        return response()->json([
+
+        return response()->json(
             $request->except('_method')
-        ]);
+        );
     }
 }

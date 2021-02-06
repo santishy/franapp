@@ -1,7 +1,9 @@
 <template>
-    <div class=" rounded overflow-hidden shadow-lg bg-white">
+    <div class=" rounded overflow-hidden" :class="darkMode">
         <div class="text-justify">
-            <div class="px-6 pt-4 pb-2 text-center grid grid-cols-4 md:gap-4 gap-1">
+            <div
+                class="px-6 pt-4 pb-2 text-center grid grid-cols-4 md:gap-4 gap-1"
+            >
                 <add-to-purchase
                     :product_id="product.id"
                     :purchase_price="product.distributor_price"
@@ -60,12 +62,20 @@ export default {
         },
         index: {
             type: Number
+        },
+        searchInSales: {
+            type: Boolean
         }
     },
     components: {
         "remove-product": RemoveProductComponent,
         "add-to-purchase": AddToPurchase,
-        "add-to-sale" : AddToSale,
+        "add-to-sale": AddToSale
+    },
+    computed:{
+        darkMode(){
+            return this.searchInSales ? 'bg-gray-100 text-white' : 'shadow-lg bg-white'
+        }
     }
 };
 </script>

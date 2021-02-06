@@ -49,14 +49,14 @@
 </template>
 
 <script>
-import {mapState} from 'vuex'
+import { mapState } from "vuex";
 export default {
     props: {
         product: {
             type: Object,
             required: true
         },
-        index:{
+        index: {
             type: Number
         }
     },
@@ -76,15 +76,18 @@ export default {
             axios
                 .post(`/sales/${this.product.id}/products`, this.form)
                 .then(res => {
-                    EventBus.$emit('updated-sales-product',this.index,res.data)
+                    EventBus.$emit("updated-sales-product", {
+                        index: this.index,
+                        transaction: res.data
+                    });
                 })
                 .catch(err => {
                     console.log(err);
                 });
         }
     },
-    computed:{
-        ...mapState(['salePriceOption'])
+    computed: {
+        ...mapState(["salePriceOption"])
     }
 };
 </script>

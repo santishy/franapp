@@ -2888,6 +2888,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 
@@ -2899,12 +2901,20 @@ __webpack_require__.r(__webpack_exports__);
     },
     index: {
       type: Number
+    },
+    searchInSales: {
+      type: Boolean
     }
   },
   components: {
     "remove-product": _RemoveProductComponent_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
     "add-to-purchase": _purchases_AddToPurchase_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
     "add-to-sale": _sales_AddToSale_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+  },
+  computed: {
+    darkMode: function darkMode() {
+      return this.searchInSales ? 'bg-gray-100 text-white' : 'shadow-lg bg-white';
+    }
   }
 });
 
@@ -3113,6 +3123,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -3131,8 +3147,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   components: {
     "product-card": _ProductCardComponent__WEBPACK_IMPORTED_MODULE_0__["default"]
-  },
-  computed: {}
+  }
 });
 
 /***/ }),
@@ -3755,13 +3770,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.form._method = "put";
       this.form.product_id = this.product.id;
       axios.post("/sales/".concat(this.product.id, "/products"), this.form).then(function (res) {
-        EventBus.$emit('updated-sales-product', _this.index, res.data);
+        EventBus.$emit("updated-sales-product", {
+          index: _this.index,
+          transaction: res.data
+        });
       })["catch"](function (err) {
         console.log(err);
       });
     }
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])(['salePriceOption']))
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])(["salePriceOption"]))
 });
 
 /***/ }),
@@ -3889,18 +3907,9 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
-
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
-
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
+//
+//
+//
 //
 //
 //
@@ -3976,13 +3985,12 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     }
   },
   mounted: function mounted() {
-    var _EventBus,
-        _this = this;
+    var _this = this;
 
-    (_EventBus = EventBus).$on.apply(_EventBus, ["updated-sales-product"].concat(_toConsumableArray(function (args) {
-      console.log(args);
-    })));
-
+    EventBus.$on("updated-sales-product", function (obj) {
+      _this.products[obj.index].sale_quantity = obj.transaction.qty;
+      _this.products[obj.index].sale_price = obj.transaction.sale_price;
+    });
     EventBus.$on("product-added-sales-cart", function (res) {
       _this.localSale = res;
       _this.products = res.products;
@@ -4002,9 +4010,13 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   }, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])(["salePriceOption"])),
   methods: {
     submit: function submit() {
+      var _this2 = this;
+
       this.form.status = "completed";
       axios.post("/sales/".concat(this.localSale.id), this.form).then(function (res) {
-        console.log(res.data);
+        _this2.sale_status = res.data.sale_status;
+      })["catch"](function (err) {
+        ;
       });
     }
   }
@@ -22752,7 +22764,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: " rounded overflow-hidden shadow-lg bg-white" },
+    { staticClass: " rounded overflow-hidden", class: _vm.darkMode },
     [
       _c("div", { staticClass: "text-justify" }, [
         _c(
@@ -23191,16 +23203,31 @@ var render = function() {
             "div",
             {
               staticClass:
-                "w-10/12 shadow z-20 h-screen overflow-y-scroll overflow-x-hidden bg-white py-4 px-6"
+                "w-full md:w-10/12 shadow z-20 h-screen overflow-y-scroll overflow-x-hidden bg-white py-6 px-6"
             },
             [
+              _c("div", { staticClass: "flex justify-end" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "mt-2 mb-2 text-2xl p-0 m-0",
+                    on: {
+                      click: function($event) {
+                        _vm.isOpen = false
+                      }
+                    }
+                  },
+                  [_c("i", { staticClass: "far fa-window-close" })]
+                )
+              ]),
+              _vm._v(" "),
               _c(
                 "div",
                 { staticClass: "grid md:grid-cols-3 grid-cols-1 gap-4 " },
                 _vm._l(_vm.products, function(product) {
                   return _c("product-card", {
                     key: product.id,
-                    attrs: { product: product }
+                    attrs: { product: product, "search-in-sales": true }
                   })
                 }),
                 1
@@ -24077,6 +24104,15 @@ var render = function() {
             })
           ]
         ),
+        _vm._v(" "),
+        _vm.errors
+          ? _c(
+              "div",
+              { staticClass: "flex items-center mb-3" },
+              [_c("errors-component", { attrs: { errors: _vm.errors } })],
+              1
+            )
+          : _vm._e(),
         _vm._v(" "),
         _c(
           "button",
@@ -40753,8 +40789,8 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\htdocs\franapp\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\franapp\resources\css\app.css */"./resources/css/app.css");
+__webpack_require__(/*! /home/vagrant/code/franapp/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/vagrant/code/franapp/resources/css/app.css */"./resources/css/app.css");
 
 
 /***/ })

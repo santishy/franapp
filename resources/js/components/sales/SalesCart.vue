@@ -30,6 +30,9 @@
                     aria-label="Full name"
                 />
             </div>
+            <div v-if="errors" class="flex items-center mb-3">
+                <errors-component :errors="errors" />
+            </div>
             <button
                 class=" bg-green-300 rounded transition-all duration-500 ease-in-out hover:bg-green-500 text-green-700 font-semibold hover:text-white py-2 px-4 border-l-2 border-r-2 border-green-500 hover:border-transparent w-full"
             >
@@ -38,7 +41,7 @@
         </form>
         <div v-if="localSale !== null">
             <cart-product
-                v-for="(product,index) in products"
+                v-for="(product, index) in products"
                 :key="product.id"
                 :product="product"
                 :index="index"
@@ -57,7 +60,7 @@ export default {
             form: {},
             products: [],
             localSale: null,
-            sale_status: null
+            sale_status: null,
         };
     },
     props: {
@@ -72,9 +75,10 @@ export default {
         }
     },
     mounted() {
-        EventBus.$on("updated-sales-product",...args => {
-            console.log(args);
-        })
+        EventBus.$on("updated-sales-product", obj => {
+            this.products[obj.index].sale_quantity = obj.transaction.qty;
+            this.products[obj.index].sale_price = obj.transaction.sale_price;
+        });
         EventBus.$on("product-added-sales-cart", res => {
             this.localSale = res;
             this.products = res.products;
@@ -96,9 +100,14 @@ export default {
     methods: {
         submit() {
             this.form.status = "completed";
-            axios.post(`/sales/${this.localSale.id}`, this.form).then(res => {
-                console.log(res.data);
-            });
+            axios
+                .post(`/sales/${this.localSale.id}`, this.form)
+                .then(res => {
+                    this.sale_status = res.data.sale_status;
+                })
+                .catch(err => {
+                 ;
+                });
         }
     }
 };
