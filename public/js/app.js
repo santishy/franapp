@@ -3734,6 +3734,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     product: {
       type: Object,
       required: true
+    },
+    index: {
+      type: Number
     }
   },
   data: function data() {
@@ -3747,10 +3750,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   methods: {
     submit: function submit() {
+      var _this = this;
+
       this.form._method = "put";
       this.form.product_id = this.product.id;
       axios.post("/sales/".concat(this.product.id, "/products"), this.form).then(function (res) {
-        console.log(res.data);
+        EventBus.$emit('updated-sales-product', _this.index, res.data);
       })["catch"](function (err) {
         console.log(err);
       });
@@ -3884,6 +3889,21 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+//
+//
+//
 //
 //
 //
@@ -3956,7 +3976,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   },
   mounted: function mounted() {
-    var _this = this;
+    var _EventBus,
+        _this = this;
+
+    (_EventBus = EventBus).$on.apply(_EventBus, ["updated-sales-product"].concat(_toConsumableArray(function (args) {
+      console.log(args);
+    })));
 
     EventBus.$on("product-added-sales-cart", function (res) {
       _this.localSale = res;
@@ -3965,18 +3990,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   computed: _objectSpread({
     getTotal: function getTotal() {
-      var _this2 = this;
-
       var total = 0;
       this.products.map(function (product) {
-        total += product[_this2.salePriceOption] * product.sale_quantity;
+        total += product.sale_price * product.sale_quantity;
       });
       return total;
     },
     getStatus: function getStatus() {
       return this.sale_status ? this.sale_status : this.localSale.status;
     }
-  }, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])(['salePriceOption'])),
+  }, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])(["salePriceOption"])),
   methods: {
     submit: function submit() {
       this.form.status = "completed";
@@ -23986,7 +24009,7 @@ var render = function() {
                     "w-full flex flex-wrap justify-end mb-4 text-gray-600"
                 },
                 [
-                  _c("p", { staticClass: "mr-2" }, [_vm._v("Status: ")]),
+                  _c("p", { staticClass: "mr-2" }, [_vm._v("Status:")]),
                   _vm._v(" "),
                   _c("p", [_vm._v(_vm._s(_vm.getStatus))])
                 ]
@@ -24069,10 +24092,10 @@ var render = function() {
     _vm.localSale !== null
       ? _c(
           "div",
-          _vm._l(_vm.products, function(product) {
+          _vm._l(_vm.products, function(product, index) {
             return _c("cart-product", {
               key: product.id,
-              attrs: { product: product }
+              attrs: { product: product, index: index }
             })
           }),
           1
@@ -40730,8 +40753,8 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/vagrant/code/franapp/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/vagrant/code/franapp/resources/css/app.css */"./resources/css/app.css");
+__webpack_require__(/*! C:\xampp\htdocs\franapp\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\franapp\resources\css\app.css */"./resources/css/app.css");
 
 
 /***/ })

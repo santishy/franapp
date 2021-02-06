@@ -2,8 +2,10 @@
     <div>
         <form class="py-4" @submit.prevent="submit">
             <div v-if="localSale != null">
-                <div class="w-full flex flex-wrap justify-end mb-4 text-gray-600">
-                    <p class="mr-2">Status: </p>
+                <div
+                    class="w-full flex flex-wrap justify-end mb-4 text-gray-600"
+                >
+                    <p class="mr-2">Status:</p>
                     <p>{{ getStatus }}</p>
                 </div>
                 <div
@@ -36,9 +38,10 @@
         </form>
         <div v-if="localSale !== null">
             <cart-product
-                v-for="product in products"
+                v-for="(product,index) in products"
                 :key="product.id"
                 :product="product"
+                :index="index"
             >
             </cart-product>
         </div>
@@ -46,7 +49,7 @@
 </template>
 <script>
 import CartProduct from "./CartProduct";
-import {mapState} from "vuex"
+import { mapState } from "vuex";
 export default {
     components: { "cart-product": CartProduct },
     data() {
@@ -69,6 +72,9 @@ export default {
         }
     },
     mounted() {
+        EventBus.$on("updated-sales-product",...args => {
+            console.log(args);
+        })
         EventBus.$on("product-added-sales-cart", res => {
             this.localSale = res;
             this.products = res.products;
@@ -78,14 +84,14 @@ export default {
         getTotal() {
             var total = 0;
             this.products.map(product => {
-                total += product[this.salePriceOption] * product.sale_quantity;
+                total += product.sale_price * product.sale_quantity;
             });
             return total;
         },
         getStatus() {
             return this.sale_status ? this.sale_status : this.localSale.status;
         },
-        ...mapState(['salePriceOption'])
+        ...mapState(["salePriceOption"])
     },
     methods: {
         submit() {

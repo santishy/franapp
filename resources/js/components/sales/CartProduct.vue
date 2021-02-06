@@ -55,6 +55,9 @@ export default {
         product: {
             type: Object,
             required: true
+        },
+        index:{
+            type: Number
         }
     },
     data() {
@@ -73,7 +76,7 @@ export default {
             axios
                 .post(`/sales/${this.product.id}/products`, this.form)
                 .then(res => {
-                    console.log(res.data);
+                    EventBus.$emit('updated-sales-product',this.index,res.data)
                 })
                 .catch(err => {
                     console.log(err);
