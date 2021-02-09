@@ -3901,6 +3901,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _CartProduct__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CartProduct */ "./resources/js/components/sales/CartProduct.vue");
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _mixins_Errors__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../mixins/Errors */ "./resources/js/mixins/Errors.js");
+/* harmony import */ var _mixins_Errors__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_mixins_Errors__WEBPACK_IMPORTED_MODULE_2__);
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -3961,10 +3963,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
     "cart-product": _CartProduct__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
+  mixins: [_mixins_Errors__WEBPACK_IMPORTED_MODULE_2___default.a],
   data: function data() {
     return {
       form: {},
@@ -4016,7 +4020,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       axios.post("/sales/".concat(this.localSale.id), this.form).then(function (res) {
         _this2.sale_status = res.data.sale_status;
       })["catch"](function (err) {
-        ;
+        _this2.getErrors(err);
       });
     }
   }
@@ -40616,6 +40620,28 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SalesCart_vue_vue_type_template_id_2e4bc8ee___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
+
+/***/ }),
+
+/***/ "./resources/js/mixins/Errors.js":
+/*!***************************************!*\
+  !*** ./resources/js/mixins/Errors.js ***!
+  \***************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = {
+  data: function data() {
+    return {
+      errors: null
+    };
+  },
+  methods: {
+    getErrors: function getErrors(err) {
+      this.errors = Object.values(err.response.data.errors).flat();
+    }
+  }
+};
 
 /***/ }),
 

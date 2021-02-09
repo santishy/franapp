@@ -5,7 +5,7 @@ module.exports = {
         }
     },
     methods:{
-        getErrors(){
+        getErrors(err){
             this.errors = Object.values(
                 err.response.data.errors
             ).flat()

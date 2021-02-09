@@ -53,8 +53,10 @@
 <script>
 import CartProduct from "./CartProduct";
 import { mapState } from "vuex";
+import Errors from '../../mixins/Errors';
 export default {
     components: { "cart-product": CartProduct },
+    mixins:[Errors],
     data() {
         return {
             form: {},
@@ -106,7 +108,7 @@ export default {
                     this.sale_status = res.data.sale_status;
                 })
                 .catch(err => {
-                 ;
+                    this.getErrors(err);
                 });
         }
     }
