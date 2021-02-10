@@ -23047,7 +23047,7 @@ var render = function() {
               "appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none",
             attrs: {
               name: "wholesale_price",
-              type: "number",
+              type: "text",
               placeholder: "PRECIO AL POR MAYOR",
               "aria-label": "Full name"
             },
@@ -23081,7 +23081,7 @@ var render = function() {
               "appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none",
             attrs: {
               name: "retail_price",
-              type: "number",
+              type: "text",
               placeholder: "PRECIO AL POR MENOR",
               "aria-label": "Full name"
             },
@@ -23123,7 +23123,7 @@ var render = function() {
               "appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none",
             attrs: {
               name: "distributor_price",
-              type: "number",
+              type: "text",
               placeholder: "PRECIO DISTRIBUIDOR",
               "aria-label": "Full name"
             },
@@ -40818,8 +40818,8 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/vagrant/code/franapp/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/vagrant/code/franapp/resources/css/app.css */"./resources/css/app.css");
+__webpack_require__(/*! C:\xampp\htdocs\franapp\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\franapp\resources\css\app.css */"./resources/css/app.css");
 
 
 /***/ })

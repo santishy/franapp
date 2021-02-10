@@ -47,7 +47,7 @@
                     v-model="form.wholesale_price"
                     name="wholesale_price"
                     class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
-                    type="number"
+                    type="text"
                     placeholder="PRECIO AL POR MAYOR"
                     aria-label="Full name"
                 />
@@ -57,7 +57,7 @@
                     v-model="form.retail_price"
                     name="retail_price"
                     class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
-                    type="number"
+                    type="text"
                     placeholder="PRECIO AL POR MENOR"
                     aria-label="Full name"
                 />
@@ -75,7 +75,7 @@
                     v-model="form.distributor_price"
                     name="distributor_price"
                     class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
-                    type="number"
+                    type="text"
                     placeholder="PRECIO DISTRIBUIDOR"
                     aria-label="Full name"
                 />
