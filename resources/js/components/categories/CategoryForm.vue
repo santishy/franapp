@@ -4,12 +4,14 @@
         @submit.prevent="submit"
         class="w-full max-w-md shadow-lg rounded-lg bg-white px-6 py-8"
     >
+
         <div
             class="flex items-center py-2 text-dark text-center justify-center text-xl font-bold border-b border-teal-500"
         >
             Añadir categoría
             <button
                 @click.prevent="disableCategorySearch"
+                type="button"
                 class="ml-4 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-0 px-2 border border-blue-500 hover:border-transparent rounded"
             >
                 <i class="fas fa-search"></i>

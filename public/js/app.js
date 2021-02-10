@@ -2172,6 +2172,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -2310,6 +2312,7 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
 //
 //
 //
@@ -21992,6 +21995,7 @@ var render = function() {
                 {
                   staticClass:
                     "ml-4 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-0 px-2 border border-blue-500 hover:border-transparent rounded",
+                  attrs: { type: "button" },
                   on: {
                     click: function($event) {
                       $event.preventDefault()
@@ -22198,6 +22202,7 @@ var render = function() {
                 {
                   staticClass:
                     "ml-4 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-0 px-2 border border-blue-500 hover:border-transparent rounded",
+                  attrs: { type: "button" },
                   on: {
                     click: function($event) {
                       $event.preventDefault()
@@ -23365,8 +23370,6 @@ var render = function() {
             "bg-purple-500 w-full hover:bg-purple-700 text-white font-bold py-1 px-4 rounded text-2xl"
         },
         [
-          _c("i", { staticClass: "fas fa-dolly-flatbed" }),
-          _vm._v(" "),
           _vm.qtyPurchase(_vm.productExistsInPurchase(_vm.product_id))
             ? _c("div", { staticClass: "inline-block" }, [
                 _c(
@@ -23385,7 +23388,7 @@ var render = function() {
                   ]
                 )
               ])
-            : _vm._e()
+            : _c("i", { staticClass: "fas fa-dolly-flatbed" })
         ]
       )
     ]
