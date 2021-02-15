@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
     <div class="w-full flex justify-center items-center">
-        <h1>hola</h1>
+        <category-search class="mr-4"></category-search>
         <category-form class="mr-4"></category-form>
         <product-form 
         :product="{{$product}}" 
