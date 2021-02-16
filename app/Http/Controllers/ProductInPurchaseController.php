@@ -21,14 +21,14 @@ class ProductInPurchaseController extends Controller
 
 
 
-        // $purchase = Purchase::find(session()->get('purchase_id'));
-        // $purchase->products()->updateExistingPivot($request->id, [
-        //     'qty' => $request->pivot['qty'],
-        //     'purchase_price' => $request->pivot['purchase_price']
-        // ]);
-        // return response()->json([
-        //     'totalPurchase' => $purchase->totalPurchase(),
-        // ]);
+        $purchase = Purchase::find(session()->get('purchase_id'));
+        $purchase->products()->updateExistingPivot($request->id, [
+            'qty' => $request->pivot['qty'],
+            'purchase_price' => $request->pivot['purchase_price']
+        ]);
+        return response()->json([
+            'totalPurchase' => $purchase->totalPurchase(),
+        ]);
     }
     public function destroy(Product $product)
     {
