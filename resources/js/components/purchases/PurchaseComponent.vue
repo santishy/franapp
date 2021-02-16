@@ -20,7 +20,7 @@
                         :purchase="purchase"
                         :total-purchase="localTotalPurchase"
                     />
-                    <cancel-purchase-btn/>
+                    <cancel-purchase-btn />
                 </div>
             </div>
         </div>
@@ -38,7 +38,7 @@ import CancelPurchaseButton from "./CancelPurchaseButton";
 export default {
     components: {
         "complete-purchase-btn": CompletePurchaseButton,
-        "cancel-purchase-btn":CancelPurchaseButton
+        "cancel-purchase-btn": CancelPurchaseButton
     },
     props: {
         productsInPurchase: {

@@ -3503,7 +3503,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var _this = this;
 
       axios.post("/products-in-purchases/".concat(this.localProduct.id), _objectSpread(_objectSpread({}, this.localProduct), {
-        _method: "PUT"
+        _method: "put"
       })).then(function (res) {
         if (res.data.totalPurchase) {
           EventBus.$emit("total-updated-purchase", res.data.totalPurchase);
@@ -40850,8 +40850,8 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/vagrant/code/franapp/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/vagrant/code/franapp/resources/css/app.css */"./resources/css/app.css");
+__webpack_require__(/*! C:\xampp\htdocs\franapp\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\franapp\resources\css\app.css */"./resources/css/app.css");
 
 
 /***/ })

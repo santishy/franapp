@@ -19,10 +19,7 @@ class ProductInPurchaseController extends Controller
             'pivot.purchase_price' => 'required|numeric|min:1',
         ]);
 
-        $purchase = Purchase::getTransaction();
-        $purchase->transactions($product);
-        $request->product = $product;
-        return new TransactionResponse($purchase);
+
 
         // $purchase = Purchase::find(session()->get('purchase_id'));
         // $purchase->products()->updateExistingPivot($request->id, [
@@ -35,7 +32,7 @@ class ProductInPurchaseController extends Controller
     }
     public function destroy(Product $product)
     {
-        if(!session()->exists('purchase_id'))
+        if (!session()->exists('purchase_id'))
             return new SessionInactive('compra');
         return Purchase::find(session('purchase_id'))->products()->detach($product->id);
     }

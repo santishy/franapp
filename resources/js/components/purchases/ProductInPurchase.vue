@@ -58,7 +58,7 @@ export default {
             axios
                 .post(`/products-in-purchases/${this.localProduct.id}`, {
                     ...this.localProduct,
-                    ...{ _method: "PUT" }
+                    ...{ _method: "put" }
                 })
                 .then(res => {
                     if (res.data.totalPurchase) {
