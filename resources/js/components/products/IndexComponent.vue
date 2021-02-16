@@ -9,6 +9,7 @@
             :key="product.id"
             :product="product"
             :index="index"
+            transaction-type="purchase"
             class="col-span-3 md:col-span-1"
         />
 

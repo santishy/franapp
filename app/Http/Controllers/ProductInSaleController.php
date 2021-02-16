@@ -13,6 +13,9 @@ class ProductInSaleController extends Controller
 {
     public function store(Request $request, Product $product)
     {
+        $request->validate([
+            'salePriceOption' => ['required','regex:/retail_price|wholesale_price/']
+        ],['salePriceOption.required' => 'Debes elegir un precio de venta antes de comenzar']);
         $sale = Sale::getTransaction();
         $sale->transactions($product);
         $request->product = $product;

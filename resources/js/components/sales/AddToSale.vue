@@ -1,5 +1,5 @@
 <template>
-    <form>
+    <div>
         <form class="block" @submit.prevent="submit">
             <input type="hidden" name="product_id" />
             <button
@@ -8,31 +8,45 @@
                 <i class="fas fa-shopping-cart"></i>
             </button>
         </form>
-    </form>
+        <notifications group="foo" position="botton right"></notifications>
+    </div>
 </template>
 <script>
-import {mapState} from "vuex";
+import { mapState } from "vuex";
+import Errors from "../../mixins/Errors";
 export default {
     props: {
         product: {
             type: Object
         }
     },
+    mixins: [Errors],
     methods: {
         submit() {
-            console.log(this.product);
             axios
-                .post(`/sales/${this.product.id}/products`,{salePriceOption:this.salePriceOption})
+                .post(`/sales/${this.product.id}/products`, {
+                    salePriceOption: this.salePriceOption
+                })
                 .then(res => {
-                    EventBus.$emit('product-added-sales-cart',res.data.transaction);
+                    EventBus.$emit(
+                        "product-added-sales-cart",
+                        res.data.transaction
+                    );
                 })
                 .catch(err => {
-                    console.log(err);
+                    console.log("hola");
+                    this.getErrors(err);
+                    this.$notify({
+                        group: "foo",
+                        title: "Error",
+                        type: "error",
+                        text: this.errors[0]
+                    });
                 });
         }
     },
-    computed:{
-        ...mapState(['salePriceOption'])
+    computed: {
+        ...mapState(["salePriceOption"])
     }
 };
 </script>

@@ -2744,6 +2744,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 
@@ -2893,6 +2894,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 
 
@@ -2907,6 +2911,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     searchInSales: {
       type: Boolean
+    },
+    transactionType: {
+      type: String
     }
   },
   components: {
@@ -2916,7 +2923,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {
     darkMode: function darkMode() {
-      return this.searchInSales ? 'bg-gray-100 text-white' : 'shadow-lg bg-white';
+      return this.searchInSales ? "bg-gray-100 text-white" : "shadow-lg bg-white";
     }
   }
 });
@@ -3638,6 +3645,8 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _mixins_Errors__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../mixins/Errors */ "./resources/js/mixins/Errors.js");
+/* harmony import */ var _mixins_Errors__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_mixins_Errors__WEBPACK_IMPORTED_MODULE_1__);
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -3656,6 +3665,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
@@ -3663,19 +3674,30 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       type: Object
     }
   },
+  mixins: [_mixins_Errors__WEBPACK_IMPORTED_MODULE_1___default.a],
   methods: {
     submit: function submit() {
-      console.log(this.product);
+      var _this = this;
+
       axios.post("/sales/".concat(this.product.id, "/products"), {
         salePriceOption: this.salePriceOption
       }).then(function (res) {
-        EventBus.$emit('product-added-sales-cart', res.data.transaction);
+        EventBus.$emit("product-added-sales-cart", res.data.transaction);
       })["catch"](function (err) {
-        console.log(err);
+        console.log("hola");
+
+        _this.getErrors(err);
+
+        _this.$notify({
+          group: "foo",
+          title: "Error",
+          type: "error",
+          text: _this.errors[0]
+        });
       });
     }
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])(['salePriceOption']))
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])(["salePriceOption"]))
 });
 
 /***/ }),
@@ -22737,7 +22759,11 @@ var render = function() {
         return _c("product-card", {
           key: product.id,
           staticClass: "col-span-3 md:col-span-1",
-          attrs: { product: product, index: index }
+          attrs: {
+            product: product,
+            index: index,
+            "transaction-type": "purchase"
+          }
         })
       }),
       _vm._v(" "),
@@ -23683,25 +23709,31 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("form", [
-    _c(
-      "form",
-      {
-        staticClass: "block",
-        on: {
-          submit: function($event) {
-            $event.preventDefault()
-            return _vm.submit($event)
+  return _c(
+    "div",
+    [
+      _c(
+        "form",
+        {
+          staticClass: "block",
+          on: {
+            submit: function($event) {
+              $event.preventDefault()
+              return _vm.submit($event)
+            }
           }
-        }
-      },
-      [
-        _c("input", { attrs: { type: "hidden", name: "product_id" } }),
-        _vm._v(" "),
-        _vm._m(0)
-      ]
-    )
-  ])
+        },
+        [
+          _c("input", { attrs: { type: "hidden", name: "product_id" } }),
+          _vm._v(" "),
+          _vm._m(0)
+        ]
+      ),
+      _vm._v(" "),
+      _c("notifications", { attrs: { group: "foo", position: "botton right" } })
+    ],
+    1
+  )
 }
 var staticRenderFns = [
   function() {

@@ -15,7 +15,10 @@
                     <i class="far fa-edit"></i>
                 </a>
                 <remove-product :product="product" :index="index" />
-                <add-to-sale :product="product"></add-to-sale>
+                <add-to-sale
+                    
+                    :product="product"
+                ></add-to-sale>
             </div>
             <div class=" p-2 border-b-2 border-teal-400">
                 <p class="text-gray-800 font-bold">SKU</p>
@@ -65,6 +68,9 @@ export default {
         },
         searchInSales: {
             type: Boolean
+        },
+        transactionType: {
+            type: String
         }
     },
     components: {
@@ -72,9 +78,11 @@ export default {
         "add-to-purchase": AddToPurchase,
         "add-to-sale": AddToSale
     },
-    computed:{
-        darkMode(){
-            return this.searchInSales ? 'bg-gray-100 text-white' : 'shadow-lg bg-white'
+    computed: {
+        darkMode() {
+            return this.searchInSales
+                ? "bg-gray-100 text-white"
+                : "shadow-lg bg-white";
         }
     }
 };
