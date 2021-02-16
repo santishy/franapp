@@ -90,6 +90,7 @@ export default {
                 .then(res => {
                     if (res.data) {
                         EventBus.$emit("purchase-extracted", this.index);
+                        EventBus.$emit("total-updated-purchase",this.data.totalPurchase)
                     }
                 })
                 .catch(res => {

@@ -18,9 +18,6 @@ class ProductInPurchaseController extends Controller
             'pivot.qty' => 'required|numeric|min:1',
             'pivot.purchase_price' => 'required|numeric|min:1',
         ]);
-
-
-
         $purchase = Purchase::find(session()->get('purchase_id'));
         $purchase->products()->updateExistingPivot($request->id, [
             'qty' => $request->pivot['qty'],
@@ -34,6 +31,10 @@ class ProductInPurchaseController extends Controller
     {
         if (!session()->exists('purchase_id'))
             return new SessionInactive('compra');
-        return Purchase::find(session('purchase_id'))->products()->detach($product->id);
+        $purchase = Purchase::find(session('purchase_id'));
+        $purchase->products()->detach($product->id);
+        return response()->json([
+            'totalPurchase' => $purchase->totalPurchase(),
+        ]);
     }
 }
