@@ -6,7 +6,6 @@ const setProductsInPurchase = (state, data) => {
         } else {
             localProductsInPurchase.push(data.productInPurchase);
         }
-
     }
     else {
         localProductsInPurchase = [];
@@ -14,7 +13,14 @@ const setProductsInPurchase = (state, data) => {
     }
     localStorage.setItem('productsInPurchase', JSON.stringify(localProductsInPurchase));
     state.productsInPurchase = JSON.parse(localStorage.getItem('productsInPurchase'));
-    //Vue.set(state.productsInPurchase,state.productsInPurchase[])
+}
+
+const deleteProductInPurchase = (state,index) => {
+    // muy probablemente el index este mal en esta busqueda
+    var products = JSON.parse(localStorage.getItem('productsInPurchase'));
+    products = products.splice(index,1);
+    localStorage.setItem('productsInPurchase', JSON.stringify(products));
+    state.productsInPurchase = JSON.parse(localStorage.getItem('productsInPurchase'));
 }
 
 const toggleActiveSearchCategory = (state,status) => {
@@ -28,4 +34,5 @@ export default {
     setProductsInPurchase,
     toggleActiveSearchCategory,
     setSalePriceOption,
+    deleteProductInPurchase
 }

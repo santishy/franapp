@@ -3498,7 +3498,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       localProduct: this.product
     };
   },
-  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapMutations"])(['setProductsInPurchase'])), {}, {
+  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapMutations"])(['setProductsInPurchase', 'deleteProductInPurchase'])), {}, {
     update: function update() {
       var _this = this;
 
@@ -3526,6 +3526,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       axios["delete"]("/products-in-purchases/".concat(this.localProduct.id)).then(function (res) {
         if (res.data) {
+          _this2.deleteProductInPurchase(_this2.index);
+
           EventBus.$emit("purchase-extracted", _this2.index);
           EventBus.$emit("total-updated-purchase", _this2.data.totalPurchase);
         }
@@ -40789,7 +40791,15 @@ var setProductsInPurchase = function setProductsInPurchase(state, data) {
   }
 
   localStorage.setItem('productsInPurchase', JSON.stringify(localProductsInPurchase));
-  state.productsInPurchase = JSON.parse(localStorage.getItem('productsInPurchase')); //Vue.set(state.productsInPurchase,state.productsInPurchase[])
+  state.productsInPurchase = JSON.parse(localStorage.getItem('productsInPurchase'));
+};
+
+var deleteProductInPurchase = function deleteProductInPurchase(state, index) {
+  // muy probablemente el index este mal en esta busqueda
+  var products = JSON.parse(localStorage.getItem('productsInPurchase'));
+  products = products.splice(index, 1);
+  localStorage.setItem('productsInPurchase', JSON.stringify(products));
+  state.productsInPurchase = JSON.parse(localStorage.getItem('productsInPurchase'));
 };
 
 var toggleActiveSearchCategory = function toggleActiveSearchCategory(state, status) {
@@ -40803,7 +40813,8 @@ var setSalePriceOption = function setSalePriceOption(state, value) {
 /* harmony default export */ __webpack_exports__["default"] = ({
   setProductsInPurchase: setProductsInPurchase,
   toggleActiveSearchCategory: toggleActiveSearchCategory,
-  setSalePriceOption: setSalePriceOption
+  setSalePriceOption: setSalePriceOption,
+  deleteProductInPurchase: deleteProductInPurchase
 });
 
 /***/ }),

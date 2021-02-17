@@ -53,7 +53,7 @@ export default {
         };
     },
     methods: {
-        ...mapMutations(['setProductsInPurchase']),
+        ...mapMutations(['setProductsInPurchase','deleteProductInPurchase']),
         update() {
             axios
                 .post(`/products-in-purchases/${this.localProduct.id}`, {
@@ -89,6 +89,7 @@ export default {
                 .delete(`/products-in-purchases/${this.localProduct.id}`)
                 .then(res => {
                     if (res.data) {
+                        this.deleteProductInPurchase(this.index);
                         EventBus.$emit("purchase-extracted", this.index);
                         EventBus.$emit("total-updated-purchase",this.data.totalPurchase)
                     }
