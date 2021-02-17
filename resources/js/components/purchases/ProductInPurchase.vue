@@ -89,9 +89,13 @@ export default {
                 .delete(`/products-in-purchases/${this.localProduct.id}`)
                 .then(res => {
                     if (res.data) {
-                        this.deleteProductInPurchase(this.index);
+                        let index = this.productExistsInPurchase(
+                            this.localProduct.id
+                        )
+                        this.deleteProductInPurchase(index);
+
                         EventBus.$emit("purchase-extracted", this.index);
-                        EventBus.$emit("total-updated-purchase",this.data.totalPurchase)
+                        EventBus.$emit("total-updated-purchase",res.data.totalPurchase)
                     }
                 })
                 .catch(res => {
