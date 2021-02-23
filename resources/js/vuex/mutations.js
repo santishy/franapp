@@ -15,22 +15,21 @@ const setProductsInPurchase = (state, data) => {
     state.productsInPurchase = JSON.parse(localStorage.getItem('productsInPurchase'));
 }
 
-const deleteProductInPurchase = (state,index) => {
+const deleteProductInPurchase = (state, index) => {
     // muy probablemente el index este mal en esta busqueda
     var products = JSON.parse(localStorage.getItem('productsInPurchase'));
-    console.log(products)
-    console.log(index)
-    products = products.splice(index,1);
-    console.log(products)
+
+    products = products.splice(index, 1);
+
     localStorage.setItem('productsInPurchase', JSON.stringify(products));
     state.productsInPurchase = JSON.parse(localStorage.getItem('productsInPurchase'));
 }
 
-const toggleActiveSearchCategory = (state,status) => {
+const toggleActiveSearchCategory = (state, status) => {
     state.activeSearchCategory = status;
 }
 
-const setSalePriceOption = (state,value) => {
+const setSalePriceOption = (state, value) => {
     state.salePriceOption = value;
 }
 export default {
