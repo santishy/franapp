@@ -19,10 +19,10 @@ export default {
     methods: {
         completePurchase() {
             axios
-                .post(`/purchases/${this.purchase.id}`, {
+                .put(`/purchases/${this.purchase.id}`, {
                     status: "completed",
                     total: this.totalPurchase,
-                    _method:"PUT"
+                    _method:"put"
                 })
                 .then(res => {
                     EventBus.$emit('purchase-completed',res.data.data)

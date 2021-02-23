@@ -3409,10 +3409,10 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     completePurchase: function completePurchase() {
-      axios.post("/purchases/".concat(this.purchase.id), {
+      axios.put("/purchases/".concat(this.purchase.id), {
         status: "completed",
         total: this.totalPurchase,
-        _method: "PUT"
+        _method: "put"
       }).then(function (res) {
         EventBus.$emit('purchase-completed', res.data.data);
         console.log('status ' + res.data.data.status);
@@ -40797,11 +40797,8 @@ var setProductsInPurchase = function setProductsInPurchase(state, data) {
 };
 
 var deleteProductInPurchase = function deleteProductInPurchase(state, index) {
-  // muy probablemente el index este mal en esta busqueda
   var products = JSON.parse(localStorage.getItem('productsInPurchase'));
-  console.log(products);
   products.splice(index, 1);
-  console.log(index);
   localStorage.setItem('productsInPurchase', JSON.stringify(products));
   state.productsInPurchase = JSON.parse(localStorage.getItem('productsInPurchase'));
 };

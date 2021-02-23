@@ -14,6 +14,7 @@ class PurchaseController extends Controller
     /*FALTA VALIDAR QUE EL PRODUCTO NO SE REPITA EN LA MISMA COMPRA!!!  PUEDE AGREGARSE OTRO AL DARLE DOBLE CLICK ;) */
     public function store(Request $request)
     {
+        return response()->json(['hola' => 'mundo']);
         request()->validate(
             [
                 'product_id' => 'exists:products,id'
@@ -48,7 +49,7 @@ class PurchaseController extends Controller
     public function edit(Purchase $purchase)
     {
     }
-    public function update(Purchase $purchase, Request $request)
+    public function update(Request $request,Purchase $purchase)
     {
         if($request->status === 'completed')
             $request->session()->forget('purchase_id');
