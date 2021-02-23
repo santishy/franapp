@@ -40800,9 +40800,8 @@ var deleteProductInPurchase = function deleteProductInPurchase(state, index) {
   // muy probablemente el index este mal en esta busqueda
   var products = JSON.parse(localStorage.getItem('productsInPurchase'));
   console.log(products);
+  products.splice(index, 1);
   console.log(index);
-  products = products.splice(index, 1);
-  console.log(products);
   localStorage.setItem('productsInPurchase', JSON.stringify(products));
   state.productsInPurchase = JSON.parse(localStorage.getItem('productsInPurchase'));
 };

@@ -92,9 +92,8 @@ export default {
                         let index = this.productExistsInPurchase(
                             this.localProduct.id
                         )
-                        console.log(index);
+                     
                         this.deleteProductInPurchase(index);
-
                         EventBus.$emit("purchase-extracted", this.index);
                         EventBus.$emit("total-updated-purchase",res.data.totalPurchase)
                     }

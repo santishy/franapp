@@ -18,9 +18,9 @@ const setProductsInPurchase = (state, data) => {
 const deleteProductInPurchase = (state, index) => {
     // muy probablemente el index este mal en esta busqueda
     var products = JSON.parse(localStorage.getItem('productsInPurchase'));
-
-    products = products.splice(index, 1);
-
+    console.log(products);
+    products.splice(index, 1);
+    console.log(index)
     localStorage.setItem('productsInPurchase', JSON.stringify(products));
     state.productsInPurchase = JSON.parse(localStorage.getItem('productsInPurchase'));
 }
