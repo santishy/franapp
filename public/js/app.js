@@ -2063,6 +2063,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2081,7 +2086,7 @@ __webpack_require__.r(__webpack_exports__);
         url: "/clients"
       }],
       crfsToken: document.querySelector('meta[name="csrf-token"]').content,
-      purchase: null
+      purchase: false
     };
   },
   created: function created() {
@@ -2089,7 +2094,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     this.purchase = document.head.querySelector('meta[name="purchase_id"]').content;
-    EventBus.$on('purchase-created', this.setPurchaseId);
+    EventBus.$on("purchase-created", this.setPurchaseId);
     this.cleanLocalStorage();
   },
   methods: {
@@ -2101,6 +2106,11 @@ __webpack_require__.r(__webpack_exports__);
     },
     cleanLocalStorage: function cleanLocalStorage() {
       if (document.head.querySelector('meta[name="purchase_id"]').content == "" || document.head.querySelector('meta[name="purchase_id"]').content == null) localStorage.removeItem("productsInPurchase");
+    }
+  },
+  computed: {
+    highlight: function highlight() {
+      return this.purchase ? 'text-lg text-black-700 border-teal-300 border-b-2' : 'text-gray-200';
     }
   }
 });
@@ -21905,17 +21915,20 @@ var render = function() {
                 attrs: { name: "Productos", items: _vm.productsMenu }
               }),
               _vm._v(" "),
-              _c(
-                "a",
-                {
-                  staticClass:
-                    "block mt-4 lg:inline-block lg:mt-0 text-gray-200 hover:text-white mr-4",
-                  attrs: {
-                    href: _vm.purchase ? "/purchases/" + _vm.purchase : "#"
-                  }
-                },
-                [_vm._v("\n                Realizar Compra\n            ")]
-              ),
+              _vm.purchase
+                ? _c(
+                    "a",
+                    {
+                      staticClass:
+                        "block mt-4 lg:inline-block lg:mt-0  hover:text-white mr-4",
+                      class: _vm.highlight,
+                      attrs: {
+                        href: _vm.purchase ? "/purchases/" + _vm.purchase : "#"
+                      }
+                    },
+                    [_vm._v("\n                Realizar Compra\n            ")]
+                  )
+                : _vm._e(),
               _vm._v(" "),
               _c(
                 "a",
@@ -21949,7 +21962,11 @@ var render = function() {
                     "inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0",
                   attrs: { href: "/logout" }
                 },
-                [_vm._v("Cerrar sesión")]
+                [
+                  _vm._v(
+                    "\n                    Cerrar sesión\n                "
+                  )
+                ]
               )
             ])
           ])
@@ -40863,8 +40880,8 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\htdocs\franapp\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\franapp\resources\css\app.css */"./resources/css/app.css");
+__webpack_require__(/*! /home/vagrant/code/franapp/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/vagrant/code/franapp/resources/css/app.css */"./resources/css/app.css");
 
 
 /***/ })

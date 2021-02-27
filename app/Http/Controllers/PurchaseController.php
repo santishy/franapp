@@ -14,7 +14,6 @@ class PurchaseController extends Controller
     /*FALTA VALIDAR QUE EL PRODUCTO NO SE REPITA EN LA MISMA COMPRA!!!  PUEDE AGREGARSE OTRO AL DARLE DOBLE CLICK ;) */
     public function store(Request $request)
     {
-        return response()->json(['hola' => 'mundo']);
         request()->validate(
             [
                 'product_id' => 'exists:products,id'
@@ -39,7 +38,6 @@ class PurchaseController extends Controller
     public function show(Purchase $purchase)
     {
         $productsInPurchase = $purchase->products()->get();
-        //dd($productsInPurchase);
         $totalPurchase = $purchase->totalPurchase();
         return view('purchases.show')
             ->with(compact('productsInPurchase'))

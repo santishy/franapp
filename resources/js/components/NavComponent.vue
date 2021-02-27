@@ -1,5 +1,7 @@
 <template>
-    <nav class="flex items-center justify-between flex-wrap bg-red-500 p-6 fixed w-full top-0">
+    <nav
+        class="flex items-center justify-between flex-wrap bg-red-500 p-6 fixed w-full top-0"
+    >
         <div class="flex items-center flex-shrink-0 text-white mr-6 ">
             <span class="font-semibold text-xl tracking-tight">ISCO</span>
         </div>
@@ -28,8 +30,10 @@
                     class="md:relative"
                 />
                 <a
+                    v-if="purchase"
                     :href="purchase ? `/purchases/${purchase}` : '#'"
-                    class="block mt-4 lg:inline-block lg:mt-0 text-gray-200 hover:text-white mr-4"
+                    :class="highlight"
+                    class="block mt-4 lg:inline-block lg:mt-0  hover:text-white mr-4"
                 >
                     Realizar Compra
                 </a>
@@ -39,7 +43,7 @@
                 >
                     Venta
                 </a>
-                 <dropdown-component
+                <dropdown-component
                     name="Clientes"
                     :items="clientsMenu"
                     class="md:relative"
@@ -47,12 +51,13 @@
             </div>
             <div>
                 <form action="/logout" method="POST">
-                    <input type="hidden" name="_token" :value="crfsToken">
+                    <input type="hidden" name="_token" :value="crfsToken" />
                     <button
                         href="/logout"
                         class="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0"
-                        >Cerrar sesión</button
                     >
+                        Cerrar sesión
+                    </button>
                 </form>
             </div>
         </div>
@@ -70,8 +75,7 @@ export default {
                 {
                     name: "Listar",
                     url: "/products"
-                },
-                
+                }
             ],
             clientsMenu: [
                 {
@@ -81,34 +85,43 @@ export default {
                 {
                     name: "Listar",
                     url: "/clients"
-                },
-                
+                }
             ],
-            crfsToken:document.querySelector('meta[name="csrf-token"]').content,
-            purchase:null,
+            crfsToken: document.querySelector('meta[name="csrf-token"]')
+                .content,
+            purchase: false
         };
     },
-    created(){
+    created() {
         this.cleanLocalStorage();
     },
-    mounted(){
-        this.purchase =  document.head.querySelector('meta[name="purchase_id"]').content;
-        EventBus.$on('purchase-created',this.setPurchaseId);
+    mounted() {
+        this.purchase = document.head.querySelector(
+            'meta[name="purchase_id"]'
+        ).content;
+        EventBus.$on("purchase-created", this.setPurchaseId);
         this.cleanLocalStorage();
     },
     methods: {
         toggleNavegation() {
             document.querySelector("#navegation").classList.toggle("hidden");
         },
-        setPurchaseId(id){
+        setPurchaseId(id) {
             this.purchase = id;
         },
-        cleanLocalStorage(){
+        cleanLocalStorage() {
             if (
-            document.head.querySelector('meta[name="purchase_id"]').content ==
-            "" || document.head.querySelector('meta[name="purchase_id"]').content == null
-        )
-            localStorage.removeItem("productsInPurchase");
+                document.head.querySelector('meta[name="purchase_id"]')
+                    .content == "" ||
+                document.head.querySelector('meta[name="purchase_id"]')
+                    .content == null
+            )
+                localStorage.removeItem("productsInPurchase");
+        }
+    },
+    computed:{
+        highlight(){
+            return this.purchase ? 'text-lg text-black-700 border-teal-300 border-b-2' : 'text-gray-200';
         }
     }
 };
