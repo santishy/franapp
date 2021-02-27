@@ -7,8 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Franapp</title>
+    @laravelPWA
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
-   
 </head>
 <body class="bg-gray-200">
     <div id="app" class="mt-20">
@@ -16,11 +16,8 @@
         <div class="container mx-auto py-2">
             @yield('content')
         </div>
-       
     </div>
- 
     <script src="{{asset('js/app.js')}}"></script>
     <script src="https://kit.fontawesome.com/d76bff94d9.js" crossorigin="anonymous"></script>
-   
 </body>
 </html>
