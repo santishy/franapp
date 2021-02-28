@@ -7,8 +7,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Franapp</title>
-    @laravelPWA
+  
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
+    @laravelPWA
 </head>
 <body class="bg-gray-200">
     <div id="app" class="mt-20">

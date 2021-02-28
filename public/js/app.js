@@ -3384,8 +3384,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    id: {
+      type: Number
+    }
+  },
   methods: {
-    cancelPurchase: function cancelPurchase() {}
+    cancelPurchase: function cancelPurchase() {
+      axios["delete"]("/purchases/" + this.id).then(function (res) {
+        if (res.data["delete"]) {
+          localStorage.removeItem('productsInPurchase');
+          window.location.replace("/products");
+        }
+      })["catch"](function (err) {
+        console.log(err);
+      });
+    }
   }
 });
 
@@ -4046,7 +4060,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.products.map(function (product) {
         total += product.sale_price * product.sale_quantity;
       });
-      return total;
+      return total.toFixed(2);
     },
     getStatus: function getStatus() {
       return this.sale_status ? this.sale_status : this.localSale.status;
@@ -23691,7 +23705,7 @@ var render = function() {
                   }
                 }),
                 _vm._v(" "),
-                _c("cancel-purchase-btn")
+                _c("cancel-purchase-btn", { attrs: { id: _vm.purchase.id } })
               ],
               1
             )
@@ -40880,8 +40894,8 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/vagrant/code/franapp/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/vagrant/code/franapp/resources/css/app.css */"./resources/css/app.css");
+__webpack_require__(/*! C:\xampp\htdocs\franapp\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\franapp\resources\css\app.css */"./resources/css/app.css");
 
 
 /***/ })

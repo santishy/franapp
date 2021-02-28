@@ -20,7 +20,7 @@
                         :purchase="purchase"
                         :total-purchase="localTotalPurchase"
                     />
-                    <cancel-purchase-btn />
+                    <cancel-purchase-btn :id="purchase.id" />
                 </div>
             </div>
         </div>

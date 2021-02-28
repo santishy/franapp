@@ -25,6 +25,7 @@ class SaleController extends Controller
             'total' => 'numeric|required',
             'phone_number' => 'exists:clients,phone_number|required'
         ]);
+        request()->session()->forget('sale_id');
         $sale->update($fields);
         $sale->client()
             ->associate(

@@ -92,7 +92,7 @@ export default {
             this.products.map(product => {
                 total += product.sale_price * product.sale_quantity;
             });
-            return total;
+            return total.toFixed(2);
         },
         getStatus() {
             return this.sale_status ? this.sale_status : this.localSale.status;

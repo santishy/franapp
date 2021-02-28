@@ -57,5 +57,9 @@ class PurchaseController extends Controller
     }
     public function destroy(Purchase $purchase)
     {
+        request()->session()->forget('purchase_id');
+        return response()->json([
+            'delete' => $purchase->delete()
+        ]);
     }
 }
