@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\PurchaseResource;
+use App\Http\Traits\HasTransaction;
 use App\Models\Purchase;
 use Illuminate\Http\Request;
 
 class PurchaseController extends Controller
 {
+    use HasTransaction;
     public function index()
     {
     }
@@ -50,14 +52,14 @@ class PurchaseController extends Controller
     public function update(Request $request,Purchase $purchase)
     {
         if($request->status === 'completed')
-            $request->session()->forget('purchase_id');
+            $this->deleteSessionVariable('purchase_id');
             
         $purchase->update($request->all());
         return new PurchaseResource($purchase);
     }
     public function destroy(Purchase $purchase)
     {
-        request()->session()->forget('purchase_id');
+        $this->deleteSessionVariable('purchase_id');
         return response()->json([
             'delete' => $purchase->delete()
         ]);

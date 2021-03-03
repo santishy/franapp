@@ -42,4 +42,8 @@ class ProductInSaleController extends Controller
             $request->except('_method')
         );
     }
+
+    public function destroy(Product $product){
+        return ;
+    }
 }

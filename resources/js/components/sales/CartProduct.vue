@@ -33,11 +33,7 @@
                     aria-label="Full name"
                 />
             </div>
-            <button
-                class=" bg-red-300 mt-2 rounded transition-all duration-500 ease-in-out hover:bg-red-500 text-red-700 font-semibold hover:text-white py-2 px-4 border-b-2 border-red-500 hover:border-transparent mr-1"
-            >
-                <i class="fas fa-minus-circle"></i>
-            </button>
+            <delete-sale-product></delete-sale-product>
             <button
                 type="submit"
                 class=" bg-blue-300 mt-2 rounded transition-all duration-500 ease-in-out hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border-b-2 border-blue-500 hover:border-transparent w-2/3"
@@ -49,6 +45,7 @@
 </template>
 
 <script>
+import DeleteSaleProduct from './DeleteSaleProduct.vue';
 import { mapState } from "vuex";
 export default {
     props: {
@@ -60,6 +57,7 @@ export default {
             type: Number
         }
     },
+    components:{DeleteSaleProduct},
     data() {
         return {
             form: {}

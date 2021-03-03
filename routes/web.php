@@ -28,6 +28,7 @@ Route::resource('products', ProductController::class);
 
 Route::post('sales/{product}/products', [ProductInSaleController::class, 'store']);
 Route::put('sales/{product}/products', [ProductInSaleController::class, 'update']);
+Route::delete('sales/{product}/products', [ProductInSaleController::class, 'destroy']);
 
 //Buscador de productos
 
