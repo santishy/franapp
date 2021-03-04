@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Sale;
 use App\Http\Resources\ProductResource;
-
+use App\Http\Responses\SessionInactive;
 use App\Http\Responses\TransactionResponse;
 
 class ProductInSaleController extends Controller
@@ -44,6 +44,11 @@ class ProductInSaleController extends Controller
     }
 
     public function destroy(Product $product){
+
+        if (!session()->exists('sale_id'))
+            return new SessionInactive('venta');
+        
+        
         return ;
     }
 }
