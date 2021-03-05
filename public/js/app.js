@@ -2904,14 +2904,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  mounted: function mounted() {// EventBus.$emit('product-added-sales-cart',res => {
-    //     this.products =res.products
-    // });
-  },
   data: function data() {
     return {
       products: []
@@ -3866,12 +3863,19 @@ __webpack_require__.r(__webpack_exports__);
   props: {
     id: {
       type: Number
+    },
+    index: {
+      type: Number
     }
   },
   methods: {
     destroy: function destroy() {
+      var _this = this;
+
       axios["delete"]("/sales/".concat(this.id, "/products")).then(function (res) {
-        console.log(res.data);
+        if (res.data) {
+          EventBus.$emit('product-removed', _this.index);
+        }
       })["catch"](function (err) {
         console.log(err);
       });
@@ -4095,6 +4099,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     EventBus.$on("product-added-sales-cart", function (res) {
       _this.localSale = res;
       _this.products = res.products;
+    });
+    EventBus.$on("product-removed", function (index) {
+      _this.products.splice(index, 1);
     });
   },
   computed: _objectSpread({
@@ -41031,8 +41038,8 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/vagrant/code/franapp/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/vagrant/code/franapp/resources/css/app.css */"./resources/css/app.css");
+__webpack_require__(/*! C:\xampp\htdocs\franapp\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\franapp\resources\css\app.css */"./resources/css/app.css");
 
 
 /***/ })

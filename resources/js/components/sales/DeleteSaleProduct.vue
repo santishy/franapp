@@ -11,13 +11,18 @@ export default {
     props:{
         id:{
             type:Number
+        },
+        index:{
+            type:Number
         }
     },
     methods:{
         destroy(){
             axios.delete(`/sales/${this.id}/products`)
                 .then(res => {
-                    console.log(res.data)
+                    if(res.data){
+                        EventBus.$emit('product-removed',this.index);
+                    }
                 })
                 .catch((err) => {
                     console.log(err);

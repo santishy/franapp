@@ -41,6 +41,7 @@
                     {{ product.formatted_retail_price }}
                 </p>
             </div>
+
             <div class=" p-2 ">
                 <p class="text-gray-800 font-bold ">Precio al por mayor</p>
                 <p class="text-gray-700 text-base ">
@@ -55,15 +56,10 @@ import RemoveProductComponent from "./RemoveProductComponent.vue";
 import AddToSale from "../sales/AddToSale.vue";
 import AddToPurchase from "../purchases/AddToPurchase.vue";
 export default {
-    mounted(){
-        // EventBus.$emit('product-added-sales-cart',res => {
-        //     this.products =res.products
-        // });
-    },
-    data(){
+    data() {
         return {
-            products:[]
-        }
+            products: []
+        };
     },
     props: {
         product: {
@@ -90,8 +86,7 @@ export default {
             return this.searchInSales
                 ? "bg-gray-100 text-white"
                 : "shadow-lg bg-white";
-        },
-     
+        }
     }
 };
 </script>

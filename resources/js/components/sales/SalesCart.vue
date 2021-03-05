@@ -86,6 +86,9 @@ export default {
             this.products = res.products;
             
         });
+        EventBus.$on("product-removed",index => {
+            this.products.splice(index,1);
+        })
     },
     computed: {
         getTotal() {

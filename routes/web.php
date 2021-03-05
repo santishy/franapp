@@ -12,8 +12,8 @@ use App\Http\Controllers\{PurchaseController, ProductInSaleController};
 
 Route::get('/', function () {
     session()->flush();
-    return view('welcome');
-});
+    return view('dashboard');
+})->middleware('auth');
 
 Route::get('home', function () {
     return view('dashboard');

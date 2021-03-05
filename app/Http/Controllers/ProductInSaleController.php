@@ -19,8 +19,8 @@ class ProductInSaleController extends Controller
     public function store(Request $request, Product $product)
     {
         $request->validate([
-            'salePriceOption' => ['required','regex:/retail_price|wholesale_price/']
-        ],['salePriceOption.required' => 'Debes elegir un precio de venta antes de comenzar']);
+            'salePriceOption' => ['required', 'regex:/retail_price|wholesale_price/']
+        ], ['salePriceOption.required' => 'Debes elegir un precio de venta antes de comenzar']);
         $sale = Sale::getTransaction();
         $sale->transactions($product);
         $request->product = $product;
@@ -40,7 +40,7 @@ class ProductInSaleController extends Controller
         $sale->products()
             ->updateExistingPivot(
                 $request->product_id,
-                $request->except('product_id','_method')
+                $request->except('product_id', '_method')
             );
 
         return response()->json(
@@ -48,14 +48,15 @@ class ProductInSaleController extends Controller
         );
     }
 
-    public function destroy(Product $product){
+    public function destroy(Product $product)
+    {
 
         if (!session()->exists('sale_id'))
             return new SessionInactive('venta');
-        
-        $this->deleteTransactionProduct(Sale::find(session()->get('sale_id')),$product->id);
+
+
         return response()->json([
-            'product' => $product
+            'data' =>  $this->deleteTransactionProduct(Sale::find(session()->get('sale_id')), $product->id)
         ]);
     }
 }

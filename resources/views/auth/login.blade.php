@@ -7,32 +7,26 @@
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
     <title>Login</title>
 </head>
-<body class="bg-gray-200">
-    <div class="container mx-auto mt-5">
-        <div class="flex justify-center">
-            <div class="w-full max-w-xs shadow-md rounded bg-white">
-                <h3 class="text-xl font-bold mb-2 mt-4  px-8 pt-2 ">Login</h3>
-                  <form method="POST" action="{{route('login')}}" class="bg-white  px-8 pt-6 pb-8 mb-4">
+<body class="bg-gray-200 h-screen">
+    <div class="container mx-auto mt-auto h-full flex justify-center content-center flex-wrap">
+        <div class="flex justify-center w-full">
+            <div class="md:w-1/3 w-full bg-gray-200 rounded">
+                <div class="w-full flex justify-center">
+                  <img class="w-1/3 h-auto" src="{{asset('images/logo.png')}}" alt="">
+                </div>
+                <h3 class="text-xl font-bold mb-0 mt-0  px-8 pt-2 text-center ">Ingresar al sistema</h3>
+                  <form method="POST" action="{{route('login')}}" class=" px-8 pt-6 pb-8 mb-4">
                   @csrf
-                  <div class="mb-4">
-                    <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
-                      Email
-                    </label>
-                    <input name="email" class="shadow @error('email') is_invalid @enderror appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="email" placeholder="Username">
+                  <div class="mb-0">
+                    <input name="email" class="border placeholder-gray-600 bg-gray-200 rounded relative rounded-bl-none rounded-br-none appearance-none  w-full py-3 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10" id="username" type="email" placeholder="Email...">
                   </div>
-                  <div class="mb-6">
-                    <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
-                      Password
-                    </label>
-                    <input name="password" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="******************">
+                  <div class="mb-0">
+                    <input name="password" class="border placeholder-gray-600 bg-gray-200 relative appearance-none rounded rounded-tl-none rounded-tr-none w-full py-3 px-3 text-gray-700  leading-tight focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 " id="password" type="password" placeholder="Contraseña...">
                   </div>
-                  <div class="flex items-center justify-between">
-                    <button class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
+                  <div class="flex items-center justify-between mt-6">
+                    <button class="  w-full bg-blue-500 hover:bg-blue-400 text-white font-bold py-3 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
                       Ingresar
                     </button>
-                    <a class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" href="#">
-                      Forgot Password?
-                    </a>
                   </div>
                 </form>
               </div>
