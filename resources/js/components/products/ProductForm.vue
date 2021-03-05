@@ -2,7 +2,7 @@
     <!-- <div class="w-full  flex justify-center mt-20 bg-transparent"> -->
         <form
             @submit.prevent="submit"
-            class="w-full max-w-md shadow-lg rounded-lg bg-white px-6 py-8"
+            class="w-full max-w-md shadow-lg rounded-lg bg-white md:px-6 md:py-8"
         >
             <div
                 class="flex items-center py-2 text-dark text-center justify-center text-xl font-bold border-b border-teal-500"

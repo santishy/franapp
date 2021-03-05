@@ -21856,7 +21856,7 @@ var render = function() {
                 {
                   key: item.name,
                   staticClass:
-                    "md:pl-1 text-gray-700 bg-red-400 font-bold block md:text-gray-800 md:mt-0 py-2 md:border-none border-b border-red-500  md:p-2 md:hover:text-red-400",
+                    "md:pl-1 text-gray-700 bg-red-400 font-bold block md:text-gray-800 md:mt-0 py-2 md:border-none border-b border-red-500  md:bg-transparent md:p-2 md:hover:text-red-400",
                   attrs: { href: item.url }
                 },
                 [
@@ -22103,7 +22103,7 @@ var render = function() {
         "form",
         {
           staticClass:
-            "w-full max-w-md shadow-lg rounded-lg bg-white px-6 py-8",
+            "w-full max-w-md shadow-lg rounded-lg bg-white md:px-6 md:py-8 p-2 md:mt-0 mt-4",
           on: {
             submit: function($event) {
               $event.preventDefault()
@@ -22310,7 +22310,7 @@ var render = function() {
         "form",
         {
           staticClass:
-            "w-full max-w-md shadow-lg rounded-lg bg-white px-6 py-8",
+            "w-full max-w-md shadow-lg rounded-lg bg-white md:px-6 md:py-8 p-2",
           on: {
             submit: function($event) {
               $event.preventDefault()
@@ -23037,7 +23037,8 @@ var render = function() {
   return _c(
     "form",
     {
-      staticClass: "w-full max-w-md shadow-lg rounded-lg bg-white px-6 py-8",
+      staticClass:
+        "w-full max-w-md shadow-lg rounded-lg bg-white md:px-6 md:py-8",
       on: {
         submit: function($event) {
           $event.preventDefault()
@@ -23733,7 +23734,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "grid md:grid-cols-5 md:grid-rows-2 gap-4 " },
+    { staticClass: "grid md:grid-cols-5 md:grid-rows-2 gap-4" },
     [
       _c(
         "div",

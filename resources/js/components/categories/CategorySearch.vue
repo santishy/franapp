@@ -2,7 +2,7 @@
     <form
         v-if="activeSearchCategory"
         @submit.prevent="search"
-        class="w-full max-w-md shadow-lg rounded-lg bg-white px-6 py-8"
+        class="w-full max-w-md shadow-lg rounded-lg bg-white md:px-6 md:py-8 p-2"
     >
         <div
             class="flex items-center py-2 text-dark text-center justify-center text-xl font-bold border-b border-teal-500"

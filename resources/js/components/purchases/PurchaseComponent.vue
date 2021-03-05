@@ -1,5 +1,5 @@
 <template>
-    <div class="grid md:grid-cols-5 md:grid-rows-2 gap-4 ">
+    <div class="grid md:grid-cols-5 md:grid-rows-2 gap-4">
         <div class="col-span-2 row-span-1  bg-white rounded px-2 py-4">
             <h3 class="text-2xl font-semibold text-center py-2 px-2 mb-4">
                 Compra Actual

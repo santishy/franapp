@@ -10,7 +10,6 @@ class ProductsSearchController extends Controller
 {
     public function index(Request $request)
     {
-        
         return ProductResource::collection(
             Product::applyFilters()->paginate(20)
         );
