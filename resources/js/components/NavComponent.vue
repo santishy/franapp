@@ -33,13 +33,13 @@
                     v-if="purchase"
                     :href="purchase ? `/purchases/${purchase}` : '#'"
                     :class="highlight"
-                    class="block mt-4 lg:inline-block lg:mt-0  hover:text-white mr-4"
+                    class="block mt-4 lg:inline-block lg:mt-0  md:hover:text-white mr-4"
                 >
                     Realizar Compra
                 </a>
                 <a
                     href="/sales/create"
-                    class="block mt-4 lg:inline-block lg:mt-0 text-gray-200 hover:text-white mr-4"
+                    class="block mt-4 lg:inline-block lg:mt-0 text-gray-200 md:hover:text-white mr-4 md:text-base text-lg"
                 >
                     Venta
                 </a>
@@ -54,7 +54,7 @@
                     <input type="hidden" name="_token" :value="crfsToken" />
                     <button
                         href="/logout"
-                        class="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0"
+                        class="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent md:hover:text-teal-500 md:hover:bg-white mt-4 lg:mt-0"
                     >
                         Cerrar sesión
                     </button>

@@ -1,9 +1,9 @@
 <template>
     <a
         href="#responsive-header"
-        class="block  mt-0 transition-all duration-500 ease-in-out mt-4 lg:inline-block lg:mt-0 text-gray-200 hover:text-white mr-4"
+        class="block  mt-0 transition-all duration-500 ease-in-out mt-4 lg:inline-block lg:mt-0 text-gray-200 md:hover:text-white mr-4"
     >
-        <div @click="isOpen = !isOpen" class="z-10 relative">
+        <div @click="isOpen = !isOpen" class="z-10 relative md:text-base text-lg">
             {{ name }}
         </div>
         <button
@@ -20,7 +20,7 @@
                 v-for="item in items"
                 :key="item.name"
                 :href="item.url"
-                class="pl-1 text-white block md:text-gray-800 md:p-2 hover:text-red-400"
+                class="pl-1 text-white block md:text-gray-800 md:p-2 md:hover:text-red-400"
                 >{{ item.name }}</a
             >
         </div>

@@ -21800,14 +21800,14 @@ var render = function() {
     "a",
     {
       staticClass:
-        "block  mt-0 transition-all duration-500 ease-in-out mt-4 lg:inline-block lg:mt-0 text-gray-200 hover:text-white mr-4",
+        "block  mt-0 transition-all duration-500 ease-in-out mt-4 lg:inline-block lg:mt-0 text-gray-200 md:hover:text-white mr-4",
       attrs: { href: "#responsive-header" }
     },
     [
       _c(
         "div",
         {
-          staticClass: "z-10 relative",
+          staticClass: "z-10 relative md:text-base text-lg",
           on: {
             click: function($event) {
               _vm.isOpen = !_vm.isOpen
@@ -21843,7 +21843,7 @@ var render = function() {
                 {
                   key: item.name,
                   staticClass:
-                    "pl-1 text-white block md:text-gray-800 md:p-2 hover:text-red-400",
+                    "pl-1 text-white block md:text-gray-800 md:p-2 md:hover:text-red-400",
                   attrs: { href: item.url }
                 },
                 [_vm._v(_vm._s(item.name))]
@@ -21984,7 +21984,7 @@ var render = function() {
                     "a",
                     {
                       staticClass:
-                        "block mt-4 lg:inline-block lg:mt-0  hover:text-white mr-4",
+                        "block mt-4 lg:inline-block lg:mt-0  md:hover:text-white mr-4",
                       class: _vm.highlight,
                       attrs: {
                         href: _vm.purchase ? "/purchases/" + _vm.purchase : "#"
@@ -21998,7 +21998,7 @@ var render = function() {
                 "a",
                 {
                   staticClass:
-                    "block mt-4 lg:inline-block lg:mt-0 text-gray-200 hover:text-white mr-4",
+                    "block mt-4 lg:inline-block lg:mt-0 text-gray-200 md:hover:text-white mr-4 md:text-base text-lg",
                   attrs: { href: "/sales/create" }
                 },
                 [_vm._v("\n                Venta\n            ")]
@@ -22023,7 +22023,7 @@ var render = function() {
                 "button",
                 {
                   staticClass:
-                    "inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0",
+                    "inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent md:hover:text-teal-500 md:hover:bg-white mt-4 lg:mt-0",
                   attrs: { href: "/logout" }
                 },
                 [
