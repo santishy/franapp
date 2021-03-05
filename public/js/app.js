@@ -22103,7 +22103,7 @@ var render = function() {
         "form",
         {
           staticClass:
-            "w-full max-w-md shadow-lg rounded-lg bg-white md:px-6 md:py-8 p-2 md:mt-0 mt-4",
+            "w-full max-w-md shadow-lg rounded-lg bg-white md:px-6 md:py-8  md:mt-0",
           on: {
             submit: function($event) {
               $event.preventDefault()
@@ -22310,7 +22310,7 @@ var render = function() {
         "form",
         {
           staticClass:
-            "w-full max-w-md shadow-lg rounded-lg bg-white md:px-6 md:py-8 p-2",
+            "w-full max-w-md shadow-lg rounded-lg bg-white md:px-6 md:py-8",
           on: {
             submit: function($event) {
               $event.preventDefault()
@@ -22712,31 +22712,35 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "w-full flex justify-center mt-20 " }, [
-    _c(
-      "div",
-      {
-        staticClass:
-          "bg-white shadow rounded max-w-full sm:overflow-x-hidden overflow-x-auto"
-      },
-      [
-        _c("table", { staticClass: "table-auto" }, [
-          _vm._m(0),
-          _vm._v(" "),
-          _c(
-            "tbody",
-            _vm._l(_vm.clients, function(client, index) {
-              return _c("client-list-item", {
-                key: client.id,
-                attrs: { client: client, index: index }
-              })
-            }),
-            1
-          )
-        ])
-      ]
-    )
-  ])
+  return _c(
+    "div",
+    { staticClass: "w-full flex justify-center md:mt-20 mt-4 " },
+    [
+      _c(
+        "div",
+        {
+          staticClass:
+            "bg-white shadow rounded max-w-full sm:overflow-x-hidden overflow-x-auto"
+        },
+        [
+          _c("table", { staticClass: "table-auto" }, [
+            _vm._m(0),
+            _vm._v(" "),
+            _c(
+              "tbody",
+              _vm._l(_vm.clients, function(client, index) {
+                return _c("client-list-item", {
+                  key: client.id,
+                  attrs: { client: client, index: index }
+                })
+              }),
+              1
+            )
+          ])
+        ]
+      )
+    ]
+  )
 }
 var staticRenderFns = [
   function() {
@@ -23038,7 +23042,7 @@ var render = function() {
     "form",
     {
       staticClass:
-        "w-full max-w-md shadow-lg rounded-lg bg-white md:px-6 md:py-8",
+        "w-full max-w-md shadow-lg rounded-lg bg-white md:px-6 md:py-8 md:mt-0 mt-10",
       on: {
         submit: function($event) {
           $event.preventDefault()

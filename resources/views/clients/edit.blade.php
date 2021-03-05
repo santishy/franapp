@@ -1,7 +1,10 @@
 @extends('layouts.app')
 @section('content')
-    <client-form 
+    <div class="p-4">
+        <client-form 
         :client="{{$client}}" 
         method="put"  
-    />
+        />
+    </div>
+    
 @endsection

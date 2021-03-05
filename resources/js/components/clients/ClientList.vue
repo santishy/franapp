@@ -1,5 +1,5 @@
 <template>
-    <div class="w-full flex justify-center mt-20 ">
+    <div class="w-full flex justify-center md:mt-20 mt-4 ">
         <div class="bg-white shadow rounded max-w-full sm:overflow-x-hidden overflow-x-auto">
             <table class="table-auto">
                 <thead>

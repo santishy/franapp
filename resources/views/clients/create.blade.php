@@ -1,4 +1,7 @@
 @extends('layouts.app')
 @section('content')
-    <client-form method="post" />
+    <div class="p-4">
+        <client-form method="post" />
+    </div>
+   
 @endsection
