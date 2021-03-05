@@ -2904,13 +2904,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  mounted: function mounted() {// EventBus.$emit('product-added-sales-cart',res => {
+    //     this.products =res.products
+    // });
+  },
+  data: function data() {
+    return {
+      products: []
+    };
+  },
   props: {
     product: {
       type: Object,
@@ -3864,7 +3870,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     destroy: function destroy() {
-      axios["delete"]("/sales/".concat(this.id)).then(function (res) {
+      axios["delete"]("/sales/".concat(this.id, "/products")).then(function (res) {
         console.log(res.data);
       })["catch"](function (err) {
         console.log(err);
@@ -23938,7 +23944,7 @@ var render = function() {
             })
           ]),
           _vm._v(" "),
-          _c("delete-sale-product"),
+          _c("delete-sale-product", { attrs: { id: _vm.product.id } }),
           _vm._v(" "),
           _c(
             "button",

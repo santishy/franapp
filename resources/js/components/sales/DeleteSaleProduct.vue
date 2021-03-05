@@ -15,7 +15,7 @@ export default {
     },
     methods:{
         destroy(){
-            axios.delete(`/sales/${this.id}`)
+            axios.delete(`/sales/${this.id}/products`)
                 .then(res => {
                     console.log(res.data)
                 })

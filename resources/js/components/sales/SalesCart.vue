@@ -84,6 +84,7 @@ export default {
         EventBus.$on("product-added-sales-cart", res => {
             this.localSale = res;
             this.products = res.products;
+            
         });
     },
     computed: {

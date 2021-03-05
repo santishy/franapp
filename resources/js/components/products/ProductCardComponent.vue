@@ -15,10 +15,7 @@
                     <i class="far fa-edit"></i>
                 </a>
                 <remove-product :product="product" :index="index" />
-                <add-to-sale
-                    
-                    :product="product"
-                ></add-to-sale>
+                <add-to-sale :product="product"></add-to-sale>
             </div>
             <div class=" p-2 border-b-2 border-teal-400">
                 <p class="text-gray-800 font-bold">SKU</p>
@@ -58,6 +55,16 @@ import RemoveProductComponent from "./RemoveProductComponent.vue";
 import AddToSale from "../sales/AddToSale.vue";
 import AddToPurchase from "../purchases/AddToPurchase.vue";
 export default {
+    mounted(){
+        // EventBus.$emit('product-added-sales-cart',res => {
+        //     this.products =res.products
+        // });
+    },
+    data(){
+        return {
+            products:[]
+        }
+    },
     props: {
         product: {
             type: Object,
@@ -83,7 +90,8 @@ export default {
             return this.searchInSales
                 ? "bg-gray-100 text-white"
                 : "shadow-lg bg-white";
-        }
+        },
+     
     }
 };
 </script>

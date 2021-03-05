@@ -18,4 +18,8 @@ class Product extends Model
             $query->orWhere('sku','LIKE',"%{$value}%");
         }
     }
+
+    public function sales(){
+        return $this->belongsToMany(Sale::class);
+    }
 }

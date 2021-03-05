@@ -8,9 +8,14 @@ use App\Models\Sale;
 use App\Http\Resources\ProductResource;
 use App\Http\Responses\SessionInactive;
 use App\Http\Responses\TransactionResponse;
+use App\Http\Traits\HasTransaction;
 
 class ProductInSaleController extends Controller
 {
+
+    use HasTransaction;
+
+
     public function store(Request $request, Product $product)
     {
         $request->validate([
@@ -48,7 +53,9 @@ class ProductInSaleController extends Controller
         if (!session()->exists('sale_id'))
             return new SessionInactive('venta');
         
-        
-        return ;
+        $this->deleteTransactionProduct(Sale::find(session()->get('sale_id')),$product->id);
+        return response()->json([
+            'product' => $product
+        ]);
     }
 }

@@ -19,6 +19,7 @@ class ProductResource extends JsonResource
             'sku' => $this->sku,
             'description' => $this->description,
             'wholesale_price' => $this->wholesale_price,
+           // 'in_sale' => $this->sales()->exists(),
             'retail_price' => $this->retail_price,
             'distributor_price' => $this->distributor_price,
             'formatted_wholesale_price' =>'$'.number_format($this->wholesale_price,2),
