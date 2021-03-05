@@ -1936,6 +1936,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -1963,6 +1970,11 @@ __webpack_require__.r(__webpack_exports__);
     this.$once("hook:beforeDestroy", function () {
       document.removeEventListener("keydown", handleEscape);
     });
+  },
+  methods: {
+    getIcon: function getIcon($key) {
+      if ($key === 'Añadir') return 'fas fa-plus';else if ($key == 'Listar') return 'fas fa-list';
+    }
   }
 });
 
@@ -2068,6 +2080,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2079,7 +2092,7 @@ __webpack_require__.r(__webpack_exports__);
         url: "/products"
       }],
       clientsMenu: [{
-        name: "Nuevo",
+        name: "Añadir",
         url: "/clients/create"
       }, {
         name: "Listar",
@@ -21843,10 +21856,19 @@ var render = function() {
                 {
                   key: item.name,
                   staticClass:
-                    "pl-1 text-white block md:text-gray-800 md:p-2 md:hover:text-red-400",
+                    "md:pl-1 text-gray-700 bg-red-400 font-bold block md:text-gray-800 md:mt-0 py-2 md:border-none border-b border-red-500  md:p-2 md:hover:text-red-400",
                   attrs: { href: item.url }
                 },
-                [_vm._v(_vm._s(item.name))]
+                [
+                  _c("div", { staticClass: "md:hidden inline-block mx-2" }, [
+                    _c("i", { class: _vm.getIcon(item.name) })
+                  ]),
+                  _vm._v(
+                    "\n                \n                " +
+                      _vm._s(item.name) +
+                      "\n            \n            "
+                  )
+                ]
               )
             }),
             0
@@ -21994,6 +22016,11 @@ var render = function() {
                   )
                 : _vm._e(),
               _vm._v(" "),
+              _c("dropdown-component", {
+                staticClass: "md:relative",
+                attrs: { name: "Clientes", items: _vm.clientsMenu }
+              }),
+              _vm._v(" "),
               _c(
                 "a",
                 {
@@ -22001,13 +22028,8 @@ var render = function() {
                     "block mt-4 lg:inline-block lg:mt-0 text-gray-200 md:hover:text-white mr-4 md:text-base text-lg",
                   attrs: { href: "/sales/create" }
                 },
-                [_vm._v("\n                Venta\n            ")]
-              ),
-              _vm._v(" "),
-              _c("dropdown-component", {
-                staticClass: "md:relative",
-                attrs: { name: "Clientes", items: _vm.clientsMenu }
-              })
+                [_vm._v("\n                Vender\n            ")]
+              )
             ],
             1
           ),

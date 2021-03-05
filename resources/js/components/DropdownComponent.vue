@@ -20,8 +20,15 @@
                 v-for="item in items"
                 :key="item.name"
                 :href="item.url"
-                class="pl-1 text-white block md:text-gray-800 md:p-2 md:hover:text-red-400"
-                >{{ item.name }}</a
+                class="md:pl-1 text-gray-700 bg-red-400 font-bold block md:text-gray-800 md:mt-0 py-2 md:border-none border-b border-red-500  md:p-2 md:hover:text-red-400"
+                >
+                    <div class="md:hidden inline-block mx-2">
+                        <i :class="getIcon(item.name)"></i>
+                    </div>
+                    
+                    {{ item.name }}
+                
+                </a
             >
         </div>
     </a>
@@ -53,6 +60,15 @@ export default {
         this.$once("hook:beforeDestroy", () => {
             document.removeEventListener("keydown", handleEscape);
         });
+    },
+    methods:{
+        getIcon($key){
+            if($key === 'Añadir')
+                return 'fas fa-plus';
+            else if($key == 'Listar')
+                return 'fas fa-list';
+            
+        }
     }
 };
 </script>

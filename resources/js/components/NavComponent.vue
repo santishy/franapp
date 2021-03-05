@@ -37,17 +37,18 @@
                 >
                     Realizar Compra
                 </a>
-                <a
-                    href="/sales/create"
-                    class="block mt-4 lg:inline-block lg:mt-0 text-gray-200 md:hover:text-white mr-4 md:text-base text-lg"
-                >
-                    Venta
-                </a>
                 <dropdown-component
                     name="Clientes"
                     :items="clientsMenu"
                     class="md:relative"
                 />
+                <a
+                    href="/sales/create"
+                    class="block mt-4 lg:inline-block lg:mt-0 text-gray-200 md:hover:text-white mr-4 md:text-base text-lg"
+                >
+                    Vender
+                </a>
+                
             </div>
             <div>
                 <form action="/logout" method="POST">
@@ -79,7 +80,7 @@ export default {
             ],
             clientsMenu: [
                 {
-                    name: "Nuevo",
+                    name: "Añadir",
                     url: "/clients/create"
                 },
                 {
