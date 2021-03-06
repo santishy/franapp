@@ -43,7 +43,7 @@
             </div>
 
             <div class=" p-2 ">
-                <p class="text-gray-800 font-bold ">Precio al por mayor</p>
+                <p class="text-gray-800 font-bold ">Precio distribuidor</p>
                 <p class="text-gray-700 text-base ">
                     {{ product.formatted_distributor_price }}
                 </p>

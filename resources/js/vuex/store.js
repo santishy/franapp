@@ -12,6 +12,7 @@ export const store = new Vuex.Store({
     purchaseStatus:'',
     activeSearchCategory:true,
     salePriceOption:sessionStorage.getItem('salePriceOption'),
+    
   },
   mutations,
   actions,
