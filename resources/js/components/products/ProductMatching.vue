@@ -11,10 +11,11 @@
             </div>
             <div class="grid md:grid-cols-3 grid-cols-1 gap-4 ">
                 <product-card
-                    v-for="product in products"
+                    v-for="(product,index) in products"
                     :key="product.id"
                     :product="product"
                     :search-in-sales="true"
+                    :index="index"
                 >
                 </product-card>
             </div>

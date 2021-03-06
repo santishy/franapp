@@ -2918,6 +2918,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -3142,6 +3143,7 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ProductCardComponent__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ProductCardComponent */ "./resources/js/components/products/ProductCardComponent.vue");
+//
 //
 //
 //
@@ -3692,6 +3694,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var _mixins_Errors__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../mixins/Errors */ "./resources/js/mixins/Errors.js");
 /* harmony import */ var _mixins_Errors__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_mixins_Errors__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _mixins_Transaction__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../mixins/Transaction */ "./resources/js/mixins/Transaction.js");
+/* harmony import */ var _mixins_Transaction__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_mixins_Transaction__WEBPACK_IMPORTED_MODULE_2__);
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -3713,13 +3717,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     product: {
       type: Object
+    },
+    index: {
+      type: Number
     }
   },
-  mixins: [_mixins_Errors__WEBPACK_IMPORTED_MODULE_1___default.a],
+  mixins: [_mixins_Errors__WEBPACK_IMPORTED_MODULE_1___default.a, _mixins_Transaction__WEBPACK_IMPORTED_MODULE_2___default.a],
   methods: {
     submit: function submit() {
       var _this = this;
@@ -3728,6 +3736,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         salePriceOption: this.salePriceOption
       }).then(function (res) {
         EventBus.$emit("product-added-sales-cart", res.data.transaction);
+
+        _this.addProductToTransaction();
       })["catch"](function (err) {
         console.log("hola");
 
@@ -22924,7 +22934,8 @@ var render = function() {
             _c("add-to-purchase", {
               attrs: {
                 product_id: _vm.product.id,
-                purchase_price: _vm.product.distributor_price
+                purchase_price: _vm.product.distributor_price,
+                index: _vm.index
               }
             }),
             _vm._v(" "),
@@ -23372,10 +23383,14 @@ var render = function() {
               _c(
                 "div",
                 { staticClass: "grid md:grid-cols-3 grid-cols-1 gap-4 " },
-                _vm._l(_vm.products, function(product) {
+                _vm._l(_vm.products, function(product, index) {
                   return _c("product-card", {
                     key: product.id,
-                    attrs: { product: product, "search-in-sales": true }
+                    attrs: {
+                      product: product,
+                      "search-in-sales": true,
+                      index: index
+                    }
                   })
                 }),
                 1
@@ -40887,6 +40902,35 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./resources/js/mixins/Transaction.js":
+/*!********************************************!*\
+  !*** ./resources/js/mixins/Transaction.js ***!
+  \********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// import {mapMutations} from 'vuex';
+module.exports = {
+  data: function data() {
+    return {
+      cart: [] //productos en venta o bien puede ser en compra si asi se hiciera
+
+    };
+  },
+  methods: {
+    /**
+     * Donde se implemente este metodo, require el ID del producto y el INDEX de su array 
+     * Requiere la importacion de {mapMutations}
+     */
+    // addProductToTranscation(){
+    //     this.addToTransaction({index:this.index,id:this.product.id});
+    // },
+    // ...mapMutations(['addToTransaction'])
+  }
+};
+
+/***/ }),
+
 /***/ "./resources/js/vuex/actions.js":
 /*!**************************************!*\
   !*** ./resources/js/vuex/actions.js ***!
@@ -41013,11 +41057,16 @@ var setSalePriceOption = function setSalePriceOption(state, value) {
   state.salePriceOption = value;
 };
 
+var addToTransaction = function addToTransaction(staten, data) {
+  state.productsInTransaction.unshift(data);
+};
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   setProductsInPurchase: setProductsInPurchase,
   toggleActiveSearchCategory: toggleActiveSearchCategory,
   setSalePriceOption: setSalePriceOption,
-  deleteProductInPurchase: deleteProductInPurchase
+  deleteProductInPurchase: deleteProductInPurchase,
+  addToTransaction: addToTransaction
 });
 
 /***/ }),
@@ -41049,7 +41098,8 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
     productsInPurchase: JSON.parse(localStorage.getItem('productsInPurchase')),
     purchaseStatus: '',
     activeSearchCategory: true,
-    salePriceOption: sessionStorage.getItem('salePriceOption')
+    salePriceOption: sessionStorage.getItem('salePriceOption'),
+    productsInTransaction: []
   },
   mutations: _mutations__WEBPACK_IMPORTED_MODULE_3__["default"],
   actions: _actions__WEBPACK_IMPORTED_MODULE_2__["default"],

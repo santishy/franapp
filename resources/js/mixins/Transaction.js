@@ -1,0 +1,20 @@
+
+// import {mapMutations} from 'vuex';
+module.exports  =  {
+    
+    data:() => {
+        return {
+            cart:[] //productos en venta o bien puede ser en compra si asi se hiciera
+        }
+    },
+    methods:{
+        /**
+         * Donde se implemente este metodo, require el ID del producto y el INDEX de su array 
+         * Requiere la importacion de {mapMutations}
+         */
+        // addProductToTranscation(){
+        //     this.addToTransaction({index:this.index,id:this.product.id});
+        // },
+        // ...mapMutations(['addToTransaction'])
+    }
+}

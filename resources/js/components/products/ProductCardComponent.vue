@@ -7,6 +7,7 @@
                 <add-to-purchase
                     :product_id="product.id"
                     :purchase_price="product.distributor_price"
+                    :index="index"
                 />
                 <a
                     :href="`/products/${product.id}/edit`"

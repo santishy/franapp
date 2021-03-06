@@ -29,9 +29,14 @@ const toggleActiveSearchCategory = (state, status) => {
 const setSalePriceOption = (state, value) => {
     state.salePriceOption = value;
 }
+
+const addToTransaction = (staten, data) => {
+    state.productsInTransaction.unshift(data);
+}
 export default {
     setProductsInPurchase,
     toggleActiveSearchCategory,
     setSalePriceOption,
-    deleteProductInPurchase
+    deleteProductInPurchase,
+    addToTransaction
 }
