@@ -3694,8 +3694,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var _mixins_Errors__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../mixins/Errors */ "./resources/js/mixins/Errors.js");
 /* harmony import */ var _mixins_Errors__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_mixins_Errors__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _mixins_Transaction__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../mixins/Transaction */ "./resources/js/mixins/Transaction.js");
-/* harmony import */ var _mixins_Transaction__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_mixins_Transaction__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _mixins_Transaction_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../mixins/Transaction.js */ "./resources/js/mixins/Transaction.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -3727,7 +3726,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       type: Number
     }
   },
-  mixins: [_mixins_Errors__WEBPACK_IMPORTED_MODULE_1___default.a, _mixins_Transaction__WEBPACK_IMPORTED_MODULE_2___default.a],
+  mixins: [_mixins_Transaction_js__WEBPACK_IMPORTED_MODULE_2__["default"], _mixins_Errors__WEBPACK_IMPORTED_MODULE_1___default.a],
   methods: {
     submit: function submit() {
       var _this = this;
@@ -3737,7 +3736,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }).then(function (res) {
         EventBus.$emit("product-added-sales-cart", res.data.transaction);
 
-        _this.addProductToTransaction();
+        _this.addProductToTranscation();
       })["catch"](function (err) {
         console.log("hola");
 
@@ -40895,6 +40894,7 @@ module.exports = {
   },
   methods: {
     getErrors: function getErrors(err) {
+      console.log(err);
       this.errors = Object.values(err.response.data.errors).flat();
     }
   }
@@ -40906,28 +40906,34 @@ module.exports = {
 /*!********************************************!*\
   !*** ./resources/js/mixins/Transaction.js ***!
   \********************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-// import {mapMutations} from 'vuex';
-module.exports = {
-  data: function data() {
-    return {
-      cart: [] //productos en venta o bien puede ser en compra si asi se hiciera
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-    };
-  },
-  methods: {
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  mouted: function mouted() {},
+  methods: _objectSpread({
     /**
      * Donde se implemente este metodo, require el ID del producto y el INDEX de su array 
      * Requiere la importacion de {mapMutations}
      */
-    // addProductToTranscation(){
-    //     this.addToTransaction({index:this.index,id:this.product.id});
-    // },
-    // ...mapMutations(['addToTransaction'])
-  }
-};
+    addProductToTranscation: function addProductToTranscation() {
+      this.addToTransaction({
+        index: this.index,
+        id: this.product.id
+      });
+    }
+  }, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapMutations"])(['addToTransaction']))
+});
 
 /***/ }),
 
@@ -41057,7 +41063,7 @@ var setSalePriceOption = function setSalePriceOption(state, value) {
   state.salePriceOption = value;
 };
 
-var addToTransaction = function addToTransaction(staten, data) {
+var addToTransaction = function addToTransaction(state, data) {
   state.productsInTransaction.unshift(data);
 };
 
@@ -41115,8 +41121,8 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/vagrant/code/franapp/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/vagrant/code/franapp/resources/css/app.css */"./resources/css/app.css");
+__webpack_require__(/*! C:\xampp\htdocs\franapp\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\franapp\resources\css\app.css */"./resources/css/app.css");
 
 
 /***/ })

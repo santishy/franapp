@@ -30,7 +30,7 @@ const setSalePriceOption = (state, value) => {
     state.salePriceOption = value;
 }
 
-const addToTransaction = (staten, data) => {
+const addToTransaction = (state, data) => {
     state.productsInTransaction.unshift(data);
 }
 export default {

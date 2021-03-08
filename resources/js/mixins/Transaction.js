@@ -1,20 +1,18 @@
 
-// import {mapMutations} from 'vuex';
-module.exports  =  {
+import {mapMutations} from 'vuex';
+export default  {
     
-    data:() => {
-        return {
-            cart:[] //productos en venta o bien puede ser en compra si asi se hiciera
-        }
+    mouted(){
+        
     },
     methods:{
         /**
          * Donde se implemente este metodo, require el ID del producto y el INDEX de su array 
          * Requiere la importacion de {mapMutations}
          */
-        // addProductToTranscation(){
-        //     this.addToTransaction({index:this.index,id:this.product.id});
-        // },
-        // ...mapMutations(['addToTransaction'])
+        addProductToTranscation(){
+            this.addToTransaction({index:this.index,id:this.product.id});
+        },
+        ...mapMutations(['addToTransaction'])
     }
 }

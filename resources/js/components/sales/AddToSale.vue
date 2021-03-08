@@ -14,7 +14,7 @@
 <script>
 import { mapState } from "vuex";
 import Errors from "../../mixins/Errors";
-import Transaction from "../../mixins/Transaction";
+import Transaction from "../../mixins/Transaction.js";
 export default {
     props: {
         product: {
@@ -24,7 +24,8 @@ export default {
             type: Number
         }
     },
-    mixins: [Errors,Transaction],
+
+    mixins: [Transaction,Errors],
     methods: {
         submit() {
             axios
@@ -36,7 +37,7 @@ export default {
                         "product-added-sales-cart",
                         res.data.transaction
                     );
-                    this.addProductToTransaction();
+                    this.addProductToTranscation();
                 })
                 .catch(err => {
                     console.log("hola");
