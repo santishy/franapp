@@ -22952,7 +22952,9 @@ var render = function() {
               attrs: { product: _vm.product, index: _vm.index }
             }),
             _vm._v(" "),
-            _c("add-to-sale", { attrs: { product: _vm.product } })
+            _c("add-to-sale", {
+              attrs: { product: _vm.product, index: _vm.index }
+            })
           ],
           1
         ),
