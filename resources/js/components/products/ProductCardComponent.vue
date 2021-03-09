@@ -56,12 +56,8 @@
 import RemoveProductComponent from "./RemoveProductComponent.vue";
 import AddToSale from "../sales/AddToSale.vue";
 import AddToPurchase from "../purchases/AddToPurchase.vue";
+import {mapState} from "vuex";
 export default {
-    data() {
-        return {
-            products: []
-        };
-    },
     props: {
         product: {
             type: Object,
@@ -82,12 +78,22 @@ export default {
         "add-to-purchase": AddToPurchase,
         "add-to-sale": AddToSale
     },
+    mounted(){
+         console.log(this.selected)
+    },
     computed: {
         darkMode() {
             return this.searchInSales
                 ? "bg-gray-100 text-white"
                 : "shadow-lg bg-white";
-        }
-    }
+        },
+        selected() {
+            this.productsInTransaction.filter( obj => {
+                return obj.id === this.product.id
+            })
+        },
+        ...mapState(['productsInTransaction'])
+    },
+
 };
 </script>

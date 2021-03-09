@@ -40,7 +40,6 @@ export default {
                     this.addProductToTranscation();
                 })
                 .catch(err => {
-                    console.log("hola");
                     this.getErrors(err);
                     this.$notify({
                         group: "foo",

@@ -3,7 +3,7 @@
 const hasProductsInPurchase = state => !(state.productsInPurchase === null);
 
 const productExistsInPurchase = (state) => {
-   
+
     return function (product_id) {
         if (state.productsInPurchase === null)
             return -1;
@@ -13,7 +13,7 @@ const productExistsInPurchase = (state) => {
 
 const qtyPurchase = (state) => {
     return (index) => {
-        if(index == -1)
+        if (index == -1)
             return null;
         return state.productsInPurchase[index].qty;
     }
