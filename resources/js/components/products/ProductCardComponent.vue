@@ -1,6 +1,14 @@
 <template>
-    <div class=" rounded overflow-hidden" :class="darkMode">
-        <div class="text-justify">
+    <div
+        class=" rounded overflow-hidden"
+        :class="[
+            darkMode,
+            selected
+                ? 'border-2 border-red-400 bg-red-200'
+                : 'border-2 border-transparent'
+        ]"
+    >
+        <div class="text-justify" :class="['text-justify']">
             <div
                 class="px-6 pt-4 pb-2 text-center grid grid-cols-4 md:gap-4 gap-1"
             >
@@ -56,7 +64,7 @@
 import RemoveProductComponent from "./RemoveProductComponent.vue";
 import AddToSale from "../sales/AddToSale.vue";
 import AddToPurchase from "../purchases/AddToPurchase.vue";
-import {mapState} from "vuex";
+import { mapState } from "vuex";
 export default {
     props: {
         product: {
@@ -78,8 +86,8 @@ export default {
         "add-to-purchase": AddToPurchase,
         "add-to-sale": AddToSale
     },
-    mounted(){
-         console.log(this.selected)
+    mounted() {
+        console.log(this.selected);
     },
     computed: {
         darkMode() {
@@ -88,12 +96,13 @@ export default {
                 : "shadow-lg bg-white";
         },
         selected() {
-            this.productsInTransaction.filter( obj => {
-                return obj.id === this.product.id
-            })
-        },
-        ...mapState(['productsInTransaction'])
-    },
+            var arr = this.productsInTransaction.filter(obj => {
+                return obj.id == this.product.id;
+            });
 
+            return this.searchInSales && Boolean(arr.length);
+        },
+        ...mapState(["productsInTransaction"])
+    }
 };
 </script>

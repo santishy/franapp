@@ -2926,6 +2926,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2961,11 +2969,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     selected: function selected() {
       var _this = this;
 
-      this.productsInTransaction.filter(function (obj) {
-        return obj.id === _this.product.id;
+      var arr = this.productsInTransaction.filter(function (obj) {
+        return obj.id == _this.product.id;
       });
+      return this.searchInSales && Boolean(arr.length);
     }
-  }, Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapState"])(['productsInTransaction']))
+  }, Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapState"])(["productsInTransaction"]))
 });
 
 /***/ }),
@@ -22931,9 +22940,17 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: " rounded overflow-hidden", class: _vm.darkMode },
+    {
+      staticClass: " rounded overflow-hidden",
+      class: [
+        _vm.darkMode,
+        _vm.selected
+          ? "border-2 border-red-400 bg-red-200"
+          : "border-2 border-transparent"
+      ]
+    },
     [
-      _c("div", { staticClass: "text-justify" }, [
+      _c("div", { staticClass: "text-justify", class: ["text-justify"] }, [
         _c(
           "div",
           {
@@ -41080,6 +41097,8 @@ var addToTransaction = function addToTransaction(state, data) {
   state.productsInTransaction.unshift(data);
 };
 
+var removeTransactionProduct = function removeTransactionProduct(state, id) {};
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   setProductsInPurchase: setProductsInPurchase,
   toggleActiveSearchCategory: toggleActiveSearchCategory,
@@ -41134,8 +41153,8 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/vagrant/code/franapp/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/vagrant/code/franapp/resources/css/app.css */"./resources/css/app.css");
+__webpack_require__(/*! C:\xampp\htdocs\franapp\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\franapp\resources\css\app.css */"./resources/css/app.css");
 
 
 /***/ })

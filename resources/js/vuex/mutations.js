@@ -34,7 +34,7 @@ const addToTransaction = (state, data) => {
     state.productsInTransaction.unshift(data);
 }
 const removeTransactionProduct = (state,id) => {
-    state.productsInTransaction.
+    
 }
 export default {
     setProductsInPurchase,

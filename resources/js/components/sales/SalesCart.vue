@@ -52,7 +52,7 @@
 </template>
 <script>
 import CartProduct from "./CartProduct";
-import { mapState } from "vuex";
+import { mapState, mapMutations } from "vuex";
 import Errors from '../../mixins/Errors';
 export default {
     components: { "cart-product": CartProduct },
@@ -88,6 +88,7 @@ export default {
         });
         EventBus.$on("product-removed",index => {
             this.products.splice(index,1);
+
         })
     },
     computed: {
