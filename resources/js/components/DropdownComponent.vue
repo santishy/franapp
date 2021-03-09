@@ -4,7 +4,7 @@
         class="block  mt-0 transition-all duration-500 ease-in-out mt-4 lg:inline-block lg:mt-0 text-gray-200 md:hover:text-white mr-4"
     >
         <div @click="isOpen = !isOpen" class="z-10 relative md:text-base text-lg">
-            {{ name }}
+            {{ name }}  <i class="fas fa-chevron-down"></i>
         </div>
         <button
             v-if="isOpen"

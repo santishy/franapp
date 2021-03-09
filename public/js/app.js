@@ -21856,7 +21856,10 @@ var render = function() {
             }
           }
         },
-        [_vm._v("\n        " + _vm._s(_vm.name) + "\n    ")]
+        [
+          _vm._v("\n        " + _vm._s(_vm.name) + "  "),
+          _c("i", { staticClass: "fas fa-chevron-down" })
+        ]
       ),
       _vm._v(" "),
       _vm.isOpen
@@ -41153,8 +41156,8 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\htdocs\franapp\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\franapp\resources\css\app.css */"./resources/css/app.css");
+__webpack_require__(/*! /home/vagrant/code/franapp/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/vagrant/code/franapp/resources/css/app.css */"./resources/css/app.css");
 
 
 /***/ })
