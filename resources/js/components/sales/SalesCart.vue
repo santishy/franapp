@@ -44,6 +44,7 @@
                 v-for="(product, index) in products"
                 :key="product.id"
                 :product="product"
+                :sale-status="sale_status"
                 :index="index"
             >
             </cart-product>
@@ -111,6 +112,7 @@ export default {
                 .post(`/sales/${this.localSale.id}`, this.form)
                 .then(res => {
                     this.sale_status = res.data.sale_status;
+
                 })
                 .catch(err => {
                     this.getErrors(err);

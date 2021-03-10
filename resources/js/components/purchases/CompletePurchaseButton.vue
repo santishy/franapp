@@ -26,7 +26,6 @@ export default {
                 })
                 .then(res => {
                     EventBus.$emit('purchase-completed',res.data.data)
-                    console.log('status ' + res.data.data.status)
                     if(res.data.data.status === 'COMPLETADA'){
                         localStorage.removeItem('productsInPurchase')
                     }

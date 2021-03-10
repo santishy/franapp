@@ -3479,7 +3479,6 @@ __webpack_require__.r(__webpack_exports__);
         _method: "put"
       }).then(function (res) {
         EventBus.$emit('purchase-completed', res.data.data);
-        console.log('status ' + res.data.data.status);
 
         if (res.data.data.status === 'COMPLETADA') {
           localStorage.removeItem('productsInPurchase');
@@ -3849,6 +3848,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     index: {
       type: Number
+    },
+    salesStatus: {
+      type: String
     }
   },
   components: {
@@ -4052,6 +4054,7 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
 //
 //
 //
@@ -24355,7 +24358,11 @@ var render = function() {
           _vm._l(_vm.products, function(product, index) {
             return _c("cart-product", {
               key: product.id,
-              attrs: { product: product, index: index }
+              attrs: {
+                product: product,
+                "sale-status": _vm.sale_status,
+                index: index
+              }
             })
           }),
           1

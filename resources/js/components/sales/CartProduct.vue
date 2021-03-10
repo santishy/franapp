@@ -55,6 +55,9 @@ export default {
         },
         index: {
             type: Number
+        },
+        salesStatus:{
+            type: String
         }
     },
     components:{DeleteSaleProduct},
@@ -85,7 +88,7 @@ export default {
         }
     },
     computed: {
-        ...mapState(["salePriceOption"])
+        ...mapState(["salePriceOption"]),
     }
 };
 </script>
