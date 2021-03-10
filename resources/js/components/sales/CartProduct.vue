@@ -33,8 +33,12 @@
                     aria-label="Full name"
                 />
             </div>
-            <delete-sale-product :id="product.id"></delete-sale-product>
+            <delete-sale-product 
+                v-if="salesStatus === 'pending'"
+                :id="product.id">
+            </delete-sale-product>
             <button
+                v-if="salesStatus === 'pending'"
                 type="submit"
                 class=" bg-blue-300 mt-2 rounded transition-all duration-500 ease-in-out hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border-b-2 border-blue-500 hover:border-transparent w-2/3"
             >
@@ -89,6 +93,7 @@ export default {
     },
     computed: {
         ...mapState(["salePriceOption"]),
+        
     }
 };
 </script>
