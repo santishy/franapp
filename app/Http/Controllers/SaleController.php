@@ -10,6 +10,10 @@ use App\Models\Sale;
 
 class SaleController extends Controller
 {
+    public function index()
+    {
+        
+    }
     public function create()
     {
         $sale = Sale::find(session()->get('sale_id'));
@@ -25,16 +29,18 @@ class SaleController extends Controller
             'total' => 'numeric|required',
             'phone_number' => 'exists:clients,phone_number|required'
         ]);
-        if($fields['status'] === 'completed')
+        if ($fields['status'] === 'completed')
             request()->session()->forget('sale_id');
-        else 
-            request()->session()->put('sale_id',$sale->id);
+        else
+            request()->session()->put('sale_id', $sale->id);
         $sale->update($fields);
         $sale->client()
             ->associate(
-                Client::where('phone_number', 
-                $fields['phone_number'])->first()
-        );
+                Client::where(
+                    'phone_number',
+                    $fields['phone_number']
+                )->first()
+            );
         return response()->json([
             'sale_status' => $sale->status
         ]);

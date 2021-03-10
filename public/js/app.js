@@ -24169,7 +24169,10 @@ var render = function() {
             [
               _c(
                 "div",
-                { staticClass: "bg-white px-4 py-2 w-4/5 rounded shadow" },
+                {
+                  staticClass:
+                    "bg-white px-4 py-2 md:w-4/5 w-full md:mx-0 mx-2 rounded shadow"
+                },
                 [_c("sales-cart", { attrs: { sale: _vm.sale } })],
                 1
               )
