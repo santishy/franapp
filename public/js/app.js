@@ -3842,6 +3842,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -3853,7 +3854,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     index: {
       type: Number
     },
-    salesStatus: {
+    saleStatus: {
       type: String
     }
   },
@@ -4111,6 +4112,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 
@@ -4123,7 +4125,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     return {
       form: {},
       products: [],
-      localSale: null,
+      localSale: {},
       sale_status: null
     };
   },
@@ -4154,6 +4156,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     });
   },
   computed: _objectSpread({
+    getClass: function getClass() {
+      if (this.getStatus == 'pending') return 'hover:bg-green-500 text-green-700 bg-green-300';
+      if (this.getStatus == 'completed') return 'hover:bg-yellow-500 text-yellow-700 bg-yellow-300';
+    },
     getTotal: function getTotal() {
       var total = 0;
       this.products.map(function (product) {
@@ -4163,13 +4169,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     getStatus: function getStatus() {
       return this.sale_status ? this.sale_status : this.localSale.status;
+    },
+    modifyTo: function modifyTo() {
+      if (this.getStatus == 'pending') return 'Completada';
+      if (this.getStatus == 'completed') return 'Pendiente';
     }
   }, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])(["salePriceOption"])),
   methods: {
     submit: function submit() {
       var _this2 = this;
 
-      this.form.status = "completed";
+      if (this.getStatus === 'pending') this.form.status = "completed";else this.form.status = "pending";
       axios.post("/sales/".concat(this.localSale.id), this.form).then(function (res) {
         _this2.sale_status = res.data.sale_status;
       })["catch"](function (err) {
@@ -24032,23 +24042,27 @@ var render = function() {
             })
           ]),
           _vm._v(" "),
-          _vm.salesStatus === "pending"
-            ? _c("delete-sale-product", { attrs: { id: _vm.product.id } })
-            : _vm._e(),
-          _vm._v(" "),
-          _vm.salesStatus === "pending"
+          _vm.saleStatus === "pending"
             ? _c(
-                "button",
-                {
-                  staticClass:
-                    " bg-blue-300 mt-2 rounded transition-all duration-500 ease-in-out hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border-b-2 border-blue-500 hover:border-transparent w-2/3",
-                  attrs: { type: "submit" }
-                },
-                [_vm._v("\n            Modificar\n        ")]
+                "div",
+                { staticClass: "w-full flex flex-wrap justify-center" },
+                [
+                  _c("delete-sale-product", { attrs: { id: _vm.product.id } }),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass:
+                        " bg-blue-300 mt-2 rounded transition-all duration-500 ease-in-out hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border-b-2 border-blue-500 hover:border-transparent w-2/3",
+                      attrs: { type: "submit" }
+                    },
+                    [_vm._v("\n                Modificar\n            ")]
+                  )
+                ],
+                1
               )
             : _vm._e()
-        ],
-        1
+        ]
       )
     ]
   )
@@ -24353,9 +24367,14 @@ var render = function() {
           "button",
           {
             staticClass:
-              " bg-green-300 rounded transition-all duration-500 ease-in-out hover:bg-green-500 text-green-700 font-semibold hover:text-white py-2 px-4 border-l-2 border-r-2 border-green-500 hover:border-transparent w-full"
+              "  rounded transition-all duration-500 ease-in-out  font-semibold hover:text-white py-2 px-4 border-l-2 border-r-2 border-green-500 hover:border-transparent w-full",
+            class: [_vm.getClass]
           },
-          [_vm._v("\n            Completar\n        ")]
+          [
+            _vm._v(
+              "\n            Cambiar a " + _vm._s(_vm.modifyTo) + "\n        "
+            )
+          ]
         )
       ]
     ),
@@ -24368,7 +24387,7 @@ var render = function() {
               key: product.id,
               attrs: {
                 product: product,
-                "sale-status": _vm.sale_status,
+                "sale-status": _vm.getStatus,
                 index: index
               }
             })
@@ -41171,8 +41190,8 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/vagrant/code/franapp/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/vagrant/code/franapp/resources/css/app.css */"./resources/css/app.css");
+__webpack_require__(/*! C:\xampp\htdocs\franapp\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\franapp\resources\css\app.css */"./resources/css/app.css");
 
 
 /***/ })

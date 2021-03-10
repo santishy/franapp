@@ -34,9 +34,10 @@
                 <errors-component :errors="errors" />
             </div>
             <button
-                class=" bg-green-300 rounded transition-all duration-500 ease-in-out hover:bg-green-500 text-green-700 font-semibold hover:text-white py-2 px-4 border-l-2 border-r-2 border-green-500 hover:border-transparent w-full"
+                class="  rounded transition-all duration-500 ease-in-out  font-semibold hover:text-white py-2 px-4 border-l-2 border-r-2 border-green-500 hover:border-transparent w-full"
+                :class="[getClass]"
             >
-                Completar
+                Cambiar a {{modifyTo}}
             </button>
         </form>
         <div v-if="localSale !== null">
@@ -44,7 +45,7 @@
                 v-for="(product, index) in products"
                 :key="product.id"
                 :product="product"
-                :sale-status="sale_status"
+                :sale-status="getStatus"
                 :index="index"
             >
             </cart-product>
@@ -62,7 +63,7 @@ export default {
         return {
             form: {},
             products: [],
-            localSale: null,
+            localSale: {},
             sale_status: null,
         };
     },
@@ -93,6 +94,12 @@ export default {
         })
     },
     computed: {
+        getClass(){
+            if(this.getStatus == 'pending')
+                return 'hover:bg-green-500 text-green-700 bg-green-300';
+            if(this.getStatus == 'completed')
+                return 'hover:bg-yellow-500 text-yellow-700 bg-yellow-300';
+        },
         getTotal() {
             var total = 0;
             this.products.map(product => {
@@ -103,11 +110,20 @@ export default {
         getStatus() {
             return this.sale_status ? this.sale_status : this.localSale.status;
         },
+        modifyTo(){
+            if(this.getStatus == 'pending')
+                return 'Completada';
+            if(this.getStatus == 'completed')
+                return 'Pendiente';
+        },
         ...mapState(["salePriceOption"])
     },
     methods: {
         submit() {
-            this.form.status = "completed";
+            if(this.getStatus === 'pending')
+                this.form.status = "completed";
+            else 
+                this.form.status = "pending"
             axios
                 .post(`/sales/${this.localSale.id}`, this.form)
                 .then(res => {
@@ -115,9 +131,7 @@ export default {
 
                 })
                 .catch(err => {
-                    this.getErrors(err);
-
-                    
+                    this.getErrors(err); 
                 });
         }
     }

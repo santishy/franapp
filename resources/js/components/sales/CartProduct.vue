@@ -33,23 +33,24 @@
                     aria-label="Full name"
                 />
             </div>
-            <delete-sale-product 
-                v-if="salesStatus === 'pending'"
-                :id="product.id">
-            </delete-sale-product>
-            <button
-                v-if="salesStatus === 'pending'"
-                type="submit"
-                class=" bg-blue-300 mt-2 rounded transition-all duration-500 ease-in-out hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border-b-2 border-blue-500 hover:border-transparent w-2/3"
+            <div
+                v-if="saleStatus === 'pending'"
+                class="w-full flex flex-wrap justify-center"
             >
-                Modificar
-            </button>
+                <delete-sale-product :id="product.id"> </delete-sale-product>
+                <button
+                    type="submit"
+                    class=" bg-blue-300 mt-2 rounded transition-all duration-500 ease-in-out hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border-b-2 border-blue-500 hover:border-transparent w-2/3"
+                >
+                    Modificar
+                </button>
+            </div>
         </div>
     </form>
 </template>
 
 <script>
-import DeleteSaleProduct from './DeleteSaleProduct.vue';
+import DeleteSaleProduct from "./DeleteSaleProduct.vue";
 import { mapState } from "vuex";
 export default {
     props: {
@@ -60,11 +61,11 @@ export default {
         index: {
             type: Number
         },
-        salesStatus:{
+        saleStatus: {
             type: String
         }
     },
-    components:{DeleteSaleProduct},
+    components: { DeleteSaleProduct },
     data() {
         return {
             form: {}
@@ -92,8 +93,7 @@ export default {
         }
     },
     computed: {
-        ...mapState(["salePriceOption"]),
-        
+        ...mapState(["salePriceOption"])
     }
 };
 </script>
