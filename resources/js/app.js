@@ -21,6 +21,7 @@ Vue.component('category-search', require('./components/categories/CategorySearch
 
 //VENTAS COMPONENTES
 Vue.component('sale-component',require('./components/sales/SaleComponent').default)
+Vue.component('transaction-report',require('./components/reports/Transactions').default)
 
 
 import Notifications from 'vue-notification'

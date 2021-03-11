@@ -12,7 +12,13 @@ class SaleController extends Controller
 {
     public function index()
     {
-        dd(now()->day());
+        if(request()->wantsJson())
+        {
+            return Sale::applyFilters();
+        }
+        return view('sales.index',[
+            'now' => now()
+        ]);
     }
     public function create()
     {
