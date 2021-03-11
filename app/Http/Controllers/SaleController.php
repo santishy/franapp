@@ -12,7 +12,7 @@ class SaleController extends Controller
 {
     public function index()
     {
-        
+        dd(now()->day());
     }
     public function create()
     {

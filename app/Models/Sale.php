@@ -62,4 +62,14 @@ class Sale extends Model
     {
         $this->sum(DB::raw('qty * sale_price'));
     }
+
+    public function scopeYear(Builder $query, $value)
+    {
+        $query->whereYear('created_at', $value);
+    }
+
+    public function scopeMonth(Builder $query, $value)
+    {
+        $query->whereMonth('created_at', $value);
+    }
 }

@@ -9,6 +9,7 @@ class JsonApiBuilder
     {
         return function () {
             foreach (request('filter', []) as $filter => $value) {
+                abort_unless($this->hasNamedScope($filter),400,'El filtro no existe');
                 $this->{$filter}($value);
             }
             return $this;
