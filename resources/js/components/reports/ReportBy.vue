@@ -9,15 +9,14 @@ export default {
         uri:{
             type:String
         },
-        today:{
-            type:String
-        }
     },
     methods:{
         getReport(){
+            const today = new Date();
             axios.get(this.uri,{
                 params:{
-                    'filter[today]':this.today
+                    "filter[today]":'',
+                    "filter[status]":'completed'
                 }
             })
             .then ( res => {

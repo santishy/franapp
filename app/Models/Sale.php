@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -71,5 +72,14 @@ class Sale extends Model
     public function scopeMonth(Builder $query, $value)
     {
         $query->whereMonth('created_at', $value);
+    }
+    public function scopeToday(Builder $query,$value)
+    {   
+        
+        $query->whereDate('created_at',Carbon::now()->format('Y-m-d'));
+
+    }
+    public function scopeStatus(Builder $query,$value){
+        $query->where('status',$value);
     }
 }

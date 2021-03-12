@@ -6,19 +6,19 @@ use App\Models\Client;
 use Illuminate\Http\Request;
 use App\Http\Resources\TransactionResource;
 use App\Models\Sale;
+use Facade\Ignition\QueryRecorder\Query;
 
 
 class SaleController extends Controller
 {
     public function index()
     {
+        
         if(request()->wantsJson())
         {
-            return Sale::applyFilters();
+            return response()->json(['data' => Sale::query()->applyFilters()->get()]);
         }
-        return view('sales.index',[
-            'now' => now()
-        ]);
+        return view('sales.index');
     }
     public function create()
     {
