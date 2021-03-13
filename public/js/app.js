@@ -3717,20 +3717,35 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     uri: {
       type: String
     }
   },
+  data: function data() {
+    return {
+      today: {
+        "filter[today]": ""
+      },
+      week: {
+        "filter[week]": ""
+      },
+      month: {
+        "filter[currentMonth]": ""
+      },
+      status: {
+        "filter[status]": "completed"
+      }
+    };
+  },
   methods: {
-    getReport: function getReport() {
-      var today = new Date();
+    getReport: function getReport(value) {
       axios.get(this.uri, {
-        params: {
-          "filter[today]": '',
-          "filter[status]": 'completed'
-        }
+        params: _.merge(value, this.status) //_.merge une o conbina dos objetos json
+
       }).then(function (res) {
         console.log(res.data);
       });
@@ -3750,6 +3765,12 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ReportBy_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ReportBy.vue */ "./resources/js/components/reports/ReportBy.vue");
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -23956,18 +23977,52 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
+  return _c("div", { staticClass: "flex justify-center flex-wrap" }, [
     _c(
       "button",
       {
+        staticClass:
+          "text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50 mr-4 rounded px-4 py-2",
         on: {
           click: function($event) {
             $event.preventDefault()
-            return _vm.getReport($event)
+            return _vm.getReport(_vm.today)
           }
         }
       },
       [_vm._v("Hoy")]
+    ),
+    _vm._v(" "),
+    _c(
+      "button",
+      {
+        staticClass:
+          "text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50 mr-4 rounded px-4 py-2",
+        attrs: { href: "#" },
+        on: {
+          click: function($event) {
+            $event.preventDefault()
+            return _vm.getReport(_vm.week)
+          }
+        }
+      },
+      [_vm._v("Semana")]
+    ),
+    _vm._v(" "),
+    _c(
+      "button",
+      {
+        staticClass:
+          "text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50 rounded px-4 py-2",
+        attrs: { href: "#" },
+        on: {
+          click: function($event) {
+            $event.preventDefault()
+            return _vm.getReport(_vm.month)
+          }
+        }
+      },
+      [_vm._v("Mes")]
     )
   ])
 }
@@ -23995,8 +24050,24 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "md:w-4/5 mx-auto shadow rounded px-2 py-4 mt-10" },
-    [_c("report-by", { attrs: { uri: _vm.uri, today: _vm.today } })],
+    { staticClass: "w-full shadow  pb-4 bg-white" },
+    [
+      _c(
+        "h1",
+        {
+          staticClass:
+            "font-extrabold text-center border-b-2 border-gray-300 py-3 text-2xl"
+        },
+        [_vm._v("\n        Corte\n    ")]
+      ),
+      _vm._v(" "),
+      _c("report-by", {
+        staticClass: "mt-4",
+        attrs: { uri: _vm.uri, today: _vm.today }
+      }),
+      _vm._v(" "),
+      _c("transaction-list")
+    ],
     1
   )
 }
@@ -41468,8 +41539,8 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/vagrant/code/franapp/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/vagrant/code/franapp/resources/css/app.css */"./resources/css/app.css");
+__webpack_require__(/*! C:\xampp\htdocs\franapp\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\franapp\resources\css\app.css */"./resources/css/app.css");
 
 
 /***/ })

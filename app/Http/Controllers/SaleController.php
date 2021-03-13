@@ -16,7 +16,7 @@ class SaleController extends Controller
         
         if(request()->wantsJson())
         {
-            return response()->json(['data' => Sale::query()->applyFilters()->get()]);
+            return response()->json(['data' => Sale::with('products')->applyFilters()->get()]);
         }
         return view('sales.index');
     }
@@ -47,6 +47,7 @@ class SaleController extends Controller
                     $fields['phone_number']
                 )->first()
             );
+        $sale->save();
         return response()->json([
             'sale_status' => $sale->status
         ]);

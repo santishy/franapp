@@ -79,7 +79,16 @@ class Sale extends Model
         $query->whereDate('created_at',Carbon::now()->format('Y-m-d'));
 
     }
+    public function scopeCurrentMonth(Builder $query,$value){
+        $query->whereMonth('created_at',Carbon::now()->month);
+    }
     public function scopeStatus(Builder $query,$value){
         $query->where('status',$value);
+    }
+    public function scopeWeek(Builder $query,$value){
+        $query->whereBetween('created_at', [
+            Carbon::now()->startOfWeek(),
+            Carbon::now()->endOfWeek()
+        ]);
     }
 }

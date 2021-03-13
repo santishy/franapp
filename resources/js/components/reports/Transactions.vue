@@ -1,6 +1,12 @@
 <template>
-    <div class="md:w-4/5 mx-auto shadow rounded px-2 py-4 mt-10">
-        <report-by :uri="uri" :today="today"></report-by>
+    <div class="w-full shadow  pb-4 bg-white">
+        <h1
+            class="font-extrabold text-center border-b-2 border-gray-300 py-3 text-2xl"
+        >
+            Corte
+        </h1>
+        <report-by class="mt-4" :uri="uri" :today="today"></report-by>
+        <transaction-list></transaction-list>
     </div>
 </template>
 <script>

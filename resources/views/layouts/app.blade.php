@@ -14,7 +14,7 @@
 <body class="bg-gray-200">
     <div id="app" class="mt-20">
     <nav-component></nav-component>
-        <div class="container mx-auto py-2">
+        <div class="w-full">
             @yield('content')
         </div>
     </div>
