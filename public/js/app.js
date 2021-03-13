@@ -2081,6 +2081,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2097,6 +2102,13 @@ __webpack_require__.r(__webpack_exports__);
       }, {
         name: "Listar",
         url: "/clients"
+      }],
+      ReportsMenu: [{
+        name: "Ventas",
+        url: "/sales/"
+      }, {
+        name: "Compras",
+        url: "/purchases"
       }],
       crfsToken: document.querySelector('meta[name="csrf-token"]').content,
       purchase: false
@@ -2747,7 +2759,6 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-//
 //
 //
 //
@@ -3785,6 +3796,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -3847,7 +3860,6 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ReportBy_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ReportBy.vue */ "./resources/js/components/reports/ReportBy.vue");
-/* harmony import */ var _TransactionList_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./TransactionList.vue */ "./resources/js/components/reports/TransactionList.vue");
 //
 //
 //
@@ -3859,11 +3871,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-
+ //import TransactionList from './TransactionList.vue';
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    TransactionList: _TransactionList_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
     ReportBy: _ReportBy_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   props: {
@@ -22254,7 +22265,12 @@ var render = function() {
                   attrs: { href: "/sales/create" }
                 },
                 [_vm._v("\n                Vender\n            ")]
-              )
+              ),
+              _vm._v(" "),
+              _c("dropdown-component", {
+                staticClass: "md:relative",
+                attrs: { name: "Reportes", items: _vm.ReportsMenu }
+              })
             ],
             1
           ),
@@ -22679,7 +22695,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "w-full  flex justify-center mt-20 bg-transparent" },
+    { staticClass: "w-full px-4  flex justify-center bg-transparent" },
     [
       _c(
         "form",
@@ -22937,35 +22953,33 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "w-full flex justify-center md:mt-20 mt-4 " },
-    [
-      _c(
-        "div",
-        {
-          staticClass:
-            "bg-white shadow rounded max-w-full sm:overflow-x-hidden overflow-x-auto"
-        },
-        [
-          _c("table", { staticClass: "table-auto" }, [
-            _vm._m(0),
-            _vm._v(" "),
-            _c(
-              "tbody",
-              _vm._l(_vm.clients, function(client, index) {
-                return _c("client-list-item", {
-                  key: client.id,
-                  attrs: { client: client, index: index }
-                })
-              }),
-              1
-            )
-          ])
-        ]
-      )
-    ]
-  )
+  return _c("div", { staticClass: "w-full flex justify-center " }, [
+    _c(
+      "div",
+      {
+        staticClass:
+          "bg-white shadow rounded max-w-full sm:overflow-x-hidden overflow-x-auto"
+      },
+      [
+        _vm.clients.length
+          ? _c("table", { staticClass: "table-auto" }, [
+              _vm._m(0),
+              _vm._v(" "),
+              _c(
+                "tbody",
+                _vm._l(_vm.clients, function(client, index) {
+                  return _c("client-list-item", {
+                    key: client.id,
+                    attrs: { client: client, index: index }
+                  })
+                }),
+                1
+              )
+            ])
+          : _vm._e()
+      ]
+    )
+  ])
 }
 var staticRenderFns = [
   function() {
@@ -23078,11 +23092,11 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "grid  grid-cols-1 md:grid-cols-3 gap-4 mt-10" },
+    { staticClass: "grid  grid-cols-1 md:grid-cols-3 gap-4 mt-24 md:mt-32" },
     [
       _c(
         "div",
-        { staticClass: "col-span-3 flex justify-center border py-8" },
+        { staticClass: "col-span-3 flex justify-center" },
         [
           _c("search-component", {
             ref: "search",
@@ -24133,22 +24147,28 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm.transactions.length
-    ? _c("table", { staticClass: "table-auto" }, [
-        _vm._m(0),
-        _vm._v(" "),
-        _c(
-          "tbody",
-          _vm._l(_vm.transactions, function(transaction) {
-            return _c("transaction-list-item", {
-              key: transaction.id,
-              attrs: { transaction: transaction }
-            })
-          }),
-          1
-        )
-      ])
-    : _vm._e()
+  return _c(
+    "div",
+    { staticClass: "container mx-auto mt-4 flex justify-center" },
+    [
+      _vm.transactions.length
+        ? _c("table", { staticClass: "table-auto bg-white" }, [
+            _vm._m(0),
+            _vm._v(" "),
+            _c(
+              "tbody",
+              _vm._l(_vm.transactions, function(transaction) {
+                return _c("transaction-list-item", {
+                  key: transaction.id,
+                  attrs: { transaction: transaction }
+                })
+              }),
+              1
+            )
+          ])
+        : _vm._e()
+    ]
+  )
 }
 var staticRenderFns = [
   function() {
@@ -24156,7 +24176,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("thead", [
-      _c("tr", { staticClass: "bg-gray-200" }, [
+      _c("tr", { staticClass: "bg-purple-200" }, [
         _c("th", { staticClass: "px-4 py-2" }, [_vm._v("ID")]),
         _vm._v(" "),
         _c("th", { staticClass: "px-4 py-2" }, [_vm._v("Fecha")]),
@@ -24241,9 +24261,7 @@ var render = function() {
       _c("report-by", {
         staticClass: "mt-4",
         attrs: { uri: _vm.uri, today: _vm.today }
-      }),
-      _vm._v(" "),
-      _c("transaction-list")
+      })
     ],
     1
   )
@@ -24530,13 +24548,13 @@ var render = function() {
   return _vm.salePriceOption == null
     ? _c(
         "div",
-        { staticClass: "w-full flex justify-center" },
+        { staticClass: "w-full flex justify-center mt-24 md:mt-32" },
         [_c("sale-price-options")],
         1
       )
     : _c(
         "div",
-        { staticClass: "w-full" },
+        { staticClass: "w-full mt-24 md:mt-32" },
         [
           _c(
             "div",
@@ -39406,33 +39424,38 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_notification__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-notification */ "./node_modules/vue-notification/dist/index.js");
 /* harmony import */ var vue_notification__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue_notification__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _vuex_store_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./vuex/store.js */ "./resources/js/vuex/store.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_3__);
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
-window.EventBus = new Vue();
+window.EventBus = new vue__WEBPACK_IMPORTED_MODULE_3___default.a();
 
-Vue.use(vuex__WEBPACK_IMPORTED_MODULE_0__["default"]);
-Vue.component('nav-component', __webpack_require__(/*! ./components/NavComponent.vue */ "./resources/js/components/NavComponent.vue")["default"]);
-Vue.component('errors-component', __webpack_require__(/*! ./components/ErrorsComponent.vue */ "./resources/js/components/ErrorsComponent.vue")["default"]);
-Vue.component('dropdown-component', __webpack_require__(/*! ./components/DropdownComponent.vue */ "./resources/js/components/DropdownComponent.vue")["default"]);
-Vue.component('product-form', __webpack_require__(/*! ./components/products/ProductForm.vue */ "./resources/js/components/products/ProductForm.vue")["default"]);
-Vue.component('products-index', __webpack_require__(/*! ./components/products/IndexComponent.vue */ "./resources/js/components/products/IndexComponent.vue")["default"]);
-Vue.component('purchase-component', __webpack_require__(/*! ./components/purchases/PurchaseComponent.vue */ "./resources/js/components/purchases/PurchaseComponent.vue")["default"]);
-Vue.component('product-in-purchase', __webpack_require__(/*! ./components/purchases/ProductInPurchase.vue */ "./resources/js/components/purchases/ProductInPurchase.vue")["default"]);
-Vue.component('client-form', __webpack_require__(/*! ./components/clients/ClientForm.vue */ "./resources/js/components/clients/ClientForm.vue")["default"]);
-Vue.component('client-list', __webpack_require__(/*! ./components/clients/ClientList.vue */ "./resources/js/components/clients/ClientList.vue")["default"]); //CATEGORIES COMPONENTS
+vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_0__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_3___default.a.component('nav-component', __webpack_require__(/*! ./components/NavComponent.vue */ "./resources/js/components/NavComponent.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_3___default.a.component('errors-component', __webpack_require__(/*! ./components/ErrorsComponent.vue */ "./resources/js/components/ErrorsComponent.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_3___default.a.component('dropdown-component', __webpack_require__(/*! ./components/DropdownComponent.vue */ "./resources/js/components/DropdownComponent.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_3___default.a.component('product-form', __webpack_require__(/*! ./components/products/ProductForm.vue */ "./resources/js/components/products/ProductForm.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_3___default.a.component('products-index', __webpack_require__(/*! ./components/products/IndexComponent.vue */ "./resources/js/components/products/IndexComponent.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_3___default.a.component('purchase-component', __webpack_require__(/*! ./components/purchases/PurchaseComponent.vue */ "./resources/js/components/purchases/PurchaseComponent.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_3___default.a.component('product-in-purchase', __webpack_require__(/*! ./components/purchases/ProductInPurchase.vue */ "./resources/js/components/purchases/ProductInPurchase.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_3___default.a.component('client-form', __webpack_require__(/*! ./components/clients/ClientForm.vue */ "./resources/js/components/clients/ClientForm.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_3___default.a.component('client-list', __webpack_require__(/*! ./components/clients/ClientList.vue */ "./resources/js/components/clients/ClientList.vue")["default"]); //CATEGORIES COMPONENTS
 
-Vue.component('category-form', __webpack_require__(/*! ./components/categories/CategoryForm.vue */ "./resources/js/components/categories/CategoryForm.vue")["default"]);
-Vue.component('category-search', __webpack_require__(/*! ./components/categories/CategorySearch.vue */ "./resources/js/components/categories/CategorySearch.vue")["default"]); //VENTAS COMPONENTES
+vue__WEBPACK_IMPORTED_MODULE_3___default.a.component('category-form', __webpack_require__(/*! ./components/categories/CategoryForm.vue */ "./resources/js/components/categories/CategoryForm.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_3___default.a.component('category-search', __webpack_require__(/*! ./components/categories/CategorySearch.vue */ "./resources/js/components/categories/CategorySearch.vue")["default"]); //VENTAS COMPONENTES
 
-Vue.component('sale-component', __webpack_require__(/*! ./components/sales/SaleComponent */ "./resources/js/components/sales/SaleComponent.vue")["default"]);
-Vue.component('transaction-report', __webpack_require__(/*! ./components/reports/Transactions */ "./resources/js/components/reports/Transactions.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_3___default.a.component('sale-component', __webpack_require__(/*! ./components/sales/SaleComponent */ "./resources/js/components/sales/SaleComponent.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_3___default.a.component('transaction-report', __webpack_require__(/*! ./components/reports/Transactions */ "./resources/js/components/reports/Transactions.vue")["default"]); //transactions
 
-Vue.component('notifications', vue_notification__WEBPACK_IMPORTED_MODULE_1___default.a);
-Vue.use(vue_notification__WEBPACK_IMPORTED_MODULE_1___default.a);
+vue__WEBPACK_IMPORTED_MODULE_3___default.a.component('transaction-list', __webpack_require__(/*! ./components/reports/TransactionList.vue */ "./resources/js/components/reports/TransactionList.vue")["default"]);
+
+vue__WEBPACK_IMPORTED_MODULE_3___default.a.component('notifications', vue_notification__WEBPACK_IMPORTED_MODULE_1___default.a);
+vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vue_notification__WEBPACK_IMPORTED_MODULE_1___default.a);
 
 
-var app = new Vue({
+
+var app = new vue__WEBPACK_IMPORTED_MODULE_3___default.a({
   el: "#app",
   store: _vuex_store_js__WEBPACK_IMPORTED_MODULE_2__["store"]
 });
@@ -41854,8 +41877,8 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\htdocs\franapp\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\franapp\resources\css\app.css */"./resources/css/app.css");
+__webpack_require__(/*! /home/vagrant/code/franapp/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/vagrant/code/franapp/resources/css/app.css */"./resources/css/app.css");
 
 
 /***/ })

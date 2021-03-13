@@ -12,7 +12,7 @@
     @laravelPWA
 </head>
 <body class="bg-gray-200">
-    <div id="app" class="mt-20">
+    <div id="app">
     <nav-component></nav-component>
         <div class="w-full">
             @yield('content')

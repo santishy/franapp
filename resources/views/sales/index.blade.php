@@ -4,4 +4,6 @@
         uri="/sales"
     >
     </transaction-report>
+    <transaction-list>
+    </transaction-list>
 @endsection

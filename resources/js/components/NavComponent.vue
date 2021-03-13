@@ -48,6 +48,11 @@
                 >
                     Vender
                 </a>
+                 <dropdown-component
+                    name="Reportes"
+                    :items="ReportsMenu"
+                    class="md:relative"
+                />
                 
             </div>
             <div>
@@ -86,6 +91,16 @@ export default {
                 {
                     name: "Listar",
                     url: "/clients"
+                }
+            ],
+            ReportsMenu: [
+                {
+                    name: "Ventas",
+                    url: "/sales/"
+                },
+                {
+                    name: "Compras",
+                    url: "/purchases"
                 }
             ],
             crfsToken: document.querySelector('meta[name="csrf-token"]')

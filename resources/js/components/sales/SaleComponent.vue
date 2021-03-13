@@ -1,8 +1,8 @@
 <template>
-    <div v-if="salePriceOption == null" class="w-full flex justify-center">
+    <div v-if="salePriceOption == null" class="w-full flex justify-center mt-24 md:mt-32">
         <sale-price-options></sale-price-options>
     </div>
-    <div v-else class="w-full">
+    <div v-else class="w-full mt-24 md:mt-32">
         <div class="flex justify-center">
             <search-component class="sm:w-64 w-4/5 mx-auto"></search-component>
         </div>

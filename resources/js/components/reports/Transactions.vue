@@ -6,14 +6,14 @@
             Corte
         </h1>
         <report-by class="mt-4" :uri="uri" :today="today"></report-by>
-        <transaction-list></transaction-list>
+        
     </div>
 </template>
 <script>
 import ReportBy from "./ReportBy.vue";
-import TransactionList from './TransactionList.vue';
+//import TransactionList from './TransactionList.vue';
 export default {
-    components:{TransactionList,ReportBy},
+    components:{ReportBy},
     props: {
         today: {
             type: String

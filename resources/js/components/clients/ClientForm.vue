@@ -1,5 +1,5 @@
 <template>
-    <div class="w-full  flex justify-center mt-20 bg-transparent">
+    <div class="w-full px-4  flex justify-center bg-transparent">
         <form
             @submit.prevent="submit"
             class="w-full max-w-md shadow-lg rounded-lg bg-white px-6 py-8"

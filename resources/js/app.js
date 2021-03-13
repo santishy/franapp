@@ -24,11 +24,15 @@ Vue.component('sale-component',require('./components/sales/SaleComponent').defau
 Vue.component('transaction-report',require('./components/reports/Transactions').default)
 
 
+//transactions
+Vue.component('transaction-list',require('./components/reports/TransactionList.vue').default);
+
 import Notifications from 'vue-notification'
 Vue.component('notifications', Notifications);
 Vue.use(Notifications);
 import { store } from './vuex/store.js';
 import VueNotification from 'vue-notification';
+import Vue from 'vue';
 const app = new Vue({
     el: "#app",
     store,

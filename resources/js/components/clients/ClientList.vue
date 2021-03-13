@@ -1,7 +1,7 @@
 <template>
-    <div class="w-full flex justify-center md:mt-20 mt-4 ">
+    <div class="w-full flex justify-center ">
         <div class="bg-white shadow rounded max-w-full sm:overflow-x-hidden overflow-x-auto">
-            <table class="table-auto">
+            <table v-if="clients.length" class="table-auto">
                 <thead>
                     <tr class="bg-danger">
                         <th class="px-4 py-2">Nombre</th>
