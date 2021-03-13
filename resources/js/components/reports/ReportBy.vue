@@ -33,7 +33,7 @@ export default {
                     params: _.merge(value,this.status), //_.merge une o conbina dos objetos json
                 })
                 .then(res => {
-                    console.log(res.data);
+                    EventBus.$emit('transactions-found',res.data.data);
                 });
         }
     }

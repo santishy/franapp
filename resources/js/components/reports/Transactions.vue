@@ -11,7 +11,9 @@
 </template>
 <script>
 import ReportBy from "./ReportBy.vue";
+import TransactionList from './TransactionList.vue';
 export default {
+    components:{TransactionList,ReportBy},
     props: {
         today: {
             type: String
@@ -20,7 +22,6 @@ export default {
             type: String,
             required: true
         }
-    },
-    components: { ReportBy }
+    }
 };
 </script>
