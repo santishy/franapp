@@ -1,5 +1,5 @@
 <template>
-    <div class="w-full shadow  pb-4 bg-white">
+    <div class="w-full shadow  pb-4 bg-white mt-24 md:mt-32">
         <h1
             class="font-extrabold text-center border-b-2 border-gray-300 py-3 text-2xl"
         >

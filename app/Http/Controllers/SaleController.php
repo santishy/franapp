@@ -13,10 +13,12 @@ class SaleController extends Controller
 {
     public function index()
     {
-        
-        if(request()->wantsJson())
-        {
-            return response()->json(['data' => Sale::with('products')->applyFilters()->get()]);
+
+        if (request()->wantsJson()) {
+            return response()->json([
+                'data' =>
+                TransactionResource::collection(Sale::with('products')->applyFilters()->get())
+            ]);
         }
         return view('sales.index');
     }
