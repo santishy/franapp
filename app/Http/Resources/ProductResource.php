@@ -31,6 +31,12 @@ class ProductResource extends JsonResource
             'sale_price' => $this->whenPivotLoaded('product_sale',function(){
                 return $this->pivot->sale_price;
             }),
+            'purchase_quantity' => $this->whenPivotLoaded('product_purchase',function(){
+                return $this->pivot->qty;
+            }),
+            'purchase_price' => $this->whenPivotLoaded('product_purchase',function(){
+                return $this->pivot->purchase_price;
+            }),
         ];
     }
 }

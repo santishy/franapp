@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
+use App\Models\Traits\ReportBy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
 class Purchase extends Model
 {
-    use HasFactory;
+    use HasFactory, ReportBy;
     protected $fillable=['status','total'];
 
     public static function findOrCreateThePurchase(){

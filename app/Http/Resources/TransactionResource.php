@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Str;
 
 class TransactionResource extends JsonResource
 {
@@ -16,6 +17,7 @@ class TransactionResource extends JsonResource
     {
         return [
             'id' => $this->resource->id,
+            'transactionType' => Str::lower(class_basename($this->resource)),
             'total' => $this->resource->total,
             'created_at' => $this->resource->created_at->format('Y-m-d H:m:s'),
             'status' => $this->resource->status,

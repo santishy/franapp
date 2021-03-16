@@ -13,6 +13,7 @@
                 <transaction-list-item
                     v-for="transaction in transactions"
                     :transaction="transaction"
+                    :transaction-type="transaction.transactionType"
                     :key="transaction.id"
                 >
                 </transaction-list-item>

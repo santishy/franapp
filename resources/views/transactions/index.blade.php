@@ -1,0 +1,9 @@
+@extends('layouts.app')
+@section('content')
+    <transaction-report 
+        uri="{{$uri}}"
+    >
+    </transaction-report>
+    <transaction-list>
+    </transaction-list>
+@endsection

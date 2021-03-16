@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\PurchaseResource;
+use App\Http\Resources\TransactionResource;
 use App\Http\Traits\HasTransaction;
 use App\Models\Purchase;
 use Illuminate\Http\Request;
@@ -12,6 +13,13 @@ class PurchaseController extends Controller
     use HasTransaction;
     public function index()
     {
+        if (request()->wantsJson()) {
+            return response()->json([
+                'data' =>
+                TransactionResource::collection(Purchase::with('products')->applyFilters()->get())
+            ]);
+        }
+        return view('transactions.index',['uri' => '/purchases']);
     }
     /*FALTA VALIDAR QUE EL PRODUCTO NO SE REPITA EN LA MISMA COMPRA!!!  PUEDE AGREGARSE OTRO AL DARLE DOBLE CLICK ;) */
     public function store(Request $request)
