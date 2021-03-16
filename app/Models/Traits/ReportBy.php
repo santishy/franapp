@@ -4,6 +4,7 @@ namespace App\Models\Traits;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\DB;
 
 trait ReportBy
 {
@@ -33,5 +34,10 @@ trait ReportBy
             Carbon::now()->startOfWeek(),
             Carbon::now()->endOfWeek()
         ]);
+    }
+
+    public function scopeTotal(Builder $query)
+    {
+        $query->sum(DB::raw('qty * sale_price'));
     }
 }

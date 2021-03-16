@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\DB;
 
 class Sale extends Model
 {
-    use HasFactory,ReportBy;
+    use HasFactory, ReportBy;
 
     protected $guarded = ['id'];
 
@@ -58,9 +58,5 @@ class Sale extends Model
                     'sale_price' => $request->sale_price
                 ]
             );
-    }
-    public function scopeTotal(Builder $query)
-    {
-        $this->sum(DB::raw('qty * sale_price'));
     }
 }

@@ -7,7 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Resources\TransactionResource;
 use App\Models\Sale;
 use Facade\Ignition\QueryRecorder\Query;
-
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\DB;
 
 class SaleController extends Controller
 {
@@ -17,7 +18,9 @@ class SaleController extends Controller
         if (request()->wantsJson()) {
             return response()->json([
                 'data' =>
-                TransactionResource::collection(Sale::with('products')->applyFilters()->get())
+                TransactionResource::collection(Sale::with(['products' => function($query){
+                    $query->sum(\DB::raw('qty * sale_price'));
+                }])->applyFilters()->get())
             ]);
         }
         return view('sales.index');
