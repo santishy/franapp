@@ -19,9 +19,14 @@ class ReportResponse implements Responsable
     {
         $transactions = $this->model->applyFilters();
 
-        return response()->json([
+        $data = [
             'data' =>  TransactionResource::collection($transactions->with('products')->paginate(50)),
-            'total' => $transactions->sum('total')
-        ]);
+        ];
+
+        if(request('page') == 1){
+            $data['total'] = $transactions->sum('total');
+        }
+        
+        return response()->json($data);
     }
 }
