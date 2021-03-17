@@ -5,23 +5,24 @@ namespace App\Http\Controllers;
 use App\Models\Client;
 use Illuminate\Http\Request;
 use App\Http\Resources\TransactionResource;
+use App\Http\Responses\ReportResponse;
 use App\Models\Sale;
 use Facade\Ignition\QueryRecorder\Query;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\DB;
+use SebastianBergmann\Environment\Console;
 
 class SaleController extends Controller
 {
     public function index()
     {
-
         if (request()->wantsJson()) {
-            $transactions = Sale::with(['products'])->applyFilters()->total()->get();
-            return response()->json([
-                'data' =>  TransactionResource::collection($transactions),
-            ]);
+            return new ReportResponse(Sale::query());
         }
-        return view('sales.index');
+        return view('transactions.index',[
+            'uri' => '/sales',
+            'name' => 'Ventas'
+        ]);
     }
     public function create()
     {

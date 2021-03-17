@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\PurchaseResource;
 use App\Http\Resources\TransactionResource;
+use App\Http\Responses\ReportResponse;
 use App\Http\Traits\HasTransaction;
 use App\Models\Purchase;
 use Illuminate\Http\Request;
@@ -14,12 +15,15 @@ class PurchaseController extends Controller
     public function index()
     {
         if (request()->wantsJson()) {
-            return response()->json([
-                'data' =>
-                TransactionResource::collection(Purchase::with('products')->applyFilters()->get())
-            ]);
+            return new ReportResponse(Purchase::query());
         }
-        return view('transactions.index',['uri' => '/purchases']);
+        return view(
+            'transactions.index',
+            [
+                'uri' => '/purchases',
+                'name' => 'Compras'
+            ]
+        );
     }
     /*FALTA VALIDAR QUE EL PRODUCTO NO SE REPITA EN LA MISMA COMPRA!!!  PUEDE AGREGARSE OTRO AL DARLE DOBLE CLICK ;) */
     public function store(Request $request)
@@ -57,11 +61,11 @@ class PurchaseController extends Controller
     public function edit(Purchase $purchase)
     {
     }
-    public function update(Request $request,Purchase $purchase)
+    public function update(Request $request, Purchase $purchase)
     {
-        if($request->status === 'completed')
+        if ($request->status === 'completed')
             $this->deleteSessionVariable('purchase_id');
-            
+
         $purchase->update($request->all());
         return new PurchaseResource($purchase);
     }

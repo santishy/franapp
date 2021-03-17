@@ -1,6 +1,6 @@
 <template>
     <div class="container mx-auto mt-4 flex justify-center">
-        <table v-if="transactions.length" class="table-auto bg-white">
+        <table v-if="this.params" class="table-auto bg-white">
             <thead>
                 <tr class="bg-purple-200">
                     <th class="px-4 py-2">ID</th>
@@ -18,29 +18,70 @@
                 >
                 </transaction-list-item>
             </tbody>
+            <infinite-loading
+                @infinite="infiniteHandler"
+                :identifier="infiniteId"
+            ></infinite-loading>
         </table>
     </div>
 </template>
 <script>
+import InfiniteLoading from "vue-infinite-loading";
 import TransactionListItem from "./TransactionListItem.vue";
 export default {
     components: {
-        TransactionListItem
+        TransactionListItem,
+        InfiniteLoading
     },
     props: {
         transactionType: {
+            type: String
+        },
+        uri: {
             type: String
         }
     },
     data() {
         return {
-            transactions: []
+            transactions: [],
+            page: 1,
+            params: null,
+            infiniteId: 1
         };
     },
     mounted() {
         EventBus.$on("transactions-found", res => {
             this.transactions = res;
         });
+        EventBus.$on("set-parameters", data => {
+            this.changeParams(data);
+        });
+    },
+    methods: {
+        infiniteHandler($state) {
+            axios
+                .get(this.uri, {
+                    params: {
+                        page: this.page,
+                        ...this.params
+                    }
+                })
+                .then(res => {
+                    if (res.data.data.length) {
+                        this.page += 1;
+                        this.transactions.push(...res.data.data);
+                        $state.loaded();
+                    } else {
+                        $state.complete();
+                    }
+                });
+        },
+        changeParams(value) {
+            this.params = value;
+            this.page = 1;
+            this.transactions = [];
+            this.infiniteId += 1;
+        }
     }
 };
 </script>

@@ -3789,12 +3789,24 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: {
-    uri: {
-      type: String
-    }
-  },
   data: function data() {
     return {
       today: {
@@ -3813,12 +3825,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     getReport: function getReport(value) {
-      axios.get(this.uri, {
-        params: _.merge(value, this.status) //_.merge une o conbina dos objetos json
-
-      }).then(function (res) {
-        EventBus.$emit('transactions-found', res.data.data);
-      });
+      EventBus.$emit('set-parameters', _.merge(value, this.status)); //._merge conbina dos json
     }
   }
 });
@@ -3834,7 +3841,31 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _TransactionListItem_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./TransactionListItem.vue */ "./resources/js/components/reports/TransactionListItem.vue");
+/* harmony import */ var vue_infinite_loading__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-infinite-loading */ "./node_modules/vue-infinite-loading/dist/vue-infinite-loading.js");
+/* harmony import */ var vue_infinite_loading__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_infinite_loading__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _TransactionListItem_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./TransactionListItem.vue */ "./resources/js/components/reports/TransactionListItem.vue");
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
 //
 //
 //
@@ -3859,18 +3890,26 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    TransactionListItem: _TransactionListItem_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+    TransactionListItem: _TransactionListItem_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
+    InfiniteLoading: vue_infinite_loading__WEBPACK_IMPORTED_MODULE_0___default.a
   },
   props: {
     transactionType: {
+      type: String
+    },
+    uri: {
       type: String
     }
   },
   data: function data() {
     return {
-      transactions: []
+      transactions: [],
+      page: 1,
+      params: null,
+      infiniteId: 1
     };
   },
   mounted: function mounted() {
@@ -3879,6 +3918,38 @@ __webpack_require__.r(__webpack_exports__);
     EventBus.$on("transactions-found", function (res) {
       _this.transactions = res;
     });
+    EventBus.$on("set-parameters", function (data) {
+      _this.changeParams(data);
+    });
+  },
+  methods: {
+    infiniteHandler: function infiniteHandler($state) {
+      var _this2 = this;
+
+      axios.get(this.uri, {
+        params: _objectSpread({
+          page: this.page
+        }, this.params)
+      }).then(function (res) {
+        if (res.data.data.length) {
+          var _this2$transactions;
+
+          _this2.page += 1;
+
+          (_this2$transactions = _this2.transactions).push.apply(_this2$transactions, _toConsumableArray(res.data.data));
+
+          $state.loaded();
+        } else {
+          $state.complete();
+        }
+      });
+    },
+    changeParams: function changeParams(value) {
+      this.params = value;
+      this.page = 1;
+      this.transactions = [];
+      this.infiniteId += 1;
+    }
   }
 });
 
@@ -3943,20 +4014,26 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
- //import TransactionList from './TransactionList.vue';
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
     ReportBy: _ReportBy_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   props: {
-    today: {
+    name: {
       type: String
-    },
-    uri: {
-      type: String,
-      required: true
     }
+  },
+  data: function data() {
+    return {
+      total: null
+    };
+  },
+  mounted: function mounted() {
+    EventBus.$on('');
   }
 });
 
@@ -4507,7 +4584,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".modal[data-v-53ab54d2] {\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n}\n", ""]);
+exports.push([module.i, ".modal[data-v-53ab54d2] {\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n}\r\n", ""]);
 
 // exports
 
@@ -24932,7 +25009,7 @@ var render = function() {
           }
         }
       },
-      [_vm._v("Hoy")]
+      [_vm._v("\n        Hoy\n    ")]
     ),
     _vm._v(" "),
     _c(
@@ -24948,7 +25025,7 @@ var render = function() {
           }
         }
       },
-      [_vm._v("Semana")]
+      [_vm._v("\n        Semana\n    ")]
     ),
     _vm._v(" "),
     _c(
@@ -24964,7 +25041,7 @@ var render = function() {
           }
         }
       },
-      [_vm._v("Mes")]
+      [_vm._v("\n        Mes\n    ")]
     )
   ])
 }
@@ -24994,24 +25071,34 @@ var render = function() {
     "div",
     { staticClass: "container mx-auto mt-4 flex justify-center" },
     [
-      _vm.transactions.length
-        ? _c("table", { staticClass: "table-auto bg-white" }, [
-            _vm._m(0),
-            _vm._v(" "),
-            _c(
-              "tbody",
-              _vm._l(_vm.transactions, function(transaction) {
-                return _c("transaction-list-item", {
-                  key: transaction.id,
-                  attrs: {
-                    transaction: transaction,
-                    "transaction-type": transaction.transactionType
-                  }
-                })
-              }),
-              1
-            )
-          ])
+      this.params
+        ? _c(
+            "table",
+            { staticClass: "table-auto bg-white" },
+            [
+              _vm._m(0),
+              _vm._v(" "),
+              _c(
+                "tbody",
+                _vm._l(_vm.transactions, function(transaction) {
+                  return _c("transaction-list-item", {
+                    key: transaction.id,
+                    attrs: {
+                      transaction: transaction,
+                      "transaction-type": transaction.transactionType
+                    }
+                  })
+                }),
+                1
+              ),
+              _vm._v(" "),
+              _c("infinite-loading", {
+                attrs: { identifier: _vm.infiniteId },
+                on: { infinite: _vm.infiniteHandler }
+              })
+            ],
+            1
+          )
         : _vm._e()
     ]
   )
@@ -25115,13 +25202,18 @@ var render = function() {
           staticClass:
             "font-extrabold text-center border-b-2 border-gray-300 py-3 text-2xl"
         },
-        [_vm._v("\n        Corte\n    ")]
+        [_vm._v("\n        Reporte de " + _vm._s(_vm.name) + "\n    ")]
       ),
       _vm._v(" "),
-      _c("report-by", {
-        staticClass: "mt-4",
-        attrs: { uri: _vm.uri, today: _vm.today }
-      })
+      _vm.total != null
+        ? _c("div", { staticClass: "w-full" }, [
+            _c("span", [_vm._v("Total:")]),
+            _vm._v(" "),
+            _c("div", [_vm._v(_vm._s(_vm.total))])
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _c("report-by", { staticClass: "mt-4" })
     ],
     1
   )
@@ -42960,8 +43052,8 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/vagrant/code/franapp/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/vagrant/code/franapp/resources/css/app.css */"./resources/css/app.css");
+__webpack_require__(/*! C:\xampp\htdocs\franapp\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\franapp\resources\css\app.css */"./resources/css/app.css");
 
 
 /***/ })

@@ -31,7 +31,6 @@ class JsonApiBuilder
     }
 
 
-
     public function getTransaction()
     {
         return function () {
