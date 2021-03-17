@@ -16,11 +16,9 @@ class SaleController extends Controller
     {
 
         if (request()->wantsJson()) {
+            $transactions = Sale::with(['products'])->applyFilters()->total()->get();
             return response()->json([
-                'data' =>
-                TransactionResource::collection(Sale::with(['products' => function($query){
-                    $query->sum(\DB::raw('qty * sale_price'));
-                }])->applyFilters()->get())
+                'data' =>  TransactionResource::collection($transactions),
             ]);
         }
         return view('sales.index');

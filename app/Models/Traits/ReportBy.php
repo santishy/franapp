@@ -38,6 +38,7 @@ trait ReportBy
 
     public function scopeTotal(Builder $query)
     {
-        $query->sum(DB::raw('qty * sale_price'));
+        $query
+            ->sum('total');
     }
 }
