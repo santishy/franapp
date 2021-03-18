@@ -68,10 +68,17 @@ export default {
                 })
                 .then(res => {
                     if (res.data.data.length) {
+                        if (this.page == 1) {
+                            if(typeof res.data.total == 'undefined')
+                                res.data.total = 0;
+                            EventBus.$emit("calculated-total", res.data.total);
+                        }
                         this.page += 1;
                         this.transactions.push(...res.data.data);
                         $state.loaded();
                     } else {
+                        if(this.page == 1)
+                            EventBus.$emit("calculated-total", res.data.total);
                         $state.complete();
                     }
                 });

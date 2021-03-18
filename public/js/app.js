@@ -3934,12 +3934,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         if (res.data.data.length) {
           var _this2$transactions;
 
+          if (_this2.page == 1) {
+            if (typeof res.data.total == 'undefined') res.data.total = 0;
+            EventBus.$emit("calculated-total", res.data.total);
+          }
+
           _this2.page += 1;
 
           (_this2$transactions = _this2.transactions).push.apply(_this2$transactions, _toConsumableArray(res.data.data));
 
           $state.loaded();
         } else {
+          if (_this2.page == 1) EventBus.$emit("calculated-total", res.data.total);
           $state.complete();
         }
       });
@@ -4033,7 +4039,11 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {
-    EventBus.$on('');
+    var _this = this;
+
+    EventBus.$on('calculated-total', function (total) {
+      _this.total = total;
+    });
   }
 });
 
@@ -4584,7 +4594,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".modal[data-v-53ab54d2] {\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n}\r\n", ""]);
+exports.push([module.i, ".modal[data-v-53ab54d2] {\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n}\n", ""]);
 
 // exports
 
@@ -25200,17 +25210,28 @@ var render = function() {
         "h1",
         {
           staticClass:
-            "font-extrabold text-center border-b-2 border-gray-300 py-3 text-2xl"
+            "font-extrabold text-gray-700  text-center border-b-2 border-gray-300 py-3 text-2xl"
         },
         [_vm._v("\n        Reporte de " + _vm._s(_vm.name) + "\n    ")]
       ),
       _vm._v(" "),
       _vm.total != null
-        ? _c("div", { staticClass: "w-full" }, [
-            _c("span", [_vm._v("Total:")]),
-            _vm._v(" "),
-            _c("div", [_vm._v(_vm._s(_vm.total))])
-          ])
+        ? _c(
+            "div",
+            {
+              staticClass:
+                "w-full bg-blue-600 border-b-2 py-3 text-white border-gray-300 flex justify-center items-center"
+            },
+            [
+              _c("span", { staticClass: "font-semibold text-xl " }, [
+                _vm._v("Total:")
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "font-bold text-2xl ml-2" }, [
+                _vm._v(_vm._s(_vm.total))
+              ])
+            ]
+          )
         : _vm._e(),
       _vm._v(" "),
       _c("report-by", { staticClass: "mt-4" })
@@ -43052,8 +43073,8 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\htdocs\franapp\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\franapp\resources\css\app.css */"./resources/css/app.css");
+__webpack_require__(/*! /home/vagrant/code/franapp/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/vagrant/code/franapp/resources/css/app.css */"./resources/css/app.css");
 
 
 /***/ })
