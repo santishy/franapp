@@ -3934,19 +3934,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         if (res.data.data.length) {
           var _this2$transactions;
 
-          if (_this2.page == 1) {
-            if (typeof res.data.total == 'undefined') res.data.total = 0;
-            EventBus.$emit("calculated-total", res.data.total);
-          }
-
           _this2.page += 1;
 
           (_this2$transactions = _this2.transactions).push.apply(_this2$transactions, _toConsumableArray(res.data.data));
 
           $state.loaded();
         } else {
-          if (_this2.page == 1) EventBus.$emit("calculated-total", res.data.total);
           $state.complete();
+        }
+
+        if (_this2.page < 2 && res.data.data.length) {
+          EventBus.$emit("calculated-total", res.data.total);
         }
       });
     },
@@ -25082,14 +25080,12 @@ var render = function() {
     { staticClass: "container mx-auto mt-4 flex justify-center" },
     [
       this.params
-        ? _c(
-            "table",
-            { staticClass: "table-auto bg-white" },
-            [
-              _vm._m(0),
-              _vm._v(" "),
-              _c(
-                "tbody",
+        ? _c("table", { staticClass: "table-auto bg-white" }, [
+            _vm._m(0),
+            _vm._v(" "),
+            _c(
+              "tbody",
+              [
                 _vm._l(_vm.transactions, function(transaction) {
                   return _c("transaction-list-item", {
                     key: transaction.id,
@@ -25099,16 +25095,15 @@ var render = function() {
                     }
                   })
                 }),
-                1
-              ),
-              _vm._v(" "),
-              _c("infinite-loading", {
-                attrs: { identifier: _vm.infiniteId },
-                on: { infinite: _vm.infiniteHandler }
-              })
-            ],
-            1
-          )
+                _vm._v(" "),
+                _c("infinite-loading", {
+                  attrs: { identifier: _vm.infiniteId },
+                  on: { infinite: _vm.infiniteHandler }
+                })
+              ],
+              2
+            )
+          ])
         : _vm._e()
     ]
   )
@@ -25204,7 +25199,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "w-full shadow  pb-4 bg-white mt-24 md:mt-32" },
+    { staticClass: "w-3/5 mx-auto shadow  pb-4 bg-white mt-24 md:mt-32" },
     [
       _c(
         "h1",

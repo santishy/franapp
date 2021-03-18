@@ -17,11 +17,11 @@
                     :key="transaction.id"
                 >
                 </transaction-list-item>
+                <infinite-loading
+                    @infinite="infiniteHandler"
+                    :identifier="infiniteId"
+                ></infinite-loading>
             </tbody>
-            <infinite-loading
-                @infinite="infiniteHandler"
-                :identifier="infiniteId"
-            ></infinite-loading>
         </table>
     </div>
 </template>
@@ -68,19 +68,17 @@ export default {
                 })
                 .then(res => {
                     if (res.data.data.length) {
-                        if (this.page == 1) {
-                            if(typeof res.data.total == 'undefined')
-                                res.data.total = 0;
-                            EventBus.$emit("calculated-total", res.data.total);
-                        }
                         this.page += 1;
                         this.transactions.push(...res.data.data);
                         $state.loaded();
                     } else {
-                        if(this.page == 1)
-                            EventBus.$emit("calculated-total", res.data.total);
                         $state.complete();
                     }
+                    if(this.page < 2 && res.data.data.length){
+
+                        EventBus.$emit("calculated-total",res.data.total)
+                    }    
+                        
                 });
         },
         changeParams(value) {
