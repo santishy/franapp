@@ -1,23 +1,23 @@
 <template>
-    <div class="rounded overflow-hidden shadow-lg bg-white">
+    <div class="rounded overflow-hidden shadow-lg bg-white text-center">
         <div class=" p-2 border-b-2 border-teal-400">
-            <p>SKU</p>
+            <p class="font-semibold">SKU</p>
             <p>{{ localProduct.sku }}</p>
         </div>
-        <div class=" p-2 border-b-2 border-teal-400">
-            <p>Precio de compra</p>
+        <div class=" px-2 border-b-2 border-teal-400">
+            <p class="font-semibold">Precio de compra</p>
             <input
                 type="number"
                 v-model="localProduct.pivot.purchase_price"
-                class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
+                class="appearance-none bg-transparent border-none w-full text-center bg-gray-300 text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
             />
         </div>
         <div class=" p-2 border-b-2 border-teal-400">
-            <p>Cantidad</p>
+            <p class="font-semibold">Cantidad</p>
             <input
                 type="number"
                 v-model="localProduct.pivot.qty"
-                class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
+                class="appearance-none bg-transparent border-none w-full text-center bg-gray-300 text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
             />
         </div>
         <div class=" p-2 border-b-2 border-teal-400 flex justify-center">
@@ -37,7 +37,7 @@
     </div>
 </template>
 <script>
-import {mapMutations,mapGetters} from 'vuex';
+import { mapMutations, mapGetters } from "vuex";
 export default {
     props: {
         product: {
@@ -53,7 +53,7 @@ export default {
         };
     },
     methods: {
-        ...mapMutations(['setProductsInPurchase','deleteProductInPurchase']),
+        ...mapMutations(["setProductsInPurchase", "deleteProductInPurchase"]),
         update() {
             axios
                 .post(`/products-in-purchases/${this.localProduct.id}`, {
@@ -91,11 +91,14 @@ export default {
                     if (res.data) {
                         let index = this.productExistsInPurchase(
                             this.localProduct.id
-                        )
-                     
+                        );
+
                         this.deleteProductInPurchase(index);
                         EventBus.$emit("purchase-extracted", this.index);
-                        EventBus.$emit("total-updated-purchase",res.data.totalPurchase)
+                        EventBus.$emit(
+                            "total-updated-purchase",
+                            res.data.totalPurchase
+                        );
                     }
                 })
                 .catch(res => {
@@ -103,8 +106,8 @@ export default {
                 });
         }
     },
-    computed:{
-        ...mapGetters(['hasProductsInPurchase','productExistsInPurchase'])
+    computed: {
+        ...mapGetters(["hasProductsInPurchase", "productExistsInPurchase"])
     }
 };
 </script>

@@ -1,6 +1,6 @@
 <template>
     <div class="container mx-auto mt-4 flex justify-center">
-        <table v-if="this.params" class="table-auto bg-white">
+        <table v-if="params" class="table-auto bg-white">
             <thead>
                 <tr class="bg-purple-200">
                     <th class="px-4 py-2">ID</th>
@@ -9,7 +9,8 @@
                     <th class="px-4 py-2">Ver</th>
                 </tr>
             </thead>
-            <tbody>
+
+            <transition-group name="bounce" tag="tbody">
                 <transaction-list-item
                     v-for="transaction in transactions"
                     :transaction="transaction"
@@ -17,11 +18,12 @@
                     :key="transaction.id"
                 >
                 </transaction-list-item>
-                <infinite-loading
-                    @infinite="infiniteHandler"
-                    :identifier="infiniteId"
-                ></infinite-loading>
-            </tbody>
+            </transition-group>
+
+            <infinite-loading
+                @infinite="infiniteHandler"
+                :identifier="infiniteId"
+            ></infinite-loading>
         </table>
     </div>
 </template>
@@ -50,9 +52,9 @@ export default {
         };
     },
     mounted() {
-        EventBus.$on("transactions-found", res => {
+        /*EventBus.$on("transactions-found", res => {
             this.transactions = res;
-        });
+        });*/
         EventBus.$on("set-parameters", data => {
             this.changeParams(data);
         });
@@ -67,6 +69,8 @@ export default {
                     }
                 })
                 .then(res => {
+                    if (this.page == 1)
+                        EventBus.$emit("calculated-total", res.data.total);
                     if (res.data.data.length) {
                         this.page += 1;
                         this.transactions.push(...res.data.data);
@@ -74,11 +78,6 @@ export default {
                     } else {
                         $state.complete();
                     }
-                    if(this.page < 2 && res.data.data.length){
-
-                        EventBus.$emit("calculated-total",res.data.total)
-                    }    
-                        
                 });
         },
         changeParams(value) {

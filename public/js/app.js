@@ -3631,7 +3631,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       localProduct: this.product
     };
   },
-  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapMutations"])(['setProductsInPurchase', 'deleteProductInPurchase'])), {}, {
+  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapMutations"])(["setProductsInPurchase", "deleteProductInPurchase"])), {}, {
     update: function update() {
       var _this = this;
 
@@ -3671,7 +3671,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       });
     }
   }),
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['hasProductsInPurchase', 'productExistsInPurchase']))
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["hasProductsInPurchase", "productExistsInPurchase"]))
 });
 
 /***/ }),
@@ -3889,6 +3889,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -3915,9 +3917,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   mounted: function mounted() {
     var _this = this;
 
-    EventBus.$on("transactions-found", function (res) {
-      _this.transactions = res;
-    });
+    /*EventBus.$on("transactions-found", res => {
+        this.transactions = res;
+    });*/
     EventBus.$on("set-parameters", function (data) {
       _this.changeParams(data);
     });
@@ -3931,6 +3933,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           page: this.page
         }, this.params)
       }).then(function (res) {
+        if (_this2.page == 1) EventBus.$emit("calculated-total", res.data.total);
+
         if (res.data.data.length) {
           var _this2$transactions;
 
@@ -3941,10 +3945,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           $state.loaded();
         } else {
           $state.complete();
-        }
-
-        if (_this2.page < 2 && res.data.data.length) {
-          EventBus.$emit("calculated-total", res.data.total);
         }
       });
     },
@@ -4007,6 +4007,8 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ReportBy_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ReportBy.vue */ "./resources/js/components/reports/ReportBy.vue");
+//
+//
 //
 //
 //
@@ -4592,7 +4594,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".modal[data-v-53ab54d2] {\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n}\n", ""]);
+exports.push([module.i, ".modal[data-v-53ab54d2] {\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n}\r\n", ""]);
 
 // exports
 
@@ -24803,16 +24805,16 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "rounded overflow-hidden shadow-lg bg-white" },
+    { staticClass: "rounded overflow-hidden shadow-lg bg-white text-center" },
     [
       _c("div", { staticClass: " p-2 border-b-2 border-teal-400" }, [
-        _c("p", [_vm._v("SKU")]),
+        _c("p", { staticClass: "font-semibold" }, [_vm._v("SKU")]),
         _vm._v(" "),
         _c("p", [_vm._v(_vm._s(_vm.localProduct.sku))])
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: " p-2 border-b-2 border-teal-400" }, [
-        _c("p", [_vm._v("Precio de compra")]),
+      _c("div", { staticClass: " px-2 border-b-2 border-teal-400" }, [
+        _c("p", { staticClass: "font-semibold" }, [_vm._v("Precio de compra")]),
         _vm._v(" "),
         _c("input", {
           directives: [
@@ -24824,7 +24826,7 @@ var render = function() {
             }
           ],
           staticClass:
-            "appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none",
+            "appearance-none bg-transparent border-none w-full text-center bg-gray-300 text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none",
           attrs: { type: "number" },
           domProps: { value: _vm.localProduct.pivot.purchase_price },
           on: {
@@ -24843,7 +24845,7 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("div", { staticClass: " p-2 border-b-2 border-teal-400" }, [
-        _c("p", [_vm._v("Cantidad")]),
+        _c("p", { staticClass: "font-semibold" }, [_vm._v("Cantidad")]),
         _vm._v(" "),
         _c("input", {
           directives: [
@@ -24855,7 +24857,7 @@ var render = function() {
             }
           ],
           staticClass:
-            "appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none",
+            "appearance-none bg-transparent border-none w-full text-center bg-gray-300 text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none",
           attrs: { type: "number" },
           domProps: { value: _vm.localProduct.pivot.qty },
           on: {
@@ -24920,37 +24922,51 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "grid md:grid-cols-5 md:grid-rows-2 gap-4" },
+    { staticClass: "grid md:grid-cols-5 md:grid-rows-2 gap-4 mt-24 md:mt-32" },
     [
       _c(
         "div",
-        { staticClass: "col-span-2 row-span-1  bg-white rounded px-2 py-4" },
+        {
+          staticClass:
+            "col-span-2 row-span-1  bg-white rounded px-2 py-2  shadow border-gray-400 border"
+        },
         [
           _c(
             "h3",
             {
-              staticClass: "text-2xl font-semibold text-center py-2 px-2 mb-4"
+              staticClass: "text-2xl font-semibold text-center py-2 px-2 mb-2"
             },
             [_vm._v("\n            Compra Actual\n        ")]
           ),
           _vm._v(" "),
           _c("div", { staticClass: "grid md:grid-cols-1 text-center" }, [
             _c("p", { staticClass: "text-xl text-gray-800 mb-2" }, [
-              _c("span", [_vm._v("Total Compra:")]),
-              _vm._v(
-                " $" +
-                  _vm._s(
-                    new Intl.NumberFormat("es-MX").format(
-                      _vm.localTotalPurchase
+              _c("span", { staticClass: "text-2xl" }, [
+                _vm._v("Total Compra:")
+              ]),
+              _vm._v(" "),
+              _c("span", { staticClass: "text-2xl font-semibold" }, [
+                _vm._v(
+                  "$" +
+                    _vm._s(
+                      new Intl.NumberFormat("es-MX").format(
+                        _vm.localTotalPurchase
+                      )
                     )
-                  ) +
-                  "\n            "
-              )
+                )
+              ])
             ]),
             _vm._v(" "),
             _c("p", { staticClass: "text-xl text-gray-800 mb-4" }, [
-              _c("span", [_vm._v("Status:")]),
-              _vm._v(" " + _vm._s(_vm.translateStatus) + "\n            ")
+              _c("span", { staticClass: "text-2x text-gray-600" }, [
+                _vm._v("Status:")
+              ]),
+              _vm._v(" "),
+              _c(
+                "span",
+                { staticClass: "text-2x text-blue-600 font-semibold" },
+                [_vm._v(_vm._s(_vm.translateStatus))]
+              )
             ]),
             _vm._v(" "),
             _c(
@@ -25079,13 +25095,16 @@ var render = function() {
     "div",
     { staticClass: "container mx-auto mt-4 flex justify-center" },
     [
-      this.params
-        ? _c("table", { staticClass: "table-auto bg-white" }, [
-            _vm._m(0),
-            _vm._v(" "),
-            _c(
-              "tbody",
-              [
+      _vm.params
+        ? _c(
+            "table",
+            { staticClass: "table-auto bg-white" },
+            [
+              _vm._m(0),
+              _vm._v(" "),
+              _c(
+                "transition-group",
+                { attrs: { name: "bounce", tag: "tbody" } },
                 _vm._l(_vm.transactions, function(transaction) {
                   return _c("transaction-list-item", {
                     key: transaction.id,
@@ -25095,15 +25114,16 @@ var render = function() {
                     }
                   })
                 }),
-                _vm._v(" "),
-                _c("infinite-loading", {
-                  attrs: { identifier: _vm.infiniteId },
-                  on: { infinite: _vm.infiniteHandler }
-                })
-              ],
-              2
-            )
-          ])
+                1
+              ),
+              _vm._v(" "),
+              _c("infinite-loading", {
+                attrs: { identifier: _vm.infiniteId },
+                on: { infinite: _vm.infiniteHandler }
+              })
+            ],
+            1
+          )
         : _vm._e()
     ]
   )
@@ -25210,24 +25230,26 @@ var render = function() {
         [_vm._v("\n        Reporte de " + _vm._s(_vm.name) + "\n    ")]
       ),
       _vm._v(" "),
-      _vm.total != null
-        ? _c(
-            "div",
-            {
-              staticClass:
-                "w-full bg-blue-600 border-b-2 py-3 text-white border-gray-300 flex justify-center items-center"
-            },
-            [
-              _c("span", { staticClass: "font-semibold text-xl " }, [
-                _vm._v("Total:")
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "font-bold text-2xl ml-2" }, [
-                _vm._v(_vm._s(_vm.total))
-              ])
-            ]
-          )
-        : _vm._e(),
+      _c("transition", { attrs: { name: "fade" } }, [
+        _vm.total != null
+          ? _c(
+              "div",
+              {
+                staticClass:
+                  "w-full bg-blue-600 border-b-2 py-3 text-white border-gray-300 flex justify-center items-center"
+              },
+              [
+                _c("span", { staticClass: "font-semibold text-xl " }, [
+                  _vm._v("Total:")
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "font-bold text-2xl ml-2" }, [
+                  _vm._v("$" + _vm._s(_vm.total))
+                ])
+              ]
+            )
+          : _vm._e()
+      ]),
       _vm._v(" "),
       _c("report-by", { staticClass: "mt-4" })
     ],
@@ -43068,8 +43090,8 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/vagrant/code/franapp/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/vagrant/code/franapp/resources/css/app.css */"./resources/css/app.css");
+__webpack_require__(/*! C:\xampp\htdocs\franapp\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\franapp\resources\css\app.css */"./resources/css/app.css");
 
 
 /***/ })

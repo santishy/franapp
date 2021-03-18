@@ -19,7 +19,7 @@ class TransactionResponse implements Responsable
     function toResponse($request)
     {
         return response()->json([
-            'transaction' => TransactionResource::make( $this->transaction
+            'transaction' =>  TransactionResource::make( $this->transaction
 )        ]) ;
     }
 }
