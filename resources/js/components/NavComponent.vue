@@ -48,12 +48,16 @@
                 >
                     Vender
                 </a>
-                 <dropdown-component
+                <dropdown-component
                     name="Reportes"
                     :items="ReportsMenu"
                     class="md:relative"
                 />
-                
+                <dropdown-component
+                    name="Usuarios"
+                    :items="UsersMenu"
+                    class="md:relative"
+                />
             </div>
             <div>
                 <form action="/logout" method="POST">
@@ -103,6 +107,16 @@ export default {
                     url: "/purchases"
                 }
             ],
+            UsersMenu: [
+                {
+                    name: "Registrar",
+                    url: "/register/"
+                },
+                {
+                    name: "Listar",
+                    url: "/users"
+                }
+            ],
             crfsToken: document.querySelector('meta[name="csrf-token"]')
                 .content,
             purchase: false
@@ -135,9 +149,11 @@ export default {
                 localStorage.removeItem("productsInPurchase");
         }
     },
-    computed:{
-        highlight(){
-            return this.purchase ? 'text-lg text-black-700 border-teal-300 border-b-2' : 'text-gray-200';
+    computed: {
+        highlight() {
+            return this.purchase
+                ? "text-lg text-black-700 border-teal-300 border-b-2"
+                : "text-gray-200";
         }
     }
 };

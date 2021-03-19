@@ -2145,6 +2145,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2168,6 +2172,13 @@ __webpack_require__.r(__webpack_exports__);
       }, {
         name: "Compras",
         url: "/purchases"
+      }],
+      UsersMenu: [{
+        name: "Registrar",
+        url: "/register/"
+      }, {
+        name: "Listar",
+        url: "/users"
       }],
       crfsToken: document.querySelector('meta[name="csrf-token"]').content,
       purchase: false
@@ -2194,7 +2205,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {
     highlight: function highlight() {
-      return this.purchase ? 'text-lg text-black-700 border-teal-300 border-b-2' : 'text-gray-200';
+      return this.purchase ? "text-lg text-black-700 border-teal-300 border-b-2" : "text-gray-200";
     }
   }
 });
@@ -4594,7 +4605,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".modal[data-v-53ab54d2] {\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n}\r\n", ""]);
+exports.push([module.i, ".modal[data-v-53ab54d2] {\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n}\n", ""]);
 
 // exports
 
@@ -23200,6 +23211,11 @@ var render = function() {
               _c("dropdown-component", {
                 staticClass: "md:relative",
                 attrs: { name: "Reportes", items: _vm.ReportsMenu }
+              }),
+              _vm._v(" "),
+              _c("dropdown-component", {
+                staticClass: "md:relative",
+                attrs: { name: "Usuarios", items: _vm.UsersMenu }
               })
             ],
             1
@@ -43090,8 +43106,8 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\htdocs\franapp\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\franapp\resources\css\app.css */"./resources/css/app.css");
+__webpack_require__(/*! /home/vagrant/code/franapp/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/vagrant/code/franapp/resources/css/app.css */"./resources/css/app.css");
 
 
 /***/ })
