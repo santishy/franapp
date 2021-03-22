@@ -30,6 +30,9 @@ Vue.component('transaction-list',require('./components/reports/TransactionList.v
 //auth
 Vue.component('register-component',require('./components/auth/Register.vue').default);
 
+//roles
+Vue.component('create-new-role',require('./components/auth/CreateNewRole.vue').default);
+
 import Notifications from 'vue-notification'
 Vue.component('notifications', Notifications);
 Vue.use(Notifications);

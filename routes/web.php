@@ -7,7 +7,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductsSearchController;
 use App\Http\Controllers\ProductInPurchaseController;
 use App\Http\Controllers\ClientController;
-use App\Http\Controllers\{PurchaseController, ProductInSaleController};
+use App\Http\Controllers\{PurchaseController, ProductInSaleController, RoleController};
 
 
 Route::get('/', function () {
@@ -60,3 +60,9 @@ Route::get('categories', [CategoryController::class, 'index'])->name('categories
 Route::get('sales',[SaleController::class,'index'])->middleware('auth');
 Route::get('sales/create', [SaleController::class, 'create'])->name('sales.create')->middleware('auth');
 Route::post('sales/{sale}', [SaleController::class, 'store'])->name('sales.store')->middleware('auth');
+
+//ROLES
+
+Route::get('roles/create',[RoleController::class,'create'])->middleware('auth');
+Route::get('roles',[RoleController::class,'index'])->middleware('auth');
+Route::post('roles',[RoleController::class,'store'])->middleware('auth');

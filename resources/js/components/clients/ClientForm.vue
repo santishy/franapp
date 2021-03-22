@@ -27,7 +27,7 @@
                     type="text"
                     placeholder="DIRECCION"
                     aria-label="Full name"
-                >
+                />
             </div>
             <div class="flex items-center border-b border-teal-500 py-2">
                 <input
@@ -85,53 +85,51 @@
 
 <script>
 export default {
-    data(){
-        return{
-            form:{},
-            errors:null,
-        }
+    data() {
+        return {
+            form: {},
+            errors: null
+        };
     },
-    mounted(){
-        if(!!this.client){
+    mounted() {
+        if (!!this.client) {
             this.form = this.client;
         }
     },
-    props:{
-        method:{
-            type:String,
-            required:true
+    props: {
+        method: {
+            type: String,
+            required: true
         },
-        client:{
-            type:Object
+        client: {
+            type: Object
         }
     },
-    methods:{
-        submit(){
-            var message="EL cliente se creo correctamente"
-            var url = "/clients"
-            if(this.method == 'put'){
-                message = 'El cliente se modifico correctamente'
-                this.form._method='put';
-                url=`/clients/${this.client.id}`
+    methods: {
+        submit() {
+            var message = "EL cliente se creo correctamente";
+            var url = "/clients";
+            if (this.method == "put") {
+                message = "El cliente se modifico correctamente";
+                this.form._method = "put";
+                url = `/clients/${this.client.id}`;
             }
-            axios['post'](url,this.form)
-                .then((res) => {
-                   
+            axios["post"](url, this.form)
+                .then(res => {
                     this.$notify({
-                        group: 'foo',
-                        title: 'Clientes',
+                        group: "foo",
+                        title: "Clientes",
                         text: message
                     });
-                    if(this.method == 'post')
-                        this.form={};
-                    this.errors=null;
+                    if (this.method == "post") this.form = {};
+                    this.errors = null;
                 })
-                .catch((err) => {
+                .catch(err => {
                     this.errors = Object.values(
                         err.response.data.errors
                     ).flat();
-                })
+                });
         }
     }
-}
+};
 </script>
