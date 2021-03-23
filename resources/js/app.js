@@ -33,6 +33,9 @@ Vue.component('register-component',require('./components/auth/Register.vue').def
 //roles
 Vue.component('create-new-role',require('./components/auth/CreateNewRole.vue').default);
 
+//permissions
+Vue.component('permission-list',require('./components/auth/PermissionList.vue').default);
+
 import Notifications from 'vue-notification'
 Vue.component('notifications', Notifications);
 Vue.use(Notifications);

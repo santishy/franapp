@@ -7,6 +7,7 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 use Spatie\Permission\Exceptions\RoleAlreadyExists;
+use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
 class RoleController extends Controller
@@ -15,12 +16,14 @@ class RoleController extends Controller
     {
         if (request()->wantsJson())
             return response()->json([
-                'data' => Role::all('name', 'id')
+                'data' => Role::all('name', 'id'),
+
             ]);
     }
     public function create()
     {
-        return view('auth.roles.create');
+        $permissions = Permission::all('name','id');
+        return view('auth.roles.create',compact('permissions'));
     }
 
     public function store(Request $request)
