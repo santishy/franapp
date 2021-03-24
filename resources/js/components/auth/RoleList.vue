@@ -37,7 +37,7 @@ export default {
                 }
             })
             .then( response => {
-                console.log(response);
+                EventBus.$emit('permissions-found',response.data);
             });
         }
     }

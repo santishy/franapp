@@ -2,6 +2,9 @@
 
 namespace App\JsonApi;
 
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
+
 class JsonApiBuilder
 {
 
@@ -39,12 +42,19 @@ class JsonApiBuilder
         };
     }
 
-    // public function relathionships()
-    // {
-    //     return function(){
-    //         if(request()->has('include')){
-    //             ;
-    //         }
-    //     }
-    // }
+    public function include()
+    {
+        return function(){
+            $relationships = Str::of(request()->include)->explode(',');
+            foreach($relationships as $relationship){
+                if(!method_exists($this->model,$relationship))
+                    abort(500,'the relationship does not exist');
+                $this->model->{$relationship}();      
+                DB::listen(function($query){
+                    dump($query->sql);
+                });
+            }
+            return $this;
+        };
+    }
 }

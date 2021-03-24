@@ -2329,11 +2329,26 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     permissions: {
       type: Array
     }
+  },
+  data: function data() {
+    return {
+      role: null
+    };
+  },
+  created: function created() {
+    var _this = this;
+
+    EventBus.$on("permissions-found", function (role) {
+      _this.role = role.data;
+    });
   }
 });
 
@@ -2390,7 +2405,7 @@ __webpack_require__.r(__webpack_exports__);
           include: "permissions"
         }
       }).then(function (response) {
-        console.log(response);
+        EventBus.$emit('permissions-found', response.data);
       });
     }
   }
@@ -4791,7 +4806,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".modal[data-v-53ab54d2] {\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n}\n", ""]);
+exports.push([module.i, ".modal[data-v-53ab54d2] {\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n}\r\n", ""]);
 
 // exports
 
@@ -23602,19 +23617,30 @@ var render = function() {
       staticClass:
         "rounded bg-white shadow p-4 mt-24 md:mt-32 flex-wrap flex  items-center "
     },
-    _vm._l(_vm.permissions, function(permission) {
-      return _c("div", { key: permission.id, staticClass: "mr-8" }, [
-        _c("label", { staticClass: "inline-flex items-center" }, [
-          _c("input", {
-            staticClass: "form-checkbox",
-            attrs: { type: "checkbox" }
-          }),
-          _vm._v(" "),
-          _c("span", { staticClass: "ml-2" }, [_vm._v(_vm._s(permission.name))])
+    [
+      _vm.role != null
+        ? _c("div", { staticClass: "w-full" }, [
+            _vm._v("\n        Agregar permisos al rol: "),
+            _c("span", [_vm._v(_vm._s(_vm.role.name))])
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _vm._l(_vm.permissions, function(permission) {
+        return _c("div", { key: permission.id, staticClass: "mr-8" }, [
+          _c("label", { staticClass: "inline-flex items-center" }, [
+            _c("input", {
+              staticClass: "form-checkbox",
+              attrs: { type: "checkbox" }
+            }),
+            _vm._v(" "),
+            _c("span", { staticClass: "ml-2" }, [
+              _vm._v(_vm._s(permission.name))
+            ])
+          ])
         ])
-      ])
-    }),
-    0
+      })
+    ],
+    2
   )
 }
 var staticRenderFns = []
@@ -43913,8 +43939,8 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/vagrant/code/franapp/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/vagrant/code/franapp/resources/css/app.css */"./resources/css/app.css");
+__webpack_require__(/*! C:\xampp\htdocs\franapp\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\franapp\resources\css\app.css */"./resources/css/app.css");
 
 
 /***/ })
