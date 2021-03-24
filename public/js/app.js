@@ -2231,7 +2231,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _mixins_Errors__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../mixins/Errors */ "./resources/js/mixins/Errors.js");
 /* harmony import */ var _mixins_Errors__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_mixins_Errors__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _ErrorsComponent__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../ErrorsComponent */ "./resources/js/components/ErrorsComponent.vue");
-var _data$components$mixi;
+var _data$props$component;
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
@@ -2271,29 +2271,35 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
-/* harmony default export */ __webpack_exports__["default"] = (_data$components$mixi = {
+/* harmony default export */ __webpack_exports__["default"] = (_data$props$component = {
   data: function data() {
     return {
       form: {}
     };
   },
+  props: {
+    roles: {
+      type: Array
+    }
+  },
   components: {
     ErrorsComponent: _ErrorsComponent__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
   mixins: [_mixins_Errors__WEBPACK_IMPORTED_MODULE_1___default.a]
-}, _defineProperty(_data$components$mixi, "components", {
+}, _defineProperty(_data$props$component, "components", {
   RoleList: _RoleList_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
-}), _defineProperty(_data$components$mixi, "methods", {
+}), _defineProperty(_data$props$component, "methods", {
   submit: function submit() {
     var _this = this;
 
     axios.post("/roles", this.form).then(function (res) {
-      console.log(res);
+      console.log(res.data);
+      EventBus.$emit('role-created', res.data);
     })["catch"](function (error) {
       _this.getErrors(error);
     });
   }
-}), _data$components$mixi);
+}), _data$props$component);
 
 /***/ }),
 
@@ -2306,6 +2312,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2345,20 +2357,42 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      roles: []
+      localRoles: []
     };
   },
-  created: function created() {
+  props: {
+    roles: {
+      type: Array
+    }
+  },
+  mounted: function mounted() {
     var _this = this;
 
-    axios('/roles').then(function (res) {
-      if (res.data.data.length) {
-        _this.roles = res.data.data;
-      }
+    this.localRoles = this.roles;
+    EventBus.$on("role-created", function (role) {
+      console.log("se ejecuto");
+
+      _this.roles.unshift(role);
     });
+  },
+  methods: {
+    getPermissions: function getPermissions(id) {
+      axios.get("/roles/".concat(id), {
+        params: {
+          include: "permissions"
+        }
+      }).then(function (response) {
+        console.log(response);
+      });
+    }
   }
 });
 
@@ -23449,7 +23483,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "md:mt-32 mt-24 w-4/12" },
+    { staticClass: "md:mt-32 mt-24" },
     [
       _c(
         "form",
@@ -23519,7 +23553,7 @@ var render = function() {
         ]
       ),
       _vm._v(" "),
-      _c("role-list", { staticClass: "mt-4" })
+      _c("role-list", { staticClass: "mt-4", attrs: { roles: _vm.roles } })
     ],
     1
   )
@@ -23564,13 +23598,16 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "rounded w-8/12 bg-white shadow p-4 mt-24 md:mt-32" },
+    {
+      staticClass:
+        "rounded bg-white shadow p-4 mt-24 md:mt-32 flex-wrap flex  items-center "
+    },
     _vm._l(_vm.permissions, function(permission) {
-      return _c("div", { key: permission.id }, [
+      return _c("div", { key: permission.id, staticClass: "mr-8" }, [
         _c("label", { staticClass: "inline-flex items-center" }, [
           _c("input", {
             staticClass: "form-checkbox",
-            attrs: { type: "checkbox", checked: "" }
+            attrs: { type: "checkbox" }
           }),
           _vm._v(" "),
           _c("span", { staticClass: "ml-2" }, [_vm._v(_vm._s(permission.name))])
@@ -23741,11 +23778,11 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "bg-white w-full rounded shadow p-4 " }, [
+  return _c("div", { staticClass: "bg-white rounded shadow p-4 " }, [
     _c(
       "ul",
       { staticClass: "list-inside bg-gray-200" },
-      _vm._l(_vm.roles, function(role) {
+      _vm._l(_vm.localRoles, function(role) {
         return _c("li", { key: role.id }, [
           _c(
             "a",
@@ -23755,6 +23792,7 @@ var render = function() {
               on: {
                 click: function($event) {
                   $event.preventDefault()
+                  return _vm.getPermissions(role.id)
                 }
               }
             },

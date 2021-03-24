@@ -23,7 +23,8 @@ class RoleController extends Controller
     public function create()
     {
         $permissions = Permission::all('name','id');
-        return view('auth.roles.create',compact('permissions'));
+        $roles = Role::all('name','id');
+        return view('auth.roles.create',compact('permissions','roles'));
     }
 
     public function store(Request $request)
@@ -34,7 +35,7 @@ class RoleController extends Controller
 
         try {
             $role = Role::create(['name' => $request->name]);
-            return $role;
+            return $role->only('id','name');
         } catch (RoleAlreadyExists $e) {
             throw ValidationException::withMessages([
                 'name' => ['El rol ya existe en la base de datos.']
@@ -42,5 +43,9 @@ class RoleController extends Controller
             return false;
             //return ['role' => $e->getMessage()];// or use your own message
         }
+    }
+
+    public function show(Role $role){
+        return role::include();
     }
 }

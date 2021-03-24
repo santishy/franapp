@@ -34,5 +34,10 @@ class PermissionSeeder extends Seeder
         Permission::create(['name' => 'create sale']);
         Permission::create(['name' => 'view sale']);
         Permission::create(['name' => 'delete sale']);
+
+         // permissions to sales
+         Permission::create(['name' => 'create client']);
+         Permission::create(['name' => 'view client']);
+         Permission::create(['name' => 'delete client']);
     }
 }

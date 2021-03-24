@@ -66,3 +66,4 @@ Route::post('sales/{sale}', [SaleController::class, 'store'])->name('sales.store
 Route::get('roles/create',[RoleController::class,'create'])->middleware('auth');
 Route::get('roles',[RoleController::class,'index'])->middleware('auth');
 Route::post('roles',[RoleController::class,'store'])->middleware('auth');
+Route::get('roles/{role}',[RoleController::class,'show'])->middleware('auth');

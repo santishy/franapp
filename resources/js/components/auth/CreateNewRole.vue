@@ -1,5 +1,5 @@
 <template>
-    <div class="md:mt-32 mt-24 w-4/12">
+    <div class="md:mt-32 mt-24">
         <form class="rounded bg-white shadow  p-4" @submit.prevent="submit">
             <div
                 class="flex items-center py-2 text-dark text-center justify-center text-xl font-bold border-b border-teal-500"
@@ -27,7 +27,7 @@
                 </button>
             </div>
         </form>
-        <role-list class="mt-4"></role-list>
+        <role-list class="mt-4" :roles="roles"></role-list>
     </div>
 </template>
 
@@ -40,6 +40,11 @@ export default {
     data: () => ({
         form: {}
     }),
+    props: {
+        roles: {
+            type: Array
+        }
+    },
     components: { ErrorsComponent },
     mixins: [Errors],
     components: { RoleList },
@@ -48,7 +53,8 @@ export default {
             axios
                 .post("/roles", this.form)
                 .then(res => {
-                    console.log(res);
+                    console.log(res.data);
+                    EventBus.$emit('role-created',res.data)
                 })
                 .catch(error => {
                     this.getErrors(error);

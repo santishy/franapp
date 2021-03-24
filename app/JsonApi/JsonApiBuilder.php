@@ -38,4 +38,13 @@ class JsonApiBuilder
             return $transaction;
         };
     }
+
+    // public function relathionships()
+    // {
+    //     return function(){
+    //         if(request()->has('include')){
+    //             ;
+    //         }
+    //     }
+    // }
 }
