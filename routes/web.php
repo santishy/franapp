@@ -6,7 +6,7 @@ use App\Http\Controllers\SaleController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductsSearchController;
 use App\Http\Controllers\ProductInPurchaseController;
-use App\Http\Controllers\ClientController;
+use App\Http\Controllers\{ClientController,RolesPermissionsController};
 use App\Http\Controllers\{PurchaseController, ProductInSaleController, RoleController};
 
 
@@ -67,3 +67,7 @@ Route::get('roles/create',[RoleController::class,'create'])->middleware('auth');
 Route::get('roles',[RoleController::class,'index'])->middleware('auth');
 Route::post('roles',[RoleController::class,'store'])->middleware('auth');
 Route::get('roles/{role}',[RoleController::class,'show'])->middleware('auth');
+
+//ROLES PERMISSIONS
+Route::delete('roles/{role}/permissions',[RolesPermissionsController::class,'destroy'])->middleware('auth');
+Route::post('roles/{role}/permissions',[RolesPermissionsController::class,'store'])->middleware('auth');

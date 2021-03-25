@@ -31,14 +31,22 @@ export default {
     },
     methods: {
         getPermissions(id) {
-            axios.get(`/roles/${id}`, {
-                params: {
-                    include: "permissions"
-                }
-            })
-            .then( response => {
-                EventBus.$emit('permissions-found',response.data);
-            });
+            this.unchekedAll();
+            axios
+                .get(`/roles/${id}`, {
+                    params: {
+                        include: "permissions"
+                    }
+                })
+                .then(response => {
+                    EventBus.$emit("permissions-found", response.data);
+                });
+        },
+        // deselecciona todos los checkbox que se encuentren en ese momento
+        unchekedAll() {
+            document.querySelectorAll(".form-checkbox").forEach(element => {
+                element.checked = false;
+            }); 
         }
     }
 };

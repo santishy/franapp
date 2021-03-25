@@ -49,7 +49,7 @@ class JsonApiBuilder
             foreach($relationships as $relationship){
                 if(!method_exists($this->model,$relationship))
                     abort(500,'the relationship does not exist');
-                $this->with($relationship);      
+                $this->with($relationship.':id,name');      
             }
             return $this;
         };
