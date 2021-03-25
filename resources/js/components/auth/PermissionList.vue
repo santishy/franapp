@@ -9,6 +9,8 @@
             v-for="permission in permissions"
             :key="permission.id"
             class="mr-8"
+            :checked="isChecked"
+            @change="togglePermission(permission)"
         >
             <label class="inline-flex items-center">
                 <input type="checkbox" class="form-checkbox" />
@@ -32,6 +34,16 @@ export default {
         EventBus.$on("permissions-found", role => {
             this.role = role.data;
         });
+    },
+    methods:{
+        isChecked(permission){
+            return this.permissions.includes({'id':permission.id,'name':permission.name})
+        },
+        togglePermission:function(permission,event){
+            console.log(event)
+            //axios[method](`/roles/${this.role.id}/permissions`)
+
+        }
     }
 };
 </script>

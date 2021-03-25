@@ -2332,6 +2332,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     permissions: {
@@ -2349,6 +2351,17 @@ __webpack_require__.r(__webpack_exports__);
     EventBus.$on("permissions-found", function (role) {
       _this.role = role.data;
     });
+  },
+  methods: {
+    isChecked: function isChecked(permission) {
+      return this.permissions.includes({
+        'id': permission.id,
+        'name': permission.name
+      });
+    },
+    togglePermission: function togglePermission(permission, event) {
+      console.log(event); //axios[method](`/roles/${this.role.id}/permissions`)
+    }
   }
 });
 
@@ -4806,7 +4819,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".modal[data-v-53ab54d2] {\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n}\r\n", ""]);
+exports.push([module.i, ".modal[data-v-53ab54d2] {\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n}\n", ""]);
 
 // exports
 
@@ -23626,18 +23639,31 @@ var render = function() {
         : _vm._e(),
       _vm._v(" "),
       _vm._l(_vm.permissions, function(permission) {
-        return _c("div", { key: permission.id, staticClass: "mr-8" }, [
-          _c("label", { staticClass: "inline-flex items-center" }, [
-            _c("input", {
-              staticClass: "form-checkbox",
-              attrs: { type: "checkbox" }
-            }),
-            _vm._v(" "),
-            _c("span", { staticClass: "ml-2" }, [
-              _vm._v(_vm._s(permission.name))
+        return _c(
+          "div",
+          {
+            key: permission.id,
+            staticClass: "mr-8",
+            attrs: { checked: _vm.isChecked },
+            on: {
+              change: function($event) {
+                return _vm.togglePermission(permission)
+              }
+            }
+          },
+          [
+            _c("label", { staticClass: "inline-flex items-center" }, [
+              _c("input", {
+                staticClass: "form-checkbox",
+                attrs: { type: "checkbox" }
+              }),
+              _vm._v(" "),
+              _c("span", { staticClass: "ml-2" }, [
+                _vm._v(_vm._s(permission.name))
+              ])
             ])
-          ])
-        ])
+          ]
+        )
       })
     ],
     2
@@ -43939,8 +43965,8 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\htdocs\franapp\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\franapp\resources\css\app.css */"./resources/css/app.css");
+__webpack_require__(/*! /home/vagrant/code/franapp/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/vagrant/code/franapp/resources/css/app.css */"./resources/css/app.css");
 
 
 /***/ })

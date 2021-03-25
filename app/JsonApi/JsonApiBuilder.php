@@ -44,15 +44,12 @@ class JsonApiBuilder
 
     public function include()
     {
-        return function(){
+        return function($model){
             $relationships = Str::of(request()->include)->explode(',');
             foreach($relationships as $relationship){
                 if(!method_exists($this->model,$relationship))
                     abort(500,'the relationship does not exist');
-                $this->model->{$relationship}();      
-                DB::listen(function($query){
-                    dump($query->sql);
-                });
+                $this->with($relationship);      
             }
             return $this;
         };

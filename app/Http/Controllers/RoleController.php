@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Error;
-use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 use Spatie\Permission\Exceptions\RoleAlreadyExists;
@@ -47,7 +45,7 @@ class RoleController extends Controller
     public function show(Role $role)
     {
         return response()->json([
-            'data' => $role->include()->get()
+            'data' => $role->include($role)->where('id', $role->id)->first()
         ]);
     }
 }
