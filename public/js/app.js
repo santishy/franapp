@@ -2293,7 +2293,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     var _this = this;
 
     axios.post("/roles", this.form).then(function (res) {
-      console.log(res.data);
       EventBus.$emit('role-created', res.data);
     })["catch"](function (error) {
       _this.getErrors(error);
@@ -2343,7 +2342,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     permissions: {
@@ -2352,22 +2350,25 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      role: null
+      role: false
     };
   },
   created: function created() {
     var _this = this;
 
     EventBus.$on("permissions-found", function (role) {
-      _this.role = role.data;
+      //this.role = role.data;
+      Vue.set(_this.$data, "role", role.data);
     });
   },
   methods: {
     isChecked: function isChecked(id) {
-      if (!!this.role) return this.role.permissions.some(function (permission) {
+      if (!!this.role) return this.role.permissions.some(function (permission, index) {
         if (permission.id == id) {
           return true;
         }
+
+        console.log(index);
       });
     },
     togglePermission: function togglePermission(permission, event) {
@@ -2425,8 +2426,6 @@ __webpack_require__.r(__webpack_exports__);
 
     this.localRoles = this.roles;
     EventBus.$on("role-created", function (role) {
-      console.log("se ejecuto");
-
       _this.roles.unshift(role);
     });
   },
@@ -2439,12 +2438,14 @@ __webpack_require__.r(__webpack_exports__);
         }
       }).then(function (response) {
         EventBus.$emit("permissions-found", response.data);
+        console.log('escrito');
       });
     },
     // deselecciona todos los checkbox que se encuentren en ese momento
     unchekedAll: function unchekedAll() {
       document.querySelectorAll(".form-checkbox").forEach(function (element) {
         element.checked = false;
+        console.log(element.checked);
       });
     }
   }
@@ -4845,7 +4846,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".modal[data-v-53ab54d2] {\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n}\r\n", ""]);
+exports.push([module.i, ".modal[data-v-53ab54d2] {\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n}\n", ""]);
 
 // exports
 
@@ -23663,9 +23664,11 @@ var render = function() {
             { staticClass: "w-full text-xl border-gray-300 border-b-2 pb-3" },
             [
               _vm._v("\n        Agregar permisos al rol:\n        "),
-              _c("span", { staticClass: "text-dark font-semibold" }, [
-                _vm._v(_vm._s(_vm.role.name.toUpperCase()))
-              ])
+              !!_vm.role
+                ? _c("span", { staticClass: "text-dark font-semibold" }, [
+                    _vm._v(_vm._s(_vm.role.name.toUpperCase()))
+                  ])
+                : _vm._e()
             ]
           )
         : _vm._e(),
@@ -23685,8 +23688,6 @@ var render = function() {
           [
             _c("label", { staticClass: "inline-flex items-center" }, [
               _c("input", {
-                ref: "permission_" + permission.id,
-                refInFor: true,
                 staticClass: "form-checkbox",
                 attrs: { type: "checkbox" },
                 domProps: { checked: _vm.isChecked(permission.id) }
@@ -43999,8 +44000,8 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\htdocs\franapp\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\franapp\resources\css\app.css */"./resources/css/app.css");
+__webpack_require__(/*! /home/vagrant/code/franapp/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/vagrant/code/franapp/resources/css/app.css */"./resources/css/app.css");
 
 
 /***/ })

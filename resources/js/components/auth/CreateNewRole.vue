@@ -53,7 +53,6 @@ export default {
             axios
                 .post("/roles", this.form)
                 .then(res => {
-                    console.log(res.data);
                     EventBus.$emit('role-created',res.data)
                 })
                 .catch(error => {

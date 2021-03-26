@@ -7,7 +7,7 @@
             class="w-full text-xl border-gray-300 border-b-2 pb-3"
         >
             Agregar permisos al rol:
-            <span class="text-dark font-semibold">{{
+            <span v-if="!!role" class="text-dark font-semibold">{{
                 role.name.toUpperCase()
             }}</span>
         </div>
@@ -21,7 +21,6 @@
                 <input
                     type="checkbox"
                     class="form-checkbox"
-                    :ref="'permission_' + permission.id"
                     :checked="isChecked(permission.id)"
                 />
                 <span class="ml-2">{{ permission.name }}</span>
@@ -38,24 +37,25 @@ export default {
         }
     },
     data: () => ({
-        role: null
+        role: false
     }),
     created() {
         EventBus.$on("permissions-found", role => {
-            this.role = role.data;
+            //this.role = role.data;
+            Vue.set(this.$data, "role", role.data);
         });
     },
     methods: {
         isChecked(id) {
             if (!!this.role)
-                return this.role.permissions.some(permission => {
+                return this.role.permissions.some((permission, index) => {
                     if (permission.id == id) {
                         return true;
                     }
+                    console.log(index);
                 });
         },
         togglePermission(permission, event) {
-            
             let method = "delete";
             if (event.target.checked) method = "post";
             axios[method](`/roles/${this.role.id}/permissions`, {
@@ -67,8 +67,7 @@ export default {
                 .catch(err => {
                     console.log(err);
                 });
-        },
-       
+        }
     }
 };
 </script>

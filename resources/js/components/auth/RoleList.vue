@@ -25,7 +25,6 @@ export default {
     mounted() {
         this.localRoles = this.roles;
         EventBus.$on("role-created", role => {
-            console.log("se ejecuto");
             this.roles.unshift(role);
         });
     },
@@ -40,13 +39,16 @@ export default {
                 })
                 .then(response => {
                     EventBus.$emit("permissions-found", response.data);
+                    console.log('escrito')
                 });
         },
         // deselecciona todos los checkbox que se encuentren en ese momento
         unchekedAll() {
             document.querySelectorAll(".form-checkbox").forEach(element => {
                 element.checked = false;
-            }); 
+                console.log(element.checked)
+            });
+            
         }
     }
 };
