@@ -41,13 +41,12 @@ export default {
     }),
     created() {
         EventBus.$on("permissions-found", role => {
-            this.unchekedAll()
+            this.unchekedAll();
             Vue.set(this.$data, "role", role.data);
         });
     },
     methods: {
         isChecked(id) {
-              
             if (this.role) {
                 return this.role.permissions.some(
                     permission => permission.id === id
@@ -70,7 +69,6 @@ export default {
         },
         unchekedAll() {
             document.querySelectorAll(".form-checkbox").forEach(element => {
-                console.log(element.checked);
                 element.checked = "";
             });
         }

@@ -2402,7 +2402,6 @@ __webpack_require__.r(__webpack_exports__);
     },
     unchekedAll: function unchekedAll() {
       document.querySelectorAll(".form-checkbox").forEach(function (element) {
-        console.log(element.checked);
         element.checked = "";
       });
     }
