@@ -15,10 +15,10 @@
             v-for="permission in permissions"
             :key="permission.id"
             class="mr-8"
-            @change="togglePermission(permission, $event)"
         >
             <label class="inline-flex items-center">
                 <input
+                    @change="togglePermission(permission, $event)"
                     type="checkbox"
                     class="form-checkbox"
                     :checked="isChecked(permission.id)"
@@ -41,32 +41,38 @@ export default {
     }),
     created() {
         EventBus.$on("permissions-found", role => {
-            //this.role = role.data;
+            this.unchekedAll()
             Vue.set(this.$data, "role", role.data);
         });
     },
     methods: {
         isChecked(id) {
-            if (!!this.role)
-                return this.role.permissions.some((permission, index) => {
-                    if (permission.id == id) {
-                        return true;
-                    }
-                    console.log(index);
-                });
+              
+            if (this.role) {
+                return this.role.permissions.some(
+                    permission => permission.id === id
+                );
+            }
         },
         togglePermission(permission, event) {
-            let method = "delete";
-            if (event.target.checked) method = "post";
-            axios[method](`/roles/${this.role.id}/permissions`, {
-                permission_id: permission.id
-            })
-                .then(res => {
-                    console.log(res);
-                })
+            console.log(event.target.checked);
+            let method = "post";
+            var params = { permission_id: permission.id };
+            if (!event.target.checked) {
+                method = "delete";
+                params = { data: params };
+            }
+            axios[method](`/roles/${this.role.id}/permissions`, params)
+                .then(res => {})
                 .catch(err => {
                     console.log(err);
                 });
+        },
+        unchekedAll() {
+            document.querySelectorAll(".form-checkbox").forEach(element => {
+                console.log(element.checked);
+                element.checked = "";
+            });
         }
     }
 };

@@ -1,5 +1,4 @@
 <template>
-
     <form class="w-4/12 mx-auto bg-white rounded shadow-md px-4 py-2 mt-24 md:mt-32">
         <div class="mb-4">
             <h3 class="text-xl">Registrar</h3>
