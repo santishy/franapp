@@ -3,13 +3,13 @@
         class="rounded bg-white shadow py-2 px-4 mt-24 md:mt-32 flex-wrap flex  items-center "
     >
         <div
-            v-if="role != null"
+            v-if="rolePermissions != null"
             class="w-full text-xl border-gray-300 border-b-2 pb-3"
         >
             Agregar permisos al rol:
-            <span v-if="!!role" class="text-dark font-semibold">{{
-                role.name.toUpperCase()
-            }}</span>
+            <!-- <span v-if="!!rolePermissios" class="text-dark font-semibold">{{
+              //  role.name.toUpperCase()
+            }}</span> -->
         </div>
         <div
             v-for="permission in permissions"
@@ -21,7 +21,7 @@
                     @change="togglePermission(permission, $event)"
                     type="checkbox"
                     class="form-checkbox"
-                    :checked="isChecked(permission.id)"
+                    :checked="isChecked(permission.name)"
                 />
                 <span class="ml-2">{{ permission.name }}</span>
             </label>
@@ -37,24 +37,26 @@ export default {
         }
     },
     data: () => ({
-        role: false
+        rolePermissions: false,
+        temp:[]
     }),
     created() {
         EventBus.$on("permissions-found", role => {
-            this.unchekedAll();
-            Vue.set(this.$data, "role", role.data);
+            Vue.set(this.$data, "rolePermissions", role.data);
         });
     },
     methods: {
-        isChecked(id) {
-            if (this.role) {
-                return this.role.permissions.some(
-                    permission => permission.id === id
-                );
+        isChecked(name) {
+            if (!!this.role) {
+                return this.role.permissions.some( (permission,index) => {
+                    if(permission.name == name)
+                    {
+                        return true;
+                    }
+                })
             }
         },
         togglePermission(permission, event) {
-            console.log(event.target.checked);
             let method = "post";
             var params = { permission_id: permission.id };
             if (!event.target.checked) {

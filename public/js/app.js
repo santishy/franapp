@@ -2362,28 +2362,28 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      role: false
+      rolePermissions: false,
+      temp: []
     };
   },
   created: function created() {
     var _this = this;
 
     EventBus.$on("permissions-found", function (role) {
-      _this.unchekedAll();
-
-      Vue.set(_this.$data, "role", role.data);
+      Vue.set(_this.$data, "rolePermissions", role.data);
     });
   },
   methods: {
-    isChecked: function isChecked(id) {
-      if (this.role) {
-        return this.role.permissions.some(function (permission) {
-          return permission.id === id;
+    isChecked: function isChecked(name) {
+      if (!!this.role) {
+        return this.role.permissions.some(function (permission, index) {
+          if (permission.name == name) {
+            return true;
+          }
         });
       }
     },
     togglePermission: function togglePermission(permission, event) {
-      console.log(event.target.checked);
       var method = "post";
       var params = {
         permission_id: permission.id
@@ -2492,7 +2492,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     unchekedAll: function unchekedAll() {
       document.querySelectorAll(".form-checkbox").forEach(function (element) {
         console.log(element.checked);
-        element.checked = '';
+        element.checked = "";
       });
     }
   }
@@ -4893,7 +4893,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".modal[data-v-53ab54d2] {\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n}\r\n", ""]);
+exports.push([module.i, ".modal[data-v-53ab54d2] {\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n}\n", ""]);
 
 // exports
 
@@ -24464,18 +24464,11 @@ var render = function() {
         "rounded bg-white shadow py-2 px-4 mt-24 md:mt-32 flex-wrap flex  items-center "
     },
     [
-      _vm.role != null
+      _vm.rolePermissions != null
         ? _c(
             "div",
             { staticClass: "w-full text-xl border-gray-300 border-b-2 pb-3" },
-            [
-              _vm._v("\n        Agregar permisos al rol:\n        "),
-              !!_vm.role
-                ? _c("span", { staticClass: "text-dark font-semibold" }, [
-                    _vm._v(_vm._s(_vm.role.name.toUpperCase()))
-                  ])
-                : _vm._e()
-            ]
+            [_vm._v("\n        Agregar permisos al rol:\n        ")]
           )
         : _vm._e(),
       _vm._v(" "),
@@ -24485,7 +24478,7 @@ var render = function() {
             _c("input", {
               staticClass: "form-checkbox",
               attrs: { type: "checkbox" },
-              domProps: { checked: _vm.isChecked(permission.id) },
+              domProps: { checked: _vm.isChecked(permission.name) },
               on: {
                 change: function($event) {
                   return _vm.togglePermission(permission, $event)
@@ -44799,8 +44792,8 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\htdocs\franapp\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\franapp\resources\css\app.css */"./resources/css/app.css");
+__webpack_require__(/*! /home/vagrant/code/franapp/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/vagrant/code/franapp/resources/css/app.css */"./resources/css/app.css");
 
 
 /***/ })

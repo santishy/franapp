@@ -30,7 +30,6 @@ export default {
     },
     methods: {
         async getPermissions(id) {
-          
             const response = await axios.get(`/roles/${id}`, {
                 params: {
                     include: "permissions"
@@ -44,8 +43,8 @@ export default {
         // deselecciona todos los checkbox que se encuentren en ese momento
         unchekedAll() {
             document.querySelectorAll(".form-checkbox").forEach(element => {
-                console.log(element.checked)
-                element.checked ='';
+                console.log(element.checked);
+                element.checked = "";
             });
         }
     }
