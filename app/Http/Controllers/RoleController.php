@@ -45,6 +45,6 @@ class RoleController extends Controller
 
     public function show(Role $role)
     {
-        return PermissionResource::collection($role->permissions);
+        return response()->json(['data' => $role->include()->where('id',$role->id)->first()]);
     }
 }

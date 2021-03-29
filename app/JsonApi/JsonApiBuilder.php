@@ -44,7 +44,7 @@ class JsonApiBuilder
 
     public function include()
     {
-        return function($model){
+        return function(){
             $relationships = Str::of(request()->include)->explode(',');
             foreach($relationships as $relationship){
                 if(!method_exists($this->model,$relationship))

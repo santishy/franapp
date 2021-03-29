@@ -8,6 +8,7 @@ use App\Actions\Fortify\UpdateUserPassword;
 use App\Actions\Fortify\UpdateUserProfileInformation;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Fortify\Fortify;
+use Spatie\Permission\Models\Role;
 
 class FortifyServiceProvider extends ServiceProvider
 {
@@ -37,7 +38,8 @@ class FortifyServiceProvider extends ServiceProvider
             return  view('auth.login');
         });
         Fortify::registerView(function () {
-            return view('auth.register');
+            $roles = Role::all('id','name');
+            return view('auth.register',compact('roles'));
         });
         Fortify::requestPasswordResetLinkView(function () {
             return view('auth.forgot-password');

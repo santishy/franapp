@@ -3,13 +3,13 @@
         class="rounded bg-white shadow py-2 px-4 mt-24 md:mt-32 flex-wrap flex  items-center "
     >
         <div
-            v-if="rolePermissions != null"
+            v-if="role != null"
             class="w-full text-xl border-gray-300 border-b-2 pb-3"
         >
             Agregar permisos al rol:
-            <!-- <span v-if="!!rolePermissios" class="text-dark font-semibold">{{
-              //  role.name.toUpperCase()
-            }}</span> -->
+            <span v-if="!!role" class="text-dark font-semibold">{{
+                role.name.toUpperCase()
+            }}</span>
         </div>
         <div
             v-for="permission in permissions"
@@ -37,23 +37,21 @@ export default {
         }
     },
     data: () => ({
-        rolePermissions: false,
-        temp:[]
+        role: false,
     }),
     created() {
         EventBus.$on("permissions-found", role => {
-            Vue.set(this.$data, "rolePermissions", role.data);
+            Vue.set(this.$data, "role", role.data);
         });
     },
     methods: {
         isChecked(name) {
             if (!!this.role) {
-                return this.role.permissions.some( (permission,index) => {
-                    if(permission.name == name)
-                    {
+                return this.role.permissions.some((permission, index) => {
+                    if (permission.name == name) {
                         return true;
                     }
-                })
+                });
             }
         },
         togglePermission(permission, event) {
@@ -64,16 +62,13 @@ export default {
                 params = { data: params };
             }
             axios[method](`/roles/${this.role.id}/permissions`, params)
-                .then(res => {})
+                .then(res => {
+                    this.role.permissions = res.data.permissions;
+                })
                 .catch(err => {
                     console.log(err);
                 });
         },
-        unchekedAll() {
-            document.querySelectorAll(".form-checkbox").forEach(element => {
-                element.checked = "";
-            });
-        }
     }
 };
 </script>
