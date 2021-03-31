@@ -37,6 +37,9 @@ Vue.component('assign-role',require('./components/auth/AssignRole.vue').default)
 //permissions
 Vue.component('permission-list',require('./components/auth/PermissionList.vue').default);
 
+//users 
+Vue.component('user-list',require('./components/users/UserList.vue').default);
+
 import Notifications from 'vue-notification'
 Vue.component('notifications', Notifications);
 Vue.use(Notifications);
