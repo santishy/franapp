@@ -76,3 +76,8 @@ Route::post('roles/{role}/permissions',[RolesPermissionsController::class,'store
 Route::get('users',[UserController::class,'index'])->middleware('auth');
 Route::get('users/{user}/edit',[UserController::class,'edit'])->middleware('auth');
 Route::put('users/{user}',[Usercontroller::class,'update'])->middleware('auth');
+
+//errors
+Route::get('/403',function(){
+    return view('errors.403');
+});

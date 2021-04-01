@@ -26,7 +26,8 @@
     </div>
 </template>
 <script>
-import ProductList from './reports/products/ProductList.vue'
+import ProductList from './reports/products/ProductList.vue';
+
 export default {
     props:{
         products:{

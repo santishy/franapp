@@ -12,6 +12,7 @@ class ProductController extends Controller
 
     public function index()
     {
+        $this->authorize('view',new Product());
         if (request()->wantsJson()) {
             return ProductResource::collection(Product::applyFilters()->paginate(21));
         }
@@ -19,26 +20,31 @@ class ProductController extends Controller
     }
     public function create()
     {
+        $this->authorize('create',new Product());
         return view('products.create');
     }
     public function store(Request $request)
     {
+        
+        $this->authorize('create',new Product());
         $this->validateProduct($request);
         return Product::create($request->all());
     }
     public function edit(Product $product)
     {
+        $this->authorize('update',$product);
         return view('products.edit', compact('product'));
     }
     public function update(Request $request, Product $product)
     {
-
+        $this->authorize('update',$product);
         $this->validateProduct($request);
         $product->update($request->except('_method'));
         return ProductResource::make($product);
     }
     public function destroy(Product $product)
     {
+        $this->authorize('delete',$product);
         return $product->delete();
     }
     public function validateProduct($request)

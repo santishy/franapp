@@ -31,7 +31,8 @@ export default {
             return EventBus.$emit("remove-role", id);
         },
         isChecked(role){
-            return this.hasRoles.some( element => role.id === element.id)
+            if(this.hasRoles)
+                return this.hasRoles.some( element => role.id === element.id)
         }
     }
 };

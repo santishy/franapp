@@ -2271,7 +2271,7 @@ __webpack_require__.r(__webpack_exports__);
       return EventBus.$emit("remove-role", id);
     },
     isChecked: function isChecked(role) {
-      return this.hasRoles.some(function (element) {
+      if (this.hasRoles) return this.hasRoles.some(function (element) {
         return role.id === element.id;
       });
     }
@@ -3553,6 +3553,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _mixins_Errors__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../mixins/Errors */ "./resources/js/mixins/Errors.js");
+/* harmony import */ var _mixins_Errors__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_mixins_Errors__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
@@ -3652,12 +3654,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
+  mixins: [_mixins_Errors__WEBPACK_IMPORTED_MODULE_0___default.a],
   data: function data() {
     return {
       form: {},
-      errors: null,
-      category_name: ''
+      category_name: ""
     };
   },
   mounted: function mounted() {
@@ -3667,7 +3672,7 @@ __webpack_require__.r(__webpack_exports__);
       this.form = this.product;
     }
 
-    EventBus.$on('selected-category', function (category) {
+    EventBus.$on("selected-category", function (category) {
       _this.category_name = category.name;
       _this.form.category_id = category.id;
     });
@@ -3704,7 +3709,7 @@ __webpack_require__.r(__webpack_exports__);
         if (_this2.method == "post") _this2.form = {};
         _this2.errors = null;
       })["catch"](function (err) {
-        _this2.errors = Object.values(err.response.data.errors).flat();
+        _this2.getErrors(err);
       });
     }
   },
@@ -3713,7 +3718,7 @@ __webpack_require__.r(__webpack_exports__);
       return this.category_name;
     },
     hidden: function hidden() {
-      return this.form.category_id ? '' : 'hidden';
+      return this.form.category_id ? "" : "hidden";
     }
   }
 });
@@ -26071,7 +26076,7 @@ var render = function() {
           staticClass:
             "flex items-center py-2 text-dark text-center justify-center text-xl font-bold border-b border-teal-500"
         },
-        [_vm._v("\n            Añadir producto\n        ")]
+        [_vm._v("\n        Añadir producto\n    ")]
       ),
       _vm._v(" "),
       _c(
@@ -26081,9 +26086,7 @@ var render = function() {
           class: _vm.hidden
         },
         [
-          _vm._v(
-            "\n            " + _vm._s(_vm.categoryName) + "\n            "
-          ),
+          _vm._v("\n        " + _vm._s(_vm.categoryName) + "\n        "),
           _c("input", {
             directives: [
               {
@@ -26321,7 +26324,7 @@ var staticRenderFns = [
           staticClass:
             "bg-transparent transition-all duration-500 ease-in-out hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border-b-2 border-blue-500 hover:border-transparent w-full"
         },
-        [_vm._v("\n                Guardar\n            ")]
+        [_vm._v("\n            Guardar\n        ")]
       )
     ])
   }
@@ -45198,7 +45201,12 @@ module.exports = {
   },
   methods: {
     getErrors: function getErrors(err) {
-      console.log(err);
+      var _err$response;
+
+      if ((err === null || err === void 0 ? void 0 : (_err$response = err.response) === null || _err$response === void 0 ? void 0 : _err$response.status) === 403) {
+        window.location.href = '/403';
+      }
+
       this.errors = Object.values(err.response.data.errors).flat();
     }
   }
