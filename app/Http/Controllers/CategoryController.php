@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 class CategoryController extends Controller
 {
     public function index(){
+        $this->authorize('view',new Category);
         $categoryQuery = Category::query();
         return CategoryResource::collection($categoryQuery->applyFilters()->paginate(20));
     }
@@ -20,8 +21,12 @@ class CategoryController extends Controller
             'name.required' => "El campo categoría es requerido.",
             'name.unique' => "La categoría ya existe en la base de datos."
         ]);
+
+        $this->authorize('create',new Category);
+
         return Category::create([
             'name' => $request->name
         ]);
     }
+
 }
