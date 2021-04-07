@@ -17,7 +17,8 @@ class AddCategoryToProductsTable extends Migration
             $table->foreignId('category_id')
                 ->nullable()
                 ->constrained()
-                ->onDelete('set null');
+                ->ondUpdate('cascade')
+                ->onDelete('cascade');
             
         });
     }
@@ -30,7 +31,7 @@ class AddCategoryToProductsTable extends Migration
     public function down()
     {
         Schema::table('products', function (Blueprint $table) {
-            $table->dropColumn('category_id');
+            $table->dropForeign('category_id');
         });
     }
 }
