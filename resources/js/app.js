@@ -45,6 +45,10 @@ Vue.component('notifications', Notifications);
 Vue.use(Notifications);
 import { store } from './vuex/store.js';
 import VueNotification from 'vue-notification';
+import Errors from "./mixins/Errors";
+
+Vue.mixin(Errors);
+
 import Vue from 'vue';
 const app = new Vue({
     el: "#app",

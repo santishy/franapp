@@ -68,7 +68,7 @@
                 />
             </div>
             <div v-if="errors" class="flex items-center mb-3">
-                <errors-component :errors="errors" />
+                <errors-component :errors-found="errors" />
             </div>
 
             <div class="flex justify-center mt-0 mb-0">
@@ -112,7 +112,7 @@ export default {
             if (this.method == "put") {
                 message = "El cliente se modifico correctamente";
                 this.form._method = "put";
-                url = `/clients/${this.client.id}`;
+                url = `/clients/${this.client.phone_number}`;
             }
             axios["post"](url, this.form)
                 .then(res => {
@@ -125,9 +125,7 @@ export default {
                     this.errors = null;
                 })
                 .catch(err => {
-                    this.errors = Object.values(
-                        err.response.data.errors
-                    ).flat();
+                    this.getErrors(err)
                 });
         }
     }

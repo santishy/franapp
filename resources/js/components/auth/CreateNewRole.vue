@@ -17,7 +17,7 @@
                 />
             </div>
             <div v-if="errors" class="flex items-center mb-3">
-                <errors-component :errors="errors" />
+                <errors-component :errors-found="errors" />
             </div>
             <div class="flex justify-center mt-0 mb-0">
                 <button
@@ -33,7 +33,6 @@
 
 <script>
 import RoleList from "./RoleList.vue";
-import Errors from "../../mixins/Errors";
 import ErrorsComponent from "../ErrorsComponent";
 
 export default {
@@ -46,7 +45,6 @@ export default {
         }
     },
     components: { ErrorsComponent },
-    mixins: [Errors],
     components: { RoleList },
     methods: {
         submit() {

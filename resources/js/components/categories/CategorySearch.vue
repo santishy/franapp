@@ -79,7 +79,9 @@ export default {
                         this.categories = res.data.data;
                     }
                 })
-                .catch(err => {});
+                .catch(err => {
+                    this.getErrors(err);
+                });
         }
     }
 };

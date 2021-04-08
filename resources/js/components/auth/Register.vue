@@ -55,7 +55,7 @@
             />
         </div>
         <div v-if="errors" class="flex items-center mb-3">
-            <errors-component :errors="errors" />
+            <errors-component :errors-found="errors" />
         </div>
 
         <div class="flex justify-center mt-0 mb-0">
@@ -68,9 +68,7 @@
     </form>
 </template>
 <script>
-import Errors from "../../mixins/Errors";
 export default {
-    mixins: [Errors],
     props: {
         user: {
             type: Object

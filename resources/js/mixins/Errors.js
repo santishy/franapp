@@ -7,7 +7,7 @@ module.exports = {
     methods:{
         getErrors(err){
             if (err?.response?.status === 403) {
-                window.location.href='/403';
+                return window.location.href='/403';
             }
             this.errors = Object.values(
                 err.response.data.errors

@@ -7,7 +7,7 @@
         <td class="border px-4 py-2">{{ client.company }}</td>
         <td class="border px-4 py-2">
             <a
-                :href="`/clients/${client.id}/edit`"
+                :href="` clients/${client.phone_number}/edit`"
                 class="bg-blue-500 inline-block cursor-pointer hover:bg-blue-400 text-white font-bold py-2 px-4 hover:border-blue-500 rounded"
             >
                 <i class="far fa-edit"></i>
@@ -36,7 +36,7 @@ export default {
     methods: {
         deleteClient() {
             axios
-                .delete(`/clients/${this.client.id}`)
+                .delete(`/clients/${this.client.phone_number}`)
                 .then(res => {
                     if (res.data) {
                         EventBus.$emit("client-removed", this.index);

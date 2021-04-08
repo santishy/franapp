@@ -35,7 +35,7 @@
             />
         </div>
         <div v-if="errors" class="flex items-center mb-3">
-            <errors-component :errors="errors" />
+            <errors-component :errors-found="errors" />
         </div>
 
         <div class="flex justify-center mt-0 mb-0">
@@ -54,7 +54,6 @@ import { mapState, mapMutations } from "vuex";
 export default {
     data: () => ({
         form: {},
-        errors: null
     }),
     methods: {
         ...mapMutations(["toggleActiveSearchCategory"]),
@@ -65,9 +64,8 @@ export default {
                     console.log(res.data);
                 })
                 .catch(err => {
-                    this.errors = Object.values(
-                        err.response.data.errors
-                    ).flat();
+                   
+                    this.getErrors(err)
                 });
         },
         disableCategorySearch() {

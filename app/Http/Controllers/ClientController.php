@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Client;
 use App\Http\Resources\ClientResource;
+use Illuminate\Validation\Rule;
 
 class ClientController extends Controller
 {
@@ -30,7 +31,7 @@ class ClientController extends Controller
         return $request->validate([
             'name' => 'required',
             'address' => 'required',
-            'phone_number' => 'required|unique:clients,phone_number,$request->id',
+            'phone_number' => ['required',Rule::unique('clients')->ignore($request->id)],
             'email' => "required|email|unique:clients,email,$request->id",
             'company' => 'required'
         ],
