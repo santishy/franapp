@@ -10,18 +10,22 @@ use Illuminate\Validation\Rule;
 class ClientController extends Controller
 {
     public function index(){
+
+        $this->authorize('view',new Client);
         if(request()->wantsJson())
             return new ClientResource(Client::paginate(20));
         return view('clients.index');
     }
 
     public function create(){
-
+        $this->authorize('create',new Client);
         return view('clients.create');
 
     }
 
     public function store(Request $request){
+
+        $this->authorize('create',new Client);
         $clientValidated = $this->validateNewClient($request);
         $client = Client::create($clientValidated);
         return ClientResource::make($client);
@@ -47,16 +51,22 @@ class ClientController extends Controller
         ]);
     }
     public function edit(Client $client){
+
+        $this->authorize('update',$client);
         return view('clients.edit',compact('client'));
     }
 
     public function update(Request $request,Client $client){
+
+        $this->authorize('update',$client);
         $clientValidated = $this->validateNewClient($request);
         $client->update($clientValidated);
         return new ClientResource($client);
     }
 
     public function destroy(Client $client){
+
+        $this->authorize('delete',$client);
         return $client->delete();
     }
 }
