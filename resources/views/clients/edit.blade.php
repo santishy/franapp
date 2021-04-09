@@ -6,5 +6,4 @@
         method="put"  
         />
     </div>
-    
 @endsection
