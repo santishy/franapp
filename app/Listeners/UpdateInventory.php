@@ -29,7 +29,7 @@ class UpdateInventory
     {
         $inventory = Inventory::find(request('inventory_id'));
         $productsInStock = $inventory->products();
-        $event->purchase->products->map(function($product) use(){
+        $event->purchase->products()->map(function($product) use(){
             $stock = $productsInStock->where('product_id',$product->id);
             if($stock->exists()){
                 $stock->updateExistingPivot();

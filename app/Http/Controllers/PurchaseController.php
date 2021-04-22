@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\PurchaseComplete;
 use App\Http\Resources\PurchaseResource;
 use App\Http\Resources\TransactionResource;
 use App\Http\Responses\ReportResponse;
 use App\Http\Traits\HasTransaction;
 use App\Models\Purchase;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Event;
 
 class PurchaseController extends Controller
 {
@@ -53,6 +55,7 @@ class PurchaseController extends Controller
     {
         $productsInPurchase = $purchase->products()->get();
         $totalPurchase = $purchase->totalPurchase();
+        dd($purchase->products->toArray());
         return view('purchases.show')
             ->with(compact('productsInPurchase'))
             ->with(compact('totalPurchase'))
@@ -65,8 +68,8 @@ class PurchaseController extends Controller
     {
         if ($request->status === 'completed')
             $this->deleteSessionVariable('purchase_id');
-
         $purchase->update($request->all());
+        PurchaseComplete::dispatch($purchase);
         return new PurchaseResource($purchase);
     }
     public function destroy(Purchase $purchase)
