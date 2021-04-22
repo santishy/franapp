@@ -3,6 +3,7 @@
 namespace App\Listeners;
 
 use App\Events\PurchaseComplete;
+use App\Models\Inventory;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 
@@ -26,6 +27,13 @@ class UpdateInventory
      */
     public function handle(PurchaseComplete $event)
     {
-        $event->purchase->products->mapGroup;
+        $inventory = Inventory::find(request('inventory_id'));
+        $productsInStock = $inventory->products();
+        $event->purchase->products->map(function($product) use(){
+            $stock = $productsInStock->where('product_id',$product->id);
+            if($stock->exists()){
+                $stock->updateExistingPivot();
+            }
+        });
     }
 }
