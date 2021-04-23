@@ -6,7 +6,7 @@ use App\Http\Controllers\SaleController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductsSearchController;
 use App\Http\Controllers\ProductInPurchaseController;
-use App\Http\Controllers\{ClientController,RolesPermissionsController,UserController};
+use App\Http\Controllers\{ClientController, InventoryController, RolesPermissionsController,UserController};
 use App\Http\Controllers\{PurchaseController, ProductInSaleController, RoleController};
 
 
@@ -76,6 +76,9 @@ Route::post('roles/{role}/permissions',[RolesPermissionsController::class,'store
 Route::get('users',[UserController::class,'index'])->middleware('auth');
 Route::get('users/{user}/edit',[UserController::class,'edit'])->middleware('auth');
 Route::put('users/{user}',[UserController::class,'update'])->middleware('auth');
+
+//inventories 
+Route::resource('inventories',InventoryController::class)->middleware('auth');
 
 //errors
 Route::get('/403',function(){

@@ -40,6 +40,9 @@ Vue.component('permission-list',require('./components/auth/PermissionList.vue').
 //users 
 Vue.component('user-list',require('./components/users/UserList.vue').default);
 
+//inventories
+Vue.component('create-inventory',require('./components/inventories/CreateInventory.vue').default)
+
 import Notifications from 'vue-notification'
 Vue.component('notifications', Notifications);
 Vue.use(Notifications);
