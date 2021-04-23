@@ -29,10 +29,13 @@ class UpdateInventory
     {
         $inventory = Inventory::find(request('inventory_id'));
         $productsInStock = $inventory->products();
-        $event->purchase->products()->map(function($product) use(){
+        $event->purchase->products()->get()->map(function($product) use ($productsInStock,$inventory){
             $stock = $productsInStock->where('product_id',$product->id);
             if($stock->exists()){
-                $stock->updateExistingPivot();
+                $productsInStock->updateExistingPivot($stock->id,$stock->stock + $product->pivot->qty);
+            }
+            else{
+                $productsInStock->attach($product->id,['qty' => $product->pivot->qty]);
             }
         });
     }

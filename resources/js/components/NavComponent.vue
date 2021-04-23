@@ -58,6 +58,11 @@
                     :items="UsersMenu"
                     class="md:relative"
                 />
+                 <dropdown-component
+                    name="Inventario"
+                    :items="InventoryMenu"
+                    class="md:relative"
+                />
                 <a
                     href="/roles/create"
                     class="block mt-4 lg:inline-block lg:mt-0 text-gray-200 md:hover:text-white mr-4 md:text-base text-lg"
@@ -101,6 +106,16 @@ export default {
                 {
                     name: "Listar",
                     url: "/clients"
+                }
+            ],
+            InventoryMenu: [
+                {
+                    name: "Añadir",
+                    url: "/inventories/create"
+                },
+                {
+                    name: "Listar",
+                    url: "/inventories"
                 }
             ],
             ReportsMenu: [

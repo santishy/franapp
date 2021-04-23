@@ -2167,6 +2167,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2183,6 +2188,13 @@ __webpack_require__.r(__webpack_exports__);
       }, {
         name: "Listar",
         url: "/clients"
+      }],
+      InventoryMenu: [{
+        name: "Añadir",
+        url: "/inventories/create"
+      }, {
+        name: "Listar",
+        url: "/inventories"
       }],
       ReportsMenu: [{
         name: "Ventas",
@@ -24522,6 +24534,11 @@ var render = function() {
               _c("dropdown-component", {
                 staticClass: "md:relative",
                 attrs: { name: "Usuarios", items: _vm.UsersMenu }
+              }),
+              _vm._v(" "),
+              _c("dropdown-component", {
+                staticClass: "md:relative",
+                attrs: { name: "Inventario", items: _vm.InventoryMenu }
               }),
               _vm._v(" "),
               _c(
