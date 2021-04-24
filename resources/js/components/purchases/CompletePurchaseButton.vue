@@ -16,13 +16,24 @@ export default {
             type: Number
         }
     },
+    data:()=>{
+        return {
+            inventory_id:null
+        }
+    },
+    mounted(){
+        EventBus.$on('selected-inventory',(id)=>{
+            this.inventory_id = id;
+        })
+    },
     methods: {
         completePurchase() {
             axios
                 .put(`/purchases/${this.purchase.id}`, {
                     status: "completed",
                     total: this.totalPurchase,
-                    _method:"put"
+                    _method:"put",
+                    inventory_id : this.inventory_id
                 })
                 .then(res => {
                     EventBus.$emit('purchase-completed',res.data.data)

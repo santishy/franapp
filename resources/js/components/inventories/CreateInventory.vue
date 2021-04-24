@@ -64,7 +64,7 @@ export default {
                         title: "Almacenes",
                         text: message
                     });
-                    if (this.method == "post") this.form = {};
+                    this.form = {};
                     this.errors = null;
                 })
                 .catch(err => {

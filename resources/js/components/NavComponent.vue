@@ -59,7 +59,7 @@
                     class="md:relative"
                 />
                  <dropdown-component
-                    name="Inventario"
+                    name="Almacenes"
                     :items="InventoryMenu"
                     class="md:relative"
                 />

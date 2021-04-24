@@ -4,5 +4,6 @@
         :products-in-purchase="{{json_encode($productsInPurchase)}}"
         :total-purchase="{{$totalPurchase}}"
         :purchase="{{json_encode($purchase)}}"
+        :inventories="{{json_encode($inventories)}}"
     />
 @endsection

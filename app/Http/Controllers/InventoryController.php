@@ -16,8 +16,10 @@ class InventoryController extends Controller
 
     public function store(Request $request){
         $fields = $request->validate([
-            
+            'name' => ['required','unique:inventories,name'],
+            'address' => ['required']
         ]);
+        return Inventory::create($fields);
     }
 
     public function edit(Inventory $inventory,Request $request){
