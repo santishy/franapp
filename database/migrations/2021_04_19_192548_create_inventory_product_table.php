@@ -17,6 +17,7 @@ class CreateInventoryProductTable extends Migration
             $table->id();
             $table->foreignId('product_id')->constrained()->cascadeOnDelete();
             $table->foreignId('inventory_id')->constrained()->cascadeOnDelete();
+            $table->integer('stock')->default(0);
             $table->timestamps();
         });
     }

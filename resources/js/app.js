@@ -42,6 +42,7 @@ Vue.component('user-list',require('./components/users/UserList.vue').default);
 
 //inventories
 Vue.component('create-inventory',require('./components/inventories/CreateInventory.vue').default)
+Vue.component('inventory-list',require('./components/inventories/InventoryList.vue').default)
 
 import Notifications from 'vue-notification'
 Vue.component('notifications', Notifications);
