@@ -34,7 +34,7 @@ class UpdateInventory
             if ($stock->exists()) {
                 $productsInStock->updateExistingPivot(
                     $stock->first()->id, 
-                    ['stock' => $stock->first()->stock + $product->pivot->qty]
+                    ['stock' => $stock->first()->pivot->stock + $product->pivot->qty]
                 );
             } else {
                 $productsInStock->attach($product->id, ['stock' => $product->pivot->qty]);
