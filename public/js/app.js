@@ -26272,14 +26272,16 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "w-full mt-24 md:mt-32 flex" }, [
-    _c("div", { staticClass: "w-1/5" }, [
+    _c("div", { staticClass: "w-1/5 px-2" }, [
       _c(
         "ul",
+        { staticClass: "bg-white shadow-sm runded w-full text-center" },
         _vm._l(_vm.inventories, function(inventory) {
           return _c("li", { key: inventory.id }, [
             _c(
               "a",
               {
+                staticClass: "block p-4",
                 attrs: { href: "#" },
                 on: {
                   click: function($event) {

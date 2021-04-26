@@ -1,9 +1,9 @@
 <template>
     <div class="w-full mt-24 md:mt-32 flex">
-        <div class="w-1/5">
-            <ul>
+        <div class="w-1/5 px-2">
+            <ul class="bg-white shadow-sm runded w-full text-center">
                 <li v-for="inventory in inventories" :key="inventory.id">
-                    <a href="#" @click="selectedInventory(inventory)">{{ inventory.name }}</a>
+                    <a href="#" class="block p-4" @click="selectedInventory(inventory)">{{ inventory.name }}</a>
                 </li>
             </ul>
         </div>
