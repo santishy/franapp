@@ -3478,7 +3478,10 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     var _this = this;
 
     EventBus.$on("selected-inventory", function (inventory) {
+      _this.products = [];
       _this.inventory = inventory;
+
+      _this.reloadIndex();
     });
   },
   methods: {
@@ -3505,6 +3508,11 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       })["catch"](function (err) {
         console.log(err);
       });
+    },
+    reloadIndex: function reloadIndex() {
+      this.infiniteId++;
+      this.wantedProduct = null;
+      this.page = 1;
     }
   }
 });
