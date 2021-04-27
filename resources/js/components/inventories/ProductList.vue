@@ -1,50 +1,65 @@
 <template>
-    <table v-if="products.length" class="table-auto text-center bg-white" >
-        <thead class="bg-purple-200">
-            <th class="p-3">SKU</th>
-            <th class="p-3">Descripción</th>
-            <th class="p-3">Existencias</th>
-            <th class="p-3">Acciones</th>
-        </thead>
-        <transition-group name="bounce" tag="tbody">
-            <tr v-for="product in products" :key="product.id">
-                <td class="border px-4 py-2">{{product.sku}}</td>
-                <td class="border px-4 py-2">{{product.description}}</td>
-                <td class="border px-4 py-2">{{product.stock}}</td>
-                <td class="border px-4 py-2"></td>
-            </tr>
-        </transition-group>
-    </table>
+    <div v-if="inventory">
+        <table class="table-auto text-center bg-white">
+            <thead class="bg-purple-200">
+                <th class="p-3">SKU</th>
+                <th class="p-3">Descripción</th>
+                <th class="p-3">Existencias</th>
+                <th class="p-3">Acciones</th>
+            </thead>
+            <transition-group name="bounce" tag="tbody">
+                <tr v-for="product in products" :key="product.id">
+                    <td class="border px-4 py-2">{{ product.sku }}</td>
+                    <td class="border px-4 py-2">{{ product.description }}</td>
+                    <td class="border px-4 py-2">{{ product.stock }}</td>
+                    <td class="border px-4 py-2"></td>
+                </tr>
+            </transition-group>
+        </table>
+        <infinite-loading
+            :identifier="infiniteId"
+            @infinite="getProducts"
+        ></infinite-loading>
+    </div>
 </template>
 <script>
+import InfiniteLoading from "vue-infinite-loading";
 export default {
-    data(){
+    data() {
         return {
-            products:[],
-            inventory:null
-        }
+            products: [],
+            inventory: null,
+            page:1,
+            infiniteId: 1,
+        };
     },
-    mounted(){
-        EventBus.$on('selected-inventory',(inventory) => {
+    mounted() {
+        EventBus.$on("selected-inventory", inventory => {
             this.inventory = inventory;
-            this.getProducts()
         });
     },
-    methods:{
-        getProducts(){
-            axios.get(`/inventories/${this.inventory.id}`,{
-                params:{
-                    'include':'products' 
-                }
-            })
-            .then( res => {
-                this.products = []
-                this.products = res.data.data.products;
-            })
-            .catch( err => {
-                console.log(err)
-            })
+    methods: {
+        getProducts($state) {
+            axios
+                .get(`/inventories/${this.inventory.id}`, {
+                    params: {
+                        include: "products",
+                        page:this.page
+                    }
+                })
+                .then(res => {
+                    if (res.data.data.products.length) {
+                        this.page += 1;
+                        this.products.push(...res.data.data.products);
+                        $state.loaded();
+                    }else{
+                        $state.complete();
+                    }
+                })
+                .catch(err => {
+                    console.log(err);
+                });
         }
     }
-}
+};
 </script>

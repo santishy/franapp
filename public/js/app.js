@@ -3426,6 +3426,20 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vue_infinite_loading__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-infinite-loading */ "./node_modules/vue-infinite-loading/dist/vue-infinite-loading.js");
+/* harmony import */ var vue_infinite_loading__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_infinite_loading__WEBPACK_IMPORTED_MODULE_0__);
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
 //
 //
 //
@@ -3444,33 +3458,50 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       products: [],
-      inventory: null
+      inventory: null,
+      page: 1,
+      infiniteId: 1
     };
   },
   mounted: function mounted() {
     var _this = this;
 
-    EventBus.$on('selected-inventory', function (inventory) {
+    EventBus.$on("selected-inventory", function (inventory) {
       _this.inventory = inventory;
-
-      _this.getProducts();
     });
   },
   methods: {
-    getProducts: function getProducts() {
+    getProducts: function getProducts($state) {
       var _this2 = this;
 
       axios.get("/inventories/".concat(this.inventory.id), {
         params: {
-          'include': 'products'
+          include: "products",
+          page: this.page
         }
       }).then(function (res) {
-        _this2.products = [];
-        _this2.products = res.data.data.products;
+        if (res.data.data.products.length) {
+          var _this2$products;
+
+          _this2.page += 1;
+
+          (_this2$products = _this2.products).push.apply(_this2$products, _toConsumableArray(res.data.data.products));
+
+          $state.loaded();
+        } else {
+          $state.complete();
+        }
       })["catch"](function (err) {
         console.log(err);
       });
@@ -26370,35 +26401,46 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm.products.length
+  return _vm.inventory
     ? _c(
-        "table",
-        { staticClass: "table-auto text-center bg-white" },
+        "div",
         [
-          _vm._m(0),
-          _vm._v(" "),
           _c(
-            "transition-group",
-            { attrs: { name: "bounce", tag: "tbody" } },
-            _vm._l(_vm.products, function(product) {
-              return _c("tr", { key: product.id }, [
-                _c("td", { staticClass: "border px-4 py-2" }, [
-                  _vm._v(_vm._s(product.sku))
-                ]),
-                _vm._v(" "),
-                _c("td", { staticClass: "border px-4 py-2" }, [
-                  _vm._v(_vm._s(product.description))
-                ]),
-                _vm._v(" "),
-                _c("td", { staticClass: "border px-4 py-2" }, [
-                  _vm._v(_vm._s(product.stock))
-                ]),
-                _vm._v(" "),
-                _c("td", { staticClass: "border px-4 py-2" })
-              ])
-            }),
-            0
-          )
+            "table",
+            { staticClass: "table-auto text-center bg-white" },
+            [
+              _vm._m(0),
+              _vm._v(" "),
+              _c(
+                "transition-group",
+                { attrs: { name: "bounce", tag: "tbody" } },
+                _vm._l(_vm.products, function(product) {
+                  return _c("tr", { key: product.id }, [
+                    _c("td", { staticClass: "border px-4 py-2" }, [
+                      _vm._v(_vm._s(product.sku))
+                    ]),
+                    _vm._v(" "),
+                    _c("td", { staticClass: "border px-4 py-2" }, [
+                      _vm._v(_vm._s(product.description))
+                    ]),
+                    _vm._v(" "),
+                    _c("td", { staticClass: "border px-4 py-2" }, [
+                      _vm._v(_vm._s(product.stock))
+                    ]),
+                    _vm._v(" "),
+                    _c("td", { staticClass: "border px-4 py-2" })
+                  ])
+                }),
+                0
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c("infinite-loading", {
+            attrs: { identifier: _vm.infiniteId },
+            on: { infinite: _vm.getProducts }
+          })
         ],
         1
       )
