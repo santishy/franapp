@@ -8,15 +8,30 @@
 </template>
 <script>
 export default {
+    data(){
+        return {
+            inventory_id:null
+        }
+    },
     props: {
         id: {
             type: Number
         }
     },
+    mounted(){
+        EventBus.$on('selected-inventory',(id)=>{
+            this.inventory_id = id;
+        })
+    },
     methods: {
         cancelPurchase() {
             axios
-                .delete("/purchases/" + this.id)
+                .delete("/purchases/" + this.id,{
+                    params:{
+                        inventory_id:this.inventory_id,
+                        factor:-1
+                    }
+                })
                 .then(res => {
                     if (res.data.delete) {
                         localStorage.removeItem('productsInPurchase');
