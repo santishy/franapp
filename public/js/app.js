@@ -3479,9 +3479,10 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
     EventBus.$on("selected-inventory", function (inventory) {
       _this.products = [];
-      _this.inventory = inventory;
 
       _this.reloadIndex();
+
+      _this.inventory = inventory;
     });
   },
   methods: {
@@ -3511,7 +3512,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     },
     reloadIndex: function reloadIndex() {
       this.infiniteId++;
-      this.wantedProduct = null;
+      this.inventory = null;
       this.page = 1;
     }
   }

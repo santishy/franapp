@@ -36,8 +36,9 @@ export default {
     mounted() {
         EventBus.$on("selected-inventory", inventory => {
             this.products = []
-            this.inventory = inventory;
             this.reloadIndex()
+            this.inventory = inventory;
+            
         });
     },
     methods: {
@@ -64,7 +65,7 @@ export default {
         },
         reloadIndex() {
             this.infiniteId++;
-            this.wantedProduct = null;
+            this.inventory = null;
             this.page = 1;
         },
     }
