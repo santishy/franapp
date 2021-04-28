@@ -28,18 +28,16 @@ class UpdateInventory
     public function handle(PurchaseComplete $event)
     {
         $inventory = Inventory::find(request('inventory_id'));
-        $factor = request('factor',1); // para sumar o restar segun se tenga que actualizar
-        $productsInStock = $inventory->products();
-        $event->purchase->products()->get()->map(function ($product) use ($factor,$productsInStock, $inventory) {
-        
-            $stock = $productsInStock->where('product_id', $product->id);
+        $factor = request('factor', 1); // para sumar o restar segun se tenga que actualizar
+        $event->purchase->products()->get()->map(function ($product) use ($inventory,$factor) {
+            $stock = $inventory->products()->where('inventory_product.product_id', $product->id);
             if ($stock->exists()) {
-                $productsInStock->updateExistingPivot(
-                    $stock->first()->id, 
+                $inventory->products()->updateExistingPivot(
+                    $stock->first()->id,
                     ['stock' => $stock->first()->pivot->stock + ($factor * $product->pivot->qty)]
                 );
             } else {
-                $productsInStock->attach($product->id, ['stock' => $product->pivot->qty]);
+                $inventory->products()->attach($product->id, ['stock' => $product->pivot->qty]);
             }
         });
     }
