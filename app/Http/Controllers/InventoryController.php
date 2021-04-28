@@ -12,6 +12,11 @@ class InventoryController extends Controller
 {
     public function index()
     {
+        if(request()->wantsJson()){
+            return response()->json([
+                'data' => Inventory::all()
+            ]);
+        }
         return view('inventories.index', ['inventories' => Inventory::all()]);
     }
     public function create()

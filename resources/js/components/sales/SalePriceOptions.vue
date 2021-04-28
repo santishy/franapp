@@ -15,18 +15,29 @@
                 Al por mayor
             </button>
         </div>
+        <div class="mt-2 mb-2 flex flex-wrap">
+            <inventory-list></inventory-list>
+        </div>
     </div>
 </template>
 
 <script>
-import {mapMutations} from 'vuex'
+import { mapMutations } from "vuex";
+import InventoryList from "../inventories/InventoryList.vue";
+
 export default {
-    methods:{
-        changeSaleOption(value){
+    mounted(){
+        console.log(this.inventories)
+    },
+    components: {
+        InventoryList
+    },
+    methods: {
+        changeSaleOption(value) {
             this.setSalePriceOption(value);
-            sessionStorage.setItem('salePriceOption',value);
+            sessionStorage.setItem("salePriceOption", value);
         },
-        ...mapMutations(['setSalePriceOption'])
+        ...mapMutations(["setSalePriceOption"])
     }
 };
 </script>

@@ -6,6 +6,7 @@ use App\Models\Client;
 use Illuminate\Http\Request;
 use App\Http\Resources\TransactionResource;
 use App\Http\Responses\ReportResponse;
+use App\Models\Inventory;
 use App\Models\Sale;
 use Facade\Ignition\QueryRecorder\Query;
 use Illuminate\Database\Eloquent\Builder;
@@ -27,7 +28,11 @@ class SaleController extends Controller
     public function create()
     {
         $sale = Sale::find(session()->get('sale_id'));
-        return view('sales.create', ['sale' => $sale ? TransactionResource::make($sale) : null]);
+        $inventories = Inventory::all();
+        return view('sales.create', [
+            'sale' => $sale ? TransactionResource::make($sale) : null,
+            'inventories' => $inventories
+        ]);
     }
 
 

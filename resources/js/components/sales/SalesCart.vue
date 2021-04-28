@@ -128,6 +128,9 @@ export default {
                 .post(`/sales/${this.localSale.id}`, this.form)
                 .then(res => {
                     this.sale_status = res.data.sale_status;
+                    if(this.sale_status == 'completed'){
+                        sessionStorage.removeItem('salePriceOption');
+                    }
 
                 })
                 .catch(err => {

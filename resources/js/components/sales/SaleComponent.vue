@@ -32,7 +32,8 @@ export default {
     props: {
         sale: {
             type: Object
-        }
+        },
+   
     },
     computed:{
         ...mapState(['salePriceOption'])

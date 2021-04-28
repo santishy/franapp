@@ -5188,6 +5188,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _inventories_InventoryList_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../inventories/InventoryList.vue */ "./resources/js/components/inventories/InventoryList.vue");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -5214,14 +5215,24 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  mounted: function mounted() {
+    console.log(this.inventories);
+  },
+  components: {
+    InventoryList: _inventories_InventoryList_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+  },
   methods: _objectSpread({
     changeSaleOption: function changeSaleOption(value) {
       this.setSalePriceOption(value);
-      sessionStorage.setItem('salePriceOption', value);
+      sessionStorage.setItem("salePriceOption", value);
     }
-  }, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapMutations"])(['setSalePriceOption']))
+  }, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapMutations"])(["setSalePriceOption"]))
 });
 
 /***/ }),
@@ -5368,6 +5379,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       if (this.getStatus === 'pending') this.form.status = "completed";else this.form.status = "pending";
       axios.post("/sales/".concat(this.localSale.id), this.form).then(function (res) {
         _this2.sale_status = res.data.sale_status;
+
+        if (_this2.sale_status == 'completed') {
+          sessionStorage.removeItem('salePriceOption');
+        }
       })["catch"](function (err) {
         _this2.getErrors(err);
       });
@@ -28175,7 +28190,14 @@ var render = function() {
           },
           [_vm._v("\n            Al por mayor\n        ")]
         )
-      ])
+      ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "mt-2 mb-2 flex flex-wrap" },
+        [_c("inventory-list")],
+        1
+      )
     ]
   )
 }
