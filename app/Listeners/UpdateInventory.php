@@ -27,6 +27,8 @@ class UpdateInventory
      */
     public function handle(PurchaseComplete $event)
     {
+        if($event->purchase->status != 'completed')
+            return;
         $inventory = Inventory::find(request('inventory_id'));
         $factor = request('factor', 1); // para sumar o restar segun se tenga que actualizar
         $event->purchase->products()->get()->map(function ($product) use ($inventory,$factor) {
