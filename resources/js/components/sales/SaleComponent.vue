@@ -33,7 +33,6 @@ export default {
         sale: {
             type: Object
         },
-   
     },
     computed:{
         ...mapState(['salePriceOption'])

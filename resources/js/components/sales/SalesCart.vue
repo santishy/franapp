@@ -9,7 +9,7 @@
                         <a
                             href="#"
                             class="text-indigo-500 hover:text-indigo-700"
-                            @click=""
+                        
                             >Volver a eligir tipo de venta</a
                         >
                     </div>

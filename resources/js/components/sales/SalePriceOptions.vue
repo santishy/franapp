@@ -15,9 +15,6 @@
                 Al por mayor
             </button>
         </div>
-        <div class="mt-2 mb-2 flex flex-wrap">
-            <inventory-list></inventory-list>
-        </div>
     </div>
 </template>
 
