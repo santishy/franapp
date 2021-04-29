@@ -3,10 +3,20 @@
         <form class="py-4" @submit.prevent="submit">
             <div v-if="localSale != null">
                 <div
-                    class="w-full flex flex-wrap justify-end mb-4 text-gray-600"
+                    class="w-full flex flex-wrap md:justify-between mb-4 text-gray-600"
                 >
-                    <p class="mr-2">Status:</p>
-                    <p>{{ getStatus }}</p>
+                    <div class="md:w-64 w-full">
+                        <a
+                            href="#"
+                            class="text-indigo-500 hover:text-indigo-700"
+                            @click=""
+                            >Volver a eligir tipo de venta</a
+                        >
+                    </div>
+                    <div class="md:w-64 w-full">
+                        <p class="mr-2">Status:</p>
+                        <p>{{ getStatus }}</p>
+                    </div>
                 </div>
                 <div
                     class=" flex flex-wrap justify-center items-center text-center"
@@ -37,7 +47,7 @@
                 class="  rounded transition-all duration-500 ease-in-out  font-semibold hover:text-white py-2 px-4 border-l-2 border-r-2 border-green-500 hover:border-transparent w-full"
                 :class="[getClass]"
             >
-                Cambiar a {{modifyTo}}
+                Cambiar a {{ modifyTo }}
             </button>
         </form>
         <div v-if="localSale !== null">
@@ -55,16 +65,16 @@
 <script>
 import CartProduct from "./CartProduct";
 import { mapState, mapMutations } from "vuex";
-import Errors from '../../mixins/Errors';
+import Errors from "../../mixins/Errors";
 export default {
     components: { "cart-product": CartProduct },
-    mixins:[Errors],
+    mixins: [Errors],
     data() {
         return {
             form: {},
             products: [],
             localSale: {},
-            sale_status: null,
+            sale_status: null
         };
     },
     props: {
@@ -86,19 +96,17 @@ export default {
         EventBus.$on("product-added-sales-cart", res => {
             this.localSale = res;
             this.products = res.products;
-            
         });
-        EventBus.$on("product-removed",index => {
-            this.products.splice(index,1);
-
-        })
+        EventBus.$on("product-removed", index => {
+            this.products.splice(index, 1);
+        });
     },
     computed: {
-        getClass(){
-            if(this.getStatus == 'pending')
-                return 'hover:bg-green-500 text-green-700 bg-green-300';
-            if(this.getStatus == 'completed')
-                return 'hover:bg-yellow-500 text-yellow-700 bg-yellow-300';
+        getClass() {
+            if (this.getStatus == "pending")
+                return "hover:bg-green-500 text-green-700 bg-green-300";
+            if (this.getStatus == "completed")
+                return "hover:bg-yellow-500 text-yellow-700 bg-yellow-300";
         },
         getTotal() {
             var total = 0;
@@ -110,31 +118,26 @@ export default {
         getStatus() {
             return this.sale_status ? this.sale_status : this.localSale.status;
         },
-        modifyTo(){
-            if(this.getStatus == 'pending')
-                return 'Completada';
-            if(this.getStatus == 'completed')
-                return 'Pendiente';
+        modifyTo() {
+            if (this.getStatus == "pending") return "Completada";
+            if (this.getStatus == "completed") return "Pendiente";
         },
         ...mapState(["salePriceOption"])
     },
     methods: {
         submit() {
-            if(this.getStatus === 'pending')
-                this.form.status = "completed";
-            else 
-                this.form.status = "pending"
+            if (this.getStatus === "pending") this.form.status = "completed";
+            else this.form.status = "pending";
             axios
                 .post(`/sales/${this.localSale.id}`, this.form)
                 .then(res => {
                     this.sale_status = res.data.sale_status;
-                    if(this.sale_status == 'completed'){
-                        sessionStorage.removeItem('salePriceOption');
+                    if (this.sale_status == "completed") {
+                        sessionStorage.removeItem("salePriceOption");
                     }
-
                 })
                 .catch(err => {
-                    this.getErrors(err); 
+                    this.getErrors(err);
                 });
         }
     }
