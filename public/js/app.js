@@ -5255,6 +5255,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -5399,7 +5400,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       _this.products.splice(index, 1);
     });
   },
-  computed: _objectSpread({
+  computed: {
     getClass: function getClass() {
       if (this.getStatus == "pending") return "hover:bg-green-500 text-green-700 bg-green-300";
       if (this.getStatus == "completed") return "hover:bg-yellow-500 text-yellow-700 bg-yellow-300";
@@ -5418,8 +5419,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       if (this.getStatus == "pending") return "Completada";
       if (this.getStatus == "completed") return "Pendiente";
     }
-  }, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])(["salePriceOption"])),
-  methods: {
+  },
+  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapMutations"])(['setSalePriceOption'])), {}, {
     submit: function submit() {
       var _this2 = this;
 
@@ -5433,8 +5434,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       })["catch"](function (err) {
         _this2.getErrors(err);
       });
+    },
+    resetPriceType: function resetPriceType() {
+      sessionStorage.removeItem("salePriceOption");
+      this.setSalePriceOption(null);
     }
-  }
+  })
 });
 
 /***/ }),
@@ -28307,8 +28312,11 @@ var render = function() {
           },
           [_vm._v("\n            Al por mayor\n        ")]
         )
-      ])
-    ]
+      ]),
+      _vm._v(" "),
+      _c("inventory-list")
+    ],
+    1
   )
 }
 var staticRenderFns = []
@@ -28355,7 +28363,17 @@ var render = function() {
                     "w-full flex flex-wrap md:justify-between mb-4 text-gray-600"
                 },
                 [
-                  _vm._m(0),
+                  _c("div", { staticClass: "md:w-64 w-full" }, [
+                    _c(
+                      "a",
+                      {
+                        staticClass: "text-indigo-500 hover:text-indigo-700",
+                        attrs: { href: "#" },
+                        on: { click: _vm.resetPriceType }
+                      },
+                      [_vm._v("Volver a eligir tipo de venta")]
+                    )
+                  ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "md:w-64 w-full" }, [
                     _c("p", { staticClass: "mr-2" }, [_vm._v("Status:")]),
@@ -28471,23 +28489,7 @@ var render = function() {
       : _vm._e()
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "md:w-64 w-full" }, [
-      _c(
-        "a",
-        {
-          staticClass: "text-indigo-500 hover:text-indigo-700",
-          attrs: { href: "#" }
-        },
-        [_vm._v("Volver a eligir tipo de venta")]
-      )
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

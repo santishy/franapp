@@ -15,6 +15,7 @@
                 Al por mayor
             </button>
         </div>
+        <inventory-list></inventory-list>
     </div>
 </template>
 

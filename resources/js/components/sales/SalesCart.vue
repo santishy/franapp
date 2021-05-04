@@ -9,7 +9,7 @@
                         <a
                             href="#"
                             class="text-indigo-500 hover:text-indigo-700"
-                        
+                            @click="resetPriceType"
                             >Volver a eligir tipo de venta</a
                         >
                     </div>
@@ -122,9 +122,9 @@ export default {
             if (this.getStatus == "pending") return "Completada";
             if (this.getStatus == "completed") return "Pendiente";
         },
-        ...mapState(["salePriceOption"])
     },
     methods: {
+        ...mapMutations(['setSalePriceOption']),
         submit() {
             if (this.getStatus === "pending") this.form.status = "completed";
             else this.form.status = "pending";
@@ -139,6 +139,10 @@ export default {
                 .catch(err => {
                     this.getErrors(err);
                 });
+        },
+        resetPriceType(){
+            sessionStorage.removeItem("salePriceOption");
+            this.setSalePriceOption(null);
         }
     }
 };
