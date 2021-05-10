@@ -7,6 +7,8 @@ use Illuminate\Contracts\Validation\Rule;
 
 class Stock implements Rule
 {
+    public $stock;
+    public $product;
     /**
      * Create a new rule instance.
      *
@@ -30,7 +32,9 @@ class Stock implements Rule
 
         $product = $Inventory->products()->wherePivot(request('product_id'))->first();
 
-        if($product->pivot->stock >= $value)
+        $this->stock = $product->pivot->stock;
+
+        if($this->stock >= $value)
             return true;
 
         return false;
@@ -43,6 +47,6 @@ class Stock implements Rule
      */
     public function message()
     {
-        return 'No hay existencias de ese producto.';
+        return "No hay suficientes existencias [{$this->stock}] .";
     }
 }
