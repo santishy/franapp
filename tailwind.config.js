@@ -22,6 +22,7 @@ module.exports = {
   },
   variants: {
     tableLayout: ['responsive', 'hover', 'focus'],
+    borderWidth: ['responsive', 'last', 'hover', 'focus'],
   },
   plugins: [],
 }

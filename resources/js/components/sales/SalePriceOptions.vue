@@ -1,6 +1,8 @@
 <template>
     <div class="mt-4 bg-white w-4/5 shaddow rounded-sm border py-4 px-4">
-        <p class="text-center text-2xl">Tipo de venta</p>
+        <p class="text-center text-2xl mb-4">Elige un almacén</p>
+        <inventory-list class="mb-4"></inventory-list>
+        <p class="text-center text-2xl">Precio de venta</p>
         <div class="flex justify-center mt-2 mb-2">
             <button
                 @click="changeSaleOption('retail_price')"
@@ -15,7 +17,7 @@
                 Al por mayor
             </button>
         </div>
-        <inventory-list></inventory-list>
+        
     </div>
 </template>
 

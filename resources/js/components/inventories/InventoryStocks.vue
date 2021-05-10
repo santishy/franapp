@@ -10,16 +10,14 @@
 </template>
 
 <script>
-import InventoryList from './InventoryList.vue';
+import InventoryList from "./InventoryList.vue";
 import ProductList from "./ProductList";
 export default {
-    components: { ProductList , InventoryList },
+    components: { ProductList, InventoryList },
     props: {
-        
         InventoryListinventories: {
             type: Array
         }
-    },
-  
+    }
 };
 </script>
