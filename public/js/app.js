@@ -3423,6 +3423,7 @@ __webpack_require__.r(__webpack_exports__);
     selectedInventory: function selectedInventory(index, inventory) {
       this.selectedIndex = index;
       sessionStorage.setItem('inventory_id', inventory.id);
+      EventBus.$emit('selected-inventory', inventory);
     }
   }
 });
@@ -4989,7 +4990,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var _this = this;
 
       axios.post("/sales/".concat(this.product.id, "/products"), {
-        salePriceOption: this.salePriceOption
+        salePriceOption: this.salePriceOption,
+        inventory_id: sessionStorage.getItem('inventory_id')
       }).then(function (res) {
         EventBus.$emit("product-added-sales-cart", res.data.transaction);
 
@@ -46262,6 +46264,8 @@ module.exports = {
   methods: {
     getErrors: function getErrors(err) {
       var _err$response;
+
+      console.log(err.errors);
 
       if ((err === null || err === void 0 ? void 0 : (_err$response = err.response) === null || _err$response === void 0 ? void 0 : _err$response.status) === 403) {
         return window.location.href = '/403';

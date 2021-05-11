@@ -30,7 +30,8 @@ export default {
         submit() {
             axios
                 .post(`/sales/${this.product.id}/products`, {
-                    salePriceOption: this.salePriceOption
+                    salePriceOption: this.salePriceOption,
+                    inventory_id: sessionStorage.getItem('inventory_id'),
                 })
                 .then(res => {
                     EventBus.$emit(

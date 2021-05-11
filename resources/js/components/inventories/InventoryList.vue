@@ -39,8 +39,12 @@ export default {
     },
     methods: {
         selectedInventory(index,inventory){
+            
             this.selectedIndex = index;
+
             sessionStorage.setItem('inventory_id',inventory.id);
+
+            EventBus.$emit('selected-inventory',inventory);
         }
     }
 };

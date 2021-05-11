@@ -6,6 +6,7 @@ module.exports = {
     },
     methods:{
         getErrors(err){
+            console.log(err)
             if (err?.response?.status === 403) {
                 return window.location.href='/403';
             }

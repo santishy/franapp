@@ -9,6 +9,8 @@ use App\Http\Resources\ProductResource;
 use App\Http\Responses\SessionInactive;
 use App\Http\Responses\TransactionResponse;
 use App\Http\Traits\HasTransaction;
+use App\Models\Inventory;
+use App\Rules\Stock;
 
 class ProductInSaleController extends Controller
 {
@@ -18,9 +20,19 @@ class ProductInSaleController extends Controller
 
     public function store(Request $request, Product $product)
     {
-        $request->validate([
-            'salePriceOption' => ['required', 'regex:/retail_price|wholesale_price/']
-        ], ['salePriceOption.required' => 'Debes elegir un precio de venta antes de comenzar']);
+
+        $request->validate(
+            [
+                'salePriceOption' => ['required', 'regex:/retail_price|wholesale_price/'],
+                'inventory_id' => ['required'],
+            ],
+            [
+                'salePriceOption.required' => 'Debes elegir un precio de venta antes de comenzar'
+            ]
+        );
+
+        Inventory::find($request->inventory_id)->hasStock($product);
+        
         $sale = Sale::getTransaction();
         $sale->transactions($product);
         $request->product = $product;
