@@ -20,7 +20,7 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
-        PurchaseComplete::class => [
+        TransactionComplete::class => [
             UpdateInventory::class,
         ]
         

@@ -19,7 +19,7 @@
 import ProductMatching from "../products/ProductMatching.vue";
 import SearchComponent from "../products/SearchComponent.vue";
 import SalePriceOptions from "./SalePriceOptions.vue";
-import {mapState,mapMutations} from "vuex";
+import {mapState} from "vuex";
 import SalesCart from "./SalesCart";
 
 export default {

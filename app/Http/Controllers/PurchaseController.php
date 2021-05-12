@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Events\PurchaseComplete;
+use App\Events\TransactionComplete;
 use App\Http\Resources\PurchaseResource;
 use App\Http\Resources\TransactionResource;
 use App\Http\Responses\ReportResponse;
@@ -72,16 +72,18 @@ class PurchaseController extends Controller
             'status' => ['required'],
             'inventory_id' => ['required']
         ]);
+
         if ($request->status === 'completed')
             $this->deleteSessionVariable('purchase_id');
+
         $purchase->update($request->all());
-        PurchaseComplete::dispatch($purchase);
+        TransactionComplete::dispatch($purchase);
         return new PurchaseResource($purchase);
     }
     public function destroy(Purchase $purchase)
     {
         $this->deleteSessionVariable('purchase_id');
-        PurchaseComplete::dispatch($purchase);
+        TransactionComplete::dispatch($purchase);
         return response()->json([
             'delete' => $purchase->delete()
         ]);

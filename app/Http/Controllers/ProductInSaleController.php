@@ -46,13 +46,15 @@ class ProductInSaleController extends Controller
             'sale_price' => 'numeric|required|min:1',
             'product_id' => 'required|exists:product_sale,product_id'
         ]);
+        
+        Inventory::find($request->inventory_id)->hasStock($product,$request->qty);
 
         $sale = Sale::find(session()->get('sale_id'));
 
         $sale->products()
             ->updateExistingPivot(
                 $request->product_id,
-                $request->except('product_id', '_method')
+                $request->except('product_id', '_method','inventory_id')
             );
 
         return response()->json(

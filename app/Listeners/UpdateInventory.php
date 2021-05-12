@@ -2,7 +2,7 @@
 
 namespace App\Listeners;
 
-use App\Events\PurchaseComplete;
+use App\Events\TransactionComplete;
 use App\Models\Inventory;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
@@ -22,16 +22,16 @@ class UpdateInventory
     /**
      * Handle the event.
      *
-     * @param  PurchaseComplete  $event
+     * @param  TransactionComplete  $event
      * @return void
      */
-    public function handle(PurchaseComplete $event)
+    public function handle(TransactionComplete $event)
     {
-        if($event->purchase->status != 'completed')
+        if($event->transaction->status != 'completed')
             return;
         $inventory = Inventory::find(request('inventory_id'));
         $factor = request('factor', 1); // para sumar o restar segun se tenga que actualizar
-        $event->purchase->products()->get()->map(function ($product) use ($inventory,$factor) {
+        $event->transaction->products()->get()->map(function ($product) use ($inventory,$factor) {
             $stock = $inventory->products()->where('inventory_product.product_id', $product->id);
             if ($stock->exists()) {
                 $inventory->products()->updateExistingPivot(

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\TransactionComplete;
 use App\Models\Client;
 use Illuminate\Http\Request;
 use App\Http\Resources\TransactionResource;
@@ -42,13 +43,21 @@ class SaleController extends Controller
         $fields = $request->validate([
             'status' => ['required', 'regex:/completed|cancelled|pending/'],
             'total' => 'numeric|required',
-            'phone_number' => 'exists:clients,phone_number|required'
+            'phone_number' => 'exists:clients,phone_number|required',
+            'inventory_id' => ['required']
         ]);
+
         if ($fields['status'] === 'completed')
             request()->session()->forget('sale_id');
         else
             request()->session()->put('sale_id', $sale->id);
+
         $sale->update($fields);
+
+        $request->factor =-1; // PARA QUE RESTE LAS EXISTENCIAS
+        
+        TransactionComplete::dispatch($sale);
+
         $sale->client()
             ->associate(
                 Client::where(

@@ -10,18 +10,18 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class PurchaseComplete
+class TransactionComplete
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
-    public $purchase;
+    public $transaction;
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct($purchase)
+    public function __construct($transaction)
     {
-        $this->purchase = $purchase;
+        $this->transaction = $transaction;
     }
 
     /**
