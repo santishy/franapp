@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Events\PurchaseComplete;
+use App\Events\TransactionComplete;
 use App\Listeners\UpdateInventory;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;

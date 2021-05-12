@@ -53,10 +53,10 @@ class SaleController extends Controller
             request()->session()->put('sale_id', $sale->id);
 
         $sale->update($fields);
-
-        $request->factor =-1; // PARA QUE RESTE LAS EXISTENCIAS
         
-        TransactionComplete::dispatch($sale);
+        $factor = -1;
+        
+        TransactionComplete::dispatch($sale,$factor);
 
         $sale->client()
             ->associate(

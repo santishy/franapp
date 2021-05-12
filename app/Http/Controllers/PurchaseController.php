@@ -77,7 +77,9 @@ class PurchaseController extends Controller
             $this->deleteSessionVariable('purchase_id');
 
         $purchase->update($request->all());
+
         TransactionComplete::dispatch($purchase);
+    
         return new PurchaseResource($purchase);
     }
     public function destroy(Purchase $purchase)

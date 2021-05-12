@@ -14,14 +14,16 @@ class TransactionComplete
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
     public $transaction;
+    public $factor;
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct($transaction)
+    public function __construct($transaction,$factor = 1)
     {
         $this->transaction = $transaction;
+        $this->factor = $factor;
     }
 
     /**
