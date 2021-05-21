@@ -8,11 +8,17 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    public function index(){
-        $this->authorize('view',new Category);
-        $categoryQuery = Category::query();
-        return CategoryResource::collection($categoryQuery->applyFilters()->paginate(20));
+    public function index()
+    {
+        $this->authorize('view', new Category);
+        if (request()->wantsJson()) {
+            $categoryQuery = Category::query();
+            return CategoryResource::collection($categoryQuery->applyFilters()->paginate(20));
+        }
+        return view('categories.index');
     }
+
+
     public function store(Request $request)
     {
         $request->validate([
@@ -22,11 +28,10 @@ class CategoryController extends Controller
             'name.unique' => "La categoría ya existe en la base de datos."
         ]);
 
-        $this->authorize('create',new Category);
+        $this->authorize('create', new Category);
 
         return Category::create([
             'name' => $request->name
         ]);
     }
-
 }
