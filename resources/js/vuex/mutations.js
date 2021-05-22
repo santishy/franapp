@@ -22,9 +22,9 @@ const deleteProductInPurchase = (state, index) => {
     state.productsInPurchase = JSON.parse(localStorage.getItem('productsInPurchase'));
 }
 
-const toggleActiveSearchCategory = (state, status) => {
-    state.activeSearchCategory = status;
-}
+// const toggleActiveSearchCategory = (state, status) => {
+//     state.activeSearchCategory = status;
+// }
 
 const setSalePriceOption = (state, value) => {
     state.salePriceOption = value;
@@ -38,7 +38,7 @@ const removeTransactionProduct = (state,id) => {
 }
 export default {
     setProductsInPurchase,
-    toggleActiveSearchCategory,
+    // toggleActiveSearchCategory,
     setSalePriceOption,
     deleteProductInPurchase,
     addToTransaction

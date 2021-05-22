@@ -10,7 +10,7 @@ export const store = new Vuex.Store({
   state:{
     productsInPurchase:JSON.parse(localStorage.getItem('productsInPurchase')),
     purchaseStatus:'',
-    activeSearchCategory:true,
+    //activeSearchCategory:true,
     salePriceOption:sessionStorage.getItem('salePriceOption'),
     productsInTransaction:[],
   },

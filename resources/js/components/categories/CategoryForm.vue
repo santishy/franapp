@@ -1,21 +1,12 @@
 <template>
     <form
-        v-if="!activeSearchCategory"
         @submit.prevent="submit"
         class="w-full max-w-md shadow-lg rounded-lg bg-white md:px-6 md:py-8  md:mt-0"
     >
-
         <div
             class="flex items-center py-2 text-dark text-center justify-center text-xl font-bold border-b border-teal-500"
         >
             Añadir categoría
-            <button
-                @click.prevent="disableCategorySearch"
-                type="button"
-                class="ml-4 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-0 px-2 border border-blue-500 hover:border-transparent rounded"
-            >
-                <i class="fas fa-search"></i>
-            </button>
         </div>
         <div class="flex items-center border-b border-teal-500 py-2">
             <input
@@ -50,13 +41,11 @@
     <!-- </div> -->
 </template>
 <script>
-import { mapState, mapMutations } from "vuex";
 export default {
     data: () => ({
-        form: {},
+        form: {}
     }),
     methods: {
-        ...mapMutations(["toggleActiveSearchCategory"]),
         submit() {
             axios
                 .post("/categories", { name: this.form.name })
@@ -64,16 +53,9 @@ export default {
                     console.log(res.data);
                 })
                 .catch(err => {
-                   
-                    this.getErrors(err)
+                    this.getErrors(err);
                 });
-        },
-        disableCategorySearch() {
-            this.toggleActiveSearchCategory(true);
         }
-    },
-    computed: {
-        ...mapState(["activeSearchCategory"])
     }
 };
 </script>

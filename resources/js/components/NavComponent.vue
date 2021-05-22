@@ -25,6 +25,11 @@
         >
             <div class="text-sm lg:flex-grow">
                 <dropdown-component
+                    name="Categorías"
+                    :items="CategoriesMenu"
+                    class="md:relative"
+                />
+                <dropdown-component
                     name="Productos"
                     :items="productsMenu"
                     class="md:relative"
@@ -58,7 +63,7 @@
                     :items="UsersMenu"
                     class="md:relative"
                 />
-                 <dropdown-component
+                <dropdown-component
                     name="Almacenes"
                     :items="InventoryMenu"
                     class="md:relative"
@@ -96,6 +101,16 @@ export default {
                 {
                     name: "Listar",
                     url: "/products"
+                }
+            ],
+            CategoriesMenu: [
+                {
+                    name: "Añadir",
+                    url: "/categories/create"
+                },
+                {
+                    name: "Listar",
+                    url: "/categories"
                 }
             ],
             clientsMenu: [

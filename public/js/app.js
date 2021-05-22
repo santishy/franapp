@@ -2172,6 +2172,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2181,6 +2186,13 @@ __webpack_require__.r(__webpack_exports__);
       }, {
         name: "Listar",
         url: "/products"
+      }],
+      CategoriesMenu: [{
+        name: "Añadir",
+        url: "/categories/create"
+      }, {
+        name: "Listar",
+        url: "/categories"
       }],
       clientsMenu: [{
         name: "Añadir",
@@ -2709,13 +2721,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 //
 //
 //
@@ -2758,23 +2763,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       form: {}
     };
   },
-  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapMutations"])(["toggleActiveSearchCategory"])), {}, {
+  methods: {
     submit: function submit() {
       var _this = this;
 
@@ -2785,12 +2780,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       })["catch"](function (err) {
         _this.getErrors(err);
       });
-    },
-    disableCategorySearch: function disableCategorySearch() {
-      this.toggleActiveSearchCategory(true);
     }
-  }),
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])(["activeSearchCategory"]))
+  }
 });
 
 /***/ }),
@@ -3944,6 +3935,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 // import Errors from '../../mixins/Errors';
 /* harmony default export */ __webpack_exports__["default"] = ({
   // mixins:[Errors],
@@ -3954,16 +3954,13 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {
-    var _this = this;
-
     if (!!this.product) {
       this.form = this.product;
-    }
+    } // EventBus.$on("selected-category", category => {
+    //     this.category_name = category.name;
+    //     this.form.category_id = category.id;
+    // });
 
-    EventBus.$on("selected-category", function (category) {
-      _this.category_name = category.name;
-      _this.form.category_id = category.id;
-    });
   },
   props: {
     method: {
@@ -3971,11 +3968,14 @@ __webpack_require__.r(__webpack_exports__);
     },
     product: {
       type: Object
+    },
+    categories: {
+      type: Array
     }
   },
   methods: {
     submit: function submit() {
-      var _this2 = this;
+      var _this = this;
 
       var message = "EL producto se creo correctamente";
       var url = "/products";
@@ -3988,16 +3988,16 @@ __webpack_require__.r(__webpack_exports__);
 
       console.log(this.form);
       axios["post"](url, this.form).then(function (res) {
-        _this2.$notify({
+        _this.$notify({
           group: "foo",
           title: "Productos",
           text: message
         });
 
-        if (_this2.method == "post") _this2.form = {};
-        _this2.errors = null;
+        if (_this.method == "post") _this.form = {};
+        _this.errors = null;
       })["catch"](function (err) {
-        _this2.getErrors(err);
+        _this.getErrors(err);
       });
     }
   },
@@ -24916,6 +24916,11 @@ var render = function() {
             [
               _c("dropdown-component", {
                 staticClass: "md:relative",
+                attrs: { name: "Categorías", items: _vm.CategoriesMenu }
+              }),
+              _vm._v(" "),
+              _c("dropdown-component", {
+                staticClass: "md:relative",
                 attrs: { name: "Productos", items: _vm.productsMenu }
               }),
               _vm._v(" "),
@@ -25543,107 +25548,84 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return !_vm.activeSearchCategory
-    ? _c(
-        "form",
+  return _c(
+    "form",
+    {
+      staticClass:
+        "w-full max-w-md shadow-lg rounded-lg bg-white md:px-6 md:py-8  md:mt-0",
+      on: {
+        submit: function($event) {
+          $event.preventDefault()
+          return _vm.submit($event)
+        }
+      }
+    },
+    [
+      _c(
+        "div",
         {
           staticClass:
-            "w-full max-w-md shadow-lg rounded-lg bg-white md:px-6 md:py-8  md:mt-0",
-          on: {
-            submit: function($event) {
-              $event.preventDefault()
-              return _vm.submit($event)
-            }
-          }
+            "flex items-center py-2 text-dark text-center justify-center text-xl font-bold border-b border-teal-500"
         },
+        [_vm._v("\n        Añadir categoría\n    ")]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "flex items-center border-b border-teal-500 py-2" },
         [
-          _c(
-            "div",
-            {
-              staticClass:
-                "flex items-center py-2 text-dark text-center justify-center text-xl font-bold border-b border-teal-500"
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.form.name,
+                expression: "form.name"
+              }
+            ],
+            staticClass:
+              "appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none",
+            class: [
+              "flex",
+              "items-center",
+              "border-b",
+              this.errors ? "border-transparent" : "border-teal-500",
+              "py-2"
+            ],
+            attrs: {
+              name: "name",
+              type: "text",
+              placeholder: "CATEGORÍA",
+              "aria-label": "Full name"
             },
-            [
-              _vm._v("\n        Añadir categoría\n        "),
-              _c(
-                "button",
-                {
-                  staticClass:
-                    "ml-4 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-0 px-2 border border-blue-500 hover:border-transparent rounded",
-                  attrs: { type: "button" },
-                  on: {
-                    click: function($event) {
-                      $event.preventDefault()
-                      return _vm.disableCategorySearch($event)
-                    }
-                  }
-                },
-                [_c("i", { staticClass: "fas fa-search" })]
-              )
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "flex items-center border-b border-teal-500 py-2" },
-            [
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.form.name,
-                    expression: "form.name"
-                  }
-                ],
-                staticClass:
-                  "appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none",
-                class: [
-                  "flex",
-                  "items-center",
-                  "border-b",
-                  this.errors ? "border-transparent" : "border-teal-500",
-                  "py-2"
-                ],
-                attrs: {
-                  name: "name",
-                  type: "text",
-                  placeholder: "CATEGORÍA",
-                  "aria-label": "Full name"
-                },
-                domProps: { value: _vm.form.name },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.$set(_vm.form, "name", $event.target.value)
-                  }
+            domProps: { value: _vm.form.name },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
                 }
-              })
-            ]
-          ),
-          _vm._v(" "),
-          _vm.errors
-            ? _c(
-                "div",
-                { staticClass: "flex items-center mb-3" },
-                [
-                  _c("errors-component", {
-                    attrs: { "errors-found": _vm.errors }
-                  })
-                ],
-                1
-              )
-            : _vm._e(),
-          _vm._v(" "),
-          _vm._m(0),
-          _vm._v(" "),
-          _c("notifications", { attrs: { group: "foo" } })
-        ],
-        1
-      )
-    : _vm._e()
+                _vm.$set(_vm.form, "name", $event.target.value)
+              }
+            }
+          })
+        ]
+      ),
+      _vm._v(" "),
+      _vm.errors
+        ? _c(
+            "div",
+            { staticClass: "flex items-center mb-3" },
+            [_c("errors-component", { attrs: { "errors-found": _vm.errors } })],
+            1
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _vm._m(0),
+      _vm._v(" "),
+      _c("notifications", { attrs: { group: "foo" } })
+    ],
+    1
+  )
 }
 var staticRenderFns = [
   function() {
@@ -26852,40 +26834,86 @@ var render = function() {
       _vm._v(" "),
       _c(
         "div",
-        {
-          staticClass: "flex items-center border-b border-teal-500 py-2 ",
-          class: _vm.hidden
-        },
+        { staticClass: "flex items-center border-b border-teal-500 py-2" },
         [
-          _vm._v("\n        " + _vm._s(_vm.categoryName) + "\n        "),
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: this.form.category_id,
-                expression: "this.form.category_id"
-              }
-            ],
-            staticClass:
-              "appearance-none bg-gray-200 border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none",
-            attrs: {
-              name: "category_id",
-              disabled: true,
-              type: "hidden",
-              placeholder: "Busca o agrega una categoría",
-              "aria-label": "Full name"
-            },
-            domProps: { value: this.form.category_id },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
+          _c(
+            "select",
+            {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.form.category_id,
+                  expression: "form.category_id"
                 }
-                _vm.$set(this.form, "category_id", $event.target.value)
+              ],
+              staticClass:
+                "block appearance-none w-full bg-white hover:border-gray-500 px-4 py-2 pr-8 rounded leading-tight focus:outline-none focus:shadow-outline",
+              attrs: {
+                name: "category_id",
+                plahceholder: "Elige una categoria"
+              },
+              on: {
+                change: function($event) {
+                  var $$selectedVal = Array.prototype.filter
+                    .call($event.target.options, function(o) {
+                      return o.selected
+                    })
+                    .map(function(o) {
+                      var val = "_value" in o ? o._value : o.value
+                      return val
+                    })
+                  _vm.$set(
+                    _vm.form,
+                    "category_id",
+                    $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                  )
+                }
               }
-            }
-          })
+            },
+            [
+              _c("option", { attrs: { disabled: "", value: "" } }, [
+                _vm._v("Seleccione un elemento")
+              ]),
+              _vm._v(" "),
+              _vm._l(_vm.categories, function(category) {
+                return _c(
+                  "option",
+                  { key: category.id, domProps: { value: category.id } },
+                  [_vm._v(_vm._s(category.name))]
+                )
+              })
+            ],
+            2
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass:
+                "pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"
+            },
+            [
+              _c(
+                "svg",
+                {
+                  staticClass: "fill-current h-4 w-4",
+                  attrs: {
+                    xmlns: "http://www.w3.org/2000/svg",
+                    viewBox: "0 0 20 20"
+                  }
+                },
+                [
+                  _c("path", {
+                    attrs: {
+                      d:
+                        "M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
+                    }
+                  })
+                ]
+              )
+            ]
+          )
         ]
       ),
       _vm._v(" "),
@@ -46483,11 +46511,10 @@ var deleteProductInPurchase = function deleteProductInPurchase(state, index) {
   products.splice(index, 1);
   localStorage.setItem('productsInPurchase', JSON.stringify(products));
   state.productsInPurchase = JSON.parse(localStorage.getItem('productsInPurchase'));
-};
+}; // const toggleActiveSearchCategory = (state, status) => {
+//     state.activeSearchCategory = status;
+// }
 
-var toggleActiveSearchCategory = function toggleActiveSearchCategory(state, status) {
-  state.activeSearchCategory = status;
-};
 
 var setSalePriceOption = function setSalePriceOption(state, value) {
   state.salePriceOption = value;
@@ -46501,7 +46528,7 @@ var removeTransactionProduct = function removeTransactionProduct(state, id) {};
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   setProductsInPurchase: setProductsInPurchase,
-  toggleActiveSearchCategory: toggleActiveSearchCategory,
+  // toggleActiveSearchCategory,
   setSalePriceOption: setSalePriceOption,
   deleteProductInPurchase: deleteProductInPurchase,
   addToTransaction: addToTransaction
@@ -46535,7 +46562,7 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
   state: {
     productsInPurchase: JSON.parse(localStorage.getItem('productsInPurchase')),
     purchaseStatus: '',
-    activeSearchCategory: true,
+    //activeSearchCategory:true,
     salePriceOption: sessionStorage.getItem('salePriceOption'),
     productsInTransaction: []
   },
