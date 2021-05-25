@@ -1,24 +1,26 @@
 <template>
-    <ul>
-        <category-list-item 
+    <ul class="w-2/4">
+        <category-list-item
             v-for="category in categories"
             :category="category"
-            :key="category.id"   
+            :key="category.id"
         ></category-list-item>
     </ul>
 </template>
 <script>
-import CategoryListItem from './CategoryListItem.vue'
+import CategoryListItem from "./CategoryListItem.vue";
 export default {
-    components:{'category-list-item':CategoryListItem},
-    props:{
-        categories:{
-            type:Array,
-            required:true
+    components: { "category-list-item": CategoryListItem },
+    data(){
+        return{
+            categories:[]
         }
     },
     created(){
-        console.log(this.categories)
+        console.clear();
+        axios.get('/categories').then((res) => {
+            this.categories=res.data.data
+        })
     }
-}
+};
 </script>

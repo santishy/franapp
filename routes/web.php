@@ -8,7 +8,7 @@ use App\Http\Controllers\ProductsSearchController;
 use App\Http\Controllers\ProductInPurchaseController;
 use App\Http\Controllers\{ClientController, InventoryController, RolesPermissionsController,UserController};
 use App\Http\Controllers\{PurchaseController, ProductInSaleController, RoleController};
-
+use App\Models\Category;
 
 Route::get('/', function () {
     return view('dashboard');
@@ -50,7 +50,7 @@ Route::resource('clients', ClientController::class)->middleware('auth');
 
 //categories 
 
-
+Route::get('categories/create',[CategoryController::class,'create'])->name('categories.create')->middleware('auth');
 Route::post('categories', [CategoryController::class, 'store'])->name('categories.store')->middleware('auth');
 
 Route::get('categories', [CategoryController::class, 'index'])->name('categories.index')->middleware('auth');

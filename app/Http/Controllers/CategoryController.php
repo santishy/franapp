@@ -34,4 +34,9 @@ class CategoryController extends Controller
             'name' => $request->name
         ]);
     }
+
+    public function create(){
+
+        return view('categories.create');
+    }
 }
