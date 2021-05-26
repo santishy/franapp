@@ -105,10 +105,6 @@ export default {
             ],
             CategoriesMenu: [
                 {
-                    name: "Añadir",
-                    url: "/categories/create"
-                },
-                {
                     name: "Listar",
                     url: "/categories"
                 }

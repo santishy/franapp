@@ -2188,9 +2188,6 @@ __webpack_require__.r(__webpack_exports__);
         url: "/products"
       }],
       CategoriesMenu: [{
-        name: "Añadir",
-        url: "/categories/create"
-      }, {
         name: "Listar",
         url: "/categories"
       }],
