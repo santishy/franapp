@@ -13,7 +13,7 @@ class CategoryController extends Controller
         $this->authorize('view', new Category);
         if (request()->wantsJson()) {
             $categoryQuery = Category::query();
-            return CategoryResource::collection($categoryQuery->applyFilters()->paginate(20));
+            return CategoryResource::collection($categoryQuery->applyFilters()->orderBy('name')->get());
         }
         return view('categories.index');
     }

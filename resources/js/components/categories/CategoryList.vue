@@ -1,5 +1,5 @@
 <template>
-    <ul class="w-2/4">
+    <ul class="w-full rounded shadow bg-white">
         <category-list-item
             v-for="category in categories"
             :category="category"

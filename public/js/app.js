@@ -25546,7 +25546,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "ul",
-    { staticClass: "w-2/4" },
+    { staticClass: "w-full rounded shadow bg-white" },
     _vm._l(_vm.categories, function(category) {
       return _c("category-list-item", {
         key: category.id,
@@ -25578,7 +25578,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("li", { staticClass: "flex justify-between px-4" }, [
+  return _c("li", { staticClass: "flex justify-between px-4 py-1 " }, [
     _vm._v("\n    " + _vm._s(_vm.category.name) + "\n    "),
     _c(
       "button",

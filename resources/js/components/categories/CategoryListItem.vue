@@ -1,5 +1,5 @@
 <template>
-    <li class="flex justify-between px-4">
+    <li class="flex justify-between px-4 py-1 ">
         {{ category.name }}
         <button @click.prevent="">
             <span>
