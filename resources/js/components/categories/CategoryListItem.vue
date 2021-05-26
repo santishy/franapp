@@ -1,11 +1,6 @@
 <template>
-    <li class="flex justify-between px-4 py-1 ">
+    <li class="px-4 py-1 text-center">
         {{ category.name }}
-        <button @click.prevent="">
-            <span>
-              
-            </span>
-        </button>
     </li>
 </template>
 <script>

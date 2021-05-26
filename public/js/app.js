@@ -2776,7 +2776,8 @@ __webpack_require__.r(__webpack_exports__);
       axios.post("/categories", {
         name: this.form.name
       }).then(function (res) {
-        console.log(res.data);
+        EventBus.$emit('category-created', res.data);
+        _this.form = {};
       })["catch"](function (err) {
         _this.getErrors(err);
       });
@@ -2819,6 +2820,9 @@ __webpack_require__.r(__webpack_exports__);
     var _this = this;
 
     console.clear();
+    EventBus.$on('category-created', function (category) {
+      _this.categories.unshift(category);
+    });
     axios.get('/categories').then(function (res) {
       _this.categories = res.data.data;
     });
@@ -2836,11 +2840,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
 //
 //
 //
@@ -25546,7 +25545,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "ul",
-    { staticClass: "w-full rounded shadow bg-white" },
+    { staticClass: "w-full rounded shadow bg-white p-4" },
     _vm._l(_vm.categories, function(category) {
       return _c("category-list-item", {
         key: category.id,
@@ -25578,19 +25577,8 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("li", { staticClass: "flex justify-between px-4 py-1 " }, [
-    _vm._v("\n    " + _vm._s(_vm.category.name) + "\n    "),
-    _c(
-      "button",
-      {
-        on: {
-          click: function($event) {
-            $event.preventDefault()
-          }
-        }
-      },
-      [_c("span")]
-    )
+  return _c("li", { staticClass: "px-4 py-1 text-center" }, [
+    _vm._v("\n    " + _vm._s(_vm.category.name) + "\n")
   ])
 }
 var staticRenderFns = []

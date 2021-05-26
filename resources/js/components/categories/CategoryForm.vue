@@ -50,7 +50,8 @@ export default {
             axios
                 .post("/categories", { name: this.form.name })
                 .then(res => {
-                    console.log(res.data);
+                    EventBus.$emit('category-created',res.data);
+                    this.form={}
                 })
                 .catch(err => {
                     this.getErrors(err);
