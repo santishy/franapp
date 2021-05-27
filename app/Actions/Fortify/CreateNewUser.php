@@ -27,6 +27,7 @@ class CreateNewUser implements CreatesNewUsers
                 'string',
                 'email',
                 'max:255',
+                'inventory_id'
                 Rule::unique(User::class),
             ],
             'password' => $this->passwordRules(),
@@ -37,6 +38,7 @@ class CreateNewUser implements CreatesNewUsers
             'name' => $input['name'],
             'email' => $input['email'],
             'password' => Hash::make($input['password']),
+            'inventory_id' => $input['inventory_id'],
         ]);
         return $user->assignRole(request()->roles);
 

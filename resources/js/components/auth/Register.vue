@@ -9,6 +9,20 @@
             {{ getTitle }}
         </div>
         <div class="flex items-center border-b border-teal-500 py-2">
+            <select
+                v-model="form.inventory_id"
+                name="inventory_id"
+                class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
+                placeholder="Nombre completo"
+                aria-label="Full name"
+            >
+                <option value="" disabled>Elige un almacén</option>
+                <option v-for="inventory in inventories" :key="inventory.id" :value="inventory.id">
+                    {{inventory.name}}
+                </option>
+            </select>
+        </div>
+        <div class="flex items-center border-b border-teal-500 py-2">
             <input
                 v-model="form.name"
                 name="name"
@@ -72,6 +86,9 @@ export default {
     props: {
         user: {
             type: Object
+        },
+        inventories:{
+            type: Array
         },
         uri: {
             type: String,

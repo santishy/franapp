@@ -16,7 +16,7 @@ class CreateInventoryProductTable extends Migration
         Schema::create('inventory_product', function (Blueprint $table) {
             $table->id();
             $table->foreignId('product_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('inventory_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('inventory_id')->nullable()->constrained();
             $table->integer('stock')->default(0);
             $table->timestamps();
         });
