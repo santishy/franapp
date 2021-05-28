@@ -1,7 +1,10 @@
 <template>
     <div class="mt-4 bg-white w-4/5 shaddow rounded-sm border py-4 px-4">
-        <p class="text-center text-2xl mb-4">Elige un almacén</p>
-        <inventory-list class="mb-4"></inventory-list>
+        <template v-if="isAdmin">
+            <p class="text-center text-2xl mb-4">Elige un almacén</p>
+            <inventory-list class="mb-4"></inventory-list>
+        </template>
+
         <p class="text-center text-2xl">Precio de venta</p>
         <div class="flex justify-center mt-2 mb-2">
             <button
@@ -17,7 +20,6 @@
                 Al por mayor
             </button>
         </div>
-        
     </div>
 </template>
 
@@ -26,8 +28,8 @@ import { mapMutations } from "vuex";
 import InventoryList from "../inventories/InventoryList.vue";
 
 export default {
-    mounted(){
-        console.log(this.inventories)
+    mounted() {
+        console.log(this.inventories);
     },
     components: {
         InventoryList

@@ -6,11 +6,12 @@ use App\Http\Controllers\SaleController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductsSearchController;
 use App\Http\Controllers\ProductInPurchaseController;
-use App\Http\Controllers\{ClientController, InventoryController, RolesPermissionsController,UserController};
+use App\Http\Controllers\{ClientController, CurrentUserController, InventoryController, RolesPermissionsController,UserController};
 use App\Http\Controllers\{PurchaseController, ProductInSaleController, RoleController};
 use App\Models\Category;
 
 Route::get('/', function () {
+    
     return view('dashboard');
 })->middleware('auth');
 
@@ -84,3 +85,7 @@ Route::resource('inventories',InventoryController::class)->middleware('auth');
 Route::get('/403',function(){
     return view('errors.403');
 });
+
+//obtener usuario loggueado
+
+Route::get('/current-user',CurrentUserController::class);

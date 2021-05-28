@@ -19,7 +19,7 @@
 import ProductMatching from "../products/ProductMatching.vue";
 import SearchComponent from "../products/SearchComponent.vue";
 import SalePriceOptions from "./SalePriceOptions.vue";
-import {mapState} from "vuex";
+import {mapState,mapGetters} from "vuex";
 import SalesCart from "./SalesCart";
 
 export default {
@@ -35,7 +35,7 @@ export default {
         },
     },
     computed:{
-        ...mapState(['salePriceOption'])
+        ...mapState(['salePriceOption']),
     }
 };
 </script>

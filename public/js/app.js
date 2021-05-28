@@ -4881,9 +4881,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     submit: function submit() {
       var _this = this;
 
+      var inventory_id = this.user ? this.user.inventory_id : sessionStorage.getItem('inventory_id');
       axios.post("/sales/".concat(this.product.id, "/products"), {
         salePriceOption: this.salePriceOption,
-        inventory_id: sessionStorage.getItem('inventory_id')
+        inventory_id: inventory_id
       }).then(function (res) {
         EventBus.$emit("product-added-sales-cart", res.data.transaction);
 
@@ -5006,7 +5007,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       this.form._method = "put";
       this.form.product_id = this.product.id;
-      this.form.inventory_id = sessionStorage.getItem('inventory_id');
+      if (this.isAdmin) this.form.inventory_id = sessionStorage.getItem("inventory_id");else {
+        thi.form.inventory_id = this.user.inventory_id;
+      }
       axios.post("/sales/".concat(this.product.id, "/products"), this.form).then(function (res) {
         EventBus.$emit("updated-sales-product", {
           index: _this.index,
@@ -5140,6 +5143,8 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
 //
 //
 //
@@ -5431,7 +5436,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".modal[data-v-53ab54d2] {\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n}\n", ""]);
+exports.push([module.i, ".modal[data-v-53ab54d2] {\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n}\r\n", ""]);
 
 // exports
 
@@ -28138,11 +28143,15 @@ var render = function() {
     "div",
     { staticClass: "mt-4 bg-white w-4/5 shaddow rounded-sm border py-4 px-4" },
     [
-      _c("p", { staticClass: "text-center text-2xl mb-4" }, [
-        _vm._v("Elige un almacén")
-      ]),
-      _vm._v(" "),
-      _c("inventory-list", { staticClass: "mb-4" }),
+      _vm.isAdmin
+        ? [
+            _c("p", { staticClass: "text-center text-2xl mb-4" }, [
+              _vm._v("Elige un almacén")
+            ]),
+            _vm._v(" "),
+            _c("inventory-list", { staticClass: "mb-4" })
+          ]
+        : _vm._e(),
       _vm._v(" "),
       _c("p", { staticClass: "text-center text-2xl" }, [
         _vm._v("Precio de venta")
@@ -28178,7 +28187,7 @@ var render = function() {
         )
       ])
     ],
-    1
+    2
   )
 }
 var staticRenderFns = []
@@ -43061,6 +43070,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _mixins_Errors__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_mixins_Errors__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _mixins_Authorizations_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./mixins/Authorizations.js */ "./resources/js/mixins/Authorizations.js");
+/* harmony import */ var _mixins_Authorizations_js__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_mixins_Authorizations_js__WEBPACK_IMPORTED_MODULE_5__);
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
@@ -43101,8 +43112,10 @@ vue__WEBPACK_IMPORTED_MODULE_4___default.a.component('notifications', vue_notifi
 vue__WEBPACK_IMPORTED_MODULE_4___default.a.use(vue_notification__WEBPACK_IMPORTED_MODULE_1___default.a);
 
 
-
+_vuex_store_js__WEBPACK_IMPORTED_MODULE_2__["store"].dispatch('getUser');
 vue__WEBPACK_IMPORTED_MODULE_4___default.a.mixin(_mixins_Errors__WEBPACK_IMPORTED_MODULE_3___default.a);
+vue__WEBPACK_IMPORTED_MODULE_4___default.a.mixin(_mixins_Authorizations_js__WEBPACK_IMPORTED_MODULE_5___default.a);
+
 
 var app = new vue__WEBPACK_IMPORTED_MODULE_4___default.a({
   el: "#app",
@@ -46059,6 +46072,29 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/mixins/Authorizations.js":
+/*!***********************************************!*\
+  !*** ./resources/js/mixins/Authorizations.js ***!
+  \***********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+var _require = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js"),
+    mapGetters = _require.mapGetters,
+    mapState = _require.mapState;
+
+module.exports = {
+  computed: _objectSpread(_objectSpread({}, mapState(['auth', 'user'])), mapGetters(['isAdmin']))
+};
+
+/***/ }),
+
 /***/ "./resources/js/mixins/Errors.js":
 /*!***************************************!*\
   !*** ./resources/js/mixins/Errors.js ***!
@@ -46133,6 +46169,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 var getProducts = function getProducts(_ref, page) {
   var context = _ref.context;
   return new Promise(function (resolve, reject) {
@@ -46164,9 +46208,38 @@ var search = function search(_ref2, data) {
   });
 };
 
+var getUser = /*#__PURE__*/function () {
+  var _ref4 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(_ref3) {
+    var commit, user;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            commit = _ref3.commit;
+            _context.next = 3;
+            return axios.get('/current-user');
+
+          case 3:
+            user = _context.sent;
+            commit('SET_USER', user.data.data);
+
+          case 5:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee);
+  }));
+
+  return function getUser(_x) {
+    return _ref4.apply(this, arguments);
+  };
+}();
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   getProducts: getProducts,
-  search: search
+  search: search,
+  getUser: getUser
 });
 
 /***/ }),
@@ -46200,10 +46273,17 @@ var qtyPurchase = function qtyPurchase(state) {
   };
 };
 
+var isAdmin = function isAdmin(state) {
+  var _state$user;
+
+  return (_state$user = state.user) === null || _state$user === void 0 ? void 0 : _state$user.roles.includes('admin');
+};
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   hasProductsInPurchase: hasProductsInPurchase,
   productExistsInPurchase: productExistsInPurchase,
-  qtyPurchase: qtyPurchase
+  qtyPurchase: qtyPurchase,
+  isAdmin: isAdmin
 });
 
 /***/ }),
@@ -46255,9 +46335,14 @@ var addToTransaction = function addToTransaction(state, data) {
 
 var removeTransactionProduct = function removeTransactionProduct(state, id) {};
 
+var SET_USER = function SET_USER(state, user) {
+  state.user = user;
+  state.auth = Boolean(user);
+};
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   setProductsInPurchase: setProductsInPurchase,
-  // toggleActiveSearchCategory,
+  SET_USER: SET_USER,
   setSalePriceOption: setSalePriceOption,
   deleteProductInPurchase: deleteProductInPurchase,
   addToTransaction: addToTransaction
@@ -46292,6 +46377,8 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
     productsInPurchase: JSON.parse(localStorage.getItem('productsInPurchase')),
     purchaseStatus: '',
     //activeSearchCategory:true,
+    user: null,
+    auth: false,
     salePriceOption: sessionStorage.getItem('salePriceOption'),
     productsInTransaction: []
   },
@@ -46309,8 +46396,8 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/vagrant/code/franapp/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/vagrant/code/franapp/resources/css/app.css */"./resources/css/app.css");
+__webpack_require__(/*! C:\xampp\htdocs\franapp\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\franapp\resources\css\app.css */"./resources/css/app.css");
 
 
 /***/ })

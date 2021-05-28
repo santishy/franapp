@@ -17,8 +17,8 @@ const search = ({ context }, data) => {
     return new Promise((resolve, reject) => {
         axios.get('/searching-products', {
             params: {
-                'filter[search]':data.sku,
-                page:data.page
+                'filter[search]': data.sku,
+                page: data.page
             }
         })
             .then((res) => {
@@ -28,10 +28,14 @@ const search = ({ context }, data) => {
                 reject(err);
             })
     })
-
+}
+const getUser = async ({ commit }) => {
+    const user = await axios.get('/current-user') 
+    commit('SET_USER',user.data.data);
 
 }
 export default {
     getProducts,
-    search
+    search,
+    getUser
 }

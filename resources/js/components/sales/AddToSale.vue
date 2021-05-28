@@ -28,10 +28,12 @@ export default {
     mixins: [Transaction,Errors],
     methods: {
         submit() {
+            const inventory_id =  this.user ? this.user.inventory_id : sessionStorage.getItem('inventory_id')
             axios
                 .post(`/sales/${this.product.id}/products`, {
                     salePriceOption: this.salePriceOption,
-                    inventory_id: sessionStorage.getItem('inventory_id'),
+
+                    inventory_id,
                 })
                 .then(res => {
                     EventBus.$emit(

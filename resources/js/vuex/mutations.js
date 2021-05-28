@@ -36,9 +36,14 @@ const addToTransaction = (state, data) => {
 const removeTransactionProduct = (state,id) => {
     
 }
+const SET_USER = (state,user) => 
+{
+    state.user = user;
+    state.auth = Boolean(user);
+}
 export default {
     setProductsInPurchase,
-    // toggleActiveSearchCategory,
+    SET_USER,
     setSalePriceOption,
     deleteProductInPurchase,
     addToTransaction

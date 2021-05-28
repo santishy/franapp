@@ -79,7 +79,11 @@ export default {
         submit() {
             this.form._method = "put";
             this.form.product_id = this.product.id;
-            this.form.inventory_id = sessionStorage.getItem('inventory_id')
+            if (this.isAdmin)
+                this.form.inventory_id = sessionStorage.getItem("inventory_id");
+            else{
+                thi.form.inventory_id = this.user.inventory_id;
+                }
             axios
                 .post(`/sales/${this.product.id}/products`, this.form)
                 .then(res => {

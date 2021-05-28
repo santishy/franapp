@@ -18,9 +18,12 @@ const qtyPurchase = (state) => {
         return state.productsInPurchase[index].qty;
     }
 }
-
+const isAdmin = (state) => {
+    return state.user?.roles.includes('admin');
+}
 export default {
     hasProductsInPurchase,
     productExistsInPurchase,
-    qtyPurchase
+    qtyPurchase,
+    isAdmin
 }
