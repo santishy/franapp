@@ -27,8 +27,8 @@ class CreateNewUser implements CreatesNewUsers
                 'string',
                 'email',
                 'max:255',
-                'inventory_id'
                 Rule::unique(User::class),
+                'inventory_id' => ['required']
             ],
             'password' => $this->passwordRules(),
             'roles.*' => 'exists:roles,id'

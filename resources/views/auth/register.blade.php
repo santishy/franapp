@@ -3,6 +3,7 @@
 <div class="flex flex-wrap items-baseline">
     <register-component 
         class="mr-4"
+        :inventories="{{json_encode($inventories)}}"
         method="post"
         uri="/register"
     >
