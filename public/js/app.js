@@ -5336,7 +5336,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     submit: function submit() {
       var _this2 = this;
 
-      this.form.inventory_id = sessionStorage.getItem('inventory_id');
+      this.form.inventory_id = this.user.inventory_id ? this.user.inventory_id : sessionStorage.getItem('inventory_id');
       if (this.getStatus === "pending") this.form.status = "completed";else this.form.status = "pending";
       axios.post("/sales/".concat(this.localSale.id), this.form).then(function (res) {
         _this2.sale_status = res.data.sale_status;
