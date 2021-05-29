@@ -28,7 +28,7 @@ export default {
     mixins: [Transaction,Errors],
     methods: {
         submit() {
-            const inventory_id =  this.user ? this.user.inventory_id : sessionStorage.getItem('inventory_id')
+            const inventory_id =  this.isAdmin ? sessionStorage.getItem('inventory_id') : this.user.inventory_id;
             axios
                 .post(`/sales/${this.product.id}/products`, {
                     salePriceOption: this.salePriceOption,

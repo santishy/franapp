@@ -126,7 +126,7 @@ export default {
     methods: {
         ...mapMutations(['setSalePriceOption']),
         submit() {
-            this.form.inventory_id = this.user.inventory_id ? this.user.inventory_id : sessionStorage.getItem('inventory_id');
+            this.form.inventory_id = this.isAdmin ?  sessionStorage.getItem('inventory_id') : this.user.inventory_id 
             if (this.getStatus === "pending") this.form.status = "completed";
             else this.form.status = "pending";
             axios

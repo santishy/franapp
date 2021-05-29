@@ -24,7 +24,7 @@ class ProductFactory extends Factory
     public function definition()
     {
         return [
-            'category_id' => Category::factory(),
+            //'category_id' => Category::factory(),
             'description' => $this->faker->sentence,
             'sku' => "{$this->faker->word}-".Str::random(4),
             'retail_price' => $this->faker->randomFloat(2,200,7500),

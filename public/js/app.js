@@ -4881,7 +4881,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     submit: function submit() {
       var _this = this;
 
-      var inventory_id = this.user ? this.user.inventory_id : sessionStorage.getItem('inventory_id');
+      var inventory_id = this.isAdmin ? sessionStorage.getItem('inventory_id') : this.user.inventory_id;
       axios.post("/sales/".concat(this.product.id, "/products"), {
         salePriceOption: this.salePriceOption,
         inventory_id: inventory_id
@@ -5336,7 +5336,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     submit: function submit() {
       var _this2 = this;
 
-      this.form.inventory_id = this.user.inventory_id ? this.user.inventory_id : sessionStorage.getItem('inventory_id');
+      this.form.inventory_id = this.isAdmin ? sessionStorage.getItem('inventory_id') : this.user.inventory_id;
       if (this.getStatus === "pending") this.form.status = "completed";else this.form.status = "pending";
       axios.post("/sales/".concat(this.localSale.id), this.form).then(function (res) {
         _this2.sale_status = res.data.sale_status;
@@ -5436,7 +5436,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".modal[data-v-53ab54d2] {\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n}\r\n", ""]);
+exports.push([module.i, ".modal[data-v-53ab54d2] {\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n}\n", ""]);
 
 // exports
 
@@ -46396,8 +46396,8 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\htdocs\franapp\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\franapp\resources\css\app.css */"./resources/css/app.css");
+__webpack_require__(/*! /home/vagrant/code/franapp/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/vagrant/code/franapp/resources/css/app.css */"./resources/css/app.css");
 
 
 /***/ })
