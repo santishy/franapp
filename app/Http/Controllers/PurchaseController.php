@@ -17,6 +17,7 @@ class PurchaseController extends Controller
     use HasTransaction;
     public function index()
     {
+        $this->authorize('viewAny',new Purchase);
         if (request()->wantsJson()) {
             return new ReportResponse(Purchase::query());
         }

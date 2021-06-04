@@ -2,15 +2,13 @@
 
 namespace App\Policies;
 
-use App\Http\Traits\HasAdministrator;
-use App\Models\Client;
+use App\Models\Purchase;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class ClientPolicy
+class PurchasePolicy
 {
     use HandlesAuthorization;
-    use HasAdministrator;
 
     /**
      * Determine whether the user can view any models.
@@ -20,19 +18,19 @@ class ClientPolicy
      */
     public function viewAny(User $user)
     {
-        //
+        return $user->givePermissionTo('view purchases');
     }
 
     /**
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Client  $client
+     * @param  \App\Models\Purchase  $purchase
      * @return mixed
      */
-    public function view(User $user, Client $client)
+    public function view(User $user, Purchase $purchase)
     {
-        return $user->hasPermissionTo('view client');
+        return $user->givePermissionTo('view purchase'); 
     }
 
     /**
@@ -43,41 +41,41 @@ class ClientPolicy
      */
     public function create(User $user)
     {
-        return $user->hasPermissionTo('create client');
+        //
     }
 
     /**
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Client  $client
+     * @param  \App\Models\Purchase  $purchase
      * @return mixed
      */
-    public function update(User $user, Client $client)
+    public function update(User $user, Purchase $purchase)
     {
-        return $user->hasPermissionTo('edit client');
+        //
     }
 
     /**
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Client  $client
+     * @param  \App\Models\Purchase  $purchase
      * @return mixed
      */
-    public function delete(User $user, Client $client)
+    public function delete(User $user, Purchase $purchase)
     {
-        return $user->hasPermissionTo('delete client');
+        //
     }
 
     /**
      * Determine whether the user can restore the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Client  $client
+     * @param  \App\Models\Purchase  $purchase
      * @return mixed
      */
-    public function restore(User $user, Client $client)
+    public function restore(User $user, Purchase $purchase)
     {
         //
     }
@@ -86,10 +84,10 @@ class ClientPolicy
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Client  $client
+     * @param  \App\Models\Purchase  $purchase
      * @return mixed
      */
-    public function forceDelete(User $user, Client $client)
+    public function forceDelete(User $user, Purchase $purchase)
     {
         //
     }
