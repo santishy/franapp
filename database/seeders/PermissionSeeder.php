@@ -24,24 +24,28 @@ class PermissionSeeder extends Seeder
         // permissions to users
         Permission::create(['name' => 'create user']);
         Permission::create(['name' => 'view user']);
+        Permission::create(['name' => 'view users']);
         Permission::create(['name' => 'delete user']);
         Permission::create(['name' => 'edit user']);
 
         // permissions to purchases
         Permission::create(['name' => 'create purchase']);
         Permission::create(['name' => 'view purchase']);
+        Permission::create(['name' => 'view purchases']);
         Permission::create(['name' => 'delete purchase']);
         Permission::create(['name' => 'edit purchase']);
 
         // permissions to sales
         Permission::create(['name' => 'create sale']);
         Permission::create(['name' => 'view sale']);
+        Permission::create(['name' => 'view sales']);
         Permission::create(['name' => 'delete sale']);
         Permission::create(['name' => 'edit sale']);
 
-        // permissions to sales
+        // permissions to clients
         Permission::create(['name' => 'create client']);
         Permission::create(['name' => 'view client']);
+        Permission::create(['name' => 'view clients']);
         Permission::create(['name' => 'delete client']);
         Permission::create(['name' => 'edit client']);
 
@@ -49,5 +53,19 @@ class PermissionSeeder extends Seeder
         Permission::create(['name' => 'create category']);
         Permission::create(['name' => 'view category']);
         Permission::create(['name' => 'delete category']);
+
+        //permissions to inventories
+        Permission::create(['name' => 'create inventories']);
+        Permission::create(['name' => 'view inventories']);
+        Permission::create(['name' => 'view inventories']);
+        Permission::create(['name' => 'delete inventories']);
+        Permission::create(['name' => 'edit inventories']);
+
+        //permissions to roles
+        Permission::create(['name' => 'create roles']);
+        Permission::create(['name' => 'view roles']);
+        Permission::create(['name' => 'view roles']);
+        Permission::create(['name' => 'delete roles']);
+        Permission::create(['name' => 'edit roles']);
     }
 }

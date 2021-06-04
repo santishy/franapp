@@ -32,6 +32,8 @@ class PurchaseController extends Controller
     /*FALTA VALIDAR QUE EL PRODUCTO NO SE REPITA EN LA MISMA COMPRA!!!  PUEDE AGREGARSE OTRO AL DARLE DOBLE CLICK ;) */
     public function store(Request $request)
     {
+
+        $this->authorize('create',new Purchase);
         request()->validate(
             [
                 'product_id' => 'exists:products,id'
@@ -55,6 +57,7 @@ class PurchaseController extends Controller
 
     public function show(Purchase $purchase)
     {
+        $this->authorize('view',$purchase);
         $productsInPurchase = $purchase->products()->get();
         $totalPurchase = $purchase->totalPurchase();
         $inventories = Inventory::all();
@@ -69,6 +72,7 @@ class PurchaseController extends Controller
     }
     public function update(Request $request, Purchase $purchase)
     {
+        $this->authorize('update',$purchase);
         $request->validate([
             'status' => ['required'],
             'inventory_id' => ['required']
@@ -85,6 +89,7 @@ class PurchaseController extends Controller
     }
     public function destroy(Purchase $purchase)
     {
+        $this->authorize('delete',$purchase);
         $this->deleteSessionVariable('purchase_id');
         TransactionComplete::dispatch($purchase);
         return response()->json([

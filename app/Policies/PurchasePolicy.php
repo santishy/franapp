@@ -41,7 +41,7 @@ class PurchasePolicy
      */
     public function create(User $user)
     {
-        //
+        return $user->givePermissionTo('create purchase');
     }
 
     /**
@@ -53,7 +53,7 @@ class PurchasePolicy
      */
     public function update(User $user, Purchase $purchase)
     {
-        //
+        return $user->givePermissionTo('edit purchase');
     }
 
     /**
@@ -65,7 +65,7 @@ class PurchasePolicy
      */
     public function delete(User $user, Purchase $purchase)
     {
-        //
+        return $user->givePermissionTo('delete purchase');
     }
 
     /**
