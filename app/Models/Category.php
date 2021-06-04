@@ -19,4 +19,5 @@ class Category extends Model
             $query->orWhere('name','LIKE',"%{$value}%");
         }
     }
+
 }
