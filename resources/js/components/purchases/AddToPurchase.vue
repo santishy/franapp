@@ -68,7 +68,7 @@ export default {
                     this.setProductsInPurchase(obj);
                 })
                 .catch(err => {
-                    console.log(err);
+                    this.getErrors(err)
                 });
         }
     },

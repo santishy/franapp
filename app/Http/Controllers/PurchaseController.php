@@ -72,7 +72,7 @@ class PurchaseController extends Controller
     }
     public function update(Request $request, Purchase $purchase)
     {
-        $this->authorize('update',$purchase);
+        $this->authorize('update',$purchase); // puede ser el metodo create?
         $request->validate([
             'status' => ['required'],
             'inventory_id' => ['required']

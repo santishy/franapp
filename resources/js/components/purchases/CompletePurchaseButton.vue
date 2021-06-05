@@ -16,15 +16,15 @@ export default {
             type: Number
         }
     },
-    data:()=>{
+    data: () => {
         return {
-            inventory_id:null
-        }
+            inventory_id: null
+        };
     },
-    mounted(){
-        EventBus.$on('selected-inventory',(id)=>{
+    mounted() {
+        EventBus.$on("selected-inventory", id => {
             this.inventory_id = id;
-        })
+        });
     },
     methods: {
         completePurchase() {
@@ -32,17 +32,17 @@ export default {
                 .put(`/purchases/${this.purchase.id}`, {
                     status: "completed",
                     total: this.totalPurchase,
-                    _method:"put",
-                    inventory_id : this.inventory_id
+                    _method: "put",
+                    inventory_id: this.inventory_id
                 })
                 .then(res => {
-                    EventBus.$emit('purchase-completed',res.data.data)
-                    if(res.data.data.status === 'COMPLETADA'){
-                        localStorage.removeItem('productsInPurchase')
+                    EventBus.$emit("purchase-completed", res.data.data);
+                    if (res.data.data.status === "COMPLETADA") {
+                        localStorage.removeItem("productsInPurchase");
                     }
                 })
                 .catch(err => {
-                    console.log(err);
+                    this.getErrors(err);
                 });
         }
     }

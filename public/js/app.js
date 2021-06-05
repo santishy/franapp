@@ -4147,7 +4147,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
         _this.setProductsInPurchase(obj);
       })["catch"](function (err) {
-        console.log(err);
+        _this.getErrors(err);
       });
     }
   }),
@@ -4193,6 +4193,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     cancelPurchase: function cancelPurchase() {
+      var _this2 = this;
+
       axios["delete"]("/purchases/" + this.id, {
         params: {
           inventory_id: this.inventory_id,
@@ -4204,7 +4206,7 @@ __webpack_require__.r(__webpack_exports__);
           window.location.replace("/products");
         }
       })["catch"](function (err) {
-        console.log(err);
+        _this2.getErrors(err);
       });
     }
   }
@@ -4246,25 +4248,27 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this = this;
 
-    EventBus.$on('selected-inventory', function (id) {
+    EventBus.$on("selected-inventory", function (id) {
       _this.inventory_id = id;
     });
   },
   methods: {
     completePurchase: function completePurchase() {
+      var _this2 = this;
+
       axios.put("/purchases/".concat(this.purchase.id), {
         status: "completed",
         total: this.totalPurchase,
         _method: "put",
         inventory_id: this.inventory_id
       }).then(function (res) {
-        EventBus.$emit('purchase-completed', res.data.data);
+        EventBus.$emit("purchase-completed", res.data.data);
 
-        if (res.data.data.status === 'COMPLETADA') {
-          localStorage.removeItem('productsInPurchase');
+        if (res.data.data.status === "COMPLETADA") {
+          localStorage.removeItem("productsInPurchase");
         }
       })["catch"](function (err) {
-        console.log(err);
+        _this2.getErrors(err);
       });
     }
   }
@@ -4360,8 +4364,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
           _this.setProductsInPurchase(obj);
         }
-      })["catch"](function (res) {
-        console.log(res);
+      })["catch"](function (err) {
+        _this.getErrors(err);
       });
     },
     destroy: function destroy() {
@@ -4376,8 +4380,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           EventBus.$emit("purchase-extracted", _this2.index);
           EventBus.$emit("total-updated-purchase", res.data.totalPurchase);
         }
-      })["catch"](function (res) {
-        console.log(res);
+      })["catch"](function (err) {
+        _this2.getErrors(err);
       });
     }
   }),
@@ -5436,7 +5440,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".modal[data-v-53ab54d2] {\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n}\r\n", ""]);
+exports.push([module.i, ".modal[data-v-53ab54d2] {\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n}\n", ""]);
 
 // exports
 
@@ -46396,8 +46400,8 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\htdocs\franapp\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\franapp\resources\css\app.css */"./resources/css/app.css");
+__webpack_require__(/*! /home/vagrant/code/franapp/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/vagrant/code/franapp/resources/css/app.css */"./resources/css/app.css");
 
 
 /***/ })

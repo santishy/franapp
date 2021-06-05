@@ -2,13 +2,14 @@
 
 namespace App\Policies;
 
+use App\Http\Traits\HasAdministrator;
 use App\Models\Purchase;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class PurchasePolicy
 {
-    use HandlesAuthorization;
+    use HandlesAuthorization, HasAdministrator;
 
     /**
      * Determine whether the user can view any models.
@@ -18,7 +19,7 @@ class PurchasePolicy
      */
     public function viewAny(User $user)
     {
-        return $user->givePermissionTo('view purchases');
+        return $user->hasPermissionTo('view purchases');
     }
 
     /**
@@ -30,7 +31,7 @@ class PurchasePolicy
      */
     public function view(User $user, Purchase $purchase)
     {
-        return $user->givePermissionTo('view purchase'); 
+        return $user->hasPermissionTo('view purchase'); 
     }
 
     /**
@@ -41,7 +42,7 @@ class PurchasePolicy
      */
     public function create(User $user)
     {
-        return $user->givePermissionTo('create purchase');
+        return $user->hasPermissionTo('create purchase');
     }
 
     /**
@@ -53,7 +54,7 @@ class PurchasePolicy
      */
     public function update(User $user, Purchase $purchase)
     {
-        return $user->givePermissionTo('edit purchase');
+        return $user->hasPermissionTo('edit purchase');
     }
 
     /**
@@ -65,7 +66,7 @@ class PurchasePolicy
      */
     public function delete(User $user, Purchase $purchase)
     {
-        return $user->givePermissionTo('delete purchase');
+        return $user->hasPermissionTo('delete purchase');
     }
 
     /**

@@ -80,8 +80,8 @@ export default {
                         this.setProductsInPurchase(obj);
                     }
                 })
-                .catch(res => {
-                    console.log(res);
+                .catch(err => {
+                    this.getErrors(err)
                 });
         },
         destroy() {
@@ -101,8 +101,8 @@ export default {
                         );
                     }
                 })
-                .catch(res => {
-                    console.log(res);
+                .catch(err => {
+                    this.getErrors(err);
                 });
         }
     },
