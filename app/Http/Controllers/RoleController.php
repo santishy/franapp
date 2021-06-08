@@ -13,6 +13,7 @@ class RoleController extends Controller
 {
     public function index()
     {
+        $this->authorize('viewAny',new Role);
         if (request()->wantsJson())
             return response()->json([
                 'data' => Role::all()->pluck('name','id'),
@@ -21,6 +22,7 @@ class RoleController extends Controller
     }
     public function create()
     {
+        $this->authorize('create',new Role);
         $permissions = Permission::all('name', 'id');
         $roles = Role::all('name', 'id');
         return view('auth.roles.create', compact('permissions', 'roles'));
@@ -28,6 +30,7 @@ class RoleController extends Controller
 
     public function store(Request $request)
     {
+        $this->authorize('create',new Role);
         $request->validate([
             'name' => ['required']
         ]);
@@ -45,6 +48,7 @@ class RoleController extends Controller
 
     public function show(Role $role)
     {
+        $this->authorize('view',$role);
         return response()->json(['data' => $role->include()->where('id',$role->id)->first()]);
     }
 }
