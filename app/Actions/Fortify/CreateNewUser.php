@@ -7,10 +7,11 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class CreateNewUser implements CreatesNewUsers
 {
-    use PasswordValidationRules;
+    use PasswordValidationRules,AuthorizesRequests;
 
     /**
      * Validate and create a newly registered user.
@@ -20,6 +21,7 @@ class CreateNewUser implements CreatesNewUsers
      */
     public function create(array $input)
     {
+        $this->authorize('create',new User);
         Validator::make($input, [
             'name' => ['required', 'string', 'max:255'],
             'email' => [

@@ -2,14 +2,14 @@
 
 namespace App\Policies;
 
-
+use App\Http\Traits\HasAdministrator;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Spatie\Permission\Models\Role;
 
-class RolPolicy
+class RolePolicy
 {
-    use HandlesAuthorization;
+    use HandlesAuthorization,HasAdministrator;
 
     /**
      * Determine whether the user can view any models.

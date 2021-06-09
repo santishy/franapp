@@ -8,7 +8,9 @@ use App\Actions\Fortify\UpdateUserPassword;
 use App\Actions\Fortify\UpdateUserProfileInformation;
 use App\Models\Inventory;
 use App\Models\User;
+
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Fortify\Fortify;
@@ -42,6 +44,7 @@ class FortifyServiceProvider extends ServiceProvider
             return  view('auth.login');
         });
         Fortify::registerView(function () {
+            Gate::authorize('register',new User);
             $roles = Role::all('id','name');
             $inventories = Inventory::all();
             return view('auth.register',compact('roles','inventories'));

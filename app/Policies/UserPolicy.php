@@ -2,12 +2,13 @@
 
 namespace App\Policies;
 
+use App\Http\Traits\HasAdministrator;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class UserPolicy
 {
-    use HandlesAuthorization;
+    use HandlesAuthorization,HasAdministrator;
 
     /**
      * Determine whether the user can view any models.
@@ -29,7 +30,7 @@ class UserPolicy
      */
     public function view(User $user, User $model)
     {
-        return $user->has('view user');
+        return $user->hasPermissionTo('view user');
     }
 
     /**
