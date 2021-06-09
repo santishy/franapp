@@ -33,9 +33,7 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
         Gate::define('register',function(User $user,User $model){
-
-            dd($user->givePermissionTo());
-            return $user->hasPermissionTo('create user');
+            return $user->hasPermissionTo('create user') || $user->hasRole('admin');
         });
     }
     public function before(){

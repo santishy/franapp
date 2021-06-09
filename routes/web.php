@@ -9,9 +9,9 @@ use App\Http\Controllers\ProductInPurchaseController;
 use App\Http\Controllers\{ClientController, CurrentUserController, InventoryController, RolesPermissionsController,UserController};
 use App\Http\Controllers\{PurchaseController, ProductInSaleController, RoleController};
 use App\Models\Category;
+use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
-    
     return view('dashboard');
 })->middleware('auth');
 
