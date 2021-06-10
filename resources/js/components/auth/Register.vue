@@ -16,7 +16,7 @@
                 placeholder="Nombre completo"
                 aria-label="Full name"
             >
-                <option value="" disabled>Elige un almacén</option>
+                <option value="" disabled selected>Elige un almacén</option>
                 <option v-for="inventory in inventories" :key="inventory.id" :value="inventory.id">
                     {{inventory.name}}
                 </option>
@@ -56,7 +56,7 @@
             />
         </div>
         <div
-            v-if="!user"
+            v-if="!editableUser"
             class="flex items-center border-b border-teal-500 py-2"
         >
             <input
@@ -84,7 +84,7 @@
 <script>
 export default {
     props: {
-        user: {
+        editableUser: {
             type: Object
         },
         inventories:{
@@ -100,7 +100,9 @@ export default {
         }
     },
     data: () => ({
-        form: {},
+        form: {
+            inventory_id:''
+        },
         roles: []
     }),
     created() {
@@ -133,10 +135,10 @@ export default {
     },
     computed: {
         getTitle() {
-            return !!this.user ? "Editar usuario" : "Requistrar usuario";
+            return !!this.editableUser ? "Editar usuario" : "Requistrar usuario";
         },
         getButtonTitle() {
-            return !!this.user ? "Editar" : "Guardar";
+            return !!this.editableUser ? "Editar" : "Guardar";
         }
     }
 };

@@ -41,7 +41,8 @@ export default {
     }),
     props: {
         roles: {
-            type: Array
+            type: Array 
+            
         }
     },
     components: { ErrorsComponent },

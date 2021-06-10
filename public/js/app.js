@@ -2569,7 +2569,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
-    user: {
+    editableUser: {
       type: Object
     },
     inventories: {
@@ -2586,7 +2586,9 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      form: {},
+      form: {
+        inventory_id: ''
+      },
       roles: []
     };
   },
@@ -2626,10 +2628,10 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {
     getTitle: function getTitle() {
-      return !!this.user ? "Editar usuario" : "Requistrar usuario";
+      return !!this.editableUser ? "Editar usuario" : "Requistrar usuario";
     },
     getButtonTitle: function getButtonTitle() {
-      return !!this.user ? "Editar" : "Guardar";
+      return !!this.editableUser ? "Editar" : "Guardar";
     }
   }
 });
@@ -3841,7 +3843,9 @@ __webpack_require__.r(__webpack_exports__);
   // mixins:[Errors],
   data: function data() {
     return {
-      form: {},
+      form: {
+        category_id: ''
+      },
       category_name: ""
     };
   },
@@ -25254,9 +25258,11 @@ var render = function() {
               }
             },
             [
-              _c("option", { attrs: { value: "", disabled: "" } }, [
-                _vm._v("Elige un almacén")
-              ]),
+              _c(
+                "option",
+                { attrs: { value: "", disabled: "", selected: "" } },
+                [_vm._v("Elige un almacén")]
+              ),
               _vm._v(" "),
               _vm._l(_vm.inventories, function(inventory) {
                 return _c(
@@ -25381,7 +25387,7 @@ var render = function() {
           )
         : _vm._e(),
       _vm._v(" "),
-      !_vm.user
+      !_vm.editableUser
         ? _c(
             "div",
             { staticClass: "flex items-center border-b border-teal-500 py-2" },
@@ -26679,9 +26685,11 @@ var render = function() {
               }
             },
             [
-              _c("option", { attrs: { disabled: "", value: "" } }, [
-                _vm._v("Seleccione un elemento")
-              ]),
+              _c(
+                "option",
+                { attrs: { disabled: "", value: "", selected: "" } },
+                [_vm._v("Seleccione un elemento")]
+              ),
               _vm._v(" "),
               _vm._l(_vm.categories, function(category) {
                 return _c(

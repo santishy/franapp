@@ -16,7 +16,7 @@
                 plahceholder="Elige una categoria"
                 class="block appearance-none w-full bg-white hover:border-gray-500 px-4 py-2 pr-8 rounded leading-tight focus:outline-none focus:shadow-outline"
             >
-                <option disabled value="">Seleccione un elemento</option>
+                <option disabled value="" selected>Seleccione un elemento</option>
                 <option v-for="category in categories" :key="category.id" :value="category.id">{{category.name}}</option>
             </select>
             <div
@@ -114,7 +114,9 @@ export default {
     // mixins:[Errors],
     data() {
         return {
-            form: {},
+            form: {
+                category_id:''
+            },
             category_name: ""
         };
     },

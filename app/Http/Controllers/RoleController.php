@@ -24,7 +24,7 @@ class RoleController extends Controller
     {
         $this->authorize('create',new Role);
         $permissions = Permission::all('name', 'id');
-        $roles = Role::all('name', 'id');
+        $roles = Role::where('name','!=', 'admin')->get();
         return view('auth.roles.create', compact('permissions', 'roles'));
     }
 
