@@ -43,7 +43,6 @@ export default {
         // deselecciona todos los checkbox que se encuentren en ese momento
         unchekedAll() {
             document.querySelectorAll(".form-checkbox").forEach(element => {
-                console.log(element.checked);
                 element.checked = "";
             });
         }

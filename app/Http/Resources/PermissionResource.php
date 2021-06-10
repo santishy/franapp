@@ -17,7 +17,8 @@ class PermissionResource extends JsonResource
         return [
             'name' => $this->name,
             'id' => $this->id,
-            'checked' => false
+            'checked' => false,
+            'translate' => __("permissions.{$this->name}")
         ];
     }
 }
