@@ -2604,9 +2604,9 @@ __webpack_require__.r(__webpack_exports__);
       _this.roles.splice(index, 1);
     });
 
-    if (this.user) {
-      this.form = this.user;
-      this.user.roles.map(function (_ref) {
+    if (this.editableUser) {
+      this.form = this.editableUser;
+      this.editableUser.roles.map(function (_ref) {
         var id = _ref.id;
 
         _this.roles.push(id);
@@ -2620,7 +2620,11 @@ __webpack_require__.r(__webpack_exports__);
       this.form.roles = this.roles;
       this.form._method = this.method;
       axios["post"](this.uri, this.form).then(function (res) {
-        console.log(res);
+        if (_this2.method == "post") {
+          _this2.form = {
+            inventory_id: ''
+          };
+        }
       })["catch"](function (err) {
         _this2.getErrors(err);
       });
@@ -5443,7 +5447,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".modal[data-v-53ab54d2] {\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n}\r\n", ""]);
+exports.push([module.i, ".modal[data-v-53ab54d2] {\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n}\n", ""]);
 
 // exports
 
@@ -24902,7 +24906,9 @@ var render = function() {
                 },
                 [
                   _vm._v(
-                    "\n                    Cerrar sesión\n                "
+                    "\n                    " +
+                      _vm._s(_vm.user.name) +
+                      " | Salir\n                "
                   )
                 ]
               )
@@ -25350,7 +25356,7 @@ var render = function() {
         ]
       ),
       _vm._v(" "),
-      !_vm.user
+      !_vm.editableUser
         ? _c(
             "div",
             { staticClass: "flex items-center border-b border-teal-500 py-2" },
@@ -46407,8 +46413,8 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\htdocs\franapp\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\franapp\resources\css\app.css */"./resources/css/app.css");
+__webpack_require__(/*! /home/vagrant/code/franapp/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/vagrant/code/franapp/resources/css/app.css */"./resources/css/app.css");
 
 
 /***/ })

@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Spatie\Permission\Models\Role;
 
 class CreateNewUser implements CreatesNewUsers
 {
@@ -22,6 +23,7 @@ class CreateNewUser implements CreatesNewUsers
     public function create(array $input)
     {
         $this->authorize('create',new User);
+        $isAdmin = $this->isAdmin();
         Validator::make($input, [
             'name' => ['required', 'string', 'max:255'],
             'email' => [
@@ -31,7 +33,7 @@ class CreateNewUser implements CreatesNewUsers
                 'max:255',
                 Rule::unique(User::class),
             ],
-            'inventory_id' => ['required'],
+            'inventory_id' => $isAdmin,
             'password' => $this->passwordRules(),
             'roles.*' => 'exists:roles,id'
         ])->validate();
@@ -39,11 +41,19 @@ class CreateNewUser implements CreatesNewUsers
             'name' => $input['name'],
             'email' => $input['email'],
             'password' => Hash::make($input['password']),
-            'inventory_id' => $input['inventory_id'],
+            'inventory_id' => count($isAdmin) ? null : $input['inventory_id']  ,
         ]);
         return $user->assignRole(request()->roles);
 
 
+    }
+
+    function isAdmin(){
+        foreach(request('roles',[]) as $role){
+            if(Role::where('name','admin')->first()->id === $role)
+                return [];
+        }
+        return ['required'];
     }
 
 }

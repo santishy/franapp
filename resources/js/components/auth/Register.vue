@@ -43,7 +43,7 @@
             />
         </div>
         <div
-            v-if="!user"
+            v-if="!editableUser"
             class="flex items-center border-b border-teal-500 py-2"
         >
             <input
@@ -113,9 +113,9 @@ export default {
             let index = this.roles.indexOf(role);
             this.roles.splice(index, 1);
         });
-        if (this.user) {
-            this.form = this.user;
-            this.user.roles.map(({ id }) => {
+        if (this.editableUser) {
+            this.form = this.editableUser;
+            this.editableUser.roles.map(({ id }) => {
                 this.roles.push(id);
             });
         }
@@ -126,7 +126,9 @@ export default {
             this.form._method = this.method;
             axios["post"](this.uri, this.form)
                 .then(res => {
-                    console.log(res);
+                    if(this.method == "post"){
+                        this.form={inventory_id:''}
+                    }
                 })
                 .catch(err => {
                     this.getErrors(err);
