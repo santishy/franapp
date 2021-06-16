@@ -24908,7 +24908,7 @@ var render = function() {
                   _vm._v(
                     "\n                    " +
                       _vm._s(_vm.user.name) +
-                      " | Salir\n                "
+                      " Salir\n                "
                   )
                 ]
               )
@@ -46104,9 +46104,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 var _require = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js"),
     mapGetters = _require.mapGetters,
-    mapState = _require.mapState;
+    mapState = _require.mapState,
+    mapActions = _require.mapActions;
 
 module.exports = {
+  methods: _objectSpread({}, mapActions(['getUser'])),
   computed: _objectSpread(_objectSpread({}, mapState(['auth', 'user'])), mapGetters(['isAdmin']))
 };
 
