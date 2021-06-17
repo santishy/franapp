@@ -19,11 +19,15 @@ const qtyPurchase = (state) => {
     }
 }
 const isAdmin = (state) => {
-    return state.user?.roles.includes('admin');
+    return state.user?.roles?.includes('admin');
+}
+const getCurrentUser = (state) => {
+    return state.user;
 }
 export default {
     hasProductsInPurchase,
     productExistsInPurchase,
     qtyPurchase,
-    isAdmin
+    isAdmin,
+    getCurrentUser,
 }

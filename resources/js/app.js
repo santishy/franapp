@@ -4,6 +4,16 @@ window.EventBus = new Vue();
 import Vuex from 'vuex'
 
 Vue.use(Vuex)
+import Notifications from 'vue-notification'
+Vue.component('notifications', Notifications);
+Vue.use(Notifications);
+import { store } from './vuex/store.js';
+import Errors from "./mixins/Errors";
+
+//store.dispatch('getUser');
+
+Vue.mixin(Errors);
+Vue.mixin(Authorizations);
 
 Vue.component('nav-component', require('./components/NavComponent.vue').default)
 Vue.component('errors-component', require('./components/ErrorsComponent.vue').default)
@@ -44,16 +54,7 @@ Vue.component('user-list',require('./components/users/UserList.vue').default);
 Vue.component('create-inventory',require('./components/inventories/CreateInventory.vue').default)
 Vue.component('inventory-stocks',require('./components/inventories/InventoryStocks.vue').default)
 
-import Notifications from 'vue-notification'
-Vue.component('notifications', Notifications);
-Vue.use(Notifications);
-import { store } from './vuex/store.js';
-import Errors from "./mixins/Errors";
 
-store.dispatch('getUser');
-
-Vue.mixin(Errors);
-Vue.mixin(Authorizations);
 
 
 import Vue from 'vue';

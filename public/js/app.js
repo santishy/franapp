@@ -24907,7 +24907,7 @@ var render = function() {
                 [
                   _vm._v(
                     "\n                    " +
-                      _vm._s(_vm.user.name) +
+                      _vm._s(_vm.getCurrentUser.name) +
                       " Salir\n                "
                   )
                 ]
@@ -43095,6 +43095,14 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 window.EventBus = new vue__WEBPACK_IMPORTED_MODULE_4___default.a();
 
 vue__WEBPACK_IMPORTED_MODULE_4___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_0__["default"]);
+
+vue__WEBPACK_IMPORTED_MODULE_4___default.a.component('notifications', vue_notification__WEBPACK_IMPORTED_MODULE_1___default.a);
+vue__WEBPACK_IMPORTED_MODULE_4___default.a.use(vue_notification__WEBPACK_IMPORTED_MODULE_1___default.a);
+
+ //store.dispatch('getUser');
+
+vue__WEBPACK_IMPORTED_MODULE_4___default.a.mixin(_mixins_Errors__WEBPACK_IMPORTED_MODULE_3___default.a);
+vue__WEBPACK_IMPORTED_MODULE_4___default.a.mixin(_mixins_Authorizations_js__WEBPACK_IMPORTED_MODULE_5___default.a);
 vue__WEBPACK_IMPORTED_MODULE_4___default.a.component('nav-component', __webpack_require__(/*! ./components/NavComponent.vue */ "./resources/js/components/NavComponent.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_4___default.a.component('errors-component', __webpack_require__(/*! ./components/ErrorsComponent.vue */ "./resources/js/components/ErrorsComponent.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_4___default.a.component('dropdown-component', __webpack_require__(/*! ./components/DropdownComponent.vue */ "./resources/js/components/DropdownComponent.vue")["default"]);
@@ -43124,14 +43132,6 @@ vue__WEBPACK_IMPORTED_MODULE_4___default.a.component('user-list', __webpack_requ
 
 vue__WEBPACK_IMPORTED_MODULE_4___default.a.component('create-inventory', __webpack_require__(/*! ./components/inventories/CreateInventory.vue */ "./resources/js/components/inventories/CreateInventory.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_4___default.a.component('inventory-stocks', __webpack_require__(/*! ./components/inventories/InventoryStocks.vue */ "./resources/js/components/inventories/InventoryStocks.vue")["default"]);
-
-vue__WEBPACK_IMPORTED_MODULE_4___default.a.component('notifications', vue_notification__WEBPACK_IMPORTED_MODULE_1___default.a);
-vue__WEBPACK_IMPORTED_MODULE_4___default.a.use(vue_notification__WEBPACK_IMPORTED_MODULE_1___default.a);
-
-
-_vuex_store_js__WEBPACK_IMPORTED_MODULE_2__["store"].dispatch('getUser');
-vue__WEBPACK_IMPORTED_MODULE_4___default.a.mixin(_mixins_Errors__WEBPACK_IMPORTED_MODULE_3___default.a);
-vue__WEBPACK_IMPORTED_MODULE_4___default.a.mixin(_mixins_Authorizations_js__WEBPACK_IMPORTED_MODULE_5___default.a);
 
 
 var app = new vue__WEBPACK_IMPORTED_MODULE_4___default.a({
@@ -46108,8 +46108,11 @@ var _require = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.es
     mapActions = _require.mapActions;
 
 module.exports = {
+  created: function created() {
+    this.getUser();
+  },
   methods: _objectSpread({}, mapActions(['getUser'])),
-  computed: _objectSpread(_objectSpread({}, mapState(['auth', 'user'])), mapGetters(['isAdmin']))
+  computed: _objectSpread(_objectSpread({}, mapState(['auth', 'user'])), mapGetters(['isAdmin', 'getCurrentUser']))
 };
 
 /***/ }),
@@ -46293,16 +46296,21 @@ var qtyPurchase = function qtyPurchase(state) {
 };
 
 var isAdmin = function isAdmin(state) {
-  var _state$user;
+  var _state$user, _state$user$roles;
 
-  return (_state$user = state.user) === null || _state$user === void 0 ? void 0 : _state$user.roles.includes('admin');
+  return (_state$user = state.user) === null || _state$user === void 0 ? void 0 : (_state$user$roles = _state$user.roles) === null || _state$user$roles === void 0 ? void 0 : _state$user$roles.includes('admin');
+};
+
+var getCurrentUser = function getCurrentUser(state) {
+  return state.user;
 };
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   hasProductsInPurchase: hasProductsInPurchase,
   productExistsInPurchase: productExistsInPurchase,
   qtyPurchase: qtyPurchase,
-  isAdmin: isAdmin
+  isAdmin: isAdmin,
+  getCurrentUser: getCurrentUser
 });
 
 /***/ }),
@@ -46396,7 +46404,7 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
     productsInPurchase: JSON.parse(localStorage.getItem('productsInPurchase')),
     purchaseStatus: '',
     //activeSearchCategory:true,
-    user: null,
+    user: {},
     auth: false,
     salePriceOption: sessionStorage.getItem('salePriceOption'),
     productsInTransaction: []
