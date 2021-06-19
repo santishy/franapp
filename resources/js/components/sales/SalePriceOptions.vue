@@ -28,9 +28,6 @@ import { mapMutations } from "vuex";
 import InventoryList from "../inventories/InventoryList.vue";
 
 export default {
-    mounted() {
-        console.log(this.inventories);
-    },
     components: {
         InventoryList
     },
