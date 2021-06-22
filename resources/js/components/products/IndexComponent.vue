@@ -1,5 +1,6 @@
 <template>
-    <div class="grid  grid-cols-1 md:grid-cols-3 gap-4 mt-24 md:mt-32">
+    <nav-component>
+    <div class="grid  grid-cols-1 md:grid-cols-3 gap-4 ">
         <div class="col-span-3 flex justify-center">
             <search-component ref="search" class="md:w-1/4 w-3/4" />
         </div>
@@ -17,12 +18,14 @@
             @infinite="infiniteHandler"
         ></infinite-loading>
     </div>
+    </nav-component>
 </template>
 <script>
 import ProductCardComponent from "./ProductCardComponent.vue";
 import InfiniteLoading from "vue-infinite-loading";
 import SearchComponent from "./SearchComponent.vue";
 import { mapActions } from "vuex";
+import NavComponent from '../NavComponent.vue';
 export default {
     data() {
         return {
@@ -46,7 +49,8 @@ export default {
     components: {
         "product-card": ProductCardComponent,
         InfiniteLoading,
-        "search-component": SearchComponent
+        "search-component": SearchComponent,
+NavComponent
     },
     methods: {
         ...mapActions(["getProducts", "search"]),

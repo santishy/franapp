@@ -12,7 +12,7 @@
 </head>
 <body class="bg-gray-200">
     <div id="app">
-    <nav-component></nav-component>
+    {{-- <nav-component></nav-component> --}}
         <div class="container mx-auto">
             @yield('content')
         </div>
