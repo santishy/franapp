@@ -20,16 +20,16 @@
 
 import ProductMatching from "../products/ProductMatching.vue";
 import SearchComponent from "../products/SearchComponent.vue";
-import {mapState} from "vuex";
+import SalePriceOptions from "./SalePriceOptions.vue";
+import {mapState,mapGetters} from "vuex";
 import SalesCart from "./SalesCart";
-import NavComponent from '../NavComponent.vue';
-
+import NavComponent from "../NavComponent.vue";
 export default {
     components: {
         SearchComponent,
         SalesCart,
         ProductMatching,
-        SalePriceOption,
+        SalePriceOptions,
         NavComponent
     },
     props: {
