@@ -55,6 +55,8 @@ Vue.component('user-list',require('./components/users/UserList.vue').default);
 Vue.component('create-inventory',require('./components/inventories/CreateInventory.vue').default)
 Vue.component('inventory-stocks',require('./components/inventories/InventoryStocks.vue').default)
 
+//dashboard
+Vue.component('dashboard',require('./components/Dashboard.vue').default);
 
 
 

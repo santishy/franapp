@@ -1,4 +1,5 @@
 <template>
+    <nav-component>
     <div v-if="salePriceOption == null" class="w-full flex justify-center mt-24 md:mt-32">
         <sale-price-options></sale-price-options>
     </div>
@@ -13,21 +14,23 @@
             </div>
         </div>
     </div>
+    </nav-component>
 </template>
 <script>
 
 import ProductMatching from "../products/ProductMatching.vue";
 import SearchComponent from "../products/SearchComponent.vue";
-import SalePriceOptions from "./SalePriceOptions.vue";
-import {mapState,mapGetters} from "vuex";
+import {mapState} from "vuex";
 import SalesCart from "./SalesCart";
+import NavComponent from '../NavComponent.vue';
 
 export default {
     components: {
         SearchComponent,
         SalesCart,
         ProductMatching,
-        SalePriceOptions
+        SalePriceOption,
+        NavComponent
     },
     props: {
         sale: {
