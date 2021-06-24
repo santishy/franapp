@@ -2,7 +2,8 @@
 @section('content')
 <div class="flex flex-wrap items-baseline">
     <register-component 
-        class="mr-4" :user="{{$user}}"
+        class="mr-4" 
+        :editable-user="{{json_encode($user)}}"
         method="PUT"
         uri="/users/{{$user->id}}"
     ></register-component>

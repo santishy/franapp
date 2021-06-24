@@ -5,6 +5,5 @@
         name="{{$name}}"
     >
     </transaction-report>
-    <transaction-list uri="{{$uri}}">
-    </transaction-list>
+  
 @endsection

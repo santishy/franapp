@@ -46,7 +46,7 @@ export default {
                 .then(res => {
                     if (res.data.length) this.users = res.data;
                 })
-                .bind(this);
+                
         }
     }
 };

@@ -4879,7 +4879,14 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _ReportBy_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ReportBy.vue */ "./resources/js/components/reports/ReportBy.vue");
+/* harmony import */ var _NavComponent_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../NavComponent.vue */ "./resources/js/components/NavComponent.vue");
+/* harmony import */ var _ReportBy_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ReportBy.vue */ "./resources/js/components/reports/ReportBy.vue");
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -4897,12 +4904,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    ReportBy: _ReportBy_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+    ReportBy: _ReportBy_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
+    NavComponent: _NavComponent_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   props: {
     name: {
+      type: String
+    },
+    uri: {
       type: String
     }
   },
@@ -4914,7 +4926,7 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this = this;
 
-    EventBus.$on('calculated-total', function (total) {
+    EventBus.$on("calculated-total", function (total) {
       _this.total = total;
     });
   }
@@ -5554,7 +5566,7 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get("/users?axios=" + Math.random(10)).then(function (res) {
         if (res.data.length) _this.users = res.data;
-      }).bind(this);
+      });
     }
   }
 });
@@ -25404,7 +25416,7 @@ var render = function() {
           staticClass:
             "flex items-center py-2 text-dark text-center justify-center text-xl font-bold border-b border-teal-500"
         },
-        [_vm._v("\n        " + _vm._s(_vm.getTitle) + "\n    ")]
+        [_vm._v("\n        " + _vm._s(_vm.getTitle) + " \n    ")]
       ),
       _vm._v(" "),
       _c(
@@ -27956,40 +27968,52 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "div",
-    { staticClass: "w-3/5 mx-auto shadow  pb-4 bg-white mt-24 md:mt-32" },
+    "nav-component",
     [
       _c(
-        "h1",
-        {
-          staticClass:
-            "font-extrabold text-gray-700  text-center border-b-2 border-gray-300 py-3 text-2xl"
-        },
-        [_vm._v("\n        Reporte de " + _vm._s(_vm.name) + "\n    ")]
+        "div",
+        { staticClass: "w-3/5 mx-auto shadow  pb-4 bg-white rounded-sm" },
+        [
+          _c(
+            "h1",
+            {
+              staticClass:
+                "font-extrabold text-gray-700  text-center border-b-2 border-gray-300 py-3 text-2xl"
+            },
+            [
+              _vm._v(
+                "\n            Reporte de " + _vm._s(_vm.name) + "\n        "
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c("transition", { attrs: { name: "fade" } }, [
+            _vm.total != null
+              ? _c(
+                  "div",
+                  {
+                    staticClass:
+                      "w-full bg-blue-600 border-b-2 py-3 text-white border-gray-300 flex justify-center items-center"
+                  },
+                  [
+                    _c("span", { staticClass: "font-semibold text-xl " }, [
+                      _vm._v("Total:")
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "font-bold text-2xl ml-2" }, [
+                      _vm._v("$" + _vm._s(_vm.total))
+                    ])
+                  ]
+                )
+              : _vm._e()
+          ]),
+          _vm._v(" "),
+          _c("report-by", { staticClass: "mt-4" })
+        ],
+        1
       ),
       _vm._v(" "),
-      _c("transition", { attrs: { name: "fade" } }, [
-        _vm.total != null
-          ? _c(
-              "div",
-              {
-                staticClass:
-                  "w-full bg-blue-600 border-b-2 py-3 text-white border-gray-300 flex justify-center items-center"
-              },
-              [
-                _c("span", { staticClass: "font-semibold text-xl " }, [
-                  _vm._v("Total:")
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "font-bold text-2xl ml-2" }, [
-                  _vm._v("$" + _vm._s(_vm.total))
-                ])
-              ]
-            )
-          : _vm._e()
-      ]),
-      _vm._v(" "),
-      _c("report-by", { staticClass: "mt-4" })
+      _c("transaction-list", { attrs: { uri: _vm.uri } })
     ],
     1
   )
@@ -43350,8 +43374,8 @@ vue__WEBPACK_IMPORTED_MODULE_4___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_0__
 vue__WEBPACK_IMPORTED_MODULE_4___default.a.component('notifications', vue_notification__WEBPACK_IMPORTED_MODULE_1___default.a);
 vue__WEBPACK_IMPORTED_MODULE_4___default.a.use(vue_notification__WEBPACK_IMPORTED_MODULE_1___default.a);
 
- //store.dispatch('getUser');
 
+_vuex_store_js__WEBPACK_IMPORTED_MODULE_2__["store"].dispatch('getUser');
 vue__WEBPACK_IMPORTED_MODULE_4___default.a.mixin(_mixins_Errors__WEBPACK_IMPORTED_MODULE_3___default.a);
 vue__WEBPACK_IMPORTED_MODULE_4___default.a.mixin(_mixins_Authorizations_js__WEBPACK_IMPORTED_MODULE_5___default.a);
 vue__WEBPACK_IMPORTED_MODULE_4___default.a.component('nav-component', __webpack_require__(/*! ./components/NavComponent.vue */ "./resources/js/components/NavComponent.vue")["default"]);
@@ -46500,10 +46524,6 @@ var _require = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.es
     mapActions = _require.mapActions;
 
 module.exports = {
-  created: function created() {
-    this.getUser();
-  },
-  methods: _objectSpread({}, mapActions(['getUser'])),
   computed: _objectSpread(_objectSpread({}, mapState(['auth', 'user'])), mapGetters(['isAdmin', 'getCurrentUser']))
 };
 

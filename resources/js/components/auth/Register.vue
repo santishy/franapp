@@ -6,7 +6,7 @@
         <div
             class="flex items-center py-2 text-dark text-center justify-center text-xl font-bold border-b border-teal-500"
         >
-            {{ getTitle }}
+            {{ getTitle }} 
         </div>
         <div class="flex items-center border-b border-teal-500 py-2">
             <select

@@ -10,7 +10,7 @@ Vue.use(Notifications);
 import { store } from './vuex/store.js';
 import Errors from "./mixins/Errors";
 
-//store.dispatch('getUser');
+store.dispatch('getUser');
 
 Vue.mixin(Errors);
 Vue.mixin(Authorizations);
