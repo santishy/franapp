@@ -1,5 +1,5 @@
 <template>
-    <div class="mt-24 md:mt-32 bg-white rounded shadow p-4 md:w-4/12">
+    <div class="bg-white rounded shadow p-4 md:w-4/12">
         <h3 class="text-xl border-b-2 border-gray-300 p-4 mb-3 font-semibold">Asignar roles</h3>
         <div v-for="role in roles" :key="role.id">
             <label class="inline-flex items-center">

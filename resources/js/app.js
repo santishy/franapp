@@ -39,7 +39,8 @@ Vue.component('transaction-report',require('./components/reports/Transactions').
 Vue.component('transaction-list',require('./components/reports/TransactionList.vue').default);
 
 //auth
-Vue.component('register-component',require('./components/auth/Register.vue').default);
+Vue.component('registration-form',require('./components/auth/RegistrationForm.vue').default);
+Vue.component('register',require('./components/auth/Register.vue').default);
 
 //roles
 Vue.component('create-new-role',require('./components/auth/CreateNewRole.vue').default);
