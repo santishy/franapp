@@ -1,5 +1,5 @@
 <template>
-    <div class="md:mt-32 mt-24">
+    <div class="">
         <form class="rounded bg-white shadow  p-4" @submit.prevent="submit">
             <div
                 class="flex items-center py-2 text-dark text-center justify-center text-xl font-bold border-b border-teal-500"

@@ -4,11 +4,16 @@
             <registration-form
                 class="mr-4"
                 :inventories="inventories"
-                method="post"
+                :method="method"
+                :editable-user="editableUser"
                 uri="/register"
             >
             </registration-form>
-            <assign-role :roles="roles" class="self-start"></assign-role>
+            <assign-role
+                :roles="roles"
+                class="self-start"
+                :has-roles="hasRoles"
+            ></assign-role>
         </div>
     </nav-component>
 </template>
@@ -23,6 +28,15 @@ export default {
         },
         inventories: {
             type: Array
+        },
+        editableUser: {
+            type: Object
+        },
+        hasRoles: {
+            type: Array
+        },
+        method: {
+            type: String
         }
     }
 };

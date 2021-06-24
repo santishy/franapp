@@ -45,6 +45,7 @@ Vue.component('register',require('./components/auth/Register.vue').default);
 //roles
 Vue.component('create-new-role',require('./components/auth/CreateNewRole.vue').default);
 Vue.component('assign-role',require('./components/auth/AssignRole.vue').default);
+Vue.component('role-component',require('./components/auth/RoleComponent.vue').default)
 
 //permissions
 Vue.component('permission-list',require('./components/auth/PermissionList.vue').default);

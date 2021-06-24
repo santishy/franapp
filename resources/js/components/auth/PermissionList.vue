@@ -1,6 +1,6 @@
 <template>
     <div
-        class="rounded bg-white shadow py-2 px-4 mt-24 md:mt-32 flex-wrap flex  items-center "
+        class="rounded bg-white shadow py-2 px-4 flex-wrap flex  items-center "
     >
         <div
             v-if="role != null"

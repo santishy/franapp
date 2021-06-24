@@ -13,7 +13,7 @@
 <body class="bg-gray-200">
     <div id="app">
     {{-- <nav-component></nav-component> --}}
-        <div class="container mx-auto">
+        <div class="container">
             @yield('content')
         </div>
     </div>
