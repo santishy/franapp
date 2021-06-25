@@ -35,7 +35,8 @@ class ProductController extends Controller
     public function edit(Product $product)
     {
         $this->authorize('update',$product);
-        return view('products.edit', compact('product'));
+        $categories = Category::all();
+        return view('products.edit', compact('categories','product'));
     }
     public function update(Request $request, Product $product)
     {

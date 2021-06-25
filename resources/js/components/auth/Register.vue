@@ -6,7 +6,7 @@
                 :inventories="inventories"
                 :method="method"
                 :editable-user="editableUser"
-                uri="/register"
+                :uri="uri"
             >
             </registration-form>
             <assign-role
@@ -37,6 +37,9 @@ export default {
         },
         method: {
             type: String
+        },
+        uri:{
+            type:String
         }
     }
 };

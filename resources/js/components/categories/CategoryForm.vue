@@ -36,7 +36,6 @@
                 Guardar
             </button>
         </div>
-        <notifications group="foo"></notifications>
     </form>
     <!-- </div> -->
 </template>
@@ -52,6 +51,8 @@ export default {
                 .then(res => {
                     EventBus.$emit('category-created',res.data);
                     this.form={}
+                    let obj = {message:'Categoría agregada',title:'Categorías'}
+                    this.notify(obj)
                 })
                 .catch(err => {
                     this.getErrors(err);

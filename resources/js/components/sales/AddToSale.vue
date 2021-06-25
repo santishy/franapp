@@ -8,7 +8,6 @@
                 <i class="fas fa-shopping-cart"></i>
             </button>
         </form>
-        <notifications group="foo" position="botton right"></notifications>
     </div>
 </template>
 <script>

@@ -55,20 +55,17 @@ export default {
     data() {
         return {
             form: {},
-            errors: null
+            errors: null,
+            obj:{'title':'Almacenes'}
         };
     },
     methods: {
         submit() {
-            var message = "EL almacen se creo correctamente";
+            this.obj.message = "EL almacen se creo correctamente";
             var url = "/inventories";
             axios["post"](url, this.form)
                 .then(res => {
-                    this.$notify({
-                        group: "foo",
-                        title: "Almacenes",
-                        text: message
-                    });
+                    this.notify(this.obj);
                     this.form = {};
                     this.errors = null;
                 })

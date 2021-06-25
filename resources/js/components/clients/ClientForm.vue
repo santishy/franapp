@@ -79,7 +79,6 @@
                         Guardar
                     </button>
                 </div>
-                <notifications group="foo"></notifications>
             </form>
         </div>
     </nav-component>
@@ -111,20 +110,19 @@ export default {
     },
     methods: {
         submit() {
-            var message = "EL cliente se creo correctamente";
+            var obj = {
+                title: "Clientes",
+                message: "EL cliente se creo correctamente"
+            };
             var url = "/clients";
             if (this.method == "put") {
-                message = "El cliente se modifico correctamente";
+                obj.message = "El cliente se modifico correctamente";
                 this.form._method = "put";
                 url = `/clients/${this.client.phone_number}`;
             }
             axios["post"](url, this.form)
                 .then(res => {
-                    this.$notify({
-                        group: "foo",
-                        title: "Clientes",
-                        text: message
-                    });
+                    this.notify(obj);
                     if (this.method == "post") this.form = {};
                     this.errors = null;
                 })

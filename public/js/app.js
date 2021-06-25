@@ -2240,6 +2240,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2417,7 +2418,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 /* harmony default export */ __webpack_exports__["default"] = (_data$props$component = {
   data: function data() {
     return {
-      form: {}
+      form: {},
+      obj: {
+        title: "Roles",
+        message: "Rol creado correctamente."
+      }
     };
   },
   props: {
@@ -2435,7 +2440,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     var _this = this;
 
     axios.post("/roles", this.form).then(function (res) {
-      EventBus.$emit('role-created', res.data);
+      _this.notify(_this.obj);
+
+      EventBus.$emit("role-created", res.data);
     })["catch"](function (error) {
       _this.getErrors(error);
     });
@@ -2587,6 +2594,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     method: {
       type: String
+    },
+    uri: {
+      type: String
     }
   }
 });
@@ -2602,6 +2612,10 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
 //
 //
 //
@@ -2705,9 +2719,12 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       form: {
-        inventory_id: ''
+        inventory_id: ""
       },
-      roles: []
+      roles: [],
+      obj: {
+        title: "Usuarios"
+      }
     };
   },
   created: function created() {
@@ -2740,9 +2757,14 @@ __webpack_require__.r(__webpack_exports__);
       axios["post"](this.uri, this.form).then(function (res) {
         if (_this2.method == "post") {
           _this2.form = {
-            inventory_id: ''
+            inventory_id: ""
           };
+          _this2.obj.message = "Usuario agregado correctamente.";
+        } else {
+          _this2.obj.message = "Usuario modificado correctamente";
         }
+
+        _this2.notify(_this2.obj);
       })["catch"](function (err) {
         _this2.getErrors(err);
       });
@@ -2942,7 +2964,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2958,6 +2979,12 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (res) {
         EventBus.$emit('category-created', res.data);
         _this.form = {};
+        var obj = {
+          message: 'Categoría agregada',
+          title: 'Categorías'
+        };
+
+        _this.notify(obj);
       })["catch"](function (err) {
         _this.getErrors(err);
       });
@@ -3169,7 +3196,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -3199,21 +3225,20 @@ __webpack_require__.r(__webpack_exports__);
     submit: function submit() {
       var _this = this;
 
-      var message = "EL cliente se creo correctamente";
+      var obj = {
+        title: "Clientes",
+        message: "EL cliente se creo correctamente"
+      };
       var url = "/clients";
 
       if (this.method == "put") {
-        message = "El cliente se modifico correctamente";
+        obj.message = "El cliente se modifico correctamente";
         this.form._method = "put";
         url = "/clients/".concat(this.client.phone_number);
       }
 
       axios["post"](url, this.form).then(function (res) {
-        _this.$notify({
-          group: "foo",
-          title: "Clientes",
-          text: message
-        });
+        _this.notify(obj);
 
         if (_this.method == "post") _this.form = {};
         _this.errors = null;
@@ -3445,21 +3470,20 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       form: {},
-      errors: null
+      errors: null,
+      obj: {
+        'title': 'Almacenes'
+      }
     };
   },
   methods: {
     submit: function submit() {
       var _this = this;
 
-      var message = "EL almacen se creo correctamente";
+      this.obj.message = "EL almacen se creo correctamente";
       var url = "/inventories";
       axios["post"](url, this.form).then(function (res) {
-        _this.$notify({
-          group: "foo",
-          title: "Almacenes",
-          text: message
-        });
+        _this.notify(_this.obj);
 
         _this.form = {};
         _this.errors = null;
@@ -3953,7 +3977,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _NavComponent_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../NavComponent.vue */ "./resources/js/components/NavComponent.vue");
-//
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -4089,11 +4118,7 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     if (!!this.product) {
       this.form = this.product;
-    } // EventBus.$on("selected-category", category => {
-    //     this.category_name = category.name;
-    //     this.form.category_id = category.id;
-    // });
-
+    }
   },
   props: {
     method: {
@@ -4108,28 +4133,37 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     submit: function submit() {
+      var _this = this;
+
       var message = {
         message: "EL producto se creo correctamente"
       };
-      this.notify({
-        message: 'hola',
-        title: 'hola mundo'
-      }); //     var url = "/products";
-      //     if (this.method == "put") {
-      //         message = "El producto se modifico correctamente";
-      //         this.form._method = "put";
-      //         url = `/products/${this.product.id}`;
-      //     }
-      //     axios["post"](url, this.form)
-      //         .then(res => {
-      //             this.notify(...{title:'Productos'})
-      //             if (this.method == "post") this.form = {};
-      //             this.errors = null;
-      //         })
-      //         .catch(err => {
-      //             console.log({err})
-      //             //this.getErrors(err);
-      //         });
+      var url = "/products";
+
+      if (this.method == "put") {
+        message = {
+          message: "El producto se modifico correctamente"
+        };
+        this.form._method = "put";
+        url = "/products/".concat(this.product.id);
+      }
+
+      axios["post"](url, this.form).then(function (res) {
+        var obj = _objectSpread({
+          title: 'Productos'
+        }, message);
+
+        console.log(obj);
+
+        _this.notify(obj);
+
+        if (_this.method == "post") _this.form = {};
+        _this.errors = null;
+      })["catch"](function (err) {
+        ;
+
+        _this.getErrors(err);
+      });
     }
   },
   computed: {
@@ -5118,7 +5152,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
 
 
 
@@ -5702,7 +5735,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".modal[data-v-53ab54d2] {\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n}\n", ""]);
+exports.push([module.i, ".modal[data-v-53ab54d2] {\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n}\r\n", ""]);
 
 // exports
 
@@ -25058,179 +25091,186 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("div", { staticClass: "min-h-screen" }, [
-      _c(
-        "nav",
-        {
-          staticClass:
-            "flex items-center justify-between flex-wrap bg-red-500 p-6 fixed w-full top-0"
-        },
-        [
-          _vm._m(0),
-          _vm._v(" "),
-          _c(
-            "div",
-            {
-              staticClass: "block lg:hidden",
-              on: { click: _vm.toggleNavegation }
-            },
-            [
-              _c(
-                "button",
-                {
-                  staticClass:
-                    "flex items-center px-3 py-2 border rounded text-teal-200 border-teal-400 hover:text-white hover:border-white"
-                },
-                [
-                  _c(
-                    "svg",
-                    {
-                      staticClass: "fill-current h-3 w-3",
-                      attrs: {
-                        viewBox: "0 0 20 20",
-                        xmlns: "http://www.w3.org/2000/svg"
-                      }
-                    },
-                    [
-                      _c("title", [_vm._v("Menu")]),
-                      _vm._v(" "),
-                      _c("path", {
+    _c(
+      "div",
+      { staticClass: "min-h-screen" },
+      [
+        _c(
+          "nav",
+          {
+            staticClass:
+              "flex items-center justify-between flex-wrap bg-red-500 p-6 fixed w-full top-0"
+          },
+          [
+            _vm._m(0),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "block lg:hidden",
+                on: { click: _vm.toggleNavegation }
+              },
+              [
+                _c(
+                  "button",
+                  {
+                    staticClass:
+                      "flex items-center px-3 py-2 border rounded text-teal-200 border-teal-400 hover:text-white hover:border-white"
+                  },
+                  [
+                    _c(
+                      "svg",
+                      {
+                        staticClass: "fill-current h-3 w-3",
                         attrs: {
-                          d: "M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"
+                          viewBox: "0 0 20 20",
+                          xmlns: "http://www.w3.org/2000/svg"
                         }
-                      })
-                    ]
-                  )
-                ]
-              )
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            {
-              staticClass:
-                "w-full block flex-grow lg:flex lg:items-center lg:w-auto hidden",
-              attrs: { id: "navegation" }
-            },
-            [
-              _c(
-                "div",
-                { staticClass: "text-sm lg:flex-grow" },
-                [
-                  _c("dropdown-component", {
-                    staticClass: "md:relative",
-                    attrs: { name: "Categorías", items: _vm.CategoriesMenu }
-                  }),
-                  _vm._v(" "),
-                  _c("dropdown-component", {
-                    staticClass: "md:relative",
-                    attrs: { name: "Productos", items: _vm.productsMenu }
-                  }),
-                  _vm._v(" "),
-                  _vm.purchase
-                    ? _c(
-                        "a",
-                        {
-                          staticClass:
-                            "block mt-4 lg:inline-block lg:mt-0  md:hover:text-white mr-4",
-                          class: _vm.highlight,
+                      },
+                      [
+                        _c("title", [_vm._v("Menu")]),
+                        _vm._v(" "),
+                        _c("path", {
                           attrs: {
-                            href: _vm.purchase
-                              ? "/purchases/" + _vm.purchase
-                              : "#"
+                            d: "M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"
                           }
-                        },
-                        [
-                          _vm._v(
-                            "\n                        Realizar Compra\n                    "
-                          )
-                        ]
-                      )
-                    : _vm._e(),
-                  _vm._v(" "),
-                  _c("dropdown-component", {
-                    staticClass: "md:relative",
-                    attrs: { name: "Clientes", items: _vm.clientsMenu }
-                  }),
-                  _vm._v(" "),
-                  _c(
-                    "a",
-                    {
-                      staticClass:
-                        "block mt-4 lg:inline-block lg:mt-0 text-gray-200 md:hover:text-white mr-4 md:text-base text-lg",
-                      attrs: { href: "/sales/create" }
-                    },
-                    [
-                      _vm._v(
-                        "\n                        Vender\n                    "
-                      )
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c("dropdown-component", {
-                    staticClass: "md:relative",
-                    attrs: { name: "Reportes", items: _vm.ReportsMenu }
-                  }),
-                  _vm._v(" "),
-                  _c("dropdown-component", {
-                    staticClass: "md:relative",
-                    attrs: { name: "Usuarios", items: _vm.UsersMenu }
-                  }),
-                  _vm._v(" "),
-                  _c("dropdown-component", {
-                    staticClass: "md:relative",
-                    attrs: { name: "Almacenes", items: _vm.InventoryMenu }
-                  }),
-                  _vm._v(" "),
-                  _c(
-                    "a",
-                    {
-                      staticClass:
-                        "block mt-4 lg:inline-block lg:mt-0 text-gray-200 md:hover:text-white mr-4 md:text-base text-lg",
-                      attrs: { href: "/roles/create" }
-                    },
-                    [
-                      _vm._v(
-                        "\n                        Roles\n                    "
-                      )
-                    ]
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c("div", [
-                _c("form", { attrs: { action: "/logout", method: "POST" } }, [
-                  _c("input", {
-                    attrs: { type: "hidden", name: "_token" },
-                    domProps: { value: _vm.crfsToken }
-                  }),
-                  _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      staticClass:
-                        "inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent md:hover:text-teal-500 md:hover:bg-white mt-4 lg:mt-0",
-                      attrs: { href: "/logout" }
-                    },
-                    [
-                      _vm._v(
-                        "\n                            " +
-                          _vm._s(_vm.getCurrentUser.name) +
-                          " Salir\n                        "
-                      )
-                    ]
-                  )
+                        })
+                      ]
+                    )
+                  ]
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass:
+                  "w-full block flex-grow lg:flex lg:items-center lg:w-auto hidden",
+                attrs: { id: "navegation" }
+              },
+              [
+                _c(
+                  "div",
+                  { staticClass: "text-sm lg:flex-grow" },
+                  [
+                    _c("dropdown-component", {
+                      staticClass: "md:relative",
+                      attrs: { name: "Categorías", items: _vm.CategoriesMenu }
+                    }),
+                    _vm._v(" "),
+                    _c("dropdown-component", {
+                      staticClass: "md:relative",
+                      attrs: { name: "Productos", items: _vm.productsMenu }
+                    }),
+                    _vm._v(" "),
+                    _vm.purchase
+                      ? _c(
+                          "a",
+                          {
+                            staticClass:
+                              "block mt-4 lg:inline-block lg:mt-0  md:hover:text-white mr-4",
+                            class: _vm.highlight,
+                            attrs: {
+                              href: _vm.purchase
+                                ? "/purchases/" + _vm.purchase
+                                : "#"
+                            }
+                          },
+                          [
+                            _vm._v(
+                              "\n                        Realizar Compra\n                    "
+                            )
+                          ]
+                        )
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _c("dropdown-component", {
+                      staticClass: "md:relative",
+                      attrs: { name: "Clientes", items: _vm.clientsMenu }
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "a",
+                      {
+                        staticClass:
+                          "block mt-4 lg:inline-block lg:mt-0 text-gray-200 md:hover:text-white mr-4 md:text-base text-lg",
+                        attrs: { href: "/sales/create" }
+                      },
+                      [
+                        _vm._v(
+                          "\n                        Vender\n                    "
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("dropdown-component", {
+                      staticClass: "md:relative",
+                      attrs: { name: "Reportes", items: _vm.ReportsMenu }
+                    }),
+                    _vm._v(" "),
+                    _c("dropdown-component", {
+                      staticClass: "md:relative",
+                      attrs: { name: "Usuarios", items: _vm.UsersMenu }
+                    }),
+                    _vm._v(" "),
+                    _c("dropdown-component", {
+                      staticClass: "md:relative",
+                      attrs: { name: "Almacenes", items: _vm.InventoryMenu }
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "a",
+                      {
+                        staticClass:
+                          "block mt-4 lg:inline-block lg:mt-0 text-gray-200 md:hover:text-white mr-4 md:text-base text-lg",
+                        attrs: { href: "/roles/create" }
+                      },
+                      [
+                        _vm._v(
+                          "\n                        Roles\n                    "
+                        )
+                      ]
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c("div", [
+                  _c("form", { attrs: { action: "/logout", method: "POST" } }, [
+                    _c("input", {
+                      attrs: { type: "hidden", name: "_token" },
+                      domProps: { value: _vm.crfsToken }
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        staticClass:
+                          "inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent md:hover:text-teal-500 md:hover:bg-white mt-4 lg:mt-0",
+                        attrs: { href: "/logout" }
+                      },
+                      [
+                        _vm._v(
+                          "\n                            " +
+                            _vm._s(_vm.getCurrentUser.name) +
+                            " Salir\n                        "
+                        )
+                      ]
+                    )
+                  ])
                 ])
-              ])
-            ]
-          )
-        ]
-      ),
-      _vm._v(" "),
-      _c("main", { staticClass: "mt-24 md:mt-32" }, [_vm._t("default")], 2)
-    ])
+              ]
+            )
+          ]
+        ),
+        _vm._v(" "),
+        _c("main", { staticClass: "mt-24 md:mt-32" }, [_vm._t("default")], 2),
+        _vm._v(" "),
+        _c("notifications", { attrs: { group: "foo" } })
+      ],
+      1
+    )
   ])
 }
 var staticRenderFns = [
@@ -25525,7 +25565,7 @@ var render = function() {
             inventories: _vm.inventories,
             method: _vm.method,
             "editable-user": _vm.editableUser,
-            uri: "/register"
+            uri: _vm.uri
           }
         }),
         _vm._v(" "),
@@ -25579,7 +25619,7 @@ var render = function() {
           staticClass:
             "flex items-center py-2 text-dark text-center justify-center text-xl font-bold border-b border-teal-500"
         },
-        [_vm._v("\n        " + _vm._s(_vm.getTitle) + " \n    ")]
+        [_vm._v("\n        " + _vm._s(_vm.getTitle) + "\n    ")]
       ),
       _vm._v(" "),
       _c(
@@ -26000,11 +26040,8 @@ var render = function() {
           )
         : _vm._e(),
       _vm._v(" "),
-      _vm._m(0),
-      _vm._v(" "),
-      _c("notifications", { attrs: { group: "foo" } })
-    ],
-    1
+      _vm._m(0)
+    ]
   )
 }
 var staticRenderFns = [
@@ -26375,11 +26412,8 @@ var render = function() {
                 },
                 [_vm._v("\n                    Guardar\n                ")]
               )
-            ]),
-            _vm._v(" "),
-            _c("notifications", { attrs: { group: "foo" } })
-          ],
-          1
+            ])
+          ]
         )
       ]
     )
@@ -27402,11 +27436,8 @@ var render = function() {
                 },
                 [_vm._v("\n                    Guardar\n                ")]
               )
-            ]),
-            _vm._v(" "),
-            _c("notifications", { attrs: { group: "foo" } })
-          ],
-          1
+            ])
+          ]
         )
       ]
     )
@@ -28315,31 +28346,25 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c(
-        "form",
-        {
-          staticClass: "block",
-          on: {
-            submit: function($event) {
-              $event.preventDefault()
-              return _vm.submit($event)
-            }
+  return _c("div", [
+    _c(
+      "form",
+      {
+        staticClass: "block",
+        on: {
+          submit: function($event) {
+            $event.preventDefault()
+            return _vm.submit($event)
           }
-        },
-        [
-          _c("input", { attrs: { type: "hidden", name: "product_id" } }),
-          _vm._v(" "),
-          _vm._m(0)
-        ]
-      ),
-      _vm._v(" "),
-      _c("notifications", { attrs: { group: "foo", position: "botton right" } })
-    ],
-    1
-  )
+        }
+      },
+      [
+        _c("input", { attrs: { type: "hidden", name: "product_id" } }),
+        _vm._v(" "),
+        _vm._m(0)
+      ]
+    )
+  ])
 }
 var staticRenderFns = [
   function() {
@@ -46927,13 +46952,13 @@ module.exports = {
       var _ref$type = _ref.type,
           type = _ref$type === void 0 ? 'sucess' : _ref$type,
           title = _ref.title,
-          text = _ref.text;
-      console.log(title); // this.$notify({
-      //     group: "foo",
-      //     title: args[0],
-      //     text: args[1],
-      //     type: 
-      // });
+          message = _ref.message;
+      this.$notify({
+        group: "foo",
+        title: title,
+        text: message,
+        type: type
+      });
     }
   }
 };
@@ -47216,8 +47241,8 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/vagrant/code/franapp/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/vagrant/code/franapp/resources/css/app.css */"./resources/css/app.css");
+__webpack_require__(/*! C:\xampp\htdocs\franapp\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\franapp\resources\css\app.css */"./resources/css/app.css");
 
 
 /***/ })

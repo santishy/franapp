@@ -112,7 +112,6 @@
                         Guardar
                     </button>
                 </div>
-                <notifications group="foo"></notifications>
             </form>
         </div>
     </nav-component>
@@ -137,10 +136,6 @@ export default {
         if (!!this.product) {
             this.form = this.product;
         }
-        // EventBus.$on("selected-category", category => {
-        //     this.category_name = category.name;
-        //     this.form.category_id = category.id;
-        // });
     },
     props: {
         method: {
@@ -155,26 +150,27 @@ export default {
     },
     methods: {
         submit() {
-            var message = { message : "EL producto se creo correctamente"};
+            let message = { message: "EL producto se creo correctamente" };
 
-            this.notify({message:'hola',title:'hola mundo'});
-        //     var url = "/products";
-        //     if (this.method == "put") {
-        //         message = "El producto se modifico correctamente";
-        //         this.form._method = "put";
-        //         url = `/products/${this.product.id}`;
-        //     }
-        //     axios["post"](url, this.form)
-        //         .then(res => {
-        //             this.notify(...{title:'Productos'})
-        //             if (this.method == "post") this.form = {};
-        //             this.errors = null;
-        //         })
-        //         .catch(err => {
-        //             console.log({err})
-        //             //this.getErrors(err);
-        //         });
-         }
+            var url = "/products";
+            if (this.method == "put") {
+                message = {message:"El producto se modifico correctamente"};
+                this.form._method = "put";
+                url = `/products/${this.product.id}`;
+            }
+            axios["post"](url, this.form)
+                .then(res => {
+                    let obj = {title:'Productos',...message};
+                    console.log(obj)
+                    this.notify(obj);
+                    if (this.method == "post") this.form = {};
+                    this.errors = null;
+                })
+                .catch(err => {
+                    ;
+                    this.getErrors(err);
+                });
+        }
     },
     computed: {
         categoryName() {

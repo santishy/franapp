@@ -3,6 +3,7 @@
 <register 
     :inventories="{{json_encode($inventories)}}" 
     :roles="{{json_encode($roles)}}"
+    uri="/register"
     method="post"
 >
 </register>

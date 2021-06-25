@@ -37,12 +37,12 @@ import ErrorsComponent from "../ErrorsComponent";
 
 export default {
     data: () => ({
-        form: {}
+        form: {},
+        obj: { title: "Roles", message: "Rol creado correctamente." }
     }),
     props: {
         roles: {
-            type: Array 
-            
+            type: Array
         }
     },
     components: { ErrorsComponent },
@@ -52,7 +52,8 @@ export default {
             axios
                 .post("/roles", this.form)
                 .then(res => {
-                    EventBus.$emit('role-created',res.data)
+                    this.notify(this.obj);
+                    EventBus.$emit("role-created", res.data);
                 })
                 .catch(error => {
                     this.getErrors(error);

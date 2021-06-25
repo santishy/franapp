@@ -102,6 +102,7 @@
             <main class="mt-24 md:mt-32">
                 <slot />
             </main>
+            <notifications group="foo"></notifications>
         </div>
     </div>
 </template>
