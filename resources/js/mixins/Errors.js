@@ -11,7 +11,7 @@ module.exports = {
                 return window.location.href='/403';
             }
             this.errors = Object.values(
-                err.response.data.errors
+                err?.response?.data?.errors
             ).flat()
         }
     }

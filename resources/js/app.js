@@ -9,11 +9,13 @@ Vue.component('notifications', Notifications);
 Vue.use(Notifications);
 import { store } from './vuex/store.js';
 import Errors from "./mixins/Errors";
+import Notify from "./mixins/Notify";
 
 store.dispatch('getUser');
 
 Vue.mixin(Errors);
 Vue.mixin(Authorizations);
+Vue.mixin(Notify);
 
 Vue.component('nav-component', require('./components/NavComponent.vue').default)
 Vue.component('errors-component', require('./components/ErrorsComponent.vue').default)

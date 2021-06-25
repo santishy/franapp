@@ -155,28 +155,26 @@ export default {
     },
     methods: {
         submit() {
-            var message = "EL producto se creo correctamente";
-            var url = "/products";
-            if (this.method == "put") {
-                message = "El producto se modifico correctamente";
-                this.form._method = "put";
-                url = `/products/${this.product.id}`;
-            }
-            console.log(this.form);
-            axios["post"](url, this.form)
-                .then(res => {
-                    this.$notify({
-                        group: "foo",
-                        title: "Productos",
-                        text: message
-                    });
-                    if (this.method == "post") this.form = {};
-                    this.errors = null;
-                })
-                .catch(err => {
-                    this.getErrors(err);
-                });
-        }
+            var message = { message : "EL producto se creo correctamente"};
+
+            this.notify({message:'hola',title:'hola mundo'});
+        //     var url = "/products";
+        //     if (this.method == "put") {
+        //         message = "El producto se modifico correctamente";
+        //         this.form._method = "put";
+        //         url = `/products/${this.product.id}`;
+        //     }
+        //     axios["post"](url, this.form)
+        //         .then(res => {
+        //             this.notify(...{title:'Productos'})
+        //             if (this.method == "post") this.form = {};
+        //             this.errors = null;
+        //         })
+        //         .catch(err => {
+        //             console.log({err})
+        //             //this.getErrors(err);
+        //         });
+         }
     },
     computed: {
         categoryName() {
