@@ -45,6 +45,7 @@ class UserController extends Controller
             ],
             'roles.*' => 'exists:roles,id'
         ]);
+        $user->inventory_id = $request->inventory_id;
         $user->name = $request->name;
         $user->email = $request->email;
         $user->syncRoles($request->roles);
