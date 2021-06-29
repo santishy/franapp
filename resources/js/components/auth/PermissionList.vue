@@ -23,7 +23,7 @@
                     class="form-checkbox"
                     :checked="isChecked(permission.name)"
                 />
-                <span class="ml-2 text-gray-900">{{ permission.translate.toUpperCase() }}</span>
+                <span class="ml-2 text-gray-900 text-xs">{{ permission.translate.toUpperCase() }}</span>
             </label>
         </div>
     </div>
