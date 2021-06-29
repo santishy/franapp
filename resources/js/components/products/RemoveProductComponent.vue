@@ -1,7 +1,7 @@
 <template>
     <button
         @click="deleteProduct"
-        class="bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4  hover:border-red-500 rounded"
+        class="text-red-500 hover:text-red-700 shadow-xs border-b-2 border-t-2 border-red-500 font-bold py-2  hover:border-red-700 rounded"
     >
         <i class="far fa-trash-alt"></i>
     </button>

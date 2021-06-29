@@ -4674,6 +4674,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _CompletePurchaseButton_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CompletePurchaseButton.vue */ "./resources/js/components/purchases/CompletePurchaseButton.vue");
 /* harmony import */ var _CancelPurchaseButton__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CancelPurchaseButton */ "./resources/js/components/purchases/CancelPurchaseButton.vue");
+/* harmony import */ var _NavComponent_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../NavComponent.vue */ "./resources/js/components/NavComponent.vue");
 //
 //
 //
@@ -4730,12 +4731,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
     "complete-purchase-btn": _CompletePurchaseButton_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
-    "cancel-purchase-btn": _CancelPurchaseButton__WEBPACK_IMPORTED_MODULE_1__["default"]
+    "cancel-purchase-btn": _CancelPurchaseButton__WEBPACK_IMPORTED_MODULE_1__["default"],
+    NavComponent: _NavComponent_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
   props: {
     productsInPurchase: {
@@ -4775,7 +4784,7 @@ __webpack_require__.r(__webpack_exports__);
       this.localTotalPurchase = newTotalPurchase;
     },
     selectedInventory: function selectedInventory(inventory) {
-      EventBus.$emit('selected-inventory', inventory.id);
+      EventBus.$emit("selected-inventory", inventory.id);
     }
   },
   computed: {
@@ -5735,7 +5744,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".modal[data-v-53ab54d2] {\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n}\r\n", ""]);
+exports.push([module.i, ".modal[data-v-53ab54d2] {\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n}\n", ""]);
 
 // exports
 
@@ -25488,15 +25497,15 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    {
-      staticClass:
-        "rounded bg-white shadow py-2 px-4 flex-wrap flex  items-center "
-    },
+    { staticClass: "rounded bg-white shadow py-2 px-4 grid grid-cols-3" },
     [
       _vm.role != null
         ? _c(
             "div",
-            { staticClass: "w-full text-xl border-gray-300 border-b-2 pb-3" },
+            {
+              staticClass:
+                "w-full text-xl border-gray-300 border-b-2 pb-3 col-span-3 mb-2"
+            },
             [
               _vm._v("\n        Agregar permisos al rol:\n        "),
               !!_vm.role
@@ -25509,7 +25518,7 @@ var render = function() {
         : _vm._e(),
       _vm._v(" "),
       _vm._l(_vm.permissions, function(permission) {
-        return _c("div", { key: permission.id, staticClass: "mr-8" }, [
+        return _c("div", { key: permission.id, staticClass: "mr-8 mb-1" }, [
           _c("label", { staticClass: "inline-flex items-center" }, [
             _c("input", {
               staticClass: "form-checkbox",
@@ -25522,8 +25531,8 @@ var render = function() {
               }
             }),
             _vm._v(" "),
-            _c("span", { staticClass: "ml-2" }, [
-              _vm._v(_vm._s(permission.name))
+            _c("span", { staticClass: "ml-2 text-gray-900" }, [
+              _vm._v(_vm._s(permission.translate.toUpperCase()))
             ])
           ])
         ])
@@ -26983,7 +26992,7 @@ var render = function() {
           "div",
           {
             staticClass:
-              "px-6 pt-4 pb-2 text-center grid grid-cols-4 md:gap-4 gap-1"
+              " px-6 pt-4 pb-2 text-center grid grid-cols-4 md:gap-4 gap-1"
           },
           [
             _c("add-to-purchase", {
@@ -26998,10 +27007,10 @@ var render = function() {
               "a",
               {
                 staticClass:
-                  "bg-blue-500 inline-block cursor-pointer hover:bg-blue-400 text-white font-bold py-2 px-4 hover:border-blue-500 rounded",
+                  "cursor-pointer border-blue-500 font-semibold shadow-xs border-b-2 border-t-2 text-blue-500 hover:text-blue-700 py-2  hover:border-blue-700 rounded",
                 attrs: { href: "/products/" + _vm.product.id + "/edit" }
               },
-              [_c("i", { staticClass: "far fa-edit" })]
+              [_c("i", { staticClass: "fas fa-edit" })]
             ),
             _vm._v(" "),
             _c("remove-product", {
@@ -27015,8 +27024,10 @@ var render = function() {
           1
         ),
         _vm._v(" "),
-        _c("div", { staticClass: " p-2 border-b-2 border-teal-400" }, [
-          _c("p", { staticClass: "text-gray-800 font-bold" }, [_vm._v("SKU")]),
+        _c("div", { staticClass: " py-2 pl-8 pr-2 text-center" }, [
+          _c("p", { staticClass: "text-gray-800 font-semibold mb-1" }, [
+            _vm._v("SKU")
+          ]),
           _vm._v(" "),
           _c("p", { staticClass: "text-gray-700 text-base " }, [
             _vm._v(
@@ -27025,8 +27036,8 @@ var render = function() {
           ])
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: " p-2 border-b-2 border-teal-400" }, [
-          _c("p", { staticClass: "text-gray-800 font-bold" }, [
+        _c("div", { staticClass: "py-2 pl-8 pr-2 text-center" }, [
+          _c("p", { staticClass: "text-gray-800 font-bold mb-1" }, [
             _vm._v("Descripción")
           ]),
           _vm._v(" "),
@@ -27039,8 +27050,8 @@ var render = function() {
           ])
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: " p-2 border-b-2 border-teal-400" }, [
-          _c("p", { staticClass: "text-gray-800 font-bold " }, [
+        _c("div", { staticClass: "py-2 pl-8 pr-2 text-center" }, [
+          _c("p", { staticClass: "text-gray-800 font-bold  mb-1" }, [
             _vm._v("Precio al por mayor")
           ]),
           _vm._v(" "),
@@ -27053,8 +27064,8 @@ var render = function() {
           ])
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: " p-2 border-b-2 border-teal-400" }, [
-          _c("p", { staticClass: "text-gray-800 font-bold " }, [
+        _c("div", { staticClass: "py-2 pl-8 pr-2 text-center" }, [
+          _c("p", { staticClass: "text-gray-800 font-bold  mb-1" }, [
             _vm._v("Precio al por menor")
           ]),
           _vm._v(" "),
@@ -27067,8 +27078,8 @@ var render = function() {
           ])
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: " p-2 " }, [
-          _c("p", { staticClass: "text-gray-800 font-bold " }, [
+        _c("div", { staticClass: "py-2 pl-8 pr-2 text-center" }, [
+          _c("p", { staticClass: "text-gray-800 font-bold  mb-1" }, [
             _vm._v("Precio distribuidor")
           ]),
           _vm._v(" "),
@@ -27548,7 +27559,7 @@ var render = function() {
     "button",
     {
       staticClass:
-        "bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4  hover:border-red-500 rounded",
+        "text-red-500 hover:text-red-700 shadow-xs border-b-2 border-t-2 border-red-500 font-bold py-2  hover:border-red-700 rounded",
       on: { click: _vm.deleteProduct }
     },
     [_c("i", { staticClass: "far fa-trash-alt" })]
@@ -27642,7 +27653,7 @@ var render = function() {
         "button",
         {
           staticClass:
-            "bg-purple-500 w-full hover:bg-purple-700 text-white font-bold py-1 px-4 rounded text-2xl"
+            " border-yellow-500 border-b-2 hover:text-yellow-700 border-t-2 shadow-xs hover:border-yellow-700 text-yellow-500 font-bold py-1 px-4 rounded text-2xl"
         },
         [
           _vm.qtyPurchase(_vm.productExistsInPurchase(_vm.product_id))
@@ -27872,120 +27883,124 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "grid md:grid-cols-5 md:grid-rows-2 gap-4 mt-24 md:mt-32" },
-    [
-      _c(
-        "div",
-        {
-          staticClass:
-            "bg-gray-700 text-white shadow-sm border-none rounded-sm p-4"
-        },
-        [
-          _c("h3", { staticClass: "text-xl mb-2 text-center" }, [
-            _vm._v("Elige un almacén")
-          ]),
-          _vm._v(" "),
-          _vm._l(_vm.inventories, function(inventory) {
-            return _c(
-              "label",
-              {
-                key: inventory.id,
-                staticClass: "block text-center ",
-                on: {
-                  click: function($event) {
-                    return _vm.selectedInventory(inventory)
-                  }
-                }
-              },
-              [
-                _c("span", [_vm._v(_vm._s(inventory.name))]),
-                _vm._v(" "),
-                _c("input", {
-                  attrs: { type: "radio", name: "inventory_id" },
-                  domProps: { value: inventory.id }
-                })
-              ]
-            )
-          })
-        ],
-        2
-      ),
-      _vm._v(" "),
-      _c(
-        "div",
-        {
-          staticClass:
-            "col-span-2 row-span-1  bg-white rounded px-2 py-2  shadow border-gray-400 border"
-        },
-        [
-          _c(
-            "h3",
-            {
-              staticClass: "text-2xl font-semibold text-center py-2 px-2 mb-2"
-            },
-            [_vm._v("\n            Compra Actual\n        ")]
-          ),
-          _vm._v(" "),
-          _c("div", { staticClass: "grid md:grid-cols-1 text-center" }, [
-            _c("p", { staticClass: "text-xl text-gray-800 mb-2" }, [
-              _c("span", { staticClass: "text-2xl" }, [
-                _vm._v("Total Compra:")
-              ]),
-              _vm._v(" "),
-              _c("span", { staticClass: "text-2xl font-semibold" }, [
-                _vm._v(
-                  "$" +
-                    _vm._s(
-                      new Intl.NumberFormat("es-MX").format(
-                        _vm.localTotalPurchase
-                      )
-                    )
-                )
-              ])
+  return _c("nav-component", [
+    _c(
+      "div",
+      {
+        staticClass: "grid md:grid-cols-5 md:grid-rows-2 gap-4 mt-24 md:mt-32"
+      },
+      [
+        _c(
+          "div",
+          {
+            staticClass:
+              "bg-gray-700 text-white shadow-sm border-none rounded-sm p-4"
+          },
+          [
+            _c("h3", { staticClass: "text-xl mb-2 text-center" }, [
+              _vm._v("Elige un almacén")
             ]),
             _vm._v(" "),
-            _c("p", { staticClass: "text-xl text-gray-800 mb-4" }, [
-              _c("span", { staticClass: "text-2x text-gray-600" }, [
-                _vm._v("Status:")
+            _vm._l(_vm.inventories, function(inventory) {
+              return _c(
+                "label",
+                {
+                  key: inventory.id,
+                  staticClass: "block text-center ",
+                  on: {
+                    click: function($event) {
+                      return _vm.selectedInventory(inventory)
+                    }
+                  }
+                },
+                [
+                  _c("span", [_vm._v(_vm._s(inventory.name))]),
+                  _vm._v(" "),
+                  _c("input", {
+                    attrs: { type: "radio", name: "inventory_id" },
+                    domProps: { value: inventory.id }
+                  })
+                ]
+              )
+            })
+          ],
+          2
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass:
+              "col-span-2 row-span-1  bg-white rounded px-2 py-2  shadow border-gray-400 border"
+          },
+          [
+            _c(
+              "h3",
+              {
+                staticClass: "text-2xl font-semibold text-center py-2 px-2 mb-2"
+              },
+              [_vm._v("\n                Compra Actual\n            ")]
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "grid md:grid-cols-1 text-center" }, [
+              _c("p", { staticClass: "text-xl text-gray-800 mb-2" }, [
+                _c("span", { staticClass: "text-2xl" }, [
+                  _vm._v("Total Compra:")
+                ]),
+                _vm._v(" "),
+                _c("span", { staticClass: "text-2xl font-semibold" }, [
+                  _vm._v(
+                    "$" +
+                      _vm._s(
+                        new Intl.NumberFormat("es-MX").format(
+                          _vm.localTotalPurchase
+                        )
+                      )
+                  )
+                ])
+              ]),
+              _vm._v(" "),
+              _c("p", { staticClass: "text-xl text-gray-800 mb-4" }, [
+                _c("span", { staticClass: "text-2x text-gray-600" }, [
+                  _vm._v("Status:")
+                ]),
+                _vm._v(" "),
+                _c(
+                  "span",
+                  { staticClass: "text-2x text-blue-600 font-semibold" },
+                  [_vm._v(_vm._s(_vm.translateStatus))]
+                )
               ]),
               _vm._v(" "),
               _c(
-                "span",
-                { staticClass: "text-2x text-blue-600 font-semibold" },
-                [_vm._v(_vm._s(_vm.translateStatus))]
+                "div",
+                { staticClass: "w-full" },
+                [
+                  _c("complete-purchase-btn", {
+                    attrs: {
+                      purchase: _vm.purchase,
+                      "total-purchase": _vm.localTotalPurchase
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("cancel-purchase-btn", { attrs: { id: _vm.purchase.id } })
+                ],
+                1
               )
-            ]),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "w-full" },
-              [
-                _c("complete-purchase-btn", {
-                  attrs: {
-                    purchase: _vm.purchase,
-                    "total-purchase": _vm.localTotalPurchase
-                  }
-                }),
-                _vm._v(" "),
-                _c("cancel-purchase-btn", { attrs: { id: _vm.purchase.id } })
-              ],
-              1
-            )
-          ])
-        ]
-      ),
-      _vm._v(" "),
-      _vm._l(_vm.localProductsInPurchase, function(product, index) {
-        return _c("product-in-purchase", {
-          key: product.id,
-          attrs: { product: product, index: index }
+            ])
+          ]
+        ),
+        _vm._v(" "),
+        _vm._l(_vm.localProductsInPurchase, function(product, index) {
+          return _c("product-in-purchase", {
+            key: product.id,
+            attrs: { product: product, index: index }
+          })
         })
-      })
-    ],
-    2
-  )
+      ],
+      2
+    )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -28375,7 +28390,7 @@ var staticRenderFns = [
       "button",
       {
         staticClass:
-          "bg-purple-500  w-full hover:bg-purple-700 text-white font-bold py-1 px-4 rounded text-2xl"
+          " border-green-500 border-b-2 border-t-2 hover:border-green-700 shadow-xs hover:text-green-700 w-full text-green-500 font-bold py-1 rounded text-2xl"
       },
       [_c("i", { staticClass: "fas fa-shopping-cart" })]
     )
@@ -47241,8 +47256,8 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\htdocs\franapp\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\franapp\resources\css\app.css */"./resources/css/app.css");
+__webpack_require__(/*! /home/vagrant/code/franapp/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/vagrant/code/franapp/resources/css/app.css */"./resources/css/app.css");
 
 
 /***/ })

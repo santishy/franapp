@@ -3,7 +3,7 @@
         <form class="block" @submit.prevent="submit">
             <input type="hidden" name="product_id" />
             <button
-                class="bg-purple-500  w-full hover:bg-purple-700 text-white font-bold py-1 px-4 rounded text-2xl"
+                class=" border-green-500 border-b-2 border-t-2 hover:border-green-700 shadow-xs hover:text-green-700 w-full text-green-500 font-bold py-1 rounded text-2xl"
             >
                 <i class="fas fa-shopping-cart"></i>
             </button>

@@ -1,10 +1,10 @@
 <template>
     <div
-        class="rounded bg-white shadow py-2 px-4 flex-wrap flex  items-center "
+        class="rounded bg-white shadow py-2 px-4 grid grid-cols-3"
     >
         <div
             v-if="role != null"
-            class="w-full text-xl border-gray-300 border-b-2 pb-3"
+            class="w-full text-xl border-gray-300 border-b-2 pb-3 col-span-3 mb-2"
         >
             Agregar permisos al rol:
             <span v-if="!!role" class="text-dark font-semibold">{{
@@ -14,7 +14,7 @@
         <div
             v-for="permission in permissions"
             :key="permission.id"
-            class="mr-8"
+            class="mr-8 mb-1"
         >
             <label class="inline-flex items-center">
                 <input
@@ -23,7 +23,7 @@
                     class="form-checkbox"
                     :checked="isChecked(permission.name)"
                 />
-                <span class="ml-2">{{ permission.name }}</span>
+                <span class="ml-2 text-gray-900">{{ permission.translate.toUpperCase() }}</span>
             </label>
         </div>
     </div>

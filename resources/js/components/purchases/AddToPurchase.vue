@@ -2,7 +2,7 @@
     <form @submit.prevent="submit">
         <input type="hidden" name="product_id" />
         <button
-            class="bg-purple-500 w-full hover:bg-purple-700 text-white font-bold py-1 px-4 rounded text-2xl"
+            class=" border-yellow-500 border-b-2 hover:text-yellow-700 border-t-2 shadow-xs hover:border-yellow-700 text-yellow-500 font-bold py-1 px-4 rounded text-2xl"
         >
             <div
                 v-if="qtyPurchase(productExistsInPurchase(product_id))"
