@@ -43681,7 +43681,6 @@ vue__WEBPACK_IMPORTED_MODULE_5___default.a.directive('can', {
   inserted: function inserted(el, binding) {
     var _store$state$user, _store$state$user$per;
 
-    console.log(_vuex_store_js__WEBPACK_IMPORTED_MODULE_2__["store"].getters.isAdmin);
     if (_vuex_store_js__WEBPACK_IMPORTED_MODULE_2__["store"].getters.isAdmin || (_store$state$user = _vuex_store_js__WEBPACK_IMPORTED_MODULE_2__["store"].state.user) !== null && _store$state$user !== void 0 && (_store$state$user$per = _store$state$user.permissions) !== null && _store$state$user$per !== void 0 && _store$state$user$per.includes({
       name: binding.value
     })) return;
