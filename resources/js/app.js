@@ -33,35 +33,41 @@ Vue.component('category-list', require('./components/categories/CategoryList.vue
 Vue.component('category-index', require('./components/categories/Index.vue').default)
 
 //VENTAS COMPONENTES
-Vue.component('sale-component',require('./components/sales/SaleComponent').default)
-Vue.component('transaction-report',require('./components/reports/Transactions').default)
+Vue.component('sale-component', require('./components/sales/SaleComponent').default)
+Vue.component('transaction-report', require('./components/reports/Transactions').default)
 
 
 //transactions
-Vue.component('transaction-list',require('./components/reports/TransactionList.vue').default);
+Vue.component('transaction-list', require('./components/reports/TransactionList.vue').default);
 
 //auth
-Vue.component('registration-form',require('./components/auth/RegistrationForm.vue').default);
-Vue.component('register',require('./components/auth/Register.vue').default);
+Vue.component('registration-form', require('./components/auth/RegistrationForm.vue').default);
+Vue.component('register', require('./components/auth/Register.vue').default);
 
 //roles
-Vue.component('create-new-role',require('./components/auth/CreateNewRole.vue').default);
-Vue.component('assign-role',require('./components/auth/AssignRole.vue').default);
-Vue.component('role-component',require('./components/auth/RoleComponent.vue').default)
+Vue.component('create-new-role', require('./components/auth/CreateNewRole.vue').default);
+Vue.component('assign-role', require('./components/auth/AssignRole.vue').default);
+Vue.component('role-component', require('./components/auth/RoleComponent.vue').default)
 
 //permissions
-Vue.component('permission-list',require('./components/auth/PermissionList.vue').default);
+Vue.component('permission-list', require('./components/auth/PermissionList.vue').default);
 
 //users 
-Vue.component('user-list',require('./components/users/UserList.vue').default);
+Vue.component('user-list', require('./components/users/UserList.vue').default);
 
 //inventories
-Vue.component('create-inventory',require('./components/inventories/CreateInventory.vue').default)
-Vue.component('inventory-stocks',require('./components/inventories/InventoryStocks.vue').default)
+Vue.component('create-inventory', require('./components/inventories/CreateInventory.vue').default)
+Vue.component('inventory-stocks', require('./components/inventories/InventoryStocks.vue').default)
 
 //dashboard
-Vue.component('dashboard',require('./components/Dashboard.vue').default);
+Vue.component('dashboard', require('./components/Dashboard.vue').default);
 
+Vue.directive('can', function (el, binding) {
+
+    if (store.getters.isAdmin || store.state.user?.permissions?.includes({ name: binding.value }))
+        return;
+    el.style.display = 'none';
+});
 
 
 import Vue from 'vue';

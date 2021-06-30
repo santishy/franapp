@@ -17,7 +17,6 @@ export default {
         }
     },
     created(){
-        console.clear();
         EventBus.$on('category-created',category => {
             this.categories.unshift(category);
         })

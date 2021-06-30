@@ -1,6 +1,7 @@
 <template>
     <form
         @submit.prevent="submit"
+        v-can="'create category'"
         class="w-full max-w-md shadow-lg rounded-lg bg-white md:px-6 md:py-8  md:mt-0"
     >
         <div
