@@ -62,11 +62,13 @@ Vue.component('inventory-stocks', require('./components/inventories/InventorySto
 //dashboard
 Vue.component('dashboard', require('./components/Dashboard.vue').default);
 
-Vue.directive('can', function (el, binding) {
-
-    if (store.getters.isAdmin || store.state.user?.permissions?.includes({ name: binding.value }))
-        return;
-    el.style.display = 'none';
+Vue.directive('can', {
+    inserted: function (el, binding) {
+        console.log(store.getters.isAdmin)
+        if (store.getters.isAdmin || store.state.user?.permissions?.includes({ name: binding.value }))
+            return;
+        el.style.display = 'none';
+    }
 });
 
 

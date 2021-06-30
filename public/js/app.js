@@ -43677,13 +43677,16 @@ vue__WEBPACK_IMPORTED_MODULE_5___default.a.component('create-inventory', __webpa
 vue__WEBPACK_IMPORTED_MODULE_5___default.a.component('inventory-stocks', __webpack_require__(/*! ./components/inventories/InventoryStocks.vue */ "./resources/js/components/inventories/InventoryStocks.vue")["default"]); //dashboard
 
 vue__WEBPACK_IMPORTED_MODULE_5___default.a.component('dashboard', __webpack_require__(/*! ./components/Dashboard.vue */ "./resources/js/components/Dashboard.vue")["default"]);
-vue__WEBPACK_IMPORTED_MODULE_5___default.a.directive('can', function (el, binding) {
-  var _store$state$user, _store$state$user$per;
+vue__WEBPACK_IMPORTED_MODULE_5___default.a.directive('can', {
+  inserted: function inserted(el, binding) {
+    var _store$state$user, _store$state$user$per;
 
-  if (_vuex_store_js__WEBPACK_IMPORTED_MODULE_2__["store"].getters.isAdmin || (_store$state$user = _vuex_store_js__WEBPACK_IMPORTED_MODULE_2__["store"].state.user) !== null && _store$state$user !== void 0 && (_store$state$user$per = _store$state$user.permissions) !== null && _store$state$user$per !== void 0 && _store$state$user$per.includes({
-    name: binding.value
-  })) return;
-  el.style.display = 'none';
+    console.log(_vuex_store_js__WEBPACK_IMPORTED_MODULE_2__["store"].getters.isAdmin);
+    if (_vuex_store_js__WEBPACK_IMPORTED_MODULE_2__["store"].getters.isAdmin || (_store$state$user = _vuex_store_js__WEBPACK_IMPORTED_MODULE_2__["store"].state.user) !== null && _store$state$user !== void 0 && (_store$state$user$per = _store$state$user.permissions) !== null && _store$state$user$per !== void 0 && _store$state$user$per.includes({
+      name: binding.value
+    })) return;
+    el.style.display = 'none';
+  }
 });
 
 
