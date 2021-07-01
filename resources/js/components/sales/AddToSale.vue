@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div can="'create sale'">
         <form class="block" @submit.prevent="submit">
             <input type="hidden" name="product_id" />
             <button

@@ -4266,6 +4266,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     product: {
@@ -27609,6 +27610,14 @@ var render = function() {
   return _c(
     "button",
     {
+      directives: [
+        {
+          name: "can",
+          rawName: "v-can",
+          value: "delete product",
+          expression: "'delete product'"
+        }
+      ],
       staticClass:
         "text-red-500 hover:text-red-700 shadow-xs border-b-2 border-t-2 border-red-500 font-bold py-2  hover:border-red-700 rounded",
       on: { click: _vm.deleteProduct }
@@ -28420,7 +28429,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
+  return _c("div", { attrs: { can: "'create sale'" } }, [
     _c(
       "form",
       {
