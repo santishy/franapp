@@ -43615,83 +43615,114 @@ module.exports = function(module) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var vue_notification__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-notification */ "./node_modules/vue-notification/dist/index.js");
-/* harmony import */ var vue_notification__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue_notification__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _vuex_store_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./vuex/store.js */ "./resources/js/vuex/store.js");
-/* harmony import */ var _mixins_Errors__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./mixins/Errors */ "./resources/js/mixins/Errors.js");
-/* harmony import */ var _mixins_Errors__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_mixins_Errors__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _mixins_Notify__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./mixins/Notify */ "./resources/js/mixins/Notify.js");
-/* harmony import */ var _mixins_Notify__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_mixins_Notify__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _mixins_Authorizations_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./mixins/Authorizations.js */ "./resources/js/mixins/Authorizations.js");
-/* harmony import */ var _mixins_Authorizations_js__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_mixins_Authorizations_js__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var vue_notification__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-notification */ "./node_modules/vue-notification/dist/index.js");
+/* harmony import */ var vue_notification__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue_notification__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _vuex_store_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./vuex/store.js */ "./resources/js/vuex/store.js");
+/* harmony import */ var _mixins_Errors__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./mixins/Errors */ "./resources/js/mixins/Errors.js");
+/* harmony import */ var _mixins_Errors__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_mixins_Errors__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _mixins_Notify__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./mixins/Notify */ "./resources/js/mixins/Notify.js");
+/* harmony import */ var _mixins_Notify__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_mixins_Notify__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _mixins_Authorizations_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./mixins/Authorizations.js */ "./resources/js/mixins/Authorizations.js");
+/* harmony import */ var _mixins_Authorizations_js__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_mixins_Authorizations_js__WEBPACK_IMPORTED_MODULE_7__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
-window.EventBus = new vue__WEBPACK_IMPORTED_MODULE_5___default.a();
+window.EventBus = new vue__WEBPACK_IMPORTED_MODULE_6___default.a();
 
-vue__WEBPACK_IMPORTED_MODULE_5___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_0__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_6___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__["default"]);
 
-vue__WEBPACK_IMPORTED_MODULE_5___default.a.component('notifications', vue_notification__WEBPACK_IMPORTED_MODULE_1___default.a);
-vue__WEBPACK_IMPORTED_MODULE_5___default.a.use(vue_notification__WEBPACK_IMPORTED_MODULE_1___default.a);
+vue__WEBPACK_IMPORTED_MODULE_6___default.a.component('notifications', vue_notification__WEBPACK_IMPORTED_MODULE_2___default.a);
+vue__WEBPACK_IMPORTED_MODULE_6___default.a.use(vue_notification__WEBPACK_IMPORTED_MODULE_2___default.a);
 
 
 
-_vuex_store_js__WEBPACK_IMPORTED_MODULE_2__["store"].dispatch('getUser');
-vue__WEBPACK_IMPORTED_MODULE_5___default.a.mixin(_mixins_Errors__WEBPACK_IMPORTED_MODULE_3___default.a);
-vue__WEBPACK_IMPORTED_MODULE_5___default.a.mixin(_mixins_Authorizations_js__WEBPACK_IMPORTED_MODULE_6___default.a);
-vue__WEBPACK_IMPORTED_MODULE_5___default.a.mixin(_mixins_Notify__WEBPACK_IMPORTED_MODULE_4___default.a);
-vue__WEBPACK_IMPORTED_MODULE_5___default.a.component('nav-component', __webpack_require__(/*! ./components/NavComponent.vue */ "./resources/js/components/NavComponent.vue")["default"]);
-vue__WEBPACK_IMPORTED_MODULE_5___default.a.component('errors-component', __webpack_require__(/*! ./components/ErrorsComponent.vue */ "./resources/js/components/ErrorsComponent.vue")["default"]);
-vue__WEBPACK_IMPORTED_MODULE_5___default.a.component('dropdown-component', __webpack_require__(/*! ./components/DropdownComponent.vue */ "./resources/js/components/DropdownComponent.vue")["default"]);
-vue__WEBPACK_IMPORTED_MODULE_5___default.a.component('product-form', __webpack_require__(/*! ./components/products/ProductForm.vue */ "./resources/js/components/products/ProductForm.vue")["default"]);
-vue__WEBPACK_IMPORTED_MODULE_5___default.a.component('products-index', __webpack_require__(/*! ./components/products/IndexComponent.vue */ "./resources/js/components/products/IndexComponent.vue")["default"]);
-vue__WEBPACK_IMPORTED_MODULE_5___default.a.component('purchase-component', __webpack_require__(/*! ./components/purchases/PurchaseComponent.vue */ "./resources/js/components/purchases/PurchaseComponent.vue")["default"]);
-vue__WEBPACK_IMPORTED_MODULE_5___default.a.component('product-in-purchase', __webpack_require__(/*! ./components/purchases/ProductInPurchase.vue */ "./resources/js/components/purchases/ProductInPurchase.vue")["default"]);
-vue__WEBPACK_IMPORTED_MODULE_5___default.a.component('client-form', __webpack_require__(/*! ./components/clients/ClientForm.vue */ "./resources/js/components/clients/ClientForm.vue")["default"]);
-vue__WEBPACK_IMPORTED_MODULE_5___default.a.component('client-list', __webpack_require__(/*! ./components/clients/ClientList.vue */ "./resources/js/components/clients/ClientList.vue")["default"]); //CATEGORIES COMPONENTS
+vue__WEBPACK_IMPORTED_MODULE_6___default.a.mixin(_mixins_Errors__WEBPACK_IMPORTED_MODULE_4___default.a);
+vue__WEBPACK_IMPORTED_MODULE_6___default.a.mixin(_mixins_Authorizations_js__WEBPACK_IMPORTED_MODULE_7___default.a);
+vue__WEBPACK_IMPORTED_MODULE_6___default.a.mixin(_mixins_Notify__WEBPACK_IMPORTED_MODULE_5___default.a);
+vue__WEBPACK_IMPORTED_MODULE_6___default.a.component('nav-component', __webpack_require__(/*! ./components/NavComponent.vue */ "./resources/js/components/NavComponent.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_6___default.a.component('errors-component', __webpack_require__(/*! ./components/ErrorsComponent.vue */ "./resources/js/components/ErrorsComponent.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_6___default.a.component('dropdown-component', __webpack_require__(/*! ./components/DropdownComponent.vue */ "./resources/js/components/DropdownComponent.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_6___default.a.component('product-form', __webpack_require__(/*! ./components/products/ProductForm.vue */ "./resources/js/components/products/ProductForm.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_6___default.a.component('products-index', __webpack_require__(/*! ./components/products/IndexComponent.vue */ "./resources/js/components/products/IndexComponent.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_6___default.a.component('purchase-component', __webpack_require__(/*! ./components/purchases/PurchaseComponent.vue */ "./resources/js/components/purchases/PurchaseComponent.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_6___default.a.component('product-in-purchase', __webpack_require__(/*! ./components/purchases/ProductInPurchase.vue */ "./resources/js/components/purchases/ProductInPurchase.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_6___default.a.component('client-form', __webpack_require__(/*! ./components/clients/ClientForm.vue */ "./resources/js/components/clients/ClientForm.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_6___default.a.component('client-list', __webpack_require__(/*! ./components/clients/ClientList.vue */ "./resources/js/components/clients/ClientList.vue")["default"]); //CATEGORIES COMPONENTS
 
-vue__WEBPACK_IMPORTED_MODULE_5___default.a.component('category-form', __webpack_require__(/*! ./components/categories/CategoryForm.vue */ "./resources/js/components/categories/CategoryForm.vue")["default"]);
-vue__WEBPACK_IMPORTED_MODULE_5___default.a.component('category-list', __webpack_require__(/*! ./components/categories/CategoryList.vue */ "./resources/js/components/categories/CategoryList.vue")["default"]);
-vue__WEBPACK_IMPORTED_MODULE_5___default.a.component('category-index', __webpack_require__(/*! ./components/categories/Index.vue */ "./resources/js/components/categories/Index.vue")["default"]); //VENTAS COMPONENTES
+vue__WEBPACK_IMPORTED_MODULE_6___default.a.component('category-form', __webpack_require__(/*! ./components/categories/CategoryForm.vue */ "./resources/js/components/categories/CategoryForm.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_6___default.a.component('category-list', __webpack_require__(/*! ./components/categories/CategoryList.vue */ "./resources/js/components/categories/CategoryList.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_6___default.a.component('category-index', __webpack_require__(/*! ./components/categories/Index.vue */ "./resources/js/components/categories/Index.vue")["default"]); //VENTAS COMPONENTES
 
-vue__WEBPACK_IMPORTED_MODULE_5___default.a.component('sale-component', __webpack_require__(/*! ./components/sales/SaleComponent */ "./resources/js/components/sales/SaleComponent.vue")["default"]);
-vue__WEBPACK_IMPORTED_MODULE_5___default.a.component('transaction-report', __webpack_require__(/*! ./components/reports/Transactions */ "./resources/js/components/reports/Transactions.vue")["default"]); //transactions
+vue__WEBPACK_IMPORTED_MODULE_6___default.a.component('sale-component', __webpack_require__(/*! ./components/sales/SaleComponent */ "./resources/js/components/sales/SaleComponent.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_6___default.a.component('transaction-report', __webpack_require__(/*! ./components/reports/Transactions */ "./resources/js/components/reports/Transactions.vue")["default"]); //transactions
 
-vue__WEBPACK_IMPORTED_MODULE_5___default.a.component('transaction-list', __webpack_require__(/*! ./components/reports/TransactionList.vue */ "./resources/js/components/reports/TransactionList.vue")["default"]); //auth
+vue__WEBPACK_IMPORTED_MODULE_6___default.a.component('transaction-list', __webpack_require__(/*! ./components/reports/TransactionList.vue */ "./resources/js/components/reports/TransactionList.vue")["default"]); //auth
 
-vue__WEBPACK_IMPORTED_MODULE_5___default.a.component('registration-form', __webpack_require__(/*! ./components/auth/RegistrationForm.vue */ "./resources/js/components/auth/RegistrationForm.vue")["default"]);
-vue__WEBPACK_IMPORTED_MODULE_5___default.a.component('register', __webpack_require__(/*! ./components/auth/Register.vue */ "./resources/js/components/auth/Register.vue")["default"]); //roles
+vue__WEBPACK_IMPORTED_MODULE_6___default.a.component('registration-form', __webpack_require__(/*! ./components/auth/RegistrationForm.vue */ "./resources/js/components/auth/RegistrationForm.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_6___default.a.component('register', __webpack_require__(/*! ./components/auth/Register.vue */ "./resources/js/components/auth/Register.vue")["default"]); //roles
 
-vue__WEBPACK_IMPORTED_MODULE_5___default.a.component('create-new-role', __webpack_require__(/*! ./components/auth/CreateNewRole.vue */ "./resources/js/components/auth/CreateNewRole.vue")["default"]);
-vue__WEBPACK_IMPORTED_MODULE_5___default.a.component('assign-role', __webpack_require__(/*! ./components/auth/AssignRole.vue */ "./resources/js/components/auth/AssignRole.vue")["default"]);
-vue__WEBPACK_IMPORTED_MODULE_5___default.a.component('role-component', __webpack_require__(/*! ./components/auth/RoleComponent.vue */ "./resources/js/components/auth/RoleComponent.vue")["default"]); //permissions
+vue__WEBPACK_IMPORTED_MODULE_6___default.a.component('create-new-role', __webpack_require__(/*! ./components/auth/CreateNewRole.vue */ "./resources/js/components/auth/CreateNewRole.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_6___default.a.component('assign-role', __webpack_require__(/*! ./components/auth/AssignRole.vue */ "./resources/js/components/auth/AssignRole.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_6___default.a.component('role-component', __webpack_require__(/*! ./components/auth/RoleComponent.vue */ "./resources/js/components/auth/RoleComponent.vue")["default"]); //permissions
 
-vue__WEBPACK_IMPORTED_MODULE_5___default.a.component('permission-list', __webpack_require__(/*! ./components/auth/PermissionList.vue */ "./resources/js/components/auth/PermissionList.vue")["default"]); //users 
+vue__WEBPACK_IMPORTED_MODULE_6___default.a.component('permission-list', __webpack_require__(/*! ./components/auth/PermissionList.vue */ "./resources/js/components/auth/PermissionList.vue")["default"]); //users 
 
-vue__WEBPACK_IMPORTED_MODULE_5___default.a.component('user-list', __webpack_require__(/*! ./components/users/UserList.vue */ "./resources/js/components/users/UserList.vue")["default"]); //inventories
+vue__WEBPACK_IMPORTED_MODULE_6___default.a.component('user-list', __webpack_require__(/*! ./components/users/UserList.vue */ "./resources/js/components/users/UserList.vue")["default"]); //inventories
 
-vue__WEBPACK_IMPORTED_MODULE_5___default.a.component('create-inventory', __webpack_require__(/*! ./components/inventories/CreateInventory.vue */ "./resources/js/components/inventories/CreateInventory.vue")["default"]);
-vue__WEBPACK_IMPORTED_MODULE_5___default.a.component('inventory-stocks', __webpack_require__(/*! ./components/inventories/InventoryStocks.vue */ "./resources/js/components/inventories/InventoryStocks.vue")["default"]); //dashboard
+vue__WEBPACK_IMPORTED_MODULE_6___default.a.component('create-inventory', __webpack_require__(/*! ./components/inventories/CreateInventory.vue */ "./resources/js/components/inventories/CreateInventory.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_6___default.a.component('inventory-stocks', __webpack_require__(/*! ./components/inventories/InventoryStocks.vue */ "./resources/js/components/inventories/InventoryStocks.vue")["default"]); //dashboard
 
-vue__WEBPACK_IMPORTED_MODULE_5___default.a.component('dashboard', __webpack_require__(/*! ./components/Dashboard.vue */ "./resources/js/components/Dashboard.vue")["default"]);
-vue__WEBPACK_IMPORTED_MODULE_5___default.a.directive('can', {
-  inserted: function inserted(el, binding) {
+vue__WEBPACK_IMPORTED_MODULE_6___default.a.component('dashboard', __webpack_require__(/*! ./components/Dashboard.vue */ "./resources/js/components/Dashboard.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_6___default.a.directive('can', /*#__PURE__*/function () {
+  var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(el, binding) {
     var _store$state$user, _store$state$user$per;
 
-    if (_vuex_store_js__WEBPACK_IMPORTED_MODULE_2__["store"].getters.isAdmin || (_store$state$user = _vuex_store_js__WEBPACK_IMPORTED_MODULE_2__["store"].state.user) !== null && _store$state$user !== void 0 && (_store$state$user$per = _store$state$user.permissions) !== null && _store$state$user$per !== void 0 && _store$state$user$per.includes({
-      name: binding.value
-    })) return;
-    el.style.display = 'none';
-  }
-});
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            _context.next = 2;
+            return _vuex_store_js__WEBPACK_IMPORTED_MODULE_3__["store"].dispatch('getUser');
+
+          case 2:
+            if (!(_vuex_store_js__WEBPACK_IMPORTED_MODULE_3__["store"].getters.isAdmin || (_store$state$user = _vuex_store_js__WEBPACK_IMPORTED_MODULE_3__["store"].state.user) !== null && _store$state$user !== void 0 && (_store$state$user$per = _store$state$user.permissions) !== null && _store$state$user$per !== void 0 && _store$state$user$per.includes(binding.value))) {
+              _context.next = 4;
+              break;
+            }
+
+            return _context.abrupt("return");
+
+          case 4:
+            el.style.display = 'none';
+
+          case 5:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee);
+  }));
+
+  return function (_x, _x2) {
+    return _ref.apply(this, arguments);
+  };
+}());
 
 
-var app = new vue__WEBPACK_IMPORTED_MODULE_5___default.a({
+var app = new vue__WEBPACK_IMPORTED_MODULE_6___default.a({
   el: "#app",
-  store: _vuex_store_js__WEBPACK_IMPORTED_MODULE_2__["store"]
+  store: _vuex_store_js__WEBPACK_IMPORTED_MODULE_3__["store"]
 });
 
 /***/ }),

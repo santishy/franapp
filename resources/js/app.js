@@ -11,7 +11,6 @@ import { store } from './vuex/store.js';
 import Errors from "./mixins/Errors";
 import Notify from "./mixins/Notify";
 
-store.dispatch('getUser');
 
 Vue.mixin(Errors);
 Vue.mixin(Authorizations);
@@ -62,13 +61,14 @@ Vue.component('inventory-stocks', require('./components/inventories/InventorySto
 //dashboard
 Vue.component('dashboard', require('./components/Dashboard.vue').default);
 
-Vue.directive('can', {
-    inserted: function (el, binding) {
-        if (store.getters.isAdmin || store.state.user?.permissions?.includes({ name: binding.value }))
+Vue.directive('can',
+    async function (el, binding) {
+        await store.dispatch('getUser');
+        if (store.getters.isAdmin || store.state.user?.permissions?.includes(binding.value))
             return;
         el.style.display = 'none';
     }
-});
+);
 
 
 import Vue from 'vue';
