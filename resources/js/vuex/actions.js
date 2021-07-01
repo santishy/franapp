@@ -29,13 +29,13 @@ const search = ({ context }, data) => {
             })
     })
 }
-const getUser = async ({ commit }) => {
-    const user = await axios.get('/current-user') 
-    commit('SET_USER',user.data.data);
+/*const getUser = async ({ commit }) => {
+    const user = await axios.get('/current-user')
+    commit('SET_USER', user.data.data);
 
-}
+}*/
 export default {
     getProducts,
     search,
-    getUser
+   // getUser
 }

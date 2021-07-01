@@ -16,10 +16,12 @@
                     :product_id="product.id"
                     :purchase_price="product.distributor_price"
                     :index="index"
+                    
                 />
                 <a
                     :href="`/products/${product.id}/edit`"
                     class="cursor-pointer border-blue-500 font-semibold shadow-xs border-b-2 border-t-2 text-blue-500 hover:text-blue-700 py-2  hover:border-blue-700 rounded"
+                    v-can="'edit product'"
                 >
                     <i class="fas fa-edit"></i>
                 </a>

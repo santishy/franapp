@@ -11,7 +11,8 @@ import { store } from './vuex/store.js';
 import Errors from "./mixins/Errors";
 import Notify from "./mixins/Notify";
 
-
+//await store.dispatch('getUser');
+store.commit('SET_USER');
 Vue.mixin(Errors);
 Vue.mixin(Authorizations);
 Vue.mixin(Notify);
@@ -63,7 +64,6 @@ Vue.component('dashboard', require('./components/Dashboard.vue').default);
 
 Vue.directive('can',
     async function (el, binding) {
-        await store.dispatch('getUser');
         if (store.getters.isAdmin || store.state.user?.permissions?.includes(binding.value))
             return;
         el.style.display = 'none';

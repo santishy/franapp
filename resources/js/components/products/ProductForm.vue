@@ -4,12 +4,13 @@
         <div class="flex justify-center items-baseline flex-wrap px-4">
             <form
                 @submit.prevent="submit"
+                v-can="definePermission"
                 class="w-full max-w-md shadow-lg rounded-lg bg-white md:px-6 md:py-8 md:mt-0 mt-10"
             >
                 <div
                     class="flex items-center py-2 text-dark text-center justify-center text-xl font-bold border-b border-teal-500"
                 >
-                    Añadir producto
+                    Nuevo producto
                 </div>
                 <div class="flex items-center border-b border-teal-500 py-2">
                     <select
@@ -18,7 +19,7 @@
                         plahceholder="Elige una categoria"
                         class="block appearance-none w-full bg-white hover:border-gray-500 px-4 py-2 pr-8 rounded leading-tight focus:outline-none focus:shadow-outline"
                     >
-                        <option disabled value="" selected
+                        <option disabled value="" selected class="text-gray-600"
                             >Seleccione un elemento</option
                         >
                         <option
@@ -139,7 +140,8 @@ export default {
     },
     props: {
         method: {
-            type: String
+            type: String,
+            required:true
         },
         product: {
             type: Object
@@ -178,6 +180,11 @@ export default {
         },
         hidden() {
             return this.form.category_id ? "" : "hidden";
+        },
+        definePermission(){
+            if(this.method.toUpperCase() === 'POST' )
+                return 'create product';
+            return 'edit product';
         }
     }
 };

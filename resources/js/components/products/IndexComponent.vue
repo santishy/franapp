@@ -1,23 +1,23 @@
 <template>
     <nav-component>
-    <div class="grid  grid-cols-1 md:grid-cols-3 gap-4 ">
-        <div class="col-span-3 flex justify-center">
-            <search-component ref="search" class="md:w-1/4 w-3/4" />
-        </div>
-        <product-card
-            v-for="(product, index) in products"
-            :key="product.id"
-            :product="product"
-            :index="index"
-            transaction-type="purchase"
-            class="col-span-3 md:col-span-1"
-        />
+        <div class="grid  grid-cols-1 md:grid-cols-3 gap-4 ">
+            <div class="col-span-3 flex justify-center">
+                <search-component ref="search" class="md:w-1/4 w-3/4" />
+            </div>
+            <product-card
+                v-for="(product, index) in products"
+                :key="product.id"
+                :product="product"
+                :index="index"
+                transaction-type="purchase"
+                class="col-span-3 md:col-span-1"
+            />
 
-        <infinite-loading
-            :identifier="infiniteId"
-            @infinite="infiniteHandler"
-        ></infinite-loading>
-    </div>
+            <infinite-loading
+                :identifier="infiniteId"
+                @infinite="infiniteHandler"
+            ></infinite-loading>
+        </div>
     </nav-component>
 </template>
 <script>
@@ -25,7 +25,7 @@ import ProductCardComponent from "./ProductCardComponent.vue";
 import InfiniteLoading from "vue-infinite-loading";
 import SearchComponent from "./SearchComponent.vue";
 import { mapActions } from "vuex";
-import NavComponent from '../NavComponent.vue';
+import NavComponent from "../NavComponent.vue";
 export default {
     data() {
         return {
@@ -50,7 +50,7 @@ export default {
         "product-card": ProductCardComponent,
         InfiniteLoading,
         "search-component": SearchComponent,
-NavComponent
+        NavComponent
     },
     methods: {
         ...mapActions(["getProducts", "search"]),

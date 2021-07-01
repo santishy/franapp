@@ -3014,6 +3014,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -3027,10 +3031,10 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     var _this = this;
 
-    EventBus.$on('category-created', function (category) {
+    EventBus.$on("category-created", function (category) {
       _this.categories.unshift(category);
     });
-    axios.get('/categories').then(function (res) {
+    axios.get("/categories").then(function (res) {
       _this.categories = res.data.data;
     });
   }
@@ -3924,6 +3928,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 
 
@@ -4104,6 +4110,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -4124,7 +4131,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   props: {
     method: {
-      type: String
+      type: String,
+      required: true
     },
     product: {
       type: Object
@@ -4174,6 +4182,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     hidden: function hidden() {
       return this.form.category_id ? "" : "hidden";
+    },
+    definePermission: function definePermission() {
+      if (this.method.toUpperCase() === 'POST') return 'create product';
+      return 'edit product';
     }
   }
 });
@@ -5746,7 +5758,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".modal[data-v-53ab54d2] {\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n}\n", ""]);
+exports.push([module.i, ".modal[data-v-53ab54d2] {\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n}\r\n", ""]);
 
 // exports
 
@@ -26103,7 +26115,17 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "ul",
-    { staticClass: "w-full rounded shadow bg-white p-4" },
+    {
+      directives: [
+        {
+          name: "can",
+          rawName: "v-can",
+          value: "view categories",
+          expression: "'view categories'"
+        }
+      ],
+      staticClass: "w-full rounded shadow bg-white p-4"
+    },
     _vm._l(_vm.categories, function(category) {
       return _c("category-list-item", {
         key: category.id,
@@ -27016,6 +27038,14 @@ var render = function() {
             _c(
               "a",
               {
+                directives: [
+                  {
+                    name: "can",
+                    rawName: "v-can",
+                    value: "edit product",
+                    expression: "'edit product'"
+                  }
+                ],
                 staticClass:
                   "cursor-pointer border-blue-500 font-semibold shadow-xs border-b-2 border-t-2 text-blue-500 hover:text-blue-700 py-2  hover:border-blue-700 rounded",
                 attrs: { href: "/products/" + _vm.product.id + "/edit" }
@@ -27135,6 +27165,14 @@ var render = function() {
         _c(
           "form",
           {
+            directives: [
+              {
+                name: "can",
+                rawName: "v-can",
+                value: _vm.definePermission,
+                expression: "definePermission"
+              }
+            ],
             staticClass:
               "w-full max-w-md shadow-lg rounded-lg bg-white md:px-6 md:py-8 md:mt-0 mt-10",
             on: {
@@ -27151,7 +27189,7 @@ var render = function() {
                 staticClass:
                   "flex items-center py-2 text-dark text-center justify-center text-xl font-bold border-b border-teal-500"
               },
-              [_vm._v("\n                Añadir producto\n            ")]
+              [_vm._v("\n                Nuevo producto\n            ")]
             ),
             _vm._v(" "),
             _c(
@@ -27200,7 +27238,10 @@ var render = function() {
                   [
                     _c(
                       "option",
-                      { attrs: { disabled: "", value: "", selected: "" } },
+                      {
+                        staticClass: "text-gray-600",
+                        attrs: { disabled: "", value: "", selected: "" }
+                      },
                       [_vm._v("Seleccione un elemento")]
                     ),
                     _vm._v(" "),
@@ -27649,6 +27690,14 @@ var render = function() {
   return _c(
     "form",
     {
+      directives: [
+        {
+          name: "can",
+          rawName: "v-can",
+          value: "create purchase",
+          expression: "'create purchase'"
+        }
+      ],
       on: {
         submit: function($event) {
           $event.preventDefault()
@@ -43646,7 +43695,9 @@ vue__WEBPACK_IMPORTED_MODULE_6___default.a.component('notifications', vue_notifi
 vue__WEBPACK_IMPORTED_MODULE_6___default.a.use(vue_notification__WEBPACK_IMPORTED_MODULE_2___default.a);
 
 
+ //await store.dispatch('getUser');
 
+_vuex_store_js__WEBPACK_IMPORTED_MODULE_3__["store"].commit('SET_USER');
 vue__WEBPACK_IMPORTED_MODULE_6___default.a.mixin(_mixins_Errors__WEBPACK_IMPORTED_MODULE_4___default.a);
 vue__WEBPACK_IMPORTED_MODULE_6___default.a.mixin(_mixins_Authorizations_js__WEBPACK_IMPORTED_MODULE_7___default.a);
 vue__WEBPACK_IMPORTED_MODULE_6___default.a.mixin(_mixins_Notify__WEBPACK_IMPORTED_MODULE_5___default.a);
@@ -43692,21 +43743,17 @@ vue__WEBPACK_IMPORTED_MODULE_6___default.a.directive('can', /*#__PURE__*/functio
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            _context.next = 2;
-            return _vuex_store_js__WEBPACK_IMPORTED_MODULE_3__["store"].dispatch('getUser');
-
-          case 2:
             if (!(_vuex_store_js__WEBPACK_IMPORTED_MODULE_3__["store"].getters.isAdmin || (_store$state$user = _vuex_store_js__WEBPACK_IMPORTED_MODULE_3__["store"].state.user) !== null && _store$state$user !== void 0 && (_store$state$user$per = _store$state$user.permissions) !== null && _store$state$user$per !== void 0 && _store$state$user$per.includes(binding.value))) {
-              _context.next = 4;
+              _context.next = 2;
               break;
             }
 
             return _context.abrupt("return");
 
-          case 4:
+          case 2:
             el.style.display = 'none';
 
-          case 5:
+          case 3:
           case "end":
             return _context.stop();
         }
@@ -47075,14 +47122,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
 var getProducts = function getProducts(_ref, page) {
   var context = _ref.context;
   return new Promise(function (resolve, reject) {
@@ -47113,39 +47152,17 @@ var search = function search(_ref2, data) {
     });
   });
 };
+/*const getUser = async ({ commit }) => {
+    const user = await axios.get('/current-user')
+    commit('SET_USER', user.data.data);
 
-var getUser = /*#__PURE__*/function () {
-  var _ref4 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(_ref3) {
-    var commit, user;
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
-      while (1) {
-        switch (_context.prev = _context.next) {
-          case 0:
-            commit = _ref3.commit;
-            _context.next = 3;
-            return axios.get('/current-user');
+}*/
 
-          case 3:
-            user = _context.sent;
-            commit('SET_USER', user.data.data);
-
-          case 5:
-          case "end":
-            return _context.stop();
-        }
-      }
-    }, _callee);
-  }));
-
-  return function getUser(_x) {
-    return _ref4.apply(this, arguments);
-  };
-}();
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   getProducts: getProducts,
-  search: search,
-  getUser: getUser
+  search: search // getUser
+
 });
 
 /***/ }),
@@ -47247,7 +47264,7 @@ var addToTransaction = function addToTransaction(state, data) {
 var removeTransactionProduct = function removeTransactionProduct(state, id) {};
 
 var SET_USER = function SET_USER(state, user) {
-  state.user = user;
+  state.user = JSON.parse(document.head.querySelector("meta[name='current_user']").content);
   state.auth = Boolean(user);
 };
 
@@ -47307,8 +47324,8 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/vagrant/code/franapp/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/vagrant/code/franapp/resources/css/app.css */"./resources/css/app.css");
+__webpack_require__(/*! C:\xampp\htdocs\franapp\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\franapp\resources\css\app.css */"./resources/css/app.css");
 
 
 /***/ })

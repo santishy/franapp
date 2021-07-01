@@ -1,5 +1,5 @@
 <template>
-    <form @submit.prevent="submit">
+    <form @submit.prevent="submit" v-can="'create purchase'">
         <input type="hidden" name="product_id" />
         <button
             class=" border-yellow-500 border-b-2 hover:text-yellow-700 border-t-2 shadow-xs hover:border-yellow-700 text-yellow-500 font-bold py-1 px-4 rounded text-2xl"
@@ -68,7 +68,7 @@ export default {
                     this.setProductsInPurchase(obj);
                 })
                 .catch(err => {
-                    this.getErrors(err)
+                    this.getErrors(err);
                 });
         }
     },

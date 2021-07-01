@@ -38,7 +38,7 @@ const removeTransactionProduct = (state,id) => {
 }
 const SET_USER = (state,user) => 
 {
-    state.user = user;
+    state.user = JSON.parse( document.head.querySelector("meta[name='current_user']").content);
     state.auth = Boolean(user);
 }
 export default {

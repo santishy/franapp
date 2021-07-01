@@ -6,7 +6,7 @@
     <meta name="purchase_id" content="{{ session()->get('purchase_id') }}">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-   
+    <meta name="current_user" content="{{ json_encode( CurrentUser::show()) }}">
     <title>Franapp</title>
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
     @laravelPWA

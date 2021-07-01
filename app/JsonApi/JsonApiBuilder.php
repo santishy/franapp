@@ -50,7 +50,7 @@ class JsonApiBuilder
                 if(!method_exists($this->model,$relationship))
                     abort(500,'the relationship does not exist');
                 $this->with($relationship,function($q){
-                    $q->paginate(3);
+                    $q->paginate(30);
                 });      
             }
             return $this;

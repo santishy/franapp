@@ -15,7 +15,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind('currentuser',CurrentUser::class);
+        $this->app->bind('CurrentUser',CurrentUser::class);
     }
 
     /**
