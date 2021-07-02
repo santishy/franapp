@@ -1,6 +1,10 @@
 <template>
     <div class="">
-        <form class="rounded bg-white shadow  p-4" @submit.prevent="submit">
+        <form
+            class="rounded bg-white shadow  p-4"
+            @submit.prevent="submit"
+            v-can="'create role'"
+        >
             <div
                 class="flex items-center py-2 text-dark text-center justify-center text-xl font-bold border-b border-teal-500"
             >

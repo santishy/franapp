@@ -2416,6 +2416,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = (_data$props$component = {
@@ -2807,9 +2811,6 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _NavComponent_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../NavComponent.vue */ "./resources/js/components/NavComponent.vue");
-//
-//
-//
 //
 //
 //
@@ -3447,6 +3448,7 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _NavComponent_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../NavComponent.vue */ "./resources/js/components/NavComponent.vue");
+//
 //
 //
 //
@@ -5749,6 +5751,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -5756,7 +5763,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      users: []
+      users: [],
+      csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
     };
   },
   mounted: function mounted() {
@@ -5797,7 +5805,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".modal[data-v-53ab54d2] {\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n}\n", ""]);
+exports.push([module.i, ".modal[data-v-53ab54d2] {\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n}\r\n", ""]);
 
 // exports
 
@@ -25436,6 +25444,14 @@ var render = function() {
       _c(
         "form",
         {
+          directives: [
+            {
+              name: "can",
+              rawName: "v-can",
+              value: "create role",
+              expression: "'create role'"
+            }
+          ],
           staticClass: "rounded bg-white shadow  p-4",
           on: {
             submit: function($event) {
@@ -25958,6 +25974,14 @@ var render = function() {
     _c(
       "div",
       {
+        directives: [
+          {
+            name: "can",
+            rawName: "v-can",
+            value: "create role",
+            expression: "'create role'"
+          }
+        ],
         staticClass:
           "grid grid-cols-8 gap-4 grid-flow-col auto-cols-auto auto-rows-auto"
       },
@@ -25998,31 +26022,45 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "bg-white rounded shadow p-4 " }, [
-    _c(
-      "ul",
-      { staticClass: "list-inside bg-gray-200" },
-      _vm._l(_vm.localRoles, function(role) {
-        return _c("li", { key: role.id }, [
-          _c(
-            "a",
-            {
-              staticClass: "w-full p-2 block border-white border-b-2 ",
-              attrs: { href: "#" },
-              on: {
-                click: function($event) {
-                  $event.preventDefault()
-                  return _vm.getPermissions(role.id)
+  return _c(
+    "div",
+    {
+      directives: [
+        {
+          name: "can",
+          rawName: "v-can",
+          value: "view roles",
+          expression: "'view roles'"
+        }
+      ],
+      staticClass: "bg-white rounded shadow p-4"
+    },
+    [
+      _c(
+        "ul",
+        { staticClass: "list-inside bg-gray-200" },
+        _vm._l(_vm.localRoles, function(role) {
+          return _c("li", { key: role.id }, [
+            _c(
+              "a",
+              {
+                staticClass: "w-full p-2 block border-white border-b-2 ",
+                attrs: { href: "#" },
+                on: {
+                  click: function($event) {
+                    $event.preventDefault()
+                    return _vm.getPermissions(role.id)
+                  }
                 }
-              }
-            },
-            [_vm._v(_vm._s(role.name))]
-          )
-        ])
-      }),
-      0
-    )
-  ])
+              },
+              [_vm._v(_vm._s(role.name))]
+            )
+          ])
+        }),
+        0
+      )
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -26732,6 +26770,14 @@ var render = function() {
         _c(
           "form",
           {
+            directives: [
+              {
+                name: "can",
+                rawName: "v-can",
+                value: "create inventory",
+                expression: "'create inventory'"
+              }
+            ],
             staticClass:
               "w-full max-w-md shadow-lg rounded-lg bg-white px-6 py-8",
             on: {
@@ -26939,11 +26985,25 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("nav-component", [
-    _c("div", { staticClass: "w-full mt-24 md:mt-32 flex" }, [
-      _c("div", { staticClass: "w-1/5 px-2" }, [_c("inventory-list")], 1),
-      _vm._v(" "),
-      _c("div", { staticClass: "w-4/5" }, [_c("product-list")], 1)
-    ])
+    _c(
+      "div",
+      {
+        directives: [
+          {
+            name: "can",
+            rawName: "v-can",
+            value: "view inventories",
+            expression: "'view inventories'"
+          }
+        ],
+        staticClass: "w-full mt-24 md:mt-32 flex"
+      },
+      [
+        _c("div", { staticClass: "w-1/5 px-2" }, [_c("inventory-list")], 1),
+        _vm._v(" "),
+        _c("div", { staticClass: "w-4/5" }, [_c("product-list")], 1)
+      ]
+    )
   ])
 }
 var staticRenderFns = []
@@ -29162,11 +29222,34 @@ var render = function() {
                     )
                   ]),
                   _vm._v(" "),
-                  _c("td", { staticClass: "border px-4 py-2" }, [
+                  _c("td", { staticClass: "border px-4 py-2 flex flex-wrap" }, [
                     _c(
                       "a",
-                      { attrs: { href: "/users/" + user.id + "/edit" } },
+                      {
+                        staticClass: "mr-2",
+                        attrs: { href: "/users/" + user.id + "/edit" }
+                      },
                       [_c("i", { staticClass: "fas fa-user-edit" })]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "form",
+                      { attrs: { action: "/impersonations", method: "post" } },
+                      [
+                        _c("input", {
+                          attrs: { type: "hidden", name: "user_id" },
+                          domProps: { value: "" + user.id }
+                        }),
+                        _vm._v(" "),
+                        _c("input", {
+                          attrs: { type: "hidden", name: "_token" },
+                          domProps: { value: _vm.csrf }
+                        }),
+                        _vm._v(" "),
+                        _c("button", [
+                          _c("i", { staticClass: "fas fa-user-ninja" })
+                        ])
+                      ]
                     )
                   ])
                 ])
@@ -47461,8 +47544,8 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/vagrant/code/franapp/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/vagrant/code/franapp/resources/css/app.css */"./resources/css/app.css");
+__webpack_require__(/*! C:\xampp\htdocs\franapp\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\franapp\resources\css\app.css */"./resources/css/app.css");
 
 
 /***/ })

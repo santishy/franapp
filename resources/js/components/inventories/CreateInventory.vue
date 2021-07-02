@@ -5,6 +5,7 @@
         >
             <form
                 @submit.prevent="submit"
+                v-can="'create inventory'"
                 class="w-full max-w-md shadow-lg rounded-lg bg-white px-6 py-8"
             >
                 <div

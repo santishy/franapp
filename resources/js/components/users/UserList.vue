@@ -18,10 +18,15 @@
                         <td class="border px-4 py-2">
                             {{ roles(user.roles) }}
                         </td>
-                        <td class="border px-4 py-2">
-                            <a :href="`/users/${user.id}/edit`">
+                        <td class="border px-4 py-2 flex flex-wrap">
+                            <a class="mr-2" :href="`/users/${user.id}/edit`">
                                 <i class="fas fa-user-edit"></i>
                             </a>
+                            <form action="/impersonations" method="post">
+                                <input type="hidden" name="user_id" :value="`${user.id}`">
+                                <input type="hidden" name="_token" :value="csrf">
+                                <button><i class="fas fa-user-ninja"></i></button>
+                            </form>
                         </td>
                     </tr>
                 </tbody>
@@ -34,7 +39,8 @@ import NavComponent from "../NavComponent.vue";
 export default {
     components: { NavComponent },
     data: () => ({
-        users: []
+        users: [],
+        csrf:document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
     }),
     mounted() {
         this.getUsers();

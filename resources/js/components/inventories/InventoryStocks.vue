@@ -1,6 +1,6 @@
 <template>
     <nav-component>
-        <div class="w-full mt-24 md:mt-32 flex">
+        <div  class="w-full mt-24 md:mt-32 flex" v-can="'view inventories'">
             <div class="w-1/5 px-2">
                 <inventory-list></inventory-list>
             </div>

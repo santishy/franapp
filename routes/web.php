@@ -7,7 +7,7 @@ use App\Http\Controllers\SaleController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductsSearchController;
 use App\Http\Controllers\ProductInPurchaseController;
-use App\Http\Controllers\{ClientController, CurrentUserController, InventoryController, RolesPermissionsController,UserController};
+use App\Http\Controllers\{ClientController, CurrentUserController, ImpersonationController, InventoryController, RolesPermissionsController,UserController};
 use App\Http\Controllers\{PurchaseController, ProductInSaleController, RoleController};
 use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
@@ -86,6 +86,10 @@ Route::resource('inventories',InventoryController::class)->middleware('auth');
 Route::get('/403',function(){
     return view('errors.403');
 });
+
+//impersionations
+
+Route::post('impersonations',[ImpersonationController::class,'store'])->middleware('auth');
 
 //obtener usuario loggueado
 
