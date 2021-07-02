@@ -1,6 +1,7 @@
 <template>
     <nav-component>
         <div
+            v-can="'view users'"
             class="  max-w-max flex justify-center sm:overflow-x-hidden overflow-x-auto"
         >
             <table class="table-auto text-center  bg-white shadow rounded ">

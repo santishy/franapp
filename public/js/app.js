@@ -2341,6 +2341,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     roles: {
@@ -2360,7 +2362,8 @@ __webpack_require__.r(__webpack_exports__);
         return role.id === element.id;
       });
     }
-  }
+  },
+  computed: {}
 });
 
 /***/ }),
@@ -2574,6 +2577,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -2598,6 +2602,12 @@ __webpack_require__.r(__webpack_exports__);
     uri: {
       type: String
     }
+  },
+  computed: {
+    definePermission: function definePermission() {
+      if (this.method.toUpperCase() === 'POST') return 'create user';
+      return 'edit user';
+    }
   }
 });
 
@@ -2612,6 +2622,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
 //
 //
 //
@@ -2772,10 +2783,14 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {
     getTitle: function getTitle() {
-      return !!this.editableUser ? "Editar usuario" : "Requistrar usuario";
+      return !!this.editableUser ? "Modificar usuario" : "Nuevo usuario";
     },
     getButtonTitle: function getButtonTitle() {
       return !!this.editableUser ? "Editar" : "Guardar";
+    },
+    definePermission: function definePermission() {
+      if (this.method.toUpperCase() === 'POST') return 'create user';
+      return 'edit user';
     }
   }
 });
@@ -3481,6 +3496,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -3491,7 +3508,7 @@ __webpack_require__.r(__webpack_exports__);
       form: {},
       errors: null,
       obj: {
-        'title': 'Almacenes'
+        title: "Almacenes"
       }
     };
   },
@@ -5701,6 +5718,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _NavComponent_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../NavComponent.vue */ "./resources/js/components/NavComponent.vue");
+//
 //
 //
 //
@@ -25364,7 +25382,7 @@ var render = function() {
           staticClass:
             "text-xl border-b-2 border-gray-300 p-4 mb-3 font-semibold"
         },
-        [_vm._v("Asignar roles")]
+        [_vm._v("\n        Asignar roles\n    ")]
       ),
       _vm._v(" "),
       _vm._l(_vm.roles, function(role) {
@@ -25601,17 +25619,7 @@ var render = function() {
   return _c("nav-component", [
     _c(
       "div",
-      {
-        directives: [
-          {
-            name: "can",
-            rawName: "v-can",
-            value: "create user",
-            expression: "'create user'"
-          }
-        ],
-        staticClass: "flex flex-wrap items-baseline"
-      },
+      { staticClass: "flex flex-wrap items-baseline" },
       [
         _c("registration-form", {
           staticClass: "mr-4",
@@ -25624,6 +25632,14 @@ var render = function() {
         }),
         _vm._v(" "),
         _c("assign-role", {
+          directives: [
+            {
+              name: "can",
+              rawName: "v-can",
+              value: _vm.definePermission,
+              expression: "definePermission"
+            }
+          ],
           staticClass: "self-start",
           attrs: { roles: _vm.roles, "has-roles": _vm.hasRoles }
         })
@@ -25657,6 +25673,14 @@ var render = function() {
   return _c(
     "form",
     {
+      directives: [
+        {
+          name: "can",
+          rawName: "v-can",
+          value: _vm.definePermission,
+          expression: "definePermission"
+        }
+      ],
       staticClass:
         "w-full max-w-md shadow-lg rounded-lg bg-white md:px-6 md:py-8",
       on: {
@@ -26724,7 +26748,7 @@ var render = function() {
                 staticClass:
                   "flex items-center py-2 text-dark text-center justify-center text-xl font-bold border-b border-teal-500"
               },
-              [_vm._v("\n            Nuevo Almacen\n        ")]
+              [_vm._v("\n                Nuevo Almacen\n            ")]
             ),
             _vm._v(" "),
             _c(
@@ -26819,7 +26843,7 @@ var render = function() {
                   staticClass:
                     "bg-transparent transition-all duration-500 ease-in-out hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border-b-2 border-blue-500 hover:border-transparent w-full"
                 },
-                [_vm._v("\n                Guardar\n            ")]
+                [_vm._v("\n                    Guardar\n                ")]
               )
             ]),
             _vm._v(" "),
@@ -29090,6 +29114,14 @@ var render = function() {
     _c(
       "div",
       {
+        directives: [
+          {
+            name: "can",
+            rawName: "v-can",
+            value: "view users",
+            expression: "'view users'"
+          }
+        ],
         staticClass:
           "  max-w-max flex justify-center sm:overflow-x-hidden overflow-x-auto"
       },

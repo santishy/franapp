@@ -1,6 +1,6 @@
 <template>
     <nav-component>
-        <div class="flex flex-wrap items-baseline" v-can="'create user'">
+        <div class="flex flex-wrap items-baseline" >
             <registration-form
                 class="mr-4"
                 :inventories="inventories"
@@ -13,6 +13,7 @@
                 :roles="roles"
                 class="self-start"
                 :has-roles="hasRoles"
+                v-can="definePermission"
             ></assign-role>
         </div>
     </nav-component>
@@ -40,6 +41,13 @@ export default {
         },
         uri: {
             type: String
+        }
+    },
+    computed:{
+        definePermission(){
+            if(this.method.toUpperCase() === 'POST' )
+                return 'create user';
+            return 'edit user';
         }
     }
 };

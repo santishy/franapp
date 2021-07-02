@@ -1,6 +1,8 @@
 <template>
     <div class="bg-white rounded shadow p-4 md:w-4/12">
-        <h3 class="text-xl border-b-2 border-gray-300 p-4 mb-3 font-semibold">Asignar roles</h3>
+        <h3 class="text-xl border-b-2 border-gray-300 p-4 mb-3 font-semibold">
+            Asignar roles
+        </h3>
         <div v-for="role in roles" :key="role.id">
             <label class="inline-flex items-center">
                 <input
@@ -21,19 +23,20 @@ export default {
         roles: {
             type: Array
         },
-        hasRoles:{
-            type:Array
-        },
+        hasRoles: {
+            type: Array
+        }
     },
     methods: {
         toggleRole(event, id) {
             if (event.target.checked) return EventBus.$emit("assign-role", id);
             return EventBus.$emit("remove-role", id);
         },
-        isChecked(role){
-            if(this.hasRoles)
-                return this.hasRoles.some( element => role.id === element.id)
+        isChecked(role) {
+            if (this.hasRoles)
+                return this.hasRoles.some(element => role.id === element.id);
         }
-    }
+    },
+    computed: {}
 };
 </script>

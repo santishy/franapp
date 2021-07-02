@@ -1,6 +1,7 @@
 <template>
     <form
         @submit.prevent="submit"
+        v-can="definePermission"
         class="w-full max-w-md shadow-lg rounded-lg bg-white md:px-6 md:py-8"
     >
         <div
@@ -149,11 +150,16 @@ export default {
     computed: {
         getTitle() {
             return !!this.editableUser
-                ? "Editar usuario"
-                : "Requistrar usuario";
+                ? "Modificar usuario"
+                : "Nuevo usuario";
         },
         getButtonTitle() {
             return !!this.editableUser ? "Editar" : "Guardar";
+        },
+        definePermission(){
+            if(this.method.toUpperCase() === 'POST' )
+                return 'create user';
+            return 'edit user';
         }
     }
 };
