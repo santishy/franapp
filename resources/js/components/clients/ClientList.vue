@@ -4,7 +4,7 @@
             <div
                 class="bg-white shadow rounded max-w-full sm:overflow-x-hidden overflow-x-auto"
             >
-                <table v-if="clients.length" class="table-auto">
+                <table v-if="clients.length" v-can="'view clients'" class="table-auto">
                     <thead>
                         <tr class="bg-danger">
                             <th class="px-4 py-2">Nombre</th>

@@ -3202,6 +3202,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -3251,6 +3252,16 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (err) {
         _this.getErrors(err);
       });
+    }
+  },
+  computed: {
+    definePermission: function definePermission() {
+      if (this.method.toUpperCase() === 'POST') return 'create client';
+      return 'edit client';
+    },
+    getTitle: function getTitle() {
+      if (this.method.toUpperCase() === 'POST') return 'Nuevo cliente';
+      return 'Modificar cliente';
     }
   }
 });
@@ -3358,6 +3369,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
 //
 //
 //
@@ -5419,6 +5432,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -5438,7 +5458,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       type: Object
     }
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapState"])(['salePriceOption']))
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapState"])(["salePriceOption"]))
 });
 
 /***/ }),
@@ -5759,7 +5779,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".modal[data-v-53ab54d2] {\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n}\r\n", ""]);
+exports.push([module.i, ".modal[data-v-53ab54d2] {\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n}\n", ""]);
 
 // exports
 
@@ -25581,7 +25601,17 @@ var render = function() {
   return _c("nav-component", [
     _c(
       "div",
-      { staticClass: "flex flex-wrap items-baseline" },
+      {
+        directives: [
+          {
+            name: "can",
+            rawName: "v-can",
+            value: "create user",
+            expression: "'create user'"
+          }
+        ],
+        staticClass: "flex flex-wrap items-baseline"
+      },
       [
         _c("registration-form", {
           staticClass: "mr-4",
@@ -26227,6 +26257,14 @@ var render = function() {
         _c(
           "form",
           {
+            directives: [
+              {
+                name: "can",
+                rawName: "v-can",
+                value: _vm.definePermission,
+                expression: "definePermission"
+              }
+            ],
             staticClass:
               "w-full max-w-md shadow-lg rounded-lg bg-white px-6 py-8",
             on: {
@@ -26243,7 +26281,11 @@ var render = function() {
                 staticClass:
                   "flex items-center py-2 text-dark text-center justify-center text-xl font-bold border-b border-teal-500"
               },
-              [_vm._v("\n                Nuevo cliente\n            ")]
+              [
+                _vm._v(
+                  "\n                " + _vm._s(_vm.getTitle) + "\n            "
+                )
+              ]
             ),
             _vm._v(" "),
             _c(
@@ -26493,38 +26535,58 @@ var render = function() {
         },
         [
           _vm.clients.length
-            ? _c("table", { staticClass: "table-auto" }, [
-                _c("thead", [
-                  _c("tr", { staticClass: "bg-danger" }, [
-                    _c("th", { staticClass: "px-4 py-2" }, [_vm._v("Nombre")]),
-                    _vm._v(" "),
-                    _c("th", { staticClass: "px-4 py-2" }, [
-                      _vm._v("Dirección")
-                    ]),
-                    _vm._v(" "),
-                    _c("th", { staticClass: "px-4 py-2" }, [
-                      _vm._v("Número tel.")
-                    ]),
-                    _vm._v(" "),
-                    _c("th", { staticClass: "px-4 py-2" }, [_vm._v("Email")]),
-                    _vm._v(" "),
-                    _c("th", { staticClass: "px-4 py-2" }, [_vm._v("Empresa")]),
-                    _vm._v(" "),
-                    _c("th", { staticClass: "px-4 py-2" }, [_vm._v("Acciones")])
-                  ])
-                ]),
-                _vm._v(" "),
-                _c(
-                  "tbody",
-                  _vm._l(_vm.clients, function(client, index) {
-                    return _c("client-list-item", {
-                      key: client.id,
-                      attrs: { client: client, index: index }
-                    })
-                  }),
-                  1
-                )
-              ])
+            ? _c(
+                "table",
+                {
+                  directives: [
+                    {
+                      name: "can",
+                      rawName: "v-can",
+                      value: "view clients",
+                      expression: "'view clients'"
+                    }
+                  ],
+                  staticClass: "table-auto"
+                },
+                [
+                  _c("thead", [
+                    _c("tr", { staticClass: "bg-danger" }, [
+                      _c("th", { staticClass: "px-4 py-2" }, [
+                        _vm._v("Nombre")
+                      ]),
+                      _vm._v(" "),
+                      _c("th", { staticClass: "px-4 py-2" }, [
+                        _vm._v("Dirección")
+                      ]),
+                      _vm._v(" "),
+                      _c("th", { staticClass: "px-4 py-2" }, [
+                        _vm._v("Número tel.")
+                      ]),
+                      _vm._v(" "),
+                      _c("th", { staticClass: "px-4 py-2" }, [_vm._v("Email")]),
+                      _vm._v(" "),
+                      _c("th", { staticClass: "px-4 py-2" }, [
+                        _vm._v("Empresa")
+                      ]),
+                      _vm._v(" "),
+                      _c("th", { staticClass: "px-4 py-2" }, [
+                        _vm._v("Acciones")
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "tbody",
+                    _vm._l(_vm.clients, function(client, index) {
+                      return _c("client-list-item", {
+                        key: client.id,
+                        attrs: { client: client, index: index }
+                      })
+                    }),
+                    1
+                  )
+                ]
+              )
             : _vm._e()
         ]
       )
@@ -26578,6 +26640,14 @@ var render = function() {
       _c(
         "a",
         {
+          directives: [
+            {
+              name: "can",
+              rawName: "v-can",
+              value: "edit client",
+              expression: "'edit client'"
+            }
+          ],
           staticClass:
             "bg-blue-500 inline-block cursor-pointer hover:bg-blue-400 text-white font-bold py-2 px-4 hover:border-blue-500 rounded",
           attrs: { href: " clients/" + _vm.client.phone_number + "/edit" }
@@ -26588,6 +26658,14 @@ var render = function() {
       _c(
         "button",
         {
+          directives: [
+            {
+              name: "can",
+              rawName: "v-can",
+              value: "delete client",
+              expression: "'delete client'"
+            }
+          ],
           staticClass:
             "bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4  hover:border-red-500 rounded",
           on: { click: _vm.deleteClient }
@@ -28749,7 +28827,17 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "mt-4 bg-white w-4/5 shaddow rounded-sm border py-4 px-4" },
+    {
+      directives: [
+        {
+          name: "can",
+          rawName: "v-can",
+          value: "create sale",
+          expression: "'create sale'"
+        }
+      ],
+      staticClass: "mt-4 bg-white w-4/5 shaddow rounded-sm border py-4 px-4"
+    },
     [
       _vm.isAdmin
         ? [
@@ -28824,6 +28912,14 @@ var render = function() {
     _c(
       "form",
       {
+        directives: [
+          {
+            name: "can",
+            rawName: "v-can",
+            value: "create sale",
+            expression: "'create sale'"
+          }
+        ],
         staticClass: "py-4",
         on: {
           submit: function($event) {
@@ -47333,8 +47429,8 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\htdocs\franapp\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\franapp\resources\css\app.css */"./resources/css/app.css");
+__webpack_require__(/*! /home/vagrant/code/franapp/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/vagrant/code/franapp/resources/css/app.css */"./resources/css/app.css");
 
 
 /***/ })

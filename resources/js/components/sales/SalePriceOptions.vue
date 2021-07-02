@@ -1,5 +1,5 @@
 <template>
-    <div class="mt-4 bg-white w-4/5 shaddow rounded-sm border py-4 px-4">
+    <div v-can="'create sale'" class="mt-4 bg-white w-4/5 shaddow rounded-sm border py-4 px-4">
         <template v-if="isAdmin">
             <p class="text-center text-2xl mb-4">Elige un almacén</p>
             <inventory-list class="mb-4"></inventory-list>

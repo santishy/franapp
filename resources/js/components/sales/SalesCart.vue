@@ -1,6 +1,6 @@
 <template>
     <div>
-        <form class="py-4" @submit.prevent="submit">
+        <form class="py-4" @submit.prevent="submit" v-can="'create sale'">
             <div v-if="localSale != null">
                 <div
                     class="w-full flex flex-wrap md:justify-between mb-4 text-gray-600"

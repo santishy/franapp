@@ -8,12 +8,14 @@
         <td class="border px-4 py-2">
             <a
                 :href="` clients/${client.phone_number}/edit`"
+                v-can="'edit client'"
                 class="bg-blue-500 inline-block cursor-pointer hover:bg-blue-400 text-white font-bold py-2 px-4 hover:border-blue-500 rounded"
             >
                 <i class="far fa-edit"></i>
             </a>
             <button
                 @click="deleteClient"
+                v-can="'delete client'"
                 class="bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4  hover:border-red-500 rounded"
             >
                 <i class="far fa-trash-alt"></i>

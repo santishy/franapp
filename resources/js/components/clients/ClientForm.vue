@@ -3,12 +3,13 @@
         <div class="w-full px-4  flex justify-center bg-transparent">
             <form
                 @submit.prevent="submit"
+                v-can="definePermission"
                 class="w-full max-w-md shadow-lg rounded-lg bg-white px-6 py-8"
             >
                 <div
                     class="flex items-center py-2 text-dark text-center justify-center text-xl font-bold border-b border-teal-500"
                 >
-                    Nuevo cliente
+                    {{getTitle}}
                 </div>
                 <div class="flex items-center border-b border-teal-500 py-2">
                     <input
@@ -129,6 +130,18 @@ export default {
                 .catch(err => {
                     this.getErrors(err);
                 });
+        }
+    },
+    computed:{
+        definePermission(){
+            if(this.method.toUpperCase() === 'POST' )
+                return 'create client';
+            return 'edit client';
+        },
+        getTitle(){
+            if(this.method.toUpperCase() === 'POST' )
+                return 'Nuevo cliente';
+            return 'Modificar cliente';
         }
     }
 };

@@ -1,6 +1,6 @@
 <template>
     <nav-component>
-        <div class="flex flex-wrap items-baseline">
+        <div class="flex flex-wrap items-baseline" v-can="'create user'">
             <registration-form
                 class="mr-4"
                 :inventories="inventories"
@@ -38,8 +38,8 @@ export default {
         method: {
             type: String
         },
-        uri:{
-            type:String
+        uri: {
+            type: String
         }
     }
 };
