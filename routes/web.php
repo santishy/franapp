@@ -89,7 +89,8 @@ Route::get('/403',function(){
 
 //impersionations
 
-Route::post('impersonations',[ImpersonationController::class,'store'])->middleware('auth');
+Route::post('/impersonations',[ImpersonationController::class,'store'])->middleware('auth');
+Route::delete('/impersonations',[ImpersonationController::class,'destroy'])->middleware('auth');
 
 //obtener usuario loggueado
 

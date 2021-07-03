@@ -31,6 +31,11 @@
                 >
                     <div class="text-sm lg:flex-grow">
                         <dropdown-component
+                            name="Inventario"
+                            :items="InventoryMenu"
+                            class="md:relative"
+                        />
+                        <!-- <dropdown-component
                             name="Categorías"
                             :items="CategoriesMenu"
                             class="md:relative"
@@ -39,7 +44,7 @@
                             name="Productos"
                             :items="productsMenu"
                             class="md:relative"
-                        />
+                        /> -->
                         <a
                             v-if="purchase"
                             :href="purchase ? `/purchases/${purchase}` : '#'"
@@ -57,7 +62,7 @@
                             href="/sales/create"
                             class="block mt-4 lg:inline-block lg:mt-0 text-gray-200 md:hover:text-white mr-4 md:text-base text-lg"
                         >
-                            Vender
+                            Ventas
                         </a>
                         <dropdown-component
                             name="Reportes"
@@ -65,23 +70,31 @@
                             class="md:relative"
                         />
                         <dropdown-component
-                            name="Usuarios"
-                            :items="UsersMenu"
+                            name="Configuración"
+                            :items="ConfigMenu"
                             class="md:relative"
                         />
-                        <dropdown-component
-                            name="Almacenes"
-                            :items="InventoryMenu"
-                            class="md:relative"
-                        />
-                        <a
+                        
+                        <!-- <a
                             href="/roles/create"
                             class="block mt-4 lg:inline-block lg:mt-0 text-gray-200 md:hover:text-white mr-4 md:text-base text-lg"
                         >
                             Roles
-                        </a>
+                        </a> -->
                     </div>
-                    <div>
+                    <div class=" flex flex-wrap items-center">
+                        <form
+                            v-if="impersonation_id"
+                            action="/impersonations"
+                            method="post"
+                            class="block mt-4 lg:inline-block lg:mt-0  md:hover:text-white mr-4"
+                        >
+                            <input type="hidden" name="_method" value="delete">
+                            <input type="hidden" name="_token" :value="crfsToken">
+                            <button class="text-gray-300 border-red-900 border rounded px-2 py-1">
+                                Regresar <i class="fas fa-user"></i>
+                            </button>
+                        </form>
                         <form action="/logout" method="POST">
                             <input
                                 type="hidden"
@@ -92,7 +105,7 @@
                                 href="/logout"
                                 class="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent md:hover:text-teal-500 md:hover:bg-white mt-4 lg:mt-0"
                             >
-                                {{ getCurrentUser.name }} Salir
+                                {{ getCurrentUser.name }} | Salir
                             </button>
                         </form>
                     </div>
@@ -110,40 +123,43 @@
 export default {
     data() {
         return {
-            productsMenu: [
-                {
-                    name: "Añadir",
-                    url: "/products/create"
-                },
-                {
-                    name: "Listar",
-                    url: "/products"
-                }
-            ],
-            CategoriesMenu: [
-                {
-                    name: "Listar",
-                    url: "/categories"
-                }
-            ],
+            // productsMenu: [],
+            // CategoriesMenu: [
+            //     {
+            //         name: "Listar",
+            //         url: "/categories"
+            //     }
+            // ],
             clientsMenu: [
                 {
-                    name: "Añadir",
+                    name: "Nuevo cliente",
                     url: "/clients/create"
                 },
                 {
-                    name: "Listar",
+                    name: "Catalago clientes",
                     url: "/clients"
                 }
             ],
             InventoryMenu: [
                 {
-                    name: "Añadir",
+                    name: "Nuevo inventario",
                     url: "/inventories/create"
                 },
                 {
-                    name: "Listar",
+                    name: "Existencias",
                     url: "/inventories"
+                },
+                {
+                    name: "Nueva categoría",
+                    url: "/categories"
+                },
+                {
+                    name: "Nuevo producto",
+                    url: "/products/create"
+                },
+                {
+                    name: "Comprar productos",
+                    url: "/products"
                 }
             ],
             ReportsMenu: [
@@ -156,19 +172,24 @@ export default {
                     url: "/purchases"
                 }
             ],
-            UsersMenu: [
+            ConfigMenu: [
                 {
-                    name: "Registrar",
+                    name: "Nuevo usuario",
                     url: "/register/"
                 },
                 {
-                    name: "Listar",
+                    name: "Modificar usuario",
                     url: "/users"
+                },
+                {
+                    name: "Nuevo rol",
+                    url: "/roles/create"
                 }
             ],
             crfsToken: document.querySelector('meta[name="csrf-token"]')
                 .content,
-            purchase: false
+            purchase: false,
+            impersonation_id :document.querySelector('meta[name="impersonation_id"]').content
         };
     },
     created() {

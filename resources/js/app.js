@@ -62,6 +62,9 @@ Vue.component('inventory-stocks', require('./components/inventories/InventorySto
 //dashboard
 Vue.component('dashboard', require('./components/Dashboard.vue').default);
 
+//errors
+Vue.component('forbidden',require('./components/errors/Forbidden.vue').default)
+
 Vue.directive('can',
     async function (el, binding) {
         if (store.getters.isAdmin || store.state.user?.permissions?.includes(binding.value))
