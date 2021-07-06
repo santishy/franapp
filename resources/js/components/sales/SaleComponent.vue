@@ -2,9 +2,9 @@
     <nav-component>
         <div
             v-if="salePriceOption == null"
-            class="w-full flex justify-center mt-24 md:mt-32"
+            class="w-full flex justify-center mx-auto border-2 border-red-500"
         >
-            <sale-price-options></sale-price-options>
+            <inventory-list></inventory-list>
         </div>
         <div v-else class="w-full mt-24 md:mt-32">
             <div class="flex justify-center">
@@ -26,8 +26,8 @@
 <script>
 import ProductMatching from "../products/ProductMatching.vue";
 import SearchComponent from "../products/SearchComponent.vue";
-import SalePriceOptions from "./SalePriceOptions.vue";
-import { mapState, mapGetters } from "vuex";
+import InventoryList from "../inventories/InventoryList.vue";
+import { mapState } from "vuex";
 import SalesCart from "./SalesCart";
 import NavComponent from "../NavComponent.vue";
 export default {
@@ -35,7 +35,7 @@ export default {
         SearchComponent,
         SalesCart,
         ProductMatching,
-        SalePriceOptions,
+        InventoryList,
         NavComponent
     },
     props: {

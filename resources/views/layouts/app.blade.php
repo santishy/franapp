@@ -15,9 +15,7 @@
 <body class="bg-gray-200">
     <div id="app">
     {{-- <nav-component></nav-component> --}}
-        <div class="container">
             @yield('content')
-        </div>
     </div>
     <script src="{{asset('js/app.js')}}"></script>
     <script src="https://kit.fontawesome.com/d76bff94d9.js" crossorigin="anonymous"></script>
