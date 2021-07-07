@@ -1,7 +1,7 @@
 <template>
     <nav-component>
         <div
-            v-if="seletedInventoryId == null"
+            v-if="seletedInventoryId == null && isAdmin"
             class="flex flex-col justify-center mx-auto md:w-1/3 w-full"
         >
             <p class="border border-blue-400 px-4 py-2 text-blue-600 rounded bg-white mb-2 text-center">

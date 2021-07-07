@@ -3606,9 +3606,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -3628,8 +3625,8 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     selectedInventory: function selectedInventory(index, inventory) {
       this.selectedIndex = index;
-      sessionStorage.setItem('inventory_id', inventory.id);
-      EventBus.$emit('selected-inventory', inventory);
+      sessionStorage.setItem("inventory_id", inventory.id);
+      EventBus.$emit("selected-inventory", inventory);
     }
   }
 });
@@ -5808,7 +5805,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".modal[data-v-53ab54d2] {\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n}\n", ""]);
+exports.push([module.i, ".modal[data-v-53ab54d2] {\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n}\r\n", ""]);
 
 // exports
 
@@ -28900,7 +28897,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("nav-component", [
-    _vm.seletedInventoryId == null
+    _vm.seletedInventoryId == null && _vm.isAdmin
       ? _c(
           "div",
           {
@@ -47537,8 +47534,8 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/vagrant/code/franapp/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/vagrant/code/franapp/resources/css/app.css */"./resources/css/app.css");
+__webpack_require__(/*! C:\xampp\htdocs\franapp\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\franapp\resources\css\app.css */"./resources/css/app.css");
 
 
 /***/ })

@@ -3,18 +3,15 @@
         class="bg-white shadow-sm rounded w-full text-center border-2 border-gray-500"
     >
         <li
-            v-for="(inventory,index) in inventories"
+            v-for="(inventory, index) in inventories"
             :key="inventory.id"
-            @click="selectedInventory(index,inventory)"
+            @click="selectedInventory(index, inventory)"
             class="border-gray-500 border-b last:border-b-0"
-            :class="{'bg-gray-500 text-white':(selectedIndex === index)}"
+            :class="{ 'bg-gray-500 text-white': selectedIndex === index }"
         >
-            <a
-                href="#"
-                class="block p-4"
-                @click.prevent=""
-                >{{ inventory.name }}</a
-            >
+            <a href="#" class="block p-4" @click.prevent="">{{
+                inventory.name
+            }}</a>
         </li>
     </ul>
 </template>
@@ -24,7 +21,7 @@ export default {
     data() {
         return {
             inventories: [],
-            selectedIndex:null
+            selectedIndex: null
         };
     },
     mounted() {
@@ -38,13 +35,12 @@ export default {
             });
     },
     methods: {
-        selectedInventory(index,inventory){
-            
+        selectedInventory(index, inventory) {
             this.selectedIndex = index;
 
-            sessionStorage.setItem('inventory_id',inventory.id);
+            sessionStorage.setItem("inventory_id", inventory.id);
 
-            EventBus.$emit('selected-inventory',inventory);
+            EventBus.$emit("selected-inventory", inventory);
         }
     }
 };
