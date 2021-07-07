@@ -2246,7 +2246,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -5504,6 +5503,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -5522,6 +5525,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     sale: {
       type: Object
     }
+  },
+  created: function created() {
+    var _this = this;
+
+    EventBus.$on('selected-inventory', function (inventary_id) {
+      _this.seletedInventoryId = inventary_id;
+    });
+  },
+  data: function data() {
+    return {
+      seletedInventoryId: null
+    };
   },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapState"])(["salePriceOption"]))
 });
@@ -5793,7 +5808,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".modal[data-v-53ab54d2] {\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n}\r\n", ""]);
+exports.push([module.i, ".modal[data-v-53ab54d2] {\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n}\n", ""]);
 
 // exports
 
@@ -25150,7 +25165,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "min-h-screen w-full border-black border-2" },
+    { staticClass: "min-h-screen w-ful" },
     [
       _c(
         "nav",
@@ -25321,11 +25336,9 @@ var render = function() {
         ]
       ),
       _vm._v(" "),
-      _c("div", { staticClass: "w-full p-4 bg-black mt-24" }),
-      _vm._v(" "),
       _c(
         "main",
-        { staticClass: "mt-24 md:mt-32 w-full border-4 border-purple-700" },
+        { staticClass: "mt-24 md:mt-32 w-ful" },
         [_vm._t("default")],
         2
       ),
@@ -28887,14 +28900,28 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("nav-component", [
-    _vm.salePriceOption == null
+    _vm.seletedInventoryId == null
       ? _c(
           "div",
           {
-            staticClass:
-              "w-full flex justify-center mx-auto border-2 border-red-500"
+            staticClass: "flex flex-col justify-center mx-auto md:w-1/3 w-full"
           },
-          [_c("inventory-list")],
+          [
+            _c(
+              "p",
+              {
+                staticClass:
+                  "border border-blue-400 px-4 py-2 text-blue-600 rounded bg-white mb-2 text-center"
+              },
+              [
+                _vm._v(
+                  "\n            Al ser un usuario administrador, puedes elegir el inventario\n            para realizar la venta\n        "
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c("inventory-list")
+          ],
           1
         )
       : _c(
@@ -47510,8 +47537,8 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\htdocs\franapp\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\franapp\resources\css\app.css */"./resources/css/app.css");
+__webpack_require__(/*! /home/vagrant/code/franapp/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/vagrant/code/franapp/resources/css/app.css */"./resources/css/app.css");
 
 
 /***/ })

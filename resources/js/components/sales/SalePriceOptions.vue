@@ -4,7 +4,7 @@
             <p class="text-center text-2xl mb-4">Elige un almacén</p>
             <inventory-list class="mb-4"></inventory-list>
         </template>
-
+        
         <p class="text-center text-2xl">Precio de venta</p>
         <div class="flex justify-center mt-2 mb-2">
             <button

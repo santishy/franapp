@@ -1,9 +1,13 @@
 <template>
     <nav-component>
         <div
-            v-if="salePriceOption == null"
-            class="w-full flex justify-center mx-auto border-2 border-red-500"
+            v-if="seletedInventoryId == null"
+            class="flex flex-col justify-center mx-auto md:w-1/3 w-full"
         >
+            <p class="border border-blue-400 px-4 py-2 text-blue-600 rounded bg-white mb-2 text-center">
+                Al ser un usuario administrador, puedes elegir el inventario
+                para realizar la venta
+            </p>
             <inventory-list></inventory-list>
         </div>
         <div v-else class="w-full mt-24 md:mt-32">
@@ -41,6 +45,16 @@ export default {
     props: {
         sale: {
             type: Object
+        }
+    },
+    created(){
+        EventBus.$on('selected-inventory',(inventary_id) => {
+            this.seletedInventoryId = inventary_id;
+        })
+    },
+    data(){
+        return{
+            seletedInventoryId:null,
         }
     },
     computed: {

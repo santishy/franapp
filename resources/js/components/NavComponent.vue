@@ -1,5 +1,5 @@
 <template>
-    <div class="min-h-screen w-full border-black border-2">
+    <div class="min-h-screen w-ful">
         <nav
             class="flex items-center justify-between flex-wrap bg-red-500 p-6 fixed w-full top-0"
         >
@@ -104,9 +104,8 @@
                 </div>
             </div>
         </nav>
-        <div class="w-full p-4 bg-black mt-24"></div>
         <!-- Page Content -->
-        <main class="mt-24 md:mt-32 w-full border-4 border-purple-700">
+        <main class="mt-24 md:mt-32 w-ful">
             <slot />
         </main>
         <notifications group="foo"></notifications>

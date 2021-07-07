@@ -23,16 +23,16 @@ class ProductInSaleController extends Controller
 
         $request->validate(
             [
-                // 'salePriceOption' => ['required', 'regex:/retail_price|wholesale_price/'],
+                'salePriceOption' => ['required', 'regex:/retail_price|wholesale_price/'],
                 'inventory_id' => ['required'],
             ],
-            // [
-            //     'salePriceOption.required' => 'Debes elegir un precio de venta antes de comenzar'
-            // ]
+            [
+                'salePriceOption.required' => 'Debes elegir un precio de venta antes de comenzar'
+            ]
         );
 
         Inventory::find($request->inventory_id)->hasStock($product);
-        
+
         $sale = Sale::getTransaction();
         $sale->transactions($product);
         $request->product = $product;
@@ -46,15 +46,15 @@ class ProductInSaleController extends Controller
             'sale_price' => 'numeric|required|min:1',
             'product_id' => 'required|exists:product_sale,product_id'
         ]);
-        
-        Inventory::find($request->inventory_id)->hasStock($product,$request->qty);
+
+        Inventory::find($request->inventory_id)->hasStock($product, $request->qty);
 
         $sale = Sale::find(session()->get('sale_id'));
 
         $sale->products()
             ->updateExistingPivot(
                 $request->product_id,
-                $request->except('product_id', '_method','inventory_id')
+                $request->except('product_id', '_method', 'inventory_id')
             );
 
         return response()->json(
