@@ -5504,6 +5504,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -5526,7 +5530,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   created: function created() {
     var _this = this;
 
-    EventBus.$on('selected-inventory', function (inventary_id) {
+    EventBus.$on("selected-inventory", function (inventary_id) {
       _this.seletedInventoryId = inventary_id;
     });
   },
@@ -5805,7 +5809,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".modal[data-v-53ab54d2] {\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n}\r\n", ""]);
+exports.push([module.i, ".modal[data-v-53ab54d2] {\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n}\n", ""]);
 
 // exports
 
@@ -28896,67 +28900,77 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("nav-component", [
-    _vm.seletedInventoryId == null && _vm.isAdmin
-      ? _c(
-          "div",
-          {
-            staticClass: "flex flex-col justify-center mx-auto md:w-1/3 w-full"
-          },
-          [
-            _c(
-              "p",
+  return _c(
+    "nav-component",
+    [
+      _c("transition", { attrs: { name: "fade" } }, [
+        _vm.seletedInventoryId == null && _vm.isAdmin
+          ? _c(
+              "div",
               {
                 staticClass:
-                  "border border-blue-400 px-4 py-2 text-blue-600 rounded bg-white mb-2 text-center"
+                  "flex flex-col justify-center mx-auto md:w-1/3 w-full"
               },
               [
-                _vm._v(
-                  "\n            Al ser un usuario administrador, puedes elegir el inventario\n            para realizar la venta\n        "
-                )
-              ]
-            ),
-            _vm._v(" "),
-            _c("inventory-list")
-          ],
-          1
-        )
-      : _c(
-          "div",
-          { staticClass: "w-full mt-24 md:mt-32" },
-          [
-            _c(
-              "div",
-              { staticClass: "flex justify-center" },
-              [
-                _c("search-component", { staticClass: "sm:w-64 w-4/5 mx-auto" })
+                _c(
+                  "p",
+                  {
+                    staticClass:
+                      "border border-blue-400 px-4 py-2 text-blue-600 rounded bg-white mb-2 text-center"
+                  },
+                  [
+                    _vm._v(
+                      "\n                Al ser un usuario administrador, puedes elegir el inventario\n                para realizar la venta\n            "
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c("inventory-list")
               ],
               1
-            ),
-            _vm._v(" "),
-            _c("product-matching"),
-            _vm._v(" "),
-            _c(
+            )
+          : _c(
               "div",
-              {
-                staticClass: "flex flex-wrap justify-center items-center mt-4"
-              },
+              { staticClass: "w-full mt-24 md:mt-32" },
               [
+                _c(
+                  "div",
+                  { staticClass: "flex justify-center" },
+                  [
+                    _c("search-component", {
+                      staticClass: "sm:w-64 w-4/5 mx-auto"
+                    })
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c("product-matching"),
+                _vm._v(" "),
                 _c(
                   "div",
                   {
                     staticClass:
-                      "bg-white px-4 py-2 md:w-4/5 w-full md:mx-0 mx-2 rounded shadow"
+                      "flex flex-wrap justify-center items-center mt-4"
                   },
-                  [_c("sales-cart", { attrs: { sale: _vm.sale } })],
-                  1
+                  [
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "bg-white px-4 py-2 md:w-4/5 w-full md:mx-0 mx-2 rounded shadow"
+                      },
+                      [_c("sales-cart", { attrs: { sale: _vm.sale } })],
+                      1
+                    )
+                  ]
                 )
-              ]
+              ],
+              1
             )
-          ],
-          1
-        )
-  ])
+      ])
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -47534,8 +47548,8 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\htdocs\franapp\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\franapp\resources\css\app.css */"./resources/css/app.css");
+__webpack_require__(/*! /home/vagrant/code/franapp/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/vagrant/code/franapp/resources/css/app.css */"./resources/css/app.css");
 
 
 /***/ })
