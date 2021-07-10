@@ -6,19 +6,12 @@
                     class="w-full flex flex-wrap md:justify-between mb-4 text-gray-600"
                 >
                     <div class="md:w-64 w-full">
-                        <a
-                            href="#"
-                            class="text-indigo-500 hover:text-indigo-700"
-                            @click="resetPriceType"
-                            >Volver a eligir tipo de venta</a
-                        >
-                    </div>
-                    <div class="md:w-64 w-full">
                         <p class="mr-2">Status:</p>
                         <p>{{ getStatus }}</p>
                     </div>
                 </div>
                 <div
+                    v-show="products.length"
                     class=" flex flex-wrap justify-center items-center text-center"
                 >
                     <label class="mr-4 text-2xl">Total</label>
@@ -30,7 +23,7 @@
                     />
                 </div>
             </div>
-            <div class="flex items-center border-b border-teal-500 py-2 mb-4">
+            <div v-if="false" class="flex items-center border-b border-teal-500 py-2 mb-4">
                 <input
                     v-model="form.phone_number"
                     name="phone_number"
@@ -121,12 +114,14 @@ export default {
         modifyTo() {
             if (this.getStatus == "pending") return "Completada";
             if (this.getStatus == "completed") return "Pendiente";
-        },
+        }
     },
     methods: {
-        ...mapMutations(['setSalePriceOption']),
+        ...mapMutations(["setSalePriceOption"]),
         submit() {
-            this.form.inventory_id = this.isAdmin ?  sessionStorage.getItem('inventory_id') : this.user.inventory_id 
+            this.form.inventory_id = this.isAdmin
+                ? sessionStorage.getItem("inventory_id")
+                : this.user.inventory_id;
             if (this.getStatus === "pending") this.form.status = "completed";
             else this.form.status = "pending";
             axios
@@ -140,10 +135,6 @@ export default {
                 .catch(err => {
                     this.getErrors(err);
                 });
-        },
-        resetPriceType(){
-            sessionStorage.removeItem("salePriceOption");
-            this.setSalePriceOption(null);
         }
     }
 };

@@ -25,7 +25,11 @@ class JsonApiBuilder
             $transaction = $this->model->products();
             if (!$transaction->where('product_id', $product->id)->exists()) {
                 $transaction->attach($product->id, [
-                    'sale_price' => $product->{request('salePriceOption')},
+                    /** 
+                     * PONGO RETAIL PRICE DEBIDO A QUE SINO SE MANDA NINGUN 
+                     * VALOR U OPCION DE PRECIO ESA SERA POR DEFAULT 
+                     * */
+                    'sale_price' => $product->{request('salePriceOption','retail_price')},
                     'qty' => 1
                 ]);
             }

@@ -5620,13 +5620,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -5689,11 +5682,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       if (this.getStatus == "completed") return "Pendiente";
     }
   },
-  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapMutations"])(['setSalePriceOption'])), {}, {
+  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapMutations"])(["setSalePriceOption"])), {}, {
     submit: function submit() {
       var _this2 = this;
 
-      this.form.inventory_id = this.isAdmin ? sessionStorage.getItem('inventory_id') : this.user.inventory_id;
+      this.form.inventory_id = this.isAdmin ? sessionStorage.getItem("inventory_id") : this.user.inventory_id;
       if (this.getStatus === "pending") this.form.status = "completed";else this.form.status = "pending";
       axios.post("/sales/".concat(this.localSale.id), this.form).then(function (res) {
         _this2.sale_status = res.data.sale_status;
@@ -5704,10 +5697,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       })["catch"](function (err) {
         _this2.getErrors(err);
       });
-    },
-    resetPriceType: function resetPriceType() {
-      sessionStorage.removeItem("salePriceOption");
-      this.setSalePriceOption(null);
     }
   })
 });
@@ -29025,18 +29014,6 @@ var render = function() {
                 },
                 [
                   _c("div", { staticClass: "md:w-64 w-full" }, [
-                    _c(
-                      "a",
-                      {
-                        staticClass: "text-indigo-500 hover:text-indigo-700",
-                        attrs: { href: "#" },
-                        on: { click: _vm.resetPriceType }
-                      },
-                      [_vm._v("Volver a eligir tipo de venta")]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "md:w-64 w-full" }, [
                     _c("p", { staticClass: "mr-2" }, [_vm._v("Status:")]),
                     _vm._v(" "),
                     _c("p", [_vm._v(_vm._s(_vm.getStatus))])
@@ -29047,6 +29024,14 @@ var render = function() {
               _c(
                 "div",
                 {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: _vm.products.length,
+                      expression: "products.length"
+                    }
+                  ],
                   staticClass:
                     " flex flex-wrap justify-center items-center text-center"
                 },
@@ -29071,41 +29056,9 @@ var render = function() {
             ])
           : _vm._e(),
         _vm._v(" "),
-        _c(
-          "div",
-          {
-            staticClass: "flex items-center border-b border-teal-500 py-2 mb-4"
-          },
-          [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.form.phone_number,
-                  expression: "form.phone_number"
-                }
-              ],
-              staticClass:
-                "appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none",
-              attrs: {
-                name: "phone_number",
-                type: "number",
-                placeholder: "Número del cliente",
-                "aria-label": "Full name"
-              },
-              domProps: { value: _vm.form.phone_number },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.form, "phone_number", $event.target.value)
-                }
-              }
-            })
-          ]
-        ),
+        false
+          ? undefined
+          : _vm._e(),
         _vm._v(" "),
         _vm.errors
           ? _c(

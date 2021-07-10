@@ -40,10 +40,11 @@ class SaleController extends Controller
 
     public function store(Request $request, Sale $sale)
     {
+
         $fields = $request->validate([
             'status' => ['required', 'regex:/completed|cancelled|pending/'],
             'total' => 'numeric|required',
-            'phone_number' => 'exists:clients,phone_number|required',
+            //'phone_number' => 'exists:clients,phone_number|required',
             'inventory_id' => ['required']
         ]);
 
@@ -58,14 +59,16 @@ class SaleController extends Controller
         
         TransactionComplete::dispatch($sale,$factor);
 
-        $sale->client()
+        /*$sale->client()
             ->associate(
                 Client::where(
                     'phone_number',
                     $fields['phone_number']
                 )->first()
-            );
+            );*/
+
         $sale->save();
+
         return response()->json([
             'sale_status' => $sale->status
         ]);

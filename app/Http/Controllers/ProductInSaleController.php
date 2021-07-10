@@ -23,11 +23,11 @@ class ProductInSaleController extends Controller
 
         $request->validate(
             [
-              //  'salePriceOption' => ['required', 'regex:/retail_price|wholesale_price/'],
+             //   'salePriceOption' => ['required', 'regex:/retail_price|wholesale_price/'],
                 'inventory_id' => ['required'],
             ],
             [
-              //  'salePriceOption.required' => 'Debes elegir un precio de venta antes de comenzar'
+               // 'salePriceOption.required' => 'Debes elegir un precio de venta antes de comenzar'
             ]
         );
 

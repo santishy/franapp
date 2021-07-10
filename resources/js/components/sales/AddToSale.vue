@@ -31,7 +31,6 @@ export default {
             axios
                 .post(`/sales/${this.product.id}/products`, {
                     salePriceOption: this.salePriceOption,
-
                     inventory_id,
                 })
                 .then(res => {
