@@ -5620,6 +5620,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -29013,11 +29017,25 @@ var render = function() {
                     "w-full flex flex-wrap md:justify-between mb-4 text-gray-600"
                 },
                 [
-                  _c("div", { staticClass: "md:w-64 w-full" }, [
-                    _c("p", { staticClass: "mr-2" }, [_vm._v("Status:")]),
-                    _vm._v(" "),
-                    _c("p", [_vm._v(_vm._s(_vm.getStatus))])
-                  ])
+                  _c(
+                    "div",
+                    {
+                      directives: [
+                        {
+                          name: "show",
+                          rawName: "v-show",
+                          value: _vm.getStatus,
+                          expression: "getStatus"
+                        }
+                      ],
+                      staticClass: "md:w-64 w-full"
+                    },
+                    [
+                      _c("p", { staticClass: "mr-2" }, [_vm._v("Status:")]),
+                      _vm._v(" "),
+                      _c("p", [_vm._v(_vm._s(_vm.getStatus))])
+                    ]
+                  )
                 ]
               ),
               _vm._v(" "),
@@ -29072,8 +29090,16 @@ var render = function() {
         _c(
           "button",
           {
+            directives: [
+              {
+                name: "show",
+                rawName: "v-show",
+                value: _vm.products.length,
+                expression: "products.length"
+              }
+            ],
             staticClass:
-              "  rounded transition-all duration-500 ease-in-out  font-semibold hover:text-white py-2 px-4 border-l-2 border-r-2 border-green-500 hover:border-transparent w-full",
+              "  rounded transition-all duration-500 ease-in-out  font-semibold hover:text-black py-2 px-4 border-l-2 border-r-2 border-green-500 hover:bg-red-500 hover:border-transparent w-full",
             class: [_vm.getClass]
           },
           [

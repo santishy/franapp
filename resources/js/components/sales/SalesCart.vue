@@ -5,7 +5,7 @@
                 <div
                     class="w-full flex flex-wrap md:justify-between mb-4 text-gray-600"
                 >
-                    <div class="md:w-64 w-full">
+                    <div v-show="getStatus" class="md:w-64 w-full">
                         <p class="mr-2">Status:</p>
                         <p>{{ getStatus }}</p>
                     </div>
@@ -23,7 +23,10 @@
                     />
                 </div>
             </div>
-            <div v-if="false" class="flex items-center border-b border-teal-500 py-2 mb-4">
+            <div
+                v-if="false"
+                class="flex items-center border-b border-teal-500 py-2 mb-4"
+            >
                 <input
                     v-model="form.phone_number"
                     name="phone_number"
@@ -37,7 +40,8 @@
                 <errors-component :errors="errors" />
             </div>
             <button
-                class="  rounded transition-all duration-500 ease-in-out  font-semibold hover:text-white py-2 px-4 border-l-2 border-r-2 border-green-500 hover:border-transparent w-full"
+                v-show="products.length"
+                class="  rounded transition-all duration-500 ease-in-out  font-semibold hover:text-black py-2 px-4 border-l-2 border-r-2 border-green-500 hover:bg-red-500 hover:border-transparent w-full"
                 :class="[getClass]"
             >
                 Cambiar a {{ modifyTo }}
