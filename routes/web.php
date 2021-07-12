@@ -62,6 +62,7 @@ Route::get('categories', [CategoryController::class, 'index'])->name('categories
 Route::get('sales',[SaleController::class,'index'])->middleware('auth');
 Route::get('sales/create', [SaleController::class, 'create'])->name('sales.create')->middleware('auth');
 Route::post('sales/{sale}', [SaleController::class, 'store'])->name('sales.store')->middleware('auth');
+Route::delete('sales',[SaleController::class,'destroy'])->middleware('auth');
 
 //ROLES
 

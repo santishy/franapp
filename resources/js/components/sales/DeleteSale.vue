@@ -1,0 +1,20 @@
+<template>
+    <button
+        class="transition-all rounded border-2 border-red-800 text-red-700 p-1 hover:bg-red-800 hover:text-white"
+        @click.prevent="destroy"
+    >
+        <i class="fas fa-trash"></i> Borrar nota
+    </button>
+</template>
+
+<script>
+export default {
+    methods: {
+        destroy() {
+            axios.delete("/sales").then(res => {
+                console.log(res);
+            });
+        }
+    }
+};
+</script>

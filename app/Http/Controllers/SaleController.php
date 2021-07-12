@@ -73,4 +73,16 @@ class SaleController extends Controller
             'sale_status' => $sale->status
         ]);
     }
+
+    public function destroy(){
+        if(session()->has('sale_id'))
+        {
+            if(  Sale::getTransaction()->status != 'completed')
+            {
+                session()->forget('sale_id');
+                return response()->json(['saleDeleted' => Sale::getTransaction()->delete()]) ;
+            }
+        }
+        return response()->json(['saleDeleted' => false ]);
+    }
 }

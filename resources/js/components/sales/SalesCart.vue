@@ -3,16 +3,25 @@
         <form class="py-4" @submit.prevent="submit" v-can="'create sale'">
             <div v-if="localSale != null">
                 <div
-                    class="w-full flex flex-wrap md:justify-between mb-4 text-gray-600"
+                    class="w-full flex flex-wrap md:justify-between mb-2 text-gray-600 "
                 >
-                    <div v-show="getStatus" class="md:w-64 w-full">
+                    <div v-if="sale">
+                        ID Venta - #{{sale.id}}
+                    </div>
+                    <div>
+                        {{typeOfSale}}
+                    </div>
+                    <div v-show="getStatus" class="md:w-64 w-full flex justify-center items-center">
                         <p class="mr-2">Status:</p>
                         <p>{{ getStatus }}</p>
+                    </div>
+                    <div>
+                        <delete-sale></delete-sale>
                     </div>
                 </div>
                 <div
                     v-show="products.length"
-                    class=" flex flex-wrap justify-center items-center text-center"
+                    class=" flex flex-wrap justify-center items-center text-center mb-4"
                 >
                     <label class="mr-4 text-2xl">Total</label>
                     <p class="text-gray-700 text-3xl">${{ getTotal }}</p>
@@ -61,10 +70,11 @@
 </template>
 <script>
 import CartProduct from "./CartProduct";
-import { mapState, mapMutations } from "vuex";
+import {  mapMutations } from "vuex";
 import Errors from "../../mixins/Errors";
+import DeleteSale from './DeleteSale.vue';
 export default {
-    components: { "cart-product": CartProduct },
+    components: { "cart-product": CartProduct , DeleteSale},
     mixins: [Errors],
     data() {
         return {
@@ -118,6 +128,9 @@ export default {
         modifyTo() {
             if (this.getStatus == "pending") return "Completada";
             if (this.getStatus == "completed") return "Pendiente";
+        },
+        typeOfSale(){
+            return this.sale?.client_id ? 'Venta a cliente' : 'Venta a publico en general';
         }
     },
     methods: {
