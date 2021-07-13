@@ -79,8 +79,9 @@ class SaleController extends Controller
         {
             if(  Sale::getTransaction()->status != 'completed')
             {
+                $saleDeleted = Sale::getTransaction()->delete() ;
                 session()->forget('sale_id');
-                return response()->json(['saleDeleted' => Sale::getTransaction()->delete()]) ;
+                return response()->json(['saleDeleted' => $saleDeleted ]);
             }
         }
         return response()->json(['saleDeleted' => false ]);

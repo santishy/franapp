@@ -41,7 +41,7 @@ class CreateNewUser implements CreatesNewUsers
             'name' => $input['name'],
             'email' => $input['email'],
             'password' => Hash::make($input['password']),
-            'inventory_id' => count($isAdmin) ? null : $input['inventory_id']  ,
+            'inventory_id' => $input['inventory_id']  ,
         ]);
         return $user->assignRole(request()->roles);
 

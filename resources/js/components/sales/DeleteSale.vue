@@ -12,7 +12,9 @@ export default {
     methods: {
         destroy() {
             axios.delete("/sales").then(res => {
-                console.log(res);
+                if(res.data.saleDeleted){
+                    EventBus.$emit('sale-deleted',res.data.saleDeleted)
+                }
             });
         }
     }

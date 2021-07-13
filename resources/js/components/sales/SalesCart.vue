@@ -107,6 +107,13 @@ export default {
         EventBus.$on("product-removed", index => {
             this.products.splice(index, 1);
         });
+        EventBus.$on('sale-deleted',res => {
+            if(res){
+                this.products = [];
+                this.localSale = null;
+                this.form = {}
+            }
+        })
     },
     computed: {
         getClass() {
