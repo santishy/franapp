@@ -11,6 +11,7 @@
                     <div>
                         {{typeOfSale}}
                     </div>
+                    <sale-to-customer/>
                     <div v-show="getStatus" class="md:w-64 w-full flex justify-center items-center">
                         <p class="mr-2">Status:</p>
                         <p>{{ getStatus }}</p>
@@ -112,6 +113,7 @@ export default {
                 this.products = [];
                 this.localSale = null;
                 this.form = {}
+                this.sale_status = null;
             }
         })
     },
@@ -130,7 +132,7 @@ export default {
             return total.toFixed(2);
         },
         getStatus() {
-            return this.sale_status ? this.sale_status : this.localSale.status;
+            return this.sale_status ? this.sale_status : this.localSale?.status;
         },
         modifyTo() {
             if (this.getStatus == "pending") return "Completada";
