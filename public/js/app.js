@@ -5666,6 +5666,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 
@@ -5712,8 +5713,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     EventBus.$on('sale-deleted', function (res) {
       if (res) {
         _this.products = [];
-        _this.localSale = null;
+        _this.localSale = {};
         _this.form = {};
+        _this.sale_status = null;
       }
     });
   },
@@ -5730,7 +5732,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return total.toFixed(2);
     },
     getStatus: function getStatus() {
-      return this.sale_status ? this.sale_status : this.localSale.status;
+      var _this$localSale;
+
+      return this.sale_status ? this.sale_status : (_this$localSale = this.localSale) === null || _this$localSale === void 0 ? void 0 : _this$localSale.status;
     },
     modifyTo: function modifyTo() {
       if (this.getStatus == "pending") return "Completada";
@@ -5858,7 +5862,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".modal[data-v-53ab54d2] {\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n}\n", ""]);
+exports.push([module.i, ".modal[data-v-53ab54d2] {\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n}\r\n", ""]);
 
 // exports
 
@@ -29128,6 +29132,8 @@ var render = function() {
                     )
                   ]),
                   _vm._v(" "),
+                  _c("sale-to-customer"),
+                  _vm._v(" "),
                   _c(
                     "div",
                     {
@@ -29150,7 +29156,8 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("div", [_c("delete-sale")], 1)
-                ]
+                ],
+                1
               ),
               _vm._v(" "),
               _c(
@@ -47710,8 +47717,8 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/vagrant/code/franapp/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/vagrant/code/franapp/resources/css/app.css */"./resources/css/app.css");
+__webpack_require__(/*! C:\xampp\htdocs\franapp\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\franapp\resources\css\app.css */"./resources/css/app.css");
 
 
 /***/ })

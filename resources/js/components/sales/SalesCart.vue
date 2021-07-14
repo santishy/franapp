@@ -111,7 +111,7 @@ export default {
         EventBus.$on('sale-deleted',res => {
             if(res){
                 this.products = [];
-                this.localSale = null;
+                this.localSale = {};
                 this.form = {}
                 this.sale_status = null;
             }
