@@ -11,7 +11,6 @@
                     <div>
                         {{typeOfSale}}
                     </div>
-                    <sale-to-customer/>
                     <div v-show="getStatus" class="md:w-64 w-full flex justify-center items-center">
                         <p class="mr-2">Status:</p>
                         <p>{{ getStatus }}</p>
@@ -32,19 +31,6 @@
                         :v-model="(form.total = getTotal)"
                     />
                 </div>
-            </div>
-            <div
-                v-if="false"
-                class="flex items-center border-b border-teal-500 py-2 mb-4"
-            >
-                <input
-                    v-model="form.phone_number"
-                    name="phone_number"
-                    class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
-                    type="number"
-                    placeholder="Número del cliente"
-                    aria-label="Full name"
-                />
             </div>
             <div v-if="errors" class="flex items-center mb-3">
                 <errors-component :errors="errors" />

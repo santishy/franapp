@@ -7,7 +7,7 @@ use App\Http\Controllers\SaleController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductsSearchController;
 use App\Http\Controllers\ProductInPurchaseController;
-use App\Http\Controllers\{ClientController, CurrentUserController, ImpersonationController, InventoryController, RolesPermissionsController,UserController};
+use App\Http\Controllers\{ClientController, CurrentUserController, ImpersonationController, InventoryController, RolesPermissionsController, SaleToClientController, UserController};
 use App\Http\Controllers\{PurchaseController, ProductInSaleController, RoleController};
 use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
@@ -49,6 +49,10 @@ Route::delete('products-in-purchases/{product}', [ProductInPurchaseController::c
 
 
 Route::resource('clients', ClientController::class)->middleware('auth');
+
+//sales to client
+
+Route::post('sales-to-clients',[SaleToClientController::class,'store'])->middleware('auth');
 
 //categories 
 
