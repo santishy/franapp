@@ -15,21 +15,34 @@
             >
                 <i class="fas fa-search"></i> Buscar
             </button>
+            <information-component>
+                <template v-slot:title>Información del cliente</template>
+                <p class="text-sm text-gray-700">{{client.name}}</p>
+                <p class="text-sm text-gray-700">{{client.address}}</p>
+                <p class="text-sm text-gray-700">{{client.phone_number}}</p>
+                <p class="text-sm text-gray-700">{{client.company}}</p>
+            </information-component>
         </div>
     </form>
 </template>
 <script>
+import InformationComponent from '../modals/InformationComponent.vue';
 export default {
+    components:{
+        InformationComponent
+    },
     data() {
         return {
-            form: {}
+            form: {},
+            client:{}
         };
     },
     methods:{
         submit(){
             axios.post('/sales-to-clients',this.form)
                 .then( res => {
-                    console.log(res)
+                    EventBus.$emit('open-modal',true);
+                    this.client = res.data.client;
                 })
         }
     }

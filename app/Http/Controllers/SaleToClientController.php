@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Client;
 use App\Models\Sale;
 use Illuminate\Http\Request;
+use App\Http\Resources\TransactionResource;
 
 class SaleToClientController extends Controller
 {
@@ -24,7 +25,10 @@ class SaleToClientController extends Controller
         $sale->client()
             ->associate($client);
         
-        return $client;
+        return response()->json([
+            'client' => $client,
+            'transaction' =>  TransactionResource::make($sale)
+        ]);
 
     }
 }
