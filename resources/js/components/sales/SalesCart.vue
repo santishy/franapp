@@ -102,6 +102,9 @@ export default {
                 this.sale_status = null;
             }
         })
+        EventBus.$on('sale-to-client',sale => {
+            this.localSale = sale;
+        })
     },
     computed: {
         getClass() {

@@ -27,7 +27,7 @@ class SaleToClientController extends Controller
         
         return response()->json([
             'client' => $client,
-            'transaction' =>  TransactionResource::make($sale)
+            'sale' =>  TransactionResource::make($sale)
         ]);
 
     }

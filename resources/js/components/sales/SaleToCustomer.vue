@@ -42,7 +42,9 @@ export default {
             axios.post('/sales-to-clients',this.form)
                 .then( res => {
                     EventBus.$emit('open-modal',true);
+                    EventBus.$emit('sale-to-client',res.data.sale)
                     this.client = res.data.client;
+                    
                 })
         }
     }

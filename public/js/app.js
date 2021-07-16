@@ -5778,6 +5778,7 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.post('/sales-to-clients', this.form).then(function (res) {
         EventBus.$emit('open-modal', true);
+        EventBus.$emit('sale-to-client', res.data.sale);
         _this.client = res.data.client;
       });
     }
@@ -5913,6 +5914,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         _this.form = {};
         _this.sale_status = null;
       }
+    });
+    EventBus.$on('sale-to-client', function (sale) {
+      _this.localSale = sale;
     });
   },
   computed: {
