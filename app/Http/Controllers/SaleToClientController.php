@@ -6,6 +6,7 @@ use App\Models\Client;
 use App\Models\Sale;
 use Illuminate\Http\Request;
 use App\Http\Resources\TransactionResource;
+use Illuminate\Validation\ValidationException;
 
 class SaleToClientController extends Controller
 {
@@ -15,7 +16,15 @@ class SaleToClientController extends Controller
             'phone_number' => 'exists:clients,phone_number|required',
         ]);
 
+        /*if(session()->has('sale_id')){
+            throw ValidationException::withMessages([
+                'phone_number' => 'Actualmente hay una venta en proceso'
+            ]);
+        }*/
+
         $sale = Sale::getTransaction();
+
+        
 
         $client = Client::where(
             'phone_number',
