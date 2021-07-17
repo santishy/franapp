@@ -16,17 +16,10 @@ class SaleToClientController extends Controller
             'phone_number' => 'exists:clients,phone_number|required',
         ]);
 
-        /*if(session()->has('sale_id')){
-            throw ValidationException::withMessages([
-                'phone_number' => 'Actualmente hay una venta en proceso'
-            ]);
-        }*/
 
         $sale = Sale::getTransaction();
 
-        
-
-        $client = Client::where(
+        $client = $sale->client_id ? $sale->client : Client::where(
             'phone_number',
             $fields['phone_number']
         )->first();
@@ -34,6 +27,8 @@ class SaleToClientController extends Controller
         $sale->client()
             ->associate($client);
         
+        $sale->save();
+
         return response()->json([
             'client' => $client,
             'sale' =>  TransactionResource::make($sale)

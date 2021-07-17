@@ -25,7 +25,7 @@ class Sale extends Model
 
     public function client()
     {
-        return $this->belongsTo(Sale::class);
+        return $this->belongsTo(Client::class);
     }
 
     public function scopeFindOrCreateTheTransaction(Builder $query)

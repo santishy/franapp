@@ -13,14 +13,16 @@
                 class="flex-shrink-0 bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded"
                 type="submit"
             >
-                <i class="fas fa-search"></i> Buscar
+                Venta a cliente
             </button>
             <information-component>
                 <template v-slot:title>Información del cliente</template>
-                <p class="text-sm text-gray-700">{{client.name}}</p>
-                <p class="text-sm text-gray-700">{{client.address}}</p>
-                <p class="text-sm text-gray-700">{{client.phone_number}}</p>
-                <p class="text-sm text-gray-700">{{client.company}}</p>
+                <template v-if="Object.keys(client).length">
+                    <p class="text-sm text-gray-700">{{client.name}}</p>
+                    <p class="text-sm text-gray-700">{{client.address}}</p>
+                    <p class="text-sm text-gray-700">{{client.phone_number}}</p>
+                    <p class="text-sm text-gray-700">{{client.company}}</p>
+                </template>
             </information-component>
         </div>
     </form>
@@ -42,6 +44,7 @@ export default {
             axios.post('/sales-to-clients',this.form)
                 .then( res => {
                     EventBus.$emit('open-modal',true);
+
                     EventBus.$emit('sale-to-client',res.data.sale)
                     this.client = res.data.client;
                     
