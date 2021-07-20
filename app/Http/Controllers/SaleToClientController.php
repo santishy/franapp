@@ -15,24 +15,17 @@ class SaleToClientController extends Controller
         $fields = $request->validate([
             'phone_number' => 'exists:clients,phone_number|required',
         ]);
-
-
         $sale = Sale::getTransaction();
-
         $client = $sale->client_id ? $sale->client : Client::where(
             'phone_number',
             $fields['phone_number']
         )->first();
-
         $sale->client()
             ->associate($client);
-        
         $sale->save();
-
         return response()->json([
             'client' => $client,
             'sale' =>  TransactionResource::make($sale)
         ]);
-
     }
 }
