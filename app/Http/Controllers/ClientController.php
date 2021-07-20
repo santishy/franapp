@@ -37,7 +37,8 @@ class ClientController extends Controller
             'address' => 'required',
             'phone_number' => ['required',Rule::unique('clients')->ignore($request->id)],
             'email' => "required|email|unique:clients,email,$request->id",
-            'company' => 'required'
+            'company' => 'required',
+            'assigned_price' => 'required'
         ],
         [
             'name.required' => 'El nombre es requerido',
@@ -47,7 +48,8 @@ class ClientController extends Controller
             'email.required' => 'El email es requerido',
             'email.email' => 'El email debe ser valido',
             'email.unique' => 'El email ya existe en la base de datos',
-            'company.required' => 'La empresa o negocio es requerido.'
+            'company.required' => 'La empresa o negocio es requerido.',
+            'assigned_price.required' => 'El precio es requerido'
         ]);
     }
     public function edit(Client $client){

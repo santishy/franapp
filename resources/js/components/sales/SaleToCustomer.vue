@@ -9,6 +9,7 @@
                 v-model="form.phone_number"
                 aria-label="Full name"
             />
+
             <button
                 class="flex-shrink-0 bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded"
                 type="submit"
@@ -18,37 +19,44 @@
             <information-component>
                 <template v-slot:title>Información del cliente</template>
                 <template v-if="Object.keys(client).length">
-                    <p class="text-sm text-gray-700">{{client.name}}</p>
-                    <p class="text-sm text-gray-700">{{client.address}}</p>
-                    <p class="text-sm text-gray-700">{{client.phone_number}}</p>
-                    <p class="text-sm text-gray-700">{{client.company}}</p>
+                    <p class="text-sm text-gray-700">{{ client.name }}</p>
+                    <p class="text-sm text-gray-700">{{ client.address }}</p>
+                    <p class="text-sm text-gray-700">
+                        {{ client.phone_number }}
+                    </p>
+                    <p class="text-sm text-gray-700">{{ client.company }}</p>
                 </template>
             </information-component>
+        </div>
+        <div v-if="errors" class="flex items-center mb-3">
+            <errors-component :errors-found="errors" />
         </div>
     </form>
 </template>
 <script>
-import InformationComponent from '../modals/InformationComponent.vue';
+import InformationComponent from "../modals/InformationComponent.vue";
 export default {
-    components:{
+    components: {
         InformationComponent
     },
     data() {
         return {
             form: {},
-            client:{}
+            client: {}
         };
     },
-    methods:{
-        submit(){
-            axios.post('/sales-to-clients',this.form)
-                .then( res => {
-                    EventBus.$emit('open-modal',true);
-
-                    EventBus.$emit('sale-to-client',res.data.sale)
+    methods: {
+        submit() {
+            axios
+                .post("/sales-to-clients", this.form)
+                .then(res => {
+                    EventBus.$emit("open-modal", true);
+                    EventBus.$emit("sale-to-client", res.data.sale);
                     this.client = res.data.client;
-                    
                 })
+                .catch(err => {
+                    this.getErrors(err);
+                });
         }
     }
 };

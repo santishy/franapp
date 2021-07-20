@@ -169,7 +169,6 @@ export default {
                     this.errors = null;
                 })
                 .catch(err => {
-                    ;
                     this.getErrors(err);
                 });
         }

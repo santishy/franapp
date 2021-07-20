@@ -9,7 +9,7 @@
                 <div
                     class="flex items-center py-2 text-dark text-center justify-center text-xl font-bold border-b border-teal-500"
                 >
-                    {{getTitle}}
+                    {{ getTitle }}
                 </div>
                 <div class="flex items-center border-b border-teal-500 py-2">
                     <input
@@ -51,6 +51,20 @@
                         aria-label="Full name"
                     />
                 </div>
+                <div class="flex items-center border-b border-teal-500 py-2">
+                    <select
+                        name="assigned_price"
+                        v-model="form.assigned_price"
+                        plahceholder="Asigna un precio al cliente"
+                        class="block appearance-none w-full bg-white hover:border-gray-500 px-4 py-2 pr-8 rounded leading-tight focus:outline-none focus:shadow-outline"
+                    >
+                        <option disabled value="" selected class="text-gray-600"
+                            >Asignar un precio</option
+                        >
+                        <option value="retail_price">Precio al por menor</option>
+                        <option value="wholesale_price">Precio al por mayor</option>
+                    </select>
+                </div>
                 <div
                     :class="[
                         'flex',
@@ -91,7 +105,7 @@ export default {
     components: { NavComponent },
     data() {
         return {
-            form: {},
+            form: {assigned_price:''},
             errors: null
         };
     },
@@ -132,16 +146,14 @@ export default {
                 });
         }
     },
-    computed:{
-        definePermission(){
-            if(this.method.toUpperCase() === 'POST' )
-                return 'create client';
-            return 'edit client';
+    computed: {
+        definePermission() {
+            if (this.method.toUpperCase() === "POST") return "create client";
+            return "edit client";
         },
-        getTitle(){
-            if(this.method.toUpperCase() === 'POST' )
-                return 'Nuevo cliente';
-            return 'Modificar cliente';
+        getTitle() {
+            if (this.method.toUpperCase() === "POST") return "Nuevo cliente";
+            return "Modificar cliente";
         }
     }
 };

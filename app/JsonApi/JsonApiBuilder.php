@@ -44,13 +44,8 @@ class JsonApiBuilder
     {
         return function () {
 
-            $transaction = $this->findOrCreateTheTransaction();
-            // if (request()->has('phone_number') && $transaction->client_id) {
-            //     throw ValidationException::withMessages([
-            //         'phone_number' => 'Actualmente hay una venta en proceso'
-            //     ]);
-            // }
 
+            $transaction = $this->findOrCreateTheTransaction();
             return $transaction;
         };
     }
