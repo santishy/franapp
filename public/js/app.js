@@ -2116,11 +2116,12 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   watch: {
-    errors: {
+    errorsFound: {
       deep: true,
       handler: function handler() {
         var _this = this;
 
+        console.log('entro');
         this.show = true;
         setTimeout(function () {
           _this.show = false;

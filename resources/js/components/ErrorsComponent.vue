@@ -20,9 +20,10 @@ export default {
         }
     },
      watch: {
-        errors: {
+        errorsFound: {
             deep: true,
             handler() {
+                console.log('entro')
                 this.show = true;
                 setTimeout(() => {
                     this.show = false;
