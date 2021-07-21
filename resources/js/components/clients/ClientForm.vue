@@ -83,7 +83,7 @@
                         aria-label="Full name"
                     />
                 </div>
-                <div v-if="errors" class="flex items-center mb-3">
+                <div  class="flex items-center ">
                     <errors-component :errors-found="errors" />
                 </div>
 
