@@ -102,8 +102,8 @@ export default {
                 this.sale_status = null;
             }
         })
-        EventBus.$on('sale-to-client',sale => {
-            this.localSale = sale;
+        EventBus.$on('sale-to-client',data => {
+            this.localSale = data.sale;
         })
     },
     computed: {
@@ -128,7 +128,7 @@ export default {
             if (this.getStatus == "completed") return "Pendiente";
         },
         typeOfSale(){
-            return this.sale?.client_id ? 'Venta a cliente' : 'Venta a publico en general';
+            return this.localSale?.client_id ? 'Venta a '+this.localSale?.client?.name : 'Venta a publico en general';
         }
     },
     methods: {

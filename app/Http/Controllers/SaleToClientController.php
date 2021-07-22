@@ -24,9 +24,12 @@ class SaleToClientController extends Controller
             'phone_number',
             $fields['phone_number']
         )->first();
+
         $sale->client()
             ->associate($client);
+
         $sale->save();
+        
         return response()->json([
             'client' => $client,
             'sale' =>  TransactionResource::make($sale)
