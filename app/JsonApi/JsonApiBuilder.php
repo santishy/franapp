@@ -12,7 +12,8 @@ class JsonApiBuilder
     public function applyFilters()
     {
         return function () {
-            foreach (request('filter', []) as $filter => $value) {
+            foreach (request('filter', []) as $filter => $value) 
+            {
                 abort_unless($this->hasNamedScope($filter), 400, 'El filtro no existe');
                 $this->{$filter}($value);
             }
@@ -43,8 +44,6 @@ class JsonApiBuilder
     public function getTransaction()
     {
         return function () {
-
-
             $transaction = $this->findOrCreateTheTransaction();
             return $transaction;
         };

@@ -52,7 +52,7 @@ export default {
                 .then(res => {
                     EventBus.$emit("open-modal", true);
                     EventBus.$emit("sale-to-client", res.data);
-                    this.client = res.data.client;
+                    this.client = res.data.sale.client;
                 })
                 .catch(err => {
                     this.getErrors(err);

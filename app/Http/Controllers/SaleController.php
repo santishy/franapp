@@ -28,7 +28,7 @@ class SaleController extends Controller
     }
     public function create()
     {
-        $sale = Sale::find(session()->get('sale_id'));
+        $sale = Sale::with('client')->where('id',session('sale_id'))->first();
         $inventories = Inventory::all();
         return view('sales.create', [
             'sale' => $sale ? TransactionResource::make($sale) : null,

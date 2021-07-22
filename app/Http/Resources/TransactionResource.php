@@ -22,6 +22,7 @@ class TransactionResource extends JsonResource
             'created_at' => $this->resource->created_at->format('Y-m-d H:m:s'),
             'status' => $this->resource->status,
             'client_id' => optional($this->resource)->client_id,
+            'client' => $this->whenLoaded('client'),
             'products' => ProductResource::collection($this->products)
         ];
     }

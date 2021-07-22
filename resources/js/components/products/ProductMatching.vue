@@ -5,13 +5,16 @@
             class="w-full md:w-10/12 shadow z-20 h-screen overflow-y-scroll overflow-x-hidden bg-white py-6 px-6"
         >
             <div class="flex justify-end">
-                <button @click ="isOpen = false" class="mt-2 mb-2 text-2xl p-0 m-0">
+                <button
+                    @click="isOpen = false"
+                    class="mt-2 mb-2 text-2xl p-0 m-0"
+                >
                     <i class="far fa-window-close"></i>
                 </button>
             </div>
             <div class="grid md:grid-cols-3 grid-cols-1 gap-4 ">
                 <product-card
-                    v-for="(product,index) in products"
+                    v-for="(product, index) in products"
                     :key="product.id"
                     :product="product"
                     :search-in-sales="true"
@@ -19,16 +22,19 @@
                 >
                 </product-card>
             </div>
+            <infinite-loading @infinite="getProducts"></infinite-loading>
         </div>
     </div>
 </template>
 <script>
+import { mapActions } from "vuex";
 import ProductCardComponent from "./ProductCardComponent";
 export default {
     data() {
         return {
             products: [],
-            isOpen: false
+            isOpen: false,
+            page: 2
         };
     },
     created() {
@@ -39,6 +45,25 @@ export default {
     },
     components: {
         "product-card": ProductCardComponent
+    },
+    methods: {
+        ...mapActions(["search"]),
+        async getProducts($state) {
+            try {
+                const { data } = await this.search({
+                    sku: this.sku,
+                    page: this.page
+                });
+                if (data.data.length) {
+                    this.page += 1;
+                    this.products.push(...data.data);
+                    $state.loaded();
+                }
+                else{
+                    $state.complete();
+                }
+            } catch (error) {}
+        }
     }
 };
 </script>

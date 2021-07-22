@@ -31,8 +31,9 @@ class SaleToClientController extends Controller
         $sale->save();
         
         return response()->json([
-            'client' => $client,
-            'sale' =>  TransactionResource::make($sale)
+            'sale' =>  TransactionResource::make(
+                sale::with('client')->where('id',session('sale_id'))->first()
+            )
         ]);
     }
 
