@@ -33,12 +33,12 @@ export default {
     },
     methods: {
         async handleSearh() {
-            if (this.sku == "" || this.sku == "") {
-                return EventBus.$emit("empty-search");
-            }
             try {
-                const { data } = await this.search(this.category_id);
                 
+                const { data } = await this.search(this.category_id);
+                const products = data.data;
+                const sku = this.sku;
+                EventBus.$emit("matching-products", {products,sku});
             } catch (error) {
                 console.log(error);
             }
