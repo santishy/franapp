@@ -7,6 +7,7 @@ use App\Models\Client;
 use Illuminate\Http\Request;
 use App\Http\Resources\TransactionResource;
 use App\Http\Responses\ReportResponse;
+use App\Models\Category;
 use App\Models\Inventory;
 use App\Models\Sale;
 use Facade\Ignition\QueryRecorder\Query;
@@ -30,9 +31,11 @@ class SaleController extends Controller
     {
         $sale = Sale::with('client')->where('id',session('sale_id'))->first();
         $inventories = Inventory::all();
+        $categories = Category::all();
         return view('sales.create', [
             'sale' => $sale ? TransactionResource::make($sale) : null,
-            'inventories' => $inventories
+            'inventories' => $inventories,
+            'categories' => $categories
         ]);
     }
 

@@ -34,12 +34,14 @@ export default {
         return {
             products: [],
             isOpen: false,
-            page: 2
+            page: 2,
+            sku:''
         };
     },
     created() {
         EventBus.$on("matching-products", obj => {
             this.products = obj.products;
+            this.sku = obj.sku;
             this.isOpen = true;
         });
     },

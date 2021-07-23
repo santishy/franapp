@@ -15,9 +15,12 @@
             </div>
             <div v-else class="w-full mt-24 md:mt-32">
                 <div class="flex justify-center">
-                    <search-by-category></search-by-category>
+                    <search-by-category
+                        class="sm:w-64 w-4/5 md:mr-4"
+                        :categories="categories"
+                    ></search-by-category>
                     <search-component
-                        class="sm:w-64 w-4/5 mx-auto"
+                        class="sm:w-64 w-4/5"
                     ></search-component>
                 </div>
                 <product-matching></product-matching>
@@ -25,7 +28,7 @@
                     <div
                         class="bg-white px-4 py-2 md:w-4/5 w-full md:mx-0 mx-2 rounded shadow"
                     >
-                        <sale-to-customer/>
+                        <sale-to-customer />
                         <sales-cart :sale="sale"></sales-cart>
                     </div>
                 </div>
@@ -40,8 +43,8 @@ import InventoryList from "../inventories/InventoryList.vue";
 import { mapState } from "vuex";
 import SalesCart from "./SalesCart";
 import NavComponent from "../NavComponent.vue";
-import SaleToCustomer from './SaleToCustomer.vue';
-import SearchByCategory from '../products/SearchByCategory.vue';
+import SaleToCustomer from "./SaleToCustomer.vue";
+import SearchByCategory from "../products/SearchByCategory.vue";
 export default {
     components: {
         SearchComponent,
@@ -56,8 +59,8 @@ export default {
         sale: {
             type: Object
         },
-        categories:{
-            type:Array
+        categories: {
+            type: Array
         }
     },
     created() {
