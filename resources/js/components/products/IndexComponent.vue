@@ -59,6 +59,39 @@ export default {
         },
         infiniteHandler($state) {
             if (this.wantedProduct) {
+                const params = {
+                    'filter[search]': this.wantedProduct,
+                    page: this.page
+                }
+                this.search(params)
+                    .then(res => {
+                        if (res.data.data.length) {
+                            this.page += 1;
+                            this.products.push(...res.data.data);
+                            $state.loaded();
+                        } else {
+                            $state.complete();
+                        }
+                    })
+                    .catch(err => {});
+            } else {
+                this.getProducts(this.page)
+                    .then(res => {
+                        if (res.data.data.length) {
+                            this.page += 1;
+                            this.products = this.products.concat(res.data.data);
+                            $state.loaded();
+                        } else {
+                            $state.complete();
+                        }
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    });
+            }
+
+            /*  infiniteHandler($state) {
+            if (this.wantedProduct) {
                 this.obj.sku = this.wantedProduct;
                 this.obj.page = this.page;
                 this.search(this.obj)
@@ -86,7 +119,7 @@ export default {
                     .catch(error => {
                         console.log(error);
                     });
-            }
+            } */
         },
         matchingProducts(data) {
             this.products = data.products;
@@ -98,6 +131,7 @@ export default {
             this.infiniteId++;
             this.wantedProduct = null;
             this.page = 1;
+            this.products = []
         },
         cleanLocalStorage() {
             if (

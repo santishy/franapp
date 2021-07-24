@@ -4108,9 +4108,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var _this = this;
 
       if (this.wantedProduct) {
-        this.obj.sku = this.wantedProduct;
-        this.obj.page = this.page;
-        this.search(this.obj).then(function (res) {
+        var params = {
+          'filter[search]': this.wantedProduct,
+          page: this.page
+        };
+        this.search(params).then(function (res) {
           if (res.data.data.length) {
             var _this$products;
 
@@ -4136,6 +4138,37 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           console.log(error);
         });
       }
+      /*  infiniteHandler($state) {
+      if (this.wantedProduct) {
+          this.obj.sku = this.wantedProduct;
+          this.obj.page = this.page;
+          this.search(this.obj)
+              .then(res => {
+                  if (res.data.data.length) {
+                      this.page += 1;
+                      this.products.push(...res.data.data);
+                      $state.loaded();
+                  } else {
+                      $state.complete();
+                  }
+              })
+              .catch(err => {});
+      } else {
+          this.getProducts(this.page)
+              .then(res => {
+                  if (res.data.data.length) {
+                      this.page += 1;
+                      this.products = this.products.concat(res.data.data);
+                      $state.loaded();
+                  } else {
+                      $state.complete();
+                  }
+              })
+              .catch(error => {
+                  console.log(error);
+              });
+      } */
+
     },
     matchingProducts: function matchingProducts(data) {
       this.products = data.products;
@@ -4147,6 +4180,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.infiniteId++;
       this.wantedProduct = null;
       this.page = 1;
+      this.products = [];
     },
     cleanLocalStorage: function cleanLocalStorage() {
       if (document.head.querySelector('meta[name="purchase_id"]').content == "" || document.head.querySelector('meta[name="purchase_id"]').content == null) localStorage.removeItem("productsInPurchase");
@@ -4592,20 +4626,21 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var _this2 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var _yield$_this2$search, data, _this2$products;
+        var params, _yield$_this2$search, data, _this2$products;
 
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                _context.prev = 0;
-                _context.next = 3;
-                return _this2.search({
-                  sku: _this2.sku,
+                params = {
+                  'filter[search]': _this2.sku,
                   page: _this2.page
-                });
+                };
+                _context.prev = 1;
+                _context.next = 4;
+                return _this2.search(params);
 
-              case 3:
+              case 4:
                 _yield$_this2$search = _context.sent;
                 data = _yield$_this2$search.data;
 
@@ -4619,19 +4654,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                   $state.complete();
                 }
 
-                _context.next = 10;
+                _context.next = 11;
                 break;
 
-              case 8:
-                _context.prev = 8;
-                _context.t0 = _context["catch"](0);
+              case 9:
+                _context.prev = 9;
+                _context.t0 = _context["catch"](1);
 
-              case 10:
+              case 11:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, null, [[0, 8]]);
+        }, _callee, null, [[1, 9]]);
       }))();
     }
   })
@@ -4827,12 +4862,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       return new Promise(function (resolve, reject) {
         var obj = new Object();
-        obj.sku = _this.sku;
-        obj.page = _this.page;
+        var params = {
+          'filter[search]': _this.sku,
+          page: _this.page
+        };
 
-        _this.search(obj).then(function (res) {
+        _this.search(params).then(function (res) {
           if (_this.page == 1) {
             obj.products = res.data.data;
+            obj.sku = _this.sku;
+            obj.page = _this.page;
             EventBus.$emit("matching-products", obj);
           }
 
@@ -4841,7 +4880,29 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           reject(err);
         });
       });
-    },
+    }
+    /* handleSearh(e) {
+        if (this.sku == "" || this.sku == "") {
+            return EventBus.$emit("empty-search");
+        }
+        return new Promise((resolve, reject) => {
+            var obj = new Object();
+            obj.sku = this.sku;
+            obj.page = this.page;
+            this.search(obj)
+                .then(res => {
+                    if (this.page == 1) {
+                        obj.products = res.data.data;
+                        EventBus.$emit("matching-products", obj);
+                    }
+                    resolve(res);
+                })
+                .catch(err => {
+                    reject(err);
+                });
+        });
+    } */
+    ,
     setPage: function setPage(page) {
       this.page = page;
     }
@@ -48719,14 +48780,11 @@ var getProducts = function getProducts(_ref, page) {
   });
 };
 
-var search = function search(_ref2, data) {
+var search = function search(_ref2, params) {
   var context = _ref2.context;
   return new Promise(function (resolve, reject) {
     axios.get('/searching-products', {
-      params: {
-        'filter[search]': data.sku,
-        page: data.page
-      }
+      params: params
     }).then(function (res) {
       resolve(res);
     })["catch"](function (err) {
@@ -48734,6 +48792,23 @@ var search = function search(_ref2, data) {
     });
   });
 };
+/* const search = ({ context }, data) => {
+    return new Promise((resolve, reject) => {
+        axios.get('/searching-products', {
+            params: {
+                'filter[search]': data.sku,
+                page: data.page
+            }
+        })
+            .then((res) => {
+                resolve(res);
+            })
+            .catch((err) => {
+                reject(err);
+            })
+    })
+} */
+
 /*const getUser = async ({ commit }) => {
     const user = await axios.get('/current-user')
     commit('SET_USER', user.data.data);

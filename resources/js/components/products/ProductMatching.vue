@@ -51,11 +51,12 @@ export default {
     methods: {
         ...mapActions(["search"]),
         async getProducts($state) {
-            try {
-                const { data } = await this.search({
-                    sku: this.sku,
+            const params = {
+                    'filter[search]': this.sku,
                     page: this.page
-                });
+                };
+            try {
+                const { data } = await this.search(params);
                 if (data.data.length) {
                     this.page += 1;
                     this.products.push(...data.data);
