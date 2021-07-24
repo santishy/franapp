@@ -4513,7 +4513,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     return {
       products: [],
       isOpen: false,
-      // page: 2,
       sku: '',
       params: {}
     };

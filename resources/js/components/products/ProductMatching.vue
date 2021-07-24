@@ -34,7 +34,6 @@ export default {
         return {
             products: [],
             isOpen: false,
-            // page: 2,
             sku:'',
             params:{},
         };
@@ -52,10 +51,6 @@ export default {
     methods: {
         ...mapActions(["search"]),
         async getProducts($state) {
-            /* const params = {
-                    'filter[search]': this.sku,
-                    page: this.page
-                }; */
             try {
 
                 const { data } = await this.search(this.params);
