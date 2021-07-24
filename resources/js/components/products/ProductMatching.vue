@@ -34,14 +34,15 @@ export default {
         return {
             products: [],
             isOpen: false,
-            page: 2,
-            sku:''
+            // page: 2,
+            sku:'',
+            params:{},
         };
     },
     created() {
         EventBus.$on("matching-products", obj => {
             this.products = obj.products;
-            this.sku = obj.sku;
+            this.params = obj.params;
             this.isOpen = true;
         });
     },
@@ -51,14 +52,15 @@ export default {
     methods: {
         ...mapActions(["search"]),
         async getProducts($state) {
-            const params = {
+            /* const params = {
                     'filter[search]': this.sku,
                     page: this.page
-                };
+                }; */
             try {
-                const { data } = await this.search(params);
+
+                const { data } = await this.search(this.params);
                 if (data.data.length) {
-                    this.page += 1;
+                    this.params.page += 1;
                     this.products.push(...data.data);
                     $state.loaded();
                 }

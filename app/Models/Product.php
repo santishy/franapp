@@ -19,6 +19,9 @@ class Product extends Model
         }
     }
 
+    public function scopeByCategory(Builder $query,$id){
+        $query->where('category_id',$id);
+    }
     public function sales(){
         return $this->belongsToMany(Sale::class);
     }

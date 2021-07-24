@@ -28,17 +28,20 @@ export default {
     },
     data() {
         return {
-            category_id: ""
+            category_id: "",
+            params:{
+                page:1
+            }
         };
     },
     methods: {
         async handleSearh() {
             try {
-                
-                const { data } = await this.search(this.category_id);
+                this.params['filter[byCategory]'] = this.category_id;
+                const { data } = await this.search(this.params);
                 const products = data.data;
-                const sku = this.sku;
-                EventBus.$emit("matching-products", {products,sku});
+                this.params.page++;
+                EventBus.$emit("matching-products", {products,params:this.params});
             } catch (error) {
                 console.log(error);
             }

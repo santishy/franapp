@@ -32,6 +32,7 @@ export default {
             products: [],
             page: 1,
             wantedProduct: null,
+            params:{page:1},
             infiniteId: 1,
             obj: new Object(),
             arr: new Array()
@@ -58,15 +59,10 @@ export default {
             this.products.splice(index, 1);
         },
         infiniteHandler($state) {
-            if (this.wantedProduct) {
-                const params = {
-                    'filter[search]': this.wantedProduct,
-                    page: this.page
-                }
-                this.search(params)
+                this.search(this.params)
                     .then(res => {
                         if (res.data.data.length) {
-                            this.page += 1;
+                            this.params.page += 1;
                             this.products.push(...res.data.data);
                             $state.loaded();
                         } else {
@@ -74,63 +70,17 @@ export default {
                         }
                     })
                     .catch(err => {});
-            } else {
-                this.getProducts(this.page)
-                    .then(res => {
-                        if (res.data.data.length) {
-                            this.page += 1;
-                            this.products = this.products.concat(res.data.data);
-                            $state.loaded();
-                        } else {
-                            $state.complete();
-                        }
-                    })
-                    .catch(error => {
-                        console.log(error);
-                    });
-            }
-
-            /*  infiniteHandler($state) {
-            if (this.wantedProduct) {
-                this.obj.sku = this.wantedProduct;
-                this.obj.page = this.page;
-                this.search(this.obj)
-                    .then(res => {
-                        if (res.data.data.length) {
-                            this.page += 1;
-                            this.products.push(...res.data.data);
-                            $state.loaded();
-                        } else {
-                            $state.complete();
-                        }
-                    })
-                    .catch(err => {});
-            } else {
-                this.getProducts(this.page)
-                    .then(res => {
-                        if (res.data.data.length) {
-                            this.page += 1;
-                            this.products = this.products.concat(res.data.data);
-                            $state.loaded();
-                        } else {
-                            $state.complete();
-                        }
-                    })
-                    .catch(error => {
-                        console.log(error);
-                    });
-            } */
         },
         matchingProducts(data) {
             this.products = data.products;
-            this.wantedProduct = data.sku;
-            this.page = data.page + 1;
+
+            this.params = data.params;
             this.infiniteId++;
         },
         reloadIndex() {
+            console.log('entro')
             this.infiniteId++;
-            this.wantedProduct = null;
-            this.page = 1;
+            this.params={ page : 1}
             this.products = []
         },
         cleanLocalStorage() {
