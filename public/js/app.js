@@ -4677,9 +4677,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   data: function data() {
     return {
       category_id: "",
-      params: {
-        page: 1
-      }
+      params: {}
     };
   },
   methods: _objectSpread({
@@ -4695,10 +4693,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
               case 0:
                 _context.prev = 0;
                 _this.params['filter[byCategory]'] = _this.category_id;
-                _context.next = 4;
+                _this.params.page = 1;
+                _context.next = 5;
                 return _this.search(_this.params);
 
-              case 4:
+              case 5:
                 _yield$_this$search = _context.sent;
                 data = _yield$_this$search.data;
                 products = data.data;
@@ -4707,20 +4706,20 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                   products: products,
                   params: _this.params
                 });
-                _context.next = 14;
+                _context.next = 15;
                 break;
 
-              case 11:
-                _context.prev = 11;
+              case 12:
+                _context.prev = 12;
                 _context.t0 = _context["catch"](0);
                 console.log(_context.t0);
 
-              case 14:
+              case 15:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, null, [[0, 11]]);
+        }, _callee, null, [[0, 12]]);
       }))();
     }
   }, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapActions"])(["search"]))
@@ -4791,28 +4790,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         });
       });
     },
-
-    /* handleSearh(e) {
-        if (this.sku == "" || this.sku == "") {
-            return EventBus.$emit("empty-search");
-        }
-        return new Promise((resolve, reject) => {
-            var obj = new Object();
-            obj.sku = this.sku;
-            obj.page = this.page;
-            this.search(obj)
-                .then(res => {
-                    if (this.page == 1) {
-                        obj.products = res.data.data;
-                        EventBus.$emit("matching-products", obj);
-                    }
-                    resolve(res);
-                })
-                .catch(err => {
-                    reject(err);
-                });
-        });
-    } */
     setPage: function setPage(page) {
       this.page = page;
     }

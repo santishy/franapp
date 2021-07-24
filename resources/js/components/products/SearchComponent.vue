@@ -45,27 +45,7 @@ export default {
                     });
             });
         },
-        /* handleSearh(e) {
-            if (this.sku == "" || this.sku == "") {
-                return EventBus.$emit("empty-search");
-            }
-            return new Promise((resolve, reject) => {
-                var obj = new Object();
-                obj.sku = this.sku;
-                obj.page = this.page;
-                this.search(obj)
-                    .then(res => {
-                        if (this.page == 1) {
-                            obj.products = res.data.data;
-                            EventBus.$emit("matching-products", obj);
-                        }
-                        resolve(res);
-                    })
-                    .catch(err => {
-                        reject(err);
-                    });
-            });
-        } */ setPage(
+    setPage(
             page
         ) {
             this.page = page;

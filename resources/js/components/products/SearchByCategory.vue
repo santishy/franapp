@@ -30,7 +30,6 @@ export default {
         return {
             category_id: "",
             params:{
-                page:1
             }
         };
     },
@@ -38,6 +37,7 @@ export default {
         async handleSearh() {
             try {
                 this.params['filter[byCategory]'] = this.category_id;
+                this.params.page = 1;
                 const { data } = await this.search(this.params);
                 const products = data.data;
                 this.params.page++;
