@@ -14,7 +14,7 @@
                 <inventory-list></inventory-list>
             </div>
             <div v-else class="w-full mt-24 md:mt-32">
-                <div class="flex justify-center">
+                <div class="flex justify-center flex-wrap ">
                     <search-by-category
                         class="sm:w-64 w-4/5 md:mr-4"
                         :categories="categories"
@@ -27,29 +27,29 @@
                         class="bg-white px-4 py-2 md:w-4/5 w-full md:mx-0 mx-2 rounded shadow"
                     >
                         <div
+                            v-if="localSale"
                             :class="[
                                 'flex flex-wrap px-2 py-2 items-center mb-4 border-b-2 border-blue-400',
                                 alignStatus
                             ]"
                         >
-                            <div class="text-gray-600 " v-if="sale_status">
-                                ID Venta - #{{ sale.id }}
+                            <div class="text-gray-600 ">
+                                ID Venta - #{{ localSale.id }}
                             </div>
-                            <div class="text-xl text-gray-700">
+                            <div class="text-xl text-green-900">
                                 {{ typeOfSale }}
                             </div>
                             <div
-                                v-show="getStatus"
                                 class="flex flex-wrap text-gray-600"
                             >
                                 <p class="mr-2 text-xs">Status:</p>
-                                <p class="text-xs">{{ getStatus }}</p>
+                                <p class="text-xs">{{ localSale.status }}</p>
                             </div>
                         </div>
                         <div
                             class="w-full flex flex-wrap md:justify-center mb-2 text-gray-600 md:items-center"
                         >
-                            <sale-to-customer  v-if="show" />
+                            <sale-to-customer v-if="show" />
                             <button
                                 v-else
                                 @click="show = true"
@@ -57,9 +57,8 @@
                             >
                                 Cliente registrado
                             </button>
-                            <delete-sale v-show="sale_status"></delete-sale>
+                            <delete-sale v-if="localSale"></delete-sale>
                         </div>
-
                         <sales-cart :sale="sale"></sales-cart>
                     </div>
                 </div>
@@ -94,46 +93,45 @@ export default {
         },
         categories: {
             type: Array
-        }
+        },
     },
     created() {
         if (this.sale) {
             this.sale_status = this.sale.status;
+            this.localSale = this.sale;
         }
         EventBus.$on("selected-inventory", inventary_id => {
             this.seletedInventoryId = inventary_id;
         });
         EventBus.$on("sale-deleted", res => {
-            if (res) {
-                this.sale_status = null;
-            }
+            this.sale_status = null;
+            this.localSale = null;
         });
         EventBus.$on("product-added-sales-cart", sale => {
+            this.localSale = sale;
             this.sale_status = sale.status;
         });
         EventBus.$on("sale-to-client", data => {
-            this.sale_status = data.sale.status;
+            this.localSale = data.sale;
+            this.show = false;
         });
     },
     data() {
         return {
             seletedInventoryId: null,
             show: false,
-            sale_status: null
+            localSale:null
         };
     },
     computed: {
         ...mapState(["salePriceOption"]),
         typeOfSale() {
-            return this.sale?.client_id
-                ? "Venta a " + this.sale?.client?.name
+            return this.localSale?.client_id
+                ? "Cliente " + this.localSale?.client?.name.toUpperCase()
                 : "Venta a publico en general";
         },
-        getStatus() {
-            return this.sale_status ? this.sale_status : this.sale?.status;
-        },
         alignStatus() {
-            return this.sale ? "justify-between" : "justify-center";
+            return this.localSale ? "justify-between" : "justify-center";
         }
     }
 };

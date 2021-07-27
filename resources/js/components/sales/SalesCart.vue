@@ -2,7 +2,6 @@
     <div>
         <form @submit.prevent="submit" v-can="'create sale'">
             <div v-if="localSale != null">
-                
                 <div
                     v-show="products.length"
                     class=" flex flex-wrap justify-center items-center text-center mb-4"
@@ -45,7 +44,7 @@ import { mapMutations } from "vuex";
 import Errors from "../../mixins/Errors";
 
 export default {
-    components: { "cart-product": CartProduct},
+    components: { "cart-product": CartProduct },
     mixins: [Errors],
     data() {
         return {
@@ -84,9 +83,9 @@ export default {
                 this.form = {};
             }
         });
-        // EventBus.$on("sale-to-client", data => {
-        //     this.localSale = data.sale;
-        // });
+        EventBus.$on("sale-to-client", data => {
+            this.localSale = data.sale;
+        });
     },
     computed: {
         getClass() {
@@ -109,7 +108,7 @@ export default {
         },
         getStatus() {
             return this.sale_status ? this.sale_status : this.sale?.status;
-        },
+        }
     },
     methods: {
         ...mapMutations(["setSalePriceOption"]),

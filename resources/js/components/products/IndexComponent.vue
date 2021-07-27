@@ -73,7 +73,6 @@ export default {
         },
         matchingProducts(data) {
             this.products = data.products;
-
             this.params = data.params;
             this.infiniteId++;
         },
