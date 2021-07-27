@@ -5867,6 +5867,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _NavComponent_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../NavComponent.vue */ "./resources/js/components/NavComponent.vue");
 /* harmony import */ var _SaleToCustomer_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./SaleToCustomer.vue */ "./resources/js/components/sales/SaleToCustomer.vue");
 /* harmony import */ var _products_SearchByCategory_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../products/SearchByCategory.vue */ "./resources/js/components/products/SearchByCategory.vue");
+/* harmony import */ var _DeleteSale_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./DeleteSale.vue */ "./resources/js/components/sales/DeleteSale.vue");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -5911,6 +5912,38 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 
@@ -5927,7 +5960,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     InventoryList: _inventories_InventoryList_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
     NavComponent: _NavComponent_vue__WEBPACK_IMPORTED_MODULE_5__["default"],
     SaleToCustomer: _SaleToCustomer_vue__WEBPACK_IMPORTED_MODULE_6__["default"],
-    SearchByCategory: _products_SearchByCategory_vue__WEBPACK_IMPORTED_MODULE_7__["default"]
+    SearchByCategory: _products_SearchByCategory_vue__WEBPACK_IMPORTED_MODULE_7__["default"],
+    DeleteSale: _DeleteSale_vue__WEBPACK_IMPORTED_MODULE_8__["default"]
   },
   props: {
     sale: {
@@ -5940,16 +5974,47 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   created: function created() {
     var _this = this;
 
+    if (this.sale) {
+      this.sale_status = this.sale.status;
+    }
+
     EventBus.$on("selected-inventory", function (inventary_id) {
       _this.seletedInventoryId = inventary_id;
+    });
+    EventBus.$on("sale-deleted", function (res) {
+      if (res) {
+        _this.sale_status = null;
+      }
+    });
+    EventBus.$on("product-added-sales-cart", function (sale) {
+      _this.sale_status = sale.status;
+    });
+    EventBus.$on("sale-to-client", function (data) {
+      _this.sale_status = data.sale.status;
     });
   },
   data: function data() {
     return {
-      seletedInventoryId: null
+      seletedInventoryId: null,
+      show: false,
+      sale_status: null
     };
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapState"])(["salePriceOption"]))
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapState"])(["salePriceOption"])), {}, {
+    typeOfSale: function typeOfSale() {
+      var _this$sale, _this$sale2, _this$sale2$client;
+
+      return (_this$sale = this.sale) !== null && _this$sale !== void 0 && _this$sale.client_id ? "Venta a " + ((_this$sale2 = this.sale) === null || _this$sale2 === void 0 ? void 0 : (_this$sale2$client = _this$sale2.client) === null || _this$sale2$client === void 0 ? void 0 : _this$sale2$client.name) : "Venta a publico en general";
+    },
+    getStatus: function getStatus() {
+      var _this$sale3;
+
+      return this.sale_status ? this.sale_status : (_this$sale3 = this.sale) === null || _this$sale3 === void 0 ? void 0 : _this$sale3.status;
+    },
+    alignStatus: function alignStatus() {
+      return this.sale ? "justify-between" : "justify-center";
+    }
+  })
 });
 
 /***/ }),
@@ -6040,7 +6105,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var _mixins_Errors__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../mixins/Errors */ "./resources/js/mixins/Errors.js");
 /* harmony import */ var _mixins_Errors__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_mixins_Errors__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _DeleteSale_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./DeleteSale.vue */ "./resources/js/components/sales/DeleteSale.vue");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -6088,38 +6152,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    "cart-product": _CartProduct__WEBPACK_IMPORTED_MODULE_0__["default"],
-    DeleteSale: _DeleteSale_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
+    "cart-product": _CartProduct__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   mixins: [_mixins_Errors__WEBPACK_IMPORTED_MODULE_2___default.a],
   data: function data() {
     return {
       form: {},
       products: [],
-      localSale: {},
-      sale_status: null
+      localSale: {}
     };
   },
   props: {
@@ -6147,17 +6192,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     EventBus.$on("product-removed", function (index) {
       _this.products.splice(index, 1);
     });
-    EventBus.$on('sale-deleted', function (res) {
+    EventBus.$on("sale-deleted", function (res) {
       if (res) {
         _this.products = [];
         _this.localSale = {};
         _this.form = {};
-        _this.sale_status = null;
       }
-    });
-    EventBus.$on('sale-to-client', function (data) {
-      _this.localSale = data.sale;
-    });
+    }); // EventBus.$on("sale-to-client", data => {
+    //     this.localSale = data.sale;
+    // });
   },
   computed: {
     getClass: function getClass() {
@@ -6171,19 +6214,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       });
       return total.toFixed(2);
     },
-    getStatus: function getStatus() {
-      var _this$localSale;
-
-      return this.sale_status ? this.sale_status : (_this$localSale = this.localSale) === null || _this$localSale === void 0 ? void 0 : _this$localSale.status;
-    },
     modifyTo: function modifyTo() {
       if (this.getStatus == "pending") return "Completada";
       if (this.getStatus == "completed") return "Pendiente";
     },
-    typeOfSale: function typeOfSale() {
-      var _this$localSale2, _this$localSale3, _this$localSale3$clie;
+    getStatus: function getStatus() {
+      var _this$sale;
 
-      return (_this$localSale2 = this.localSale) !== null && _this$localSale2 !== void 0 && _this$localSale2.client_id ? 'Venta a ' + ((_this$localSale3 = this.localSale) === null || _this$localSale3 === void 0 ? void 0 : (_this$localSale3$clie = _this$localSale3.client) === null || _this$localSale3$clie === void 0 ? void 0 : _this$localSale3$clie.name) : 'Venta a publico en general';
+      return this.sale_status ? this.sale_status : (_this$sale = this.sale) === null || _this$sale === void 0 ? void 0 : _this$sale.status;
     }
   },
   methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapMutations"])(["setSalePriceOption"])), {}, {
@@ -29853,7 +29891,103 @@ var render = function() {
                           "bg-white px-4 py-2 md:w-4/5 w-full md:mx-0 mx-2 rounded shadow"
                       },
                       [
-                        _c("sale-to-customer"),
+                        _c(
+                          "div",
+                          {
+                            class: [
+                              "flex flex-wrap px-2 py-2 items-center mb-4 border-b-2 border-blue-400",
+                              _vm.alignStatus
+                            ]
+                          },
+                          [
+                            _vm.sale_status
+                              ? _c("div", { staticClass: "text-gray-600 " }, [
+                                  _vm._v(
+                                    "\n                            ID Venta - #" +
+                                      _vm._s(_vm.sale.id) +
+                                      "\n                        "
+                                  )
+                                ])
+                              : _vm._e(),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              { staticClass: "text-xl text-gray-700" },
+                              [
+                                _vm._v(
+                                  "\n                            " +
+                                    _vm._s(_vm.typeOfSale) +
+                                    "\n                        "
+                                )
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              {
+                                directives: [
+                                  {
+                                    name: "show",
+                                    rawName: "v-show",
+                                    value: _vm.getStatus,
+                                    expression: "getStatus"
+                                  }
+                                ],
+                                staticClass: "flex flex-wrap text-gray-600"
+                              },
+                              [
+                                _c("p", { staticClass: "mr-2 text-xs" }, [
+                                  _vm._v("Status:")
+                                ]),
+                                _vm._v(" "),
+                                _c("p", { staticClass: "text-xs" }, [
+                                  _vm._v(_vm._s(_vm.getStatus))
+                                ])
+                              ]
+                            )
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          {
+                            staticClass:
+                              "w-full flex flex-wrap md:justify-center mb-2 text-gray-600 md:items-center"
+                          },
+                          [
+                            _vm.show
+                              ? _c("sale-to-customer")
+                              : _c(
+                                  "button",
+                                  {
+                                    staticClass:
+                                      "bg-teal-300 rounded transition-all duration-500 ease-in-out hover:bg-teal-500 text-teal-700 font-semibold hover:text-white py-1 px-4 border-b-2 border-teal-500 hover:border-transparent mr-1",
+                                    on: {
+                                      click: function($event) {
+                                        _vm.show = true
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _vm._v(
+                                      "\n                            Cliente registrado\n                        "
+                                    )
+                                  ]
+                                ),
+                            _vm._v(" "),
+                            _c("delete-sale", {
+                              directives: [
+                                {
+                                  name: "show",
+                                  rawName: "v-show",
+                                  value: _vm.sale_status,
+                                  expression: "sale_status"
+                                }
+                              ]
+                            })
+                          ],
+                          1
+                        ),
                         _vm._v(" "),
                         _c("sales-cart", { attrs: { sale: _vm.sale } })
                       ],
@@ -30032,7 +30166,6 @@ var render = function() {
             expression: "'create sale'"
           }
         ],
-        staticClass: "py-4",
         on: {
           submit: function($event) {
             $event.preventDefault()
@@ -30043,56 +30176,6 @@ var render = function() {
       [
         _vm.localSale != null
           ? _c("div", [
-              _c(
-                "div",
-                {
-                  staticClass:
-                    "w-full flex flex-wrap md:justify-between mb-2 text-gray-600 "
-                },
-                [
-                  _vm.sale
-                    ? _c("div", [
-                        _vm._v(
-                          "\n                    ID Venta - #" +
-                            _vm._s(_vm.sale.id) +
-                            "\n                "
-                        )
-                      ])
-                    : _vm._e(),
-                  _vm._v(" "),
-                  _c("div", [
-                    _vm._v(
-                      "\n                    " +
-                        _vm._s(_vm.typeOfSale) +
-                        "\n                "
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    {
-                      directives: [
-                        {
-                          name: "show",
-                          rawName: "v-show",
-                          value: _vm.getStatus,
-                          expression: "getStatus"
-                        }
-                      ],
-                      staticClass:
-                        "md:w-64 w-full flex justify-center items-center"
-                    },
-                    [
-                      _c("p", { staticClass: "mr-2" }, [_vm._v("Status:")]),
-                      _vm._v(" "),
-                      _c("p", [_vm._v(_vm._s(_vm.getStatus))])
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c("div", [_c("delete-sale")], 1)
-                ]
-              ),
-              _vm._v(" "),
               _c(
                 "div",
                 {

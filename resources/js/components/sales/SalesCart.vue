@@ -1,24 +1,8 @@
 <template>
     <div>
-        <form class="py-4" @submit.prevent="submit" v-can="'create sale'">
+        <form @submit.prevent="submit" v-can="'create sale'">
             <div v-if="localSale != null">
-                <div
-                    class="w-full flex flex-wrap md:justify-between mb-2 text-gray-600 "
-                >
-                    <div v-if="sale">
-                        ID Venta - #{{sale.id}}
-                    </div>
-                    <div>
-                        {{typeOfSale}}
-                    </div>
-                    <div v-show="getStatus" class="md:w-64 w-full flex justify-center items-center">
-                        <p class="mr-2">Status:</p>
-                        <p>{{ getStatus }}</p>
-                    </div>
-                    <div>
-                        <delete-sale></delete-sale>
-                    </div>
-                </div>
+                
                 <div
                     v-show="products.length"
                     class=" flex flex-wrap justify-center items-center text-center mb-4"
@@ -57,18 +41,17 @@
 </template>
 <script>
 import CartProduct from "./CartProduct";
-import {  mapMutations } from "vuex";
+import { mapMutations } from "vuex";
 import Errors from "../../mixins/Errors";
-import DeleteSale from './DeleteSale.vue';
+
 export default {
-    components: { "cart-product": CartProduct , DeleteSale},
+    components: { "cart-product": CartProduct},
     mixins: [Errors],
     data() {
         return {
             form: {},
             products: [],
-            localSale: {},
-            sale_status: null
+            localSale: {}
         };
     },
     props: {
@@ -94,17 +77,16 @@ export default {
         EventBus.$on("product-removed", index => {
             this.products.splice(index, 1);
         });
-        EventBus.$on('sale-deleted',res => {
-            if(res){
+        EventBus.$on("sale-deleted", res => {
+            if (res) {
                 this.products = [];
                 this.localSale = {};
-                this.form = {}
-                this.sale_status = null;
+                this.form = {};
             }
-        })
-        EventBus.$on('sale-to-client',data => {
-            this.localSale = data.sale;
-        })
+        });
+        // EventBus.$on("sale-to-client", data => {
+        //     this.localSale = data.sale;
+        // });
     },
     computed: {
         getClass() {
@@ -120,16 +102,14 @@ export default {
             });
             return total.toFixed(2);
         },
-        getStatus() {
-            return this.sale_status ? this.sale_status : this.localSale?.status;
-        },
+
         modifyTo() {
             if (this.getStatus == "pending") return "Completada";
             if (this.getStatus == "completed") return "Pendiente";
         },
-        typeOfSale(){
-            return this.localSale?.client_id ? 'Venta a '+this.localSale?.client?.name : 'Venta a publico en general';
-        }
+        getStatus() {
+            return this.sale_status ? this.sale_status : this.sale?.status;
+        },
     },
     methods: {
         ...mapMutations(["setSalePriceOption"]),
