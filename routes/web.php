@@ -11,6 +11,7 @@ use App\Http\Controllers\{ClientController, CurrentUserController, Impersonation
 use App\Http\Controllers\{PurchaseController, ProductInSaleController, RoleController};
 use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
+use Spatie\Permission\Contracts\Role;
 
 Route::get('/', function () {
     return view('dashboard');
@@ -58,7 +59,7 @@ Route::post('sales-to-clients',[SaleToClientController::class,'store'])->middlew
 
 Route::get('categories/create',[CategoryController::class,'create'])->name('categories.create')->middleware('auth');
 Route::post('categories', [CategoryController::class, 'store'])->name('categories.store')->middleware('auth');
-
+Route::get('categories/{category}/edit',[CategoryController::class,'edit'])->name('categories.edit')->middleware('auth');
 Route::get('categories', [CategoryController::class, 'index'])->name('categories.index')->middleware('auth');
 
 //ventas

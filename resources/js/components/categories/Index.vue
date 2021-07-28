@@ -3,6 +3,7 @@
         <div class="flex flex-wrap items-baseline">
             <category-form 
                 class="self-start"
+                uri='/categories'
             ></category-form>
             <div class="ml-6 w-2/4">
                 <category-list ></category-list>

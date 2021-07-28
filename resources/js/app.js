@@ -31,6 +31,7 @@ Vue.component('client-list', require('./components/clients/ClientList.vue').defa
 Vue.component('category-form', require('./components/categories/CategoryForm.vue').default)
 Vue.component('category-list', require('./components/categories/CategoryList.vue').default)
 Vue.component('category-index', require('./components/categories/Index.vue').default)
+Vue.component('edit-category', require('./components/categories/EditCategory.vue').default)
 
 //VENTAS COMPONENTES
 Vue.component('sale-component', require('./components/sales/SaleComponent').default)

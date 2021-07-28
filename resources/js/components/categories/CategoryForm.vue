@@ -26,7 +26,7 @@
                 aria-label="Full name"
             />
         </div>
-        <div  class="flex items-center ">
+        <div class="flex items-center ">
             <errors-component :errors-found="errors" />
         </div>
 
@@ -45,15 +45,28 @@ export default {
     data: () => ({
         form: {}
     }),
+    props: {
+        uri: {
+            type: String
+        }
+    },
+    created() {
+        console.log(this.$parent.category)
+        if (this.$parent.category) this.form = this.$parent.category;
+    },
     methods: {
         submit() {
+            if (this.$parent.method == "put") this.form._method = "put";
             axios
-                .post("/categories", { name: this.form.name })
+                .post(this.uri, this.form)
                 .then(res => {
-                    EventBus.$emit('category-created',res.data);
-                    this.form={}
-                    let obj = {message:'Categoría agregada',title:'Categorías'}
-                    this.notify(obj)
+                    EventBus.$emit("category-created", res.data);
+                    this.form = {};
+                    let obj = {
+                        message: "Categoría agregada",
+                        title: "Categorías"
+                    };
+                    this.notify(obj);
                 })
                 .catch(err => {
                     this.getErrors(err);
