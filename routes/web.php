@@ -61,6 +61,8 @@ Route::get('categories/create',[CategoryController::class,'create'])->name('cate
 Route::post('categories', [CategoryController::class, 'store'])->name('categories.store')->middleware('auth');
 Route::get('categories/{category}/edit',[CategoryController::class,'edit'])->name('categories.edit')->middleware('auth');
 Route::get('categories', [CategoryController::class, 'index'])->name('categories.index')->middleware('auth');
+Route::put('categories/{category}',[CategoryController::class,'update'])->name('categories.update')->middleware('auth');
+Route::delete('categories/{category}',[CategoryController::class,'destroy'])->name('categories.destroy')->middleware('auth');
 
 //ventas
 

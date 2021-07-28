@@ -1,7 +1,7 @@
 <template>
     <nav-component>
         <div>
-            <category-form> </category-form>
+            <category-form :uri="`/categories/${category.id}`"> </category-form>
         </div>
     </nav-component>
 </template>

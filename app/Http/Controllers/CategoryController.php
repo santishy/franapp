@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Resources\CategoryResource;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class CategoryController extends Controller
 {
@@ -21,12 +22,8 @@ class CategoryController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => "required|unique:categories,name"
-        ], [
-            'name.required' => "El campo categoría es requerido.",
-            'name.unique' => "La categoría ya existe en la base de datos."
-        ]);
+        
+        $this->validateCategory($request);
 
         $this->authorize('create', new Category);
 
@@ -43,5 +40,38 @@ class CategoryController extends Controller
     {
 
         return view('categories.edit',compact('category'));
+    }
+
+    public function update(Request $request,Category $category)
+    {
+        return request()->except('_method');
+        $this->validateCategory($request);
+        return $category->update(request()->except('_method'));
+    }
+
+    public function validateCategory($request){
+        $request->validate([
+            'name' => ["required",
+                Rule::unique('categories')->ignore(request()->id)
+            ]
+        ],
+        [
+            'name.required' => "El campo categoría es requerido.",
+            'name.unique' => "La categoría ya existe en la base de datos."
+        ]);
+
+    }
+    public function destroy(Category $category)
+    {
+        if($category->products()->count()){
+            return response()->json([
+                'deleted' => false,
+                'message' => 'No se puede eliminar, existen productos asociados.'
+            ]);
+        }
+
+        return response()->json([
+            'deleted' => $category->delete()
+        ]);
     }
 }

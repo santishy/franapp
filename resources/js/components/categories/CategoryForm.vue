@@ -51,21 +51,24 @@ export default {
         }
     },
     created() {
-        console.log(this.$parent.category)
-        if (this.$parent.category) this.form = this.$parent.category;
+        if (this.$parent.$parent.category) {
+            this.form.name = this.$parent.$parent.category.name;
+            this.form.id = this.$parent.$parent.category.id;
+        }
     },
     methods: {
         submit() {
-            if (this.$parent.method == "put") this.form._method = "put";
+            if (this.$parent.$parent.method == "put") this.form._method = "put";
             axios
                 .post(this.uri, this.form)
                 .then(res => {
                     EventBus.$emit("category-created", res.data);
-                    this.form = {};
                     let obj = {
-                        message: "Categoría agregada",
+                        message: this.form.id ? "Categoría modificada": "Categoría agregada",
                         title: "Categorías"
                     };
+                    this.form = {};
+                    
                     this.notify(obj);
                 })
                 .catch(err => {
