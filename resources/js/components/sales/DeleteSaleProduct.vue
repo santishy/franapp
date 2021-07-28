@@ -7,6 +7,7 @@
     </button>
 </template>
 <script>
+import {mapMutations} from 'vuex';
 export default {
     props:{
         id:{
@@ -22,12 +23,14 @@ export default {
                 .then(res => {
                     if(res.data){
                         EventBus.$emit('product-removed',this.index);
+                        this.removeTransactionProduct(this.id);
                     }
                 })
                 .catch((err) => {
                     console.log(err);
                 });
-        }
+        },
+        ...mapMutations(["removeTransactionProduct"]),
     }
 }
 </script>

@@ -34,7 +34,9 @@ const addToTransaction = (state, data) => {
     state.productsInTransaction.unshift(data);
 }
 const removeTransactionProduct = (state,id) => {
-    
+    const index = state.productsInTransaction.findIndex(product => product.id == id)
+    if(index)
+        state.productsInTransaction.splice(index,1);
 }
 const SET_USER = (state,user) => 
 {
@@ -46,5 +48,6 @@ export default {
     SET_USER,
     setSalePriceOption,
     deleteProductInPurchase,
-    addToTransaction
+    addToTransaction,
+    removeTransactionProduct
 }

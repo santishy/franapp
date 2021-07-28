@@ -103,15 +103,14 @@ export default {
         },
 
         modifyTo() {
-            if (this.getStatus == "pending") return "Completada";
-            if (this.getStatus == "completed") return "Pendiente";
+            if (this.localSale.status == "pending") return "Completada";
+            if (this.localSale.status == "completed") return "Pendiente";
         },
         getStatus() {
-            return this.sale_status ? this.sale_status : this.sale?.status;
+            return this.localSale.status;
         }
     },
     methods: {
-        ...mapMutations(["setSalePriceOption"]),
         submit() {
             this.form.inventory_id = this.isAdmin
                 ? sessionStorage.getItem("inventory_id")
@@ -121,8 +120,8 @@ export default {
             axios
                 .post(`/sales/${this.localSale.id}`, this.form)
                 .then(res => {
-                    this.sale_status = res.data.sale_status;
-                    if (this.sale_status == "completed") {
+                    this.localSale.status = res.data.sale_status;
+                    if (this.localSale.status == "completed") {
                         sessionStorage.removeItem("salePriceOption");
                     }
                 })

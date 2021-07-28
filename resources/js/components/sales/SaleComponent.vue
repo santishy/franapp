@@ -49,7 +49,7 @@
                         <div
                             class="w-full flex flex-wrap md:justify-center mb-2 text-gray-600 md:items-center"
                         >
-                            <sale-to-customer v-if="show" />
+                            <sale-to-customer class="mr-4" v-if="show" />
                             <button
                                 v-else
                                 @click="show = true"
@@ -64,6 +64,7 @@
                 </div>
             </div>
         </transition>
+        
     </nav-component>
 </template>
 <script>
@@ -106,6 +107,7 @@ export default {
         EventBus.$on("sale-deleted", res => {
             this.sale_status = null;
             this.localSale = null;
+            this.show = false;
         });
         EventBus.$on("product-added-sales-cart", sale => {
             this.localSale = sale;
@@ -113,7 +115,9 @@ export default {
         });
         EventBus.$on("sale-to-client", data => {
             this.localSale = data.sale;
-            this.show = false;
+            // setTimeout(()=>{
+            //     this.show = false;
+            // },3000)
         });
     },
     data() {
