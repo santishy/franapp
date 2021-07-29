@@ -1,5 +1,5 @@
 <template>
-    <li class="px-4 py-1 text-center flex flex-wrap justify-between">
+    <li class="px-4  text-center flex flex-wrap justify-between py-2">
         <p class="text-center">{{ category.name }}</p>
         <div>
             <a
@@ -10,6 +10,7 @@
             <delete-category
                 :category="category"
                 class="inline-block"
+                :index="index"
             ></delete-category>
         </div>
     </li>
@@ -21,12 +22,17 @@ export default {
         category: {
             type: Object,
             required: true
+        },
+        index:{
+            type:Number
         }
     },
     components: {
         DeleteCategory
     },
-    created() {},
+    created() {
+    
+    },
     data() {
         return {
             fill: false

@@ -3051,7 +3051,7 @@ __webpack_require__.r(__webpack_exports__);
           message: _this.form.id ? "Categoría modificada" : "Categoría agregada",
           title: "Categorías"
         };
-        _this.form = {};
+        if (!_this.form.id) _this.form = {};
 
         _this.notify(obj);
       })["catch"](function (err) {
@@ -3086,6 +3086,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -3102,9 +3103,15 @@ __webpack_require__.r(__webpack_exports__);
     EventBus.$on("category-created", function (category) {
       _this.categories.unshift(category);
     });
-    axios.get("/categories").then(function (res) {
+    axios.get("/categories?ALL=TRUE").then(function (res) {
       _this.categories = res.data.data;
     });
+    EventBus.$on('deleted-category', this.removeCategory);
+  },
+  methods: {
+    removeCategory: function removeCategory(index) {
+      this.categories.splice(index, 1);
+    }
   }
 });
 
@@ -3136,12 +3143,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     category: {
       type: Object,
       required: true
+    },
+    index: {
+      type: Number
     }
   },
   components: {
@@ -3167,6 +3178,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _modals_InformationComponent_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../modals/InformationComponent.vue */ "./resources/js/components/modals/InformationComponent.vue");
 //
 //
 //
@@ -3178,16 +3190,41 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    InformationComponent: _modals_InformationComponent_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
   props: {
     category: {
       type: Object
+    },
+    index: {
+      type: Number
     }
+  },
+  data: function data() {
+    return {
+      message: null
+    };
   },
   methods: {
     destroy: function destroy() {
+      var _this = this;
+
       axios["delete"]("/categories/".concat(this.category.id)).then(function (res) {
-        console.log(res);
+        if (res.data.deleted) {
+          return EventBus.$emit("deleted-category", _this.index);
+        } else {
+          _this.message = res.data.message;
+          EventBus.$emit("open-modal-" + _this.category.id, true);
+        }
       });
     }
   }
@@ -4051,6 +4088,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    id: {
+      type: Number
+    }
+  },
   data: function data() {
     return {
       modal: false
@@ -4059,9 +4101,15 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     var _this = this;
 
-    EventBus.$on("open-modal", function (value) {
-      _this.modal = value;
-    });
+    if (this.id) {
+      EventBus.$on("open-modal-" + this.id, function (value) {
+        _this.modal = value;
+      });
+    } else {
+      EventBus.$on("open-modal", function (value) {
+        _this.modal = value;
+      });
+    }
   }
 });
 
@@ -26860,12 +26908,13 @@ var render = function() {
           expression: "'view categories'"
         }
       ],
-      staticClass: "w-full rounded shadow bg-white p-4"
+      staticClass:
+        "w-full rounded shadow bg-white p-4 divide-y divide-light-blue-400 "
     },
-    _vm._l(_vm.categories, function(category) {
+    _vm._l(_vm.categories, function(category, index) {
       return _c("category-list-item", {
         key: category.id,
-        attrs: { category: category }
+        attrs: { category: category, index: index }
       })
     }),
     1
@@ -26895,7 +26944,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "li",
-    { staticClass: "px-4 py-1 text-center flex flex-wrap justify-between" },
+    { staticClass: "px-4  text-center flex flex-wrap justify-between py-2" },
     [
       _c("p", { staticClass: "text-center" }, [
         _vm._v(_vm._s(_vm.category.name))
@@ -26916,7 +26965,7 @@ var render = function() {
           _vm._v(" "),
           _c("delete-category", {
             staticClass: "inline-block",
-            attrs: { category: _vm.category }
+            attrs: { category: _vm.category, index: _vm.index }
           })
         ],
         1
@@ -26956,7 +27005,35 @@ var render = function() {
         }
       }
     },
-    [_vm._m(0)]
+    [
+      _vm._m(0),
+      _vm._v(" "),
+      _c(
+        "information-component",
+        {
+          attrs: { id: _vm.category.id },
+          scopedSlots: _vm._u([
+            {
+              key: "title",
+              fn: function() {
+                return [_vm._v("Categorías")]
+              },
+              proxy: true
+            }
+          ])
+        },
+        [
+          _vm._v(" "),
+          [
+            _c("p", { staticClass: "text-gray-700 text-xs mt-3" }, [
+              _vm._v(_vm._s(_vm.message))
+            ])
+          ]
+        ],
+        2
+      )
+    ],
+    1
   )
 }
 var staticRenderFns = [
@@ -27033,7 +27110,7 @@ var render = function() {
   return _c("nav-component", [
     _c(
       "div",
-      { staticClass: "flex flex-wrap items-baseline" },
+      { staticClass: "flex flex-wrap items-baseline md:w-3/4 mx-auto" },
       [
         _c("category-form", {
           staticClass: "self-start",

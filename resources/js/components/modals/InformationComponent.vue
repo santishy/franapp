@@ -118,15 +118,26 @@
 </template>
 <script>
 export default {
+    props: {
+        id: {
+            type: Number
+        }
+    },
     data() {
         return {
             modal: false
         };
     },
     created() {
-        EventBus.$on("open-modal", value => {
-            this.modal = value;
-        });
+        if (this.id) {
+            EventBus.$on("open-modal-"+this.id, value => {
+                this.modal = value;
+            });
+        } else {
+            EventBus.$on("open-modal", value => {
+                this.modal = value;
+            });
+        }
     }
 };
 </script>

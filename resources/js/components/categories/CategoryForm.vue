@@ -64,11 +64,13 @@ export default {
                 .then(res => {
                     EventBus.$emit("category-created", res.data);
                     let obj = {
-                        message: this.form.id ? "Categoría modificada": "Categoría agregada",
+                        message: this.form.id
+                            ? "Categoría modificada"
+                            : "Categoría agregada",
                         title: "Categorías"
                     };
-                    this.form = {};
-                    
+                    if (!this.form.id) this.form = {};
+
                     this.notify(obj);
                 })
                 .catch(err => {

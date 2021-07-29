@@ -22,7 +22,7 @@ class CategoryController extends Controller
 
     public function store(Request $request)
     {
-        
+
         $this->validateCategory($request);
 
         $this->authorize('create', new Category);
@@ -32,38 +32,43 @@ class CategoryController extends Controller
         ]);
     }
 
-    public function create(){
+    public function create()
+    {
         return view('categories.create');
     }
 
     public function edit(Category $category)
     {
 
-        return view('categories.edit',compact('category'));
+        return view('categories.edit', compact('category'));
     }
 
-    public function update(Request $request,Category $category)
+    public function update(Request $request, Category $category)
     {
-        return request()->except('_method');
         $this->validateCategory($request);
-        return $category->update(request()->except('_method'));
+        return response()->json([
+            'updated' => $category->update(request()->except('_method'))
+        ]);
     }
 
-    public function validateCategory($request){
-        $request->validate([
-            'name' => ["required",
-                Rule::unique('categories')->ignore(request()->id)
+    public function validateCategory($request)
+    {
+        $request->validate(
+            [
+                'name' => [
+                    "required",
+                    Rule::unique('categories')->ignore(request()->id)
+                ]
+            ],
+            [
+                'name.required' => "El campo categoría es requerido.",
+                'name.unique' => "La categoría ya existe en la base de datos."
             ]
-        ],
-        [
-            'name.required' => "El campo categoría es requerido.",
-            'name.unique' => "La categoría ya existe en la base de datos."
-        ]);
-
+        );
     }
     public function destroy(Category $category)
     {
-        if($category->products()->count()){
+        if ($category->products()->count()) {
             return response()->json([
                 'deleted' => false,
                 'message' => 'No se puede eliminar, existen productos asociados.'

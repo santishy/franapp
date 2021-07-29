@@ -1,6 +1,6 @@
 <template>
     <nav-component>
-        <div class="flex flex-wrap items-baseline">
+        <div class="flex flex-wrap items-baseline md:w-3/4 mx-auto">
             <category-form 
                 class="self-start"
                 uri='/categories'
