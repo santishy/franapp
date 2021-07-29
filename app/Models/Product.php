@@ -11,20 +11,25 @@ class Product extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['sku','distributor_price','wholesale_price','retail_price','description'];
+    protected $fillable = ['sku', 'distributor_price', 'wholesale_price', 'retail_price', 'description'];
 
-    public function scopeSearch(Builder $query,$values){
-        foreach(Str::of($values)->explode(' ') as $value){
-            $query->orWhere('sku','LIKE',"%{$value}%");
+    public function scopeSearch(Builder $query, $values)
+    {
+        foreach (Str::of($values)->explode(' ') as $value) {
+            $query->orWhere('sku', 'LIKE', "%{$value}%");
         }
     }
 
-    public function scopeByCategory(Builder $query,$id){
-        $query->where('category_id',$id);
+    public function scopeByCategory(Builder $query, $id)
+    {
+        $query->where('category_id', $id);
     }
-    public function sales(){
+    public function sales()
+    {
         return $this->belongsToMany(Sale::class);
     }
 
-  
+    public function purchases(){
+        return $this->belongsToMany(Purchase::class);
+    }
 }

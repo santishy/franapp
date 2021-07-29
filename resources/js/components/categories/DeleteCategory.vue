@@ -6,46 +6,43 @@
         >
             <i class="far fa-trash-alt"></i>
         </button>
-        <information-component :id="category.id" >
+        <information-component :id="category.id">
             <template v-slot:title>Categorías</template>
-                <template>
-                    <p class="text-gray-700 text-xs mt-3">{{message}}</p>
-                </template>
+            <template>
+                <p class="text-gray-700 text-xs mt-3">{{ message }}</p>
+            </template>
         </information-component>
     </form>
 </template>
 
 <script>
-import InformationComponent from '../modals/InformationComponent.vue';
+import InformationComponent from "../modals/InformationComponent.vue";
 export default {
-    
-    components:{
+    components: {
         InformationComponent
     },
     props: {
         category: {
             type: Object
         },
-        index:{
-            type:Number
+        index: {
+            type: Number
         }
     },
-    data(){
-        return{
-            message:null
-        }
+    data() {
+        return {
+            message: null
+        };
     },
     methods: {
         destroy() {
             axios.delete(`/categories/${this.category.id}`).then(res => {
-                if(res.data.deleted){
-                    return  EventBus.$emit("deleted-category",this.index);
-                }else{
-                    this.message = res.data.message
-                    EventBus.$emit("open-modal-"+this.category.id, true);
+                if (res.data.deleted) {
+                    return EventBus.$emit("deleted-category", this.index);
+                } else {
+                    this.message = res.data.message;
+                    EventBus.$emit("open-modal-" + this.category.id, true);
                 }
-                
-                
             });
         }
     }

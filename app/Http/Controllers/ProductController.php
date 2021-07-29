@@ -12,7 +12,7 @@ class ProductController extends Controller
 
     public function index()
     {
-        $this->authorize('view',new Product());
+        $this->authorize('view', new Product());
         if (request()->wantsJson()) {
             return ProductResource::collection(Product::applyFilters()->paginate(21));
         }
@@ -20,35 +20,39 @@ class ProductController extends Controller
     }
     public function create()
     {
-        $this->authorize('create',new Product());
+        $this->authorize('create', new Product());
 
         $categories = Category::all();
-        return view('products.create',compact('categories'));
+        return view('products.create', compact('categories'));
     }
     public function store(Request $request)
     {
-        
-        $this->authorize('create',new Product());
+
+        $this->authorize('create', new Product());
         $this->validateProduct($request);
         return Product::create($request->all());
     }
     public function edit(Product $product)
     {
-        $this->authorize('update',$product);
+        $this->authorize('update', $product);
         $categories = Category::all();
-        return view('products.edit', compact('categories','product'));
+        return view('products.edit', compact('categories', 'product'));
     }
     public function update(Request $request, Product $product)
     {
-        $this->authorize('update',$product);
+        $this->authorize('update', $product);
         $this->validateProduct($request);
         $product->update($request->except('_method'));
         return ProductResource::make($product);
     }
     public function destroy(Product $product)
     {
-        $this->authorize('delete',$product);
-        return $product->delete();
+        $this->authorize('delete', $product);
+        if ($product->purchases()->exists())
+            return response()->json(['message' => 'No se puede eliminar, existen compras con este producto.']);
+        if ($product->sales()->exists())
+            return response()->json(['message' => 'No se puede eliminar, existen ventas con este producto.']);
+        return response()->json(['deleted' => $product->delete()]);
     }
     public function validateProduct($request)
     {

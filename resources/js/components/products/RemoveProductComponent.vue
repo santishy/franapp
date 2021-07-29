@@ -9,26 +9,35 @@
 </template>
 <script>
 export default {
-    props:{
-        product:{
-            type:Object
+    props: {
+        product: {
+            type: Object
         },
-        index:{
-            type:Number
+        index: {
+            type: Number
         }
     },
     methods: {
         deleteProduct() {
             axios
                 .delete(`/products/${this.product.id}`)
-                .then((res)=>{
-                    if(res.data){
-                        EventBus.$emit('product-removed',this.index)
+                .then(res => {
+                    if (res.data) {
+                        if (res.data.deleted)
+                            return EventBus.$emit(
+                                "product-removed",
+                                this.index
+                            );
+                        EventBus.$emit('open-modal',true)
+                        return EventBus.$emit(
+                                "failed-deletion",
+                                res.data.message
+                            );
                     }
                 })
-                .catch((err) => {
-                    console.log(err)
-                })
+                .catch(err => {
+                    console.log(err);
+                });
         }
     }
 };

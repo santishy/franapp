@@ -12,30 +12,40 @@
                 transaction-type="purchase"
                 class="col-span-3 md:col-span-1"
             />
-
             <infinite-loading
                 :identifier="infiniteId"
                 @infinite="infiniteHandler"
             ></infinite-loading>
         </div>
+        <information-component>
+            <template v-slot:title>Productos</template>
+            <template>
+                <p class="text-gray-700 text-xs mt-3">{{ message }}</p>
+            </template>
+        </information-component>
     </nav-component>
 </template>
 <script>
-import ProductCardComponent from "./ProductCardComponent.vue";
+import { mapActions } from "vuex";
 import InfiniteLoading from "vue-infinite-loading";
 import SearchComponent from "./SearchComponent.vue";
-import { mapActions } from "vuex";
+
+import ProductCardComponent from "./ProductCardComponent.vue";
+
 import NavComponent from "../NavComponent.vue";
+import InformationComponent from "../modals/InformationComponent.vue";
 export default {
     data() {
         return {
             products: [],
             page: 1,
             wantedProduct: null,
-            params:{page:1},
+            params: { page: 1 },
             infiniteId: 1,
+
             obj: new Object(),
-            arr: new Array()
+            arr: new Array(),
+            message: null
         };
     },
     created() {
@@ -46,12 +56,16 @@ export default {
         EventBus.$on("product-removed", this.removeFromArray);
         EventBus.$on("matching-products", this.matchingProducts);
         EventBus.$on("empty-search", this.reloadIndex);
+        EventBus.$on("failed-deletion", message => {
+            this.message = message;
+        });
     },
     components: {
         "product-card": ProductCardComponent,
         InfiniteLoading,
         "search-component": SearchComponent,
-        NavComponent
+        NavComponent,
+        InformationComponent
     },
     methods: {
         ...mapActions(["getProducts", "search"]),
@@ -59,17 +73,17 @@ export default {
             this.products.splice(index, 1);
         },
         infiniteHandler($state) {
-                this.search(this.params)
-                    .then(res => {
-                        if (res.data.data.length) {
-                            this.params.page += 1;
-                            this.products.push(...res.data.data);
-                            $state.loaded();
-                        } else {
-                            $state.complete();
-                        }
-                    })
-                    .catch(err => {});
+            this.search(this.params)
+                .then(res => {
+                    if (res.data.data.length) {
+                        this.params.page += 1;
+                        this.products.push(...res.data.data);
+                        $state.loaded();
+                    } else {
+                        $state.complete();
+                    }
+                })
+                .catch(err => {});
         },
         matchingProducts(data) {
             this.products = data.products;
@@ -77,10 +91,10 @@ export default {
             this.infiniteId++;
         },
         reloadIndex() {
-            console.log('entro')
+            console.log("entro");
             this.infiniteId++;
-            this.params={ page : 1}
-            this.products = []
+            this.params = { page: 1 };
+            this.products = [];
         },
         cleanLocalStorage() {
             if (
