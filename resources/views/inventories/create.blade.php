@@ -1,4 +1,4 @@
 @extends('layouts.app')
 @section('content')
-    <create-inventory></create-inventory>
+    <create-inventory method='post' uri="/categories"></create-inventory>
 @endsection

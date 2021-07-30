@@ -54,6 +54,17 @@
 import NavComponent from "../NavComponent.vue";
 
 export default {
+    props:{
+        method:{
+            type:String
+        },
+        inventory:{
+            type:Object
+        },
+        uri:{
+            type:String
+        }
+    },
     components: { NavComponent },
     data() {
         return {
@@ -64,12 +75,17 @@ export default {
     },
     methods: {
         submit() {
-            this.obj.message = "EL almacen se creo correctamente";
-            var url = "/inventories";
-            axios["post"](url, this.form)
+            if(this.method == 'put'){
+                this.form._method='put';
+                this.obj.message = "EL almacen se modifico correctamente";
+            }
+            else
+                this.obj.message = "EL almacen se creo correctamente";
+            axios["post"](this.uri, this.form)
                 .then(res => {
                     this.notify(this.obj);
-                    this.form = {};
+                    if(this.method != 'put')
+                        this.form = {};
                     this.errors = null;
                 })
                 .catch(err => {

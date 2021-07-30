@@ -138,6 +138,10 @@ export default {
                     url: "/inventories/create"
                 },
                 {
+                    name: "Catalago almacenes",
+                    url: "/warehouses"
+                },
+                {
                     name: "Existencias",
                     url: "/inventories"
                 },

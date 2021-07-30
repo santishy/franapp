@@ -7,7 +7,7 @@ use App\Http\Controllers\SaleController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductsSearchController;
 use App\Http\Controllers\ProductInPurchaseController;
-use App\Http\Controllers\{ClientController, CurrentUserController, ImpersonationController, InventoryController, RolesPermissionsController, SaleToClientController, UserController};
+use App\Http\Controllers\{ClientController, CurrentUserController, ImpersonationController, InventoryController, RolesPermissionsController, SaleToClientController, UserController, WarehouseController};
 use App\Http\Controllers\{PurchaseController, ProductInSaleController, RoleController};
 use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
@@ -89,6 +89,7 @@ Route::put('users/{user}',[UserController::class,'update'])->middleware('auth');
 
 //inventories 
 Route::resource('inventories',InventoryController::class)->middleware('auth');
+Route::get('warehouses',[WarehouseController::class,'index'])->middleware('auth');
 
 //errors
 Route::get('/403',function(){
