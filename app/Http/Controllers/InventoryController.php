@@ -12,8 +12,8 @@ class InventoryController extends Controller
 {
     public function index()
     {
-        $this->authorize('viewAny',new Inventory);
-        if(request()->wantsJson()){
+        $this->authorize('viewAny', new Inventory);
+        if (request()->wantsJson()) {
             return response()->json([
                 'data' => Inventory::all()
             ]);
@@ -22,13 +22,13 @@ class InventoryController extends Controller
     }
     public function create()
     {
-        $this->authorize('create',new Inventory);
+        $this->authorize('create', new Inventory);
         return view('inventories.create');
     }
 
     public function store(Request $request)
     {
-        $this->authorize('create',new Inventory);
+        $this->authorize('create', new Inventory);
         $fields = $request->validate([
             'name' => ['required', 'unique:inventories,name'],
             'address' => ['required']
@@ -50,7 +50,7 @@ class InventoryController extends Controller
 
     public function show(Inventory $inventory)
     {
-        $this->authorize('view',$inventory);
-        return InventoryResource::make(Inventory::include()->where('id', $inventory->id)->first());
+        $this->authorize('view', $inventory);
+        return InventoryResource::make($inventory->with('products')->stock());
     }
 }

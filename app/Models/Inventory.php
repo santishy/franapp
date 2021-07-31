@@ -10,12 +10,20 @@ use Illuminate\Support\Str;
 
 class Inventory extends Model
 {
-    use HasFactory,HasStock;
+    use HasFactory, HasStock;
 
-    protected $fillable = ['name','address'];
+    protected $fillable = ['name', 'address'];
 
     public function products()
     {
-        return $this->belongsToMany(Product::class)->withPivot('stock');
+        return $this->belongsToMany(Product::class);
+    }
+    public function scopeStock($query)
+    {
+        return $query->withPivot('stock');
+    }
+    public function scopeHasStock($query)
+    {
+        return $query->withPivot('stock', '>', 0);
     }
 }

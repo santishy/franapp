@@ -32,4 +32,12 @@ class Product extends Model
     public function purchases(){
         return $this->belongsToMany(Purchase::class);
     }
+
+    public function inventories(){
+        return $this->belongsToMany(Inventory::class);
+    }
+    public function scopeStock($query)
+    {
+        return $query->withPivot('stock');
+    }
 }
