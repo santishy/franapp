@@ -51,13 +51,19 @@ class JsonApiBuilder
 
     public function include()
     {
+         // include=relationship:scope|scope,relationship,
         return function () {
             $relationships = Str::of(request()->include)->explode(',');
             foreach ($relationships as $relationship) {
-                if (!method_exists($this->model, $relationship))
+                $relationship = Str::of($relationship)->explode(':');
+                if (!method_exists($this->model, $relationship[0]))
                     abort(500, 'the relationship does not exist');
-                $this->with($relationship, function ($q) {
+                $this->with($relationship[0], function ($q) use($relationship) {
+                    if($relationship->count() == 2){
+                        $q->{$relationship[1]};
+                    }
                     $q->paginate(30);
+                    
                 });
             }
             return $this;

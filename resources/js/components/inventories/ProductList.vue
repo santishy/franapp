@@ -42,6 +42,8 @@ export default {
         });
     },
     methods: {
+
+        // include=relationship:scope|scope,relationship,
         getProducts($state) {
             axios
                 .get(`/inventories/${this.inventory.id}`, {
