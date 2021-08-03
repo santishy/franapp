@@ -12,7 +12,8 @@ class WarehouseController extends Controller
         $inventories = Inventory::all();
         return view('warehouses.index',['inventories' => $inventories]);
     }
-    public function destroy(Inventory $invetory){
-        
+    public function destroy(Inventory $invetory)
+    {
+        return response()->json(['res' => $invetory->products()->where('stock','>',0)->exists()]);
     }
 }
