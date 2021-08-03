@@ -55,15 +55,10 @@ class JsonApiBuilder
         return function () {
             $relationships = Str::of(request()->include)->explode(',');
             foreach ($relationships as $relationship) {
-                $relationship = Str::of($relationship)->explode(':');
-                if (!method_exists($this->model, $relationship[0]))
+                if (!method_exists($this->model, $relationship))
                     abort(500, 'the relationship does not exist');
-                $this->with($relationship[0], function ($q) use($relationship) {
-                    if($relationship->count() == 2){
-                        $q->{$relationship[1]};
-                    }
+                $this->with($relationship, function ($q)  {
                     $q->paginate(30);
-                    
                 });
             }
             return $this;

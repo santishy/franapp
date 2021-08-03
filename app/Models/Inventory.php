@@ -16,11 +16,11 @@ class Inventory extends Model
 
     public function products()
     {
-        return $this->belongsToMany(Product::class);
+        return $this->belongsToMany(Product::class)->withPivot('stock');
     }
     public function scopeStock($query)
     {
-        return $query->withPivot('stock');
+        $query->withPivot('stock');
     }
     public function scopeHasStock($query)
     {

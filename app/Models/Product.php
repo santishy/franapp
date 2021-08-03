@@ -36,8 +36,4 @@ class Product extends Model
     public function inventories(){
         return $this->belongsToMany(Inventory::class);
     }
-    public function scopeStock($query)
-    {
-        return $query->withPivot('stock');
-    }
 }
