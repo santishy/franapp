@@ -2,7 +2,8 @@
     <tr>
         <td class="border px-4 py-2">{{ inventory.name }}</td>
         <td class="border px-4 py-2">{{ inventory.address }}</td>
-        <td class="border px-4 py-2 flex flex-wrap">
+        <td class="border px-4 py-2 flex flex-wrap justify-center">
+            <edit-warehouse :inventory="inventory" class="mr-2"></edit-warehouse>
             <empty-warehouse
                 :warehouse="inventory"
                 class="mr-2"
@@ -14,6 +15,7 @@
 <script>
 import DeleteWarehouse from "./DeleteWarehouse.vue";
 import EmptyWarehouse from "./EmptyWarehouse.vue";
+import EditWarehouse from "./EditWarehouse.vue";
 export default {
     props: {
         inventory: {
@@ -22,7 +24,8 @@ export default {
     },
     components: {
         EmptyWarehouse,
-        DeleteWarehouse
+        DeleteWarehouse,
+        EditWarehouse,
     }
 };
 </script>

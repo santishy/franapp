@@ -20,6 +20,7 @@ class WarehouseController extends Controller
                 'deleted' => false
             ]);
         }
+        $inventory->products()->detach();
         return response()->json(['delete' => $inventory->delete()]);
     }
 }

@@ -2,7 +2,7 @@
     <form @submit.prevent="submit">
         <button
             type="submit"
-            class="transition-all rounded border-2 border-orange-800 text-orange-700 p-1 hover:bg-orange-800 hover:text-white"
+            class="text-xs transition-all rounded border-2 border-orange-800 text-orange-700 p-1 hover:bg-orange-800 hover:text-white"
         >
             <i class="fas fa-warehouse"></i>
             Vaciar almacén
