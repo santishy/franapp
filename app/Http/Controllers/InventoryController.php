@@ -44,8 +44,12 @@ class InventoryController extends Controller
     {
     }
 
+    /**
+     * Empty stocks
+    */
     public function destroy(Inventory $inventory)
     {
+        return response()->json(['empty' => $inventory->epmtyStock() ]) ;
     }
 
     public function show(Inventory $inventory)

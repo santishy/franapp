@@ -18,12 +18,15 @@ class Inventory extends Model
     {
         return $this->belongsToMany(Product::class)->withPivot('stock');
     }
-    public function scopeStock($query)
+
+    public function hasStock()
     {
-        $query->withPivot('stock');
+        return  $this->products()
+            ->where('stock', '>', 0)
+            ->exists()
+        ;
     }
-    public function scopeHasStock($query)
-    {
-        return $query->withPivot('stock', '>', 0);
+    public function epmtyStock(){
+        return $this->products()->update(['stock' => 0]);
     }
 }
