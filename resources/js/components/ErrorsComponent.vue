@@ -22,16 +22,15 @@ export default {
         errorsFound: {
             type: Array
         },
-        errorsLength:{
-            type:Number
+        errorsLength: {
+            type: Number
         }
     },
     watch: {
         errorsFound: {
-            deep:true,
+            deep: true,
             handler() {
-                console.log("entro");
-                this.show = true;
+                if (this.errorsFound) this.show = true;
                 setTimeout(() => {
                     this.show = false;
                 }, 1500);

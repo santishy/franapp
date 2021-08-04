@@ -2128,8 +2128,7 @@ __webpack_require__.r(__webpack_exports__);
       handler: function handler() {
         var _this = this;
 
-        console.log("entro");
-        this.show = true;
+        if (this.errorsFound) this.show = true;
         setTimeout(function () {
           _this.show = false;
         }, 1500);
