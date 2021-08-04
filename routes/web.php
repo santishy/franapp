@@ -91,6 +91,8 @@ Route::put('users/{user}',[UserController::class,'update'])->middleware('auth');
 Route::resource('inventories',InventoryController::class)->middleware('auth');
 Route::get('warehouses',[WarehouseController::class,'index'])->middleware('auth');
 Route::delete('warehouses/{inventory}',[WarehouseController::class,'destroy'])->middleware('auth');
+Route::get('warehouses/{inventory}/edit',[WarehouseController::class,'edit'])->middleware('auth');
+Route::put('warehouses/{inventory}',[WarehouseController::class,'update'])->middleware('auth');
 
 //errors
 Route::get('/403',function(){

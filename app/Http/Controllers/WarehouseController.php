@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Inventory;
+use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
 
 class WarehouseController extends Controller
@@ -22,5 +23,21 @@ class WarehouseController extends Controller
         }
         $inventory->products()->detach();
         return response()->json(['delete' => $inventory->delete()]);
+    }
+    public function edit(Inventory $inventory)
+    {
+        return view('warehouses.edit',compact('inventory'));
+    }
+    public function update(Inventory $inventory)
+    {
+        
+        $fields = request()->validate([
+            'name' => ['required',Rule::unique('inventories')->ignore($inventory->id)],
+            'address' => ['required']
+        ]);
+
+        return response()->json([
+            'updated' => $inventory->update($fields)
+        ]);
     }
 }

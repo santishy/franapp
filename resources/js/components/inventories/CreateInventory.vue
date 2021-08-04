@@ -54,6 +54,11 @@
 import NavComponent from "../NavComponent.vue";
 
 export default {
+    created(){
+        if(!!this.inventory){
+            this.form = this.inventory;
+        }
+    },
     props:{
         method:{
             type:String

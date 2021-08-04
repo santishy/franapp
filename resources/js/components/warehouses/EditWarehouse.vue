@@ -1,17 +1,24 @@
 <template>
-    <a
-        :href="`/warehouses/${inventory.id}/edit`"
-        class="text-xs transition-all rounded border-2 border-blue-800 text-blue-700 p-1 hover:bg-blue-800 hover:text-white"
-    >
-        <i class="fas fa-edit"></i> Editar almacén
-    </a>
+    <nav-component>
+        <create-inventory
+            :inventory="inventory"
+            method="put"
+            :uri="`/warehouses/${inventory.id}`"
+        ></create-inventory>
+    </nav-component>
 </template>
 <script>
+import CreateInventory from "../inventories/CreateInventory.vue";
+import NavComponent from "../NavComponent.vue";
 export default {
     props: {
         inventory: {
             type: Object
         }
     },
+    components: {
+        CreateInventory,
+        NavComponent
+    }
 };
 </script>
