@@ -17,11 +17,11 @@ export default {
     },
     methods: {
         submit() {
-            EventBus.on('open-modal',true);
-            
-            axios.delete("/warehouses/" + this.inventory.id).then(res => {
-                console.log(res);
-            });
+            EventBus.$emit('open-modal',true);
+
+            // axios.delete("/warehouses/" + this.inventory.id).then(res => {
+            //     console.log(res);
+            // });
         }
     }
 };

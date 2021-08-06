@@ -33,6 +33,7 @@
             </template>
 
             <message :title="title" :message="msg"></message>
+            <agree></agree>
         </information-component>
     </nav-component>
 </template>
@@ -41,10 +42,12 @@
 import NavComponent from "../NavComponent.vue";
 import WarehouseListItem from "./WarehouseListItem.vue";
 import Message from "../alerts/Message.vue";
+import Agree from "../alerts/Agree.vue";
 import InformationComponent from "../modals/InformationComponent.vue";
 export default {
     components: {
         NavComponent,
+        Agree,
         WarehouseListItem,
         InformationComponent,
         Message

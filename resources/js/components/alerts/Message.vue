@@ -2,7 +2,7 @@
     <div class="p-5">
         <div>
             <div
-                class="flex justify-center items-center m-1 font-medium py-1 px-2 bg-white rounded-md text-yellow-700 bg-yellow-100 border border-yellow-300 "
+                class="flex justify-center items-center m-1 font-medium py-1 px-2 rounded-md text-yellow-700 bg-yellow-100 border border-yellow-300 "
             >
                 <div slot="avatar">
                     <svg
@@ -59,10 +59,10 @@
 export default {
     props: {
         message:{
-            type:Object,
+            type:String,
         },
         title:{
-            title:Object
+            title:String
         }
     }
 
