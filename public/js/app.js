@@ -6787,6 +6787,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 
@@ -31472,7 +31474,7 @@ var render = function() {
           _vm._v(" "),
           _c("message", { attrs: { title: _vm.title, message: _vm.msg } }),
           _vm._v(" "),
-          _c("agree")
+          _c("template", { slot: "button" }, [_c("agree")], 1)
         ],
         2
       )

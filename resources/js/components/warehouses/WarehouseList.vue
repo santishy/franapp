@@ -33,7 +33,9 @@
             </template>
 
             <message :title="title" :message="msg"></message>
+            <template slot="button">
             <agree></agree>
+            </template>
         </information-component>
     </nav-component>
 </template>
