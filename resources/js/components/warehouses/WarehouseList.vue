@@ -27,21 +27,38 @@
                 </table>
             </div>
         </div>
+        <information-component>
+            <template slot="title">
+                Inventario (almacén)
+            </template>
+
+            <message :title="title" :message="msg"></message>
+        </information-component>
     </nav-component>
 </template>
 
 <script>
 import NavComponent from "../NavComponent.vue";
 import WarehouseListItem from "./WarehouseListItem.vue";
+import Message from "../alerts/Message.vue";
+import InformationComponent from "../modals/InformationComponent.vue";
 export default {
     components: {
         NavComponent,
-        WarehouseListItem
+        WarehouseListItem,
+        InformationComponent,
+        Message
     },
-    props:{
-        inventories:{
-            type:Array
+    props: {
+        inventories: {
+            type: Array
         }
+    },
+    data() {
+        return {
+            title: "",
+            msg: ""
+        };
     }
 };
 </script>

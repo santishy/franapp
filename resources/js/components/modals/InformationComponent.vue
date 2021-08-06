@@ -102,6 +102,7 @@
                         <div
                             class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse"
                         >
+                            <slot name="button"></slot>
                             <button
                                 type="button"
                                 @click="modal = false"

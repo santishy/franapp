@@ -17,6 +17,8 @@ export default {
     },
     methods: {
         submit() {
+            EventBus.on('open-modal',true);
+            
             axios.delete("/warehouses/" + this.inventory.id).then(res => {
                 console.log(res);
             });
