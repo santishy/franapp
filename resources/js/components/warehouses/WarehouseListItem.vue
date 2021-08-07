@@ -8,7 +8,7 @@
                 :warehouse="inventory"
                 class="mr-2"
             ></empty-warehouse>
-            <delete-warehouse :inventory="inventory"></delete-warehouse>
+            <delete-warehouse :inventory="inventory" :index="index"></delete-warehouse>
         </td>
     </tr>
 </template>
@@ -20,6 +20,9 @@ export default {
     props: {
         inventory: {
             type: Object
+        },
+        index:{
+            type:Number
         }
     },
     components: {

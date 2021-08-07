@@ -18,7 +18,7 @@
                     </thead>
                     <tbody>
                         <warehouse-list-item
-                            v-for="(inventory, index) in inventories"
+                            v-for="(inventory, index) in localInventories"
                             :key="inventory.id"
                             :inventory="inventory"
                             :index="index"
@@ -44,11 +44,13 @@
 </template>
 
 <script>
+import { mapState, mapMutations} from "vuex";
+import Agree from "../alerts/Agree.vue";
+import Message from "../alerts/Message.vue";
 import NavComponent from "../NavComponent.vue";
 import WarehouseListItem from "./WarehouseListItem.vue";
-import Message from "../alerts/Message.vue";
-import Agree from "../alerts/Agree.vue";
 import InformationComponent from "../modals/InformationComponent.vue";
+
 export default {
     components: {
         NavComponent,
@@ -64,16 +66,35 @@ export default {
     },
     data() {
         return {
-            title: "",
-            msg: ""
+            title: "¿Estas seguro de eliminar el inventario?",
+            msg: "",
+            localInventories: []
         };
     },
+    created() {
+        if (this.inventories) this.localInventories = this.inventories;
+    },
     methods: {
-        deleteWarehouse(id) {
-            axios.delete("/warehouses/" + id).then(res => {
-                console.log(res);
-            });
+        ...mapMutations(['setModalDataConfirm']),
+        deleteWarehouse() {
+            if (this.modalDataConfirm)
+                axios
+                    .delete("/warehouses/" + this.modalDataConfirm.inventory.id)
+                    .then(res => {
+                        if (res.data.deleted) {
+                            console.log(this.modalDataConfirm.index);
+                            this.localInventories.splice(
+                                this.modalDataConfirm.index,
+                                1
+                            );
+                        }
+                        this.setModalDataConfirm(null);
+                        EventBus.$emit('open-modal',false);
+                    });
         }
+    },
+    computed: {
+        ...mapState(["modalDataConfirm"])
     }
 };
 </script>

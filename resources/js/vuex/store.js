@@ -6,15 +6,20 @@ import actions from './actions'
 import mutations from './mutations'
 import getters from './getters';
 
+
+
 export const store = new Vuex.Store({
+
+ 
+
   state:{
     productsInPurchase:JSON.parse(localStorage.getItem('productsInPurchase')),
     purchaseStatus:'',
-    //activeSearchCategory:true,
     user:{},
     auth:false,
     salePriceOption:sessionStorage.getItem('salePriceOption'),
     productsInTransaction:[],
+    modalDataConfirm:null,
   },
   mutations,
   actions,

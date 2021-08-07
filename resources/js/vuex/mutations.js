@@ -22,9 +22,9 @@ const deleteProductInPurchase = (state, index) => {
     state.productsInPurchase = JSON.parse(localStorage.getItem('productsInPurchase'));
 }
 
-// const toggleActiveSearchCategory = (state, status) => {
-//     state.activeSearchCategory = status;
-// }
+const setModalDataConfirm = (state,value) => {
+    state.modalDataConfirm = value;
+}
 
 const setSalePriceOption = (state, value) => {
     state.salePriceOption = value;
@@ -49,5 +49,6 @@ export default {
     setSalePriceOption,
     deleteProductInPurchase,
     addToTransaction,
-    removeTransactionProduct
+    removeTransactionProduct,
+    setModalDataConfirm
 }

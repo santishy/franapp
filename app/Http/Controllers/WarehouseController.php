@@ -13,17 +13,7 @@ class WarehouseController extends Controller
         $inventories = Inventory::all();
         return view('warehouses.index', ['inventories' => $inventories]);
     }
-    public function destroy(Inventory $inventory)
-    {
-        if ($inventory->hasStock()) {
-            return response()->json([
-                'message' => 'El inventario tiene existencias, no se puede eliminar',
-                'deleted' => false
-            ]);
-        }
-        $inventory->products()->detach();
-        return response()->json(['delete' => $inventory->delete()]);
-    }
+    
     public function edit(Inventory $inventory)
     {
         return view('warehouses.edit',compact('inventory'));
@@ -39,5 +29,16 @@ class WarehouseController extends Controller
         return response()->json([
             'updated' => $inventory->update($fields)
         ]);
+    }
+    public function destroy(Inventory $inventory)
+    {
+        if ($inventory->hasStock()) {
+            return response()->json([
+                'message' => 'El inventario tiene existencias, no se puede eliminar',
+                'deleted' => false
+            ]);
+        }
+        $inventory->products()->detach();
+        return response()->json(['deleted' => $inventory->delete()]);
     }
 }
