@@ -1,5 +1,5 @@
 <template>
-    <form @submit.prevent="submit">
+    <form @submit.prevent="openModal">
         <button
             class="text-xs transition-all rounded border-2 border-red-800 text-red-700 p-1 hover:bg-red-800 hover:text-white"
             type='submit'
@@ -16,12 +16,8 @@ export default {
         }
     },
     methods: {
-        submit() {
+        openModal() {
             EventBus.$emit('open-modal',true);
-
-            // axios.delete("/warehouses/" + this.inventory.id).then(res => {
-            //     console.log(res);
-            // });
         }
     }
 };

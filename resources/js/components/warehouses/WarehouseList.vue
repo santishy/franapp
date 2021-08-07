@@ -34,7 +34,10 @@
 
             <message :title="title" :message="msg"></message>
             <template slot="button">
-            <agree></agree>
+                <agree
+                    method="deleteWarehouse"
+                    @deleteWarehouse="deleteWarehouse"
+                ></agree>
             </template>
         </information-component>
     </nav-component>
@@ -64,6 +67,13 @@ export default {
             title: "",
             msg: ""
         };
+    },
+    methods: {
+        deleteWarehouse(id) {
+            axios.delete("/warehouses/" + id).then(res => {
+                console.log(res);
+            });
+        }
     }
 };
 </script>
