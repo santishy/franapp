@@ -13,16 +13,16 @@ class WarehouseController extends Controller
         $inventories = Inventory::all();
         return view('warehouses.index', ['inventories' => $inventories]);
     }
-    
+
     public function edit(Inventory $inventory)
     {
-        return view('warehouses.edit',compact('inventory'));
+        return view('warehouses.edit', compact('inventory'));
     }
     public function update(Inventory $inventory)
     {
-        
+
         $fields = request()->validate([
-            'name' => ['required',Rule::unique('inventories')->ignore($inventory->id)],
+            'name' => ['required', Rule::unique('inventories')->ignore($inventory->id)],
             'address' => ['required']
         ]);
 
@@ -34,7 +34,7 @@ class WarehouseController extends Controller
     {
         if ($inventory->hasStock()) {
             return response()->json([
-                'message' => 'El inventario tiene existencias, no se puede eliminar',
+                'message' => 'El inventario tiene existencias, no se puede eliminar, se tiene que vaciar el almacén previo a eliminarlo.',
                 'deleted' => false
             ]);
         }

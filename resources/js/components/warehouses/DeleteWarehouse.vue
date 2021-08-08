@@ -24,7 +24,10 @@ export default {
         openModal() {
             this.setModalDataConfirm({
                 inventory: this.inventory,
-                index: this.index
+                index: this.index,
+                message: 'Si eliminas el almacén, no se podran revertir los cambios.',
+                title: '¿Estas seguro de eliminar el almacén?',
+                action: 'deleteWarehouse'
             });
             EventBus.$emit("open-modal", true);
         }

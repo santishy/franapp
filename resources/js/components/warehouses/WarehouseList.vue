@@ -29,14 +29,18 @@
         </div>
         <information-component>
             <template slot="title">
-                Inventario (almacén)
+                Almacenes
             </template>
 
-            <message :title="title" :message="msg"></message>
+            <message
+                :title="modalDataConfirm.title"
+                :message="modalDataConfirm.message"
+            ></message>
             <template slot="button">
                 <agree
-                    method="deleteWarehouse"
+                    :method="modalDataConfirm.action"
                     @deleteWarehouse="deleteWarehouse"
+                    @emptyWarehouse="emptyWarehouse"
                 ></agree>
             </template>
         </information-component>
@@ -44,7 +48,7 @@
 </template>
 
 <script>
-import { mapState, mapMutations} from "vuex";
+import { mapState, mapMutations } from "vuex";
 import Agree from "../alerts/Agree.vue";
 import Message from "../alerts/Message.vue";
 import NavComponent from "../NavComponent.vue";
@@ -66,8 +70,6 @@ export default {
     },
     data() {
         return {
-            title: "¿Estas seguro de eliminar el inventario?",
-            msg: "",
             localInventories: []
         };
     },
@@ -75,9 +77,10 @@ export default {
         if (this.inventories) this.localInventories = this.inventories;
     },
     methods: {
-        ...mapMutations(['setModalDataConfirm']),
+        ...mapMutations(["setModalDataConfirm"]),
         deleteWarehouse() {
-            if (this.modalDataConfirm)
+            EventBus.$emit("open-modal", false);
+            if (this.modalDataConfirm?.inventory)
                 axios
                     .delete("/warehouses/" + this.modalDataConfirm.inventory.id)
                     .then(res => {
@@ -87,10 +90,27 @@ export default {
                                 this.modalDataConfirm.index,
                                 1
                             );
+                            this.setModalDataConfirm({});
+                        } else {
+                            this.setModalDataConfirm({
+                                title: "No se pudo eliminar",
+                                message: res.data.message
+                            });
+                            EventBus.$emit("open-modal", true);
                         }
-                        this.setModalDataConfirm(null);
-                        EventBus.$emit('open-modal',false);
                     });
+        },
+        emptyWarehouse() {
+            EventBus.$emit('open-modal',false);
+            axios
+                .delete("/inventories/" + this.modalDataConfirm.inventory.id, {
+                    id: this.modalDataConfirm.inventory.id
+                })
+                .then(res => {
+                    if(res.data.empty){
+                        this.notify({title:'Almacenes',message:'El almacén se vacio correctamente.'});
+                    }
+                });
         }
     },
     computed: {

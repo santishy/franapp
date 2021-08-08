@@ -6,6 +6,7 @@
             <link-edit-warehouse :inventory="inventory" class="mr-2"></link-edit-warehouse>
             <empty-warehouse
                 :warehouse="inventory"
+                :index="index"
                 class="mr-2"
             ></empty-warehouse>
             <delete-warehouse :inventory="inventory" :index="index"></delete-warehouse>

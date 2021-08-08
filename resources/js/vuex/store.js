@@ -19,7 +19,7 @@ export const store = new Vuex.Store({
     auth:false,
     salePriceOption:sessionStorage.getItem('salePriceOption'),
     productsInTransaction:[],
-    modalDataConfirm:null,
+    modalDataConfirm:{},
   },
   mutations,
   actions,

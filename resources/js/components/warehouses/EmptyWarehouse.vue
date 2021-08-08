@@ -11,21 +11,29 @@
 </template>
 
 <script>
+import {mapMutations} from 'vuex';
 export default {
     props: {
         warehouse: {
             type: Object
+        },
+        index: {
+            type: Number
         }
     },
     methods: {
+        ...mapMutations(['setModalDataConfirm']),
         submit() {
-            axios
-                .delete("/inventories/" + this.warehouse.id, {
-                    id: this.warehouse.id
-                })
-                .then(res => {
-                    console.log(res);
-                });
+            this.setModalDataConfirm({
+                inventory: this.warehouse,
+                index: this.index,
+                message:
+                    "Si vacias las existencias de este almacén, no se podran revertir los cambios.",
+                title:
+                    "¿Estas seguro de eliminar las existencias de este almacén?",
+                action: "emptyWarehouse"
+            });
+            EventBus.$emit("open-modal", true);
         }
     }
 };
