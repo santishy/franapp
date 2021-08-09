@@ -1,5 +1,6 @@
 <template>
     <div v-if="inventory">
+        
         <table class="table-auto text-center bg-white">
             <thead class="bg-purple-200">
                 <th class="p-3">SKU</th>
@@ -8,8 +9,9 @@
             </thead>
             <transition-group name="bounce" tag="tbody">
                 <produc-list-item
-                    v-for="product in products"
+                    v-for="(product,index) in products"
                     :key="product.id"
+                    :index="index"
                     :product="product"
                     :inventory="inventory"
                 ></produc-list-item>
@@ -24,6 +26,11 @@
 <script>
 import ProducListItem from "./ProducListItem.vue";
 export default {
+    props:{
+        index:{
+            type:Number
+        }
+    },
     components: { ProducListItem },
     data() {
         return {
@@ -39,9 +46,12 @@ export default {
             this.reloadIndex();
             this.inventory = inventory;
         });
+        EventBus.$on('updated-stock',data => {
+            console.log(data.index +' '+ data.newStock)
+            this.products[data.index].stock = data.newStock;
+        })
     },
     methods: {
-        // include=relationship:scope|scope,relationship,
         getProducts($state) {
             axios
                 .get(`/inventories/${this.inventory.id}`, {

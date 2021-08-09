@@ -1,5 +1,6 @@
 <template>
     <form @submit.prevent="submit">
+        <errors-component class="mb-2" :errors-found="errors" />
         <div class="flex flex-wrap">
             <input
                 class="text-center  appearance-none bg-gray-300 border-none rounded text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
@@ -21,11 +22,12 @@
 export default {
     props: {
         product: { type: Object },
-        inventory:{type:Object}
+        inventory: { type: Object },
+        index: { type: Number }
     },
     data() {
         return {
-            form: { stock: this.product.stock, product_id: this.product.id },
+            form: { stock: this.product.stock, product_id: this.product.id }
         };
     },
     methods: {
@@ -34,9 +36,13 @@ export default {
             axios
                 .post("/inventories/" + this.inventory.id, this.form)
                 .then(res => {
-                    if(res.data.updated){
-                        EventBus
-                    }
+                    EventBus.$emit("updated-stock", {
+                        index: this.index,
+                        newStock: res.data.newStock
+                    });
+                })
+                .catch(err => {
+                    this.getErrors(err);
                 });
         }
     }

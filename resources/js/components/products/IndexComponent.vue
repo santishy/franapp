@@ -18,18 +18,29 @@
             ></infinite-loading>
         </div>
         <information-component>
-            <template v-slot:title>Productos</template>
-            <template>
-                <p class="text-gray-700 text-xs mt-3">{{ message }}</p>
+            <template slot="title">
+                Productos
+            </template>
+
+            <message
+                :title="modalDataConfirm.title"
+                :message="modalDataConfirm.message"
+            ></message>
+            <template slot="button">
+                <agree
+                    :method="modalDataConfirm.action"
+                    @deleteProduct="deleteProduct"
+                ></agree>
             </template>
         </information-component>
     </nav-component>
 </template>
 <script>
-import { mapActions } from "vuex";
+import { mapActions,mapState } from "vuex";
 import InfiniteLoading from "vue-infinite-loading";
 import SearchComponent from "./SearchComponent.vue";
-
+import Agree from "../alerts/Agree.vue";
+import Message from "../alerts/Message.vue";
 import ProductCardComponent from "./ProductCardComponent.vue";
 
 import NavComponent from "../NavComponent.vue";
@@ -42,7 +53,6 @@ export default {
             wantedProduct: null,
             params: { page: 1 },
             infiniteId: 1,
-
             obj: new Object(),
             arr: new Array(),
             message: null
@@ -65,7 +75,9 @@ export default {
         InfiniteLoading,
         "search-component": SearchComponent,
         NavComponent,
-        InformationComponent
+        InformationComponent,
+        Agree,
+        Message
     },
     methods: {
         ...mapActions(["getProducts", "search"]),
@@ -104,7 +116,26 @@ export default {
                     .content == null
             )
                 localStorage.removeItem("productsInPurchase");
+        },
+        deleteProduct() {
+            axios
+                .delete(`/products/${this.modalDataConfirm.product.id}`)
+                .then(res => {
+                    if (res.data) {
+                        if (res.data.deleted)
+                            return EventBus.$emit(
+                                "product-removed",
+                                this.index
+                            );
+                    }
+                })
+                .catch(err => {
+                    console.log(err);
+                });
         }
+    },
+    computed:{
+        ...mapState(["modalDataConfirm"])
     }
 };
 </script>

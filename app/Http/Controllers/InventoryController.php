@@ -46,14 +46,18 @@ class InventoryController extends Controller
     {
         request()->validate([
             'product_id' => ['required', 'exists:products,id'],
-            'stock' => ['min:0', 'required']
+            'stock' => ['min:0', 'required', 'numeric']
+        ], [
+            'stock.required' => 'Las existencias son requiredas.',
+            'stock.min' => 'Las existencias deben ser al menos cero',
+            'stock.numeric' => 'El tipo de dato debe ser númerico'
         ]);
-        
-        $updated = $inventory->updateStock(request('product_id'),request('stock'));
 
-        return response()->json(['updated' => $updated,
-            'newStock' => request('stock')]);
+        $updated = $inventory->updateStock(request('product_id'), request('stock'));
 
+        return response()->json([
+            'newStock' => request('stock')
+        ]);
     }
 
     /**

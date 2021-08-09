@@ -8,6 +8,7 @@
     </button>
 </template>
 <script>
+import { mapMutations } from "vuex";
 export default {
     props: {
         product: {
@@ -18,26 +19,17 @@ export default {
         }
     },
     methods: {
+        ...mapMutations(["setModalDataConfirm"]),
         deleteProduct() {
-            axios
-                .delete(`/products/${this.product.id}`)
-                .then(res => {
-                    if (res.data) {
-                        if (res.data.deleted)
-                            return EventBus.$emit(
-                                "product-removed",
-                                this.index
-                            );
-                        EventBus.$emit('open-modal',true)
-                        return EventBus.$emit(
-                                "failed-deletion",
-                                res.data.message
-                            );
-                    }
-                })
-                .catch(err => {
-                    console.log(err);
-                });
+            this.setModalDataConfirm({
+                product: this.product,
+                index: this.index,
+                message:
+                    "Si eliminas este producto, no se podran revertir los cambios en la base de datos.",
+                title: "¿Estas seguro de eliminar el producto?",
+                action: "deleteProduct"
+            });
+            EventBus.$emit("open-modal", true);
         }
     }
 };

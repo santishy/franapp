@@ -7,6 +7,7 @@
                 v-if="show"
                 :product="product"
                 :inventory="inventory"
+                :index="index"
             ></input-stock>
             <div
                 class="text-lg text-blue-700 hover:text-indigo-500 transition-all cursor-pointer"
@@ -28,10 +29,18 @@ export default {
         },
         inventory:{
             type:Object
+        },
+        index:{
+            type:Number
         }
     },
     components: {
         InputStock
+    },
+    created() {
+        EventBus.$on("updated-stock",data => {
+            this.show = false;
+        })
     },
     data() {
         return {
