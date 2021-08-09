@@ -5,15 +5,13 @@
                 <th class="p-3">SKU</th>
                 <th class="p-3">Descripción</th>
                 <th class="p-3">Existencias</th>
-                <th class="p-3">Acciones</th>
             </thead>
             <transition-group name="bounce" tag="tbody">
-                <tr v-for="product in products" :key="product.id">
-                    <td class="border px-4 py-2">{{ product.sku }}</td>
-                    <td class="border px-4 py-2">{{ product.description }}</td>
-                    <td class="border px-4 py-2">{{ product.stock }}</td>
-                    <td class="border px-4 py-2"></td>
-                </tr>
+                <produc-list-item
+                    v-for="product in products"
+                    :key="product.id"
+                    :product="product"
+                ></produc-list-item>
             </transition-group>
         </table>
         <infinite-loading
@@ -23,33 +21,32 @@
     </div>
 </template>
 <script>
-import InfiniteLoading from "vue-infinite-loading";
+import ProducListItem from "./ProducListItem.vue";
 export default {
+    components: { ProducListItem },
     data() {
         return {
             products: [],
             inventory: null,
-            page:1,
-            infiniteId: 1,
+            page: 1,
+            infiniteId: 1
         };
     },
     mounted() {
         EventBus.$on("selected-inventory", inventory => {
-            this.products = []
-            this.reloadIndex()
+            this.products = [];
+            this.reloadIndex();
             this.inventory = inventory;
-            
         });
     },
     methods: {
-
         // include=relationship:scope|scope,relationship,
         getProducts($state) {
             axios
                 .get(`/inventories/${this.inventory.id}`, {
                     params: {
                         include: "products",
-                        page:this.page
+                        page: this.page
                     }
                 })
                 .then(res => {
@@ -57,7 +54,7 @@ export default {
                         this.page += 1;
                         this.products.push(...res.data.data.products);
                         $state.loaded();
-                    }else{
+                    } else {
                         $state.complete();
                     }
                 })
@@ -69,7 +66,7 @@ export default {
             this.infiniteId++;
             this.inventory = null;
             this.page = 1;
-        },
+        }
     }
 };
 </script>

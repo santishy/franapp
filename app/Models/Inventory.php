@@ -23,10 +23,15 @@ class Inventory extends Model
     {
         return  $this->products()
             ->where('stock', '>', 0)
-            ->exists()
-        ;
+            ->exists();
     }
-    public function epmtyStock(){
+    public function epmtyStock()
+    {
         return $this->products()->update(['stock' => 0]);
+    }
+
+    public function updateStock($product_id, $stock)
+    {
+        return $this->products()->updateExistingPivot($product_id, $stock);
     }
 }

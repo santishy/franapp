@@ -39,9 +39,20 @@ class InventoryController extends Controller
     public function edit(Inventory $inventory, Request $request)
     {
     }
-
+    /**
+     * Update the stock of a product
+     */
     public function update(Inventory $inventory, Request $request)
     {
+        request()->validate([
+            'product_id' => ['required', 'exists:products,id'],
+            'stock' => ['min:0', 'required']
+        ]);
+        
+        $updated = $inventory->updateStock(request('product_id'),request('stock'));
+
+        return response()->json(['updated' => $updated]);
+
     }
 
     /**
