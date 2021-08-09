@@ -1,8 +1,16 @@
 <template>
     <form @submit.prevent="submit">
         <div class="flex flex-wrap">
-            <input class="text-center" type="number" name="stock" v-model="form.stock" />
-            <button type="submit">
+            <input
+                class="text-center  appearance-none bg-gray-300 border-none rounded text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
+                type="number"
+                name="stock"
+                v-model="form.stock"
+            />
+            <button
+                type="submit"
+                class="transition-all  rounded border-2 border-blue-800 px-2 text-blue-700 hover:bg-blue-800 hover:text-white"
+            >
                 <i class="fas fa-edit"></i>
             </button>
         </div>
@@ -12,22 +20,25 @@
 <script>
 export default {
     props: {
-        product: { type: Object }
+        product: { type: Object },
+        inventory:{type:Object}
     },
     data() {
         return {
             form: { stock: this.product.stock, product_id: this.product.id },
-            inventory: null
         };
     },
-    created() {
-        EventBus.$on(
-            "selected-inventory",
-            inventory => (this.inventory = iventonry.id)
-        );
-    },
     methods: {
-        submit() {}
+        submit() {
+            this.form._method = "put";
+            axios
+                .post("/inventories/" + this.inventory.id, this.form)
+                .then(res => {
+                    if(res.data.updated){
+                        EventBus
+                    }
+                });
+        }
     }
 };
 </script>

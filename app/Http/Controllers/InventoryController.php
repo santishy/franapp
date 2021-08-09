@@ -51,7 +51,8 @@ class InventoryController extends Controller
         
         $updated = $inventory->updateStock(request('product_id'),request('stock'));
 
-        return response()->json(['updated' => $updated]);
+        return response()->json(['updated' => $updated,
+            'newStock' => request('stock')]);
 
     }
 

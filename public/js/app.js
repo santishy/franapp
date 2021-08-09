@@ -3921,9 +3921,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     product: {
+      type: Object
+    },
+    inventory: {
       type: Object
     }
   },
@@ -3932,19 +3943,18 @@ __webpack_require__.r(__webpack_exports__);
       form: {
         stock: this.product.stock,
         product_id: this.product.id
-      },
-      inventory: null
+      }
     };
   },
-  created: function created() {
-    var _this = this;
-
-    EventBus.$on("selected-inventory", function (inventory) {
-      return _this.inventory = iventonry.id;
-    });
-  },
   methods: {
-    submit: function submit() {}
+    submit: function submit() {
+      this.form._method = "put";
+      axios.post("/inventories/" + this.inventory.id, this.form).then(function (res) {
+        if (res.data.updated) {
+          EventBus;
+        }
+      });
+    }
   }
 });
 
@@ -4073,10 +4083,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     product: {
+      type: Object
+    },
+    inventory: {
       type: Object
     }
   },
@@ -4114,6 +4131,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToAr
 
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
+//
 //
 //
 //
@@ -28576,7 +28594,8 @@ var render = function() {
               expression: "form.stock"
             }
           ],
-          staticClass: "text-center",
+          staticClass:
+            "text-center  appearance-none bg-gray-300 border-none rounded text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none",
           attrs: { type: "number", name: "stock" },
           domProps: { value: _vm.form.stock },
           on: {
@@ -28599,9 +28618,15 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("button", { attrs: { type: "submit" } }, [
-      _c("i", { staticClass: "fas fa-edit" })
-    ])
+    return _c(
+      "button",
+      {
+        staticClass:
+          "transition-all  rounded border-2 border-blue-800 px-2 text-blue-700 hover:bg-blue-800 hover:text-white",
+        attrs: { type: "submit" }
+      },
+      [_c("i", { staticClass: "fas fa-edit" })]
+    )
   }
 ]
 render._withStripped = true
@@ -28744,7 +28769,9 @@ var render = function() {
       { staticClass: "border px-4 py-2" },
       [
         _vm.show
-          ? _c("input-stock", { attrs: { product: _vm.product } })
+          ? _c("input-stock", {
+              attrs: { product: _vm.product, inventory: _vm.inventory }
+            })
           : _c(
               "div",
               {
@@ -28805,7 +28832,7 @@ var render = function() {
                 _vm._l(_vm.products, function(product) {
                   return _c("produc-list-item", {
                     key: product.id,
-                    attrs: { product: product }
+                    attrs: { product: product, inventory: _vm.inventory }
                   })
                 }),
                 1

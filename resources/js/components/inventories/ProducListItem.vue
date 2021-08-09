@@ -3,7 +3,11 @@
         <td class="border px-4 py-2">{{ product.sku }}</td>
         <td class="border px-4 py-2">{{ product.description }}</td>
         <td class="border px-4 py-2">
-            <input-stock v-if="show" :product="product"></input-stock>
+            <input-stock
+                v-if="show"
+                :product="product"
+                :inventory="inventory"
+            ></input-stock>
             <div
                 class="text-lg text-blue-700 hover:text-indigo-500 transition-all cursor-pointer"
                 v-else
@@ -21,6 +25,9 @@ export default {
     props: {
         product: {
             type: Object
+        },
+        inventory:{
+            type:Object
         }
     },
     components: {

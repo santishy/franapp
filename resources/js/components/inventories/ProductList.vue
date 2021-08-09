@@ -11,6 +11,7 @@
                     v-for="product in products"
                     :key="product.id"
                     :product="product"
+                    :inventory="inventory"
                 ></produc-list-item>
             </transition-group>
         </table>

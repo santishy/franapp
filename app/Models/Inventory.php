@@ -32,6 +32,6 @@ class Inventory extends Model
 
     public function updateStock($product_id, $stock)
     {
-        return $this->products()->updateExistingPivot($product_id, $stock);
+        return $this->products()->updateExistingPivot($product_id,['stock' => $stock]);
     }
 }
