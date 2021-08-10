@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\DB;
 class Purchase extends Model
 {
     use HasFactory, ReportBy;
-    protected $fillable=['status','total'];
+    protected $fillable=['status','total','inventory_id'];
 
     public static function findOrCreateThePurchase(){
         if(session()->has('purchase_id')){

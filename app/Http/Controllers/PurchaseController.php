@@ -81,7 +81,10 @@ class PurchaseController extends Controller
         if ($request->status === 'completed')
             $this->deleteSessionVariable('purchase_id');
 
+           
+
         $purchase->update($request->all());
+
 
         TransactionComplete::dispatch($purchase);
     
