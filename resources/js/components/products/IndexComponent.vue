@@ -36,7 +36,7 @@
     </nav-component>
 </template>
 <script>
-import { mapActions,mapState } from "vuex";
+import { mapActions, mapState , mapMutations} from "vuex";
 import InfiniteLoading from "vue-infinite-loading";
 import SearchComponent from "./SearchComponent.vue";
 import Agree from "../alerts/Agree.vue";
@@ -63,7 +63,6 @@ export default {
     },
     mounted() {
         this.cleanLocalStorage();
-        EventBus.$on("product-removed", this.removeFromArray);
         EventBus.$on("matching-products", this.matchingProducts);
         EventBus.$on("empty-search", this.reloadIndex);
         EventBus.$on("failed-deletion", message => {
@@ -81,6 +80,7 @@ export default {
     },
     methods: {
         ...mapActions(["getProducts", "search"]),
+        ...mapMutations(["setModalDataConfirm"]),
         removeFromArray(index) {
             this.products.splice(index, 1);
         },
@@ -118,15 +118,21 @@ export default {
                 localStorage.removeItem("productsInPurchase");
         },
         deleteProduct() {
+            EventBus.$emit("open-modal", false);
             axios
                 .delete(`/products/${this.modalDataConfirm.product.id}`)
                 .then(res => {
                     if (res.data) {
-                        if (res.data.deleted)
-                            return EventBus.$emit(
-                                "product-removed",
-                                this.index
-                            );
+                        if (res.data.deleted){
+                            this.removeFromArray(this.modalDataConfirm.index);
+                            this.setModalDataConfirm({});
+                            return;
+                        }
+                        this.setModalDataConfirm({
+                            message: res.data.message,
+                            title: "No se pudo eliminar"
+                        });
+                        EventBus.$emit("open-modal", true);
                     }
                 })
                 .catch(err => {
@@ -134,7 +140,7 @@ export default {
                 });
         }
     },
-    computed:{
+    computed: {
         ...mapState(["modalDataConfirm"])
     }
 };

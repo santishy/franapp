@@ -4456,7 +4456,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     var _this = this;
 
     this.cleanLocalStorage();
-    EventBus.$on("product-removed", this.removeFromArray);
     EventBus.$on("matching-products", this.matchingProducts);
     EventBus.$on("empty-search", this.reloadIndex);
     EventBus.$on("failed-deletion", function (message) {
@@ -4472,7 +4471,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     Agree: _alerts_Agree_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
     Message: _alerts_Message_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
   },
-  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(["getProducts", "search"])), {}, {
+  methods: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(["getProducts", "search"])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapMutations"])(["setModalDataConfirm"])), {}, {
     removeFromArray: function removeFromArray(index) {
       this.products.splice(index, 1);
     },
@@ -4512,9 +4511,23 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     deleteProduct: function deleteProduct() {
       var _this3 = this;
 
+      EventBus.$emit("open-modal", false);
       axios["delete"]("/products/".concat(this.modalDataConfirm.product.id)).then(function (res) {
         if (res.data) {
-          if (res.data.deleted) return EventBus.$emit("product-removed", _this3.index);
+          if (res.data.deleted) {
+            _this3.removeFromArray(_this3.modalDataConfirm.index);
+
+            _this3.setModalDataConfirm({});
+
+            return;
+          }
+
+          _this3.setModalDataConfirm({
+            message: res.data.message,
+            title: "No se pudo eliminar"
+          });
+
+          EventBus.$emit("open-modal", true);
         }
       })["catch"](function (err) {
         console.log(err);
@@ -5042,7 +5055,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   },
   methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapMutations"])(["setModalDataConfirm"])), {}, {
-    deleteProduct: function deleteProduct() {
+    openAlert: function openAlert() {
       this.setModalDataConfirm({
         product: this.product,
         index: this.index,
@@ -29808,7 +29821,7 @@ var render = function() {
       ],
       staticClass:
         "text-red-500 hover:text-red-700 shadow-xs border-b-2 border-t-2 border-red-500 font-bold py-2  hover:border-red-700 rounded",
-      on: { click: _vm.deleteProduct }
+      on: { click: _vm.openAlert }
     },
     [_c("i", { staticClass: "far fa-trash-alt" })]
   )

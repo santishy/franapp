@@ -1,6 +1,6 @@
 <template>
     <button
-        @click="deleteProduct"
+        @click="openAlert"
         v-can="'delete product'"
         class="text-red-500 hover:text-red-700 shadow-xs border-b-2 border-t-2 border-red-500 font-bold py-2  hover:border-red-700 rounded"
     >
@@ -20,7 +20,7 @@ export default {
     },
     methods: {
         ...mapMutations(["setModalDataConfirm"]),
-        deleteProduct() {
+        openAlert() {
             this.setModalDataConfirm({
                 product: this.product,
                 index: this.index,
