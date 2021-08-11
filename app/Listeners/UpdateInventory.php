@@ -30,7 +30,7 @@ class UpdateInventory
     
         if($event->transaction->status != 'completed')
             return;
-
+        
         $inventory = Inventory::find(request('inventory_id'));
 
         $factor = $event->factor; // para sumar o restar segun se tenga que actualizar

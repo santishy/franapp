@@ -7,6 +7,7 @@
                     <th class="px-4 py-2">Fecha</th>
                     <th class="px-4 py-2">Total</th>
                     <th class="px-4 py-2">Ver</th>
+                    <th class="px-4 py-2">Acciones</th>
                 </tr>
             </thead>
 

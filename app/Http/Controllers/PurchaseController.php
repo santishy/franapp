@@ -17,7 +17,7 @@ class PurchaseController extends Controller
     use HasTransaction;
     public function index()
     {
-        $this->authorize('viewAny',new Purchase);
+        $this->authorize('viewAny', new Purchase);
         if (request()->wantsJson()) {
             return new ReportResponse(Purchase::query());
         }
@@ -33,7 +33,7 @@ class PurchaseController extends Controller
     public function store(Request $request)
     {
 
-        $this->authorize('create',new Purchase);
+        $this->authorize('create', new Purchase);
         request()->validate(
             [
                 'product_id' => 'exists:products,id'
@@ -57,7 +57,7 @@ class PurchaseController extends Controller
 
     public function show(Purchase $purchase)
     {
-        $this->authorize('view',$purchase);
+        $this->authorize('view', $purchase);
         $productsInPurchase = $purchase->products()->get();
         $totalPurchase = $purchase->totalPurchase();
         $inventories = Inventory::all();
@@ -72,7 +72,7 @@ class PurchaseController extends Controller
     }
     public function update(Request $request, Purchase $purchase)
     {
-        $this->authorize('update',$purchase); // puede ser el metodo create?
+        $this->authorize('update', $purchase); // puede ser el metodo create?
         $request->validate([
             'status' => ['required'],
             'inventory_id' => ['required']
@@ -81,22 +81,23 @@ class PurchaseController extends Controller
         if ($request->status === 'completed')
             $this->deleteSessionVariable('purchase_id');
 
-           
+
 
         $purchase->update($request->all());
 
 
         TransactionComplete::dispatch($purchase);
-    
+
         return new PurchaseResource($purchase);
     }
     public function destroy(Purchase $purchase)
     {
-        $this->authorize('delete',$purchase);
+        $this->authorize('delete', $purchase);
         $this->deleteSessionVariable('purchase_id');
         TransactionComplete::dispatch($purchase);
+        $purchase->status = 'cancelled';
         return response()->json([
-            'delete' => $purchase->delete()
+            'delete' => $purchase->save()
         ]);
     }
 }
