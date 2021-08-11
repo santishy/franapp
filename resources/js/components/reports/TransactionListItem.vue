@@ -11,7 +11,7 @@
             </modal-component>
         </td>
         <td>
-            <cancel-transaction :uri="`/purchases/${transaction.id}`" />
+            <cancel-transaction :uri="`/purchases/${transaction.id}`" :trasanction="transaction"/>
         </td>
     </tr>
 </template>

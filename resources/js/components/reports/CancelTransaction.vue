@@ -14,13 +14,17 @@ export default {
         uri: {
             type: String
         },
-        trasanction: { type: Object }
+        transaction: { type: Object }
     },
     methods: {
         submit() {
-            axios.delete(this.uri, { params: { factor: -1 } }).then(res => {
-                
-            });
+            axios
+                .delete(this.uri, {
+                    params: { factor: -1, inventory_id: this.transaction.id }
+                })
+                .then(res => {
+                    console.log(res.data);
+                });
         }
     }
 };
