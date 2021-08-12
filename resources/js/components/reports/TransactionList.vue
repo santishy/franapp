@@ -17,6 +17,7 @@
                     :transaction="transaction"
                     :transaction-type="transaction.transactionType"
                     :key="transaction.id"
+                    :uri="uri"
                 >
                 </transaction-list-item>
             </transition-group>
@@ -56,6 +57,7 @@ export default {
         /*EventBus.$on("transactions-found", res => {
             this.transactions = res;
         });*/
+
         EventBus.$on("set-parameters", data => {
             this.changeParams(data);
         });

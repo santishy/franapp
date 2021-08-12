@@ -12,7 +12,7 @@
         </td>
         <td>
             <cancel-transaction
-                :uri="`/purchases/${transaction.id}`"
+                :uri="uri"
                 :transaction="transaction"
             ></cancel-transaction>
         </td>
@@ -25,6 +25,9 @@ export default {
     props: {
         transaction: {
             type: Object
+        },
+        uri:{
+            type: String
         }
     },
     components: {

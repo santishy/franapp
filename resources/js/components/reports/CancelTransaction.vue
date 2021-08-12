@@ -22,7 +22,7 @@ export default {
     methods: {
         submit() {
             axios
-                .delete(this.uri, {
+                .delete(this.uri+'/'+this.transaction.id, {
                     params: { factor: -1, inventory_id: this.transaction.id }
                 })
                 .then(res => {
