@@ -16,6 +16,9 @@ export default {
         },
         transaction: { type: Object }
     },
+    mounted(){
+        console.log(this.transaction)
+    },
     methods: {
         submit() {
             axios

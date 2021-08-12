@@ -19,6 +19,7 @@ export default {
         }
     },
     mounted(){
+        console.log(this.transaction)
         EventBus.$on('selected-inventory',(id)=>{
             this.inventory_id = id;
         })

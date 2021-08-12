@@ -32,7 +32,6 @@ class UpdateInventory
             return;
         
         $inventory = Inventory::find(request('inventory_id'));
-
         $factor = $event->factor; // para sumar o restar segun se tenga que actualizar
 
         $event->transaction->products()->get()->map(function ($product) use ($inventory,$factor) {

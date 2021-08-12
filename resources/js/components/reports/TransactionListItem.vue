@@ -11,13 +11,16 @@
             </modal-component>
         </td>
         <td>
-            <cancel-transaction :uri="`/purchases/${transaction.id}`" :trasanction="transaction"/>
+            <cancel-transaction
+                :uri="`/purchases/${transaction.id}`"
+                :transaction="transaction"
+            ></cancel-transaction>
         </td>
     </tr>
 </template>
 <script>
 import Modal from "../Modal.vue";
-import CancelTransaction from "./CancelTransaction.vue"
+import CancelTransaction from "./CancelTransaction.vue";
 export default {
     props: {
         transaction: {
