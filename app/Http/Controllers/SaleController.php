@@ -7,6 +7,7 @@ use App\Models\Client;
 use Illuminate\Http\Request;
 use App\Http\Resources\TransactionResource;
 use App\Http\Responses\ReportResponse;
+use App\Http\Traits\HasTransaction;
 use App\Models\Category;
 use App\Models\Inventory;
 use App\Models\Sale;
@@ -17,19 +18,20 @@ use SebastianBergmann\Environment\Console;
 
 class SaleController extends Controller
 {
+    use HasTransaction;
     public function index()
     {
         if (request()->wantsJson()) {
             return new ReportResponse(Sale::query());
         }
-        return view('transactions.index',[
+        return view('transactions.index', [
             'uri' => '/sales',
             'name' => 'Ventas'
         ]);
     }
     public function create()
     {
-        $sale = Sale::with('client')->where('id',session('sale_id'))->first();
+        $sale = Sale::with('client')->where('id', session('sale_id'))->first();
         $inventories = Inventory::all();
         $categories = Category::all();
         return view('sales.create', [
@@ -57,10 +59,10 @@ class SaleController extends Controller
             request()->session()->put('sale_id', $sale->id);
 
         $sale->update($fields);
-        
+
         $factor = -1;
-        
-        TransactionComplete::dispatch($sale,$factor);
+
+        TransactionComplete::dispatch($sale, $factor);
 
         /*$sale->client()
             ->associate(
@@ -77,16 +79,19 @@ class SaleController extends Controller
         ]);
     }
 
-    public function destroy(){
-        if(session()->has('sale_id'))
-        {
-            if(  Sale::getTransaction()->status != 'completed')
-            {
-                $saleDeleted = Sale::getTransaction()->delete() ;
-                session()->forget('sale_id');
-                return response()->json(['saleDeleted' => $saleDeleted ]);
-            }
+    public function destroy(Sale $sale)
+    {
+        if ($sale->status != 'completed') {
+            $saleDeleted = $sale->delete();
+            session()->forget('sale_id');
+            return response()->json(['saleDeleted' => $saleDeleted]);
         }
-        return response()->json(['saleDeleted' => false ]);
+        $this->deleteSessionVariable('purchase_id');
+        TransactionComplete::dispatch($sale);
+        $sale->status = 'cancelled';
+        $sale->save();
+        return response()->json([
+            'status' => $sale->status
+        ]);
     }
 }

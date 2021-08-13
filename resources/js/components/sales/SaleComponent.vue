@@ -39,9 +39,7 @@
                             <div class="text-xl text-green-900">
                                 {{ typeOfSale }}
                             </div>
-                            <div
-                                class="flex flex-wrap text-gray-600"
-                            >
+                            <div class="flex flex-wrap text-gray-600">
                                 <p class="mr-2 text-xs">Status:</p>
                                 <p class="text-xs">{{ localSale.status }}</p>
                             </div>
@@ -57,14 +55,16 @@
                             >
                                 Cliente registrado
                             </button>
-                            <delete-sale v-if="localSale"></delete-sale>
+                            <delete-sale
+                                v-if="localSale"
+                                :sale="localSale"
+                            ></delete-sale>
                         </div>
                         <sales-cart :sale="sale"></sales-cart>
                     </div>
                 </div>
             </div>
         </transition>
-        
     </nav-component>
 </template>
 <script>
@@ -94,7 +94,7 @@ export default {
         },
         categories: {
             type: Array
-        },
+        }
     },
     created() {
         if (this.sale) {
@@ -124,7 +124,7 @@ export default {
         return {
             seletedInventoryId: null,
             show: false,
-            localSale:null
+            localSale: null
         };
     },
     computed: {

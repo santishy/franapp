@@ -34,7 +34,7 @@ export default {
                     }
                 })
                 .then(res => {
-                    if (res.data.delete) {
+                    if (res.data.status == "cancelled") {
                         localStorage.removeItem('productsInPurchase');
                         window.location.replace("/products");
                     }

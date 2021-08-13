@@ -9,9 +9,12 @@
 
 <script>
 export default {
+    props: {
+        sale: {type:Object},
+    },
     methods: {
         destroy() {
-            axios.delete("/sales").then(res => {
+            axios.delete("/sales/" + this.sale.id ).then(res => {
                 if(res.data.saleDeleted){
                     EventBus.$emit('sale-deleted',res.data.saleDeleted)
                 }

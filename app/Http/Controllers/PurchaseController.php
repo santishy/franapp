@@ -96,8 +96,9 @@ class PurchaseController extends Controller
         $this->deleteSessionVariable('purchase_id');
         TransactionComplete::dispatch($purchase);
         $purchase->status = 'cancelled';
+        $purchase->save();
         return response()->json([
-            'delete' => $purchase->save()
+            'status' => $purchase->status
         ]);
     }
 }
