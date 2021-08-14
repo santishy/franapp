@@ -9,26 +9,30 @@
     </form>
 </template>
 <script>
+import { mapMutations } from "vuex";
 export default {
     props: {
         uri: {
             type: String
         },
+        index:{
+            type: Number
+        },
         transaction: { type: Object }
     },
-    mounted(){
-        console.log(this.transaction)
-    },
     methods: {
+        ...mapMutations(["setModalDataConfirm"]),
         submit() {
-            axios
-                .delete(this.uri+'/'+this.transaction.id, {
-                    params: { factor: -1, inventory_id: this.transaction.inventory_id }
-                })
-                .then(res => {
-                    console.log(res.data);
-                });
-        }
+            this.setModalDataConfirm({
+                transaction: this.transaction,
+                index: this.index,
+                message: `Si cancelas esta ${this.transaction.transactionType} se revertira lo cambios en el inventario que se hicieron y no se podra deshacer la acción.`,
+                title: `¿Estas seguro de eliminar esta ${this.transaction.transactionType}?`,
+                action: "cancelTransaction"
+            });
+            EventBus.$emit("open-modal", true);
+        },
+
     }
 };
 </script>

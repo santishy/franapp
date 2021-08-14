@@ -28,6 +28,9 @@ export default {
         },
         uri:{
             type: String
+        },
+        index:{
+            type:Number
         }
     },
     components: {

@@ -1,5 +1,22 @@
 <template>
     <div class="container mx-auto mt-4 flex justify-center">
+        <information-component>
+            <template slot="title">
+                Reportes
+            </template>
+
+            <message
+                :title="modalDataConfirm.title"
+                :message="modalDataConfirm.message"
+            ></message>
+
+            <agree
+                slot="button"
+                :method="modalDataConfirm.action"
+                @cancelTransaction="cancelTransaction"
+            ></agree>
+        </information-component>
+
         <table v-if="params" class="table-auto bg-white">
             <thead>
                 <tr class="bg-purple-200">
@@ -13,8 +30,9 @@
 
             <transition-group name="bounce" tag="tbody">
                 <transaction-list-item
-                    v-for="transaction in transactions"
+                    v-for="(transaction, index) in transactions"
                     :transaction="transaction"
+                    :index="index"
                     :transaction-type="transaction.transactionType"
                     :key="transaction.id"
                     :uri="uri"
@@ -30,12 +48,20 @@
     </div>
 </template>
 <script>
+import { mapMutations, mapState } from "vuex";
 import InfiniteLoading from "vue-infinite-loading";
+
+import Message from "../alerts/Message.vue";
+import Agree from "../alerts/Agree.vue";
+import InformationComponent from "../modals/InformationComponent.vue";
 import TransactionListItem from "./TransactionListItem.vue";
 export default {
     components: {
         TransactionListItem,
-        InfiniteLoading
+        Message,
+        Agree,
+        InfiniteLoading,
+        InformationComponent
     },
     props: {
         transactionType: {
@@ -88,7 +114,27 @@ export default {
             this.page = 1;
             this.transactions = [];
             this.infiniteId += 1;
-        }
+        },
+        cancelTransaction() {
+            axios
+                .delete(this.uri + "/" + this.modalDataConfirm.transaction.id, {
+                    params: {
+                        factor: -1,
+                        inventory_id: this.modalDataConfirm.transaction
+                            .inventory_id
+                    }
+                })
+                .then(res => {
+                    if(res.data.status == 'cancelled'){
+                        EventBus.$emit('open-modal',false);
+                        this.transactions.splice(this.modalDataConfirm.index,1);
+                    }
+                });
+        },
+        ...mapMutations(["setModalDataConfirm"])
+    },
+    computed: {
+        ...mapState(["modalDataConfirm"])
     }
 };
 </script>
