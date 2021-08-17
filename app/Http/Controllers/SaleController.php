@@ -87,7 +87,7 @@ class SaleController extends Controller
             return response()->json(['saleDeleted' => $saleDeleted]);
         }
         $this->deleteSessionVariable('purchase_id');
-        TransactionComplete::dispatch($sale);
+        TransactionComplete::dispatch($sale,request('factor'));
         $sale->status = 'cancelled';
         $sale->save();
         return response()->json([

@@ -119,7 +119,7 @@ export default {
             axios
                 .delete(this.uri + "/" + this.modalDataConfirm.transaction.id, {
                     params: {
-                        factor: -1,
+                        factor: this.getFactor(),
                         inventory_id: this.modalDataConfirm.transaction
                             .inventory_id
                     }
@@ -131,7 +131,13 @@ export default {
                     }
                 });
         },
-        ...mapMutations(["setModalDataConfirm"])
+        ...mapMutations(["setModalDataConfirm"]),
+        getFactor(){
+            if(this.modalDataConfirm.transactionType == 'Purcharse')
+                return -1;
+            if(this.modalDataConfirm.transactionType ==  'Sale')
+                return 1; 
+        }
     },
     computed: {
         ...mapState(["modalDataConfirm"])
