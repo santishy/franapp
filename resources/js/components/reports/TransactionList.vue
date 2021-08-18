@@ -125,18 +125,21 @@ export default {
                     }
                 })
                 .then(res => {
-                    if(res.data.status == 'cancelled'){
-                        EventBus.$emit('open-modal',false);
-                        this.transactions.splice(this.modalDataConfirm.index,1);
+                    if (res.data.status == "cancelled") {
+                        EventBus.$emit("open-modal", false);
+                        this.transactions.splice(
+                            this.modalDataConfirm.index,
+                            1
+                        );
                     }
                 });
         },
         ...mapMutations(["setModalDataConfirm"]),
-        getFactor(){
-            if(this.modalDataConfirm.transactionType == 'Purcharse')
+        getFactor() {
+            if (this.modalDataConfirm.transaction.transactionType == "purchase")
                 return -1;
-            if(this.modalDataConfirm.transactionType ==  'Sale')
-                return 1; 
+            if (this.modalDataConfirm.transaction.transactionType == "sale")
+                return 1;
         }
     },
     computed: {

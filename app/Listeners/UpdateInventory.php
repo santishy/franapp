@@ -39,6 +39,7 @@ class UpdateInventory
             $stock = $inventory->products()->where('inventory_product.product_id', $product->id);
             
             if ($stock->exists()) {
+                
                 $inventory->products()->updateExistingPivot(
                     $stock->first()->id,
                     ['stock' => $stock->first()->pivot->stock + ($factor * $product->pivot->qty)]
