@@ -132,6 +132,9 @@ export default {
                             1
                         );
                     }
+                })
+                .catch(err => {
+                    
                 });
         },
         ...mapMutations(["setModalDataConfirm"]),

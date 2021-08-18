@@ -23,15 +23,11 @@ class ProductInSaleController extends Controller
 
         $request->validate(
             [
-             //   'salePriceOption' => ['required', 'regex:/retail_price|wholesale_price/'],
                 'inventory_id' => ['required'],
             ],
-            [
-               // 'salePriceOption.required' => 'Debes elegir un precio de venta antes de comenzar'
-            ]
         );
 
-        Inventory::find($request->inventory_id)->hasStock($product);
+        Inventory::find($request->inventory_id)->existsProductInStock($product);
 
         $sale = Sale::getTransaction();
         $sale->transactions($product);

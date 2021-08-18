@@ -6,7 +6,7 @@ use Illuminate\Validation\ValidationException;
 
 trait HasStock{
 
-    public function hasStock($product,$qty = 1)
+    public function existsProductInStock($product,$qty = 1)
     {
 
         $product = $this->products()->wherePivot('product_id',$product->id);
