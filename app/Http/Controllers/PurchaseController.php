@@ -10,6 +10,7 @@ use App\Http\Traits\HasTransaction;
 use App\Models\Inventory;
 use App\Models\Purchase;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Event;
 
 class PurchaseController extends Controller
@@ -93,10 +94,10 @@ class PurchaseController extends Controller
     public function destroy(Purchase $purchase)
     {
         $this->authorize('delete', $purchase);
-        $this->deleteSessionVariable('purchase_id');
-        TransactionComplete::dispatch($purchase,request('factor'));
+        TransactionComplete::dispatch($purchase, request('factor'));
         $purchase->status = 'cancelled';
         $purchase->save();
+        $this->deleteSessionVariable('purchase_id');
         return response()->json([
             'status' => $purchase->status
         ]);
