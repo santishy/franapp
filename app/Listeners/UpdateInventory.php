@@ -43,6 +43,8 @@ class UpdateInventory
                 if ($productInTransaction->exists()) {
 
                     $stock = $productInTransaction->first()->pivot->stock + ($factor * $product->pivot->qty);
+
+                   // dd($stock);
                     if ($stock < 0) {
                         DB::rollBack();
                         throw ValidationException::withMessages([

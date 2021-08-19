@@ -49,30 +49,21 @@ class SaleController extends Controller
         $fields = $request->validate([
             'status' => ['required', 'regex:/completed|cancelled|pending/'],
             'total' => 'numeric|required',
-            //'phone_number' => 'exists:clients,phone_number|required',
             'inventory_id' => ['required']
         ]);
 
-        if ($fields['status'] === 'completed')
+        if ($fields['status'] == 'completed') {
+            $factor = -1;
             request()->session()->forget('sale_id');
-        else
+        }
+        if ($fields['status'] == 'pending') {
+            $factor = 1;
             request()->session()->put('sale_id', $sale->id);
-
-        $sale->update($fields);
-
-        $factor = -1;
-
+        }
+        //dd($factor);
         TransactionComplete::dispatch($sale, $factor);
 
-        /*$sale->client()
-            ->associate(
-                Client::where(
-                    'phone_number',
-                    $fields['phone_number']
-                )->first()
-            );*/
-
-        $sale->save();
+        $sale->update($fields);
 
         return response()->json([
             'sale_status' => $sale->status
@@ -87,7 +78,7 @@ class SaleController extends Controller
             return response()->json(['saleDeleted' => $saleDeleted]);
         }
         $this->deleteSessionVariable('purchase_id');
-        TransactionComplete::dispatch($sale,request('factor'));
+        TransactionComplete::dispatch($sale, request('factor'));
         $sale->status = 'cancelled';
         $sale->save();
         return response()->json([
