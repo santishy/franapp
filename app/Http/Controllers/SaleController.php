@@ -61,9 +61,10 @@ class SaleController extends Controller
             request()->session()->put('sale_id', $sale->id);
         }
         //dd($factor);
+        $sale->update($fields);
         TransactionComplete::dispatch($sale, $factor);
 
-        $sale->update($fields);
+        
 
         return response()->json([
             'sale_status' => $sale->status
