@@ -61,7 +61,9 @@ class SaleController extends Controller
             request()->session()->put('sale_id', $sale->id);
         }
         //dd($factor);
+        
         $sale->update($fields);
+        // ver la primera validacion que hay dentro de este evento refernte a status ;)
         TransactionComplete::dispatch($sale, $factor);
 
         
