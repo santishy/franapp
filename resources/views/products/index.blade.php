@@ -1,6 +1,4 @@
 @extends('layouts.app')
 @section('content')
-    
-    <products-index/>
-    
+    <products-index :categories="{{json_encode($categories)}}"/>
 @endsection

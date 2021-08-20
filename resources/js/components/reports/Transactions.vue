@@ -15,6 +15,7 @@
                     <div class="font-bold text-2xl ml-2">${{ total }}</div>
                 </div>
             </transition>
+            <errors-component :errors-found="errors"></errors-component>
             <report-by class="mt-4"></report-by>
         </div>
         <transaction-list :uri="uri"> </transaction-list>
@@ -22,9 +23,10 @@
 </template>
 <script>
 import NavComponent from "../NavComponent.vue";
+import ErrorsComponent from "../ErrorsComponent.vue";
 import ReportBy from "./ReportBy.vue";
 export default {
-    components: { ReportBy, NavComponent },
+    components: { ReportBy, NavComponent ,ErrorsComponent},
     props: {
         name: {
             type: String
@@ -42,6 +44,13 @@ export default {
         EventBus.$on("calculated-total", total => {
             this.total = total;
         });
+        EventBus.$on("errors-found",this.errorsFound);
+    },
+    methods:{
+        errorsFound(errors){
+            console.log('entro a los errors')
+            this.getErrors(errors);
+        }
     }
 };
 </script>

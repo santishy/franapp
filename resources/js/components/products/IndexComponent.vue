@@ -3,6 +3,10 @@
         <div class="grid  grid-cols-1 md:grid-cols-3 gap-4 ">
             <div class="col-span-3 flex justify-center">
                 <search-component ref="search" class="md:w-1/4 w-3/4" />
+                <search-by-category
+                    class="md:w-1/4 w-3/4"
+                    :categories="categories"
+                ></search-by-category>
             </div>
             <product-card
                 v-for="(product, index) in products"
@@ -36,16 +40,22 @@
     </nav-component>
 </template>
 <script>
-import { mapActions, mapState , mapMutations} from "vuex";
-import InfiniteLoading from "vue-infinite-loading";
-import SearchComponent from "./SearchComponent.vue";
 import Agree from "../alerts/Agree.vue";
 import Message from "../alerts/Message.vue";
-import ProductCardComponent from "./ProductCardComponent.vue";
-
 import NavComponent from "../NavComponent.vue";
+import InfiniteLoading from "vue-infinite-loading";
+import SearchComponent from "./SearchComponent.vue";
+import SearchByCategory from "./SearchByCategory.vue";
+import { mapActions, mapState, mapMutations } from "vuex";
+import ProductCardComponent from "./ProductCardComponent.vue";
 import InformationComponent from "../modals/InformationComponent.vue";
+
 export default {
+    props: {
+        categories: {
+            type: Array
+        }
+    },
     data() {
         return {
             products: [],
@@ -76,7 +86,8 @@ export default {
         NavComponent,
         InformationComponent,
         Agree,
-        Message
+        Message,
+        SearchByCategory
     },
     methods: {
         ...mapActions(["getProducts", "search"]),
@@ -123,7 +134,7 @@ export default {
                 .delete(`/products/${this.modalDataConfirm.product.id}`)
                 .then(res => {
                     if (res.data) {
-                        if (res.data.deleted){
+                        if (res.data.deleted) {
                             this.removeFromArray(this.modalDataConfirm.index);
                             this.setModalDataConfirm({});
                             return;

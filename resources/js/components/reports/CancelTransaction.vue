@@ -15,10 +15,15 @@ export default {
         uri: {
             type: String
         },
-        index:{
+        index: {
             type: Number
         },
         transaction: { type: Object }
+    },
+    data() {
+        return {
+            translate: { purchase: "Compra", sale: "Venta" }
+        };
     },
     methods: {
         ...mapMutations(["setModalDataConfirm"]),
@@ -26,13 +31,16 @@ export default {
             this.setModalDataConfirm({
                 transaction: this.transaction,
                 index: this.index,
-                message: `Si cancelas esta ${this.transaction.transactionType} se revertira lo cambios en el inventario que se hicieron y no se podra deshacer la acción.`,
-                title: `¿Estas seguro de eliminar esta ${this.transaction.transactionType}?`,
+                message: `Si cancelas esta ${
+                    this.translate[this.transaction.transactionType]
+                } los cambios hechos previamente en las existencias de el inventario asociado con esta misma, serán revertidos y ya no podras deshacer esta acción.`,
+                title: `¿Estas seguro de eliminar esta ${
+                    this.translate[this.transaction.transactionType]
+                }?`,
                 action: "cancelTransaction"
             });
             EventBus.$emit("open-modal", true);
-        },
-
+        }
     }
 };
 </script>

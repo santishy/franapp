@@ -34,6 +34,12 @@
                     {{ product.sku }}
                 </p>
             </div>
+            <div class=" py-2 pl-8 pr-2 text-center">
+                <p class="text-gray-800 font-semibold mb-1">Categoría</p>
+                <p class="text-gray-700 text-base ">
+                    {{ product.category_name }}
+                </p>
+            </div>
             <div class="py-2 pl-8 pr-2 text-center">
                 <p class="text-gray-800 font-bold mb-1">Descripción</p>
                 <p class="text-gray-700 text-base ">

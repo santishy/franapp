@@ -14,9 +14,10 @@ class ProductController extends Controller
     {
         $this->authorize('view', new Product());
         if (request()->wantsJson()) {
-            return ProductResource::collection(Product::applyFilters()->paginate(21));
+            return ProductResource::collection(Product::with('category')->applyFilters()->paginate(21));
         }
-        return view('products.index');
+        $categories = Category::all();
+        return view('products.index', compact('categories'));
     }
     public function create()
     {

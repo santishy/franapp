@@ -115,8 +115,8 @@ export default {
             this.transactions = [];
             this.infiniteId += 1;
         },
-        cancelTransaction() {
-            axios
+        async cancelTransaction() {
+            await axios
                 .delete(this.uri + "/" + this.modalDataConfirm.transaction.id, {
                     params: {
                         factor: this.getFactor(),
@@ -126,7 +126,6 @@ export default {
                 })
                 .then(res => {
                     if (res.data.status == "cancelled") {
-                        EventBus.$emit("open-modal", false);
                         this.transactions.splice(
                             this.modalDataConfirm.index,
                             1
@@ -134,8 +133,10 @@ export default {
                     }
                 })
                 .catch(err => {
-                    
+                    EventBus.$emit("errors-found", err);
                 });
+            this.setModalDataConfirm({});
+            EventBus.$emit("open-modal", false);
         },
         ...mapMutations(["setModalDataConfirm"]),
         getFactor() {
