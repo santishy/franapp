@@ -19,6 +19,7 @@ use SebastianBergmann\Environment\Console;
 class SaleController extends Controller
 {
     use HasTransaction;
+    
     public function index()
     {
         if (request()->wantsJson()) {

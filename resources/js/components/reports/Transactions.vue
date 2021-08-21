@@ -22,9 +22,11 @@
     </nav-component>
 </template>
 <script>
+
+import ReportBy from "./ReportBy.vue";
 import NavComponent from "../NavComponent.vue";
 import ErrorsComponent from "../ErrorsComponent.vue";
-import ReportBy from "./ReportBy.vue";
+
 export default {
     components: { ReportBy, NavComponent ,ErrorsComponent},
     props: {

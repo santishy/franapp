@@ -3,7 +3,11 @@
         <div
             class="mt-2 flex  flex-wrap items-center justify-center bg-gray-200 px-2 py-4 rounded"
         >
-            <p class="text-gray-700 mb-2 w-full col-span-2 flex-none">
+            <p class="text-gray-700 text-center w-full col-span-2 flex-none font-semibold">
+                {{ product.sku }}
+            </p>
+            <p class="text-gray-700 text-center mb-2 w-full col-span-2 flex-none ">
+                
                 {{ product.description }}
             </p>
 
@@ -40,7 +44,7 @@
                 <delete-sale-product :id="product.id"> </delete-sale-product>
                 <button
                     type="submit"
-                    class=" bg-blue-300 mt-2 rounded transition-all duration-500 ease-in-out hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border-b-2 border-blue-500 hover:border-transparent w-2/3"
+                    class=" bg-blue-300 mt-2 rounded transition-all duration-500 ease-in-out hover:bg-blue-500 text-blue-700 text-xs hover:text-white py-2 px-4 border-b-2 border-blue-500 hover:border-transparent w-2/3"
                 >
                     Modificar
                 </button>
@@ -81,9 +85,9 @@ export default {
             this.form.product_id = this.product.id;
             if (this.isAdmin)
                 this.form.inventory_id = sessionStorage.getItem("inventory_id");
-            else{
+            else {
                 thi.form.inventory_id = this.user.inventory_id;
-                }
+            }
             axios
                 .post(`/sales/${this.product.id}/products`, this.form)
                 .then(res => {

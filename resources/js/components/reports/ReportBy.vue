@@ -1,29 +1,42 @@
 <template>
-    <div class="flex justify-center flex-wrap">
-        <button
-            class="text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50 mr-4 rounded px-4 py-2"
-            @click.prevent="getReport(today)"
-        >
-            Hoy
-        </button>
-        <button
-            class="text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50 mr-4 rounded px-4 py-2"
-            href="#"
-            @click.prevent="getReport(week)"
-        >
-            Semana
-        </button>
-        <button
-            class="text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50 rounded px-4 py-2"
-            href="#"
-            @click.prevent="getReport(month)"
-        >
-            Mes
-        </button>
+    <div class="flex flex-wrap flex-col items-center justify-center">
+        <toggle-component class="col-span-1 mr-2 mb-4"></toggle-component>
+        <div class="flex justify-center flex-wrap col-span-5">
+            <button
+                class="text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50 mr-4 rounded px-4 py-2"
+                @click.prevent="getReport(today)"
+            >
+                Hoy
+            </button>
+            <button
+                class="text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50 mr-4 rounded px-4 py-2"
+                href="#"
+                @click.prevent="getReport(week)"
+            >
+                Semana
+            </button>
+            <button
+                class="text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50 rounded px-4 py-2"
+                href="#"
+                @click.prevent="getReport(month)"
+            >
+                Mes
+            </button>
+        </div>
+        
     </div>
 </template>
 <script>
+import ToggleComponent from "./ToggleComponent.vue";
 export default {
+    components: {
+        ToggleComponent
+    },
+    created() {
+        EventBus.$on("status-filter-cancelled",()=>{
+            this.status["filter[status]"] = "cancelled";
+        })
+    },
     data() {
         return {
             today: {
@@ -40,7 +53,7 @@ export default {
     },
     methods: {
         getReport(value) {
-            EventBus.$emit('set-parameters',_.merge(value, this.status)); //._merge conbina dos json
+            EventBus.$emit("set-parameters", _.merge(value, this.status)); //._merge conbina dos json
         }
     }
 };

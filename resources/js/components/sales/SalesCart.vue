@@ -4,7 +4,7 @@
             <div v-if="localSale != null">
                 <div
                     v-show="products.length"
-                    class=" flex flex-wrap justify-center items-center text-center mb-4"
+                    class=" flex flex-wrap justify-center items-center text-center mb-2 bg-teal-100"
                 >
                     <label class="mr-4 text-2xl">Total</label>
                     <p class="text-gray-700 text-3xl">${{ getTotal }}</p>
@@ -18,13 +18,15 @@
             <div v-if="errors" class="flex items-center mb-3">
                 <errors-component :errors="errors" />
             </div>
-            <button
-                v-show="products.length"
-                class="  rounded transition-all duration-500 ease-in-out  font-semibold hover:text-black py-2 px-4 border-l-2 border-r-2 border-green-500 hover:bg-red-500 hover:border-transparent w-full"
-                :class="[getClass]"
-            >
-                Cambiar a {{ modifyTo }}
-            </button>
+            <div class="flex flex-wrap justify-center">
+                <button
+                    v-show="products.length"
+                    class=" rounded transition-all duration-500 ease-in-out  font-semibold hover:text-black py-2 px-4 border-l-2 border-r-2 border-green-500 hover:bg-red-500 hover:border-transparent md:w-2/4 w-full"
+                    :class="[getClass]"
+                >
+                    Cambiar a {{ modifyTo }}
+                </button>
+            </div>
         </form>
         <div v-if="localSale !== null">
             <cart-product
@@ -127,6 +129,12 @@ export default {
                 })
                 .catch(err => {
                     this.getErrors(err);
+                    this.$notify({
+                        group: "foo",
+                        title: "Error",
+                        type: "error",
+                        text: this.errors[0]
+                    });
                 });
         }
     }

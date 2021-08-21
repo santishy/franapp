@@ -27,6 +27,22 @@
                         class="bg-white px-4 py-2 md:w-4/5 w-full md:mx-0 mx-2 rounded shadow"
                     >
                         <div
+                            class="w-full flex flex-wrap md:justify-between  text-gray-600 md:items-center"
+                        >
+                            <sale-to-customer class="mr-4" v-if="show" />
+                            <button
+                                v-else
+                                @click="show = true"
+                                class="bg-teal-300 rounded transition-all duration-500 ease-in-out hover:bg-teal-500 text-teal-700 font-semibold hover:text-white py-1 px-4 border-b-2 border-teal-500 hover:border-transparent mr-1"
+                            >
+                                Cliente registrado
+                            </button>
+                            <delete-sale
+                                v-if="localSale"
+                                :sale="localSale"
+                            ></delete-sale>
+                        </div>
+                        <div
                             v-if="localSale"
                             :class="[
                                 'flex flex-wrap px-2 py-2 items-center mb-4 border-b-2 border-blue-400',
@@ -44,22 +60,7 @@
                                 <p class="text-xs">{{ localSale.status }}</p>
                             </div>
                         </div>
-                        <div
-                            class="w-full flex flex-wrap md:justify-center mb-2 text-gray-600 md:items-center"
-                        >
-                            <sale-to-customer class="mr-4" v-if="show" />
-                            <button
-                                v-else
-                                @click="show = true"
-                                class="bg-teal-300 rounded transition-all duration-500 ease-in-out hover:bg-teal-500 text-teal-700 font-semibold hover:text-white py-1 px-4 border-b-2 border-teal-500 hover:border-transparent mr-1"
-                            >
-                                Cliente registrado
-                            </button>
-                            <delete-sale
-                                v-if="localSale"
-                                :sale="localSale"
-                            ></delete-sale>
-                        </div>
+
                         <sales-cart :sale="sale"></sales-cart>
                     </div>
                 </div>
@@ -115,9 +116,6 @@ export default {
         });
         EventBus.$on("sale-to-client", data => {
             this.localSale = data.sale;
-            // setTimeout(()=>{
-            //     this.show = false;
-            // },3000)
         });
     },
     data() {
