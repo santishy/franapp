@@ -16,7 +16,8 @@ class Product extends Model
     public function scopeSearch(Builder $query, $values)
     {
         foreach (Str::of($values)->explode(' ') as $value) {
-            $query->orWhere('sku', 'LIKE', "%{$value}%");
+            $query->orWhere('sku', 'LIKE', "%{$value}%")
+                ->orWhere('description', 'LIKE', "%{$value}%");
         }
     }
 
@@ -29,15 +30,18 @@ class Product extends Model
         return $this->belongsToMany(Sale::class);
     }
 
-    public function purchases(){
+    public function purchases()
+    {
         return $this->belongsToMany(Purchase::class);
     }
 
-    public function inventories(){
+    public function inventories()
+    {
         return $this->belongsToMany(Inventory::class);
     }
 
-    public function category(){
+    public function category()
+    {
         return $this->belongsTo(Category::class);
     }
 }

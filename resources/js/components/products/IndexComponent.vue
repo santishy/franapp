@@ -2,11 +2,12 @@
     <nav-component>
         <div class="grid  grid-cols-1 md:grid-cols-3 gap-4 ">
             <div class="col-span-3 flex justify-center">
-                <search-component ref="search" class="md:w-1/4 w-3/4" />
+                
                 <search-by-category
-                    class="md:w-1/4 w-3/4"
+                    class="md:w-1/4 w-3/4 mr-2"
                     :categories="categories"
                 ></search-by-category>
+                <search-component ref="search" class="md:w-1/4 w-3/4 " />
             </div>
             <product-card
                 v-for="(product, index) in products"

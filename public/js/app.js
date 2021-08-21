@@ -4478,6 +4478,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 
@@ -29366,14 +29367,14 @@ var render = function() {
             "div",
             { staticClass: "col-span-3 flex justify-center" },
             [
-              _c("search-component", {
-                ref: "search",
-                staticClass: "md:w-1/4 w-3/4"
+              _c("search-by-category", {
+                staticClass: "md:w-1/4 w-3/4 mr-2",
+                attrs: { categories: _vm.categories }
               }),
               _vm._v(" "),
-              _c("search-by-category", {
-                staticClass: "md:w-1/4 w-3/4",
-                attrs: { categories: _vm.categories }
+              _c("search-component", {
+                ref: "search",
+                staticClass: "md:w-1/4 w-3/4 "
               })
             ],
             1
