@@ -126,6 +126,7 @@ export default {
                     if (this.localSale.status == "completed") {
                         sessionStorage.removeItem("salePriceOption");
                     }
+                    window.location.href ='/pdf-tickets/'+this.localSale.id;
                 })
                 .catch(err => {
                     this.getErrors(err);

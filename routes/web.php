@@ -7,7 +7,7 @@ use App\Http\Controllers\SaleController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductsSearchController;
 use App\Http\Controllers\ProductInPurchaseController;
-use App\Http\Controllers\{ClientController, CurrentUserController, ImpersonationController, InventoryController, RolesPermissionsController, SaleToClientController, UserController, WarehouseController};
+use App\Http\Controllers\{ClientController, CurrentUserController, ImpersonationController, InventoryController, PDFController, RolesPermissionsController, SaleToClientController, UserController, WarehouseController};
 use App\Http\Controllers\{PurchaseController, ProductInSaleController, RoleController};
 use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
@@ -107,3 +107,6 @@ Route::delete('/impersonations',[ImpersonationController::class,'destroy'])->mid
 //obtener usuario loggueado
 
 Route::get('/current-user',CurrentUserController::class);
+
+//pdf
+Route::get('pdf-tickets/{sale}',PDFController::class)->middleware('auth');
