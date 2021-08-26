@@ -5,12 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Ticket</title>
-    <style>
-        @page{size:80mm auto}
-    </style>
 </head>
 <body>
-    <h1>Lorem ipsum dolor, sit amet consectetur
-         adipisicing elit. Consectetur architecto fugit ducimus aliquam dicta error quaerat asperiores minus. Dolorem, earum. Quod, ullam? Necessitatibus odit iste modi illum, fuga molestias praesentium?</h1>
+    <div>
+        <header>
+            {{$ticketConfig->header}}
+        </header>
+        <ul style="background: red;">
+            @foreach ($products as $product )
+                <li style="background:blue;display:flex; flex-wrap: wrap; justify-content:space-around">
+                    <div>{{$product->sku}}..........</div> 
+                    <div>4</div>
+                </li>    
+            @endforeach
+            
+        </ul>
+
+    </div>
 </body>
 </html>
