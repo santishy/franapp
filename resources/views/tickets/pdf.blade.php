@@ -116,8 +116,8 @@
         </thead>
         <tbody>
             @foreach ($products as $product )
-                <tr class="text-center border border-solid border-black">
-                    <td class="border border-gray-400">
+                <tr class="border border-gray-400 border-solid">
+                    <td class="border-b border-gray-400 border-solid">
                         {{$product->sku}}
                     </td>
                     <td>
@@ -131,7 +131,7 @@
         </tbody>
     </table>
     <div>
-        <p class="text-justify border border-black">
+        <p class="text-justify border border-black border-solid">
             {{$ticketConfig->footer}}
         </p>
     </div>
