@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Ticket;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
@@ -17,6 +18,8 @@ class UserSeeder extends Seeder
     {
         User::truncate();
         Role::truncate();
+        Ticket::truncate();
+        Ticket::factory()->create();
         $adminRole = Role::create(['name' => 'admin']);
         $user = new User;
         $user->email = 'santi_shy@hotmail.com';
