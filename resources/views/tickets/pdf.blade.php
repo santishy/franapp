@@ -5,16 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Nota #{{$sale->id}}</title>
-    <style>
+    <style type="text/css">
         html, body {
             margin:0%;
             margin-right: 4pt;
             margin-left: 4pt;
         }
         table {
-            border-collapse: collapse;
+            border-collapse: collapse !important; 
+            border-spacing: 0 !important;
+            display: table;
+            width: 100%;
         }
-
+        table::before{
+            box-sizing: border-box;
+            border-width: 0;
+            border-style: solid;
+            border-color: #e2e8f0;
+        }
+        table::after{
+            box-sizing: border-box;
+            border-width: 0;
+            border-style: solid;
+            border-color: #e2e8f0;
+        }
+        
+        .border-gray-400 {
+            border-color: #cbd5e0;     
+        }
         .text-center {
             text-align: center;
         }
@@ -71,7 +89,7 @@
         }
         .border-black {
 
-        border-color: black;
+            border-color: black;
         }
         .p-0{
             padding:0%;
@@ -106,9 +124,9 @@
     <div class="text-center  text-xl rounded border border-b border-solid">
         Nota #{{$sale->id}}
     </div>
-    <table class="mt-1">
+    <table class="mt-1 table-auto">
         <thead>
-            <tr style="border:1px solid black" class="text-center">
+            <tr>
                 <th class=" border border-b border-gray-400">Producto</th>
                 <th>Cantidad</th>
                 <th>Subtotal</th>
@@ -116,14 +134,14 @@
         </thead>
         <tbody>
             @foreach ($products as $product )
-                <tr class="border border-gray-400 border-solid">
-                    <td class="border-b border-gray-400 border-solid">
+                <tr>
+                    <td class="border-b border-gray-400 ">
                         {{$product->sku}}
                     </td>
-                    <td>
+                    <td class="border-b border-gray-400 border-solid">
                         {{$product->pivot->qty}}
                     </td>
-                    <td>
+                    <td class="border-b border-gray-400 border-solid">
                         {{$product->pivot->qty * $product->pivot->sale_price}}
                     </td>
                 </tr>

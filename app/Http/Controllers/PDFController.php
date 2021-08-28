@@ -15,6 +15,7 @@ class PDFController extends Controller
         $now = Carbon::now()->format('Y-m-d');
         $products = $sale->products;
         $ticketConfig = Ticket::first();
+        return view('tickets.pdf', compact('sale', 'now', 'products', 'ticketConfig'));
         $pdf = PDF::loadView(
             'tickets.pdf',
             compact('sale', 'now', 'products', 'ticketConfig')
