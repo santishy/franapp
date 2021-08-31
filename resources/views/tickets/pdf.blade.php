@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Nota #{{$sale->id}}</title>
     <style type="text/css">
+       
         html, body {
             margin:0%;
             margin-right: 4pt;
@@ -15,21 +16,32 @@
             border-collapse: collapse !important; 
             border-spacing: 0 !important;
             display: table;
+            width: 100%;
         }
-        *, ::before, ::after {
+        *,before,::after{
+            box-sizing: border-box;
+            border-width: 0;
+            border-style: solid;
+            border-color:currentColor;
+        }
+        table::before{
             box-sizing: border-box;
             border-width: 0;
             border-style: solid;
             border-color: #e2e8f0;
         }
-        .w-full{
-            width: 100%;
-        }
-        tr::after,tr::before{
+        table::after{
+            box-sizing: border-box;
+            border-width: 0;
             border-style: solid;
+            border-color: #e2e8f0;
         }
+        
         .border-gray-400 {
             border-color: #cbd5e0;     
+        }
+        .bg-gray-400 {
+            background-color: #cbd5e0; 
         }
         .text-center {
             text-align: center;
@@ -82,10 +94,6 @@
         .border-b {
             border-bottom-width: 1px;
         }
-        .border-b-2 {
-            border-bottom-width: 2px;
-        }
-
         .border-solid {
             border-style: solid;
         }
@@ -94,9 +102,8 @@
             border-color: black;
         }
         .bg-blue-700 {
-            --border-opacity: 1;
-            background: #2b6cb0;
-            background: rgba(43, 108, 176, var(--border-opacity));
+          
+            background-color: #2529BD;
         }
         .p-0{
             padding:0%;
@@ -107,14 +114,15 @@
         .text-xl{
             font-size: 1.5em;
         }
-        .text-white{
-            text-color:white;
-        }
         .rounded {
             border-radius: 0.25rem;
         }
         .table-auto {
             table-layout: auto;
+        }
+        .px-2 {
+            padding-left: 0.5rem;
+            padding-right: 0.5rem;
         }
     </style>
 </head>
@@ -134,24 +142,24 @@
     <div class="text-center  text-xl rounded border border-b border-solid">
         Nota #{{$sale->id}}
     </div>
-    <table class="mt-1 table-auto">
+    <table class="mt-1 table-auto text-center rounded">
         <thead>
-            <tr class="border-solid border-blue-700 text-white w-full">
-                <t>Producto</th>
+            <tr class="bg-gray-400 px-2">
+                <th>Producto</th>
                 <th>Cantidad</th>
                 <th>Subtotal</th>
             </tr>
         </thead>
         <tbody>
             @foreach ($products as $product )
-                <tr class="border-b-2 border-gray-400 ">
+                <tr class="border-b border-gray-400">
                     <td>
                         {{$product->sku}}
                     </td>
-                    <td >
+                    <td>
                         {{$product->pivot->qty}}
                     </td>
-                    <td class="border-b border-gray-400 ">
+                    <td>
                         {{$product->pivot->qty * $product->pivot->sale_price}}
                     </td>
                 </tr>
@@ -159,7 +167,7 @@
         </tbody>
     </table>
     <div>
-        <p class="text-justify border-b border-black ">
+        <p class="text-justify border border-black border-solid">
             {{$ticketConfig->footer}}
         </p>
     </div>
