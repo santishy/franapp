@@ -15,21 +15,19 @@
             border-collapse: collapse !important; 
             border-spacing: 0 !important;
             display: table;
+        }
+        *, ::before, ::after {
+            box-sizing: border-box;
+            border-width: 0;
+            border-style: solid;
+            border-color: #e2e8f0;
+        }
+        .w-full{
             width: 100%;
         }
-        table::before{
-            box-sizing: border-box;
-            border-width: 0;
+        tr::after,tr::before{
             border-style: solid;
-            border-color: #e2e8f0;
         }
-        table::after{
-            box-sizing: border-box;
-            border-width: 0;
-            border-style: solid;
-            border-color: #e2e8f0;
-        }
-        
         .border-gray-400 {
             border-color: #cbd5e0;     
         }
@@ -84,12 +82,21 @@
         .border-b {
             border-bottom-width: 1px;
         }
+        .border-b-2 {
+            border-bottom-width: 2px;
+        }
+
         .border-solid {
             border-style: solid;
         }
         .border-black {
 
             border-color: black;
+        }
+        .bg-blue-700 {
+            --border-opacity: 1;
+            background: #2b6cb0;
+            background: rgba(43, 108, 176, var(--border-opacity));
         }
         .p-0{
             padding:0%;
@@ -99,6 +106,9 @@
         }
         .text-xl{
             font-size: 1.5em;
+        }
+        .text-white{
+            text-color:white;
         }
         .rounded {
             border-radius: 0.25rem;
@@ -126,22 +136,22 @@
     </div>
     <table class="mt-1 table-auto">
         <thead>
-            <tr>
-                <th class=" border border-b border-gray-400">Producto</th>
+            <tr class="border-solid border-blue-700 text-white w-full">
+                <t>Producto</th>
                 <th>Cantidad</th>
                 <th>Subtotal</th>
             </tr>
         </thead>
         <tbody>
             @foreach ($products as $product )
-                <tr>
-                    <td class="border-b border-gray-400 ">
+                <tr class="border-b-2 border-gray-400 ">
+                    <td>
                         {{$product->sku}}
                     </td>
-                    <td class="border-b border-gray-400 border-solid">
+                    <td >
                         {{$product->pivot->qty}}
                     </td>
-                    <td class="border-b border-gray-400 border-solid">
+                    <td class="border-b border-gray-400 ">
                         {{$product->pivot->qty * $product->pivot->sale_price}}
                     </td>
                 </tr>
@@ -149,7 +159,7 @@
         </tbody>
     </table>
     <div>
-        <p class="text-justify border border-black border-solid">
+        <p class="text-justify border-b border-black ">
             {{$ticketConfig->footer}}
         </p>
     </div>
