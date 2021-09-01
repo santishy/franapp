@@ -102,6 +102,7 @@
             border-color: black;
         }
         .bg-blue-700 {
+          
             background-color: #2529BD;
         }
         .p-0{
@@ -123,13 +124,13 @@
             padding-left: 0.5rem;
             padding-right: 0.5rem;
         }
-        @page{
-            size:80mm {{$height}};
-        }
     </style>
+    <script type="text/javascript">
+        document.querySelector('#fecha').style.background='blue';
+    </script>
 </head>
 <body>
-    <div class="text-right text-sm mt-2">
+    <div id="fecha" class="text-right text-sm mt-2">
         {{$now}}
     </div>
     <h1 class="text-xl text-center m-1 mb-0">{{$ticketConfig->header}}</h1>
@@ -156,7 +157,7 @@
             @foreach ($products as $product )
                 <tr class="border-b border-gray-400">
                     <td>
-                        <p class="mt-0 mb-0">{{$product->sku}}</p>
+                        {{$product->sku}}
                     </td>
                     <td>
                         {{$product->pivot->qty}}
