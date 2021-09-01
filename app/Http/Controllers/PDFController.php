@@ -15,11 +15,30 @@ class PDFController extends Controller
         $now = Carbon::now()->format('Y-m-d');
         $products = $sale->products;
         $ticketConfig = Ticket::first();
+        $height = '200mm';
         $pdf = PDF::loadView(
             'tickets.pdf',
-            compact('sale', 'now', 'products', 'ticketConfig')
-        )
-        ->setPaper('b7','portrait');
+            compact('sale', 'now', 'products', 'ticketConfig', 'height')
+        );
+        $GLOBALS['bodyHeight'] = 0;
+
+        $pdf->setCallbacks(
+            array(
+                'myCallbacks' => array(
+                    'event' => 'end_frame', 'f' => function ($infos) {
+                        $frame = $infos["frame"];
+                        if (strtolower($frame->get_node()->nodeName) === "body") {
+                            $padding_box = $frame->get_padding_box();
+                            $GLOBALS['bodyHeight'] += $padding_box['h'];
+                        }
+                    }
+                )
+            )
+        );
+        $pdf = PDF::loadView(
+            'tickets.pdf',
+            compact('sale', 'now', 'products', 'ticketConfig', 'height')
+        )->set_paper(array(0,0,600,$GLOBALS['bodyHeight']+50));
         return $pdf->stream();
     }
 }

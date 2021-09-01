@@ -102,7 +102,6 @@
             border-color: black;
         }
         .bg-blue-700 {
-          
             background-color: #2529BD;
         }
         .p-0{
@@ -123,6 +122,9 @@
         .px-2 {
             padding-left: 0.5rem;
             padding-right: 0.5rem;
+        }
+        @page{
+            size:80mm {{$height}};
         }
     </style>
 </head>
@@ -154,7 +156,7 @@
             @foreach ($products as $product )
                 <tr class="border-b border-gray-400">
                     <td>
-                        {{$product->sku}}
+                        <p class="mt-0 mb-0">{{$product->sku}}</p>
                     </td>
                     <td>
                         {{$product->pivot->qty}}
