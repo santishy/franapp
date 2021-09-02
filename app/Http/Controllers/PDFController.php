@@ -21,6 +21,22 @@ class PDFController extends Controller
             'tickets.pdf',
             compact('sale', 'now', 'products', 'ticketConfig', 'height')
         );
+        $dom_pdf = $pdf->getDomPDF();
+        $dom_pdf->setCallbacks(
+            array(
+                'myCallbacks' => array(
+                    'event' => 'end_frame', 'f' => function ($infos) {
+                        $frame = $infos["frame"];
+                        if (strtolower($frame->get_node()->nodeName) === "body") {
+                            $padding_box = $frame->get_padding_box();
+                            dd($padding_box); // To see the output of the padding_box 
+                            $GLOBALS['bodyHeight'] += $padding_box['h'];
+                        }
+                    }
+                )
+            )
+        );
+        $pdf->setPaper(array(0, 0, 226.77, 841.89), 'portrait');
         return $pdf->stream();
     }
 }
