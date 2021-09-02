@@ -18,7 +18,7 @@
             display: table;
             width: 100%;
         }
-        *,before,::after{
+        *,::before,::after{
             box-sizing: border-box;
             border-width: 0;
             border-style: solid;
@@ -98,18 +98,43 @@
             border-style: solid;
         }
         .border-black {
-
             border-color: black;
         }
         .bg-blue-700 {
-          
             background-color: #2529BD;
         }
-        .p-0{
-            padding:0%;
+        .p-1 {
+            padding: 0.25rem;
         }
-        .p-xs{
-            padding:.5em;
+
+        .p-2 {
+            padding: 0.5rem;
+        }
+
+        .p-3 {
+            padding: 0.75rem;
+        }
+
+        .p-4 {
+            padding: 1rem;
+        }
+        .py-0 {
+            padding-top: 0px;
+            padding-bottom: 0px;
+        }
+
+        .py-1 {
+            padding-top: 0.25rem;
+            padding-bottom: 0.25rem;
+        }
+
+        .py-2 {
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+        }
+        .py-3 {
+            padding-top: 0.75rem;
+            padding-bottom: 0.75rem;
         }
         .text-xl{
             font-size: 1.5em;
@@ -133,8 +158,8 @@
     <div id="fecha" class="text-right text-sm mt-2">
         {{$now}}
     </div>
-    <h1 class="text-xl text-center m-1 mb-0">{{$ticketConfig->header}}</h1>
-    <div class="mb-4">
+    <h1 class="text-xl text-center m-1 mb-0">{{$ticketConfig->company}}</h1>
+    <div class="mb-4 text-sm">
         <p class="mb-0 text-center  ">
             <span>Tel: </span> {{$ticketConfig->phone_number}}
         </p>
@@ -142,10 +167,13 @@
             <span>Dire: </span> {{$ticketConfig->address}}
         </p>
     </div>
-    <div class="text-center  text-xl rounded border border-b border-solid">
+    <div 
+        style="width:auto;" 
+        class="text-center  text-xl rounded border border-black"
+    >
         Nota #{{$sale->id}}
     </div>
-    <table class="mt-1 table-auto text-center rounded">
+    <table class="mt-1 mb-0 table-auto text-center rounded">
         <thead>
             <tr class="bg-gray-400 px-2">
                 <th>Producto</th>
@@ -155,22 +183,26 @@
         </thead>
         <tbody>
             @foreach ($products as $product )
-                <tr class="border-b border-gray-400">
-                    <td>
+                <tr class="text-sm">
+                    <td class="border-b border-gray-400 py-1">
                         {{$product->sku}}
                     </td>
-                    <td>
+                    <td class="border-b border-gray-400 py-1">
                         {{$product->pivot->qty}}
                     </td>
-                    <td>
-                        {{$product->pivot->qty * $product->pivot->sale_price}}
+                    <td class="border-b border-gray-400 py-1">
+                        {{ $product->pivot->qty * $product->pivot->sale_price}}
                     </td>
                 </tr>
             @endforeach
-        </tbody>
+            <tr>
+                <td colspan="2"> TOTAL</td>
+                <td></td>
+            </tr>
+                       </tbody>
     </table>
-    <div>
-        <p class="text-justify border border-black border-solid">
+    <div class="mt-0 mb-0">
+        <p class="text-justify text-sm p-4">
             {{$ticketConfig->footer}}
         </p>
     </div>
