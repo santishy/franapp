@@ -42,6 +42,8 @@ class Sale extends Model
         return $this->belongsToMany('App\Models\Product')->withPivot('qty', 'sale_price');
     }
 
+    
+
     public function productInTransaction($product)
     {
         return $this->products()->where('product_id', $product->id);
