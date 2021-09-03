@@ -18,7 +18,7 @@ class PDFController extends Controller
 
         $products = $sale->products;
 
-        dd($sale->products()->select(DB::raw('sum(product_sale.qty * product_sale.sale_price)'))->get());
+        dd($sale->products()->select(DB::raw('sum(product_sale.qty * product_sale.sale_price) as total'))->get());
         
         $ticketConfig = Ticket::first();
         
