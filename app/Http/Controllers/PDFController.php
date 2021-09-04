@@ -17,10 +17,9 @@ class PDFController extends Controller
         $now = Carbon::now()->format('Y-m-d');
 
         $products = $sale->products;
-
-        dd($sale->products()->select(DB::raw('sum(product_sale.qty * product_sale.sale_price) as total'))->get());
         
         $ticketConfig = Ticket::first();
+        
         
         /** Se crea el frame de pdf la primera vez para calcular que tan grande sera el ticket, mando en altura 2000 como un maximo de altura sin que se rompa el codigo */
         

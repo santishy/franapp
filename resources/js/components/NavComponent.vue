@@ -180,6 +180,10 @@ export default {
                 {
                     name: "Nuevo rol",
                     url: "/roles/create"
+                },
+                {
+                    name: "Contenido del ticket",
+                    url: "/tickets/1/edit"
                 }
             ],
             crfsToken: document.querySelector('meta[name="csrf-token"]')

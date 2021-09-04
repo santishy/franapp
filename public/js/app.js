@@ -2325,6 +2325,9 @@ __webpack_require__.r(__webpack_exports__);
       }, {
         name: "Nuevo rol",
         url: "/roles/create"
+      }, {
+        name: "Contenido del ticket",
+        url: "/tickets/1/edit"
       }],
       crfsToken: document.querySelector('meta[name="csrf-token"]').content,
       purchase: false,
@@ -6944,7 +6947,7 @@ __webpack_require__.r(__webpack_exports__);
           sessionStorage.removeItem("salePriceOption");
         }
 
-        window.location.href = '/pdf-tickets/' + _this2.localSale.id;
+        window.open("/pdf-tickets/".concat(_this2.localSale.id), '_blank');
       })["catch"](function (err) {
         _this2.getErrors(err);
 
@@ -6954,6 +6957,129 @@ __webpack_require__.r(__webpack_exports__);
           type: "error",
           text: _this2.errors[0]
         });
+      });
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/tickets/TicketForm.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/tickets/TicketForm.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _NavComponent_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../NavComponent.vue */ "./resources/js/components/NavComponent.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  created: function created() {
+    this.form = this.ticket;
+  },
+  props: {
+    ticket: {
+      type: Object
+    }
+  },
+  components: {
+    NavComponent: _NavComponent_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
+  data: function data() {
+    return {
+      form: {},
+      errors: null,
+      obj: {
+        title: "Tickets"
+      }
+    };
+  },
+  methods: {
+    submit: function submit() {
+      var _this = this;
+
+      this.obj.message = "EL ticket se modifico correctamente";
+      this.form._method = 'put';
+      axios["post"]("/tickets/".concat(this.ticket.id), this.form).then(function (res) {
+        _this.notify(_this.obj);
+
+        _this.errors = null;
+      })["catch"](function (err) {
+        _this.getErrors(err);
       });
     }
   }
@@ -31887,6 +32013,237 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/tickets/TicketForm.vue?vue&type=template&id=65a9d07a&":
+/*!*********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/tickets/TicketForm.vue?vue&type=template&id=65a9d07a& ***!
+  \*********************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("nav-component", [
+    _c(
+      "div",
+      {
+        staticClass:
+          "w-full px-4  flex justify-center bg-transparent md:mt-32 mt-24"
+      },
+      [
+        _c(
+          "form",
+          {
+            staticClass:
+              "w-full max-w-md shadow-lg rounded-lg bg-white px-6 py-8",
+            on: {
+              submit: function($event) {
+                $event.preventDefault()
+                return _vm.submit($event)
+              }
+            }
+          },
+          [
+            _c(
+              "div",
+              {
+                staticClass:
+                  "flex items-center py-2 text-dark text-center justify-center text-xl font-bold border-b border-teal-500"
+              },
+              [
+                _vm._v(
+                  "\n                Modificar contenido del ticket\n            "
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "flex items-center border-b border-teal-500 py-2"
+              },
+              [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.form.company,
+                      expression: "form.company"
+                    }
+                  ],
+                  staticClass:
+                    "appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none",
+                  attrs: {
+                    name: "companty",
+                    type: "text",
+                    placeholder: "COMPAÑIA",
+                    "aria-label": "Full name"
+                  },
+                  domProps: { value: _vm.form.company },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.form, "company", $event.target.value)
+                    }
+                  }
+                })
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "flex items-center border-b border-teal-500 py-2"
+              },
+              [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.form.address,
+                      expression: "form.address"
+                    }
+                  ],
+                  staticClass:
+                    "appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none",
+                  attrs: {
+                    name: "address",
+                    type: "text",
+                    placeholder: "DIRECCION",
+                    "aria-label": "Full name"
+                  },
+                  domProps: { value: _vm.form.address },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.form, "address", $event.target.value)
+                    }
+                  }
+                })
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "flex items-center border-b border-teal-500 py-2"
+              },
+              [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.form.phone_number,
+                      expression: "form.phone_number"
+                    }
+                  ],
+                  staticClass:
+                    "appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none",
+                  attrs: {
+                    name: "phone_number",
+                    type: "text",
+                    placeholder: "NUMERO DE TELEFONO",
+                    "aria-label": "Full name"
+                  },
+                  domProps: { value: _vm.form.phone_number },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.form, "phone_number", $event.target.value)
+                    }
+                  }
+                })
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "flex items-center border-b border-teal-500 py-2"
+              },
+              [
+                _c("textarea", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.form.footer,
+                      expression: "form.footer"
+                    }
+                  ],
+                  staticClass:
+                    "appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none",
+                  attrs: {
+                    name: "footer",
+                    rows: "5",
+                    type: "text",
+                    placeholder: "PIE DE PAGINA",
+                    "aria-label": "Full name"
+                  },
+                  domProps: { value: _vm.form.footer },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.form, "footer", $event.target.value)
+                    }
+                  }
+                })
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "flex items-center " },
+              [
+                _c("errors-component", {
+                  attrs: { "errors-found": _vm.errors }
+                })
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "flex justify-center mt-0 mb-0" }, [
+              _c(
+                "button",
+                {
+                  staticClass:
+                    "bg-transparent transition-all duration-500 ease-in-out hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border-b-2 border-blue-500 hover:border-transparent w-full"
+                },
+                [_vm._v("\n                    Guardar\n                ")]
+              )
+            ]),
+            _vm._v(" "),
+            _c("notifications", { attrs: { group: "foo" } })
+          ],
+          1
+        )
+      ]
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/users/UserList.vue?vue&type=template&id=3b043a5b&":
 /*!*****************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/users/UserList.vue?vue&type=template&id=3b043a5b& ***!
@@ -47036,6 +47393,11 @@ vue__WEBPACK_IMPORTED_MODULE_6___default.a.component('warehouse-list', __webpack
 vue__WEBPACK_IMPORTED_MODULE_6___default.a.component('dashboard', __webpack_require__(/*! ./components/Dashboard.vue */ "./resources/js/components/Dashboard.vue")["default"]); //errors
 
 vue__WEBPACK_IMPORTED_MODULE_6___default.a.component('forbidden', __webpack_require__(/*! ./components/errors/Forbidden.vue */ "./resources/js/components/errors/Forbidden.vue")["default"]);
+/**
+ * tickets
+ */
+
+vue__WEBPACK_IMPORTED_MODULE_6___default.a.component('ticket-form', __webpack_require__(/*! ./components/tickets/TicketForm.vue */ "./resources/js/components/tickets/TicketForm.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_6___default.a.directive('can', /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(el, binding) {
     var _store$state$user, _store$state$user$per;
@@ -51053,6 +51415,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SalesCart_vue_vue_type_template_id_2e4bc8ee___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SalesCart_vue_vue_type_template_id_2e4bc8ee___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/tickets/TicketForm.vue":
+/*!********************************************************!*\
+  !*** ./resources/js/components/tickets/TicketForm.vue ***!
+  \********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _TicketForm_vue_vue_type_template_id_65a9d07a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./TicketForm.vue?vue&type=template&id=65a9d07a& */ "./resources/js/components/tickets/TicketForm.vue?vue&type=template&id=65a9d07a&");
+/* harmony import */ var _TicketForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./TicketForm.vue?vue&type=script&lang=js& */ "./resources/js/components/tickets/TicketForm.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _TicketForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _TicketForm_vue_vue_type_template_id_65a9d07a___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _TicketForm_vue_vue_type_template_id_65a9d07a___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/tickets/TicketForm.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/tickets/TicketForm.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************!*\
+  !*** ./resources/js/components/tickets/TicketForm.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TicketForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./TicketForm.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/tickets/TicketForm.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TicketForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/tickets/TicketForm.vue?vue&type=template&id=65a9d07a&":
+/*!***************************************************************************************!*\
+  !*** ./resources/js/components/tickets/TicketForm.vue?vue&type=template&id=65a9d07a& ***!
+  \***************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TicketForm_vue_vue_type_template_id_65a9d07a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./TicketForm.vue?vue&type=template&id=65a9d07a& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/tickets/TicketForm.vue?vue&type=template&id=65a9d07a&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TicketForm_vue_vue_type_template_id_65a9d07a___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TicketForm_vue_vue_type_template_id_65a9d07a___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

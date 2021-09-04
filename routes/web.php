@@ -7,9 +7,10 @@ use App\Http\Controllers\SaleController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductsSearchController;
 use App\Http\Controllers\ProductInPurchaseController;
-use App\Http\Controllers\{ClientController, CurrentUserController, ImpersonationController, InventoryController, PDFController, RolesPermissionsController, SaleToClientController, UserController, WarehouseController};
+use App\Http\Controllers\{ClientController, CurrentUserController, ImpersonationController, InventoryController, PDFController, RolesPermissionsController, SaleToClientController, TicketController, UserController, WarehouseController};
 use App\Http\Controllers\{PurchaseController, ProductInSaleController, RoleController};
 use App\Models\Category;
+use App\Models\Ticket;
 use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Contracts\Role;
 
@@ -108,5 +109,9 @@ Route::delete('/impersonations',[ImpersonationController::class,'destroy'])->mid
 
 Route::get('/current-user',CurrentUserController::class);
 
-//pdf
+/**
+ * tickets
+ */
 Route::get('pdf-tickets/{sale}',PDFController::class)->middleware('auth');
+Route::put('tickets/{ticket}',[TicketController::class,'update'])->middleware('auth');
+Route::get('tickets/{ticket}/edit',[TicketController::class,'edit'])->middleware('auth');

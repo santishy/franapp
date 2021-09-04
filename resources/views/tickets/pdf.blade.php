@@ -88,6 +88,10 @@
         .mb-4{
             margin-bottom:1rem;
         }
+        .mx-auto {
+            margin-left: auto;
+            margin-right: auto;
+        }
         .border {
             border-width: 1px;
         }
@@ -155,56 +159,69 @@
     </script>
 </head>
 <body>
-    <div id="fecha" class="text-right text-sm mt-2">
-        {{$now}}
-    </div>
-    <h1 class="text-xl text-center m-1 mb-0">{{$ticketConfig->company}}</h1>
-    <div class="mb-4 text-sm">
-        <p class="mb-0 text-center  ">
-            <span>Tel: </span> {{$ticketConfig->phone_number}}
-        </p>
-        <p class="mb-0 p-0 mt-0  text-center ">
-            <span>Dire: </span> {{$ticketConfig->address}}
-        </p>
-    </div>
-    <div 
-        style="width:auto;" 
-        class="text-center  text-xl rounded border border-black"
-    >
-        Nota #{{$sale->id}}
-    </div>
-    <table class="mt-1 mb-0 table-auto text-center rounded">
-        <thead>
-            <tr class="bg-gray-400 px-2">
-                <th>Producto</th>
-                <th>Cantidad</th>
-                <th>Subtotal</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($products as $product )
-                <tr class="text-sm">
-                    <td class="border-b border-gray-400 py-1">
-                        {{$product->sku}}
-                    </td>
-                    <td class="border-b border-gray-400 py-1">
-                        {{$product->pivot->qty}}
-                    </td>
-                    <td class="border-b border-gray-400 py-1">
-                        {{ $product->pivot->qty * $product->pivot->sale_price}}
+    <div class="p-1">
+        <div id="fecha" class="text-right text-sm mt-2">
+            {{$now}}
+        </div>
+        <h1 class="text-xl text-center m-1 mb-0">{{$ticketConfig->company}}</h1>
+        <div class="mb-4 ">
+            <p class="mb-0 text-center  ">
+                <span>Tel: </span> {{$ticketConfig->phone_number}}
+            </p>
+            <p class="mb-0 p-0 mt-0  text-center ">
+                <span>Dire: </span> {{$ticketConfig->address}}
+            </p>
+        </div>
+        <div 
+            style="width: 75%;"
+            class="text-center  text-xl rounded border border-black mx-auto"
+        >
+            Nota #{{$sale->id}}
+        </div>
+        <table class="mt-1 mb-0 table-auto text-center rounded">
+            <thead>
+                <tr class="bg-gray-400 px-2">
+                    <th>Producto</th>
+                    <th>Cantidad</th>
+                    <th>Subtotal</th>
+                </tr>
+            </thead>
+            <tbody>
+                @php 
+                    $total = 0;
+                @endphp
+                @foreach ($products as $product )
+                    <tr class="text-sm">
+                        <td class="border-b border-gray-400 py-1">
+                            {{$product->sku}}
+                        </td>
+                        <td class="border-b border-gray-400 py-1">
+                            {{$product->pivot->qty}}
+                        </td>
+                        <td class="border-b border-gray-400 py-1">
+                            {{ $product->pivot->qty * $product->pivot->sale_price}}
+                        </td>
+                    </tr>
+                @endforeach
+                <tr>
+                    <td class="bg-gray-400"> TOTAL</td>
+                    <td  colspan="2">
+                        $
+                        {{
+                            number_format(
+                                $total += $product->pivot->qty * $product->pivot->sale_price,
+                                2
+                            )
+                        }}
                     </td>
                 </tr>
-            @endforeach
-            <tr>
-                <td colspan="2"> TOTAL</td>
-                <td></td>
-            </tr>
-                       </tbody>
-    </table>
-    <div class="mt-0 mb-0">
-        <p class="text-justify text-sm p-4">
-            {{$ticketConfig->footer}}
-        </p>
+            </tbody>
+        </table>
+        <div class="mt-0 mb-0">
+            <p style="white-space: pre-line;line-height: 15px" class="text-sm p-4">
+                {{$ticketConfig->footer}}
+            </p>
+        </div>
     </div>
 </body>
 </html>

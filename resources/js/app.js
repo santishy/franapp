@@ -69,7 +69,12 @@ Vue.component('warehouse-list',require('./components/warehouses/WarehouseList.vu
 Vue.component('dashboard', require('./components/Dashboard.vue').default);
 
 //errors
-Vue.component('forbidden',require('./components/errors/Forbidden.vue').default)
+Vue.component('forbidden',require('./components/errors/Forbidden.vue').default);
+
+/**
+ * tickets
+ */
+Vue.component('ticket-form',require('./components/tickets/TicketForm.vue').default);
 
 Vue.directive('can',
     async function (el, binding) {
