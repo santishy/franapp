@@ -20,7 +20,7 @@ class ProductInPurchaseController extends Controller
             'pivot.purchase_price' => 'required|numeric|min:1',
         ]);
         $purchase = Purchase::find(session()->get('purchase_id'));
-     
+
         $purchase->products()->updateExistingPivot($request->id, [
             'qty' => $request->pivot['qty'],
             'purchase_price' => $request->pivot['purchase_price']

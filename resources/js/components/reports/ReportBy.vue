@@ -33,8 +33,8 @@ export default {
         ToggleComponent
     },
     created() {
-        EventBus.$on("status-filter-cancelled",()=>{
-            this.status["filter[status]"] = "cancelled";
+        EventBus.$on("status-filter-cancelled",(status)=>{
+            this.status["filter[status]"] = status;
         })
     },
     data() {

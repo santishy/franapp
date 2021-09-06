@@ -5830,8 +5830,8 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     var _this = this;
 
-    EventBus.$on("status-filter-cancelled", function () {
-      _this.status["filter[status]"] = "cancelled";
+    EventBus.$on("status-filter-cancelled", function (status) {
+      _this.status["filter[status]"] = status;
     });
   },
   data: function data() {
@@ -5889,13 +5889,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      toggleActive: false
+      toggleActive: false,
+      status: ''
     };
   },
   methods: {
     changeFilter: function changeFilter() {
       this.toggleActive = !this.toggleActive;
-      EventBus.$emit("status-filter-cancelled", 'cancelled');
+      this.status = this.toggleActive ? 'cancelled' : 'completed';
+      EventBus.$emit("status-filter-cancelled", this.status);
     }
   }
 });
@@ -30927,19 +30929,20 @@ var render = function() {
   return _c(
     "div",
     {
-      staticClass: "flex justify-between items-center",
+      staticClass:
+        "flex justify-between items-center rounded border-2 border-gray-200 p-2",
       on: { click: _vm.changeFilter }
     },
     [
-      _c("h2", { staticClass: "text-red-500  font-semibold mr-3" }, [
-        _vm._v("Transacciones Canceladas")
+      _c("h2", { staticClass: "text-red-700  font-semibold mr-3" }, [
+        _vm._v("Canceladas")
       ]),
       _vm._v(" "),
       _c(
         "div",
         {
           staticClass:
-            "w-16 h-10 flex items-center bg-gray-300 rounded-full p-1 duration-300 ease-in-out",
+            "w-16 h-10 flex items-center bg-gray-200 rounded-full p-1 duration-300 ease-in-out",
           class: { "bg-green-400": _vm.toggleActive }
         },
         [
@@ -31150,7 +31153,7 @@ var render = function() {
             "h1",
             {
               staticClass:
-                "font-extrabold text-gray-700  text-center border-b-2 border-gray-300 py-3 text-2xl"
+                " text-gray-800  text-center border-b-2 border-gray-300 py-3 text-2xl font-extralight"
             },
             [
               _vm._v(
@@ -31165,7 +31168,7 @@ var render = function() {
                   "div",
                   {
                     staticClass:
-                      "w-full bg-blue-600 border-b-2 py-3 text-white border-gray-300 flex justify-center items-center"
+                      "border-b-2 py-3 text-gray-800 border-gray-300 flex justify-center items-center"
                   },
                   [
                     _c("span", { staticClass: "font-semibold text-xl " }, [

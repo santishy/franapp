@@ -16,7 +16,7 @@ class Purchase extends Model
         if(session()->has('purchase_id')){
             return Purchase::find(session()->get('purchase_id'));
         }
-        $purchase = Purchase::create();
+        $purchase = Purchase::create(['user_id' => auth()->id()]);
         session()->put('purchase_id',$purchase->id);
         return $purchase;
     }
