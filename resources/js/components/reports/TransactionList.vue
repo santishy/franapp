@@ -21,6 +21,7 @@
             <thead>
                 <tr class="bg-purple-200">
                     <th class="px-4 py-2">ID</th>
+                    <th  class="px-4 py-2">Usuario</th>
                     <th class="px-4 py-2">Fecha</th>
                     <th class="px-4 py-2">Total</th>
                     <th class="px-4 py-2">Ver</th>

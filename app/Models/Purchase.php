@@ -27,4 +27,7 @@ class Purchase extends Model
     public function totalPurchase(){
         return $this->products()->sum(DB::raw('qty * purchase_price'));
     }
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
 }

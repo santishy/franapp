@@ -20,13 +20,15 @@ class ReportResponse implements Responsable
         $transactions = $this->model->applyFilters();
 
         $data = [
-            'data' =>  TransactionResource::collection($transactions->with('products')->paginate(50)),
+            'data' =>  TransactionResource::collection(
+                $transactions->with(['products','user'])->paginate(50)
+            ),
         ];
 
-        if(request('page') == 1){
-            $data['total'] = number_format($transactions->sum('total'),2);
+        if (request('page') == 1) {
+            $data['total'] = number_format($transactions->sum('total'), 2);
         }
-        
+
         return response()->json($data);
     }
 }
