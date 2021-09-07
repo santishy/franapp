@@ -21,6 +21,7 @@ class CreateSalesTable extends Migration
                 ->nullable()
                 ->constrained()
                 ->onDelete('set null');
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }

@@ -31,7 +31,7 @@ class Sale extends Model
     public function scopeFindOrCreateTheTransaction(Builder $query)
     {
         if (!session()->has('sale_id')) {
-            $sale = $query->create();
+            $sale = $query->create(['user_id' => auth()->id()]);
             session()->put('sale_id', $sale->id);
         }
         return $query->find(session()->get('sale_id'));
