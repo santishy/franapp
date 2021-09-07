@@ -17,11 +17,12 @@
             ></agree>
         </information-component>
 
-        <table v-if="params" class="table-auto bg-white">
+        <table v-if="params" class="table-auto bg-white text-center">
             <thead>
                 <tr class="bg-purple-200">
                     <th class="px-4 py-2">ID</th>
                     <th  class="px-4 py-2">Usuario</th>
+                    <th v-if="areTheySales"> Cliente </th>
                     <th class="px-4 py-2">Fecha</th>
                     <th class="px-4 py-2">Total</th>
                     <th class="px-4 py-2">Ver</th>
@@ -37,6 +38,7 @@
                     :transaction-type="transaction.transactionType"
                     :key="transaction.id"
                     :uri="uri"
+                    :are-they-sales="areTheySales"
                 >
                 </transaction-list-item>
             </transition-group>
@@ -65,7 +67,7 @@ export default {
         InformationComponent
     },
     props: {
-        transactionType: {
+        name: {
             type: String
         },
         uri: {
@@ -81,10 +83,6 @@ export default {
         };
     },
     mounted() {
-        /*EventBus.$on("transactions-found", res => {
-            this.transactions = res;
-        });*/
-
         EventBus.$on("set-parameters", data => {
             this.changeParams(data);
         });
@@ -95,7 +93,7 @@ export default {
                 .get(this.uri, {
                     params: {
                         page: this.page,
-                        ...this.params
+                        ..._.merge(this.params,this.getRelathionships)
                     }
                 })
                 .then(res => {
@@ -148,7 +146,19 @@ export default {
         }
     },
     computed: {
-        ...mapState(["modalDataConfirm"])
+        ...mapState(["modalDataConfirm"]),
+        getRelathionships()
+        {
+            if(this.name.toUpperCase() == "VENTAS"){
+                return {include:'user,products,client'}
+            }
+            else if(this.name.toUpperCase() == "COMPRAS"){
+                return {include:'user,products'}
+            }
+        },
+        areTheySales(){
+            return this.name.toUpperCase() == 'VENTAS';
+        }
     }
 };
 </script>

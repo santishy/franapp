@@ -17,11 +17,11 @@ class ReportResponse implements Responsable
 
     function toResponse($request)
     {
-        $transactions = $this->model->applyFilters();
+        $transactions = $this->model->include()->applyFilters();
 
         $data = [
             'data' =>  TransactionResource::collection(
-                $transactions->with(['products','user'])->paginate(50)
+                $transactions->paginate(50)
             ),
         ];
 

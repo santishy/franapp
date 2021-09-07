@@ -18,7 +18,7 @@
             <errors-component :errors-found="errors"></errors-component>
             <report-by class="mt-4"></report-by>
         </div>
-        <transaction-list :uri="uri"> </transaction-list>
+        <transaction-list :uri="uri" :name="name"> </transaction-list>
     </nav-component>
 </template>
 <script>

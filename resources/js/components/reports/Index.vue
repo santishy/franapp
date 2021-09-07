@@ -2,7 +2,7 @@
     <nav-component>
         <transaction-report :uri='uri' :name="name">
         </transaction-report>
-        <transaction-list :uri="uri"> </transaction-list>
+        <transaction-list :uri="uri" :name="name"> </transaction-list>
     </nav-component>
 </template>
 <script>

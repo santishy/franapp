@@ -12,8 +12,7 @@ class JsonApiBuilder
     public function applyFilters()
     {
         return function () {
-            foreach (request('filter', []) as $filter => $value) 
-            {
+            foreach (request('filter', []) as $filter => $value) {
                 abort_unless($this->hasNamedScope($filter), 400, 'El filtro no existe');
                 $this->{$filter}($value);
             }
@@ -51,16 +50,19 @@ class JsonApiBuilder
 
     public function include()
     {
-         // include=relationship:scope|scope,relationship,
+        // include=relationship:scope|scope,relationship,
         return function () {
-            $relationships = Str::of(request()->include)->explode(',');
-            foreach ($relationships as $relationship) {
-                if (!method_exists($this->model, $relationship))
-                    abort(500, 'the relationship does not exist');
-                $this->with($relationship, function ($q)  {
-                    $q->paginate(30);
-                });
+            if (request()->has('include')) {
+                $relationships = Str::of(request()->include)->explode(',');
+                foreach ($relationships as $relationship) {
+                    if (!method_exists($this->model, $relationship))
+                        abort(500, 'the relationship does not exist');
+                    $this->with($relationship, function ($q) {
+                        $q->paginate(30);
+                    });
+                }
             }
+
             return $this;
         };
     }
