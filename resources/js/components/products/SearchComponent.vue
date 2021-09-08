@@ -16,7 +16,9 @@ export default {
             page: 1
         };
     },
-
+    created() {
+        EventBus.$on("selected-inventory", this.addFilter);
+    },
     methods: {
         ...mapActions(["search"]),
         handleSearh(e) {
@@ -24,7 +26,6 @@ export default {
                 return EventBus.$emit("empty-search");
             }
             return new Promise((resolve, reject) => {
-                /*  const obj = new Object; */
                 const params = {
                     "filter[search]": this.sku,
                     page: this.page
@@ -45,9 +46,7 @@ export default {
                     });
             });
         },
-    setPage(
-            page
-        ) {
+        setPage(page) {
             this.page = page;
         }
     }

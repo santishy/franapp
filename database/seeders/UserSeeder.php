@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Inventory;
 use App\Models\Ticket;
 use App\Models\User;
 use Illuminate\Database\Seeder;
@@ -19,6 +20,8 @@ class UserSeeder extends Seeder
         User::truncate();
         Role::truncate();
         Ticket::truncate();
+        Inventory::truncate();
+        Inventory::factory()->create();
         Ticket::factory()->create();
         $adminRole = Role::create(['name' => 'admin']);
         $user = new User;

@@ -1,6 +1,6 @@
 <template>
-    <div v-if="inventory">
-        
+    <div  v-if="inventory">
+        <search-component></search-component>
         <table class="table-auto text-center bg-white">
             <thead class="bg-purple-200">
                 <th class="p-3">SKU</th>
@@ -24,6 +24,7 @@
     </div>
 </template>
 <script>
+import SearchComponent from '../products/SearchComponent.vue';
 import ProducListItem from "./ProducListItem.vue";
 export default {
     props:{
@@ -31,7 +32,7 @@ export default {
             type:Number
         }
     },
-    components: { ProducListItem },
+    components: { ProducListItem, SearchComponent },
     data() {
         return {
             products: [],
