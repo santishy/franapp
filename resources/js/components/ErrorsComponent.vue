@@ -33,7 +33,7 @@ export default {
                 if (this.errorsFound) this.show = true;
                 setTimeout(() => {
                     this.show = false;
-                }, 1500);
+                }, 3000);
             }
         }
     }

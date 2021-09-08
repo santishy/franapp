@@ -30,16 +30,6 @@
                         :items="InventoryMenu"
                         class="md:relative"
                     />
-                    <!-- <dropdown-component
-                            name="Categorías"
-                            :items="CategoriesMenu"
-                            class="md:relative"
-                        />
-                        <dropdown-component
-                            name="Productos"
-                            :items="productsMenu"
-                            class="md:relative"
-                        /> -->
                     <a
                         v-if="purchase"
                         :href="purchase ? `/purchases/${purchase}` : '#'"
@@ -69,13 +59,6 @@
                         :items="ConfigMenu"
                         class="md:relative"
                     />
-
-                    <!-- <a
-                            href="/roles/create"
-                            class="block mt-4 lg:inline-block lg:mt-0 text-gray-200 md:hover:text-white mr-4 md:text-base text-lg"
-                        >
-                            Roles
-                        </a> -->
                 </div>
                 <div class=" flex flex-wrap items-center">
                     <form

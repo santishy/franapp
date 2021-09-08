@@ -2084,7 +2084,7 @@ __webpack_require__.r(__webpack_exports__);
         if (this.errorsFound) this.show = true;
         setTimeout(function () {
           _this.show = false;
-        }, 1500);
+        }, 3000);
       }
     }
   }
@@ -2160,23 +2160,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -26751,7 +26734,7 @@ var render = function() {
             "div",
             {
               staticClass:
-                "bg-transparent w-full md:bg-white static md:w-40 rounded-md md:absolute md:shadow-md md:mt-3 "
+                "bg-transparent w-full md:bg-white static md:w-40 rounded-md md:absolute md:shadow-md md:mt-3 md:p-2 md:text-center"
             },
             _vm._l(_vm.items, function(item) {
               return _c(
@@ -26759,7 +26742,7 @@ var render = function() {
                 {
                   key: item.name,
                   staticClass:
-                    "md:pl-1 text-gray-700 bg-red-400 font-bold block md:text-gray-800 md:mt-0 py-2 md:border-none border-b border-red-500  md:bg-transparent md:p-2 md:hover:text-red-400",
+                    "md:pl-1 text-gray-700 bg-red-400 font-bold block md:text-gray-800 md:mt-0 py-2 md:border-none border-b border-red-500  md:bg-transparent md:p-1 md:hover:text-red-400",
                   attrs: { href: item.url }
                 },
                 [
