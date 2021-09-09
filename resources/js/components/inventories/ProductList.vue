@@ -1,6 +1,6 @@
 <template>
     <div  v-if="inventory">
-        <search-component></search-component>
+        
         <table class="table-auto text-center bg-white">
             <thead class="bg-purple-200">
                 <th class="p-3">SKU</th>
@@ -62,9 +62,9 @@ export default {
                     }
                 })
                 .then(res => {
-                    if (res.data.data.products.length) {
+                    if (res.data.data.length) {
                         this.page += 1;
-                        this.products.push(...res.data.data.products);
+                        this.products.push(...res.data.data);
                         $state.loaded();
                     } else {
                         $state.complete();
