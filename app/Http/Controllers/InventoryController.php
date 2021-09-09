@@ -71,8 +71,12 @@ class InventoryController extends Controller
     public function show(Inventory $inventory)
     {
         $this->authorize('view', $inventory);
-        return InventoryResource::make(
-            $inventory->include()->where('id', $inventory->id)->first()
+
+        return ProductResource::collection(
+            $inventory->products()->applyFilters()->paginate(25)
         );
+        // return InventoryResource::make(
+        //     $inventory->include()->where('id', $inventory->id)->first()
+        // );
     }
 }
