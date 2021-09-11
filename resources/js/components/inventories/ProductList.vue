@@ -1,6 +1,10 @@
 <template>
-    <div class="justify-center">
-        <table v-if="inventory" class="table-auto text-center bg-white">
+    <div v-if="inventory" class="justify-center">
+        <div class=" flex flex-wrap  justify-center items-center border-gray-300 p-2">
+            <h3 class="mr-4">{{inventory.name}}</h3>
+            <inventory-search-filter></inventory-search-filter>
+        </div>
+        <table v-if="inventory" class="text-center bg-white">
             <thead class="bg-purple-200">
                 <th class="p-3">Categoría</th>
                 <th class="p-3">SKU</th>
@@ -26,6 +30,7 @@
 </template>
 <script>
 import SearchComponent from "../products/SearchComponent.vue";
+import InventorySearchFilter from './InventorySearchFilter.vue';
 import ProducListItem from "./ProducListItem.vue";
 export default {
     props: {
@@ -33,32 +38,35 @@ export default {
             type: Number
         }
     },
-    components: { ProducListItem, SearchComponent },
+    components: { ProducListItem, SearchComponent, InventorySearchFilter },
     data() {
         return {
             products: [],
             inventory: null,
             page: 1,
-            infiniteId: +new Date()
+            infiniteId: +new Date(),
+            filters:{}
         };
     },
     created() {
         EventBus.$on("selected-inventory", inventory => {
+            this.filters = {}
             this.inventory = inventory;
             this.reloadIndex();
         });
         EventBus.$on("updated-stock", data => {
             this.products[data.index].stock = data.newStock;
         });
+        EventBus.$on('search-value-added',this.addFilterSearch);
     },
     methods: {
         getProducts($state) {
             axios
                 .get(`/inventories/${this.inventory.id}`, {
                     params: {
-                        include: "products",
                         page: this.page,
-                        inventory_id: this.inventory.id
+                        inventory_id: this.inventory.id,
+                        ...this.filters
                     }
                 })
                 .then(res => {
@@ -79,6 +87,11 @@ export default {
             this.infiniteId++;
             //this.inventory = null;
             this.products = [];
+        },
+        addFilterSearch(value) {
+            
+            this.filters['filter[search]'] = value;
+            this.reloadIndex();
         }
     }
 };
