@@ -6,6 +6,8 @@
 
 html,body{
   font-family: 'Roboto', sans-serif;
+  max-width: 100vw !important;
+  overflow-x:hidden;
 }
 .fade-enter-active,
 .fade-leave-active {
@@ -17,10 +19,10 @@ html,body{
 }
 
   .bounce-enter-active {
-    animation: bounce-in .5s;
+    animation: bounce-in .3s;
   }
   .bounce-leave-active {
-    animation: bounce-in .5s reverse;
+    animation: bounce-in .3s reverse;
   }
   @keyframes bounce-in {
     0% {
