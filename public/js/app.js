@@ -29440,7 +29440,7 @@ var render = function() {
               "h3",
               {
                 staticClass:
-                  "mr-4 border-l-4 border-teal-500 bg-white py-5 px-4  leading-tight"
+                  " border-l-4 border-teal-500 bg-white py-5 px-4  leading-tight"
               },
               [_vm._v(_vm._s(_vm.inventory.name))]
             ),
