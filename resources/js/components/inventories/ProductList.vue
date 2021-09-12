@@ -1,7 +1,7 @@
 <template>
     <div v-if="inventory" class="justify-center">
-        <div class=" flex flex-wrap  justify-center items-center border-gray-300 p-2">
-            <h3 class="mr-4">{{inventory.name}}</h3>
+        <div class=" flex flex-wrap  justify-center items-center border-gray-300">
+            <h3 class="mr-4 border-l-4 border-teal-500 bg-white py-5 px-4  leading-tight">{{inventory.name}}</h3>
             <inventory-search-filter></inventory-search-filter>
         </div>
         <table v-if="inventory" class="text-center bg-white">

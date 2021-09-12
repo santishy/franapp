@@ -29277,7 +29277,7 @@ var render = function() {
           }
         ],
         staticClass:
-          "shadow border-l-4 border-purple-500 appearance-none py-5 px-4 rounded leading-tight focus:outline-none",
+          "border-l-4 border-purple-500 appearance-none py-5 px-4 leading-tight focus:outline-none",
         attrs: { type: "text", placeholder: "Busca por el SKU ó Descripción" },
         domProps: { value: _vm.value },
         on: {
@@ -29433,12 +29433,17 @@ var render = function() {
           "div",
           {
             staticClass:
-              " flex flex-wrap  justify-center items-center border-gray-300 p-2"
+              " flex flex-wrap  justify-center items-center border-gray-300"
           },
           [
-            _c("h3", { staticClass: "mr-4" }, [
-              _vm._v(_vm._s(_vm.inventory.name))
-            ]),
+            _c(
+              "h3",
+              {
+                staticClass:
+                  "mr-4 border-l-4 border-teal-500 bg-white py-5 px-4  leading-tight"
+              },
+              [_vm._v(_vm._s(_vm.inventory.name))]
+            ),
             _vm._v(" "),
             _c("inventory-search-filter")
           ],
