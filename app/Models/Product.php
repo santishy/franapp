@@ -15,9 +15,14 @@ class Product extends Model
 
     public function scopeSearch(Builder $query, $values)
     {
+        $index = 0;
         foreach (Str::of($values)->explode(' ') as $value) {
-            $query->orWhere('sku', 'LIKE', "%{$value}%")
+            if ($index == 0) $clause = 'where';
+            else $clause = 'orWhere';
+
+            $query->{$clause}('sku', 'LIKE', "%{$value}%")
                 ->orWhere('description', 'LIKE', "%{$value}%");
+            $index++;
         }
     }
 

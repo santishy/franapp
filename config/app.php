@@ -166,6 +166,9 @@ return [
          * Package Service Providers...
          */
         Barryvdh\DomPDF\ServiceProvider::class,
+        Barryvdh\Debugbar\ServiceProvider::class,
+
+        
         /*
          * Application Service Providers...
          */
@@ -191,7 +194,6 @@ return [
     */
 
     'aliases' => [
-
         'App' => Illuminate\Support\Facades\App::class,
         'Arr' => Illuminate\Support\Arr::class,
         'Artisan' => Illuminate\Support\Facades\Artisan::class,
@@ -230,6 +232,8 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'CurrentUser' => App\Authorization\Facades\CurrentUser::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
+        'Debugbar' => Barryvdh\Debugbar\Facade::class,
+
     ],
 
 ];

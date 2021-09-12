@@ -76,7 +76,7 @@ class InventoryController extends Controller
             $inventory->products()->applyFilters()->paginate(25)
         );
         /*return InventoryResource::make(
-            $inventory->include()->where('id', $inventory->id)->first()
+           $inventory->include()->where('id', $inventory->id)->first()
         );*/
     }
 }
