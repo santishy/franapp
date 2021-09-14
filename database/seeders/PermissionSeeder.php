@@ -61,6 +61,13 @@ class PermissionSeeder extends Seeder
         Permission::create(['name' => 'delete inventory']);
         Permission::create(['name' => 'edit inventory']);
 
+        //permissions to warehouses
+        Permission::create(['name' => 'create warehouse']);
+        Permission::create(['name' => 'view warehouse']);
+        Permission::create(['name' => 'view warehouses']);
+        Permission::create(['name' => 'delete warehouse']);
+        Permission::create(['name' => 'edit warehouse']);
+
         //permissions to roles
         Permission::create(['name' => 'create role']);
         Permission::create(['name' => 'view roles']);

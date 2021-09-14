@@ -75,8 +75,5 @@ class InventoryController extends Controller
         return ProductResource::collection(
             $inventory->products()->applyFilters()->paginate(25)
         );
-        /*return InventoryResource::make(
-           $inventory->include()->where('id', $inventory->id)->first()
-        );*/
     }
 }
