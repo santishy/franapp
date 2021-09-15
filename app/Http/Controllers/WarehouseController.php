@@ -8,6 +8,9 @@ use Illuminate\Http\Request;
 
 class WarehouseController extends Controller
 {
+    /**
+     * gate::authorize ahi que usar ese ... para las existencias y corregir las politicas para existencias y almacenes
+     */
     public function index()
     {
         $this->authorize('viewAny', new Inventory);
