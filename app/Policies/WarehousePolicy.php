@@ -18,7 +18,7 @@ class WarehousePolicy
      */
     public function viewAny(User $user)
     {
-        //
+        return $user->hasPermissionTo('view warehouses');
     }
 
     /**
@@ -30,7 +30,7 @@ class WarehousePolicy
      */
     public function view(User $user, Inventory $inventory)
     {
-        //
+        return $user->hasPermissionTo('view warehouse');
     }
 
     /**
@@ -41,7 +41,7 @@ class WarehousePolicy
      */
     public function create(User $user)
     {
-        //
+        return $user->hasPermissionTo('create warehouse');
     }
 
     /**
@@ -53,7 +53,7 @@ class WarehousePolicy
      */
     public function update(User $user, Inventory $inventory)
     {
-        //
+        return $user->hasPermissionTo('edit warehouse');
     }
 
     /**
@@ -65,7 +65,7 @@ class WarehousePolicy
      */
     public function delete(User $user, Inventory $inventory)
     {
-        //
+        return $user->haspermissionTo('delete warehouse');
     }
 
     /**
