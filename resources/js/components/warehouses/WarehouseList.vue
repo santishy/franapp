@@ -6,7 +6,7 @@
             >
                 <table
                     v-if="inventories.length"
-                    v-can="'view inventories'"
+                    v-can="'view warehouses'"
                     class="table-auto"
                 >
                     <thead>
@@ -98,6 +98,11 @@ export default {
                             });
                             EventBus.$emit("open-modal", true);
                         }
+                    })
+                    .catch(err => {
+                        this.getErrors(
+                            err
+                        );
                     });
         },
         emptyWarehouse() {
@@ -110,6 +115,9 @@ export default {
                     if(res.data.empty){
                         this.notify({title:'Almacenes',message:'El almacén se vacio correctamente.'});
                     }
+                })
+                .catch(err =>{
+                    this.getErrors(err);
                 });
         }
     },

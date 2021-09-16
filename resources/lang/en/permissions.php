@@ -39,12 +39,17 @@ return [
     'view category' => 'Ver categoría',
     'delete category' => 'Borrar categoría',
 
-    //permissions to inventories
-    'create inventory' => 'Crear inventario (almacen)',
-    'view inventories' => 'Ver inventarios (almances)',
-    'view inventory' => 'Ver inventario (almacen)',
-    'delete inventory' => 'Borrar inventario (almacen)',
-    'edit inventory' => 'Editar inventario (almacen)',
+    //permissions to warehouses
+    'create warehouse' => 'Crear almacen',
+    'view warehouses' => 'Ver almances',
+    'view warehouse' => 'Ver almacen',
+    'delete warehouse' => 'Borrar almacen',
+    'edit warehouse' => 'Editar almacen',
+
+    //permissions to stock
+    'edit stock' => 'Editar existencias',
+    'view stock' => 'Ver existencias',
+    'empty stock' => 'Vaciar inventario',
 
     //permissions to roles
     'create role' => 'Crear rol',

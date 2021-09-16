@@ -79,7 +79,8 @@ export default {
                     }
                 })
                 .catch(err => {
-                    console.log(err);
+                    $state.complete();
+                    this.getErrors(err);
                 });
         },
         reloadIndex() {

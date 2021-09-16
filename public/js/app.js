@@ -4223,7 +4223,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           $state.complete();
         }
       })["catch"](function (err) {
-        console.log(err);
+        $state.complete();
+
+        _this2.getErrors(err);
       });
     },
     reloadIndex: function reloadIndex() {
@@ -7527,6 +7529,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
           EventBus.$emit("open-modal", true);
         }
+      })["catch"](function (err) {
+        _this.getErrors(err);
       });
     },
     emptyWarehouse: function emptyWarehouse() {
@@ -7542,6 +7546,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             message: 'El almacén se vacio correctamente.'
           });
         }
+      })["catch"](function (err) {
+        _this2.getErrors(err);
       });
     }
   }),
@@ -28918,8 +28924,8 @@ var render = function() {
               {
                 name: "can",
                 rawName: "v-can",
-                value: "create inventory",
-                expression: "'create inventory'"
+                value: "create warehouse",
+                expression: "'create warehouse'"
               }
             ],
             staticClass:
@@ -29275,8 +29281,8 @@ var render = function() {
           {
             name: "can",
             rawName: "v-can",
-            value: "view inventories",
-            expression: "'view inventories'"
+            value: "view warehouses",
+            expression: "'view warehouses'"
           }
         ],
         staticClass: "w-full mt-24 md:mt-32 flex"
@@ -32728,8 +32734,8 @@ var render = function() {
                       {
                         name: "can",
                         rawName: "v-can",
-                        value: "view inventories",
-                        expression: "'view inventories'"
+                        value: "view warehouses",
+                        expression: "'view warehouses'"
                       }
                     ],
                     staticClass: "table-auto"

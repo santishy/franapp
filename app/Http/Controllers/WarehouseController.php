@@ -13,6 +13,7 @@ class WarehouseController extends Controller
      */
     public function index()
     {
+
         $this->authorize('viewAny', new Inventory);
         $inventories = Inventory::all();
         return view('warehouses.index', ['inventories' => $inventories]);
