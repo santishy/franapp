@@ -73,7 +73,6 @@ class InventoryController extends Controller
 
     public function show(Inventory $inventory)
     {
-        //$this->authorize('view', $inventory);
         Gate::authorize('view-stock',$inventory);
         return ProductResource::collection(
             $inventory->products()->applyFilters()->paginate(25)

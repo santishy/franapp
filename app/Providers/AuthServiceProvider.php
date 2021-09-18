@@ -36,18 +36,11 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('register',function(User $user,User $model){
             return $user->hasPermissionTo('create user') || $user->hasRole('admin');
         });
-
-        Gate::define('view-stock',function(User $user,Inventory $inventory){
-            return $user->hasPermissionTo('view stock') || $user->hasRole('admin');
-        });
-
-        Gate::define('edit-stock',function(User $user,Inventory $inventory){
-            return $user->hasPermissionTo('edit stock') || $user->hasRole('admin');
-        });
-
-        Gate::define('empty-stock',function(User $user,Inventory $inventory){
-            return $user->hasPermissionTo('empty stock') || $user->hasRole('admin');
-        });
+        /*
+        *Invokando las demas gates de autorizacion para las existencias
+        * */
+        resolve('stockValidations');
+        
     }
     public function before(){
         return false;
