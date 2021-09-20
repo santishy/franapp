@@ -9,7 +9,6 @@ class StockValidations
     public function __construct(){
         Gate::define('view-stock',function(User $user,Inventory $inventory)
         {
-            return true;
             return $user->hasPermissionTo('view stock') || $user->hasRole('admin');
         });
 

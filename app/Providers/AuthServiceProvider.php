@@ -39,7 +39,8 @@ class AuthServiceProvider extends ServiceProvider
         /*
         *Invokando las demas gates de autorizacion para las existencias
         * */
-        resolve('stockValidations');
+        $this->app->make('stockValidations');
+        //resolve('stockValidations');
         
     }
     public function before(){
