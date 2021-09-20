@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Gate;
 
 class StockValidations
 {
-    public function __invoke(){
+    public function __construct(){
         Gate::define('view-stock',function(User $user,Inventory $inventory)
         {
             return true;
