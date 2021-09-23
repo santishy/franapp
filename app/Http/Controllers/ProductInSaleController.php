@@ -20,7 +20,7 @@ class ProductInSaleController extends Controller
 
     public function store(Request $request, Product $product)
     {
-
+        $this->authorize('create');
         $request->validate(
             [
                 'inventory_id' => ['required'],
@@ -60,7 +60,7 @@ class ProductInSaleController extends Controller
 
     public function destroy(Product $product)
     {
-
+        
         if (!session()->exists('sale_id'))
             return new SessionInactive('venta');
 

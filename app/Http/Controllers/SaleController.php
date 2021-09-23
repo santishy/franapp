@@ -19,9 +19,11 @@ use SebastianBergmann\Environment\Console;
 class SaleController extends Controller
 {
     use HasTransaction;
-    
+
     public function index()
     {
+        $this->authorize('viewAny');
+
         if (request()->wantsJson()) {
             return new ReportResponse(Sale::query());
         }
@@ -32,6 +34,8 @@ class SaleController extends Controller
     }
     public function create()
     {
+        $this->authorize('create');
+
         $sale = Sale::with('client')->where('id', session('sale_id'))->first();
         $inventories = Inventory::all();
         $categories = Category::all();
@@ -46,6 +50,7 @@ class SaleController extends Controller
 
     public function store(Request $request, Sale $sale)
     {
+        $this->authorize('create');
 
         $fields = $request->validate([
             'status' => ['required', 'regex:/completed|cancelled|pending/'],
@@ -75,12 +80,14 @@ class SaleController extends Controller
 
     public function destroy(Sale $sale)
     {
+        $this->authorize('delete');
+
         if ($sale->status != 'completed') {
             $saleDeleted = $sale->delete();
             session()->forget('sale_id');
             return response()->json(['saleDeleted' => $saleDeleted]);
         }
-        $this->deleteSessionVariable('purchase_id');
+        $this->deleteSessionVariable('sale_id');
         TransactionComplete::dispatch($sale, request('factor'));
         $sale->status = 'cancelled';
         $sale->save();

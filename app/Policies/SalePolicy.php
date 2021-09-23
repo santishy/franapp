@@ -41,7 +41,7 @@ class SalePolicy
      */
     public function create(User $user)
     {
-        return $user->hasPermissionTo('create purchase');
+        return $user->hasPermissionTo('create sale');
     }
 
     /**
@@ -53,7 +53,7 @@ class SalePolicy
      */
     public function update(User $user, sale $sale)
     {
-        //
+        return $user->haspermissionTo('edit sale');
     }
 
     /**
@@ -65,7 +65,7 @@ class SalePolicy
      */
     public function delete(User $user, sale $sale)
     {
-        //
+        return $user->haspermissionTo('delete sale');
     }
 
     /**
