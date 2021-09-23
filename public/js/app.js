@@ -7549,7 +7549,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   data: function data() {
     return {
-      localInventories: []
+      localInventories: [],
+      show: true
     };
   },
   created: function created() {

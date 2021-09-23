@@ -70,7 +70,8 @@ export default {
     },
     data() {
         return {
-            localInventories: []
+            localInventories: [],
+            show:true
         };
     },
     created() {
