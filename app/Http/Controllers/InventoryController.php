@@ -33,6 +33,10 @@ class InventoryController extends Controller
         $fields = $request->validate([
             'name' => ['required', 'unique:inventories,name'],
             'address' => ['required']
+        ],[
+            'name.required' => 'El nombre es requerido',
+            'name.unique' => 'El nombre ya existe en la base de datos',
+            'address.required' => 'La dirección es requerida'
         ]);
         return Inventory::create($fields);
     }

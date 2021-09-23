@@ -41,9 +41,14 @@ class PurchaseController extends Controller
             ]
         );
         $purchase = Purchase::findOrCreateThePurchase();
-        $productInPurchase = $purchase->products()->where(['product_id' => $request->product_id]);
+        $productInPurchase = $purchase->products()
+            ->where(['product_id' =>
+            $request->product_id]);
         if ($productInPurchase->exists()) {
-            $productInPurchase->updateExistingPivot($request->product_id, ['qty' => ($productInPurchase->first()->pivot->qty + 1)]);
+            $productInPurchase->updateExistingPivot(
+                $request->product_id,
+                ['qty' => ($productInPurchase->first()->pivot->qty + 1)]
+            );
         } else {
             $purchase->products()->attach($request->product_id, [
                 'purchase_price' => $request->purchase_price,

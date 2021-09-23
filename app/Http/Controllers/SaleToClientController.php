@@ -12,6 +12,7 @@ class SaleToClientController extends Controller
 {
     public function store(Request $request)
     {
+        $this->authorize('create',new Sale);
         $fields = $request->validate([
             'phone_number' => 'exists:clients,phone_number|required',
         ]);

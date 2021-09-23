@@ -26,12 +26,19 @@ class WarehouseController extends Controller
 
         return view('warehouses.edit', compact('inventory'));
     }
+    /**
+     * refactorizar la validacion, talvez en un requestValidator 
+     */
     public function update(Inventory $inventory)
     {
         $this->authorize('update',new Inventory);
         $fields = request()->validate([
             'name' => ['required', Rule::unique('inventories')->ignore($inventory->id)],
             'address' => ['required']
+        ],[
+            'name.required' => 'El nombre es requerido',
+            'name.unique' => 'El nombre ya existe en la base de datos',
+            'address.required' => 'La dirección es requerida'
         ]);
 
         return response()->json([

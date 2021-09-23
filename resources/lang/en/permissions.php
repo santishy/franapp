@@ -15,15 +15,15 @@ return [
 
     // permissions to purchases
     'create purchase'  => 'Crear compra',
-    'view purchase' => 'Ver compra',
-    'view purchases' => 'Ver compras',
+    'view purchase' => 'Ver compra (La compra actual)',
+    'view purchases' => 'Ver compras (reportes)',
     'delete purchase' => 'Borrar compra',
     'edit purchase' => 'Editar compra',
 
     // permissions to sales
     'create sale' => 'Crear venta',
-    'view sale' => 'Ver venta',
-    'view sales' => 'Ver ventas',
+    'view sale' => 'Ver venta (La venta actual)',
+    'view sales' => 'Ver ventas (reportes)',
     'delete sale' => 'Borrar venta',
     'edit sale' => 'Editar venta',
 
@@ -57,4 +57,7 @@ return [
     'view role' => 'Ver rol',
     'delete role' => 'Borrar rol',
     'edit role' => 'Editar rol',
+
+    //permissions to ticket
+    'edit ticket' => 'Editar ticket'
 ];

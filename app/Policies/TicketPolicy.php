@@ -4,10 +4,10 @@ namespace App\Policies;
 
 use App\Http\Traits\HasAdministrator;
 use App\Models\User;
-use App\Models\sale;
+use App\Models\ticket;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class SalePolicy
+class TicketPolicy
 {
     use HandlesAuthorization,HasAdministrator;
 
@@ -19,19 +19,19 @@ class SalePolicy
      */
     public function viewAny(User $user)
     {
-        return $user->hasPermissionTo('view sales');
+        //
     }
 
     /**
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\sale  $sale
+     * @param  \App\Models\ticket  $ticket
      * @return mixed
      */
-    public function view(User $user, sale $sale)
+    public function view(User $user, ticket $ticket)
     {
-        return $user->hasPermissionTo('view sale');
+        //
     }
 
     /**
@@ -42,41 +42,41 @@ class SalePolicy
      */
     public function create(User $user)
     {
-        return $user->hasPermissionTo('create sale');
+        //
     }
 
     /**
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\sale  $sale
+     * @param  \App\Models\ticket  $ticket
      * @return mixed
      */
-    public function update(User $user, sale $sale)
+    public function update(User $user, ticket $ticket)
     {
-        return $user->haspermissionTo('edit sale');
+        return $user->hasPermissionTo('edit ticket');
     }
 
     /**
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\sale  $sale
+     * @param  \App\Models\ticket  $ticket
      * @return mixed
      */
-    public function delete(User $user, sale $sale)
+    public function delete(User $user, ticket $ticket)
     {
-        return $user->haspermissionTo('delete sale');
+        //
     }
 
     /**
      * Determine whether the user can restore the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\sale  $sale
+     * @param  \App\Models\ticket  $ticket
      * @return mixed
      */
-    public function restore(User $user, sale $sale)
+    public function restore(User $user, ticket $ticket)
     {
         //
     }
@@ -85,10 +85,10 @@ class SalePolicy
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\sale  $sale
+     * @param  \App\Models\ticket  $ticket
      * @return mixed
      */
-    public function forceDelete(User $user, sale $sale)
+    public function forceDelete(User $user, ticket $ticket)
     {
         //
     }

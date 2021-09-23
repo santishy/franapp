@@ -22,7 +22,7 @@ class SaleController extends Controller
 
     public function index()
     {
-        $this->authorize('viewAny');
+        $this->authorize('viewAny',new Sale);
 
         if (request()->wantsJson()) {
             return new ReportResponse(Sale::query());
@@ -34,7 +34,7 @@ class SaleController extends Controller
     }
     public function create()
     {
-        $this->authorize('create');
+        $this->authorize('create',new Sale);
 
         $sale = Sale::with('client')->where('id', session('sale_id'))->first();
         $inventories = Inventory::all();
@@ -50,7 +50,7 @@ class SaleController extends Controller
 
     public function store(Request $request, Sale $sale)
     {
-        $this->authorize('create');
+        $this->authorize('create',$sale);
 
         $fields = $request->validate([
             'status' => ['required', 'regex:/completed|cancelled|pending/'],
@@ -80,7 +80,7 @@ class SaleController extends Controller
 
     public function destroy(Sale $sale)
     {
-        $this->authorize('delete');
+        $this->authorize('delete',$sale);
 
         if ($sale->status != 'completed') {
             $saleDeleted = $sale->delete();

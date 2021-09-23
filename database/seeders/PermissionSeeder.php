@@ -71,5 +71,8 @@ class PermissionSeeder extends Seeder
         Permission::create(['name' => 'view role']);
         Permission::create(['name' => 'delete role']);
         Permission::create(['name' => 'edit role']);
+
+        //permissions to ticket
+        Permission::create(['name' => 'edit ticket']);
     }
 }

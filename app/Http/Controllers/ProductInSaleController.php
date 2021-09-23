@@ -20,7 +20,7 @@ class ProductInSaleController extends Controller
 
     public function store(Request $request, Product $product)
     {
-        $this->authorize('create');
+        $this->authorize('create', new Sale);
         $request->validate(
             [
                 'inventory_id' => ['required'],
@@ -37,6 +37,7 @@ class ProductInSaleController extends Controller
 
     public function update(Request $request, Product $product)
     {
+        $this->authorize('update',  $sale = Sale::find(session()->get('sale_id')));
         $fields = $request->validate([
             'qty' => 'numeric|required|min:1',
             'sale_price' => 'numeric|required|min:1',
@@ -45,7 +46,7 @@ class ProductInSaleController extends Controller
 
         Inventory::find($request->inventory_id)->hasStock($product, $request->qty);
 
-        $sale = Sale::find(session()->get('sale_id'));
+
 
         $sale->products()
             ->updateExistingPivot(
@@ -60,13 +61,20 @@ class ProductInSaleController extends Controller
 
     public function destroy(Product $product)
     {
+        /**
+         * pongo el update ya que en si es actualizar la compra aun que borre elementos de la tabla pivot
+         */
+        $this->authorize('update',new Sale);
         
         if (!session()->exists('sale_id'))
             return new SessionInactive('venta');
 
 
         return response()->json([
-            'data' =>  $this->deleteTransactionProduct(Sale::find(session()->get('sale_id')), $product->id)
+            'data' =>  $this->deleteTransactionProduct(
+                Sale::find(session()->get('sale_id')),
+                $product->id
+            )
         ]);
     }
 }
