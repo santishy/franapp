@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UpdateStoreWarehouse;
 use App\Http\Resources\InventoryResource;
 use App\Http\Resources\ProductResource;
 use App\Models\Inventory;
@@ -27,18 +28,10 @@ class InventoryController extends Controller
         return view('inventories.create');
     }
 
-    public function store(Request $request)
+    public function store(UpdateStoreWarehouse $request)
     {
         $this->authorize('create', new Inventory);
-        $fields = $request->validate([
-            'name' => ['required', 'unique:inventories,name'],
-            'address' => ['required']
-        ],[
-            'name.required' => 'El nombre es requerido',
-            'name.unique' => 'El nombre ya existe en la base de datos',
-            'address.required' => 'La dirección es requerida'
-        ]);
-        return Inventory::create($fields);
+        return Inventory::create($request->only('name','address'));
     }
 
     public function edit(Inventory $inventory, Request $request)

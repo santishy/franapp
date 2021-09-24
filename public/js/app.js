@@ -7332,7 +7332,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         index: this.index,
         message: 'Si eliminas el almacén, no se podran revertir los cambios.',
         title: '¿Estas seguro de eliminar el almacén?',
-        action: 'deleteWarehouse'
+        action: 'deleteWarehouse',
+        actionEnabled: true
       });
       EventBus.$emit("open-modal", true);
     }
@@ -7422,7 +7423,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         index: this.index,
         message: "Si vacias las existencias de este almacén, no se podran revertir los cambios.",
         title: "¿Estas seguro de eliminar las existencias de este almacén?",
-        action: "emptyWarehouse"
+        action: "emptyWarehouse",
+        actionEnabled: true
       });
       EventBus.$emit("open-modal", true);
     }
@@ -7528,6 +7530,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 
@@ -7572,7 +7575,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         } else {
           _this.setModalDataConfirm({
             title: "No se pudo eliminar",
-            message: res.data.message
+            message: res.data.message,
+            actionEnabled: false
           });
 
           EventBus.$emit("open-modal", true);
@@ -7664,7 +7668,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".modal[data-v-53ab54d2] {\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n}\r\n", ""]);
+exports.push([module.i, ".modal[data-v-53ab54d2] {\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n}\n", ""]);
 
 // exports
 
@@ -32840,13 +32844,15 @@ var render = function() {
             "template",
             { slot: "button" },
             [
-              _c("agree", {
-                attrs: { method: _vm.modalDataConfirm.action },
-                on: {
-                  deleteWarehouse: _vm.deleteWarehouse,
-                  emptyWarehouse: _vm.emptyWarehouse
-                }
-              })
+              _vm.modalDataConfirm.actionEnabled
+                ? _c("agree", {
+                    attrs: { method: _vm.modalDataConfirm.action },
+                    on: {
+                      deleteWarehouse: _vm.deleteWarehouse,
+                      emptyWarehouse: _vm.emptyWarehouse
+                    }
+                  })
+                : _vm._e()
             ],
             1
           )
@@ -52605,8 +52611,8 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\htdocs\franapp\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\franapp\resources\css\app.css */"./resources/css/app.css");
+__webpack_require__(/*! /home/vagrant/code/franapp/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/vagrant/code/franapp/resources/css/app.css */"./resources/css/app.css");
 
 
 /***/ })

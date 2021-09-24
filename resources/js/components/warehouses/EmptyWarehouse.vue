@@ -31,7 +31,8 @@ export default {
                     "Si vacias las existencias de este almacén, no se podran revertir los cambios.",
                 title:
                     "¿Estas seguro de eliminar las existencias de este almacén?",
-                action: "emptyWarehouse"
+                action: "emptyWarehouse",
+                actionEnabled:true,
             });
             EventBus.$emit("open-modal", true);
         }

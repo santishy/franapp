@@ -27,7 +27,8 @@ export default {
                 index: this.index,
                 message: 'Si eliminas el almacén, no se podran revertir los cambios.',
                 title: '¿Estas seguro de eliminar el almacén?',
-                action: 'deleteWarehouse'
+                action: 'deleteWarehouse',
+                actionEnabled:true,
             });
             EventBus.$emit("open-modal", true);
         }

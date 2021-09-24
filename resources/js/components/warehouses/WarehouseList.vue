@@ -38,6 +38,7 @@
             ></message>
             <template slot="button">
                 <agree
+                    v-if="modalDataConfirm.actionEnabled"
                     :method="modalDataConfirm.action"
                     @deleteWarehouse="deleteWarehouse"
                     @emptyWarehouse="emptyWarehouse"
@@ -95,7 +96,8 @@ export default {
                         } else {
                             this.setModalDataConfirm({
                                 title: "No se pudo eliminar",
-                                message: res.data.message
+                                message: res.data.message,
+                                actionEnabled:false
                             });
                             EventBus.$emit("open-modal", true);
                         }

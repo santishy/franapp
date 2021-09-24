@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UpdateStoreWarehouse;
 use App\Models\Inventory;
 use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
@@ -20,34 +21,26 @@ class WarehouseController extends Controller
     }
 
     public function edit(Inventory $inventory)
-    {   
+    {
         //Lo deje como view, ya que tiene que ver UN almacen en especifico
-        $this->authorize('view',new Inventory);
+        $this->authorize('view', new Inventory);
 
         return view('warehouses.edit', compact('inventory'));
     }
     /**
      * refactorizar la validacion, talvez en un requestValidator 
      */
-    public function update(Inventory $inventory)
+    public function update(Inventory $inventory, UpdateStoreWarehouse $request)
     {
-        $this->authorize('update',new Inventory);
-        $fields = request()->validate([
-            'name' => ['required', Rule::unique('inventories')->ignore($inventory->id)],
-            'address' => ['required']
-        ],[
-            'name.required' => 'El nombre es requerido',
-            'name.unique' => 'El nombre ya existe en la base de datos',
-            'address.required' => 'La dirección es requerida'
-        ]);
+        $this->authorize('update', new Inventory);
 
         return response()->json([
-            'updated' => $inventory->update($fields)
+            'updated' => $inventory->update($request->only('name', 'address'))
         ]);
     }
     public function destroy(Inventory $inventory)
     {
-        $this->authorize('delete',new Inventory);
+        $this->authorize('delete', new Inventory);
         if ($inventory->hasStock()) {
             return response()->json([
                 'message' => 'El inventario tiene existencias, no se puede eliminar, se tiene que vaciar el almacén previo a eliminarlo.',
