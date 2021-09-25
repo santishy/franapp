@@ -51,12 +51,11 @@
                     </div>
                 </div>
             </div>
-            <product-in-purchase
-                v-for="(product, index) in localProductsInPurchase"
-                :product="product"
-                :index="index"
-                :key="product.id"
-            />
+            <product-list 
+                :products="localProductsInPurchase"
+                class="col-span-5"
+            >
+            </product-list>
         </div>
     </nav-component>
 </template>
@@ -64,11 +63,14 @@
 import CompletePurchaseButton from "./CompletePurchaseButton.vue";
 import CancelPurchaseButton from "./CancelPurchaseButton";
 import NavComponent from "../NavComponent.vue";
+import ProductList from "./ProductList.vue";
+
 export default {
     components: {
         "complete-purchase-btn": CompletePurchaseButton,
         "cancel-purchase-btn": CancelPurchaseButton,
-        NavComponent
+        NavComponent,
+        ProductList
     },
     props: {
         productsInPurchase: {

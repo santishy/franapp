@@ -35,3 +35,10 @@ html,body{
       transform: scale(1);
     }
   }
+
+  .odd-table:nth-child(odd) {
+      border-bottom: 1px;
+      border-style: solid;
+     --tw-border-opacity: 1;
+      border-color: rgba(56, 178, 172, var(--tw-border-opacity));;
+  }
