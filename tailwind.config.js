@@ -3,7 +3,9 @@ module.exports = {
     // removeDeprecatedGapUtilities: true,
     // purgeLayersByDefault: true,
   },
-  purge: [],
+  purge: [
+    ".resources/js/components/**/*.vue", 
+  ],
   theme: {
     extend: {},
     zIndex: {
