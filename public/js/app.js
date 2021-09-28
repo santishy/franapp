@@ -5853,6 +5853,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 
@@ -30788,11 +30790,13 @@ var render = function() {
   return _c(
     "button",
     {
-      staticClass:
-        "rounded px-4 py-2 bg-red-600 hover:bg-red-400 text-white font-bold",
+      staticClass: "rounded px-4 py-1 bg-red-600 hover:bg-red-400 text-white",
       on: { click: _vm.cancelPurchase }
     },
-    [_c("i", { staticClass: "far fa-times-circle" })]
+    [
+      _c("i", { staticClass: "far fa-times-circle" }),
+      _vm._v(" Cancelar compra\n")
+    ]
   )
 }
 var staticRenderFns = []
@@ -30821,10 +30825,13 @@ var render = function() {
     "button",
     {
       staticClass:
-        "rounded px-4 py-2 bg-teal-600 hover:bg-teal-400 text-white font-bold mr-4",
+        "rounded px-4 py-1 bg-teal-600 hover:bg-teal-400 text-white mr-4",
       on: { click: _vm.completePurchase }
     },
-    [_c("i", { staticClass: "far fa-check-circle" })]
+    [
+      _c("i", { staticClass: "far fa-check-circle" }),
+      _vm._v(" Completar compra\n")
+    ]
   )
 }
 var staticRenderFns = []
@@ -31039,108 +31046,110 @@ var render = function() {
   return _c("nav-component", [
     _c(
       "div",
-      {
-        staticClass: "grid md:grid-cols-5 md:grid-rows-2 gap-4 mt-24 md:mt-32"
-      },
+      { staticClass: "grid md:grid-cols-5  mt-24 md:mt-32 grid-flow-row" },
       [
         _c(
           "div",
           {
             staticClass:
-              "bg-gray-700 text-white shadow-sm border-none rounded-sm p-4"
+              "col-span-5 flex justify-between items-center row-span-1  bg-white px-2 py-2  shadow border-gray-400 border"
           },
           [
-            _c("h3", { staticClass: "text-xl mb-2 text-center" }, [
-              _vm._v("Elige un almacén")
+            _c("div", { staticClass: "text-xl text-gray-800 ml-4" }, [
+              _c("span", { staticClass: "text-2x text-gray-600" }, [
+                _vm._v("Status:")
+              ]),
+              _vm._v(" "),
+              _c(
+                "span",
+                { staticClass: "text-2x text-blue-600 font-semibold" },
+                [_vm._v(_vm._s(_vm.translateStatus))]
+              )
             ]),
             _vm._v(" "),
-            _vm._l(_vm.inventories, function(inventory) {
-              return _c(
-                "label",
-                {
-                  key: inventory.id,
-                  staticClass: "block text-center ",
-                  on: {
-                    click: function($event) {
-                      return _vm.selectedInventory(inventory)
-                    }
+            _c(
+              "div",
+              [
+                _c("complete-purchase-btn", {
+                  attrs: {
+                    purchase: _vm.purchase,
+                    "total-purchase": _vm.localTotalPurchase
                   }
-                },
-                [
-                  _c("span", [_vm._v(_vm._s(inventory.name))]),
-                  _vm._v(" "),
-                  _c("input", {
-                    attrs: { type: "radio", name: "inventory_id" },
-                    domProps: { value: inventory.id }
-                  })
-                ]
-              )
-            })
-          ],
-          2
+                }),
+                _vm._v(" "),
+                _c("cancel-purchase-btn", { attrs: { id: _vm.purchase.id } })
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "text-xl text-gray-800 mr-4" }, [
+              _c("span", { staticClass: "text-2xl" }, [
+                _vm._v("Total Compra:")
+              ]),
+              _vm._v(" "),
+              _c("span", { staticClass: "text-2xl font-semibold" }, [
+                _vm._v(
+                  "$" +
+                    _vm._s(
+                      new Intl.NumberFormat("es-MX").format(
+                        _vm.localTotalPurchase
+                      )
+                    )
+                )
+              ])
+            ])
+          ]
         ),
         _vm._v(" "),
         _c(
           "div",
           {
             staticClass:
-              "col-span-2 row-span-1  bg-white rounded px-2 py-2  shadow border-gray-400 border"
+              "bg-teal-100 border-b border-t border-blue-400 px-4 py-2 text-blue-600  text-center col-span-5"
           },
           [
             _c(
-              "h3",
-              {
-                staticClass: "text-2xl font-semibold text-center py-2 px-2 mb-2"
-              },
-              [_vm._v("\n                Compra Actual\n            ")]
-            ),
-            _vm._v(" "),
-            _c("div", { staticClass: "grid md:grid-cols-1 text-center" }, [
-              _c("p", { staticClass: "text-xl text-gray-800 mb-2" }, [
-                _c("span", { staticClass: "text-2xl" }, [
-                  _vm._v("Total Compra:")
-                ]),
-                _vm._v(" "),
-                _c("span", { staticClass: "text-2xl font-semibold" }, [
-                  _vm._v(
-                    "$" +
-                      _vm._s(
-                        new Intl.NumberFormat("es-MX").format(
-                          _vm.localTotalPurchase
-                        )
-                      )
-                  )
-                ])
-              ]),
-              _vm._v(" "),
-              _c("p", { staticClass: "text-xl text-gray-800 mb-4" }, [
-                _c("span", { staticClass: "text-2x text-gray-600" }, [
-                  _vm._v("Status:")
-                ]),
-                _vm._v(" "),
+              "div",
+              { staticClass: "grid md:grid-cols-5 grid-cols-1 " },
+              [
                 _c(
-                  "span",
-                  { staticClass: "text-2x text-blue-600 font-semibold" },
-                  [_vm._v(_vm._s(_vm.translateStatus))]
-                )
-              ]),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "w-full" },
-                [
-                  _c("complete-purchase-btn", {
-                    attrs: {
-                      purchase: _vm.purchase,
-                      "total-purchase": _vm.localTotalPurchase
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("cancel-purchase-btn", { attrs: { id: _vm.purchase.id } })
-                ],
-                1
-              )
-            ])
+                  "h3",
+                  { staticClass: "text-xl mb-2 text-center col-span-5" },
+                  [
+                    _vm._v(
+                      "\n                    Elige un almacén\n                "
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _vm._l(_vm.inventories, function(inventory) {
+                  return _c(
+                    "label",
+                    {
+                      key: inventory.id,
+                      staticClass: "inline-flex items-center ",
+                      on: {
+                        click: function($event) {
+                          return _vm.selectedInventory(inventory)
+                        }
+                      }
+                    },
+                    [
+                      _c("span", { staticClass: "mr-2" }, [
+                        _vm._v(_vm._s(inventory.name))
+                      ]),
+                      _vm._v(" "),
+                      _c("input", {
+                        staticClass: "form-radio",
+                        attrs: { type: "radio", name: "inventory_id" },
+                        domProps: { value: inventory.id }
+                      })
+                    ]
+                  )
+                })
+              ],
+              2
+            )
           ]
         ),
         _vm._v(" "),

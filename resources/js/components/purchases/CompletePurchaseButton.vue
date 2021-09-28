@@ -1,9 +1,9 @@
 <template>
     <button
-        class="rounded px-4 py-2 bg-teal-600 hover:bg-teal-400 text-white font-bold mr-4"
+        class="rounded px-4 py-1 bg-teal-600 hover:bg-teal-400 text-white mr-4"
         @click="completePurchase"
     >
-        <i class="far fa-check-circle"></i>
+        <i class="far fa-check-circle"></i> Completar compra
     </button>
 </template>
 <script>
