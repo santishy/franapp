@@ -11,7 +11,7 @@ class Product extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['sku', 'distributor_price', 'wholesale_price', 'retail_price', 'description'];
+    protected $fillable = ['sku', 'distributor_price', 'wholesale_price', 'retail_price', 'description','category_id'];
 
     public function scopeSearch(Builder $query, $values)
     {
