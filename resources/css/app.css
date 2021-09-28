@@ -37,8 +37,6 @@ html,body{
   }
 
   .odd-table:nth-child(odd) {
-      border-bottom: 1px;
-      border-style: solid;
-     --tw-border-opacity: 1;
-      border-color: rgba(56, 178, 172, var(--tw-border-opacity));;
+    --tw-bg-opacity: 1;
+    background-color: rgba(247, 250, 252, var(--tw-bg-opacity));
   }

@@ -31046,13 +31046,16 @@ var render = function() {
   return _c("nav-component", [
     _c(
       "div",
-      { staticClass: "grid md:grid-cols-5  mt-24 md:mt-32 grid-flow-row" },
+      {
+        staticClass:
+          "grid md:grid-cols-5  mt-24 md:mt-32 grid-flow-row mx-auto w-11/12"
+      },
       [
         _c(
           "div",
           {
             staticClass:
-              "col-span-5 flex justify-between items-center row-span-1  bg-white px-2 py-2  shadow border-gray-400 border"
+              "col-span-5 flex justify-between items-center row-span-1  bg-white px-2 py-2"
           },
           [
             _c("div", { staticClass: "text-xl text-gray-800 ml-4" }, [
@@ -31105,7 +31108,7 @@ var render = function() {
           "div",
           {
             staticClass:
-              "bg-teal-100 border-b border-t border-blue-400 px-4 py-2 text-blue-600  text-center col-span-5"
+              "bg-indigo-100 border-b border-t border-blue-400 px-4 py-2 text-blue-600  text-center col-span-5"
           },
           [
             _c(
@@ -31154,7 +31157,7 @@ var render = function() {
         ),
         _vm._v(" "),
         _c("product-list", {
-          staticClass: "col-span-5",
+          staticClass: "col-span-5 mt-4",
           attrs: { products: _vm.localProductsInPurchase }
         })
       ],

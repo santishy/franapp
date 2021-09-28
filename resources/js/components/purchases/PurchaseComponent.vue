@@ -1,8 +1,8 @@
 <template>
     <nav-component>
-        <div class="grid md:grid-cols-5  mt-24 md:mt-32 grid-flow-row">
+        <div class="grid md:grid-cols-5  mt-24 md:mt-32 grid-flow-row mx-auto w-11/12">
             <div
-                class="col-span-5 flex justify-between items-center row-span-1  bg-white px-2 py-2  shadow border-gray-400 border"
+                class="col-span-5 flex justify-between items-center row-span-1  bg-white px-2 py-2"
             >
                 <div class="text-xl text-gray-800 ml-4">
                     <span class="text-2x text-gray-600">Status:</span>
@@ -30,7 +30,7 @@
                 </div>
             </div>
             <div
-                class="bg-teal-100 border-b border-t border-blue-400 px-4 py-2 text-blue-600  text-center col-span-5"
+                class="bg-indigo-100 border-b border-t border-blue-400 px-4 py-2 text-blue-600  text-center col-span-5"
             >
                 <div class="grid md:grid-cols-5 grid-cols-1 ">
                     <h3 class="text-xl mb-2 text-center col-span-5">
@@ -55,7 +55,7 @@
 
             <product-list
                 :products="localProductsInPurchase"
-                class="col-span-5"
+                class="col-span-5 mt-4"
             >
             </product-list>
         </div>
