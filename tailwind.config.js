@@ -6,7 +6,8 @@ module.exports = {
   purge: [ 
     './resources/js/components/**/*.vue',
     './resources/js/components/*.vue',
-    './resources/js/*.js'
+    './resources/js/*.js',
+    './resources/views/**/*.php'
   ],
   theme: {
     extend: {},
