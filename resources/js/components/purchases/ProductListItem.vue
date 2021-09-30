@@ -1,33 +1,36 @@
 <template>
-    <tr class="bg-white odd-table">
-        <td class="py-2 px-2 ">
-            {{ localProduct.sku }}
+    <tr class="text-gray-700">
+        <td class="px-4 py-3 border">
+            <div class="font-semibold text-gray-800">
+                {{ localProduct.sku }}
+            </div>
+            
         </td>
-        <td class="py-2 px-2 ">
+        <td class="px-4 py-3 border ">
             {{ localProduct.category_name }}
         </td>
-        <td class="py-2 px-2 ">
+        <td class="px-4 py-3 border ">
             
             {{ localProduct.description }}
         </td>
-        <td class="py-2 px-2  ">
+        <td class="px-4 py-3 border  ">
             <input
                 type="number"
-                v-model="localProduct.pivot.purchase_price"
+                v-model="localProduct.purchase_price"
                 class="appearance-none bg-transparent border-none w-full text-center bg-gray-300 text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
             />
         </td>
-        <td class="py-2 px-2 ">
+        <td class="px-4 py-3 border ">
             <input
                 type="number"
-                v-model="localProduct.pivot.qty"
+                v-model="localProduct.purchase_quantity"
                 class="appearance-none bg-transparent border-none w-full text-center bg-gray-300 text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
             />
         </td>
-        <td class="py-2 px-2 ">
+        <td class="px-4 py-3 border ">
             {{ getTotal }}
         </td>
-        <td class="py-2 px-2 ">
+        <td class="px-4 py-3 border ">
             <div class="flex flex-wrap">
                 <button
                     @click="update"
@@ -119,7 +122,7 @@ export default {
                         );
 
                         obj.productInPurchase = {
-                            qty: this.localProduct.pivot.qty,
+                            qty: this.localProduct.purchase_quantity,
                             product_id: this.localProduct.id
                         };
                         this.setProductsInPurchase(obj);
@@ -155,8 +158,8 @@ export default {
         ...mapGetters(["hasProductsInPurchase", "productExistsInPurchase"]),
         getTotal() {
             return (
-                this.localProduct.pivot.purchase_price *
-                this.localProduct.pivot.qty
+                this.localProduct.purchase_price *
+                this.localProduct.purchase_quantity
             );
         }
     }

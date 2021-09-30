@@ -1,6 +1,8 @@
 <template>
     <nav-component>
-        <div class="grid md:grid-cols-5  mt-24 md:mt-32 grid-flow-row mx-auto w-11/12">
+        <div
+            class="grid md:grid-cols-5  mt-24 md:mt-32 grid-flow-row mx-auto w-11/12"
+        >
             <div
                 class="col-span-5 flex justify-between items-center row-span-1  bg-white px-2 py-2"
             >
@@ -30,7 +32,8 @@
                 </div>
             </div>
             <div
-                class="bg-indigo-100 border-b border-t border-blue-400 px-4 py-2 text-blue-600  text-center col-span-5"
+                v-if="isAdmin && !user.inventory_id"
+                class="bg-white border-b border-t border-blue-400 px-4 py-2 text-gray-700  text-center col-span-5"
             >
                 <div class="grid md:grid-cols-5 grid-cols-1 ">
                     <h3 class="text-xl mb-2 text-center col-span-5">
@@ -38,7 +41,7 @@
                     </h3>
                     <label
                         v-for="inventory in inventories"
-                        class="inline-flex items-center "
+                        class="flex mr-2 mb-2 items-center rounded-md border border-teal-500 py-2 justify-center"
                         :key="inventory.id"
                         @click="selectedInventory(inventory)"
                     >

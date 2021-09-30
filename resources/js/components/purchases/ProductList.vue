@@ -1,18 +1,18 @@
 <template>
     <div class="mx-auto">
-        <table class="table-auto text-center">
+        <table class="w-full shadow-sm">
             <thead>
-                <tr class="bg-danger">
-                    <th class="px-4 py-2 bg-gray-400">SKU</th>
-                    <th class="px-4 py-2 bg-gray-400">Categoría</th>
-                    <th class="px-4 py-2 bg-gray-400">Descripción</th>
-                    <th class="px-4 py-2 bg-gray-400">Precio</th>
-                    <th class="px-4 py-2 bg-gray-400">Cantidad</th>
-                    <th class="px-4 py-2 bg-gray-400">Total</th>
-                    <th  class="px-4 py-2 bg-gray-400">Acciones</th>
+                <tr class="text-md font-semibold tracking-wide text-left text-gray-900 bg-gray-100 uppercase border-b border-gray-600">
+                    <th class="px-4 py-3">SKU</th>
+                    <th class="px-4 py-3">Categoría</th>
+                    <th class="px-4 py-3">Descripción</th>
+                    <th class="px-4 py-3">Precio</th>
+                    <th class="px-4 py-3">Cantidad</th>
+                    <th class="px-4 py-3">Total</th>
+                    <th  class="px-4 py-3">Acciones</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="bg-white">
                 <product-list-item
                     v-for="(product, index) in products"
                     :key="product.id"

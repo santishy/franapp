@@ -33,7 +33,7 @@ export default {
                     status: "completed",
                     total: this.totalPurchase,
                     _method: "put",
-                    inventory_id: this.inventory_id
+                    inventory_id: this.inventory_id ? this.inventory_id : this.user.inventory_id,
                 })
                 .then(res => {
                     EventBus.$emit("purchase-completed", res.data.data);

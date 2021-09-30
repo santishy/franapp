@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Events\TransactionComplete;
 use App\Http\Resources\PurchaseResource;
+use App\Http\Resources\ProductResource;
 use App\Http\Resources\TransactionResource;
 use App\Http\Responses\ReportResponse;
 use App\Http\Traits\HasTransaction;
@@ -64,7 +65,7 @@ class PurchaseController extends Controller
     public function show(Purchase $purchase)
     {
         $this->authorize('view', $purchase);
-        $productsInPurchase = $purchase->products()->get();
+        $productsInPurchase = ProductResource::collection($purchase->products()->with('category')->get())->resolve();
         $totalPurchase = $purchase->totalPurchase();
         $inventories = Inventory::all();
         return view('purchases.show')
