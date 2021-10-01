@@ -1979,6 +1979,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -26893,6 +26907,31 @@ var render = function() {
           _vm._v(
             "\n            Bienvenido " + _vm._s(_vm.user.name) + "\n        "
           )
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "svg",
+        {
+          staticClass: "svg-inline--fa fa-arrow-down fa-w-14",
+          attrs: {
+            "aria-hidden": "true",
+            focusable: "false",
+            "data-prefix": "fas",
+            "data-icon": "arrow-down",
+            role: "img",
+            xmlns: "http://www.w3.org/2000/svg",
+            viewBox: "0 0 448 512"
+          }
+        },
+        [
+          _c("path", {
+            attrs: {
+              fill: "currentColor",
+              d:
+                "M413.1 222.5l22.2 22.2c9.4 9.4 9.4 24.6 0 33.9L241 473c-9.4 9.4-24.6 9.4-33.9 0L12.7 278.6c-9.4-9.4-9.4-24.6 0-33.9l22.2-22.2c9.5-9.5 25-9.3 34.3.4L184 343.4V56c0-13.3 10.7-24 24-24h32c13.3 0 24 10.7 24 24v287.4l114.8-120.5c9.3-9.8 24.8-10 34.3-.4z"
+            }
+          })
         ]
       )
     ])
