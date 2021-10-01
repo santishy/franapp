@@ -29,6 +29,7 @@
             >
                 <div class="md:hidden inline-block mx-2">
                     <i :class="getIcon(item.name)"></i>
+                    
                 </div>
 
                 {{ item.name }}

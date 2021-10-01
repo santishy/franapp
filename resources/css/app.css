@@ -40,3 +40,10 @@ html,body{
     --tw-bg-opacity: 1;
     background-color: rgba(247, 250, 252, var(--tw-bg-opacity));
   }
+
+  .fruit-list-move {
+    transition: transform 1s;
+  }
+  .fruit-table-move {
+    transition: transform 1s;
+  }

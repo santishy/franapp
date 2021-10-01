@@ -25,6 +25,7 @@
                 class="w-full block flex-grow lg:flex lg:items-center lg:w-auto hidden"
             >
                 <div class="text-sm lg:flex-grow">
+
                     <dropdown-component
                         name="Inventario"
                         :items="InventoryMenu"
