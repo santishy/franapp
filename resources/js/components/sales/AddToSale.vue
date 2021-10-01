@@ -5,7 +5,7 @@
             <button
                 class=" border-green-500 border-b-2 border-t-2 hover:border-green-700 shadow-xs hover:text-green-700 w-full text-green-500 font-bold py-1 rounded text-2xl"
             >
-                <i class="fas fa-shopping-cart"></i>
+                <shopping-cart-icon></shopping-cart-icon>
             </button>
         </form>
     </div>
@@ -14,7 +14,9 @@
 import { mapState } from "vuex";
 import Errors from "../../mixins/Errors";
 import Transaction from "../../mixins/Transaction.js";
+import ShoppingCartIcon from "../icons/ShoppingCartIcon.vue"
 export default {
+    components:{ShoppingCartIcon},
     props: {
         product: {
             type: Object

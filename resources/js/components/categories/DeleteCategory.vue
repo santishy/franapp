@@ -4,7 +4,7 @@
             type="submit"
             class="transition-all rounded border-2 border-red-800 px-2 text-red-700 hover:bg-red-800 hover:text-white"
         >
-            <i class="far fa-trash-alt"></i>
+            <trash-icon></trash-icon>
         </button>
         <information-component :id="category.id">
             <template v-slot:title>Categorías</template>
@@ -17,9 +17,11 @@
 
 <script>
 import InformationComponent from "../modals/InformationComponent.vue";
+import TrashIcon from "../icons/TrashIcon.vue"
 export default {
     components: {
-        InformationComponent
+        InformationComponent,
+        TrashIcon,
     },
     props: {
         category: {

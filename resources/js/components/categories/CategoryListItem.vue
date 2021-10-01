@@ -5,7 +5,7 @@
             <a
                 :href="`/categories/${category.id}/edit`"
                 class="transition-all rounded border-2 border-blue-800 px-2 text-blue-700 hover:bg-blue-800 hover:text-white inline-block"
-                ><i class="far fa-edit"></i
+                ><edit-icon></edit-icon
             ></a>
             <delete-category
                 :category="category"
@@ -17,22 +17,23 @@
 </template>
 <script>
 import DeleteCategory from "./DeleteCategory.vue";
+import EditIcon from "../icons/EditIcon.vue";
 export default {
+    
     props: {
         category: {
             type: Object,
             required: true
         },
-        index:{
-            type:Number
+        index: {
+            type: Number
         }
     },
     components: {
-        DeleteCategory
+        DeleteCategory,
+        EditIcon,
     },
-    created() {
-    
-    },
+    created() {},
     data() {
         return {
             fill: false

@@ -9,7 +9,24 @@
             class="relative md:text-base text-lg"
             :class="getZ"
         >
-            {{ name }} <i class="fas fa-chevron-down"></i>
+            {{ name }}
+            <svg
+                aria-hidden="true"
+                focusable="false"
+                data-prefix="fas"
+                data-icon="chevron-down"
+                class="inline-block"
+                role="img"
+                height="1em"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 448 512"
+            >
+                <path
+                    fill="currentColor"
+                    d="M207.029 381.476L12.686 187.132c-9.373-9.373-9.373-24.569 0-33.941l22.667-22.667c9.357-9.357 24.522-9.375 33.901-.04L224 284.505l154.745-154.021c9.379-9.335 24.544-9.317 33.901.04l22.667 22.667c9.373 9.373 9.373 24.569 0 33.941L240.971 381.476c-9.373 9.372-24.569 9.372-33.942 0z"
+                ></path>
+            </svg>
         </div>
         <button
             v-if="isOpen"
@@ -27,11 +44,6 @@
                 :href="item.url"
                 class="md:pl-1 text-gray-700 bg-red-400 font-bold block md:text-gray-800 md:mt-0 py-2 md:border-none border-b border-red-500  md:bg-transparent md:p-1 md:hover:text-red-400"
             >
-                <div class="md:hidden inline-block mx-2">
-                    <i :class="getIcon(item.name)"></i>
-                    
-                </div>
-
                 {{ item.name }}
             </a>
         </div>
@@ -71,12 +83,6 @@ export default {
     watch: {
         isOpen() {
             EventBus.$emit("open", this.name);
-        }
-    },
-    methods: {
-        getIcon($key) {
-            if ($key === "Añadir") return "fas fa-plus";
-            else if ($key == "Listar") return "fas fa-list";
         }
     },
     computed: {

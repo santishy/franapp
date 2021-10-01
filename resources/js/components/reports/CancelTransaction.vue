@@ -4,13 +4,15 @@
             type="submit"
             class="transition-all text-xs rounded border-2 border-red-800 px-2 text-red-700 hover:bg-red-800 hover:text-white"
         >
-            <i class="fas fa-ban"></i> Cancelar
+            <ban-icon></ban-icon> Cancelar
         </button>
     </form>
 </template>
 <script>
 import { mapMutations } from "vuex";
+import BanIcon from '../icons/BanIcon.vue'
 export default {
+    components: {BanIcon},
     props: {
         uri: {
             type: String

@@ -23,7 +23,7 @@
                     class="cursor-pointer border-blue-500 font-semibold shadow-xs border-b-2 border-t-2 text-blue-500 hover:text-blue-700 py-2  hover:border-blue-700 rounded"
                     v-can="'edit product'"
                 >
-                    <i class="fas fa-edit"></i>
+                    <edit-icon></edit-icon>
                 </a>
                 <remove-product :product="product" :index="index" />
                 <add-to-sale :product="product" :index="index"></add-to-sale>
@@ -72,6 +72,7 @@
 import RemoveProductComponent from "./RemoveProductComponent.vue";
 import AddToSale from "../sales/AddToSale.vue";
 import AddToPurchase from "../purchases/AddToPurchase.vue";
+import EditIcon from "../icons/EditIcon.vue";
 import { mapState } from "vuex";
 export default {
     props: {
@@ -92,7 +93,8 @@ export default {
     components: {
         "remove-product": RemoveProductComponent,
         "add-to-purchase": AddToPurchase,
-        "add-to-sale": AddToSale
+        "add-to-sale": AddToSale,
+        EditIcon,
     },
     mounted() {
         console.log(this.selected);

@@ -11,20 +11,23 @@
                 v-can="'edit client'"
                 class="bg-blue-500 inline-block cursor-pointer hover:bg-blue-400 text-white font-bold py-2 px-4 hover:border-blue-500 rounded"
             >
-                <i class="far fa-edit"></i>
+                <edit-icon></edit-icon>
             </a>
             <button
                 @click="deleteClient"
                 v-can="'delete client'"
                 class="bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4  hover:border-red-500 rounded"
             >
-                <i class="far fa-trash-alt"></i>
+                <trash-icon></trash-icon>
             </button>
         </td>
     </tr>
 </template>
 <script>
+import TrashIcon from "../icons/TrashIcon.vue";
+import EditIcon from "../icons/EditIcon.vue";
 export default {
+    components: {TrashIcon,EditIcon},
     props: {
         client: {
             type: Object,

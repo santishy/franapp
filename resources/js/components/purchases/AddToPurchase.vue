@@ -12,13 +12,15 @@
                     qtyPurchase(productExistsInPurchase(product_id))
                 }}</span>
             </div>
-            <i v-else class="fas fa-dolly-flatbed"></i>
+            <purchase-icon></purchase-icon>
         </button>
     </form>
 </template>
 <script>
 import { mapGetters, mapMutations } from "vuex";
+import PurchaseIcon from '../icons/PurchaseIcon.vue';
 export default {
+    components:{PurchaseIcon},
     props: {
         product_id: {
             type: Number

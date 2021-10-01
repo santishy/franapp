@@ -4,15 +4,17 @@
             type="submit"
             class="text-xs transition-all rounded border-2 border-orange-800 text-orange-700 p-1 hover:bg-orange-800 hover:text-white"
         >
-            <i class="fas fa-warehouse"></i>
+            <warehouse-icon></warehouse-icon>
             Vaciar almacén
         </button>
     </form>
 </template>
 
 <script>
-import {mapMutations} from 'vuex';
+import { mapMutations } from "vuex";
+import WarehouseIcon from "../icons/WarehouseIcon.vue";
 export default {
+    components:{WarehouseIcon},
     props: {
         warehouse: {
             type: Object
@@ -22,7 +24,7 @@ export default {
         }
     },
     methods: {
-        ...mapMutations(['setModalDataConfirm']),
+        ...mapMutations(["setModalDataConfirm"]),
         submit() {
             this.setModalDataConfirm({
                 inventory: this.warehouse,
@@ -32,7 +34,7 @@ export default {
                 title:
                     "¿Estas seguro de eliminar las existencias de este almacén?",
                 action: "emptyWarehouse",
-                actionEnabled:true,
+                actionEnabled: true
             });
             EventBus.$emit("open-modal", true);
         }
