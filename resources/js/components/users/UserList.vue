@@ -19,13 +19,13 @@
                             {{ roles(user.roles) }}
                         </td>
                         <td class="border px-4 py-2 flex flex-wrap">
-                            <a class="mr-2" :href="`/users/${user.id}/edit`">
-                                <i class="fas fa-user-edit"></i>
+                            <a class="mr-2 block" :href="`/users/${user.id}/edit`">
+                                <user-edit-icon></user-edit-icon>
                             </a>
                             <form action="/impersonations" method="post">
                                 <input type="hidden" name="user_id" :value="`${user.id}`">
                                 <input type="hidden" name="_token" :value="csrf">
-                                <button><i class="fas fa-user-ninja"></i></button>
+                                <button><ninja-icon></ninja-icon></button>
                             </form>
                         </td>
                     </tr>
@@ -36,8 +36,10 @@
 </template>
 <script>
 import NavComponent from "../NavComponent.vue";
+import UserEditIcon from "../icons/UserEditIcon.vue"
+import NinjaIcon from "../icons/NinjaIcon.vue"
 export default {
-    components: { NavComponent },
+    components: { NavComponent ,NinjaIcon,UserEditIcon},
     data: () => ({
         users: [],
         csrf:document.querySelector('meta[name="csrf-token"]').getAttribute('content'),

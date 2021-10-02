@@ -21,6 +21,5 @@
             @yield('content')
     </div>
     <script src="{{asset('js/app.js')}}"></script>
-    <script src="https://kit.fontawesome.com/d76bff94d9.js" crossorigin="anonymous"></script>
 </body>
 </html>

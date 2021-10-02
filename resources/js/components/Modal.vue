@@ -1,7 +1,7 @@
 <template>
     <div>
         <button @click="toggleModal = !toggleModal">
-            <i class="far fa-window-maximize"></i>
+            <list-icon></list-icon>
         </button>
         <div
             v-if="toggleModal"
@@ -27,8 +27,9 @@
 </template>
 <script>
 import ProductList from './reports/products/ProductList.vue';
-
+import ListIcon from './icons/ListIcon.vue'
 export default {
+
     props:{
         products:{
             type:Array,
@@ -42,7 +43,7 @@ export default {
             toggleModal: false
         };
     },
-    components:{ProductList}
+    components:{ProductList,ListIcon}
 };
 </script>
 <style scoped>
