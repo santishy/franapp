@@ -29735,7 +29735,7 @@ var render = function() {
       "div",
       {
         staticClass:
-          "w-full px-4  flex justify-center bg-transparent md:mt-32 mt-24"
+          "w-full px-4  flex justify-center bg-transparent md:mt-32 mt-24 z-0"
       },
       [
         _c(
@@ -29771,7 +29771,7 @@ var render = function() {
               "div",
               {
                 staticClass:
-                  "flex items-center border-b border-t border-gray-500 py-2 relative"
+                  "flex items-center border-b border-t border-gray-500 py-2 relative z-1"
               },
               [
                 _c("input", {
@@ -29784,7 +29784,7 @@ var render = function() {
                     }
                   ],
                   staticClass:
-                    "appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 pr-2 pl-10 text-center leading-tight focus:outline-none",
+                    "appearance-none static bg-transparent border-none w-full text-gray-700 mr-3 py-1 pr-2 pl-10 text-center leading-tight focus:outline-none",
                   attrs: {
                     name: "name",
                     type: "text",
@@ -29806,7 +29806,7 @@ var render = function() {
                   "label",
                   {
                     staticClass:
-                      "absolute pl-0 bg-gray-200 h-full flex items-center w-32 justify-center text-indigo-800 font-mono",
+                      "absolute z-0 pl-0 bg-gray-200 h-full flex items-center w-32 justify-center text-indigo-800 font-mono",
                     attrs: { for: "" }
                   },
                   [_vm._v("Nombre")]

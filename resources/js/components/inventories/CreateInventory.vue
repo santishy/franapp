@@ -1,7 +1,7 @@
 <template>
     <nav-component>
         <div
-            class="w-full px-4  flex justify-center bg-transparent md:mt-32 mt-24"
+            class="w-full px-4  flex justify-center bg-transparent md:mt-32 mt-24 z-0"
         >
             <form
                 @submit.prevent="submit"
@@ -14,19 +14,19 @@
                     Crear Almacen
                 </div>
                 <div
-                    class="flex items-center border-b border-t border-gray-500 py-2 relative"
+                    class="flex items-center border-b border-t border-gray-500 py-2 relative z-1"
                 >
                     <input
                         v-model="form.name"
                         name="name"
-                        class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 pr-2 pl-10 text-center leading-tight focus:outline-none"
+                        class="appearance-none static bg-transparent border-none w-full text-gray-700 mr-3 py-1 pr-2 pl-10 text-center leading-tight focus:outline-none"
                         type="text"
                         placeholder="Jiquilpan..."
                         aria-label="Full name"
                     />
                     <label
                         for=""
-                        class="absolute pl-0 bg-gray-200 h-full flex items-center w-32 justify-center text-indigo-800 font-mono"
+                        class="absolute z-0 pl-0 bg-gray-200 h-full flex items-center w-32 justify-center text-indigo-800 font-mono"
                         >Nombre</label
                     >
                 </div>
