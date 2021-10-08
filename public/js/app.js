@@ -7929,7 +7929,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".modal[data-v-53ab54d2] {\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n}\n", ""]);
+exports.push([module.i, ".modal[data-v-53ab54d2] {\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n}\r\n", ""]);
 
 // exports
 
@@ -27123,7 +27123,7 @@ var render = function() {
       _vm.isOpen
         ? _c("button", {
             staticClass:
-              "hidden sm:block fixed inset-0 h-full w-full bg-black opacity-50 cursor-default",
+              "hidden sm:block fixed inset-0 h-full w-full bg-black opacity-50 cursor-default md:z-5",
             attrs: { tabindex: "-1" },
             on: {
               click: function($event) {
@@ -27138,7 +27138,7 @@ var render = function() {
             "div",
             {
               staticClass:
-                "bg-transparent w-full md:bg-white static md:w-40 rounded-md md:absolute md:shadow-md md:mt-3 md:p-2 md:text-center"
+                "bg-transparent w-full md:bg-white static md:w-40 rounded-md md:absolute md:z-10 md:shadow-md md:mt-3 md:p-2 md:text-center"
             },
             _vm._l(_vm.items, function(item) {
               return _c(
@@ -27315,7 +27315,7 @@ var render = function() {
         "nav",
         {
           staticClass:
-            "flex items-center justify-between flex-wrap bg-red-500 p-6 fixed w-full top-0"
+            "flex items-center justify-between flex-wrap bg-red-500 p-6 fixed w-full top-0 z-10"
         },
         [
           _vm._m(0),
@@ -27482,7 +27482,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "main",
-        { staticClass: "mt-24 md:mt-32 w-ful" },
+        { staticClass: "mt-24 md:mt-32 w-ful z-0" },
         [_vm._t("default")],
         2
       ),
@@ -29735,7 +29735,7 @@ var render = function() {
       "div",
       {
         staticClass:
-          "w-full px-4  flex justify-center bg-transparent md:mt-32 mt-24 z-0"
+          "w-full px-4  flex justify-center bg-transparent md:mt-32 mt-24 "
       },
       [
         _c(
@@ -29749,7 +29749,8 @@ var render = function() {
                 expression: "'create warehouse'"
               }
             ],
-            staticClass: "w-full max-w-md shadow-xl rounded bg-white px-2 py-2",
+            staticClass:
+              "w-full max-w-md shadow-xl rounded bg-white px-2 py-2 ",
             on: {
               submit: function($event) {
                 $event.preventDefault()
@@ -29771,7 +29772,7 @@ var render = function() {
               "div",
               {
                 staticClass:
-                  "flex items-center border-b border-t border-gray-500 py-2 relative z-1"
+                  "flex items-center border-b border-t border-gray-500 py-2 relative"
               },
               [
                 _c("input", {
@@ -29806,7 +29807,7 @@ var render = function() {
                   "label",
                   {
                     staticClass:
-                      "absolute z-0 pl-0 bg-gray-200 h-full flex items-center w-32 justify-center text-indigo-800 font-mono",
+                      "absolute  pl-0 bg-gray-200 h-full flex items-center w-32 justify-center text-indigo-800 font-mono",
                     attrs: { for: "" }
                   },
                   [_vm._v("Nombre")]
@@ -54093,8 +54094,8 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/vagrant/code/franapp/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/vagrant/code/franapp/resources/css/app.css */"./resources/css/app.css");
+__webpack_require__(/*! C:\xampp\htdocs\franapp\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\franapp\resources\css\app.css */"./resources/css/app.css");
 
 
 /***/ })

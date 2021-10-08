@@ -1,12 +1,12 @@
 <template>
     <nav-component>
         <div
-            class="w-full px-4  flex justify-center bg-transparent md:mt-32 mt-24 z-0"
+            class="w-full px-4  flex justify-center bg-transparent md:mt-32 mt-24 "
         >
             <form
                 @submit.prevent="submit"
                 v-can="'create warehouse'"
-                class="w-full max-w-md shadow-xl rounded bg-white px-2 py-2"
+                class="w-full max-w-md shadow-xl rounded bg-white px-2 py-2 "
             >
                 <div
                     class="flex items-center p-2 text-dark text-center justify-center text-xl font-semibold font-roboto"
@@ -14,7 +14,7 @@
                     Crear Almacen
                 </div>
                 <div
-                    class="flex items-center border-b border-t border-gray-500 py-2 relative z-1"
+                    class="flex items-center border-b border-t border-gray-500 py-2 relative"
                 >
                     <input
                         v-model="form.name"
@@ -26,7 +26,7 @@
                     />
                     <label
                         for=""
-                        class="absolute z-0 pl-0 bg-gray-200 h-full flex items-center w-32 justify-center text-indigo-800 font-mono"
+                        class="absolute  pl-0 bg-gray-200 h-full flex items-center w-32 justify-center text-indigo-800 font-mono"
                         >Nombre</label
                     >
                 </div>

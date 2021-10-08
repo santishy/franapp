@@ -32,11 +32,11 @@
             v-if="isOpen"
             tabindex="-1"
             @click="isOpen = false"
-            class="hidden sm:block fixed inset-0 h-full w-full bg-black opacity-50 cursor-default"
+            class="hidden sm:block fixed inset-0 h-full w-full bg-black opacity-50 cursor-default md:z-5"
         ></button>
         <div
             v-if="isOpen"
-            class="bg-transparent w-full md:bg-white static md:w-40 rounded-md md:absolute md:shadow-md md:mt-3 md:p-2 md:text-center"
+            class="bg-transparent w-full md:bg-white static md:w-40 rounded-md md:absolute md:z-10 md:shadow-md md:mt-3 md:p-2 md:text-center"
         >
             <a
                 v-for="item in items"

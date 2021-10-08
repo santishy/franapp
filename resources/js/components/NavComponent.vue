@@ -1,7 +1,7 @@
 <template>
     <div class=" w-full">
         <nav
-            class="flex items-center justify-between flex-wrap bg-red-500 p-6 fixed w-full top-0"
+            class="flex items-center justify-between flex-wrap bg-red-500 p-6 fixed w-full top-0 z-10"
         >
             <div class="flex items-center flex-shrink-0 text-white mr-6 ">
                 <span class="font-semibold text-xl tracking-tight">ISCO</span>
@@ -89,7 +89,7 @@
             </div>
         </nav>
         <!-- Page Content -->
-        <main class="mt-24 md:mt-32 w-ful">
+        <main class="mt-24 md:mt-32 w-ful z-0">
             <slot />
         </main>
         <notifications group="foo"></notifications>
