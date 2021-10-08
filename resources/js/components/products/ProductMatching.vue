@@ -1,5 +1,5 @@
 <template>
-    <div v-if="isOpen" class="fixed inset-0 flex items-center justify-center ">
+    <div v-if="isOpen" class="fixed inset-0 flex items-center justify-center z-20">
         <div @click="isOpen = false" class="fixed inset-0 z-10"></div>
         <div
             class="w-full md:w-10/12 shadow z-20 h-screen overflow-y-scroll overflow-x-hidden bg-white py-6 px-6"

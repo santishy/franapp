@@ -27244,7 +27244,7 @@ var render = function() {
           "div",
           {
             staticClass:
-              "fixed modal  overflow-x-hidden overflow-y-auto  flex justify-center items-center z-50 shadow-2xl"
+              "fixed modal max-h-full  overflow-x-hidden overflow-y-auto flex justify-center items-center z-50 shadow-2xl"
           },
           [
             _c(
@@ -31143,7 +31143,7 @@ var render = function() {
   return _vm.isOpen
     ? _c(
         "div",
-        { staticClass: "fixed inset-0 flex items-center justify-center " },
+        { staticClass: "fixed inset-0 flex items-center justify-center z-20" },
         [
           _c("div", {
             staticClass: "fixed inset-0 z-10",
