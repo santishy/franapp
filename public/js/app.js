@@ -4270,6 +4270,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _products_SearchComponent_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../products/SearchComponent.vue */ "./resources/js/components/products/SearchComponent.vue");
 /* harmony import */ var _InventorySearchFilter_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./InventorySearchFilter.vue */ "./resources/js/components/inventories/InventorySearchFilter.vue");
 /* harmony import */ var _ProducListItem_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./ProducListItem.vue */ "./resources/js/components/inventories/ProducListItem.vue");
+/* harmony import */ var _icons_WarehouseIcon_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../icons/WarehouseIcon.vue */ "./resources/js/components/icons/WarehouseIcon.vue");
 
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
@@ -4331,9 +4332,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
+
 
 
 
@@ -4346,7 +4345,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   components: {
     ProducListItem: _ProducListItem_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
     SearchComponent: _products_SearchComponent_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
-    InventorySearchFilter: _InventorySearchFilter_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
+    InventorySearchFilter: _InventorySearchFilter_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
+    WarehouseIcon: _icons_WarehouseIcon_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
   },
   data: function data() {
     return {
@@ -4372,9 +4372,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     EventBus.$on("search-value-added", this.addFilterSearch);
   },
   methods: {
-    afterLeave: function afterLeave() {
-      this.reloadIndex();
-    },
     getProducts: function getProducts($state) {
       var _this2 = this;
 
@@ -4416,11 +4413,21 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }))();
     },
     reloadIndex: function reloadIndex() {
-      this.page = 1;
-      this.products = [];
-      this.infiniteId++; //this.inventory = null;
+      var _this3 = this;
 
-      console.log(this.infiniteId);
+      /**
+       * New learning, uso $nexTick(), por que no me actualizaba el infinite
+       * loading, ya que al parecer no detectava que se borraban los elementos
+       * del DOM y no ejecutaba la llamada asincrona para llenar el siguiente
+       * inventario, aun cuando cambiaba el inifiniteID, asi que nexTick
+       * devuelve la version mas actual del DOM donde ya no hay elementos y
+       * dispara la llamada asincrona
+       */
+      this.$nextTick(function () {
+        _this3.page = 1;
+        _this3.products = [];
+        _this3.infiniteId++;
+      }); //this.inventory = null;
     },
     addFilterSearch: function addFilterSearch(value) {
       this.filters["filter[search]"] = value;
@@ -7965,7 +7972,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".modal[data-v-53ab54d2] {\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n}\r\n", ""]);
+exports.push([module.i, ".modal[data-v-53ab54d2] {\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n}\n", ""]);
 
 // exports
 
@@ -30114,7 +30121,7 @@ var render = function() {
           }
         ],
         staticClass:
-          "border-l-4 border-purple-500 appearance-none py-5 px-4 leading-tight focus:outline-none",
+          "w-full  border-l-4 border-purple-500 appearance-none py-5 pl-64 leading-tight focus:outline-none mr-4 text-center",
         attrs: { type: "text", placeholder: "Busca por el SKU ó Descripción" },
         domProps: { value: _vm.value },
         on: {
@@ -30273,23 +30280,23 @@ var render = function() {
             "div",
             {
               staticClass:
-                " flex flex-wrap  justify-center items-center border-gray-300"
+                " flex flex-wrap  justify-center items-center mb-4 border-gray-300 relative"
             },
             [
               _c(
                 "h3",
                 {
                   staticClass:
-                    " border-l-4 border-teal-500 bg-white py-5 px-4  leading-tight"
+                    "w-64 text-gray-800 font-mono font-semibold text-center bg-purple-200 absolute left-0 border-l-4 border-teal-500  py-5 px-4  leading-tight"
                 },
                 [
-                  _vm._v(
-                    "\n            " + _vm._s(_vm.inventory.name) + "\n        "
-                  )
-                ]
+                  _c("warehouse-icon"),
+                  _vm._v(" " + _vm._s(_vm.inventory.name) + "\n        ")
+                ],
+                1
               ),
               _vm._v(" "),
-              _c("inventory-search-filter")
+              _c("inventory-search-filter", { staticClass: " w-full" })
             ],
             1
           ),
@@ -30303,10 +30310,7 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "transition-group",
-                    {
-                      attrs: { tag: "tbody", name: "bounce" },
-                      on: { "after-leave": _vm.afterLeave }
-                    },
+                    { attrs: { tag: "tbody", name: "bounce" } },
                     _vm._l(_vm.products, function(product, index) {
                       return _c("produc-list-item", {
                         key: product.id,
@@ -30325,6 +30329,7 @@ var render = function() {
             : _vm._e(),
           _vm._v(" "),
           _c("infinite-loading", {
+            ref: "infiniteLoading",
             attrs: { identifier: _vm.infiniteId },
             on: { infinite: _vm.getProducts }
           })
@@ -54142,8 +54147,8 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\htdocs\franapp\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\franapp\resources\css\app.css */"./resources/css/app.css");
+__webpack_require__(/*! /home/vagrant/code/franapp/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/vagrant/code/franapp/resources/css/app.css */"./resources/css/app.css");
 
 
 /***/ })

@@ -1,14 +1,14 @@
 <template>
     <div v-if="inventory" class="justify-center">
         <div
-            class=" flex flex-wrap  justify-center items-center border-gray-300"
+            class=" flex flex-wrap  justify-center items-center mb-4 border-gray-300 relative"
         >
             <h3
-                class=" border-l-4 border-teal-500 bg-white py-5 px-4  leading-tight"
+                class="w-64 text-gray-800 font-mono font-semibold text-center bg-purple-200 absolute left-0 border-l-4 border-teal-500  py-5 px-4  leading-tight"
             >
-                {{ inventory.name }}
+                <warehouse-icon></warehouse-icon> {{ inventory.name }}
             </h3>
-            <inventory-search-filter></inventory-search-filter>
+            <inventory-search-filter class=" w-full"></inventory-search-filter>
         </div>
         <table v-if="inventory" class="text-center bg-white">
             <thead class="bg-purple-200">
@@ -17,11 +17,7 @@
                 <th class="p-3">Descripción</th>
                 <th class="p-3">Existencias</th>
             </thead>
-            <transition-group
-                tag="tbody"
-                name="bounce"
-                 v-on:after-leave="afterLeave"
-            >
+            <transition-group tag="tbody" name="bounce">
                 <produc-list-item
                     v-for="(product, index) in products"
                     :key="product.id"
@@ -35,6 +31,7 @@
         <infinite-loading
             :identifier="infiniteId"
             @infinite="getProducts"
+            ref="infiniteLoading"
         ></infinite-loading>
     </div>
 </template>
@@ -42,13 +39,19 @@
 import SearchComponent from "../products/SearchComponent.vue";
 import InventorySearchFilter from "./InventorySearchFilter.vue";
 import ProducListItem from "./ProducListItem.vue";
+import WarehouseIcon from "../icons/WarehouseIcon.vue";
 export default {
     props: {
         index: {
             type: Number
         }
     },
-    components: { ProducListItem, SearchComponent, InventorySearchFilter },
+    components: {
+        ProducListItem,
+        SearchComponent,
+        InventorySearchFilter,
+        WarehouseIcon
+    },
     data() {
         return {
             products: [],
@@ -70,9 +73,6 @@ export default {
         EventBus.$on("search-value-added", this.addFilterSearch);
     },
     methods: {
-        afterLeave(){
-            this.reloadIndex();
-        },
         async getProducts($state) {
             await axios
                 .get(`/inventories/${this.inventory.id}`, {
@@ -97,11 +97,20 @@ export default {
                 });
         },
         reloadIndex() {
-            this.page = 1;
-            this.products = [];
-            this.infiniteId++;
+            /**
+             * New learning, uso $nexTick(), por que no me actualizaba el infinite
+             * loading, ya que al parecer no detectava que se borraban los elementos
+             * del DOM y no ejecutaba la llamada asincrona para llenar el siguiente
+             * inventario, aun cuando cambiaba el inifiniteID, asi que nexTick
+             * devuelve la version mas actual del DOM donde ya no hay elementos y
+             * dispara la llamada asincrona
+             */
+            this.$nextTick(() => {
+                this.page = 1;
+                this.products = [];
+                this.infiniteId++;
+            });
             //this.inventory = null;
-            console.log(this.infiniteId);
         },
         addFilterSearch(value) {
             this.filters["filter[search]"] = value;
