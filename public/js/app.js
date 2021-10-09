@@ -4265,9 +4265,13 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _products_SearchComponent_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../products/SearchComponent.vue */ "./resources/js/components/products/SearchComponent.vue");
-/* harmony import */ var _InventorySearchFilter_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./InventorySearchFilter.vue */ "./resources/js/components/inventories/InventorySearchFilter.vue");
-/* harmony import */ var _ProducListItem_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ProducListItem.vue */ "./resources/js/components/inventories/ProducListItem.vue");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _products_SearchComponent_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../products/SearchComponent.vue */ "./resources/js/components/products/SearchComponent.vue");
+/* harmony import */ var _InventorySearchFilter_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./InventorySearchFilter.vue */ "./resources/js/components/inventories/InventorySearchFilter.vue");
+/* harmony import */ var _ProducListItem_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./ProducListItem.vue */ "./resources/js/components/inventories/ProducListItem.vue");
+
+
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -4286,6 +4290,20 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -4326,9 +4344,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   },
   components: {
-    ProducListItem: _ProducListItem_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
-    SearchComponent: _products_SearchComponent_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
-    InventorySearchFilter: _InventorySearchFilter_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+    ProducListItem: _ProducListItem_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
+    SearchComponent: _products_SearchComponent_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
+    InventorySearchFilter: _InventorySearchFilter_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
   data: function data() {
     return {
@@ -4351,43 +4369,58 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     EventBus.$on("updated-stock", function (data) {
       _this.products[data.index].stock = data.newStock;
     });
-    EventBus.$on('search-value-added', this.addFilterSearch);
+    EventBus.$on("search-value-added", this.addFilterSearch);
   },
   methods: {
     getProducts: function getProducts($state) {
       var _this2 = this;
 
-      axios.get("/inventories/".concat(this.inventory.id), {
-        params: _objectSpread({
-          page: this.page,
-          inventory_id: this.inventory.id
-        }, this.filters)
-      }).then(function (res) {
-        if (res.data.data.length) {
-          var _this2$products;
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return axios.get("/inventories/".concat(_this2.inventory.id), {
+                  params: _objectSpread({
+                    page: _this2.page,
+                    inventory_id: _this2.inventory.id
+                  }, _this2.filters)
+                }).then(function (res) {
+                  if (res.data.data.length) {
+                    var _this2$products;
 
-          _this2.page += 1;
+                    _this2.page += 1;
 
-          (_this2$products = _this2.products).push.apply(_this2$products, _toConsumableArray(res.data.data));
+                    (_this2$products = _this2.products).push.apply(_this2$products, _toConsumableArray(res.data.data));
 
-          $state.loaded();
-        } else {
-          $state.complete();
-        }
-      })["catch"](function (err) {
-        $state.complete();
+                    $state.loaded();
+                  } else {
+                    $state.complete();
+                  }
+                })["catch"](function (err) {
+                  $state.complete();
 
-        _this2.getErrors(err);
-      });
+                  _this2.getErrors(err);
+                });
+
+              case 2:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
     },
     reloadIndex: function reloadIndex() {
       this.page = 1;
+      this.products = [];
       this.infiniteId++; //this.inventory = null;
 
-      this.products = [];
+      console.log(this.infiniteId);
     },
     addFilterSearch: function addFilterSearch(value) {
-      this.filters['filter[search]'] = value;
+      this.filters["filter[search]"] = value;
       this.reloadIndex();
     }
   }
@@ -30229,60 +30262,69 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _vm.inventory
-    ? _c("div", { staticClass: "justify-center" }, [
-        _c(
-          "div",
-          {
-            staticClass:
-              " flex flex-wrap  justify-center items-center border-gray-300"
-          },
-          [
-            _c(
-              "h3",
-              {
-                staticClass:
-                  " border-l-4 border-teal-500 bg-white py-5 px-4  leading-tight"
-              },
-              [_vm._v(_vm._s(_vm.inventory.name))]
-            ),
-            _vm._v(" "),
-            _c("inventory-search-filter")
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _vm.inventory
-          ? _c(
-              "table",
-              { staticClass: "text-center bg-white" },
-              [
-                _vm._m(0),
-                _vm._v(" "),
-                _c(
-                  "transition-group",
-                  { attrs: { name: "bounce", tag: "tbody" } },
-                  _vm._l(_vm.products, function(product, index) {
-                    return _c("produc-list-item", {
-                      key: product.id,
-                      attrs: {
-                        index: index,
-                        product: product,
-                        inventory: _vm.inventory
-                      }
-                    })
-                  }),
-                  1
-                ),
-                _vm._v(" "),
-                _c("infinite-loading", {
-                  attrs: { identifier: _vm.infiniteId },
-                  on: { infinite: _vm.getProducts }
-                })
-              ],
-              1
-            )
-          : _vm._e()
-      ])
+    ? _c(
+        "div",
+        { staticClass: "justify-center" },
+        [
+          _c(
+            "div",
+            {
+              staticClass:
+                " flex flex-wrap  justify-center items-center border-gray-300"
+            },
+            [
+              _c(
+                "h3",
+                {
+                  staticClass:
+                    " border-l-4 border-teal-500 bg-white py-5 px-4  leading-tight"
+                },
+                [
+                  _vm._v(
+                    "\n            " + _vm._s(_vm.inventory.name) + "\n        "
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c("inventory-search-filter")
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _vm.inventory
+            ? _c(
+                "table",
+                { staticClass: "text-center bg-white" },
+                [
+                  _vm._m(0),
+                  _vm._v(" "),
+                  _c(
+                    "transition-group",
+                    { attrs: { tag: "tbody", name: "bounce" } },
+                    _vm._l(_vm.products, function(product, index) {
+                      return _c("produc-list-item", {
+                        key: product.id,
+                        attrs: {
+                          index: index,
+                          product: product,
+                          inventory: _vm.inventory
+                        }
+                      })
+                    }),
+                    1
+                  )
+                ],
+                1
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _c("infinite-loading", {
+            attrs: { identifier: _vm.infiniteId },
+            on: { infinite: _vm.getProducts }
+          })
+        ],
+        1
+      )
     : _vm._e()
 }
 var staticRenderFns = [
