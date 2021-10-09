@@ -4372,6 +4372,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     EventBus.$on("search-value-added", this.addFilterSearch);
   },
   methods: {
+    afterLeave: function afterLeave() {
+      this.reloadIndex();
+    },
     getProducts: function getProducts($state) {
       var _this2 = this;
 
@@ -30300,7 +30303,10 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "transition-group",
-                    { attrs: { tag: "tbody", name: "bounce" } },
+                    {
+                      attrs: { tag: "tbody", name: "bounce" },
+                      on: { "after-leave": _vm.afterLeave }
+                    },
                     _vm._l(_vm.products, function(product, index) {
                       return _c("produc-list-item", {
                         key: product.id,

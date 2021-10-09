@@ -20,7 +20,7 @@
             <transition-group
                 tag="tbody"
                 name="bounce"
-               
+                 v-on:after-leave="afterLeave"
             >
                 <produc-list-item
                     v-for="(product, index) in products"
@@ -70,7 +70,9 @@ export default {
         EventBus.$on("search-value-added", this.addFilterSearch);
     },
     methods: {
-        
+        afterLeave(){
+            this.reloadIndex();
+        },
         async getProducts($state) {
             await axios
                 .get(`/inventories/${this.inventory.id}`, {
