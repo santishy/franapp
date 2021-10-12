@@ -6,7 +6,7 @@
             <form
                 @submit.prevent="submit"
                 v-can="'create warehouse'"
-                class="w-full max-w-md shadow-xl rounded bg-white px-2 py-2 "
+                class="w-9/12 shadow-xl rounded bg-white px-2 py-2 "
             >
                 <div
                     class="flex items-center p-2 text-dark text-center justify-center text-xl font-semibold font-roboto"
@@ -19,14 +19,14 @@
                     <input
                         v-model="form.name"
                         name="name"
-                        class="appearance-none static bg-transparent border-none w-full text-gray-700 mr-3 py-1 pr-2 pl-10 text-center leading-tight focus:outline-none"
+                        class="appearance-none static bg-transparent border-none w-full text-gray-700 mr-3 py-1 pr-2 pl-56 leading-tight focus:outline-none"
                         type="text"
                         placeholder="Jiquilpan..."
                         aria-label="Full name"
                     />
                     <label
                         for=""
-                        class="absolute  pl-0 bg-gray-200 h-full flex items-center w-32 justify-center text-indigo-800 font-mono"
+                        class="absolute  pl-0 bg-gray-200 h-full flex items-center w-52 justify-center text-indigo-800 font-mono"
                         >Nombre</label
                     >
                 </div>
@@ -36,13 +36,13 @@
                     <input
                         v-model="form.address"
                         name="address"
-                        class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 pr-2 pl-10 text-center leading-tight focus:outline-none"
+                        class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 pr-2 pl-56  leading-tight focus:outline-none"
                         type="text"
                         placeholder="DIRECCION"
                         aria-label="Full name"
                     />
                     <label
-                        class="absolute pl-0 bg-gray-200 h-full flex items-center w-32 justify-center text-indigo-800 font-mono"
+                        class="absolute pl-0 bg-gray-200 h-full flex items-center w-52 justify-center text-indigo-800 font-mono"
                         >Dirección</label
                     >
                 </div>
