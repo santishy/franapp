@@ -1,9 +1,12 @@
 <template>
     <ul
-        class="w-full rounded shadow bg-white p-4 divide-y divide-light-blue-400 "
+        class="w-full rounded shadow bg-white p-4 divide-y divide-light-blue-400 text-gray-700"
         v-can="'view categories'"
         v-cloak
     >
+        <li class="px-4  bg-purple-400 text-center py-2 text-gray-900 font-semibold">
+            Categorías
+        </li>
         <category-list-item
             v-for="(category,index) in categories"
             :category="category"

@@ -1,7 +1,7 @@
 <template>
     <nav-component>
-        <div>
-            <category-form :uri="`/categories/${category.id}`"> </category-form>
+        <div class="w-9/12 mx-auto">
+            <category-form class="w-full" :uri="`/categories/${category.id}`"> </category-form>
         </div>
     </nav-component>
 </template>

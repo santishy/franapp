@@ -1,23 +1,27 @@
 <template>
     <!-- <div class="w-full  flex justify-center mt-20 bg-transparent"> -->
     <nav-component>
-        <div class="flex justify-center items-baseline flex-wrap px-4">
+        <div
+            class="flex justify-center items-baseline flex-wrap px-4 w-9/12 mx-auto"
+        >
             <form
                 @submit.prevent="submit"
                 v-can="definePermission"
-                class="w-full max-w-md shadow-lg rounded-lg bg-white md:px-6 md:py-8 md:mt-0 mt-10"
+                class="w-full  shadow-lg rounded-lg bg-white md:px-6 md:py-8 md:mt-0 mt-10"
             >
                 <div
-                    class="flex items-center py-2 text-dark text-center justify-center text-xl font-bold border-b border-teal-500"
+                    class="flex items-center py-2 text-dark text-center justify-center text-xl font-bold "
                 >
                     Nuevo producto
                 </div>
-                <div class="flex items-center border-b border-teal-500 py-2">
+                <div
+                    class="flex items-center border-b border-t border-gray-500 py-2 relative"
+                >
                     <select
                         name="category_id"
                         v-model="form.category_id"
                         plahceholder="Elige una categoria"
-                        class="block appearance-none w-full bg-white hover:border-gray-500 px-4 py-2 pr-8 rounded leading-tight focus:outline-none focus:shadow-outline"
+                        class="block appearance-none w-full bg-white hover:border-gray-500 px-4 pl-32 py-1 pr-8 rounded leading-tight focus:outline-none focus:shadow-outline"
                     >
                         <option disabled value="" selected class="text-gray-600"
                             >Seleccione un elemento</option
@@ -29,7 +33,12 @@
                             >{{ category.name }}</option
                         >
                     </select>
-                    <div
+                    <label
+                        for=""
+                        class="absolute  pl-0 bg-gray-200 h-full flex items-center w-32 justify-center text-indigo-800 font-mono"
+                        >Nombre</label
+                    >
+                    <!-- <div
                         class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"
                     >
                         <svg
@@ -41,7 +50,7 @@
                                 d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
                             />
                         </svg>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="flex items-center border-b border-teal-500 py-2">
                     <input
@@ -102,7 +111,7 @@
                         aria-label="Full name"
                     />
                 </div>
-                <div  class="flex items-center ">
+                <div class="flex items-center ">
                     <errors-component :errors-found="errors" />
                 </div>
 
@@ -141,7 +150,7 @@ export default {
     props: {
         method: {
             type: String,
-            required:true
+            required: true
         },
         product: {
             type: Object
@@ -156,14 +165,14 @@ export default {
 
             var url = "/products";
             if (this.method == "put") {
-                message = {message:"El producto se modifico correctamente"};
+                message = { message: "El producto se modifico correctamente" };
                 this.form._method = "put";
                 url = `/products/${this.product.id}`;
             }
             axios["post"](url, this.form)
                 .then(res => {
-                    let obj = {title:'Productos',...message};
-                    console.log(obj)
+                    let obj = { title: "Productos", ...message };
+                    console.log(obj);
                     this.notify(obj);
                     if (this.method == "post") this.form = {};
                     this.errors = null;
@@ -180,10 +189,9 @@ export default {
         hidden() {
             return this.form.category_id ? "" : "hidden";
         },
-        definePermission(){
-            if(this.method.toUpperCase() === 'POST' )
-                return 'create product';
-            return 'edit product';
+        definePermission() {
+            if (this.method.toUpperCase() === "POST") return "create product";
+            return "edit product";
         }
     }
 };
