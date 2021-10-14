@@ -15,13 +15,13 @@
                     Nuevo producto
                 </div>
                 <div
-                    class="flex items-center border-b border-t border-gray-500 py-2 relative"
+                    class="flex items-center  border-t border-gray-500 py-2 relative"
                 >
                     <select
                         name="category_id"
                         v-model="form.category_id"
                         plahceholder="Elige una categoria"
-                        class="block appearance-none w-full bg-white hover:border-gray-500 px-4 pl-32 py-1 pr-8 rounded leading-tight focus:outline-none focus:shadow-outline"
+                        class="block appearance-none w-full bg-white hover:border-gray-500 px-4 pl-60 py-1 pr-8 rounded leading-tight focus:outline-none focus:shadow-outline"
                     >
                         <option disabled value="" selected class="text-gray-600"
                             >Seleccione un elemento</option
@@ -35,7 +35,7 @@
                     </select>
                     <label
                         for=""
-                        class="absolute  pl-0 bg-gray-200 h-full flex items-center w-32 justify-center text-indigo-800 font-mono"
+                        class="absolute  pl-0 bg-gray-200 h-full flex items-center w-56 justify-center text-indigo-800 font-mono"
                         >Nombre</label
                     >
                     <!-- <div
@@ -52,64 +52,97 @@
                         </svg>
                     </div> -->
                 </div>
-                <div class="flex items-center border-b border-teal-500 py-2">
+                <div
+                    class="flex items-center  border-t border-gray-500 py-2 relative"
+                >
                     <input
                         v-model="form.sku"
                         name="sku"
-                        class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
+                        class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 pl-60 leading-tight focus:outline-none"
                         type="text"
                         placeholder="SKU"
                         aria-label="Full name"
                     />
+                    <label
+                        for=""
+                        class="absolute  pl-0 bg-gray-200 h-full flex items-center w-56 justify-center text-indigo-800 font-mono"
+                        >SKU</label
+                    >
                 </div>
-                <div class="flex items-center border-b border-teal-500 py-2">
+                <div
+                    class="flex items-center  border-t border-gray-500 py-2 relative"
+                >
                     <textarea
                         v-model="form.description"
                         name="description"
-                        class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
+                        class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 pl-60 leading-tight focus:outline-none"
                         type="text"
                         placeholder="DESCRIPCIÓN DEL PRODUCTO"
                         aria-label="Full name"
                     >
                     </textarea>
+                    <label
+                        for=""
+                        class="absolute  pl-0 bg-gray-200 h-full flex items-center w-56 justify-center text-indigo-800 font-mono"
+                        >Descripción</label
+                    >
                 </div>
-                <div class="flex items-center border-b border-teal-500 py-2">
+                <div
+                    class="flex items-center  border-t border-gray-500 py-2 relative"
+                >
                     <input
                         v-model="form.wholesale_price"
                         name="wholesale_price"
-                        class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
+                        class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 pl-60 leading-tight focus:outline-none"
                         type="text"
                         placeholder="PRECIO AL POR MAYOR"
                         aria-label="Full name"
                     />
+                    <label
+                        for=""
+                        class="absolute text-center pl-0 bg-gray-200 h-full flex items-center w-56 justify-center text-indigo-800 font-mono"
+                        >Precio al por mayor</label
+                    >
                 </div>
-                <div class="flex items-center border-b border-teal-500 py-2">
+                <div
+                    class="flex items-center border-b border-t border-gray-500 py-2 relative"
+                >
                     <input
                         v-model="form.retail_price"
                         name="retail_price"
-                        class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
+                        class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 pl-60 leading-tight focus:outline-none"
                         type="text"
                         placeholder="PRECIO AL POR MENOR"
                         aria-label="Full name"
                     />
+                    <label
+                        for=""
+                        class="absolute text-center pl-0 bg-gray-200 h-full flex items-center w-56 justify-center text-indigo-800 font-mono"
+                        >Precio al por menor</label
+                    >
                 </div>
                 <div
                     :class="[
-                        'flex',
+                        'flex relative',
                         'items-center',
                         'border-b',
-                        this.errors ? 'border-transparent' : 'border-teal-500',
+                        this.errors ? 'border-transparent' : 'border-gray-500',
                         'py-2'
                     ]"
                 >
                     <input
                         v-model="form.distributor_price"
                         name="distributor_price"
-                        class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
+                        class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 pl-60 leading-tight focus:outline-none"
                         type="text"
                         placeholder="PRECIO DISTRIBUIDOR"
                         aria-label="Full name"
                     />
+                    <label
+                        for=""
+                        class="absolute text-center pl-0 bg-gray-200 h-full flex items-center w-56 justify-center text-indigo-800 font-mono"
+                        >Precio al por menor</label
+                    >
                 </div>
                 <div class="flex items-center ">
                     <errors-component :errors-found="errors" />
@@ -160,7 +193,7 @@ export default {
         }
     },
     methods: {
-        submit() {
+        async submit() {
             let message = { message: "EL producto se creo correctamente" };
 
             var url = "/products";

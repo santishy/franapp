@@ -1,4 +1,5 @@
 <template>
+    
     <div
         v-if="show"
         class="w-full mb-3 bg-blue-100 border-t border-b border-red-500 text-red-700 px-4 py-3"
@@ -29,10 +30,14 @@ export default {
     watch: {
         errorsFound: {
             deep: true,
-            handler() {
-                if (this.errorsFound) this.show = true;
-                setTimeout(() => {
+            async handler() {
+                if (this.errorsFound) {
+                    this.show = true;
+                }
+
+                await setTimeout(() => {
                     this.show = false;
+                    EventBus.$emit("emptyErrors")
                 }, 3000);
             }
         }
