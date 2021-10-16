@@ -27,8 +27,11 @@ class SaleController extends Controller
         if (request()->wantsJson()) {
             return new ReportResponse(Sale::query());
         }
+        $inventories = Inventory::all('id','name');
+
         return view('transactions.index', [
             'uri' => '/sales',
+            'inventories' => $inventories,
             'name' => 'Ventas'
         ]);
     }

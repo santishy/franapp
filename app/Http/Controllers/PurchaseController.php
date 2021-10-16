@@ -23,11 +23,13 @@ class PurchaseController extends Controller
         if (request()->wantsJson()) {
             return new ReportResponse(Purchase::query());
         }
+        $inventories = Inventory::all('id','name');
         return view(
             'transactions.index',
             [
                 'uri' => '/purchases',
-                'name' => 'Compras'
+                'name' => 'Compras',
+                'inventories' => $inventories
             ]
         );
     }

@@ -7,7 +7,7 @@
             <form
                 @submit.prevent="submit"
                 v-can="definePermission"
-                class="w-full  shadow-lg rounded-lg bg-white md:px-6 md:py-8 md:mt-0 mt-10"
+                class="w-full  shadow-lg rounded-lg bg-white md:px-6 md:py-6  md:mt-0 mt-10 md:mb-0"
             >
                 <div
                     class="flex items-center py-2 text-dark text-center justify-center text-xl font-bold "
@@ -36,7 +36,7 @@
                     <label
                         for=""
                         class="absolute  pl-0 bg-gray-200 h-full flex items-center w-56 justify-center text-indigo-800 font-mono"
-                        >Nombre</label
+                        >Categoría</label
                     >
                     <!-- <div
                         class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"

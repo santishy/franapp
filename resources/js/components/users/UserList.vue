@@ -2,7 +2,7 @@
     <nav-component>
         <div
             v-can="'view users'"
-            class="  max-w-max flex justify-center sm:overflow-x-hidden overflow-x-auto"
+            class="  md:w-9/12 mx-auto flex justify-center sm:overflow-x-hidden overflow-x-auto"
         >
             <table class="table-auto text-center  bg-white shadow rounded ">
                 <thead class="bg-gray-400">

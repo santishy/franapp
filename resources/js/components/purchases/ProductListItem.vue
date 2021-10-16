@@ -4,13 +4,11 @@
             <div class="font-semibold text-gray-800">
                 {{ localProduct.sku }}
             </div>
-            
         </td>
         <td class="px-4 py-3 border ">
             {{ localProduct.category_name }}
         </td>
         <td class="px-4 py-3 border ">
-            
             {{ localProduct.description }}
         </td>
         <td class="px-4 py-3 border  ">
@@ -34,15 +32,15 @@
             <div class="flex flex-wrap">
                 <button
                     @click="update"
-                    class="bg-blue-500 rounded px-2 py-0 text-center hover:bg-blue-400 mr-4"
+                    class="bg-blue-500 rounded p-0 px-2 text-center hover:bg-blue-400 mr-1"
                 >
-                    <i class="far fa-edit"></i>
+                    <edit-icon></edit-icon>
                 </button>
                 <button
                     @click="destroy"
-                    class="bg-red-500 hover:bg-red-400 p-2 rounded "
+                    class="bg-red-500 hover:bg-red-400 p-0 px-2 rounded "
                 >
-                    <i class="fas fa-minus-circle"></i>
+                    <trash-icon></trash-icon>
                 </button>
             </div>
         </td>
@@ -86,7 +84,10 @@
 </template>
 <script>
 import { mapMutations, mapGetters } from "vuex";
+import EditIcon from "../icons/EditIcon.vue";
+import TrashIcon from "../icons/TrashIcon.vue";
 export default {
+    components: { TrashIcon, EditIcon },
     props: {
         product: {
             type: Object

@@ -2608,6 +2608,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = (_data$props$component = {
@@ -2902,6 +2909,31 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     editableUser: {
@@ -2981,8 +3013,8 @@ __webpack_require__.r(__webpack_exports__);
       return !!this.editableUser ? "Editar" : "Guardar";
     },
     definePermission: function definePermission() {
-      if (this.method.toUpperCase() === 'POST') return 'create user';
-      return 'edit user';
+      if (this.method.toUpperCase() === "POST") return "create user";
+      return "edit user";
     }
   }
 });
@@ -3582,6 +3614,37 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -4046,6 +4109,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _icons_EditIcon_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../icons/EditIcon.vue */ "./resources/js/components/icons/EditIcon.vue");
 //
 //
 //
@@ -4060,13 +4124,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    EditIcon: _icons_EditIcon_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
   props: {
     product: {
       type: Object
@@ -5896,6 +5958,8 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _icons_EditIcon_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../icons/EditIcon.vue */ "./resources/js/components/icons/EditIcon.vue");
+/* harmony import */ var _icons_TrashIcon_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../icons/TrashIcon.vue */ "./resources/js/components/icons/TrashIcon.vue");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -5986,10 +6050,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
+
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    TrashIcon: _icons_TrashIcon_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
+    EditIcon: _icons_EditIcon_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+  },
   props: {
     product: {
       type: Object
@@ -7483,6 +7551,26 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _NavComponent_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../NavComponent.vue */ "./resources/js/components/NavComponent.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -27789,27 +27877,33 @@ var render = function() {
         "h3",
         {
           staticClass:
-            "text-xl border-b-2 border-gray-300 p-4 mb-3 font-semibold"
+            "text-xl text-center border-b-2 border-gray-300 px-4 py-1 mb-3 font-semibold"
         },
         [_vm._v("\n        Asignar roles\n    ")]
       ),
       _vm._v(" "),
       _vm._l(_vm.roles, function(role) {
         return _c("div", { key: role.id }, [
-          _c("label", { staticClass: "inline-flex items-center" }, [
-            _c("input", {
-              staticClass: "form-checkbox",
-              attrs: { type: "checkbox" },
-              domProps: { checked: _vm.isChecked(role) },
-              on: {
-                change: function($event) {
-                  return _vm.toggleRole($event, role.id)
+          _c(
+            "label",
+            { staticClass: "inline-flex items-center justify-center" },
+            [
+              _c("input", {
+                staticClass: "form-checkbox",
+                attrs: { type: "checkbox" },
+                domProps: { checked: _vm.isChecked(role) },
+                on: {
+                  change: function($event) {
+                    return _vm.toggleRole($event, role.id)
+                  }
                 }
-              }
-            }),
-            _vm._v(" "),
-            _c("span", { staticClass: "ml-2" }, [_vm._v(_vm._s(role.name))])
-          ])
+              }),
+              _vm._v(" "),
+              _c("span", { staticClass: "ml-2" }, [
+                _vm._v(_vm._s(role.name.toUpperCase()))
+              ])
+            ]
+          )
         ])
       })
     ],
@@ -27840,7 +27934,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    {},
+    { staticClass: " " },
     [
       _c(
         "form",
@@ -27866,14 +27960,17 @@ var render = function() {
             "div",
             {
               staticClass:
-                "flex items-center py-2 text-dark text-center justify-center text-xl font-bold border-b border-teal-500"
+                "flex items-center py-1 text-dark text-center justify-center text-xl font-bold"
             },
             [_vm._v("\n            Nuevo Role\n        ")]
           ),
           _vm._v(" "),
           _c(
             "div",
-            { staticClass: "flex items-center border-b border-teal-500 py-2" },
+            {
+              staticClass:
+                "flex items-center  border-t border-b border-gray-500 py-2 relative"
+            },
             [
               _c("input", {
                 directives: [
@@ -27885,7 +27982,7 @@ var render = function() {
                   }
                 ],
                 staticClass:
-                  "appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none",
+                  "appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 pl-48 leading-tight focus:outline-none",
                 attrs: {
                   name: "name",
                   type: "text",
@@ -27901,7 +27998,17 @@ var render = function() {
                     _vm.$set(_vm.form, "name", $event.target.value)
                   }
                 }
-              })
+              }),
+              _vm._v(" "),
+              _c(
+                "label",
+                {
+                  staticClass:
+                    "absolute  pl-0 bg-gray-200 h-full flex items-center w-44 justify-center text-indigo-800 font-mono",
+                  attrs: { for: "" }
+                },
+                [_vm._v("Nombre")]
+              )
             ]
           ),
           _vm._v(" "),
@@ -27968,7 +28075,7 @@ var render = function() {
             "div",
             {
               staticClass:
-                "w-full text-xl border-gray-300 border-b-2 pb-3 col-span-3 mb-2"
+                "w-full text-xl border-gray-300 border-b-2 pb-1 col-span-3 mb-2"
             },
             [
               _vm._v("\n        Agregar permisos al rol:\n        "),
@@ -28030,7 +28137,7 @@ var render = function() {
   return _c("nav-component", [
     _c(
       "div",
-      { staticClass: "flex flex-wrap items-baseline" },
+      { staticClass: "md:w-9/12 mx-auto flex flex-wrap items-baseline" },
       [
         _c("registration-form", {
           staticClass: "mr-4",
@@ -28092,8 +28199,7 @@ var render = function() {
           expression: "definePermission"
         }
       ],
-      staticClass:
-        "w-full max-w-md shadow-lg rounded-lg bg-white md:px-6 md:py-8",
+      staticClass: "md:w-7/12 shadow-lg rounded-lg bg-white md:px-6 md:py-8",
       on: {
         submit: function($event) {
           $event.preventDefault()
@@ -28106,14 +28212,17 @@ var render = function() {
         "div",
         {
           staticClass:
-            "flex items-center py-2 text-dark text-center justify-center text-xl font-bold border-b border-teal-500"
+            "flex items-center pb-2 pt-0 text-dark text-center justify-center text-xl font-bold"
         },
         [_vm._v("\n        " + _vm._s(_vm.getTitle) + "\n    ")]
       ),
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "flex items-center border-b border-teal-500 py-2" },
+        {
+          staticClass:
+            "flex items-center  border-t border-gray-500 py-2 relative"
+        },
         [
           _c(
             "select",
@@ -28127,7 +28236,7 @@ var render = function() {
                 }
               ],
               staticClass:
-                "appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none",
+                "appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 pl-60 leading-tight focus:outline-none",
               attrs: {
                 name: "inventory_id",
                 placeholder: "Nombre completo",
@@ -28173,13 +28282,26 @@ var render = function() {
               })
             ],
             2
+          ),
+          _vm._v(" "),
+          _c(
+            "label",
+            {
+              staticClass:
+                "absolute  pl-0 bg-gray-200 h-full flex items-center w-56 justify-center text-indigo-800 font-mono",
+              attrs: { for: "" }
+            },
+            [_vm._v("Almacenes")]
           )
         ]
       ),
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "flex items-center border-b border-teal-500 py-2" },
+        {
+          staticClass:
+            "flex items-center  border-t border-gray-500 py-2 relative"
+        },
         [
           _c("input", {
             directives: [
@@ -28191,7 +28313,7 @@ var render = function() {
               }
             ],
             staticClass:
-              "appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none",
+              "appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 pl-60 leading-tight focus:outline-none",
             attrs: {
               name: "name",
               type: "text",
@@ -28207,13 +28329,26 @@ var render = function() {
                 _vm.$set(_vm.form, "name", $event.target.value)
               }
             }
-          })
+          }),
+          _vm._v(" "),
+          _c(
+            "label",
+            {
+              staticClass:
+                "absolute  pl-0 bg-gray-200 h-full flex items-center w-56 justify-center text-indigo-800 font-mono",
+              attrs: { for: "" }
+            },
+            [_vm._v("Nombre")]
+          )
         ]
       ),
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "flex items-center border-b border-teal-500 py-2" },
+        {
+          staticClass:
+            "flex items-center  border-t border-gray-500 py-2 relative"
+        },
         [
           _c("input", {
             directives: [
@@ -28225,7 +28360,7 @@ var render = function() {
               }
             ],
             staticClass:
-              "appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none",
+              "appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 pl-60 leading-tight focus:outline-none",
             attrs: {
               name: "email",
               type: "email",
@@ -28241,14 +28376,27 @@ var render = function() {
                 _vm.$set(_vm.form, "email", $event.target.value)
               }
             }
-          })
+          }),
+          _vm._v(" "),
+          _c(
+            "label",
+            {
+              staticClass:
+                "absolute  pl-0 bg-gray-200 h-full flex items-center w-56 justify-center text-indigo-800 font-mono",
+              attrs: { for: "" }
+            },
+            [_vm._v("Email")]
+          )
         ]
       ),
       _vm._v(" "),
       !_vm.editableUser
         ? _c(
             "div",
-            { staticClass: "flex items-center border-b border-teal-500 py-2" },
+            {
+              staticClass:
+                "flex items-center  border-t border-gray-500 py-2 relative"
+            },
             [
               _c("input", {
                 directives: [
@@ -28260,7 +28408,7 @@ var render = function() {
                   }
                 ],
                 staticClass:
-                  "appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none",
+                  "appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 pl-60 leading-tight focus:outline-none",
                 attrs: {
                   name: "password",
                   type: "password",
@@ -28276,7 +28424,17 @@ var render = function() {
                     _vm.$set(_vm.form, "password", $event.target.value)
                   }
                 }
-              })
+              }),
+              _vm._v(" "),
+              _c(
+                "label",
+                {
+                  staticClass:
+                    "absolute  pl-0 bg-gray-200 h-full flex items-center w-56 justify-center text-indigo-800 font-mono",
+                  attrs: { for: "" }
+                },
+                [_vm._v("Contraseña")]
+              )
             ]
           )
         : _vm._e(),
@@ -28284,7 +28442,10 @@ var render = function() {
       !_vm.editableUser
         ? _c(
             "div",
-            { staticClass: "flex items-center border-b border-teal-500 py-2" },
+            {
+              staticClass:
+                "flex items-center  border-t border-b border-gray-500 py-2 relative"
+            },
             [
               _c("input", {
                 directives: [
@@ -28296,7 +28457,7 @@ var render = function() {
                   }
                 ],
                 staticClass:
-                  "appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none",
+                  "appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 pl-60 leading-tight focus:outline-none",
                 attrs: {
                   name: "password_confirmation",
                   type: "password",
@@ -28316,7 +28477,17 @@ var render = function() {
                     )
                   }
                 }
-              })
+              }),
+              _vm._v(" "),
+              _c(
+                "label",
+                {
+                  staticClass:
+                    "absolute  pl-0 bg-gray-200 h-full flex items-center w-56 justify-center text-indigo-800 font-mono",
+                  attrs: { for: "" }
+                },
+                [_vm._v("Confirmar Contraseña")]
+              )
             ]
           )
         : _vm._e(),
@@ -28376,7 +28547,7 @@ var render = function() {
           }
         ],
         staticClass:
-          "grid grid-cols-8 gap-4 grid-flow-col auto-cols-auto auto-rows-auto"
+          "md:w-11/12 mx-auto grid grid-cols-8 gap-4 grid-flow-col auto-cols-auto auto-rows-auto"
       },
       [
         _c("create-new-role", {
@@ -28870,7 +29041,9 @@ var render = function() {
   return _c("nav-component", [
     _c(
       "div",
-      { staticClass: "w-full px-4  flex justify-center bg-transparent" },
+      {
+        staticClass: "w-9/12 mx-auto px-4  flex justify-center bg-transparent"
+      },
       [
         _c(
           "form",
@@ -28883,8 +29056,7 @@ var render = function() {
                 expression: "definePermission"
               }
             ],
-            staticClass:
-              "w-full max-w-md shadow-lg rounded-lg bg-white px-6 py-8",
+            staticClass: "w-full shadow-lg rounded-lg bg-white px-6 py-8",
             on: {
               submit: function($event) {
                 $event.preventDefault()
@@ -28897,7 +29069,7 @@ var render = function() {
               "div",
               {
                 staticClass:
-                  "flex items-center py-2 text-dark text-center justify-center text-xl font-bold border-b border-teal-500"
+                  "flex items-center py-2 text-dark text-center justify-center text-xl font-bold"
               },
               [
                 _vm._v(
@@ -28909,7 +29081,8 @@ var render = function() {
             _c(
               "div",
               {
-                staticClass: "flex items-center border-b border-teal-500 py-2"
+                staticClass:
+                  "flex items-center  border-t border-gray-500 py-2 relative"
               },
               [
                 _c("input", {
@@ -28922,7 +29095,7 @@ var render = function() {
                     }
                   ],
                   staticClass:
-                    "appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none",
+                    "appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 pl-60 leading-tight focus:outline-none",
                   attrs: {
                     name: "name",
                     type: "text",
@@ -28938,14 +29111,25 @@ var render = function() {
                       _vm.$set(_vm.form, "name", $event.target.value)
                     }
                   }
-                })
+                }),
+                _vm._v(" "),
+                _c(
+                  "label",
+                  {
+                    staticClass:
+                      "absolute  pl-0 bg-gray-200 h-full flex items-center w-56 justify-center text-indigo-800 font-mono",
+                    attrs: { for: "" }
+                  },
+                  [_vm._v("Nombre")]
+                )
               ]
             ),
             _vm._v(" "),
             _c(
               "div",
               {
-                staticClass: "flex items-center border-b border-teal-500 py-2"
+                staticClass:
+                  "flex items-center  border-t border-gray-500 py-2 relative"
               },
               [
                 _c("input", {
@@ -28958,7 +29142,7 @@ var render = function() {
                     }
                   ],
                   staticClass:
-                    "appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none",
+                    "appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 pl-60 leading-tight focus:outline-none",
                   attrs: {
                     name: "address",
                     type: "text",
@@ -28974,14 +29158,25 @@ var render = function() {
                       _vm.$set(_vm.form, "address", $event.target.value)
                     }
                   }
-                })
+                }),
+                _vm._v(" "),
+                _c(
+                  "label",
+                  {
+                    staticClass:
+                      "absolute  pl-0 bg-gray-200 h-full flex items-center w-56 justify-center text-indigo-800 font-mono",
+                    attrs: { for: "" }
+                  },
+                  [_vm._v("Dirección")]
+                )
               ]
             ),
             _vm._v(" "),
             _c(
               "div",
               {
-                staticClass: "flex items-center border-b border-teal-500 py-2"
+                staticClass:
+                  "flex items-center  border-t border-gray-500 py-2 relative"
               },
               [
                 _c("input", {
@@ -28994,7 +29189,7 @@ var render = function() {
                     }
                   ],
                   staticClass:
-                    "appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none",
+                    "appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 pl-60 leading-tight focus:outline-none",
                   attrs: {
                     name: "phone_number",
                     type: "text",
@@ -29010,14 +29205,25 @@ var render = function() {
                       _vm.$set(_vm.form, "phone_number", $event.target.value)
                     }
                   }
-                })
+                }),
+                _vm._v(" "),
+                _c(
+                  "label",
+                  {
+                    staticClass:
+                      "absolute  pl-0 bg-gray-200 h-full flex items-center w-56 justify-center text-indigo-800 font-mono",
+                    attrs: { for: "" }
+                  },
+                  [_vm._v("Telefono")]
+                )
               ]
             ),
             _vm._v(" "),
             _c(
               "div",
               {
-                staticClass: "flex items-center border-b border-teal-500 py-2"
+                staticClass:
+                  "flex items-center  border-t border-gray-500 py-2 relative"
               },
               [
                 _c("input", {
@@ -29030,7 +29236,7 @@ var render = function() {
                     }
                   ],
                   staticClass:
-                    "appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none",
+                    "appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 pl-60 leading-tight focus:outline-none",
                   attrs: {
                     name: "email",
                     type: "email",
@@ -29046,14 +29252,25 @@ var render = function() {
                       _vm.$set(_vm.form, "email", $event.target.value)
                     }
                   }
-                })
+                }),
+                _vm._v(" "),
+                _c(
+                  "label",
+                  {
+                    staticClass:
+                      "absolute  pl-0 bg-gray-200 h-full flex items-center w-56 justify-center text-indigo-800 font-mono",
+                    attrs: { for: "" }
+                  },
+                  [_vm._v("Email")]
+                )
               ]
             ),
             _vm._v(" "),
             _c(
               "div",
               {
-                staticClass: "flex items-center border-b border-teal-500 py-2"
+                staticClass:
+                  "flex items-center  border-t border-gray-500 py-2 relative"
               },
               [
                 _c(
@@ -29068,7 +29285,7 @@ var render = function() {
                       }
                     ],
                     staticClass:
-                      "block appearance-none w-full bg-white hover:border-gray-500 px-4 py-2 pr-8 rounded leading-tight focus:outline-none focus:shadow-outline",
+                      "block appearance-none w-full bg-white hover:border-gray-500 px-4 pl-60 pr-8 rounded leading-tight focus:outline-none focus:shadow-outline",
                     attrs: {
                       name: "assigned_price",
                       plahceholder: "Asigna un precio al cliente"
@@ -29111,6 +29328,16 @@ var render = function() {
                       _vm._v("Precio al por mayor")
                     ])
                   ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "label",
+                  {
+                    staticClass:
+                      "absolute  pl-0 bg-gray-200 h-full flex items-center w-56 justify-center text-indigo-800 font-mono",
+                    attrs: { for: "" }
+                  },
+                  [_vm._v("Precio asignado")]
                 )
               ]
             ),
@@ -29118,11 +29345,13 @@ var render = function() {
             _c(
               "div",
               {
+                staticClass:
+                  "flex items-center  border-t border-gray-500 py-2 relative",
                 class: [
                   "flex",
                   "items-center",
                   "border-b",
-                  this.errors ? "border-transparent" : "border-teal-500",
+                  this.errors ? "border-transparent" : "border-gray-500",
                   "py-2"
                 ]
               },
@@ -29137,7 +29366,7 @@ var render = function() {
                     }
                   ],
                   staticClass:
-                    "appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none",
+                    "appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 pl-60 leading-tight focus:outline-none",
                   attrs: {
                     name: "distributor_price",
                     type: "text",
@@ -29153,7 +29382,17 @@ var render = function() {
                       _vm.$set(_vm.form, "company", $event.target.value)
                     }
                   }
-                })
+                }),
+                _vm._v(" "),
+                _c(
+                  "label",
+                  {
+                    staticClass:
+                      "absolute  pl-0 bg-gray-200 h-full flex items-center w-56 justify-center text-indigo-800 font-mono",
+                    attrs: { for: "" }
+                  },
+                  [_vm._v("Empresa")]
+                )
               ]
             ),
             _vm._v(" "),
@@ -30129,30 +30368,13 @@ var render = function() {
               _vm.$set(_vm.form, "stock", $event.target.value)
             }
           }
-        }),
-        _vm._v(" "),
-        _vm._m(0)
+        })
       ])
     ],
     1
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "button",
-      {
-        staticClass:
-          "transition-all  rounded border-2 border-blue-800 px-2 text-blue-700 hover:bg-blue-800 hover:text-white",
-        attrs: { type: "submit" }
-      },
-      [_c("i", { staticClass: "fas fa-edit" })]
-    )
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -30305,7 +30527,7 @@ var render = function() {
             expression: "'view warehouses'"
           }
         ],
-        staticClass: "w-full mt-24 md:mt-32 flex"
+        staticClass: "w-10/12 mx-auto mt-24 md:mt-32 flex"
       },
       [
         _c("div", { staticClass: "w-1/5 px-2" }, [_c("inventory-list")], 1),
@@ -30980,7 +31202,7 @@ var render = function() {
               }
             ],
             staticClass:
-              "w-full  shadow-lg rounded-lg bg-white md:px-6 md:py-8 md:mt-0 mt-10",
+              "w-full  shadow-lg rounded-lg bg-white md:px-6 md:py-6  md:mt-0 mt-10 md:mb-0",
             on: {
               submit: function($event) {
                 $event.preventDefault()
@@ -31070,7 +31292,7 @@ var render = function() {
                       "absolute  pl-0 bg-gray-200 h-full flex items-center w-56 justify-center text-indigo-800 font-mono",
                     attrs: { for: "" }
                   },
-                  [_vm._v("Nombre")]
+                  [_vm._v("Categoría")]
                 )
               ]
             ),
@@ -31857,9 +32079,7 @@ var render = function() {
     ]),
     _vm._v(" "),
     _c("td", { staticClass: "px-4 py-3 border " }, [
-      _vm._v(
-        "\n        \n        " + _vm._s(_vm.localProduct.description) + "\n    "
-      )
+      _vm._v("\n        " + _vm._s(_vm.localProduct.description) + "\n    ")
     ]),
     _vm._v(" "),
     _c("td", { staticClass: "px-4 py-3 border  " }, [
@@ -31922,19 +32142,21 @@ var render = function() {
           "button",
           {
             staticClass:
-              "bg-blue-500 rounded px-2 py-0 text-center hover:bg-blue-400 mr-4",
+              "bg-blue-500 rounded p-0 px-2 text-center hover:bg-blue-400 mr-1",
             on: { click: _vm.update }
           },
-          [_c("i", { staticClass: "far fa-edit" })]
+          [_c("edit-icon")],
+          1
         ),
         _vm._v(" "),
         _c(
           "button",
           {
-            staticClass: "bg-red-500 hover:bg-red-400 p-2 rounded ",
+            staticClass: "bg-red-500 hover:bg-red-400 p-0 px-2 rounded ",
             on: { click: _vm.destroy }
           },
-          [_c("i", { staticClass: "fas fa-minus-circle" })]
+          [_c("trash-icon")],
+          1
         )
       ])
     ])
@@ -32161,7 +32383,7 @@ var render = function() {
     [
       _c("toggle-component", { staticClass: "col-span-1 mr-2 mb-4" }),
       _vm._v(" "),
-      _c("div", { staticClass: "flex justify-center flex-wrap col-span-5" }, [
+      _c("div", { staticClass: "flex justify-center flex-wrap" }, [
         _c(
           "button",
           {
@@ -32239,7 +32461,7 @@ var render = function() {
     "div",
     {
       staticClass:
-        "flex justify-between items-center rounded border-2 border-gray-200 p-2",
+        "flex justify-between items-center rounded border-2 border-gray-200 p-2 ",
       on: { click: _vm.changeFilter }
     },
     [
@@ -32251,13 +32473,13 @@ var render = function() {
         "div",
         {
           staticClass:
-            "w-16 h-10 flex items-center bg-gray-200 rounded-full p-1 duration-300 ease-in-out",
+            "w-16 h-10 flex items-center bg-gray-200 rounded-full p-1 duration-300 ease-in-out border border-red-500",
           class: { "bg-green-400": _vm.toggleActive }
         },
         [
           _c("div", {
             staticClass:
-              "bg-white w-8 h-8 rounded-full shadow-md transform duration-300 ease-in-out",
+              "bg-white w-8 h-8 rounded-full shadow-md transform duration-300 ease-in-out border border-red-500",
             class: { "translate-x-6": _vm.toggleActive }
           })
         ]
@@ -32464,7 +32686,7 @@ var render = function() {
     [
       _c(
         "div",
-        { staticClass: "w-3/5 mx-auto shadow  pb-4 bg-white rounded-sm" },
+        { staticClass: "w-9/12 mx-auto shadow  pb-4 bg-white rounded-sm" },
         [
           _c(
             "h1",
@@ -33347,14 +33569,13 @@ var render = function() {
       "div",
       {
         staticClass:
-          "w-full px-4  flex justify-center bg-transparent md:mt-32 mt-24"
+          "md:w-9/12 mx-auto px-4  flex justify-center bg-transparent md:mt-32 mt-24"
       },
       [
         _c(
           "form",
           {
-            staticClass:
-              "w-full max-w-md shadow-lg rounded-lg bg-white px-6 py-8",
+            staticClass: "w-full  shadow-lg rounded-lg bg-white px-6 py-8",
             on: {
               submit: function($event) {
                 $event.preventDefault()
@@ -33367,7 +33588,7 @@ var render = function() {
               "div",
               {
                 staticClass:
-                  "flex items-center py-2 text-dark text-center justify-center text-xl font-bold border-b border-teal-500"
+                  "flex items-center pb-1 text-dark text-center justify-center text-xl font-bold "
               },
               [
                 _vm._v(
@@ -33379,7 +33600,8 @@ var render = function() {
             _c(
               "div",
               {
-                staticClass: "flex items-center border-b border-teal-500 py-2"
+                staticClass:
+                  "flex items-center  border-t border-b border-gray-500 py-2 relative"
               },
               [
                 _c("input", {
@@ -33392,7 +33614,7 @@ var render = function() {
                     }
                   ],
                   staticClass:
-                    "appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none",
+                    "appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 pl-60 leading-tight focus:outline-none",
                   attrs: {
                     name: "companty",
                     type: "text",
@@ -33408,14 +33630,25 @@ var render = function() {
                       _vm.$set(_vm.form, "company", $event.target.value)
                     }
                   }
-                })
+                }),
+                _vm._v(" "),
+                _c(
+                  "label",
+                  {
+                    staticClass:
+                      "absolute  pl-0 bg-gray-200 h-full flex items-center w-44 justify-center text-indigo-800 font-mono",
+                    attrs: { for: "" }
+                  },
+                  [_vm._v("Compañia")]
+                )
               ]
             ),
             _vm._v(" "),
             _c(
               "div",
               {
-                staticClass: "flex items-center border-b border-teal-500 py-2"
+                staticClass:
+                  "flex items-center  border-t border-b border-gray-500 py-2 relative"
               },
               [
                 _c("input", {
@@ -33428,7 +33661,7 @@ var render = function() {
                     }
                   ],
                   staticClass:
-                    "appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none",
+                    "appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 pl-60 leading-tight focus:outline-none",
                   attrs: {
                     name: "address",
                     type: "text",
@@ -33444,14 +33677,25 @@ var render = function() {
                       _vm.$set(_vm.form, "address", $event.target.value)
                     }
                   }
-                })
+                }),
+                _vm._v(" "),
+                _c(
+                  "label",
+                  {
+                    staticClass:
+                      "absolute  pl-0 bg-gray-200 h-full flex items-center w-44 justify-center text-indigo-800 font-mono",
+                    attrs: { for: "" }
+                  },
+                  [_vm._v("Dirección")]
+                )
               ]
             ),
             _vm._v(" "),
             _c(
               "div",
               {
-                staticClass: "flex items-center border-b border-teal-500 py-2"
+                staticClass:
+                  "flex items-center  border-t border-b border-gray-500 py-2 relative"
               },
               [
                 _c("input", {
@@ -33464,7 +33708,7 @@ var render = function() {
                     }
                   ],
                   staticClass:
-                    "appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none",
+                    "appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 pl-60 leading-tight focus:outline-none",
                   attrs: {
                     name: "phone_number",
                     type: "text",
@@ -33480,14 +33724,25 @@ var render = function() {
                       _vm.$set(_vm.form, "phone_number", $event.target.value)
                     }
                   }
-                })
+                }),
+                _vm._v(" "),
+                _c(
+                  "label",
+                  {
+                    staticClass:
+                      "absolute  pl-0 bg-gray-200 h-full flex items-center w-44 justify-center text-indigo-800 font-mono",
+                    attrs: { for: "" }
+                  },
+                  [_vm._v("Telefono")]
+                )
               ]
             ),
             _vm._v(" "),
             _c(
               "div",
               {
-                staticClass: "flex items-center border-b border-teal-500 py-2"
+                staticClass:
+                  "flex items-center  border-t border-b border-gray-500 py-2 relative"
               },
               [
                 _c("textarea", {
@@ -33500,7 +33755,7 @@ var render = function() {
                     }
                   ],
                   staticClass:
-                    "appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none",
+                    "appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 pl-60 leading-tight focus:outline-none",
                   attrs: {
                     name: "footer",
                     rows: "5",
@@ -33517,7 +33772,17 @@ var render = function() {
                       _vm.$set(_vm.form, "footer", $event.target.value)
                     }
                   }
-                })
+                }),
+                _vm._v(" "),
+                _c(
+                  "label",
+                  {
+                    staticClass:
+                      "absolute  pl-0 bg-gray-200 h-full flex items-center w-44 justify-center text-indigo-800 font-mono",
+                    attrs: { for: "" }
+                  },
+                  [_vm._v("Pie de pagina")]
+                )
               ]
             ),
             _vm._v(" "),
@@ -33586,7 +33851,7 @@ var render = function() {
           }
         ],
         staticClass:
-          "  max-w-max flex justify-center sm:overflow-x-hidden overflow-x-auto"
+          "  md:w-9/12 mx-auto flex justify-center sm:overflow-x-hidden overflow-x-auto"
       },
       [
         _c(
@@ -33850,7 +34115,7 @@ var render = function() {
   return _c(
     "nav-component",
     [
-      _c("div", { staticClass: "w-full flex justify-center " }, [
+      _c("div", { staticClass: "w-9/12 mx-auto flex justify-center " }, [
         _c(
           "div",
           {

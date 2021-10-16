@@ -1,6 +1,6 @@
 <template>
     <nav-component>
-        <div class="flex flex-wrap items-baseline" >
+        <div class="md:w-9/12 mx-auto flex flex-wrap items-baseline" >
             <registration-form
                 class="mr-4"
                 :inventories="inventories"

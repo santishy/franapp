@@ -1,26 +1,33 @@
 <template>
-    <div class="">
+    <div class=" ">
         <form
             class="rounded bg-white shadow  p-4"
             @submit.prevent="submit"
             v-can="'create role'"
         >
             <div
-                class="flex items-center py-2 text-dark text-center justify-center text-xl font-bold border-b border-teal-500"
+                class="flex items-center py-1 text-dark text-center justify-center text-xl font-bold"
             >
                 Nuevo Role
             </div>
-            <div class="flex items-center border-b border-teal-500 py-2">
+            <div
+                class="flex items-center  border-t border-b border-gray-500 py-2 relative"
+            >
                 <input
                     v-model="form.name"
                     name="name"
-                    class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
+                    class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 pl-48 leading-tight focus:outline-none"
                     type="text"
                     placeholder="NOMBRE"
                     aria-label="Full name"
                 />
+                <label
+                    for=""
+                    class="absolute  pl-0 bg-gray-200 h-full flex items-center w-44 justify-center text-indigo-800 font-mono"
+                    >Nombre</label
+                >
             </div>
-            <div  class="flex items-center ">
+            <div class="flex items-center ">
                 <errors-component :errors-found="errors" />
             </div>
             <div class="flex justify-center mt-0 mb-0">

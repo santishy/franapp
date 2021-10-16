@@ -1,7 +1,7 @@
 <template>
     <nav-component>
         <div
-            class="grid grid-cols-8 gap-4 grid-flow-col auto-cols-auto auto-rows-auto"
+            class="md:w-11/12 mx-auto grid grid-cols-8 gap-4 grid-flow-col auto-cols-auto auto-rows-auto"
             v-can="'create role'"
         >
             <create-new-role class="col-span-3" :roles="roles">

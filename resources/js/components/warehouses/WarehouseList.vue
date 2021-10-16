@@ -1,6 +1,6 @@
 <template>
     <nav-component>
-        <div class="w-full flex justify-center ">
+        <div class="w-9/12 mx-auto flex justify-center ">
             <div
                 class="bg-white shadow rounded max-w-full sm:overflow-x-hidden overflow-x-auto"
             >

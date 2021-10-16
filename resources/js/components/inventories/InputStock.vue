@@ -8,18 +8,14 @@
                 name="stock"
                 v-model="form.stock"
             />
-            <button
-                type="submit"
-                class="transition-all  rounded border-2 border-blue-800 px-2 text-blue-700 hover:bg-blue-800 hover:text-white"
-            >
-                <i class="fas fa-edit"></i>
-            </button>
         </div>
     </form>
 </template>
 
 <script>
+import EditIcon from "../icons/EditIcon.vue";
 export default {
+    components: { EditIcon },
     props: {
         product: { type: Object },
         inventory: { type: Object },
