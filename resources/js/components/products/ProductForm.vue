@@ -135,13 +135,13 @@
                         name="distributor_price"
                         class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 pl-60 leading-tight focus:outline-none"
                         type="text"
-                        placeholder="PRECIO DISTRIBUIDOR"
+                        placeholder="PRECIO PROVEEDOR"
                         aria-label="Full name"
                     />
                     <label
                         for=""
                         class="absolute text-center pl-0 bg-gray-200 h-full flex items-center w-56 justify-center text-indigo-800 font-mono"
-                        >Precio al por menor</label
+                        >Precio proveedor</label
                     >
                 </div>
                 <div class="flex items-center ">
