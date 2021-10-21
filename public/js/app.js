@@ -6367,6 +6367,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -6943,6 +6947,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _DeleteSaleProduct_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./DeleteSaleProduct.vue */ "./resources/js/components/sales/DeleteSaleProduct.vue");
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _icons_EditIcon_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../icons/EditIcon.vue */ "./resources/js/components/icons/EditIcon.vue");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -7004,6 +7009,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -7020,7 +7030,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   },
   components: {
-    DeleteSaleProduct: _DeleteSaleProduct_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+    DeleteSaleProduct: _DeleteSaleProduct_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
+    EditIcon: _icons_EditIcon_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
   data: function data() {
     return {
@@ -7102,6 +7113,7 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _icons_TrashIcon_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../icons/TrashIcon.vue */ "./resources/js/components/icons/TrashIcon.vue");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -7117,7 +7129,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    TrashIcon: _icons_TrashIcon_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+  },
   props: {
     id: {
       type: Number
@@ -7132,7 +7148,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       axios["delete"]("/sales/".concat(this.id, "/products")).then(function (res) {
         if (res.data) {
-          EventBus.$emit('product-removed', _this.index);
+          EventBus.$emit("product-removed", _this.index);
 
           _this.removeTransactionProduct(_this.id);
         }
@@ -8169,11 +8185,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-<<<<<<< HEAD
-exports.push([module.i, ".modal[data-v-53ab54d2] {\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n}\r\n", ""]);
-=======
 exports.push([module.i, ".modal[data-v-53ab54d2] {\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n}\n", ""]);
->>>>>>> c721a508edc4311408147f972e76edbd79838051
 
 // exports
 
@@ -32388,52 +32400,56 @@ var render = function() {
       _c("toggle-component", { staticClass: "col-span-1 mr-2 mb-4" }),
       _vm._v(" "),
       _c("div", { staticClass: "flex justify-center flex-wrap" }, [
-        _c(
-          "button",
-          {
-            staticClass:
-              "text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50 mr-4 rounded px-4 py-2",
-            on: {
-              click: function($event) {
-                $event.preventDefault()
-                return _vm.getReport(_vm.today)
+        _c("div", [
+          _c(
+            "button",
+            {
+              staticClass:
+                "text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50 mr-4 rounded px-4 py-2",
+              on: {
+                click: function($event) {
+                  $event.preventDefault()
+                  return _vm.getReport(_vm.today)
+                }
               }
-            }
-          },
-          [_vm._v("\n            Hoy\n        ")]
-        ),
+            },
+            [_vm._v("\n                Hoy\n            ")]
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass:
+                "text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50 mr-4 rounded px-4 py-2",
+              attrs: { href: "#" },
+              on: {
+                click: function($event) {
+                  $event.preventDefault()
+                  return _vm.getReport(_vm.week)
+                }
+              }
+            },
+            [_vm._v("\n                Semana\n            ")]
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass:
+                "text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50 rounded px-4 py-2",
+              attrs: { href: "#" },
+              on: {
+                click: function($event) {
+                  $event.preventDefault()
+                  return _vm.getReport(_vm.month)
+                }
+              }
+            },
+            [_vm._v("\n                Mes\n            ")]
+          )
+        ]),
         _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass:
-              "text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50 mr-4 rounded px-4 py-2",
-            attrs: { href: "#" },
-            on: {
-              click: function($event) {
-                $event.preventDefault()
-                return _vm.getReport(_vm.week)
-              }
-            }
-          },
-          [_vm._v("\n            Semana\n        ")]
-        ),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass:
-              "text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50 rounded px-4 py-2",
-            attrs: { href: "#" },
-            on: {
-              click: function($event) {
-                $event.preventDefault()
-                return _vm.getReport(_vm.month)
-              }
-            }
-          },
-          [_vm._v("\n            Mes\n        ")]
-        )
+        _c("div")
       ])
     ],
     1
@@ -32912,7 +32928,7 @@ var render = function() {
             },
             [
               _vm._v(
-                "\n            \n            " +
+                "\n            " +
                   _vm._s(_vm.product.description) +
                   "\n        "
               )
@@ -32994,10 +33010,14 @@ var render = function() {
                     "button",
                     {
                       staticClass:
-                        " bg-blue-300 mt-2 rounded transition-all duration-500 ease-in-out hover:bg-blue-500 text-blue-700 text-xs hover:text-white py-2 px-4 border-b-2 border-blue-500 hover:border-transparent w-2/3",
+                        " bg-blue-300 font-semibold mt-2 rounded transition-all duration-500 ease-in-out hover:bg-blue-500 text-blue-700  hover:text-white py-2 px-4 border-b-2 border-blue-500 hover:border-transparent w-2/3 ",
                       attrs: { type: "submit" }
                     },
-                    [_vm._v("\n                Modificar\n            ")]
+                    [
+                      _c("edit-icon"),
+                      _vm._v("\n                Modificar\n            ")
+                    ],
+                    1
                   )
                 ],
                 1
@@ -33096,7 +33116,8 @@ var render = function() {
         }
       }
     },
-    [_c("i", { staticClass: "fas fa-minus-circle" })]
+    [_c("trash-icon")],
+    1
   )
 }
 var staticRenderFns = []
@@ -54599,13 +54620,8 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-<<<<<<< HEAD
-__webpack_require__(/*! C:\xampp\htdocs\franapp\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\franapp\resources\css\app.css */"./resources/css/app.css");
-=======
 __webpack_require__(/*! /home/vagrant/code/franapp/resources/js/app.js */"./resources/js/app.js");
 module.exports = __webpack_require__(/*! /home/vagrant/code/franapp/resources/css/app.css */"./resources/css/app.css");
->>>>>>> c721a508edc4311408147f972e76edbd79838051
 
 
 /***/ })

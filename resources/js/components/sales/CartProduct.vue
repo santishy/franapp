@@ -3,11 +3,14 @@
         <div
             class="mt-2 flex  flex-wrap items-center justify-center bg-gray-200 px-2 py-4 rounded"
         >
-            <p class="text-gray-700 text-center w-full col-span-2 flex-none font-semibold">
+            <p
+                class="text-gray-700 text-center w-full col-span-2 flex-none font-semibold"
+            >
                 {{ product.sku }}
             </p>
-            <p class="text-gray-700 text-center mb-2 w-full col-span-2 flex-none ">
-                
+            <p
+                class="text-gray-700 text-center mb-2 w-full col-span-2 flex-none "
+            >
                 {{ product.description }}
             </p>
 
@@ -44,8 +47,9 @@
                 <delete-sale-product :id="product.id"> </delete-sale-product>
                 <button
                     type="submit"
-                    class=" bg-blue-300 mt-2 rounded transition-all duration-500 ease-in-out hover:bg-blue-500 text-blue-700 text-xs hover:text-white py-2 px-4 border-b-2 border-blue-500 hover:border-transparent w-2/3"
+                    class=" bg-blue-300 font-semibold mt-2 rounded transition-all duration-500 ease-in-out hover:bg-blue-500 text-blue-700  hover:text-white py-2 px-4 border-b-2 border-blue-500 hover:border-transparent w-2/3 "
                 >
+                    <edit-icon></edit-icon>
                     Modificar
                 </button>
             </div>
@@ -56,6 +60,7 @@
 <script>
 import DeleteSaleProduct from "./DeleteSaleProduct.vue";
 import { mapState } from "vuex";
+import EditIcon from "../icons/EditIcon.vue";
 export default {
     props: {
         product: {
@@ -69,7 +74,7 @@ export default {
             type: String
         }
     },
-    components: { DeleteSaleProduct },
+    components: { DeleteSaleProduct, EditIcon },
     data() {
         return {
             form: {}
