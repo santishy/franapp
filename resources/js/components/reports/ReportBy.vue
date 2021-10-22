@@ -23,18 +23,16 @@
                 >
                     Mes
                 </button>
-            </div>
-            <div>
-                
-            </div>
+            </div>            
         </div>
     </div>
 </template>
 <script>
 import ToggleComponent from "./ToggleComponent.vue";
+
 export default {
     components: {
-        ToggleComponent
+        ToggleComponent,
     },
     created() {
         EventBus.$on("status-filter-cancelled", status => {

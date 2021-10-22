@@ -17,6 +17,8 @@
             </transition>
             <errors-component :errors-found="errors"></errors-component>
             <report-by class="mt-4"></report-by>
+            <warehouse-checklist :warehouses="warehouses">
+            </warehouse-checklist>
         </div>
         <transaction-list :uri="uri" :name="name"> </transaction-list>
     </nav-component>
@@ -26,15 +28,19 @@
 import ReportBy from "./ReportBy.vue";
 import NavComponent from "../NavComponent.vue";
 import ErrorsComponent from "../ErrorsComponent.vue";
+import WarehouseChecklist from "../warehouses/WarehouseChecklist.vue"
 
 export default {
-    components: { ReportBy, NavComponent ,ErrorsComponent},
+    components: { ReportBy, NavComponent ,ErrorsComponent,WarehouseChecklist},
     props: {
         name: {
             type: String
         },
         uri:{
             type:String
+        },
+        warehouses: {
+            type:Array
         }
     },
     data() {

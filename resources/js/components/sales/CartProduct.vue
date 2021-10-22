@@ -1,7 +1,8 @@
 <template>
     <form @submit.prevent="submit">
         <div
-            class="mt-2 flex  flex-wrap items-center justify-center bg-gray-200 px-2 py-4 rounded"
+            class="mt-2 flex  
+                flex-wrap items-center justify-center bg-gray-200 px-2 py-4 rounded"
         >
             <p
                 class="text-gray-700 text-center w-full col-span-2 flex-none font-semibold"
