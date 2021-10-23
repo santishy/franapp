@@ -5,6 +5,7 @@ namespace App\Models\Traits;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 trait ReportBy
 {
@@ -14,22 +15,24 @@ trait ReportBy
     }
 
     public function scopeMonth(Builder $query, $value)
-    { 
+    {
         $query->whereMonth('created_at', $value);
     }
-    public function scopeToday(Builder $query,$value)
-    {   
-        
-        $query->whereDate('created_at',Carbon::now()->format('Y-m-d'));
+    public function scopeToday(Builder $query, $value)
+    {
 
+        $query->whereDate('created_at', Carbon::now()->format('Y-m-d'));
     }
-    public function scopeCurrentMonth(Builder $query,$value){
-        $query->whereMonth('created_at',Carbon::now()->month);
+    public function scopeCurrentMonth(Builder $query, $value)
+    {
+        $query->whereMonth('created_at', Carbon::now()->month);
     }
-    public function scopeStatus(Builder $query,$value){
-        $query->where('status',$value);
+    public function scopeStatus(Builder $query, $value)
+    {
+        $query->where('status', $value);
     }
-    public function scopeWeek(Builder $query,$value){
+    public function scopeWeek(Builder $query, $value)
+    {
         $query->whereBetween('created_at', [
             Carbon::now()->startOfWeek(),
             Carbon::now()->endOfWeek()
@@ -39,5 +42,13 @@ trait ReportBy
     public function scopeTotal(Builder $query)
     {
         $query->select(DB::raw('sum(total) as total'));
+    }
+
+    public function scopeByWarehouses(Builder $query, $value)
+    {
+        $warehouses = str::of($value)->explode(',');
+        if (count($warehouses)) {
+            $query->whereIn('inventory_id', $warehouses);
+        }
     }
 }

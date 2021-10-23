@@ -21,8 +21,8 @@
             <thead>
                 <tr class="bg-purple-200">
                     <th class="px-4 py-2">ID</th>
-                    <th  class="px-4 py-2">Usuario</th>
-                    <th v-if="areTheySales"> Cliente </th>
+                    <th class="px-4 py-2">Usuario</th>
+                    <th v-if="areTheySales">Cliente</th>
                     <th class="px-4 py-2">Fecha</th>
                     <th class="px-4 py-2">Total</th>
                     <th class="px-4 py-2">Ver</th>
@@ -79,12 +79,20 @@ export default {
             transactions: [],
             page: 1,
             params: null,
+            searchTheWarehouses: {
+                "filter[byWarehouses]": null
+            },
             infiniteId: 1
         };
     },
     mounted() {
         EventBus.$on("set-parameters", data => {
             this.changeParams(data);
+        });
+        EventBus.$on("selected-warehouses", warehouses => {
+            this.searchTheWarehouses[
+                "filter[byWarehouses]"
+            ] = warehouses.toString();
         });
     },
     methods: {
@@ -93,7 +101,8 @@ export default {
                 .get(this.uri, {
                     params: {
                         page: this.page,
-                        ..._.merge(this.params,this.getRelathionships)
+                        ..._.merge(this.params, this.getRelathionships),
+                        ...this.searchTheWarehouses
                     }
                 })
                 .then(res => {
@@ -147,18 +156,16 @@ export default {
     },
     computed: {
         ...mapState(["modalDataConfirm"]),
-        getRelathionships()
-        {
-            if(this.name.toUpperCase() == "VENTAS"){
-                return {include:'user,products,client'}
-            }
-            else if(this.name.toUpperCase() == "COMPRAS"){
-                return {include:'user,products'}
+        getRelathionships() {
+            if (this.name.toUpperCase() == "VENTAS") {
+                return { include: "user,products,client" };
+            } else if (this.name.toUpperCase() == "COMPRAS") {
+                return { include: "user,products" };
             }
         },
-        areTheySales(){
-            return this.name.toUpperCase() == 'VENTAS';
-        }
+        areTheySales() {
+            return this.name.toUpperCase() == "VENTAS";
+        },
     }
 };
 </script>

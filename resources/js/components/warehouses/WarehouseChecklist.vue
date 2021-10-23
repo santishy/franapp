@@ -1,9 +1,11 @@
 <template>
-    <div>
-        <label class="inline-flex items-center mt-3" v-for="warehouse in warehouses"
-                :key="warehouse.id">
+    <div class="flex flex-wrap space-x-2 px-2">
+        <label
+            class="inline-flex items-center mt-3 border p-2 border-gray-300 rounded-lg cursor-pointer "
+            v-for="warehouse in warehouses"
+            :key="warehouse.id"
+        >
             <input
-                
                 type="checkbox"
                 @change="toggleWarehouse(warehouse, $event)"
                 class="form-checkbox h-5 w-5 text-teal-600"
@@ -18,22 +20,21 @@ export default {
     },
     data() {
         return {
-            selectedWarehouse: []
+            selectedWarehouses: []
         };
     },
     methods: {
-        toggleWarehouse(warehouse, event) 
-        {
+        toggleWarehouse(warehouse, event) {
             if (!event.target.checked) {
-                if (this.selectedWarehouse.includes(warehouse.id)) {
-                    const index = this.selectedWarehouse.indexOf(
-                        warehouse.id
-                    );
-                    this.selectedWarehouse.splice(index, 1);
-                    return;
+                if (this.selectedWarehouses.includes(warehouse.id)) {
+                    const index = this.selectedWarehouses.indexOf(warehouse.id);
+                    this.selectedWarehouses.splice(index, 1);
                 }
+            } else {
+                this.selectedWarehouses.push(warehouse.id);
             }
-            this.selectedWarehouse.push(warehouse.id);
+
+            EventBus.$emit("selected-warehouses", this.selectedWarehouses);
         }
     }
 };

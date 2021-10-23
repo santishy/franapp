@@ -6571,6 +6571,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       transactions: [],
       page: 1,
       params: null,
+      searchTheWarehouses: {
+        "filter[byWarehouses]": null
+      },
       infiniteId: 1
     };
   },
@@ -6580,15 +6583,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     EventBus.$on("set-parameters", function (data) {
       _this.changeParams(data);
     });
+    EventBus.$on("selected-warehouses", function (warehouses) {
+      _this.searchTheWarehouses["filter[byWarehouses]"] = warehouses.toString();
+    });
   },
   methods: _objectSpread(_objectSpread({
     infiniteHandler: function infiniteHandler($state) {
       var _this2 = this;
 
       axios.get(this.uri, {
-        params: _objectSpread({
+        params: _objectSpread(_objectSpread({
           page: this.page
-        }, _.merge(this.params, this.getRelathionships))
+        }, _.merge(this.params, this.getRelathionships)), this.searchTheWarehouses)
       }).then(function (res) {
         if (_this2.page == 1) EventBus.$emit("calculated-total", res.data.total);
 
@@ -6656,16 +6662,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     getRelathionships: function getRelathionships() {
       if (this.name.toUpperCase() == "VENTAS") {
         return {
-          include: 'user,products,client'
+          include: "user,products,client"
         };
       } else if (this.name.toUpperCase() == "COMPRAS") {
         return {
-          include: 'user,products'
+          include: "user,products"
         };
       }
     },
     areTheySales: function areTheySales() {
-      return this.name.toUpperCase() == 'VENTAS';
+      return this.name.toUpperCase() == "VENTAS";
     }
   })
 });
@@ -8005,6 +8011,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     warehouses: {
@@ -8013,20 +8021,21 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      selectedWarehouse: []
+      selectedWarehouses: []
     };
   },
   methods: {
     toggleWarehouse: function toggleWarehouse(warehouse, event) {
       if (!event.target.checked) {
-        if (this.selectedWarehouse.includes(warehouse.id)) {
-          var index = this.selectedWarehouse.indexOf(warehouse.id);
-          this.selectedWarehouse.splice(index, 1);
-          return;
+        if (this.selectedWarehouses.includes(warehouse.id)) {
+          var index = this.selectedWarehouses.indexOf(warehouse.id);
+          this.selectedWarehouses.splice(index, 1);
         }
+      } else {
+        this.selectedWarehouses.push(warehouse.id);
       }
 
-      this.selectedWarehouse.push(warehouse.id);
+      EventBus.$emit("selected-warehouses", this.selectedWarehouses);
     }
   }
 });
@@ -8241,7 +8250,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".modal[data-v-53ab54d2] {\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n}\r\n", ""]);
+exports.push([module.i, ".modal[data-v-53ab54d2] {\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n}\n", ""]);
 
 // exports
 
@@ -32621,7 +32630,7 @@ var render = function() {
                   _vm._v(" "),
                   _c("th", { staticClass: "px-4 py-2" }, [_vm._v("Usuario")]),
                   _vm._v(" "),
-                  _vm.areTheySales ? _c("th", [_vm._v(" Cliente ")]) : _vm._e(),
+                  _vm.areTheySales ? _c("th", [_vm._v("Cliente")]) : _vm._e(),
                   _vm._v(" "),
                   _c("th", { staticClass: "px-4 py-2" }, [_vm._v("Fecha")]),
                   _vm._v(" "),
@@ -34195,10 +34204,15 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
+    { staticClass: "flex flex-wrap space-x-2 px-2" },
     _vm._l(_vm.warehouses, function(warehouse) {
       return _c(
         "label",
-        { key: warehouse.id, staticClass: "inline-flex items-center mt-3" },
+        {
+          key: warehouse.id,
+          staticClass:
+            "inline-flex items-center mt-3 border p-2 border-gray-300 rounded-lg cursor-pointer "
+        },
         [
           _c("input", {
             staticClass: "form-checkbox h-5 w-5 text-teal-600",
@@ -54792,8 +54806,8 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\htdocs\franapp\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\franapp\resources\css\app.css */"./resources/css/app.css");
+__webpack_require__(/*! /home/vagrant/code/franapp/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/vagrant/code/franapp/resources/css/app.css */"./resources/css/app.css");
 
 
 /***/ })
