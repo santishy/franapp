@@ -158,9 +158,9 @@ export default {
         ...mapState(["modalDataConfirm"]),
         getRelathionships() {
             if (this.name.toUpperCase() == "VENTAS") {
-                return { include: "user,products,client" };
+                return { include: "user,client" };
             } else if (this.name.toUpperCase() == "COMPRAS") {
-                return { include: "user,products" };
+                return { include: "user" };
             }
         },
         areTheySales() {

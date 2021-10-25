@@ -5,7 +5,7 @@
         </button>
         <div
             v-if="toggleModal"
-            class="fixed modal max-h-full  overflow-x-hidden overflow-y-auto flex justify-center items-center z-50 shadow-2xl"
+            class="fixed py-2 modal max-h-full  overflow-x-hidden overflow-y-auto flex justify-center items-center z-50 shadow-2xl"
         >
             <div
                 class="relative mx-auto max-w-6xl w-full shadow-2xl"
