@@ -19,6 +19,11 @@
                 <td class="border px-4 py-2">{{product[`${transactionType}_price`]}}</td>
             </tr>
         </tbody>
+        <!-- <infinite-loading
+            :identifier="infiniteId"
+            @infinite="getProducts"
+            ref="infiniteLoading"
+        ></infinite-loading> -->
     </table>
 </template>
 <script>
@@ -31,5 +36,15 @@ export default {
             type:String
         }
     },
+    data() {
+        return {
+            page:1
+        }
+    },
+    methods:{
+        // getProducts(){
+        //     axios.get(`/}`)
+        // }
+    }
 }
 </script>

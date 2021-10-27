@@ -7,7 +7,7 @@ use App\Http\Controllers\SaleController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductsSearchController;
 use App\Http\Controllers\ProductInPurchaseController;
-use App\Http\Controllers\{ClientController, CurrentUserController, ImpersonationController, InventoryController, PDFController, RolesPermissionsController, SaleToClientController, TicketController, UserController, WarehouseController};
+use App\Http\Controllers\{ClientController, CurrentUserController, ImpersonationController, InventoryController, PDFController, RolesPermissionsController, SaleToClientController, TicketController, TransactionController, UserController, WarehouseController};
 use App\Http\Controllers\{PurchaseController, ProductInSaleController, RoleController};
 use App\Models\Category;
 use App\Models\Ticket;
@@ -115,3 +115,9 @@ Route::get('/current-user',CurrentUserController::class);
 Route::get('pdf-tickets/{sale}',PDFController::class)->middleware('auth');
 Route::put('tickets/{ticket}',[TicketController::class,'update'])->middleware('auth');
 Route::get('tickets/{ticket}/edit',[TicketController::class,'edit'])->middleware('auth');
+
+
+/**
+ * transaction
+ */
+Route::get('transaction',[TransactionController::class,'index']);
