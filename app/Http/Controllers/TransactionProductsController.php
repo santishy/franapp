@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\ProductResource;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use app\Models\Purchase;
 use app\Models\Sale;
 
-class TransactionController extends Controller
+class TransactionProductsController extends Controller
 {
     public function index(Request $request)
     {
@@ -21,9 +22,8 @@ class TransactionController extends Controller
 
         $model = app("App\\Models\\{$model}");
 
-        $instance = $model->find($request->id)->load('products');
+        $products = $model->find($request->id)->products()->paginate(25);
         
-
-        return response()->json(['instance' => $instance]);
+        return response()->json(['products' => ProductResource::collection($products)]);
     }
 }

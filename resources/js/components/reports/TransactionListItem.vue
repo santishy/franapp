@@ -7,8 +7,7 @@
         <td class="border px-4 py-2">{{ transaction.total }}</td>
         <td class="border px-4 py-2">
             <modal-component
-                :products="transaction.products"
-                :transaction-type="transaction.transactionType"
+                :transaction="transaction"
             >
             </modal-component>
         </td>

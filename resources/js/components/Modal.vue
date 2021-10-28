@@ -5,15 +5,15 @@
         </button>
         <div
             v-if="toggleModal"
-            class="fixed py-2 modal max-h-full  overflow-x-hidden overflow-y-auto flex justify-center items-center z-50 shadow-2xl"
+            class="fixed py-2 modal max-h-screen  overflow-x-hidden overflow-y-hidden flex justify-center items-center z-50 shadow-2xl"
         >
             <div
-                class="relative mx-auto max-w-6xl w-full shadow-2xl"
+                class="relative  mx-auto max-w-6xl w-full shadow-2xl"
             >
                 <div
-                    class="bg-white w-full rounded shadow-2xl p-4 relative"
+                    class="bg-white w-full rounded shadow-2xl  relative"
                 >
-                    <product-list :transactionType="transactionType" :products="products"></product-list>
+                    <product-list :transaction="transaction"></product-list>
                 </div>
             </div>
         </div>
@@ -31,16 +31,13 @@ import ListIcon from './icons/ListIcon.vue'
 export default {
 
     props:{
-        products:{
-            type:Array,
-        },
-        transactionType:{
-            type:String
+        transaction:{
+            type:Object
         }
     },
     data: () => {
         return {
-            toggleModal: false
+            toggleModal: false,
         };
     },
     components:{ProductList,ListIcon}

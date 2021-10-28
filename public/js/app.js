@@ -2215,11 +2215,8 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
-    products: {
-      type: Array
-    },
-    transactionType: {
-      type: String
+    transaction: {
+      type: Object
     }
   },
   data: function data() {
@@ -6710,7 +6707,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -6833,7 +6829,18 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
 //
 //
 //
@@ -6863,21 +6870,46 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
-    products: {
-      type: Array
-    },
-    transactionType: {
-      type: String
+    transaction: {
+      type: Object
     }
   },
   data: function data() {
     return {
-      page: 1
+      page: 1,
+      products: []
     };
   },
-  methods: {// getProducts(){
-    //     axios.get(`/}`)
-    // }
+  methods: {
+    getProducts: function getProducts($state) {
+      var _this = this;
+
+      axios.get("/transaction-products", {
+        params: {
+          id: this.transaction.id,
+          transactionType: this.transaction.transactionType,
+          page: this.page
+        }
+      }).then(function (res) {
+        console.log(res.data);
+
+        if (res.data.products.length) {
+          var _this$products;
+
+          _this.page += 1;
+
+          (_this$products = _this.products).push.apply(_this$products, _toConsumableArray(res.data.products));
+
+          $state.loaded();
+        } else {
+          $state.complete();
+        }
+      })["catch"](function (err) {
+        $state.complete();
+
+        _this.getErrors(err);
+      });
+    }
   }
 });
 
@@ -27579,25 +27611,21 @@ var render = function() {
           "div",
           {
             staticClass:
-              "fixed py-2 modal max-h-full  overflow-x-hidden overflow-y-auto flex justify-center items-center z-50 shadow-2xl"
+              "fixed py-2 modal max-h-screen  overflow-x-hidden overflow-y-hidden flex justify-center items-center z-50 shadow-2xl"
           },
           [
             _c(
               "div",
-              { staticClass: "relative mx-auto max-w-6xl w-full shadow-2xl" },
+              { staticClass: "relative  mx-auto max-w-6xl w-full shadow-2xl" },
               [
                 _c(
                   "div",
                   {
-                    staticClass:
-                      "bg-white w-full rounded shadow-2xl p-4 relative"
+                    staticClass: "bg-white w-full rounded shadow-2xl  relative"
                   },
                   [
                     _c("product-list", {
-                      attrs: {
-                        transactionType: _vm.transactionType,
-                        products: _vm.products
-                      }
+                      attrs: { transaction: _vm.transaction }
                     })
                   ],
                   1
@@ -32734,14 +32762,7 @@ var render = function() {
     _c(
       "td",
       { staticClass: "border px-4 py-2" },
-      [
-        _c("modal-component", {
-          attrs: {
-            products: _vm.transaction.products,
-            "transaction-type": _vm.transaction.transactionType
-          }
-        })
-      ],
+      [_c("modal-component", { attrs: { transaction: _vm.transaction } })],
       1
     ),
     _vm._v(" "),
@@ -32855,33 +32876,58 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("table", { staticClass: "table-auto text-center" }, [
-    _vm._m(0),
-    _vm._v(" "),
-    _c(
-      "tbody",
-      _vm._l(_vm.products, function(product) {
-        return _c("tr", { key: product.id }, [
-          _c("td", { staticClass: "border px-4 py-2" }, [
-            _vm._v(_vm._s(product.sku))
-          ]),
+  return _c(
+    "div",
+    { staticClass: "max-h-screen overflow-x-hidden overflow-h-auto mb-1" },
+    [
+      _c(
+        "table",
+        { staticClass: "table-auto text-center" },
+        [
+          _vm._m(0),
           _vm._v(" "),
-          _c("td", { staticClass: "border px-4 py-2" }, [
-            _vm._v(_vm._s(product.description))
-          ]),
+          _c(
+            "tbody",
+            _vm._l(_vm.products, function(product) {
+              return _c("tr", { key: product.id }, [
+                _c("td", { staticClass: "border px-4 py-2" }, [
+                  _vm._v(_vm._s(product.sku))
+                ]),
+                _vm._v(" "),
+                _c("td", { staticClass: "border px-4 py-2" }, [
+                  _vm._v(_vm._s(product.description))
+                ]),
+                _vm._v(" "),
+                _c("td", { staticClass: "border px-4 py-2" }, [
+                  _vm._v(
+                    "\n                    " +
+                      _vm._s(
+                        product[_vm.transaction.transactionType + "_quantity"]
+                      ) +
+                      "\n                "
+                  )
+                ]),
+                _vm._v(" "),
+                _c("td", { staticClass: "border px-4 py-2" }, [
+                  _vm._v(
+                    "\n                    " +
+                      _vm._s(
+                        product[_vm.transaction.transactionType + "_price"]
+                      ) +
+                      "\n                "
+                  )
+                ])
+              ])
+            }),
+            0
+          ),
           _vm._v(" "),
-          _c("td", { staticClass: "border px-4 py-2" }, [
-            _vm._v(_vm._s(product[_vm.transactionType + "_quantity"]))
-          ]),
-          _vm._v(" "),
-          _c("td", { staticClass: "border px-4 py-2" }, [
-            _vm._v(_vm._s(product[_vm.transactionType + "_price"]))
-          ])
-        ])
-      }),
-      0
-    )
-  ])
+          _c("infinite-loading", { on: { infinite: _vm.getProducts } })
+        ],
+        1
+      )
+    ]
+  )
 }
 var staticRenderFns = [
   function() {
