@@ -5220,6 +5220,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -5295,6 +5299,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           }
         }, _callee);
       }))();
+    },
+    onFileSelected: function onFileSelected(event) {
+      this.form.image = event.target.files[0];
     }
   },
   computed: {
@@ -31416,6 +31423,37 @@ var render = function() {
                     attrs: { for: "" }
                   },
                   [_vm._v("Categoría")]
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass:
+                  "flex items-center  border-t border-gray-500 py-2 relative"
+              },
+              [
+                _c("input", {
+                  staticClass:
+                    "appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 pl-60 leading-tight focus:outline-none",
+                  attrs: {
+                    type: "file",
+                    name: "image",
+                    placeholder: "Subir imagen",
+                    "aria-label": "Full name"
+                  },
+                  on: { change: _vm.onFileSelected }
+                }),
+                _vm._v(" "),
+                _c(
+                  "label",
+                  {
+                    staticClass:
+                      "absolute  pl-0 bg-gray-200 h-full flex items-center w-56 justify-center text-indigo-800 font-mono",
+                    attrs: { for: "" }
+                  },
+                  [_vm._v("Imagen")]
                 )
               ]
             ),

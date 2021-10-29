@@ -5,13 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class Product extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['sku', 'distributor_price', 'wholesale_price', 'retail_price', 'description','category_id'];
+    protected $fillable = ['sku', 'distributor_price', 'wholesale_price', 'retail_price', 'description', 'category_id'];
 
     public function scopeSearch(Builder $query, $values)
     {
@@ -48,5 +49,20 @@ class Product extends Model
     public function category()
     {
         return $this->belongsTo(Category::class);
+    }
+
+    public function uploadImage()
+    {
+        $path = null;
+        
+        if (request()->exists('image')) {
+            if (!is_null($this->image)) {
+                if (file_exists($this->image)) {
+                    Storage::delete($this->image);
+                }
+            }
+            $path = request()->file('image')->store('public/images');
+        }
+        return $path;
     }
 }

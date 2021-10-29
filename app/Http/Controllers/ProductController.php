@@ -28,9 +28,19 @@ class ProductController extends Controller
     }
     public function store(Request $request)
     {
-
         $this->authorize('create', new Product());
         $this->validateProduct($request);
+
+        $product = new Product;
+
+        $product->image = $product->uploadImage();
+        
+    
+
+        $product->save($request->except('image'));
+
+        return $product;
+
         return Product::create($request->all());
     }
     public function edit(Product $product)
@@ -64,7 +74,8 @@ class ProductController extends Controller
             'wholesale_price' => 'required|numeric',
             'retail_price' => 'required|numeric',
             'distributor_price' => 'required|numeric',
-            'category_id' => 'required|numeric'
+            'category_id' => 'required|numeric',
+            'image' => 'image|size:2048'
         ], [
             'description.required' => 'La descripción es requerida',
             'sku.required' => 'El SKU es requerido',
@@ -77,6 +88,8 @@ class ProductController extends Controller
             'distributor_price.numeric' => 'El precio distribuidor debe ser un valor númerico',
             'category_id.requerid' => 'La categoría es obligatoría.',
             'category_id.numeric' => 'El identificador de la categoría debe ser numerico.',
+            'image.image' => 'El archivo enviado no es una imagén valida.',
+            'image.size' => 'El archivo excede el tamaño establecido para la imagen.'
         ]);
     }
 }
