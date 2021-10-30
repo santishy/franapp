@@ -5224,6 +5224,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -5259,7 +5260,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var message, url;
+        var message, url, formData;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
@@ -5268,16 +5269,23 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   message: "EL producto se creo correctamente"
                 };
                 url = "/products";
+                formData = new FormData(document.querySelector('#product-form'));
 
                 if (_this.method == "put") {
                   message = {
                     message: "El producto se modifico correctamente"
                   };
-                  _this.form._method = "put";
+                  formData.append('_method', "put");
+                  formData.append('id', _this.product.id);
                   url = "/products/".concat(_this.product.id);
                 }
 
-                axios["post"](url, _this.form).then(function (res) {
+                axios["post"](url, formData, {
+                  headers: {
+                    "Content-Type": "multipart/form-data",
+                    'Accept': 'application/json'
+                  }
+                }).then(function (res) {
                   var obj = _objectSpread({
                     title: "Productos"
                   }, message);
@@ -5292,7 +5300,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   _this.getErrors(err);
                 });
 
-              case 4:
+              case 5:
               case "end":
                 return _context.stop();
             }
@@ -8303,7 +8311,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".modal[data-v-53ab54d2] {\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n}\n", ""]);
+exports.push([module.i, ".modal[data-v-53ab54d2] {\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n}\r\n", ""]);
 
 // exports
 
@@ -31333,6 +31341,7 @@ var render = function() {
             ],
             staticClass:
               "w-full  shadow-lg rounded-lg bg-white md:px-6 md:py-6  md:mt-0 mt-10 md:mb-0",
+            attrs: { id: "product-form" },
             on: {
               submit: function($event) {
                 $event.preventDefault()
@@ -54904,8 +54913,8 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/vagrant/code/franapp/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/vagrant/code/franapp/resources/css/app.css */"./resources/css/app.css");
+__webpack_require__(/*! C:\xampp\htdocs\franapp\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\franapp\resources\css\app.css */"./resources/css/app.css");
 
 
 /***/ })

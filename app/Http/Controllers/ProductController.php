@@ -31,13 +31,13 @@ class ProductController extends Controller
         $this->authorize('create', new Product());
         $this->validateProduct($request);
 
-        $product = new Product;
+        $product = new Product($request->except('image'));
 
         $product->image = $product->uploadImage();
         
     
 
-        $product->save($request->except('image'));
+        $product->save();
 
         return $product;
 
@@ -51,8 +51,10 @@ class ProductController extends Controller
     }
     public function update(Request $request, Product $product)
     {
+        dd($request->id);
         $this->authorize('update', $product);
         $this->validateProduct($request);
+        
         $product->update($request->except('_method'));
         return ProductResource::make($product);
     }
@@ -75,7 +77,7 @@ class ProductController extends Controller
             'retail_price' => 'required|numeric',
             'distributor_price' => 'required|numeric',
             'category_id' => 'required|numeric',
-            'image' => 'image|size:2048'
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ], [
             'description.required' => 'La descripción es requerida',
             'sku.required' => 'El SKU es requerido',
@@ -89,7 +91,7 @@ class ProductController extends Controller
             'category_id.requerid' => 'La categoría es obligatoría.',
             'category_id.numeric' => 'El identificador de la categoría debe ser numerico.',
             'image.image' => 'El archivo enviado no es una imagén valida.',
-            'image.size' => 'El archivo excede el tamaño establecido para la imagen.'
+            'image.max' => 'El archivo excede el tamaño establecido para la imagen.'
         ]);
     }
 }

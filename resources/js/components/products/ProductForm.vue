@@ -5,6 +5,7 @@
             class="flex justify-center items-baseline flex-wrap px-4 w-9/12 mx-auto"
         >
             <form
+                id="product-form"
                 @submit.prevent="submit"
                 v-can="definePermission"
                 class="w-full  shadow-lg rounded-lg bg-white md:px-6 md:py-6  md:mt-0 mt-10 md:mb-0"
@@ -176,7 +177,7 @@ export default {
             form: {
                 category_id: ""
             },
-            category_name: "",
+            category_name: ""
         };
     },
     mounted() {
@@ -200,12 +201,20 @@ export default {
         async submit() {
             let message = { message: "EL producto se creo correctamente" };
             var url = "/products";
+            var formData = new FormData(document.querySelector('#product-form'));
+
             if (this.method == "put") {
                 message = { message: "El producto se modifico correctamente" };
-                this.form._method = "put";
+                formData.append('_method' , "put");
+                formData.append('id',this.product.id);
                 url = `/products/${this.product.id}`;
             }
-            axios["post"](url, this.form)
+            axios["post"](url,formData, {
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                    'Accept': 'application/json',
+                }
+            })
                 .then(res => {
                     let obj = { title: "Productos", ...message };
                     console.log(obj);
@@ -217,8 +226,7 @@ export default {
                     this.getErrors(err);
                 });
         },
-        onFileSelected(event) 
-        {
+        onFileSelected(event) {
             this.form.image = event.target.files[0];
         }
     },
