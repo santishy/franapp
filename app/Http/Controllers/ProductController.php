@@ -51,7 +51,7 @@ class ProductController extends Controller
     }
     public function update(Request $request, Product $product)
     {
-        dd($request->id);
+        
         $this->authorize('update', $product);
         $this->validateProduct($request);
         
