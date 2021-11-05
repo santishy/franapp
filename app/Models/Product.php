@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class Product extends Model
 {
@@ -57,12 +58,24 @@ class Product extends Model
         
         if (request()->exists('image')) {
             if (!is_null($this->image)) {
-                if (file_exists($this->image)) {
+                if (file_exists(storage_path($this->image))) {
                     Storage::delete($this->image);
+                    
+                }
+                else {
+                    dd('no entro');
                 }
             }
-            $path = request()->file('image')->store('public/images');
+            $path = storage_path('app/public/images');
+            $name = Str::uuid().'.'.request('image')->extension();
+            $img = Image::make(request()->image);
+            
+            $img->resize(300, null, function ($constraint) {
+                $constraint->aspectRatio();
+            })
+            ->save("$path/$name");
+            //$path = request()->file('image')->store('public/images');
         }
-        return $path;
+        return "public/images/$name";
     }
 }

@@ -161,12 +161,13 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-
+        
         /*
          * Package Service Providers...
          */
         Barryvdh\DomPDF\ServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class,
 
         
         /*
@@ -233,7 +234,7 @@ return [
         'CurrentUser' => App\Authorization\Facades\CurrentUser::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
-
+        'Image' => Intervention\Image\Facades\Image::class,
     ],
 
 ];
