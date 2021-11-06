@@ -9,6 +9,9 @@
         ]"
     >
         <div class="text-justify" :class="['text-justify']">
+            <div class="w-full">
+                <img :src="product.image_url" alt="product.sku" class="object-contain md:object-scale-down">
+            </div>
             <div
                 class=" px-6 pt-4 pb-2 text-center grid grid-cols-4 md:gap-4 gap-1"
             >

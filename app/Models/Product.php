@@ -13,7 +13,7 @@ class Product extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['sku', 'distributor_price','image', 'wholesale_price', 'retail_price', 'description', 'category_id'];
+    protected $fillable = ['sku', 'distributor_price', 'image', 'wholesale_price', 'retail_price', 'description', 'category_id'];
 
     public function scopeSearch(Builder $query, $values)
     {
@@ -54,28 +54,25 @@ class Product extends Model
 
     public function uploadImage()
     {
-        $path = null;
-        
+
         if (request()->exists('image')) {
             if (!is_null($this->image)) {
-                if (file_exists(storage_path($this->image))) {
+                if (file_exists(storage_path('app/' . $this->image))) {
+
                     Storage::delete($this->image);
-                    
-                }
-                else {
-                    dd('no entro');
                 }
             }
-            $path = storage_path('app/public/images');
-            $name = Str::uuid().'.'.request('image')->extension();
+
             $img = Image::make(request()->image);
-            
-            $img->resize(300, null, function ($constraint) {
+
+            $resize = $img->resize(500, null, function ($constraint) {
                 $constraint->aspectRatio();
-            })
-            ->save("$path/$name");
-            //$path = request()->file('image')->store('public/images');
+            });
+            $name = str::uuid() . '.' . request()->file('image')->extension();
+            $resize->save(storage_path('app/public/images/'.$name));
+            return Storage::url("public/images/$name");
         }
-        return "public/images/$name";
+        return "/images/not-found.png";
+        
     }
 }
