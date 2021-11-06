@@ -78,7 +78,7 @@ class ProductController extends Controller
             'retail_price' => 'required|numeric',
             'distributor_price' => 'required|numeric',
             'category_id' => 'required|numeric',
-            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+            'image' => 'image|mimes:jpeg,png,jpg,gif|dimensions:min_width=500,min_height=600'
         ], [
             'description.required' => 'La descripción es requerida',
             'sku.required' => 'El SKU es requerido',
@@ -92,7 +92,7 @@ class ProductController extends Controller
             'category_id.requerid' => 'La categoría es obligatoría.',
             'category_id.numeric' => 'El identificador de la categoría debe ser numerico.',
             'image.image' => 'El archivo enviado no es una imagén valida.',
-            'image.max' => 'El archivo excede el tamaño establecido para la imagen.'
+            'image.dimensions' => 'El ancho de la imagen como minimo debe de ser de 500px.'
         ]);
     }
 }

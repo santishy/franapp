@@ -15,6 +15,18 @@
                 >
                     Nuevo producto
                 </div>
+                <div v-if="src" class="flex flex-wrap justify-center w-full bg-gray-200 p-2">
+                    <div class="w-8/12 sm:w-6/12 px-4">
+                        <img
+                            :src="src"
+                            alt="Imagen a subir"
+                            class="rounded max-w-full h-auto align-middle border-none"
+                        />
+                    </div>
+                    <div class="ml-2">
+                        <p class="text-lg font-mono text-gray-700">Presiona guardar para que se reflejen los cambios</p>
+                    </div>
+                </div>
                 <div
                     class="flex items-center  border-t border-gray-500 py-2 relative"
                 >
@@ -177,7 +189,9 @@ export default {
             form: {
                 category_id: ""
             },
-            category_name: ""
+            category_name: "",
+            src: null,
+            frutsi:null
         };
     },
     mounted() {
@@ -195,29 +209,31 @@ export default {
         },
         categories: {
             type: Array
-        }
+        },
+        
     },
     methods: {
         async submit() {
             let message = { message: "EL producto se creo correctamente" };
             var url = "/products";
-            var formData = new FormData(document.querySelector('#product-form'));
+            var formData = new FormData(
+                document.querySelector("#product-form")
+            );
 
             if (this.method == "put") {
                 message = { message: "El producto se modifico correctamente" };
-                formData.append('_method' , "put");
-                formData.append('id',this.product.id);
+                formData.append("_method", "put");
+                formData.append("id", this.product.id);
                 url = `/products/${this.product.id}`;
             }
-            axios["post"](url,formData, {
+            axios["post"](url, formData, {
                 headers: {
                     "Content-Type": "multipart/form-data",
-                    'Accept': 'application/json',
+                    Accept: "application/json"
                 }
             })
                 .then(res => {
                     let obj = { title: "Productos", ...message };
-                    console.log(obj);
                     this.notify(obj);
                     if (this.method == "post") this.form = {};
                     this.errors = null;
@@ -228,6 +244,20 @@ export default {
         },
         onFileSelected(event) {
             this.form.image = event.target.files[0];
+            if (event.target.files[0]) {
+                
+                const fileReader = new FileReader();
+                fileReader.readAsDataURL(event.target.files[0]);
+         
+                fileReader.addEventListener("load",this.showImage);
+                
+            }
+            else{
+                console.log("no entro")
+            }
+        },
+        showImage(e){
+            this.src=e.target.result;
         }
     },
     computed: {
