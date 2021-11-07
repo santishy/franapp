@@ -23,7 +23,7 @@ class TransactionResource extends JsonResource
             'status' => $this->resource->status,
             'client_id' => optional($this->resource)->client_id,
             'client' => $this->whenLoaded('client'),
-           // 'products' => ProductResource::collection($this->products),
+            'products' => ProductResource::collection($this->whenLoaded('products')),
             'inventory_id' => $this->inventory_id,
             'username' => $this->resource->user->name,
         ];

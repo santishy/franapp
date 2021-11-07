@@ -43,7 +43,7 @@ class SaleController extends Controller
         $inventories = Inventory::all();
         $categories = Category::all();
         return view('sales.create', [
-            'sale' => $sale ? TransactionResource::make($sale) : null,
+            'sale' => $sale ? TransactionResource::make($sale->load('products')) : null,
             'inventories' => $inventories,
             'categories' => $categories
         ]);
