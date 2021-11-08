@@ -32,7 +32,7 @@ class ProductInSaleController extends Controller
         $sale = Sale::getTransaction();
         $sale->transactions($product);
         $request->product = $product;
-        return new TransactionResponse($sale);
+        return new TransactionResponse($sale->load('products'));
     }
 
     public function update(Request $request, Product $product)
