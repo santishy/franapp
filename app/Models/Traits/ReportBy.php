@@ -39,6 +39,14 @@ trait ReportBy
         ]);
     }
 
+    public function scopeBetweenDates(Builder $query,$value){
+
+        $dates = str::of($value)->explode(',');
+        
+        $query->whereBetween('created_at',[$dates[0],$dates[1]]);
+
+    }
+
     public function scopeTotal(Builder $query)
     {
         $query->select(DB::raw('sum(total) as total'));
