@@ -2,12 +2,7 @@ module.exports = {
     data() {
         return {
             // Use moment.js instead of the default
-            momentFormat: {
-                //[optional] Date to String
-                stringify: (date) => {
-                    return date ? moment(date).format() : ''
-                },
-            },
+            
             lang: {
                 formatLocale: {
                     // MMMM

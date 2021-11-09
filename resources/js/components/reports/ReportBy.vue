@@ -1,7 +1,18 @@
 <template>
     <div class="flex flex-wrap flex-col items-center justify-center">
         <toggle-component class="col-span-1 mr-2 mb-4"></toggle-component>
-        <div class="flex justify-center flex-wrap">
+        <div class="flex justify-center flex-wrap items-center">
+            <div class="p-1 border bg-purple-600 rounded text-white px-3 mr-2">
+                <span>Reporte por rango</span>
+                <date-picker
+                    @change="getReport(range, 'betweenDates')"
+                    placeholder="Da click para eligir el rango de fechas"
+                    :lang="lang"
+                    value-type="YYYY-MM-DD"
+                    v-model="dates"
+                    range
+                ></date-picker>
+            </div>
             <div>
                 <button
                     class="text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50 mr-4 rounded px-4 py-2"
@@ -23,7 +34,6 @@
                 >
                     Mes
                 </button>
-                <date-picker :lang="lang" v-model="range" range></date-picker>
             </div>
         </div>
     </div>
@@ -38,7 +48,7 @@ export default {
         ToggleComponent,
         DatePicker
     },
-    mixins:[ConfigDatePicker],
+    mixins: [ConfigDatePicker],
     created() {
         EventBus.$on("status-filter-cancelled", status => {
             this.status["filter[status]"] = status;
@@ -46,6 +56,9 @@ export default {
     },
     data() {
         return {
+            range: {
+                "filter[betweenDates]": []
+            },
             today: {
                 "filter[today]": ""
             },
@@ -56,11 +69,16 @@ export default {
                 "filter[currentMonth]": ""
             },
             status: { "filter[status]": "completed" },
-            range:null,
+            dates: null
         };
     },
     methods: {
-        getReport(value) {
+        getReport(value, reportBy = "") {
+            if (reportBy === "betweenDates") {
+                if (this.dates?.length) {
+                    this.range["filter[betweenDates]"] = this.dates.toString(); //convierto el array de las dos fechas de rango a un string separado por comas
+                }
+            }
             EventBus.$emit("set-parameters", _.merge(value, this.status)); //._merge conbina dos json
         }
     }

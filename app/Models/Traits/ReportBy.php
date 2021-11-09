@@ -43,7 +43,7 @@ trait ReportBy
 
         $dates = str::of($value)->explode(',');
         
-        $query->whereBetween('created_at',[$dates[0],$dates[1]]);
+        $query->whereBetween(DB::raw('Date(created_at)'),[$dates[0],$dates[1]]);
 
     }
 
