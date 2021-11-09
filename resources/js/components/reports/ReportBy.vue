@@ -23,17 +23,22 @@
                 >
                     Mes
                 </button>
-            </div>            
+                <date-picker :lang="lang" v-model="range" range></date-picker>
+            </div>
         </div>
     </div>
 </template>
 <script>
 import ToggleComponent from "./ToggleComponent.vue";
-
+import DatePicker from "vue2-datepicker";
+import "vue2-datepicker/index.css";
+import ConfigDatePicker from "../../mixins/ConfigDatePicker.js";
 export default {
     components: {
         ToggleComponent,
+        DatePicker
     },
+    mixins:[ConfigDatePicker],
     created() {
         EventBus.$on("status-filter-cancelled", status => {
             this.status["filter[status]"] = status;
@@ -50,7 +55,8 @@ export default {
             month: {
                 "filter[currentMonth]": ""
             },
-            status: { "filter[status]": "completed" }
+            status: { "filter[status]": "completed" },
+            range:null,
         };
     },
     methods: {
