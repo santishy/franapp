@@ -32,6 +32,7 @@
             :identifier="infiniteId"
             @infinite="getProducts"
             ref="infiniteLoading"
+            force-use-infinite-wrapper="true"
         ></infinite-loading>
     </div>
 </template>
@@ -106,9 +107,12 @@ export default {
              * dispara la llamada asincrona
              */
             this.$nextTick(() => {
+                //this.$refs.infiniteLoading.$emit("$InfiniteLoading:reset");
+                
                 this.page = 1;
                 this.products = [];
                 this.infiniteId++;
+                this.$refs.infiniteLoading.stateChanger.reset()
             });
             //this.inventory = null;
         },
