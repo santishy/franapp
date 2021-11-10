@@ -202,6 +202,9 @@
                             {{ $product->pivot->qty * $product->pivot->sale_price}}
                         </td>
                     </tr>
+                    @php
+                        $total += $product->pivot->qty * $product->pivot->sale_price;
+                    @endphp
                 @endforeach
                 <tr>
                     <td class="bg-gray-400"> TOTAL</td>
@@ -209,7 +212,7 @@
                         $
                         {{
                             number_format(
-                                $total += $product->pivot->qty * $product->pivot->sale_price,
+                                $total,
                                 2
                             )
                         }}

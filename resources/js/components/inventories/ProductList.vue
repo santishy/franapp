@@ -17,7 +17,7 @@
                 <th class="p-3">Descripción</th>
                 <th class="p-3">Existencias</th>
             </thead>
-            <transition-group tag="tbody" name="fade">
+            <!-- <transition-group tag="tbody" name="fade"> -->
                 <produc-list-item
                     v-for="(product, index) in products"
                     :key="product.id"
@@ -26,7 +26,7 @@
                     :inventory="inventory"
                 >
                 </produc-list-item>
-            </transition-group>
+            <!-- </transition-group> -->
         </table>
         <infinite-loading
             :identifier="infiniteId"
