@@ -17,7 +17,7 @@
                 <th class="p-3">Descripción</th>
                 <th class="p-3">Existencias</th>
             </thead>
-            <transition-group tag="tbody" name="bounce">
+            <transition-group tag="tbody" name="fade" @after-leave="afterLeave">
                 <produc-list-item
                     v-for="(product, index) in products"
                     :key="product.id"
@@ -32,7 +32,6 @@
             :identifier="infiniteId"
             @infinite="getProducts"
             ref="infiniteLoading"
-            force-use-infinite-wrapper="true"
         ></infinite-loading>
     </div>
 </template>
@@ -106,15 +105,20 @@ export default {
              * devuelve la version mas actual del DOM donde ya no hay elementos y
              * dispara la llamada asincrona
              */
-            this.$nextTick(() => {
-                //this.$refs.infiniteLoading.$emit("$InfiniteLoading:reset");
-                
-                this.page = 1;
-                this.products = [];
-                this.infiniteId++;
-                this.$refs.infiniteLoading.stateChanger.reset()
-            });
+            this.page = 1;
+            this.products = [];
+            this.infiniteId++;
+            // this.$nextTick(() => {
+            //     //this.$refs.infiniteLoading.$emit("$InfiniteLoading:reset");
+
+            //     //this.$refs.infiniteLoading.stateChanger.complete()
+            // });
             //this.inventory = null;
+        },
+        afterLeave() {
+            this.$nextTick(() => {
+                this.$refs.infiniteLoading.stateChanger.reset();
+            });
         },
         addFilterSearch(value) {
             this.filters["filter[search]"] = value;
