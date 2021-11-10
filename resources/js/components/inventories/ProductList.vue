@@ -17,7 +17,7 @@
                 <th class="p-3">Descripción</th>
                 <th class="p-3">Existencias</th>
             </thead>
-            <transition-group tag="tbody" name="fade" @after-leave="afterLeave">
+            <transition-group tag="tbody" name="fade">
                 <produc-list-item
                     v-for="(product, index) in products"
                     :key="product.id"
@@ -73,8 +73,9 @@ export default {
         EventBus.$on("search-value-added", this.addFilterSearch);
     },
     methods: {
-        async getProducts($state) {
-            await axios
+        getProducts($state) {
+            console.log($state);
+            axios
                 .get(`/inventories/${this.inventory.id}`, {
                     params: {
                         page: this.page,
@@ -108,18 +109,12 @@ export default {
             this.page = 1;
             this.products = [];
             this.infiniteId++;
-            // this.$nextTick(() => {
-            //     //this.$refs.infiniteLoading.$emit("$InfiniteLoading:reset");
-
-            //     //this.$refs.infiniteLoading.stateChanger.complete()
-            // });
-            //this.inventory = null;
+            /*setTimeout(()=>{
+                 this.$refs.infiniteLoading.stateChanger.reset();
+            },1000)*/
+            
         },
-        afterLeave() {
-            this.$nextTick(() => {
-                this.$refs.infiniteLoading.stateChanger.reset();
-            });
-        },
+        
         addFilterSearch(value) {
             this.filters["filter[search]"] = value;
             this.reloadIndex();
