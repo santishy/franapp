@@ -30,7 +30,7 @@
                 </tr>
             </thead>
 
-            <transition-group name="bounce" tag="tbody">
+            <transition-group name="bounce" tag="tbody" @after-leave="afterLeave">
                 <transaction-list-item
                     v-for="(transaction, index) in transactions"
                     :transaction="transaction"
@@ -152,7 +152,14 @@ export default {
                 return -1;
             if (this.modalDataConfirm.transaction.transactionType == "sale")
                 return 1;
-        }
+        },
+        afterLeave() {
+            this.$nextTick(() => {
+                if (!this.$refs.infiniteLoading.status) {
+                    this.$refs.infiniteLoading.stateChanger.reset();
+                }
+            });
+        },
     },
     computed: {
         ...mapState(["modalDataConfirm"]),
