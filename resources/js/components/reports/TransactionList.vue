@@ -46,6 +46,7 @@
             <infinite-loading
                 @infinite="infiniteHandler"
                 :identifier="infiniteId"
+                ref="infiniteLoading"
             ></infinite-loading>
         </table>
     </div>
