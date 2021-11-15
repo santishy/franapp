@@ -17,4 +17,7 @@ trait HasTransaction
     {
         return $transaction->products()->detach($id);
     }
+    protected function addProduct($product){
+        
+    }
 }

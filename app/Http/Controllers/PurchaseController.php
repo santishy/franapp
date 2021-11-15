@@ -23,7 +23,7 @@ class PurchaseController extends Controller
         if (request()->wantsJson()) {
             return new ReportResponse(Purchase::query());
         }
-        $inventories = Inventory::all('id','name');
+        $inventories = Inventory::all('id', 'name');
         return view(
             'transactions.index',
             [
@@ -44,10 +44,10 @@ class PurchaseController extends Controller
             ]
         );
         $purchase = Purchase::findOrCreateThePurchase();
-        $productInPurchase = $purchase->products()
-            ->where(['product_id' =>
-            $request->product_id]);
-        if ($productInPurchase->exists()) {
+        //$productInPurchase = $purchase->getProductInPurchase();
+
+        $purchase->addProduct();
+        /*if ($productInPurchase->exists()) {
             $productInPurchase->updateExistingPivot(
                 $request->product_id,
                 ['qty' => ($productInPurchase->first()->pivot->qty + 1)]
@@ -57,7 +57,7 @@ class PurchaseController extends Controller
                 'purchase_price' => $request->purchase_price,
                 'qty' => 1
             ]);
-        }
+        }*/
         return response()->json([
             'qty' => $purchase->products()->where('product_id', $request->product_id)->sum('qty'),
             'purchase_id' => $purchase->id,

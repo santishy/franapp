@@ -2,14 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\TransactionComplete;
 use App\Http\Resources\ProductResource;
+use App\Http\Traits\HasTransaction;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Purchase;
 
 class ProductController extends Controller
 {
-
+    use HasTransaction;
     public function index()
     {
         $this->authorize('view', new Product());
@@ -29,19 +32,30 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $this->authorize('create', new Product());
+
         $this->validateProduct($request);
 
         $product = new Product($request->except('image'));
 
         $product->image = $product->uploadImage();
 
-
-
         $product->save();
 
         return $product;
+    }
+    public function toBuy()
+    {
+        $this->authorize('create', new Purchase());
 
-        return Product::create($request->all());
+        $purchase = Purchase::findOrCreateThePurchase();
+
+        $purchase->addProduct();
+       
+        $this->deleteSessionVariable('purchase_id');
+
+        $purchase->update([]);
+
+        TransactionComplete::dispatch($purchase);
     }
     public function edit(Product $product)
     {
@@ -56,7 +70,7 @@ class ProductController extends Controller
         $this->validateProduct($request);
         $data['image'] = $product->uploadImage();
 
-        $product->update(array_merge( $request->except('_method'),$data));
+        $product->update(array_merge($request->except('_method'), $data));
         return ProductResource::make($product);
     }
     public function destroy(Product $product)
