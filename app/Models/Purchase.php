@@ -43,32 +43,33 @@ class Purchase extends Model
         return $product;
     }
 
-    public function addProduct(...$data)
+    public function addProduct($product_id = null, $purchase_price = null)
     {
 
-        if(!array_key_exists('product_id', $data)) {
-            $data['product_id'] = request()->product_id;
+        if (is_null($product_id)) {
+            $product_id = request()->product_id;
         }
-        if(!array_key_exists('purchase_price',$data)){
-            $data['purchase_price'] = request()->purchase_price;
+        if (is_null($purchase_price)) {
+            $purchase_price = request()->purchase_price;
         }
-        if(!array_key_exists('qty',$data)){
-            $data['qty'] = request()->qty ? request()->qty : 1;
-        }
+        
+        $qty = request()->qty ? request()->qty : 1;
+        
 
-        $productInPurchase = $this->getProductInPurchase();
+
+
+        $productInPurchase = $this->getProductInPurchase($product_id);
 
         if ($productInPurchase->exists()) {
             $productInPurchase->updateExistingPivot(
-                $data['product_id'],
-                ['qty' => ($productInPurchase->first()->pivot->qty +  $data['qty'])]
+                $product_id,
+                ['qty' => ($productInPurchase->first()->pivot->qty +  $qty)]
             );
         } else {
-            $this->products()->attach($data['product_id'], [
-                'purchase_price' => $data['purchase_price'],
-                'qty' => $data['qty'],
+            $this->products()->attach($product_id, [
+                'purchase_price' => $purchase_price,
+                'qty' => $qty,
             ]);
         }
-
     }
 }

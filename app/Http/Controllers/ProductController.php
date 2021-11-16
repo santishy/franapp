@@ -29,7 +29,7 @@ class ProductController extends Controller
 
         $categories = Category::all();
         $inventories = Inventory::all('id', 'name');
-        return view('products.create', compact('categories','inventories'));
+        return view('products.create', compact('categories', 'inventories'));
     }
     public function store(Request $request)
     {
@@ -43,20 +43,20 @@ class ProductController extends Controller
 
         $product->save();
 
-        $this->toBuy($product->id);
+        $this->toBuy($product);
 
         return $product;
     }
-    public function toBuy($product_id = null)
+    public function toBuy($product = null)
     {
         $this->authorize('create', new Purchase);
 
-        if(request()->missing('inventory_id') and request()->missing('qty'))
+        if (empty(request()->inventory_id) || empty(request()->qty))
             return;
 
         $purchase = Purchase::findOrCreateThePurchase();
 
-        $purchase->addProduct($product_id);
+        $purchase->addProduct($product->id,$product->distributor_price);
 
         $this->deleteSessionVariable('purchase_id');
 
@@ -100,7 +100,9 @@ class ProductController extends Controller
             'retail_price' => 'required|numeric',
             'distributor_price' => 'required|numeric',
             'category_id' => 'required|numeric',
-            'image' => 'image|mimes:jpeg,png,jpg,gif|dimensions:min_width=500,min_height=600'
+            'image' => 'image|mimes:jpeg,png,jpg,gif|dimensions:min_width=500,min_height=600',
+            'qty' => 'numeric|min:1',
+            'inventory_id' => 'numeric',
         ], [
             'description.required' => 'La descripción es requerida',
             'sku.required' => 'El SKU es requerido',
@@ -111,10 +113,12 @@ class ProductController extends Controller
             'retail_price.numeric' => 'El precio al por menor debe ser un valor númerico',
             'distributor_price.required' => 'El precio distribuidor es requerido',
             'distributor_price.numeric' => 'El precio distribuidor debe ser un valor númerico',
-            'category_id.requerid' => 'La categoría es obligatoría.',
+            'category_id.required' => 'La categoría es obligatoría.',
             'category_id.numeric' => 'El identificador de la categoría debe ser numerico.',
             'image.image' => 'El archivo enviado no es una imagén valida.',
-            'image.dimensions' => 'El ancho de la imagen como minimo debe de ser de 500px.'
+            'image.dimensions' => 'El ancho de la imagen como minimo debe de ser de 500px.',
+            'qty.numeric' => 'El campo cantidad de compra debe ser numerico',
+            'qty.min' => 'La cantidad debe ser minimo 1',
         ]);
     }
 }
