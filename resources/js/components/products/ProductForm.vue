@@ -119,6 +119,7 @@
                             justify-center
                             text-indigo-800
                             font-mono
+                            font-semibold
                         "
                         >Categoría</label
                     >
@@ -159,13 +160,18 @@
                             bg-gray-200
                             h-full
                             flex
+                            flex-col
                             items-center
                             w-56
                             justify-center
                             text-indigo-800
                             font-mono
+                            font-semibold
                         "
-                        >Imagen</label
+                        >Imagen
+                        <span class="text-xs text-gray-600 block mt-0"
+                            >(Opcional)</span
+                        ></label
                     >
                 </div>
                 <div
@@ -209,6 +215,7 @@
                             justify-center
                             text-indigo-800
                             font-mono
+                            font-semibold
                         "
                         >SKU</label
                     >
@@ -255,6 +262,7 @@
                             justify-center
                             text-indigo-800
                             font-mono
+                            font-semibold
                         "
                         >Descripción</label
                     >
@@ -301,6 +309,7 @@
                             justify-center
                             text-indigo-800
                             font-mono
+                            font-semibold
                         "
                         >Precio al por mayor</label
                     >
@@ -347,6 +356,7 @@
                             justify-center
                             text-indigo-800
                             font-mono
+                            font-semibold
                         "
                         >Precio al por menor</label
                     >
@@ -356,8 +366,8 @@
                         'flex relative',
                         'items-center',
                         'border-b',
-                        this.errors ? 'border-transparent' : 'border-gray-500',
-                        'py-2',
+
+                        'py-2'
                     ]"
                 >
                     <input
@@ -393,24 +403,25 @@
                             justify-center
                             text-indigo-800
                             font-mono
+                            font-semibold
                         "
                         >Precio proveedor</label
                     >
                 </div>
-
-                <div
-                    class="
+                <div v-if="show">
+                    <div
+                        class="
                         flex
                         items-center
                         border-b border-t border-gray-500
                         py-2
                         relative
                     "
-                >
-                    <input
-                        v-model="form.qty"
-                        name="qty"
-                        class="
+                    >
+                        <input
+                            v-model="form.qty"
+                            name="qty"
+                            class="
                             appearance-none
                             bg-transparent
                             border-none
@@ -422,80 +433,98 @@
                             leading-tight
                             focus:outline-none
                         "
-                        type="text"
-                        placeholder="CANTIDAD DE COMPRA"
-                        aria-label="Full name"
-                    />
-                    <label
-                        for=""
-                        class="
+                            type="text"
+                            placeholder="CANTIDAD DE COMPRA (OPCIONAL)"
+                            aria-label="Full name"
+                        />
+                        <label
+                            for=""
+                            class="
                             absolute
                             text-center
                             pl-0
                             bg-gray-200
                             h-full
                             flex
+                            flex-col
                             items-center
                             w-56
                             justify-center
                             text-indigo-800
                             font-mono
+                            font-semibold
                         "
-                        >Cantidad de compra</label
-                    >
-                </div>
-                <div
-                    class="
+                            >Cantidad de compra
+                            <span class="text-xs text-gray-600 block mt-0"
+                                >(Opcional)</span
+                            ></label
+                        >
+                    </div>
+                    <div
+                        :class="
+                            this.errors
+                                ? 'border-transparent'
+                                : 'border-gray-500'
+                        "
+                        class="
                         flex flex-wrap
                         items-center
-                        border-b border-t border-gray-500
+                        border-b  
                         py-2
                         relative
                     "
-                >
-                    <div class="pl-60 flex-wrap flex">
-                        <div
-                            v-for="warehouse in inventories"
-                            :key="warehouse.id"
-                            class="ml-2 mb-1"
-                        >
-                            <label
-                                class="
+                    >
+                        <div class="pl-60 flex-wrap flex">
+                            <div
+                                v-for="warehouse in inventories"
+                                :key="warehouse.id"
+                                class="ml-2 mb-1"
+                            >
+                                <label
+                                    class="
                                     inline-flex
                                     items-center
                                     border
                                     rounded
-                                    border-indigo-300
-                                    p-1
+                                    bg-gray-300
+                                    px-1 py-2
                                 "
-                            >
-                                <input
-                                    type="radio"
-                                    class="form-radio"
-                                    name="inventory_id"
-                                    :value="warehouse.id"
-                                    v-model="form.inventory_id"
-                                />
-                                <span class="ml-2">{{ warehouse.name }}</span>
-                            </label>
+                                >
+                                    <input
+                                        type="radio"
+                                        class="form-radio"
+                                        name="inventory_id"
+                                        :value="warehouse.id"
+                                        v-model="form.inventory_id"
+                                    />
+                                    <span class="ml-2 text-gray-600">{{
+                                        warehouse.name.toUpperCase()
+                                    }}</span>
+                                </label>
+                            </div>
                         </div>
-                    </div>
-                    <label
-                        class="
+                        <label
+                            class="
                             absolute
                             text-center
                             pl-0
                             bg-gray-200
                             h-full
                             flex
+                            flex-col
                             items-center
                             w-56
                             justify-center
                             text-indigo-800
                             font-mono
+                            font-semibold
                         "
-                        >Almacen</label
-                    >
+                            >Almacen
+                            <span class="text-xs text-gray-600 block mt-0"
+                                >(Opcional)</span
+                            ></label
+                        >
+                    </div>
                 </div>
 
                 <div class="flex items-center">
@@ -533,16 +562,17 @@ import NavComponent from "../NavComponent.vue";
 
 export default {
     components: {
-        NavComponent,
+        NavComponent
     },
     data() {
         return {
             form: {
-                category_id: "",
+                category_id: ""
             },
             category_name: "",
             src: null,
             frutsi: null,
+            show: true
         };
     },
     mounted() {
@@ -553,17 +583,17 @@ export default {
     props: {
         method: {
             type: String,
-            required: true,
+            required: true
         },
         product: {
-            type: Object,
+            type: Object
         },
         categories: {
-            type: Array,
+            type: Array
         },
         inventories: {
-            type: Array,
-        },
+            type: Array
+        }
     },
     methods: {
         async submit() {
@@ -582,16 +612,16 @@ export default {
             axios["post"](url, formData, {
                 headers: {
                     "Content-Type": "multipart/form-data",
-                    Accept: "application/json",
-                },
+                    Accept: "application/json"
+                }
             })
-                .then((res) => {
+                .then(res => {
                     let obj = { title: "Productos", ...message };
                     this.notify(obj);
                     if (this.method == "post") this.form = {};
                     this.errors = null;
                 })
-                .catch((err) => {
+                .catch(err => {
                     this.getErrors(err);
                 });
         },
@@ -608,7 +638,7 @@ export default {
         },
         showImage(e) {
             this.src = e.target.result;
-        },
+        }
     },
     computed: {
         categoryName() {
@@ -620,7 +650,7 @@ export default {
         definePermission() {
             if (this.method.toUpperCase() === "POST") return "create product";
             return "edit product";
-        },
-    },
+        }
+    }
 };
 </script>

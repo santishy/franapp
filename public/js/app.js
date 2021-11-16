@@ -5600,6 +5600,35 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -5612,7 +5641,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       },
       category_name: "",
       src: null,
-      frutsi: null
+      frutsi: null,
+      show: true
     };
   },
   mounted: function mounted() {
@@ -32658,7 +32688,7 @@ var render = function() {
                   "label",
                   {
                     staticClass:
-                      "\n                        absolute\n                        pl-0\n                        bg-gray-200\n                        h-full\n                        flex\n                        items-center\n                        w-56\n                        justify-center\n                        text-indigo-800\n                        font-mono\n                    ",
+                      "\n                        absolute\n                        pl-0\n                        bg-gray-200\n                        h-full\n                        flex\n                        items-center\n                        w-56\n                        justify-center\n                        text-indigo-800\n                        font-mono\n                        font-semibold\n                    ",
                     attrs: { for: "" }
                   },
                   [_vm._v("Categoría")]
@@ -32689,10 +32719,17 @@ var render = function() {
                   "label",
                   {
                     staticClass:
-                      "\n                        absolute\n                        pl-0\n                        bg-gray-200\n                        h-full\n                        flex\n                        items-center\n                        w-56\n                        justify-center\n                        text-indigo-800\n                        font-mono\n                    ",
+                      "\n                        absolute\n                        pl-0\n                        bg-gray-200\n                        h-full\n                        flex\n                        flex-col\n                        items-center\n                        w-56\n                        justify-center\n                        text-indigo-800\n                        font-mono\n                        font-semibold\n                    ",
                     attrs: { for: "" }
                   },
-                  [_vm._v("Imagen")]
+                  [
+                    _vm._v("Imagen\n                    "),
+                    _c(
+                      "span",
+                      { staticClass: "text-xs text-gray-600 block mt-0" },
+                      [_vm._v("(Opcional)")]
+                    )
+                  ]
                 )
               ]
             ),
@@ -32736,7 +32773,7 @@ var render = function() {
                   "label",
                   {
                     staticClass:
-                      "\n                        absolute\n                        pl-0\n                        bg-gray-200\n                        h-full\n                        flex\n                        items-center\n                        w-56\n                        justify-center\n                        text-indigo-800\n                        font-mono\n                    ",
+                      "\n                        absolute\n                        pl-0\n                        bg-gray-200\n                        h-full\n                        flex\n                        items-center\n                        w-56\n                        justify-center\n                        text-indigo-800\n                        font-mono\n                        font-semibold\n                    ",
                     attrs: { for: "" }
                   },
                   [_vm._v("SKU")]
@@ -32783,7 +32820,7 @@ var render = function() {
                   "label",
                   {
                     staticClass:
-                      "\n                        absolute\n                        pl-0\n                        bg-gray-200\n                        h-full\n                        flex\n                        items-center\n                        w-56\n                        justify-center\n                        text-indigo-800\n                        font-mono\n                    ",
+                      "\n                        absolute\n                        pl-0\n                        bg-gray-200\n                        h-full\n                        flex\n                        items-center\n                        w-56\n                        justify-center\n                        text-indigo-800\n                        font-mono\n                        font-semibold\n                    ",
                     attrs: { for: "" }
                   },
                   [_vm._v("Descripción")]
@@ -32830,7 +32867,7 @@ var render = function() {
                   "label",
                   {
                     staticClass:
-                      "\n                        absolute\n                        text-center\n                        pl-0\n                        bg-gray-200\n                        h-full\n                        flex\n                        items-center\n                        w-56\n                        justify-center\n                        text-indigo-800\n                        font-mono\n                    ",
+                      "\n                        absolute\n                        text-center\n                        pl-0\n                        bg-gray-200\n                        h-full\n                        flex\n                        items-center\n                        w-56\n                        justify-center\n                        text-indigo-800\n                        font-mono\n                        font-semibold\n                    ",
                     attrs: { for: "" }
                   },
                   [_vm._v("Precio al por mayor")]
@@ -32877,7 +32914,7 @@ var render = function() {
                   "label",
                   {
                     staticClass:
-                      "\n                        absolute\n                        text-center\n                        pl-0\n                        bg-gray-200\n                        h-full\n                        flex\n                        items-center\n                        w-56\n                        justify-center\n                        text-indigo-800\n                        font-mono\n                    ",
+                      "\n                        absolute\n                        text-center\n                        pl-0\n                        bg-gray-200\n                        h-full\n                        flex\n                        items-center\n                        w-56\n                        justify-center\n                        text-indigo-800\n                        font-mono\n                        font-semibold\n                    ",
                     attrs: { for: "" }
                   },
                   [_vm._v("Precio al por menor")]
@@ -32887,15 +32924,7 @@ var render = function() {
             _vm._v(" "),
             _c(
               "div",
-              {
-                class: [
-                  "flex relative",
-                  "items-center",
-                  "border-b",
-                  this.errors ? "border-transparent" : "border-gray-500",
-                  "py-2"
-                ]
-              },
+              { class: ["flex relative", "items-center", "border-b", "py-2"] },
               [
                 _c("input", {
                   directives: [
@@ -32933,7 +32962,7 @@ var render = function() {
                   "label",
                   {
                     staticClass:
-                      "\n                        absolute\n                        text-center\n                        pl-0\n                        bg-gray-200\n                        h-full\n                        flex\n                        items-center\n                        w-56\n                        justify-center\n                        text-indigo-800\n                        font-mono\n                    ",
+                      "\n                        absolute\n                        text-center\n                        pl-0\n                        bg-gray-200\n                        h-full\n                        flex\n                        items-center\n                        w-56\n                        justify-center\n                        text-indigo-800\n                        font-mono\n                        font-semibold\n                    ",
                     attrs: { for: "" }
                   },
                   [_vm._v("Precio proveedor")]
@@ -32941,125 +32970,157 @@ var render = function() {
               ]
             ),
             _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass:
-                  "\n                    flex\n                    items-center\n                    border-b border-t border-gray-500\n                    py-2\n                    relative\n                "
-              },
-              [
-                _c("input", {
-                  directives: [
+            _vm.show
+              ? _c("div", [
+                  _c(
+                    "div",
                     {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.form.qty,
-                      expression: "form.qty"
-                    }
-                  ],
-                  staticClass:
-                    "\n                        appearance-none\n                        bg-transparent\n                        border-none\n                        w-full\n                        text-gray-700\n                        mr-3\n                        py-1\n                        pl-60\n                        leading-tight\n                        focus:outline-none\n                    ",
-                  attrs: {
-                    name: "qty",
-                    type: "text",
-                    placeholder: "CANTIDAD DE COMPRA",
-                    "aria-label": "Full name"
-                  },
-                  domProps: { value: _vm.form.qty },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(_vm.form, "qty", $event.target.value)
-                    }
-                  }
-                }),
-                _vm._v(" "),
-                _c(
-                  "label",
-                  {
-                    staticClass:
-                      "\n                        absolute\n                        text-center\n                        pl-0\n                        bg-gray-200\n                        h-full\n                        flex\n                        items-center\n                        w-56\n                        justify-center\n                        text-indigo-800\n                        font-mono\n                    ",
-                    attrs: { for: "" }
-                  },
-                  [_vm._v("Cantidad de compra")]
-                )
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass:
-                  "\n                    flex flex-wrap\n                    items-center\n                    border-b border-t border-gray-500\n                    py-2\n                    relative\n                "
-              },
-              [
-                _c(
-                  "div",
-                  { staticClass: "pl-60 flex-wrap flex" },
-                  _vm._l(_vm.inventories, function(warehouse) {
-                    return _c(
-                      "div",
-                      { key: warehouse.id, staticClass: "ml-2 mb-1" },
-                      [
-                        _c(
-                          "label",
+                      staticClass:
+                        "\n                    flex\n                    items-center\n                    border-b border-t border-gray-500\n                    py-2\n                    relative\n                "
+                    },
+                    [
+                      _c("input", {
+                        directives: [
                           {
-                            staticClass:
-                              "\n                                inline-flex\n                                items-center\n                                border\n                                rounded\n                                border-indigo-300\n                                p-1\n                            "
-                          },
-                          [
-                            _c("input", {
-                              directives: [
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form.qty,
+                            expression: "form.qty"
+                          }
+                        ],
+                        staticClass:
+                          "\n                        appearance-none\n                        bg-transparent\n                        border-none\n                        w-full\n                        text-gray-700\n                        mr-3\n                        py-1\n                        pl-60\n                        leading-tight\n                        focus:outline-none\n                    ",
+                        attrs: {
+                          name: "qty",
+                          type: "text",
+                          placeholder: "CANTIDAD DE COMPRA (OPCIONAL)",
+                          "aria-label": "Full name"
+                        },
+                        domProps: { value: _vm.form.qty },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(_vm.form, "qty", $event.target.value)
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "label",
+                        {
+                          staticClass:
+                            "\n                        absolute\n                        text-center\n                        pl-0\n                        bg-gray-200\n                        h-full\n                        flex\n                        flex-col\n                        items-center\n                        w-56\n                        justify-center\n                        text-indigo-800\n                        font-mono\n                        font-semibold\n                    ",
+                          attrs: { for: "" }
+                        },
+                        [
+                          _vm._v(
+                            "Cantidad de compra\n                        "
+                          ),
+                          _c(
+                            "span",
+                            { staticClass: "text-xs text-gray-600 block mt-0" },
+                            [_vm._v("(Opcional)")]
+                          )
+                        ]
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass:
+                        "\n                    flex flex-wrap\n                    items-center\n                    border-b  \n                    py-2\n                    relative\n                ",
+                      class: this.errors
+                        ? "border-transparent"
+                        : "border-gray-500"
+                    },
+                    [
+                      _c(
+                        "div",
+                        { staticClass: "pl-60 flex-wrap flex" },
+                        _vm._l(_vm.inventories, function(warehouse) {
+                          return _c(
+                            "div",
+                            { key: warehouse.id, staticClass: "ml-2 mb-1" },
+                            [
+                              _c(
+                                "label",
                                 {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.form.inventory_id,
-                                  expression: "form.inventory_id"
-                                }
-                              ],
-                              staticClass: "form-radio",
-                              attrs: { type: "radio", name: "inventory_id" },
-                              domProps: {
-                                value: warehouse.id,
-                                checked: _vm._q(
-                                  _vm.form.inventory_id,
-                                  warehouse.id
-                                )
-                              },
-                              on: {
-                                change: function($event) {
-                                  return _vm.$set(
-                                    _vm.form,
-                                    "inventory_id",
-                                    warehouse.id
+                                  staticClass:
+                                    "\n                                inline-flex\n                                items-center\n                                border\n                                rounded\n                                bg-gray-300\n                                px-1 py-2\n                            "
+                                },
+                                [
+                                  _c("input", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.form.inventory_id,
+                                        expression: "form.inventory_id"
+                                      }
+                                    ],
+                                    staticClass: "form-radio",
+                                    attrs: {
+                                      type: "radio",
+                                      name: "inventory_id"
+                                    },
+                                    domProps: {
+                                      value: warehouse.id,
+                                      checked: _vm._q(
+                                        _vm.form.inventory_id,
+                                        warehouse.id
+                                      )
+                                    },
+                                    on: {
+                                      change: function($event) {
+                                        return _vm.$set(
+                                          _vm.form,
+                                          "inventory_id",
+                                          warehouse.id
+                                        )
+                                      }
+                                    }
+                                  }),
+                                  _vm._v(" "),
+                                  _c(
+                                    "span",
+                                    { staticClass: "ml-2 text-gray-600" },
+                                    [
+                                      _vm._v(
+                                        _vm._s(warehouse.name.toUpperCase())
+                                      )
+                                    ]
                                   )
-                                }
-                              }
-                            }),
-                            _vm._v(" "),
-                            _c("span", { staticClass: "ml-2" }, [
-                              _vm._v(_vm._s(warehouse.name))
-                            ])
-                          ]
-                        )
-                      ]
-                    )
-                  }),
-                  0
-                ),
-                _vm._v(" "),
-                _c(
-                  "label",
-                  {
-                    staticClass:
-                      "\n                        absolute\n                        text-center\n                        pl-0\n                        bg-gray-200\n                        h-full\n                        flex\n                        items-center\n                        w-56\n                        justify-center\n                        text-indigo-800\n                        font-mono\n                    "
-                  },
-                  [_vm._v("Almacen")]
-                )
-              ]
-            ),
+                                ]
+                              )
+                            ]
+                          )
+                        }),
+                        0
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "label",
+                        {
+                          staticClass:
+                            "\n                        absolute\n                        text-center\n                        pl-0\n                        bg-gray-200\n                        h-full\n                        flex\n                        flex-col\n                        items-center\n                        w-56\n                        justify-center\n                        text-indigo-800\n                        font-mono\n                        font-semibold\n                    "
+                        },
+                        [
+                          _vm._v("Almacen\n                        "),
+                          _c(
+                            "span",
+                            { staticClass: "text-xs text-gray-600 block mt-0" },
+                            [_vm._v("(Opcional)")]
+                          )
+                        ]
+                      )
+                    ]
+                  )
+                ])
+              : _vm._e(),
             _vm._v(" "),
             _c(
               "div",
