@@ -6,6 +6,7 @@ use App\Events\TransactionComplete;
 use App\Http\Resources\ProductResource;
 use App\Http\Traits\HasTransaction;
 use App\Models\Category;
+use App\Models\Inventory;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Purchase;
@@ -27,7 +28,8 @@ class ProductController extends Controller
         $this->authorize('create', new Product());
 
         $categories = Category::all();
-        return view('products.create', compact('categories'));
+        $inventories = Inventory::all('id', 'name');
+        return view('products.create', compact('categories','inventories'));
     }
     public function store(Request $request)
     {
@@ -41,19 +43,27 @@ class ProductController extends Controller
 
         $product->save();
 
+        $this->toBuy($product->id);
+
         return $product;
     }
-    public function toBuy()
+    public function toBuy($product_id = null)
     {
-        $this->authorize('create', new Purchase());
+        $this->authorize('create', new Purchase);
+
+        if(request()->missing('inventory_id') and request()->missing('qty'))
+            return;
 
         $purchase = Purchase::findOrCreateThePurchase();
 
-        $purchase->addProduct();
-       
+        $purchase->addProduct($product_id);
+
         $this->deleteSessionVariable('purchase_id');
 
-        $purchase->update([]);
+        $purchase->update([
+            'status' => 'completed',
+            'inventory_id' => request()->inventory_id
+        ]);
 
         TransactionComplete::dispatch($purchase);
     }
