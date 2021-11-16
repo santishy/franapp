@@ -75,11 +75,9 @@ class ProductController extends Controller
     }
     public function update(Request $request, Product $product)
     {
-
         $this->authorize('update', $product);
         $this->validateProduct($request);
         $data['image'] = $product->uploadImage();
-
         $product->update(array_merge($request->except('_method'), $data));
         return ProductResource::make($product);
     }
