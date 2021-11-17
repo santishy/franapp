@@ -30,7 +30,7 @@
                     class="
                         flex
                         items-center
-                        py-2
+                        pb-2
                         text-dark text-center
                         justify-center
                         text-xl
@@ -572,12 +572,16 @@ export default {
             category_name: "",
             src: null,
             frutsi: null,
-            show: true
+            show: window.localStorage.getItem('allow-to-buy-new-product'),
         };
     },
     mounted() {
         if (!!this.product) {
             this.form = this.product;
+        }
+        console.log(typeof window.localStorage.getItem('allow-to-buy-new-product'))
+        if(window.localStorage.getItem('allow-to-buy-new-product') === null){
+            window.localStorage.setItem('allow-to-buy-new-product',true);
         }
     },
     props: {
