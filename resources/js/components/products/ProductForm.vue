@@ -5,19 +5,23 @@
             class="
                 flex
                 justify-center
-                items-baseline
+                items-start
                 flex-wrap
                 px-4
-                w-9/12
+                w-8/12
                 mx-auto
             "
         >
+            <toggle-purchase-visibility
+                :visibility="purchaseVisibility"
+                class="w-3/12"
+            ></toggle-purchase-visibility>
             <form
                 id="product-form"
                 @submit.prevent="submit"
                 v-can="definePermission"
                 class="
-                    w-full
+                    w-8/12
                     shadow-lg
                     rounded-lg
                     bg-white
@@ -408,7 +412,7 @@
                         >Precio proveedor</label
                     >
                 </div>
-                <div v-if="show">
+                <div v-if="purchaseVisibility">
                     <div
                         class="
                         flex
@@ -559,10 +563,12 @@
 
 <script>
 import NavComponent from "../NavComponent.vue";
+import TogglePurchaseVisibility from "./TogglePurchaseVisibility.vue";
 
 export default {
     components: {
-        NavComponent
+        NavComponent,
+        TogglePurchaseVisibility
     },
     data() {
         return {
@@ -572,16 +578,25 @@ export default {
             category_name: "",
             src: null,
             frutsi: null,
-            show: window.localStorage.getItem('allow-to-buy-new-product'),
+            purchaseVisibility: Boolean(
+                window.localStorage.getItem("allow-to-buy-new-product")
+            )
         };
+    },
+    created() {
+        EventBus.$on("toggle-purchase-visibility", value => {
+            this.purchaseVisibility = value;
+        });
     },
     mounted() {
         if (!!this.product) {
             this.form = this.product;
         }
-        console.log(typeof window.localStorage.getItem('allow-to-buy-new-product'))
-        if(window.localStorage.getItem('allow-to-buy-new-product') === null){
-            window.localStorage.setItem('allow-to-buy-new-product',true);
+        console.log(
+            typeof window.localStorage.getItem("allow-to-buy-new-product")
+        );
+        if (window.localStorage.getItem("allow-to-buy-new-product") === null) {
+            window.localStorage.setItem("allow-to-buy-new-product", true);
         }
     },
     props: {

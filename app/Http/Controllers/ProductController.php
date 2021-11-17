@@ -100,7 +100,7 @@ class ProductController extends Controller
             'retail_price' => 'required|numeric',
             'distributor_price' => 'required|numeric',
             'category_id' => 'required|numeric',
-            'image' => 'image|mimes:jpeg,png,jpg,gif|dimensions:min_width=500,min_height=600',
+            'image' => 'image|mimes:jpeg,png,jpg,gif|dimensions:min_width=500,min_height=500',
             'qty' => 'numeric|min:1',
             'inventory_id' => 'numeric',
         ], [
@@ -116,7 +116,7 @@ class ProductController extends Controller
             'category_id.required' => 'La categoría es obligatoría.',
             'category_id.numeric' => 'El identificador de la categoría debe ser numerico.',
             'image.image' => 'El archivo enviado no es una imagén valida.',
-            'image.dimensions' => 'El ancho de la imagen como minimo debe de ser de 500px.',
+            'image.dimensions' => 'El ancho y alto de la imagen como "minimo" debe de ser de 500px ',
             'qty.numeric' => 'El campo cantidad de compra debe ser numerico',
             'qty.min' => 'La cantidad debe ser minimo 1',
         ]);
