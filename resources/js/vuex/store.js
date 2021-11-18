@@ -20,7 +20,7 @@ export const store = new Vuex.Store({
     salePriceOption:sessionStorage.getItem('salePriceOption'),
     productsInTransaction:[],
     modalDataConfirm:{},
-    purchaseVisibility:window.localStorage.getItem("allow-to-buy-new-product").toUpperCase() === 'TRUE',
+    purchaseVisibility:window.localStorage.getItem("allow-to-buy-new-product")?.toUpperCase() === 'TRUE',
   },
   mutations,
   actions,
