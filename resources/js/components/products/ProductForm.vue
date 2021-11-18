@@ -5,23 +5,20 @@
             class="
                 flex
                 justify-center
-                items-start
+                items-center
                 flex-wrap
                 px-4
-                w-8/12
+                w-9/12
                 mx-auto
             "
         >
-            <toggle-purchase-visibility
-                :visibility="purchaseVisibility"
-                class="w-3/12"
-            ></toggle-purchase-visibility>
+            
             <form
                 id="product-form"
                 @submit.prevent="submit"
                 v-can="definePermission"
                 class="
-                    w-8/12
+                    w-full
                     shadow-lg
                     rounded-lg
                     bg-white
@@ -30,6 +27,12 @@
                     md:mb-0
                 "
             >
+                <div>
+                    <toggle-purchase-visibility
+                :visibility="getPurchaseVisibility"
+                class="w-56"
+            ></toggle-purchase-visibility>
+                </div>
                 <div
                     class="
                         flex
@@ -122,8 +125,7 @@
                             w-56
                             justify-center
                             text-indigo-800
-                            font-mono
-                            font-semibold
+                            font-mono font-semibold
                         "
                         >Categoría</label
                     >
@@ -163,14 +165,12 @@
                             pl-0
                             bg-gray-200
                             h-full
-                            flex
-                            flex-col
+                            flex flex-col
                             items-center
                             w-56
                             justify-center
                             text-indigo-800
-                            font-mono
-                            font-semibold
+                            font-mono font-semibold
                         "
                         >Imagen
                         <span class="text-xs text-gray-600 block mt-0"
@@ -218,8 +218,7 @@
                             w-56
                             justify-center
                             text-indigo-800
-                            font-mono
-                            font-semibold
+                            font-mono font-semibold
                         "
                         >SKU</label
                     >
@@ -265,8 +264,7 @@
                             w-56
                             justify-center
                             text-indigo-800
-                            font-mono
-                            font-semibold
+                            font-mono font-semibold
                         "
                         >Descripción</label
                     >
@@ -312,8 +310,7 @@
                             w-56
                             justify-center
                             text-indigo-800
-                            font-mono
-                            font-semibold
+                            font-mono font-semibold
                         "
                         >Precio al por mayor</label
                     >
@@ -359,8 +356,7 @@
                             w-56
                             justify-center
                             text-indigo-800
-                            font-mono
-                            font-semibold
+                            font-mono font-semibold
                         "
                         >Precio al por menor</label
                     >
@@ -371,7 +367,7 @@
                         'items-center',
                         'border-b',
 
-                        'py-2'
+                        'py-2',
                     ]"
                 >
                     <input
@@ -406,8 +402,7 @@
                             w-56
                             justify-center
                             text-indigo-800
-                            font-mono
-                            font-semibold
+                            font-mono font-semibold
                         "
                         >Precio proveedor</label
                     >
@@ -415,28 +410,28 @@
                 <div v-if="purchaseVisibility">
                     <div
                         class="
-                        flex
-                        items-center
-                        border-b border-t border-gray-500
-                        py-2
-                        relative
-                    "
+                            flex
+                            items-center
+                            border-b border-t border-gray-500
+                            py-2
+                            relative
+                        "
                     >
                         <input
                             v-model="form.qty"
                             name="qty"
                             class="
-                            appearance-none
-                            bg-transparent
-                            border-none
-                            w-full
-                            text-gray-700
-                            mr-3
-                            py-1
-                            pl-60
-                            leading-tight
-                            focus:outline-none
-                        "
+                                appearance-none
+                                bg-transparent
+                                border-none
+                                w-full
+                                text-gray-700
+                                mr-3
+                                py-1
+                                pl-60
+                                leading-tight
+                                focus:outline-none
+                            "
                             type="text"
                             placeholder="CANTIDAD DE COMPRA (OPCIONAL)"
                             aria-label="Full name"
@@ -444,20 +439,18 @@
                         <label
                             for=""
                             class="
-                            absolute
-                            text-center
-                            pl-0
-                            bg-gray-200
-                            h-full
-                            flex
-                            flex-col
-                            items-center
-                            w-56
-                            justify-center
-                            text-indigo-800
-                            font-mono
-                            font-semibold
-                        "
+                                absolute
+                                text-center
+                                pl-0
+                                bg-gray-200
+                                h-full
+                                flex flex-col
+                                items-center
+                                w-56
+                                justify-center
+                                text-indigo-800
+                                font-mono font-semibold
+                            "
                             >Cantidad de compra
                             <span class="text-xs text-gray-600 block mt-0"
                                 >(Opcional)</span
@@ -471,12 +464,12 @@
                                 : 'border-gray-500'
                         "
                         class="
-                        flex flex-wrap
-                        items-center
-                        border-b  
-                        py-2
-                        relative
-                    "
+                            flex flex-wrap
+                            items-center
+                            border-b
+                            py-2
+                            relative
+                        "
                     >
                         <div class="pl-60 flex-wrap flex">
                             <div
@@ -486,13 +479,14 @@
                             >
                                 <label
                                     class="
-                                    inline-flex
-                                    items-center
-                                    border
-                                    rounded
-                                    bg-gray-300
-                                    px-1 py-2
-                                "
+                                        inline-flex
+                                        items-center
+                                        border
+                                        rounded
+                                        bg-gray-300
+                                        px-1
+                                        py-2
+                                    "
                                 >
                                     <input
                                         type="radio"
@@ -509,20 +503,18 @@
                         </div>
                         <label
                             class="
-                            absolute
-                            text-center
-                            pl-0
-                            bg-gray-200
-                            h-full
-                            flex
-                            flex-col
-                            items-center
-                            w-56
-                            justify-center
-                            text-indigo-800
-                            font-mono
-                            font-semibold
-                        "
+                                absolute
+                                text-center
+                                pl-0
+                                bg-gray-200
+                                h-full
+                                flex flex-col
+                                items-center
+                                w-56
+                                justify-center
+                                text-indigo-800
+                                font-mono font-semibold
+                            "
                             >Almacen
                             <span class="text-xs text-gray-600 block mt-0"
                                 >(Opcional)</span
@@ -564,7 +556,7 @@
 <script>
 import NavComponent from "../NavComponent.vue";
 import TogglePurchaseVisibility from "./TogglePurchaseVisibility.vue";
-
+import {mapState} from "vuex";  
 export default {
     components: {
         NavComponent,
@@ -578,25 +570,11 @@ export default {
             category_name: "",
             src: null,
             frutsi: null,
-            purchaseVisibility: Boolean(
-                window.localStorage.getItem("allow-to-buy-new-product")
-            )
         };
-    },
-    created() {
-        EventBus.$on("toggle-purchase-visibility", value => {
-            this.purchaseVisibility = value;
-        });
     },
     mounted() {
         if (!!this.product) {
             this.form = this.product;
-        }
-        console.log(
-            typeof window.localStorage.getItem("allow-to-buy-new-product")
-        );
-        if (window.localStorage.getItem("allow-to-buy-new-product") === null) {
-            window.localStorage.setItem("allow-to-buy-new-product", true);
         }
     },
     props: {
@@ -657,9 +635,11 @@ export default {
         },
         showImage(e) {
             this.src = e.target.result;
-        }
+        },
+        
     },
     computed: {
+        ...mapState(["purchaseVisibility"]),
         categoryName() {
             return this.category_name;
         },
@@ -669,7 +649,8 @@ export default {
         definePermission() {
             if (this.method.toUpperCase() === "POST") return "create product";
             return "edit product";
-        }
+        },
+        
     }
 };
 </script>

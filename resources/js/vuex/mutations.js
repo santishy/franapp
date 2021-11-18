@@ -43,6 +43,10 @@ const SET_USER = (state,user) =>
     state.user = JSON.parse( document.head.querySelector("meta[name='current_user']").content);
     state.auth = Boolean(user);
 }
+const SET_PURCHASE_VISIBILITY = (state,value) =>{
+    state.purchaseVisibility = value;
+    window.localStorage.setItem('allow-to-buy-new-product',value);
+}
 export default {
     setProductsInPurchase,
     SET_USER,
@@ -50,5 +54,6 @@ export default {
     deleteProductInPurchase,
     addToTransaction,
     removeTransactionProduct,
-    setModalDataConfirm
+    setModalDataConfirm,
+    SET_PURCHASE_VISIBILITY,
 }

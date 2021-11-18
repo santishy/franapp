@@ -1,6 +1,6 @@
 <template>
-    <div class="w-64 flex flex-col  bg-white shadow-sm p-2">
-        <div class="flex flex-wrap">
+    <div class="flex flex-col justify-center rounded bg-white p-2 border border-indigo-500">
+        <div class="flex flex-wrap justify-center">
             <p class="text-xs font-mono">Compras:</p>
             <span
                 :class="[getTextColor]"
@@ -9,9 +9,9 @@
                 {{ getTitle }}
             </span>
         </div>
-        <div class="flex flex-wrap mt-4">
+        <div class="flex flex-wrap mt-0 justify-center">
             <button
-                @click="togglePurchaseVisibility(true)"
+                @click.prevent="togglePurchaseVisibility(true)"
                 class="mr-2 text-green-700"
             >
                 <div class="flex flex-wrap">
@@ -20,7 +20,7 @@
                 </div>
             </button>
             <button
-                @click="togglePurchaseVisibility(false)"
+                @click.prevent="togglePurchaseVisibility(false)"
                 class="text-orange-700"
             >
                 <div class="flex flex-wrap">
@@ -35,6 +35,7 @@
 <script>
 import CheckCircle from "../icons/CheckCircle.vue";
 import TimesCircle from "../icons/TimesCircle.vue";
+import {mapMutations,mapState} from "vuex"
 export default {
     components: {
         CheckCircle,
@@ -46,17 +47,18 @@ export default {
         }
     },
     methods: {
+        ...mapMutations(["SET_PURCHASE_VISIBILITY"]),
         togglePurchaseVisibility(bool) {
-            window.localStorage.setItem("allow-to-buy-new-product", bool);
-            EventBus.$emit("toggle-purchase-visibility", bool);
+            this.SET_PURCHASE_VISIBILITY(bool);
         }
     },
     computed: {
+        ...mapState(["purchaseVisibility"]),
         getTitle() {
-            return this.visibility ? "Activa" : "Desactivada";
+            return this.purchaseVisibility ? "Activa" : "Desactivada";
         },
         getTextColor() {
-            return this.visibility ? "text-green-700" : "text-red-700";
+            return this.purchaseVisibility ? "text-green-700" : "text-red-700";
         }
     }
 };
