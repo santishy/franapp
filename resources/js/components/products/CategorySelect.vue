@@ -84,7 +84,7 @@ export default {
             this.focusedIndex = 0;
             this.$refs.dropdown.children[this.focusedIndex].children[0].focus();
         },
-        nextFocused() {
+        nextFocused(event) {
             if (this.focusedIndex < this.items.length -1)
                 this.focusedIndex = this.focusedIndex + 1;
             this.$refs.dropdown.children[this.focusedIndex].children[0].focus();
@@ -93,6 +93,7 @@ export default {
             if (this.focusedIndex > 0)
                 this.focusedIndex = this.focusedIndex - 1;
             this.$refs.dropdown.children[this.focusedIndex].children[0].focus();
+            
         }
     }
 };

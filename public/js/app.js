@@ -4798,7 +4798,7 @@ __webpack_require__.r(__webpack_exports__);
       this.focusedIndex = 0;
       this.$refs.dropdown.children[this.focusedIndex].children[0].focus();
     },
-    nextFocused: function nextFocused() {
+    nextFocused: function nextFocused(event) {
       if (this.focusedIndex < this.items.length - 1) this.focusedIndex = this.focusedIndex + 1;
       this.$refs.dropdown.children[this.focusedIndex].children[0].focus();
     },
