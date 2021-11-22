@@ -12,7 +12,6 @@
                 mx-auto
             "
         >
-            
             <form
                 id="product-form"
                 @submit.prevent="submit"
@@ -29,9 +28,8 @@
             >
                 <div>
                     <toggle-purchase-visibility
-                :visibility="getPurchaseVisibility"
-                class="w-56"
-            ></toggle-purchase-visibility>
+                        class="w-56"
+                    ></toggle-purchase-visibility>
                 </div>
                 <div
                     class="
@@ -69,7 +67,9 @@
                         </p>
                     </div>
                 </div>
-                <div
+                <category-select :categories="categories"></category-select>
+                <input type="hidden" name="category_id"  v-model="form.category_id">
+                <!--<div
                     class="
                         flex
                         items-center
@@ -129,7 +129,7 @@
                         "
                         >Categoría</label
                     >
-                </div>
+                </div>-->
                 <div
                     class="
                         flex
@@ -367,7 +367,7 @@
                         'items-center',
                         'border-b',
 
-                        'py-2',
+                        'py-2'
                     ]"
                 >
                     <input
@@ -556,11 +556,13 @@
 <script>
 import NavComponent from "../NavComponent.vue";
 import TogglePurchaseVisibility from "./TogglePurchaseVisibility.vue";
-import {mapState} from "vuex";  
+import { mapState } from "vuex";
+import CategorySelect from "./CategorySelect.vue";
 export default {
     components: {
         NavComponent,
-        TogglePurchaseVisibility
+        TogglePurchaseVisibility,
+        CategorySelect
     },
     data() {
         return {
@@ -569,13 +571,17 @@ export default {
             },
             category_name: "",
             src: null,
-            frutsi: null,
+            frutsi: null
         };
     },
     mounted() {
         if (!!this.product) {
             this.form = this.product;
         }
+
+        EventBus.$on('selected-category',(category) => {
+            this.form.category_id = category.id;
+        })
     },
     props: {
         method: {
@@ -635,8 +641,7 @@ export default {
         },
         showImage(e) {
             this.src = e.target.result;
-        },
-        
+        }
     },
     computed: {
         ...mapState(["purchaseVisibility"]),
@@ -649,8 +654,7 @@ export default {
         definePermission() {
             if (this.method.toUpperCase() === "POST") return "create product";
             return "edit product";
-        },
-        
+        }
     }
 };
 </script>
