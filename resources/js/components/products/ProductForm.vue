@@ -67,7 +67,7 @@
                         </p>
                     </div>
                 </div>
-                <category-select :categories="categories"></category-select>
+                <category-select  :categories="categories"></category-select>
                 <input type="hidden" name="category_id"  v-model="form.category_id">
                 <!--<div
                     class="
