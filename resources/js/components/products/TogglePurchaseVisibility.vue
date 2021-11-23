@@ -1,5 +1,5 @@
 <template>
-    <div class="flex flex-col justify-center rounded bg-white p-2 border border-indigo-500">
+    <div v-if="method.toUpperCase() == 'POST' " class="flex flex-col justify-center rounded bg-white p-2 border border-indigo-500">
         <div class="flex flex-wrap justify-center">
             <p class="text-xs font-mono">Compras:</p>
             <span
@@ -44,6 +44,9 @@ export default {
     props: {
         visibility: {
             type: Boolean
+        },
+        method:{
+            type:String
         }
     },
     methods: {

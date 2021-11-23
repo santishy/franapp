@@ -15,6 +15,9 @@
             <form
                 id="product-form"
                 @submit.prevent="submit"
+                @keyup.enter.prevent=""
+                @keydown.enter.prevent=""
+                @keypress.enter.prevent=""
                 v-can="definePermission"
                 class="
                     w-full
@@ -29,6 +32,7 @@
                 <div>
                     <toggle-purchase-visibility
                         class="w-56"
+                        :method="method"
                     ></toggle-purchase-visibility>
                 </div>
                 <div
@@ -67,8 +71,15 @@
                         </p>
                     </div>
                 </div>
-                <category-select  :categories="categories"></category-select>
-                <input type="hidden" name="category_id"  v-model="form.category_id">
+                <category-select
+                    :categories="categories"
+                    :product="product"
+                ></category-select>
+                <input
+                    type="hidden"
+                    name="category_id"
+                    v-model="form.category_id"
+                />
                 <!--<div
                     class="
                         flex
@@ -407,7 +418,9 @@
                         >Precio proveedor</label
                     >
                 </div>
-                <div v-if="purchaseVisibility">
+                <div
+                    v-if="purchaseVisibility && method.toUpperCase() == 'POST'"
+                >
                     <div
                         class="
                             flex
@@ -458,6 +471,7 @@
                         >
                     </div>
                     <div
+                        v-if="this.inventories.length > 1"
                         :class="
                             this.errors
                                 ? 'border-transparent'
@@ -578,10 +592,9 @@ export default {
         if (!!this.product) {
             this.form = this.product;
         }
-
-        EventBus.$on('selected-category',(category) => {
-            this.form.category_id = category.id;
-        })
+        EventBus.$on("selected-category", id => {
+            this.form.category_id = id;
+        });
     },
     props: {
         method: {
@@ -611,6 +624,9 @@ export default {
                 formData.append("_method", "put");
                 formData.append("id", this.product.id);
                 url = `/products/${this.product.id}`;
+            } else {
+                if (this.form.inventory_id && this.inventories.length == 1)
+                    formData.append("inventory_id", this.inventories[0].id);
             }
             axios["post"](url, formData, {
                 headers: {

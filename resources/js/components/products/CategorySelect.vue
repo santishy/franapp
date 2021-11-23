@@ -1,5 +1,5 @@
 <template>
-    <div class="flex items-center border-t border-gray-500 py-2 relative">
+    <div  class="flex items-center border-t border-gray-500 py-2 relative">
         <input
             v-model="term_search"
             class="
@@ -13,6 +13,7 @@
                 pl-60
                 leading-tight
                 focus:outline-none
+                placeholder-blue-400
             "
             autocomplete="off"
             @focus="allCategories"
@@ -20,9 +21,9 @@
             @keyup.esc.prevent="close"
             @keyup.down.prevent="nextFocused"
             @keyup.up.prevent="previousFocused"
-            @keyup.enter.prevent="selectedCategory(focusedIndex, $event)"
+            @keyup.exact.enter.prevent="selectedCategory(focusedIndex, $event)"
             type="text"
-            placeholder="Selecciona la categoría"
+            placeholder="Click o Enter para seleccionar | Presione la tecla ESC para limpiar"
             aria-label="Full name"
         />
         <label
@@ -41,6 +42,12 @@
             "
             >Categoría</label
         >
+        <button
+            @click.prevent="close"
+            class="absolute  text-gray-700 border border-gray-400  font-semibold right-0 px-3 py-1 hover:bg-gray-300 rounded-sm shadow"
+        >
+            X
+        </button>
         <div
             class="
                 absolute
@@ -55,10 +62,10 @@
             v-if="items.length"
         >
             <ul class="bg-white w-fullrelative" ref="dropdown">
-                <li class="mt-4" v-for="(item, index) in items" :key="item.id">
+                <li class="mt-2" v-for="(item, index) in items" :key="item.id">
                     <a
                         class="
-                            p-1
+                            
                             block
                             w-full
                             focus:ring-2
@@ -85,8 +92,17 @@
 export default {
     props: {
         categories: {
-            type: Array,
+            type: Array
         },
+        product:{
+            type:Object
+        }
+    },
+    mounted(){
+        if(this.product){
+            const category = this.categories.find( ele => ele.id === this.product.id)
+            this.term_search= category.name;
+        }
     },
     data() {
         return {
@@ -94,19 +110,25 @@ export default {
             term_search: "",
             category_id: null,
             selectedCategoryId: null,
-            focusedIndex: 0,
+            focusedIndex: 0
         };
     },
     methods: {
-        search() {
+        search(event) {
+            if (event.key === "ArrowDown" || event.key === "ArrowUp") return;
+            this.focusedIndex = 0;
             if (this.term_search == "") {
                 this.items = this.categories;
             } else {
-                this.items = this.categories.filter((category) => {
+                this.items = this.categories.filter(category => {
+                    //var re = this.term_search.replace(/\s/g, '|'); idea nada mas,
+                    //podria parter la cadena completa en dos partes mitad|mitad y buscar
+
                     if (
-                        category.name
-                            .toUpperCase()
-                            .indexOf(this.term_search.toUpperCase()) != -1
+                        category.name.search(
+                            new RegExp(this.term_search, "i")
+                        ) != -1
+                        //.search(new RegExp(re,'i')) != -1
                     )
                         return category;
                 });
@@ -120,6 +142,7 @@ export default {
             }
         },
         close() {
+            EventBus.$emit("selected-category", "");
             this.items = [];
             this.term_search = "";
         },
@@ -140,11 +163,11 @@ export default {
                 ].children[0].scrollIntoView({ block: "nearest" });
             }
         },
-        allCategories(){
-            if(this.term_search == ''){
+        allCategories() {
+            if (this.term_search == "") {
                 this.items = this.categories;
             }
         }
-    },
+    }
 };
 </script>
