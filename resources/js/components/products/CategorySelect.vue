@@ -103,6 +103,9 @@ export default {
             const category = this.categories.find( ele => ele.id === this.product.id)
             this.term_search= category.name;
         }
+        EventBus.$on('clean-search-term',()=>{
+            this.term_search='';
+        })
     },
     data() {
         return {

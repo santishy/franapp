@@ -29,11 +29,18 @@
                     md:mb-0
                 "
             >
-                <div>
+                <div class="flex flex-wrap justify-between">
                     <toggle-purchase-visibility
                         class="w-56"
                         :method="method"
                     ></toggle-purchase-visibility>
+                    <button
+                        @click.prevent="cleanForm"
+                        class="rounded-lg bg-white border hover:text-white hover:bg-pink-500
+                                border-pink-500 font-mono font-extralight text-xs p-2 transition-all"
+                    >
+                        Limpiar
+                    </button>
                 </div>
                 <div
                     class="
@@ -153,6 +160,7 @@
                     <input
                         type="file"
                         name="image"
+                        id="image"
                         @change="onFileSelected"
                         class="
                             appearance-none
@@ -625,7 +633,7 @@ export default {
                 formData.append("id", this.product.id);
                 url = `/products/${this.product.id}`;
             } else {
-                if (this.form.inventory_id && this.inventories.length == 1)
+                if (this.inventories.length == 1)
                     formData.append("inventory_id", this.inventories[0].id);
             }
             axios["post"](url, formData, {
@@ -637,7 +645,11 @@ export default {
                 .then(res => {
                     let obj = { title: "Productos", ...message };
                     this.notify(obj);
-                    if (this.method == "post") this.form = {};
+                    if (this.method == "post")
+                        this.form = {
+                            sku: this.form.sku,
+                            category_id: this.form.category_id
+                        };
                     this.errors = null;
                 })
                 .catch(err => {
@@ -657,6 +669,12 @@ export default {
         },
         showImage(e) {
             this.src = e.target.result;
+        },
+        cleanForm(){
+            this.form={};
+            EventBus.$emit("clean-search-term");
+            this.src = null;
+            document.querySelector("#image").value = null;
         }
     },
     computed: {
