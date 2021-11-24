@@ -87,67 +87,6 @@
                     name="category_id"
                     v-model="form.category_id"
                 />
-                <!--<div
-                    class="
-                        flex
-                        items-center
-                        border-t border-gray-500
-                        py-2
-                        relative
-                    "
-                >
-                    <select
-                        name="category_id"
-                        v-model="form.category_id"
-                        plahceholder="Elige una categoria"
-                        class="
-                            block
-                            appearance-none
-                            w-full
-                            bg-white
-                            hover:border-gray-500
-                            px-4
-                            pl-60
-                            py-1
-                            pr-8
-                            rounded
-                            leading-tight
-                            focus:outline-none focus:shadow-outline
-                        "
-                    >
-                        <option
-                            disabled
-                            value=""
-                            selected
-                            class="text-gray-600"
-                        >
-                            Seleccione un elemento
-                        </option>
-                        <option
-                            v-for="category in categories"
-                            :key="category.id"
-                            :value="category.id"
-                        >
-                            {{ category.name }}
-                        </option>
-                    </select>
-                    <label
-                        for=""
-                        class="
-                            absolute
-                            pl-0
-                            bg-gray-200
-                            h-full
-                            flex
-                            items-center
-                            w-56
-                            justify-center
-                            text-indigo-800
-                            font-mono font-semibold
-                        "
-                        >Categoría</label
-                    >
-                </div>-->
                 <div
                     class="
                         flex
@@ -162,35 +101,11 @@
                         name="image"
                         id="image"
                         @change="onFileSelected"
-                        class="
-                            appearance-none
-                            bg-transparent
-                            border-none
-                            w-full
-                            text-gray-700
-                            mr-3
-                            py-1
-                            pl-60
-                            leading-tight
-                            focus:outline-none
-                        "
+                        :class="[inputStyle]"
                         placeholder="Subir imagen"
                         aria-label="Full name"
                     />
-                    <label
-                        for=""
-                        class="
-                            absolute
-                            pl-0
-                            bg-gray-200
-                            h-full
-                            flex flex-col
-                            items-center
-                            w-56
-                            justify-center
-                            text-indigo-800
-                            font-mono font-semibold
-                        "
+                    <label :class="labelStyle" class="flex-col"
                         >Imagen
                         <span class="text-xs text-gray-600 block mt-0"
                             >(Opcional)</span
@@ -209,38 +124,12 @@
                     <input
                         v-model="form.sku"
                         name="sku"
-                        class="
-                            appearance-none
-                            bg-transparent
-                            border-none
-                            w-full
-                            text-gray-700
-                            mr-3
-                            py-1
-                            pl-60
-                            leading-tight
-                            focus:outline-none
-                        "
+                        :class="[inputStyle]"
                         type="text"
                         placeholder="SKU"
                         aria-label="Full name"
                     />
-                    <label
-                        for=""
-                        class="
-                            absolute
-                            pl-0
-                            bg-gray-200
-                            h-full
-                            flex
-                            items-center
-                            w-56
-                            justify-center
-                            text-indigo-800
-                            font-mono font-semibold
-                        "
-                        >SKU</label
-                    >
+                    <label :class="[labelStyle]">SKU</label>
                 </div>
                 <div
                     class="
@@ -254,39 +143,13 @@
                     <textarea
                         v-model="form.description"
                         name="description"
-                        class="
-                            appearance-none
-                            bg-transparent
-                            border-none
-                            w-full
-                            text-gray-700
-                            mr-3
-                            py-1
-                            pl-60
-                            leading-tight
-                            focus:outline-none
-                        "
+                        :class="[inputStyle]"
                         type="text"
                         placeholder="DESCRIPCIÓN DEL PRODUCTO"
                         aria-label="Full name"
                     >
                     </textarea>
-                    <label
-                        for=""
-                        class="
-                            absolute
-                            pl-0
-                            bg-gray-200
-                            h-full
-                            flex
-                            items-center
-                            w-56
-                            justify-center
-                            text-indigo-800
-                            font-mono font-semibold
-                        "
-                        >Descripción</label
-                    >
+                    <label for="" :class="[labelStyle]">Descripción</label>
                 </div>
                 <div
                     class="
@@ -300,37 +163,12 @@
                     <input
                         v-model="form.wholesale_price"
                         name="wholesale_price"
-                        class="
-                            appearance-none
-                            bg-transparent
-                            border-none
-                            w-full
-                            text-gray-700
-                            mr-3
-                            py-1
-                            pl-60
-                            leading-tight
-                            focus:outline-none
-                        "
+                        :class="[inputStyle]"
                         type="text"
                         placeholder="PRECIO AL POR MAYOR"
                         aria-label="Full name"
                     />
-                    <label
-                        for=""
-                        class="
-                            absolute
-                            text-center
-                            pl-0
-                            bg-gray-200
-                            h-full
-                            flex
-                            items-center
-                            w-56
-                            justify-center
-                            text-indigo-800
-                            font-mono font-semibold
-                        "
+                    <label for="" :class="[labelStyle]"
                         >Precio al por mayor</label
                     >
                 </div>
@@ -346,37 +184,12 @@
                     <input
                         v-model="form.retail_price"
                         name="retail_price"
-                        class="
-                            appearance-none
-                            bg-transparent
-                            border-none
-                            w-full
-                            text-gray-700
-                            mr-3
-                            py-1
-                            pl-60
-                            leading-tight
-                            focus:outline-none
-                        "
+                        :class="[inputStyle]"
                         type="text"
                         placeholder="PRECIO AL POR MENOR"
                         aria-label="Full name"
                     />
-                    <label
-                        for=""
-                        class="
-                            absolute
-                            text-center
-                            pl-0
-                            bg-gray-200
-                            h-full
-                            flex
-                            items-center
-                            w-56
-                            justify-center
-                            text-indigo-800
-                            font-mono font-semibold
-                        "
+                    <label for="" :class="[labelStyle]"
                         >Precio al por menor</label
                     >
                 </div>
@@ -392,39 +205,12 @@
                     <input
                         v-model="form.distributor_price"
                         name="distributor_price"
-                        class="
-                            appearance-none
-                            bg-transparent
-                            border-none
-                            w-full
-                            text-gray-700
-                            mr-3
-                            py-1
-                            pl-60
-                            leading-tight
-                            focus:outline-none
-                        "
+                        :class="[inputStyle]"
                         type="text"
                         placeholder="PRECIO PROVEEDOR"
                         aria-label="Full name"
                     />
-                    <label
-                        for=""
-                        class="
-                            absolute
-                            text-center
-                            pl-0
-                            bg-gray-200
-                            h-full
-                            flex
-                            items-center
-                            w-56
-                            justify-center
-                            text-indigo-800
-                            font-mono font-semibold
-                        "
-                        >Precio proveedor</label
-                    >
+                    <label for="" :class="[labelStyle]">Precio proveedor</label>
                 </div>
                 <div
                     v-if="purchaseVisibility && method.toUpperCase() == 'POST'"
@@ -441,37 +227,12 @@
                         <input
                             v-model="form.qty"
                             name="qty"
-                            class="
-                                appearance-none
-                                bg-transparent
-                                border-none
-                                w-full
-                                text-gray-700
-                                mr-3
-                                py-1
-                                pl-60
-                                leading-tight
-                                focus:outline-none
-                            "
+                            :class="[inputStyle]"
                             type="text"
                             placeholder="CANTIDAD DE COMPRA (OPCIONAL)"
                             aria-label="Full name"
                         />
-                        <label
-                            for=""
-                            class="
-                                absolute
-                                text-center
-                                pl-0
-                                bg-gray-200
-                                h-full
-                                flex flex-col
-                                items-center
-                                w-56
-                                justify-center
-                                text-indigo-800
-                                font-mono font-semibold
-                            "
+                        <label for="" :class="[labelStyle]" class="flex-col"
                             >Cantidad de compra
                             <span class="text-xs text-gray-600 block mt-0"
                                 >(Opcional)</span
@@ -523,20 +284,7 @@
                                 </label>
                             </div>
                         </div>
-                        <label
-                            class="
-                                absolute
-                                text-center
-                                pl-0
-                                bg-gray-200
-                                h-full
-                                flex flex-col
-                                items-center
-                                w-56
-                                justify-center
-                                text-indigo-800
-                                font-mono font-semibold
-                            "
+                        <label class="flex-col" :class="[labelStyle]"
                             >Almacen
                             <span class="text-xs text-gray-600 block mt-0"
                                 >(Opcional)</span
@@ -670,8 +418,8 @@ export default {
         showImage(e) {
             this.src = e.target.result;
         },
-        cleanForm(){
-            this.form={};
+        cleanForm() {
+            this.form = {};
             EventBus.$emit("clean-search-term");
             this.src = null;
             document.querySelector("#image").value = null;
@@ -688,6 +436,12 @@ export default {
         definePermission() {
             if (this.method.toUpperCase() === "POST") return "create product";
             return "edit product";
+        },
+        labelStyle() {
+            return "absolute pl-0 bg-gray-200 h-full flex items-center w-56 justify-center text-indigo-800 font-mono font-semibold";
+        },
+        inputStyle() {
+            return "appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 pl-60 leading-tight focus:outline-none";
         }
     }
 };
