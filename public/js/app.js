@@ -5534,57 +5534,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -5694,8 +5643,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         var fileReader = new FileReader();
         fileReader.readAsDataURL(event.target.files[0]);
         fileReader.addEventListener("load", this.showImage);
-      } else {
-        console.log("no entro");
       }
     },
     showImage: function showImage(e) {
@@ -5724,6 +5671,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     inputStyle: function inputStyle() {
       return "appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 pl-60 leading-tight focus:outline-none";
+    },
+    controlsContainerStyle: function controlsContainerStyle() {
+      return "flex items-center border-t border-gray-500 py-2 relative";
     }
   })
 });
@@ -33113,271 +33063,227 @@ var render = function() {
               ]
             ),
             _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass:
-                  "\n                    flex\n                    items-center\n                    border-t border-gray-500\n                    py-2\n                    relative\n                "
-              },
-              [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.form.sku,
-                      expression: "form.sku"
-                    }
-                  ],
-                  class: [_vm.inputStyle],
-                  attrs: {
-                    name: "sku",
-                    type: "text",
-                    placeholder: "SKU",
-                    "aria-label": "Full name"
-                  },
-                  domProps: { value: _vm.form.sku },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(_vm.form, "sku", $event.target.value)
-                    }
+            _c("div", { class: [_vm.controlsContainerStyle] }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.form.sku,
+                    expression: "form.sku"
                   }
-                }),
-                _vm._v(" "),
-                _c("label", { class: [_vm.labelStyle] }, [_vm._v("SKU")])
-              ]
-            ),
+                ],
+                class: [_vm.inputStyle],
+                attrs: {
+                  name: "sku",
+                  type: "text",
+                  placeholder: "SKU",
+                  "aria-label": "Full name"
+                },
+                domProps: { value: _vm.form.sku },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.form, "sku", $event.target.value)
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c("label", { class: [_vm.labelStyle] }, [_vm._v("SKU")])
+            ]),
             _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass:
-                  "\n                    flex\n                    items-center\n                    border-t border-gray-500\n                    py-2\n                    relative\n                "
-              },
-              [
-                _c("textarea", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.form.description,
-                      expression: "form.description"
-                    }
-                  ],
-                  class: [_vm.inputStyle],
-                  attrs: {
-                    name: "description",
-                    type: "text",
-                    placeholder: "DESCRIPCIÓN DEL PRODUCTO",
-                    "aria-label": "Full name"
-                  },
-                  domProps: { value: _vm.form.description },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(_vm.form, "description", $event.target.value)
-                    }
+            _c("div", { class: [_vm.controlsContainerStyle] }, [
+              _c("textarea", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.form.description,
+                    expression: "form.description"
                   }
-                }),
-                _vm._v(" "),
-                _c("label", { class: [_vm.labelStyle], attrs: { for: "" } }, [
-                  _vm._v("Descripción")
-                ])
-              ]
-            ),
+                ],
+                class: [_vm.inputStyle],
+                attrs: {
+                  name: "description",
+                  type: "text",
+                  placeholder: "DESCRIPCIÓN DEL PRODUCTO",
+                  "aria-label": "Full name"
+                },
+                domProps: { value: _vm.form.description },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.form, "description", $event.target.value)
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c("label", { class: [_vm.labelStyle], attrs: { for: "" } }, [
+                _vm._v("Descripción")
+              ])
+            ]),
             _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass:
-                  "\n                    flex\n                    items-center\n                    border-t border-gray-500\n                    py-2\n                    relative\n                "
-              },
-              [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.form.wholesale_price,
-                      expression: "form.wholesale_price"
-                    }
-                  ],
-                  class: [_vm.inputStyle],
-                  attrs: {
-                    name: "wholesale_price",
-                    type: "text",
-                    placeholder: "PRECIO AL POR MAYOR",
-                    "aria-label": "Full name"
-                  },
-                  domProps: { value: _vm.form.wholesale_price },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(_vm.form, "wholesale_price", $event.target.value)
-                    }
+            _c("div", { class: [_vm.controlsContainerStyle] }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.form.wholesale_price,
+                    expression: "form.wholesale_price"
                   }
-                }),
-                _vm._v(" "),
-                _c("label", { class: [_vm.labelStyle], attrs: { for: "" } }, [
-                  _vm._v("Precio al por mayor")
-                ])
-              ]
-            ),
+                ],
+                class: [_vm.inputStyle],
+                attrs: {
+                  name: "wholesale_price",
+                  type: "text",
+                  placeholder: "PRECIO AL POR MAYOR",
+                  "aria-label": "Full name"
+                },
+                domProps: { value: _vm.form.wholesale_price },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.form, "wholesale_price", $event.target.value)
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c("label", { class: [_vm.labelStyle], attrs: { for: "" } }, [
+                _vm._v("Precio al por mayor")
+              ])
+            ]),
             _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass:
-                  "\n                    flex\n                    items-center\n                    border-b border-t border-gray-500\n                    py-2\n                    relative\n                "
-              },
-              [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.form.retail_price,
-                      expression: "form.retail_price"
-                    }
-                  ],
-                  class: [_vm.inputStyle],
-                  attrs: {
-                    name: "retail_price",
-                    type: "text",
-                    placeholder: "PRECIO AL POR MENOR",
-                    "aria-label": "Full name"
-                  },
-                  domProps: { value: _vm.form.retail_price },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(_vm.form, "retail_price", $event.target.value)
-                    }
+            _c("div", { class: [_vm.controlsContainerStyle] }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.form.retail_price,
+                    expression: "form.retail_price"
                   }
-                }),
-                _vm._v(" "),
-                _c("label", { class: [_vm.labelStyle], attrs: { for: "" } }, [
-                  _vm._v("Precio al por menor")
-                ])
-              ]
-            ),
+                ],
+                class: [_vm.inputStyle],
+                attrs: {
+                  name: "retail_price",
+                  type: "text",
+                  placeholder: "PRECIO AL POR MENOR",
+                  "aria-label": "Full name"
+                },
+                domProps: { value: _vm.form.retail_price },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.form, "retail_price", $event.target.value)
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c("label", { class: [_vm.labelStyle], attrs: { for: "" } }, [
+                _vm._v("Precio al por menor")
+              ])
+            ]),
             _vm._v(" "),
-            _c(
-              "div",
-              { class: ["flex relative", "items-center", "border-b", "py-2"] },
-              [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.form.distributor_price,
-                      expression: "form.distributor_price"
-                    }
-                  ],
-                  class: [_vm.inputStyle],
-                  attrs: {
-                    name: "distributor_price",
-                    type: "text",
-                    placeholder: "PRECIO PROVEEDOR",
-                    "aria-label": "Full name"
-                  },
-                  domProps: { value: _vm.form.distributor_price },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(
-                        _vm.form,
-                        "distributor_price",
-                        $event.target.value
-                      )
-                    }
+            _c("div", { class: [_vm.controlsContainerStyle] }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.form.distributor_price,
+                    expression: "form.distributor_price"
                   }
-                }),
-                _vm._v(" "),
-                _c("label", { class: [_vm.labelStyle], attrs: { for: "" } }, [
-                  _vm._v("Precio proveedor")
-                ])
-              ]
-            ),
+                ],
+                class: [_vm.inputStyle],
+                attrs: {
+                  name: "distributor_price",
+                  type: "text",
+                  placeholder: "PRECIO PROVEEDOR",
+                  "aria-label": "Full name"
+                },
+                domProps: { value: _vm.form.distributor_price },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.form, "distributor_price", $event.target.value)
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c("label", { class: [_vm.labelStyle], attrs: { for: "" } }, [
+                _vm._v("Precio proveedor")
+              ])
+            ]),
             _vm._v(" "),
             _vm.purchaseVisibility && _vm.method.toUpperCase() == "POST"
               ? _c("div", [
-                  _c(
-                    "div",
-                    {
-                      staticClass:
-                        "\n                        flex\n                        items-center\n                        border-b border-t border-gray-500\n                        py-2\n                        relative\n                    "
-                    },
-                    [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.form.qty,
-                            expression: "form.qty"
-                          }
-                        ],
-                        class: [_vm.inputStyle],
-                        attrs: {
-                          name: "qty",
-                          type: "text",
-                          placeholder: "CANTIDAD DE COMPRA (OPCIONAL)",
-                          "aria-label": "Full name"
-                        },
-                        domProps: { value: _vm.form.qty },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(_vm.form, "qty", $event.target.value)
-                          }
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c(
-                        "label",
+                  _c("div", { class: [_vm.controlsContainerStyle] }, [
+                    _c("input", {
+                      directives: [
                         {
-                          staticClass: "flex-col",
-                          class: [_vm.labelStyle],
-                          attrs: { for: "" }
-                        },
-                        [
-                          _vm._v(
-                            "Cantidad de compra\n                        "
-                          ),
-                          _c(
-                            "span",
-                            { staticClass: "text-xs text-gray-600 block mt-0" },
-                            [_vm._v("(Opcional)")]
-                          )
-                        ]
-                      )
-                    ]
-                  ),
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.form.qty,
+                          expression: "form.qty"
+                        }
+                      ],
+                      class: [_vm.inputStyle],
+                      attrs: {
+                        name: "qty",
+                        type: "text",
+                        placeholder: "CANTIDAD DE COMPRA (OPCIONAL)",
+                        "aria-label": "Full name"
+                      },
+                      domProps: { value: _vm.form.qty },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.form, "qty", $event.target.value)
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "label",
+                      {
+                        staticClass: "flex-col",
+                        class: [_vm.labelStyle],
+                        attrs: { for: "" }
+                      },
+                      [
+                        _vm._v("Cantidad de compra\n                        "),
+                        _c(
+                          "span",
+                          { staticClass: "text-xs text-gray-600 block mt-0" },
+                          [_vm._v("(Opcional)")]
+                        )
+                      ]
+                    )
+                  ]),
                   _vm._v(" "),
                   this.inventories.length > 1
                     ? _c(
                         "div",
                         {
-                          staticClass:
-                            "\n                        flex flex-wrap\n                        items-center\n                        border-b\n                        py-2\n                        relative\n                    ",
-                          class: this.errors
-                            ? "border-transparent"
-                            : "border-gray-500"
+                          class: [
+                            this.errors
+                              ? "border-transparent"
+                              : "border-gray-500",
+                            _vm.controlsContainerStyle
+                          ]
                         },
                         [
                           _c(

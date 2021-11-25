@@ -82,6 +82,7 @@
                     :categories="categories"
                     :product="product"
                 ></category-select>
+                
                 <input
                     type="hidden"
                     name="category_id"
@@ -112,15 +113,7 @@
                         ></label
                     >
                 </div>
-                <div
-                    class="
-                        flex
-                        items-center
-                        border-t border-gray-500
-                        py-2
-                        relative
-                    "
-                >
+                <div :class="[controlsContainerStyle]">
                     <input
                         v-model="form.sku"
                         name="sku"
@@ -131,15 +124,7 @@
                     />
                     <label :class="[labelStyle]">SKU</label>
                 </div>
-                <div
-                    class="
-                        flex
-                        items-center
-                        border-t border-gray-500
-                        py-2
-                        relative
-                    "
-                >
+                <div :class="[controlsContainerStyle]">
                     <textarea
                         v-model="form.description"
                         name="description"
@@ -151,15 +136,7 @@
                     </textarea>
                     <label for="" :class="[labelStyle]">Descripción</label>
                 </div>
-                <div
-                    class="
-                        flex
-                        items-center
-                        border-t border-gray-500
-                        py-2
-                        relative
-                    "
-                >
+                <div :class="[controlsContainerStyle]">
                     <input
                         v-model="form.wholesale_price"
                         name="wholesale_price"
@@ -172,15 +149,7 @@
                         >Precio al por mayor</label
                     >
                 </div>
-                <div
-                    class="
-                        flex
-                        items-center
-                        border-b border-t border-gray-500
-                        py-2
-                        relative
-                    "
-                >
+                <div :class="[controlsContainerStyle]">
                     <input
                         v-model="form.retail_price"
                         name="retail_price"
@@ -194,13 +163,7 @@
                     >
                 </div>
                 <div
-                    :class="[
-                        'flex relative',
-                        'items-center',
-                        'border-b',
-
-                        'py-2'
-                    ]"
+                    :class="[controlsContainerStyle]"
                 >
                     <input
                         v-model="form.distributor_price"
@@ -215,15 +178,7 @@
                 <div
                     v-if="purchaseVisibility && method.toUpperCase() == 'POST'"
                 >
-                    <div
-                        class="
-                            flex
-                            items-center
-                            border-b border-t border-gray-500
-                            py-2
-                            relative
-                        "
-                    >
+                    <div :class="[controlsContainerStyle]">
                         <input
                             v-model="form.qty"
                             name="qty"
@@ -241,18 +196,12 @@
                     </div>
                     <div
                         v-if="this.inventories.length > 1"
-                        :class="
+                        :class="[
                             this.errors
                                 ? 'border-transparent'
-                                : 'border-gray-500'
-                        "
-                        class="
-                            flex flex-wrap
-                            items-center
-                            border-b
-                            py-2
-                            relative
-                        "
+                                : 'border-gray-500',
+                            controlsContainerStyle
+                        ]"
                     >
                         <div class="pl-60 flex-wrap flex">
                             <div
@@ -411,9 +360,7 @@ export default {
                 fileReader.readAsDataURL(event.target.files[0]);
 
                 fileReader.addEventListener("load", this.showImage);
-            } else {
-                console.log("no entro");
-            }
+            } 
         },
         showImage(e) {
             this.src = e.target.result;
@@ -442,6 +389,9 @@ export default {
         },
         inputStyle() {
             return "appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 pl-60 leading-tight focus:outline-none";
+        },
+        controlsContainerStyle() {
+            return "flex items-center border-t border-gray-500 py-2 relative";
         }
     }
 };
