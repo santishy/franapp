@@ -14,7 +14,7 @@
                 <inventory-list></inventory-list>
             </div>
             <div v-else class="w-full mt-24 md:mt-32">
-                <div class="flex justify-center flex-wrap ">
+                <div class="flex justify-center items-baseline flex-wrap ">
                     <search-by-category
                         class="sm:w-64 w-4/5 md:mr-4"
                         :categories="categories"

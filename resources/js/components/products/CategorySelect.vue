@@ -1,7 +1,8 @@
 <template>
-    <div  class="flex items-center border-t border-gray-500 py-2 relative">
+    <div class="flex items-center  py-2 relative">
         <input
             v-model="term_search"
+            :class="[inputClass]"
             class="
                 appearance-none
                 bg-transparent
@@ -10,7 +11,6 @@
                 text-gray-700
                 mr-3
                 py-1
-                pl-60
                 leading-tight
                 focus:outline-none
                 placeholder-blue-400
@@ -26,22 +26,8 @@
             placeholder="Click o Enter para seleccionar | Presione la tecla ESC para limpiar"
             aria-label="Full name"
         />
-        <label
-            for=""
-            class="
-                absolute
-                pl-0
-                bg-gray-200
-                h-full
-                flex
-                items-center
-                w-56
-                justify-center
-                text-indigo-800
-                font-mono font-semibold
-            "
-            >Categoría</label
-        >
+        <slot name="labelCategory"> </slot>
+
         <button
             @click.prevent="close"
             class="absolute  text-gray-700 border border-gray-400  font-semibold right-0 px-3 py-1 hover:bg-gray-300 rounded-sm shadow"
@@ -51,13 +37,16 @@
         <div
             class="
                 absolute
+                mt-4
                 top-10
-                w-2/3
+                w-full
                 shadow
                 z-5
+                bg-white
+                rounded
                 max-h-64
                 overflow-x-auto
-                ml-60
+                
             "
             v-if="items.length"
         >
@@ -65,7 +54,7 @@
                 <li class="mt-2" v-for="(item, index) in items" :key="item.id">
                     <a
                         class="
-                            
+                            pl-4
                             block
                             w-full
                             focus:ring-2
@@ -94,18 +83,21 @@ export default {
         categories: {
             type: Array
         },
-        product:{
-            type:Object
-        }
+        product: {
+            type: Object
+        },
+        inputClass: { type:String }
     },
-    mounted(){
-        if(this.product){
-            const category = this.categories.find( ele => ele.id === this.product.id)
-            this.term_search= category.name;
+    mounted() {
+        if (this.product) {
+            const category = this.categories.find(
+                ele => ele.id === this.product.id
+            );
+            this.term_search = category.name;
         }
-        EventBus.$on('clean-search-term',()=>{
-            this.term_search='';
-        })
+        EventBus.$on("clean-search-term", () => {
+            this.term_search = "";
+        });
     },
     data() {
         return {
@@ -145,7 +137,7 @@ export default {
             }
         },
         close() {
-            EventBus.$emit("selected-category", "");
+            EventBus.$emit("selected-category", null);
             this.items = [];
             this.term_search = "";
         },

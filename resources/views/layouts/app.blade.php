@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="{{asset('css/app.css')}}"> 
 
 </head>
-<body class="bg-gray-200">
+<body class="bg-gray-200 h-screen">
     <div id="app">
     {{-- <nav-component></nav-component> --}}
             @yield('content')

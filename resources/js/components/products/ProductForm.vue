@@ -78,11 +78,16 @@
                         </p>
                     </div>
                 </div>
-                <category-select
-                    :categories="categories"
-                    :product="product"
-                ></category-select>
-                
+                <category-select class="border-t border-gray-500" inputClass="pl-60" :categories="categories" :product="product">
+                    <template slot="labelCategory">
+                        <label
+                            for=""
+                            :class="[labelStyle]"
+                            >Categoría</label
+                        >
+                    </template>
+                </category-select>
+
                 <input
                     type="hidden"
                     name="category_id"
@@ -162,9 +167,7 @@
                         >Precio al por menor</label
                     >
                 </div>
-                <div
-                    :class="[controlsContainerStyle]"
-                >
+                <div :class="[controlsContainerStyle]">
                     <input
                         v-model="form.distributor_price"
                         name="distributor_price"
@@ -360,7 +363,7 @@ export default {
                 fileReader.readAsDataURL(event.target.files[0]);
 
                 fileReader.addEventListener("load", this.showImage);
-            } 
+            }
         },
         showImage(e) {
             this.src = e.target.result;

@@ -4795,17 +4795,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     categories: {
@@ -4813,6 +4802,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     product: {
       type: Object
+    },
+    inputClass: {
+      type: String
     }
   },
   mounted: function mounted() {
@@ -4825,8 +4817,8 @@ __webpack_require__.r(__webpack_exports__);
       this.term_search = category.name;
     }
 
-    EventBus.$on('clean-search-term', function () {
-      _this.term_search = '';
+    EventBus.$on("clean-search-term", function () {
+      _this.term_search = "";
     });
   },
   data: function data() {
@@ -4864,7 +4856,7 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     close: function close() {
-      EventBus.$emit("selected-category", "");
+      EventBus.$emit("selected-category", null);
       this.items = [];
       this.term_search = "";
     },
@@ -5534,6 +5526,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 
 
 
@@ -5885,6 +5880,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _CategorySelect_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./CategorySelect.vue */ "./resources/js/components/products/CategorySelect.vue");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -5917,8 +5913,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    CategorySelect: _CategorySelect_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
+  },
   props: {
     categories: {
       type: Array
@@ -5930,31 +5936,39 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       params: {}
     };
   },
+  mounted: function mounted() {
+    var _this = this;
+
+    EventBus.$on('selected-category', function (id) {
+      _this.category_id = id;
+      if (id) _this.handleSearh();
+    });
+  },
   methods: _objectSpread({
     handleSearh: function handleSearh() {
-      var _this = this;
+      var _this2 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var _yield$_this$search, data, products;
+        var _yield$_this2$search, data, products;
 
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
                 _context.prev = 0;
-                _this.params['filter[byCategory]'] = _this.category_id;
-                _this.params.page = 1;
+                _this2.params["filter[byCategory]"] = _this2.category_id;
+                _this2.params.page = 1;
                 _context.next = 5;
-                return _this.search(_this.params);
+                return _this2.search(_this2.params);
 
               case 5:
-                _yield$_this$search = _context.sent;
-                data = _yield$_this$search.data;
+                _yield$_this2$search = _context.sent;
+                data = _yield$_this2$search.data;
                 products = data.data;
-                _this.params.page++;
+                _this2.params.page++;
                 EventBus.$emit("matching-products", {
                   products: products,
-                  params: _this.params
+                  params: _this2.params
                 });
                 _context.next = 15;
                 break;
@@ -32387,7 +32401,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "flex items-center border-t border-gray-500 py-2 relative" },
+    { staticClass: "flex items-center  py-2 relative" },
     [
       _c("input", {
         directives: [
@@ -32399,7 +32413,8 @@ var render = function() {
           }
         ],
         staticClass:
-          "\n            appearance-none\n            bg-transparent\n            border-none\n            w-full\n            text-gray-700\n            mr-3\n            py-1\n            pl-60\n            leading-tight\n            focus:outline-none\n            placeholder-blue-400\n        ",
+          "\n            appearance-none\n            bg-transparent\n            border-none\n            w-full\n            text-gray-700\n            mr-3\n            py-1\n            leading-tight\n            focus:outline-none\n            placeholder-blue-400\n        ",
+        class: [_vm.inputClass],
         attrs: {
           autocomplete: "off",
           type: "text",
@@ -32476,15 +32491,7 @@ var render = function() {
         }
       }),
       _vm._v(" "),
-      _c(
-        "label",
-        {
-          staticClass:
-            "\n            absolute\n            pl-0\n            bg-gray-200\n            h-full\n            flex\n            items-center\n            w-56\n            justify-center\n            text-indigo-800\n            font-mono font-semibold\n        ",
-          attrs: { for: "" }
-        },
-        [_vm._v("Categoría")]
-      ),
+      _vm._t("labelCategory"),
       _vm._v(" "),
       _c(
         "button",
@@ -32506,7 +32513,7 @@ var render = function() {
             "div",
             {
               staticClass:
-                "\n            absolute\n            top-10\n            w-2/3\n            shadow\n            z-5\n            max-h-64\n            overflow-x-auto\n            ml-60\n        "
+                "\n            absolute\n            mt-4\n            top-10\n            w-full\n            shadow\n            z-5\n            bg-white\n            rounded\n            max-h-64\n            overflow-x-auto\n            \n        "
             },
             [
               _c(
@@ -32518,7 +32525,7 @@ var render = function() {
                       "a",
                       {
                         staticClass:
-                          "\n                        \n                        block\n                        w-full\n                        focus:ring-2\n                        focus:bg-gray-300\n                        focus:border-transparent\n                        font-mono font-light\n                        hover:bg-gray-300\n                        cursor-pointer\n                    ",
+                          "\n                        pl-4\n                        block\n                        w-full\n                        focus:ring-2\n                        focus:bg-gray-300\n                        focus:border-transparent\n                        font-mono font-light\n                        hover:bg-gray-300\n                        cursor-pointer\n                    ",
                         class: { "bg-gray-300": index == _vm.focusedIndex },
                         attrs: { href: "#" },
                         on: {
@@ -32585,7 +32592,8 @@ var render = function() {
             ]
           )
         : _vm._e()
-    ]
+    ],
+    2
   )
 }
 var staticRenderFns = []
@@ -32621,7 +32629,10 @@ var render = function() {
         [
           _c(
             "div",
-            { staticClass: "col-span-4 2xl:col-span-5 flex justify-center" },
+            {
+              staticClass:
+                "col-span-4 2xl:col-span-5 flex justify-center items-baseline"
+            },
             [
               _c("search-by-category", {
                 staticClass: "md:w-1/4 w-3/4 mr-2",
@@ -33004,9 +33015,25 @@ var render = function() {
                 )
               : _vm._e(),
             _vm._v(" "),
-            _c("category-select", {
-              attrs: { categories: _vm.categories, product: _vm.product }
-            }),
+            _c(
+              "category-select",
+              {
+                staticClass: "border-t border-gray-500",
+                attrs: {
+                  inputClass: "pl-60",
+                  categories: _vm.categories,
+                  product: _vm.product
+                }
+              },
+              [
+                _c("template", { slot: "labelCategory" }, [
+                  _c("label", { class: [_vm.labelStyle], attrs: { for: "" } }, [
+                    _vm._v("Categoría")
+                  ])
+                ])
+              ],
+              2
+            ),
             _vm._v(" "),
             _c("input", {
               directives: [
@@ -33548,70 +33575,16 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "form",
-    {
-      on: {
-        submit: function($event) {
-          $event.preventDefault()
-          return _vm.submit($event)
-        }
-      }
-    },
+    "div",
+    { staticClass: "w-full" },
     [
-      _c(
-        "select",
-        {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.category_id,
-              expression: "category_id"
-            }
-          ],
-          staticClass:
-            "block appearance-none w-full border-l-4 border-orange-400 bg-white hover:border-gray-500 py-5 px-4 pr-8 rounded leading-tight focus:outline-none focus:shadow-outline",
-          attrs: { name: "category_id" },
-          on: {
-            change: [
-              function($event) {
-                var $$selectedVal = Array.prototype.filter
-                  .call($event.target.options, function(o) {
-                    return o.selected
-                  })
-                  .map(function(o) {
-                    var val = "_value" in o ? o._value : o.value
-                    return val
-                  })
-                _vm.category_id = $event.target.multiple
-                  ? $$selectedVal
-                  : $$selectedVal[0]
-              },
-              _vm.handleSearh
-            ]
-          }
-        },
-        [
-          _c(
-            "option",
-            {
-              staticClass: "text-gray-600",
-              attrs: { disabled: "", value: "", selected: "" }
-            },
-            [_vm._v("Categorías")]
-          ),
-          _vm._v(" "),
-          _vm._l(_vm.categories, function(category) {
-            return _c(
-              "option",
-              { key: category.id, domProps: { value: category.id } },
-              [_vm._v(_vm._s(category.name))]
-            )
-          })
-        ],
-        2
-      )
-    ]
+      _c("category-select", {
+        staticClass:
+          "mb-4 relative block w-full appearance-none  border-l-4 border-orange-400 bg-white hover:border-gray-500 py-5  pr-8 rounded leading-tight focus:outline-none focus:shadow-outline",
+        attrs: { categories: _vm.categories }
+      })
+    ],
+    1
   )
 }
 var staticRenderFns = []
@@ -35151,7 +35124,9 @@ var render = function() {
               [
                 _c(
                   "div",
-                  { staticClass: "flex justify-center flex-wrap " },
+                  {
+                    staticClass: "flex justify-center items-baseline flex-wrap "
+                  },
                   [
                     _c("search-by-category", {
                       staticClass: "sm:w-64 w-4/5 md:mr-4",
