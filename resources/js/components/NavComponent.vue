@@ -1,14 +1,37 @@
 <template>
-    <div class=" w-full">
+    <div class="w-full">
         <nav
-            class="flex items-center justify-between flex-wrap bg-red-500 p-6 fixed w-full top-0 z-10"
+            class="
+                flex
+                items-center
+                justify-between
+                flex-wrap
+                bg-white
+                shadow
+                p-6
+                sm:right-0 sm:left-64
+                fixed
+                sm:w-4/5
+                top-0
+                z-10
+            "
         >
-            <div class="flex items-center flex-shrink-0 text-white mr-6 ">
+            <div class="flex items-center flex-shrink-0 text-gray-800 mr-6">
                 <span class="font-semibold text-xl tracking-tight">ISCO</span>
             </div>
             <div @click="toggleNavegation" class="block lg:hidden">
                 <button
-                    class="flex items-center px-3 py-2 border rounded text-teal-200 border-teal-400 hover:text-white hover:border-white"
+                    class="
+                        flex
+                        items-center
+                        px-3
+                        py-2
+                        border
+                        rounded
+                        text-teal-200
+                        border-teal-400
+                        hover:text-white hover:border-white
+                    "
                 >
                     <svg
                         class="fill-current h-3 w-3"
@@ -22,56 +45,89 @@
             </div>
             <div
                 id="navegation"
-                class="w-full block flex-grow lg:flex lg:items-center lg:w-auto hidden"
+                class="w-full block flex-grow lg:flex lg:items-center lg:w-auto"
             >
-                <div class="text-sm lg:flex-grow">
-
+                <div
+                    class="
+                        text-sm
+                        lg:flex-grow
+                        flex flex-wrap
+                        lg:justify-center
+                    "
+                >
                     <dropdown-component
                         name="Inventario"
                         :items="InventoryMenu"
-                        class="md:relative"
+                        class="md:relative md:hidden"
                     />
                     <a
                         v-if="purchase"
                         :href="purchase ? `/purchases/${purchase}` : '#'"
                         :class="highlight"
-                        class="block mt-4 lg:inline-block lg:mt-0  md:hover:text-white mr-4"
+                        class="
+                            block
+                            mt-4
+                            lg:inline-block lg:mt-0
+                            md:hover:text-white
+                            mr-4
+                        "
                     >
                         Realizar Compra
                     </a>
                     <dropdown-component
                         name="Clientes"
                         :items="clientsMenu"
-                        class="md:relative"
+                        class="md:relative md:hidden"
                     />
                     <a
                         href="/sales/create"
-                        class="block mt-4 lg:inline-block lg:mt-0 text-gray-200 md:hover:text-white mr-4 md:text-base text-lg"
+                        class="
+                            block
+                            mt-4
+                            lg:inline-block lg:mt-0
+                            text-gray-700
+                            md:hover:text-gray-900
+                            mr-4
+                            md:text-base
+                            text-lg
+                        "
                     >
                         Ventas
                     </a>
                     <dropdown-component
                         name="Reportes"
                         :items="ReportsMenu"
-                        class="md:relative"
+                        class="md:relative md:hidden"
                     />
                     <dropdown-component
                         name="Configuración"
                         :items="ConfigMenu"
-                        class="md:relative"
+                        class="md:relative lg:hidden"
                     />
                 </div>
-                <div class=" flex flex-wrap items-center">
+                <div class="flex flex-wrap items-center">
                     <form
                         v-if="impersonation_id"
                         action="/impersonations"
                         method="post"
-                        class="block mt-4 lg:inline-block lg:mt-0  md:hover:text-white mr-4"
+                        class="
+                            block
+                            mt-4
+                            lg:inline-block lg:mt-0
+                            md:hover:text-white
+                            mr-4
+                        "
                     >
                         <input type="hidden" name="_method" value="delete" />
                         <input type="hidden" name="_token" :value="crfsToken" />
                         <button
-                            class="text-gray-300 border-red-900 border rounded px-2 py-1"
+                            class="
+                                text-gray-300
+                                border-red-900 border
+                                rounded
+                                px-2
+                                py-1
+                            "
                         >
                             Regresar <i class="fas fa-user"></i>
                         </button>
@@ -80,7 +136,21 @@
                         <input type="hidden" name="_token" :value="crfsToken" />
                         <button
                             href="/logout"
-                            class="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent md:hover:text-teal-500 md:hover:bg-white mt-4 lg:mt-0"
+                            class="
+                                inline-block
+                                text-sm
+                                px-4
+                                py-2
+                                leading-none
+                                border
+                                rounded
+                                text-gray-800
+                                border-teal-300
+                                hover:border-transparent
+                                md:hover:text-teal-500 md:hover:bg-white
+                                mt-4
+                                lg:mt-0
+                            "
                         >
                             {{ getCurrentUser.name }} | Salir
                         </button>
@@ -88,94 +158,183 @@
                 </div>
             </div>
         </nav>
+
         <!-- Page Content -->
-        <main class="mt-24 md:mt-32 w-ful z-0">
-            <slot />
+        <main class="mt-24 md:mt-32 w-ful z-0 flex flex-wrap">
+            <sidebar>
+                <accordion :items-menu="InventoryMenu" name="Inventario">
+                    <template slot="descriptive-icon">
+                        <boxes
+                            class="
+                                mr-2
+                                h-7
+                                w-7
+                                bg-gray-500
+                                p-1
+                                text-white
+                                rounded-full
+                            "
+                        ></boxes>
+                    </template>
+                    <template slot="icon">
+                        <down-arrow class="text-xs"></down-arrow>
+                    </template>
+                </accordion>
+                <accordion :items-menu="clientsMenu" name="Clientes">
+                    <template slot="descriptive-icon">
+                        <users-icon
+                            class="
+                                mr-2
+                                h-7
+                                w-7
+                                bg-gray-500
+                                p-1
+                                text-white
+                                rounded-full
+                            "
+                        ></users-icon>
+                    </template>
+                    <template slot="icon">
+                        <down-arrow class="text-xs"></down-arrow>
+                    </template>
+                </accordion>
+                <accordion :items-menu="ReportsMenu" name="Reportes">
+                    <template slot="descriptive-icon">
+                        <bars-icon
+                            class="
+                                mr-2
+                                h-7
+                                w-7
+                                bg-gray-500
+                                p-1
+                                text-white
+                                rounded-full
+                            "
+                        ></bars-icon>
+                    </template>
+                    <template slot="icon">
+                        <down-arrow class="text-xs"></down-arrow>
+                    </template>
+                </accordion>
+                <accordion :items-menu="ConfigMenu" name="Configuración">
+                    <template slot="descriptive-icon">
+                        <setting-icon
+                            class="
+                                mr-2
+                                h-7
+                                w-7
+                                bg-gray-500
+                                p-1
+                                text-white
+                                rounded-full
+                            "
+                        ></setting-icon>
+                    </template>
+                    <template slot="icon">
+                        <down-arrow class="text-xs"></down-arrow>
+                    </template>
+                </accordion>
+            </sidebar>
+            <div class="flex-1 ml-64">
+                <slot class="bg-blue-500" />
+            </div>
         </main>
         <notifications group="foo"></notifications>
     </div>
 </template>
 <script>
+import Sidebar from "./menu/Sidebar.vue";
+import Accordion from "./menu/Accordion.vue";
+import WarehouseIcon from "./icons/WarehouseIcon";
+import Boxes from "./icons/Boxes.vue";
+import UsersIcon from "./icons/UsersIcon.vue";
+import DownArrow from "./icons/DownArrow.vue";
+import BarsIcon from "./icons/BarsIcon.vue";
+import SettingIcon from "./icons/SettingIcon.vue";
+
 export default {
+    components: {
+        SettingIcon,
+        BarsIcon,
+        UsersIcon,
+        Boxes,
+        Sidebar,
+        Accordion,
+        WarehouseIcon,
+        DownArrow,
+    },
     data() {
         return {
-            // productsMenu: [],
-            // CategoriesMenu: [
-            //     {
-            //         name: "Listar",
-            //         url: "/categories"
-            //     }
-            // ],
             clientsMenu: [
                 {
                     name: "Nuevo cliente",
-                    url: "/clients/create"
+                    url: "/clients/create",
                 },
                 {
                     name: "Catalago clientes",
-                    url: "/clients"
-                }
+                    url: "/clients",
+                },
             ],
             InventoryMenu: [
                 {
                     name: "Nuevo inventario",
-                    url: "/inventories/create"
+                    url: "/inventories/create",
                 },
                 {
                     name: "Catalago almacenes",
-                    url: "/warehouses"
+                    url: "/warehouses",
                 },
                 {
                     name: "Existencias",
-                    url: "/inventories"
+                    url: "/inventories",
                 },
                 {
                     name: "Nueva categoría",
-                    url: "/categories"
+                    url: "/categories",
                 },
                 {
                     name: "Nuevo producto",
-                    url: "/products/create"
+                    url: "/products/create",
                 },
                 {
                     name: "Comprar productos",
-                    url: "/products"
-                }
+                    url: "/products",
+                },
             ],
             ReportsMenu: [
                 {
                     name: "Ventas",
-                    url: "/sales/"
+                    url: "/sales/",
                 },
                 {
                     name: "Compras",
-                    url: "/purchases"
-                }
+                    url: "/purchases",
+                },
             ],
             ConfigMenu: [
                 {
                     name: "Nuevo usuario",
-                    url: "/register/"
+                    url: "/register/",
                 },
                 {
                     name: "Modificar usuario",
-                    url: "/users"
+                    url: "/users",
                 },
                 {
                     name: "Nuevo rol",
-                    url: "/roles/create"
+                    url: "/roles/create",
                 },
                 {
                     name: "Contenido del ticket",
-                    url: "/tickets/1/edit"
-                }
+                    url: "/tickets/1/edit",
+                },
             ],
             crfsToken: document.querySelector('meta[name="csrf-token"]')
                 .content,
             purchase: false,
             impersonation_id: document.querySelector(
                 'meta[name="impersonation_id"]'
-            ).content
+            ).content,
         };
     },
     created() {
@@ -203,14 +362,14 @@ export default {
                     .content == null
             )
                 localStorage.removeItem("productsInPurchase");
-        }
+        },
     },
     computed: {
         highlight() {
             return this.purchase
                 ? "text-lg text-black-700 border-teal-300 border-b-2"
                 : "text-gray-200";
-        }
-    }
+        },
+    },
 };
 </script>

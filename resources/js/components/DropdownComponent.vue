@@ -1,7 +1,7 @@
 <template>
     <a
         href="#responsive-header"
-        class="block  transition-all duration-500 ease-in-out mt-4 lg:inline-block lg:mt-0 text-gray-200 md:hover:text-white mr-4"
+        class="block  transition-all duration-500 ease-in-out mt-4 lg:mt-0 text-gray-700 md:hover:text-gray-900 hover:font-bold mr-4"
         :class="getZ"
     >
         <div
