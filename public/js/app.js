@@ -29533,7 +29533,7 @@ var render = function () {
                     "a",
                     {
                       staticClass:
-                        "\n                        block\n                        mt-4\n                        lg:inline-block lg:mt-0\n                        text-gray-700\n                        md:hover:text-gray-900\n                        mr-4\n                        md:text-base\n                        text-lg\n                    ",
+                        "\n                        block\n                        mt-4\n                        lg:inline-block lg:mt-0\n                        text-blue-700\n                        sm:hover:text-blue-800\n                        mr-4\n                        md:text-base\n                        text-lg\n                    ",
                       attrs: { href: "/sales/create" },
                     },
                     [
@@ -29541,7 +29541,7 @@ var render = function () {
                         "div",
                         {
                           staticClass:
-                            "flex flex-wrap items-center  justify-center border border-gray-200",
+                            "flex flex-wrap items-center  justify-center font-mono",
                         },
                         [
                           _c("shopping-bag"),

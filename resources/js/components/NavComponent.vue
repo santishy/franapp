@@ -87,15 +87,15 @@
                             block
                             mt-4
                             lg:inline-block lg:mt-0
-                            text-gray-700
-                            md:hover:text-gray-900
+                            text-blue-700
+                            sm:hover:text-blue-800
                             mr-4
                             md:text-base
                             text-lg
                         "
                     >
                         <div
-                            class="flex flex-wrap items-center  justify-center border border-gray-200"
+                            class="flex flex-wrap items-center  justify-center font-mono"
                         >
                             <shopping-bag></shopping-bag>
                             <span class="self-end leading-none font-xl font-bold"
