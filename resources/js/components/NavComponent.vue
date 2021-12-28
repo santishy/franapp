@@ -9,15 +9,17 @@
                 bg-white
                 shadow
                 p-6
-                sm:right-0 sm:left-64
+                sm:mx-4 sm:right-0 sm:left-64
                 fixed
-                sm:w-4/5
+                sm:w-auto
                 top-0
                 z-10
             "
         >
             <div class="flex items-center flex-shrink-0 text-gray-800 mr-6">
-                <span class="font-semibold text-xl tracking-tight">ISCO</span>
+                <span class="font-semibold text-xl tracking-tight md:hidden"
+                    >ISCO</span
+                >
             </div>
             <div @click="toggleNavegation" class="block lg:hidden">
                 <button
@@ -92,7 +94,14 @@
                             text-lg
                         "
                     >
-                        Ventas
+                        <div
+                            class="flex flex-wrap items-center  justify-center border border-gray-200"
+                        >
+                            <shopping-bag></shopping-bag>
+                            <span class="self-end leading-none font-xl font-bold"
+                                >Ventas</span
+                            >
+                        </div>
                     </a>
                     <dropdown-component
                         name="Reportes"
@@ -246,6 +255,7 @@
 import Sidebar from "./menu/Sidebar.vue";
 import Accordion from "./menu/Accordion.vue";
 import WarehouseIcon from "./icons/WarehouseIcon";
+import ShoppingBag from "./icons/ShoppingBag.vue";
 import Boxes from "./icons/Boxes.vue";
 import UsersIcon from "./icons/UsersIcon.vue";
 import DownArrow from "./icons/DownArrow.vue";
@@ -261,6 +271,7 @@ export default {
         Sidebar,
         Accordion,
         WarehouseIcon,
+        ShoppingBag,
         DownArrow,
     },
     data() {

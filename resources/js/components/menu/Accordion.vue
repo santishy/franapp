@@ -1,5 +1,5 @@
 <template>
-    <div class="w-full px-3 border-t border-gray-200">
+    <div class="w-full px-3 ">
         <a
             href="#"
             class="
