@@ -95,10 +95,16 @@
                         "
                     >
                         <div
-                            class="flex flex-wrap items-center  justify-center font-mono"
+                            class="
+                                flex flex-wrap
+                                items-center
+                                justify-center
+                                font-mono
+                            "
                         >
                             <shopping-bag></shopping-bag>
-                            <span class="self-end leading-none font-xl font-bold"
+                            <span
+                                class="self-end leading-none font-xl font-bold"
                                 >Ventas</span
                             >
                         </div>
@@ -174,15 +180,7 @@
                 <accordion :items-menu="InventoryMenu" name="Inventario">
                     <template slot="descriptive-icon">
                         <boxes
-                            class="
-                                mr-2
-                                h-7
-                                w-7
-                                bg-gray-500
-                                p-1
-                                text-white
-                                rounded-full
-                            "
+                            class="mr-2 h-8 w-8 p-1 text-gray-700 rounded-sm"
                         ></boxes>
                     </template>
                     <template slot="icon">
@@ -192,15 +190,7 @@
                 <accordion :items-menu="clientsMenu" name="Clientes">
                     <template slot="descriptive-icon">
                         <users-icon
-                            class="
-                                mr-2
-                                h-7
-                                w-7
-                                bg-gray-500
-                                p-1
-                                text-white
-                                rounded-full
-                            "
+                            class="mr-2 h-7 w-7 p-1 text-gray-700 rounded-sm"
                         ></users-icon>
                     </template>
                     <template slot="icon">
@@ -210,15 +200,7 @@
                 <accordion :items-menu="ReportsMenu" name="Reportes">
                     <template slot="descriptive-icon">
                         <bars-icon
-                            class="
-                                mr-2
-                                h-7
-                                w-7
-                                bg-gray-500
-                                p-1
-                                text-white
-                                rounded-full
-                            "
+                            class="mr-2 h-7 w-7 p-1 text-gray-700 rounded-sm"
                         ></bars-icon>
                     </template>
                     <template slot="icon">
@@ -228,15 +210,7 @@
                 <accordion :items-menu="ConfigMenu" name="Configuración">
                     <template slot="descriptive-icon">
                         <setting-icon
-                            class="
-                                mr-2
-                                h-7
-                                w-7
-                                bg-gray-500
-                                p-1
-                                text-white
-                                rounded-full
-                            "
+                            class="mr-2 h-7 w-7 p-1 text-gray-700 rounded-sm"
                         ></setting-icon>
                     </template>
                     <template slot="icon">

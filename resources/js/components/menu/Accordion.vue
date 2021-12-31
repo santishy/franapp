@@ -1,5 +1,5 @@
 <template>
-    <div class="w-full px-3 ">
+    <div class="w-full px-3">
         <a
             href="#"
             class="
@@ -21,15 +21,25 @@
                     flex
                     justify-center
                     items-end
+                    
                 "
                 ><slot name="descriptive-icon"></slot> {{ name }}</span
             ><slot name="icon"></slot
         ></a>
         <ul v-if="show" class="mb-2 divide-y divide-gray-200">
-            <li v-for="item in itemsMenu" :key="item.name">
+            <li v-for="item in itemsMenu" :key="item.name" class="bg-white">
                 <a
                     :href="item.url"
-                    class="block w-full text-blue-700 font-mono p-1 pl-12 text-sm"
+                    class="
+                        block
+                        w-full
+                        text-blue-700
+                        font-mono
+                        p-1
+                        pl-12
+                        text-sm
+                        
+                    "
                     >{{ item.name }}</a
                 >
             </li>

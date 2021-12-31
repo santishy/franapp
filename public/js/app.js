@@ -2709,32 +2709,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -5009,6 +4983,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["itemsMenu", "name"],
   data: function data() {
@@ -5042,10 +5026,27 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     inventoryMenu: {
       type: Array
+    }
+  },
+  computed: {
+    logo: function logo() {
+      return document.querySelector('meta[name="logo_path"]').content || '';
     }
   }
 });
@@ -29541,7 +29542,7 @@ var render = function () {
                         "div",
                         {
                           staticClass:
-                            "flex flex-wrap items-center  justify-center font-mono",
+                            "\n                            flex flex-wrap\n                            items-center\n                            justify-center\n                            font-mono\n                        ",
                         },
                         [
                           _c("shopping-bag"),
@@ -29651,7 +29652,7 @@ var render = function () {
                     [
                       _c("boxes", {
                         staticClass:
-                          "\n                            mr-2\n                            h-7\n                            w-7\n                            bg-gray-500\n                            p-1\n                            text-white\n                            rounded-full\n                        ",
+                          "mr-2 h-8 w-8 p-1 text-gray-700 rounded-sm",
                       }),
                     ],
                     1
@@ -29677,7 +29678,7 @@ var render = function () {
                     [
                       _c("users-icon", {
                         staticClass:
-                          "\n                            mr-2\n                            h-7\n                            w-7\n                            bg-gray-500\n                            p-1\n                            text-white\n                            rounded-full\n                        ",
+                          "mr-2 h-7 w-7 p-1 text-gray-700 rounded-sm",
                       }),
                     ],
                     1
@@ -29703,7 +29704,7 @@ var render = function () {
                     [
                       _c("bars-icon", {
                         staticClass:
-                          "\n                            mr-2\n                            h-7\n                            w-7\n                            bg-gray-500\n                            p-1\n                            text-white\n                            rounded-full\n                        ",
+                          "mr-2 h-7 w-7 p-1 text-gray-700 rounded-sm",
                       }),
                     ],
                     1
@@ -29734,7 +29735,7 @@ var render = function () {
                     [
                       _c("setting-icon", {
                         staticClass:
-                          "\n                            mr-2\n                            h-7\n                            w-7\n                            bg-gray-500\n                            p-1\n                            text-white\n                            rounded-full\n                        ",
+                          "mr-2 h-7 w-7 p-1 text-gray-700 rounded-sm",
                       }),
                     ],
                     1
@@ -33134,7 +33135,7 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "w-full px-3 " }, [
+  return _c("div", { staticClass: "w-full px-3" }, [
     _c(
       "a",
       {
@@ -33153,7 +33154,7 @@ var render = function () {
           "span",
           {
             staticClass:
-              "\n                mr-1\n                font-mono font-semibold\n                flex\n                justify-center\n                items-end\n            ",
+              "\n                mr-1\n                font-mono font-semibold\n                flex\n                justify-center\n                items-end\n                \n            ",
           },
           [_vm._t("descriptive-icon"), _vm._v(" " + _vm._s(_vm.name))],
           2
@@ -33168,12 +33169,12 @@ var render = function () {
           "ul",
           { staticClass: "mb-2 divide-y divide-gray-200" },
           _vm._l(_vm.itemsMenu, function (item) {
-            return _c("li", { key: item.name }, [
+            return _c("li", { key: item.name, staticClass: "bg-white" }, [
               _c(
                 "a",
                 {
                   staticClass:
-                    "block w-full text-blue-700 font-mono p-1 pl-12 text-sm",
+                    "\n                    block\n                    w-full\n                    text-blue-700\n                    font-mono\n                    p-1\n                    pl-12\n                    text-sm\n                    \n                ",
                   attrs: { href: item.url },
                 },
                 [_vm._v(_vm._s(item.name))]
@@ -33209,10 +33210,7 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    {
-      staticClass:
-        "h-screen bg-gray-100 shadow fixed inset-y-0 left-0 w-64 py-6 ",
-    },
+    { staticClass: "h-screen bg-gray-100 shadow fixed inset-y-0 left-0 w-64 " },
     [
       _c(
         "div",
@@ -33222,9 +33220,14 @@ var render = function () {
             "h5",
             {
               staticClass:
-                "text-2xl w-full mb-5 text-center font-extrabold text-blue-800 py-2",
+                "\n                text-2xl\n                w-full\n                mb-5\n                py-5\n                flex \n                justify-center\n                bg-white\n            ",
             },
-            [_vm._v("ISCO")]
+            [
+              _c("img", {
+                staticClass: "object-contain md:object-scale-down w-24",
+                attrs: { src: _vm.logo },
+              }),
+            ]
           ),
           _vm._v(" "),
           _vm._t("default"),
