@@ -1,24 +1,21 @@
 <template>
-    <nav-component>
-        <create-inventory
-            :inventory="inventory"
-            method="put"
-            :uri="`/warehouses/${inventory.id}`"
-        ></create-inventory>
-    </nav-component>
+    <create-inventory
+        :inventory="inventory"
+        method="put"
+        :uri="`/warehouses/${inventory.id}`"
+    ></create-inventory>
 </template>
 <script>
 import CreateInventory from "../inventories/CreateInventory.vue";
-import NavComponent from "../NavComponent.vue";
 export default {
     props: {
         inventory: {
-            type: Object
-        }
+            type: Object,
+        },
     },
     components: {
         CreateInventory,
-        NavComponent
-    }
+        // NavComponent
+    },
 };
 </script>

@@ -1,17 +1,17 @@
 <template>
     <nav-component>
         <div
-            class="w-full px-4  flex justify-center bg-transparent md:mt-32 mt-24 "
+            class="w-full px-4  flex justify-center bg-transparent  "
         >
             <form
                 @submit.prevent="submit"
                 v-can="'create warehouse'"
-                class="w-9/12 shadow-xl rounded bg-white px-2 py-2 "
+                class="w-full  rounded bg-white px-2 py-2 "
             >
                 <div
-                    class="flex items-center p-2 text-dark text-center justify-center text-xl font-semibold font-roboto"
+                    class="form-header border-t border-gray-500 p-2 text-dark text-center  text-xl font-black text-blue-800"
                 >
-                    Crear Almacen
+                    Crear Almacén
                 </div>
                 <div
                     class="flex items-center border-b border-t border-gray-500 py-2 relative"

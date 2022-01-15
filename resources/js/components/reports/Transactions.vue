@@ -1,6 +1,6 @@
 <template>
     <nav-component>
-        <div class="w-9/12 mx-auto shadow  pb-4 bg-white rounded-sm">
+        <div class="w-full px-4  shadow  pb-4 bg-white rounded-sm">
             <h1
                 class=" text-gray-800  text-center border-b-2 border-gray-300 py-3 text-2xl font-extralight"
             >

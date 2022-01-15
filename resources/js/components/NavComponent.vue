@@ -7,7 +7,7 @@
                 justify-between
                 flex-wrap
                 bg-white
-                shadow
+                shadow-sm
                 p-6
                 sm:mx-4 sm:right-0 sm:left-64
                 fixed
@@ -175,7 +175,7 @@
         </nav>
 
         <!-- Page Content -->
-        <main class="mt-24 md:mt-32 w-ful z-0 flex flex-wrap">
+        <main class="mt-24  w-ful z-0 flex flex-wrap">
             <sidebar>
                 <accordion :items-menu="InventoryMenu" name="Inventario">
                     <template slot="descriptive-icon">

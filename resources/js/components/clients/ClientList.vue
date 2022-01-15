@@ -1,8 +1,8 @@
 <template>
     <nav-component>
-        <div class="w-full flex justify-center ">
+        <div class="w-full flex justify-center px-4">
             <div
-                class="bg-white shadow rounded max-w-full sm:overflow-x-hidden overflow-x-auto"
+                class="bg-white w-full shadow rounded-sm max-w-full sm:overflow-x-hidden overflow-x-auto"
             >
                 <table v-if="clients.length" v-can="'view clients'" class="table-auto">
                     <thead>

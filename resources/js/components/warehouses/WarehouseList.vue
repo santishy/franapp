@@ -1,8 +1,8 @@
 <template>
     <nav-component>
-        <div class="w-9/12 mx-auto flex justify-center ">
+        <div class="w-full mx-auto flex justify-center px-4">
             <div
-                class="bg-white shadow rounded max-w-full sm:overflow-x-hidden overflow-x-auto"
+                class="flex justify-center bg-white shadow-sm w-full rounded max-w-full sm:overflow-x-hidden overflow-x-auto"
             >
                 <table
                     v-if="inventories.length"

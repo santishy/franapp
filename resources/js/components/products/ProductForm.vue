@@ -8,7 +8,7 @@
                 items-center
                 flex-wrap
                 px-4
-                w-9/12
+                w-full
                 mx-auto
             "
         >
@@ -21,8 +21,8 @@
                 v-can="definePermission"
                 class="
                     w-full
-                    shadow-lg
-                    rounded-lg
+                    shadow-sm
+                    rounded-sm
                     bg-white
                     md:px-6 md:py-6 md:mt-0
                     mt-10
@@ -47,6 +47,8 @@
                         flex
                         items-center
                         pb-2
+                        text-blue-800
+                        form-header
                         text-dark text-center
                         justify-center
                         text-xl

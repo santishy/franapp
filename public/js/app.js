@@ -3875,6 +3875,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -5754,6 +5756,8 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
+//
 //
 //
 //
@@ -8929,7 +8933,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _inventories_CreateInventory_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../inventories/CreateInventory.vue */ "./resources/js/components/inventories/CreateInventory.vue");
-/* harmony import */ var _NavComponent_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../NavComponent.vue */ "./resources/js/components/NavComponent.vue");
 //
 //
 //
@@ -8937,9 +8940,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
@@ -8948,8 +8948,8 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   components: {
-    CreateInventory: _inventories_CreateInventory_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
-    NavComponent: _NavComponent_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+    CreateInventory: _inventories_CreateInventory_vue__WEBPACK_IMPORTED_MODULE_0__["default"] // NavComponent
+
   }
 });
 
@@ -29441,7 +29441,7 @@ var render = function () {
         "nav",
         {
           staticClass:
-            "\n            flex\n            items-center\n            justify-between\n            flex-wrap\n            bg-white\n            shadow\n            p-6\n            sm:mx-4 sm:right-0 sm:left-64\n            fixed\n            sm:w-auto\n            top-0\n            z-10\n        ",
+            "\n            flex\n            items-center\n            justify-between\n            flex-wrap\n            bg-white\n            shadow-sm\n            p-6\n            sm:mx-4 sm:right-0 sm:left-64\n            fixed\n            sm:w-auto\n            top-0\n            z-10\n        ",
         },
         [
           _vm._m(0),
@@ -29632,7 +29632,7 @@ var render = function () {
       _vm._v(" "),
       _c(
         "main",
-        { staticClass: "mt-24 md:mt-32 w-ful z-0 flex flex-wrap" },
+        { staticClass: "mt-24  w-ful z-0 flex flex-wrap" },
         [
           _c(
             "sidebar",
@@ -30697,7 +30697,7 @@ var render = function () {
         },
       ],
       staticClass:
-        "w-full  shadow-lg rounded-lg bg-white md:px-6 md:py-8  md:mt-0",
+        "w-full  shadow-sm rounded-sm bg-white md:px-3 md:py-4  md:mt-0",
       class: [_vm.getWidth],
       on: {
         submit: function ($event) {
@@ -30711,7 +30711,7 @@ var render = function () {
         "div",
         {
           staticClass:
-            "flex items-center py-2 text-dark text-center justify-center text-xl font-bold ",
+            "flex text-blue-800 items-center py-2 text-dark text-center border-t border-gray-500 justify-center text-xl font-semibold form-header ",
         },
         [_vm._v("\n        Añadir categoría\n    ")]
       ),
@@ -30831,14 +30831,14 @@ var render = function () {
         },
       ],
       staticClass:
-        "w-full rounded shadow bg-white p-4 divide-y divide-light-blue-400 text-gray-700",
+        "w-full rounded shadow bg-white p-4 divide-y divide-gray-500 text-gray-700",
     },
     [
       _c(
         "li",
         {
           staticClass:
-            "px-4  bg-purple-400 text-center py-2 text-gray-900 font-semibold",
+            "px-4  form-header text-center border-t border-gray-500 py-2 text-blue-800 text-xl font-semibold",
         },
         [_vm._v("\n        Categorías\n    ")]
       ),
@@ -31040,14 +31040,21 @@ var render = function () {
   return _c("nav-component", [
     _c(
       "div",
-      { staticClass: "flex flex-wrap items-baseline md:w-9/12 mx-auto" },
+      { staticClass: "flex flex-wrap items-baseline w-full mx-4 rounded-sm" },
       [
         _c("category-form", {
-          staticClass: "self-start",
+          staticClass: "self-start ",
           attrs: { uri: "/categories" },
         }),
         _vm._v(" "),
-        _c("div", { staticClass: "ml-6 w-2/4" }, [_c("category-list")], 1),
+        _c("div", { staticClass: " ml-4 w-6/12 p-4 bg-white rounded-sm" }, [
+          _c(
+            "div",
+            { staticClass: "bg-gray-300 shadow-inner p-2 rounded-sm" },
+            [_c("category-list")],
+            1
+          ),
+        ]),
       ],
       1
     ),
@@ -31079,7 +31086,7 @@ var render = function () {
     _c(
       "div",
       {
-        staticClass: "w-9/12 mx-auto px-4  flex justify-center bg-transparent",
+        staticClass: "w-full mx-auto px-4  flex justify-center bg-transparent",
       },
       [
         _c(
@@ -31093,7 +31100,7 @@ var render = function () {
                 expression: "definePermission",
               },
             ],
-            staticClass: "w-full shadow-lg rounded-lg bg-white px-6 py-8",
+            staticClass: "w-full shadow-sm rounded-sm bg-white px-3 py-4",
             on: {
               submit: function ($event) {
                 $event.preventDefault()
@@ -31106,7 +31113,7 @@ var render = function () {
               "div",
               {
                 staticClass:
-                  "flex items-center py-2 text-dark text-center justify-center text-xl font-bold",
+                  "flex items-center py-2 text-blue-800 form-header border-gray-500 border-t text-dark text-center justify-center text-xl font-bold",
               },
               [
                 _vm._v(
@@ -31483,12 +31490,12 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("nav-component", [
-    _c("div", { staticClass: "w-full flex justify-center " }, [
+    _c("div", { staticClass: "w-full flex justify-center px-4" }, [
       _c(
         "div",
         {
           staticClass:
-            "bg-white shadow rounded max-w-full sm:overflow-x-hidden overflow-x-auto",
+            "bg-white w-full shadow rounded-sm max-w-full sm:overflow-x-hidden overflow-x-auto",
         },
         [
           _vm.clients.length
@@ -32551,10 +32558,7 @@ var render = function () {
   return _c("nav-component", [
     _c(
       "div",
-      {
-        staticClass:
-          "w-full px-4  flex justify-center bg-transparent md:mt-32 mt-24 ",
-      },
+      { staticClass: "w-full px-4  flex justify-center bg-transparent  " },
       [
         _c(
           "form",
@@ -32567,7 +32571,7 @@ var render = function () {
                 expression: "'create warehouse'",
               },
             ],
-            staticClass: "w-9/12 shadow-xl rounded bg-white px-2 py-2 ",
+            staticClass: "w-full  rounded bg-white px-2 py-2 ",
             on: {
               submit: function ($event) {
                 $event.preventDefault()
@@ -32580,9 +32584,9 @@ var render = function () {
               "div",
               {
                 staticClass:
-                  "flex items-center p-2 text-dark text-center justify-center text-xl font-semibold font-roboto",
+                  "form-header border-t border-gray-500 p-2 text-dark text-center  text-xl font-black text-blue-800",
               },
-              [_vm._v("\n                Crear Almacen\n            ")]
+              [_vm._v("\n                Crear Almacén\n            ")]
             ),
             _vm._v(" "),
             _c(
@@ -32927,10 +32931,10 @@ var render = function () {
             expression: "'view warehouses'",
           },
         ],
-        staticClass: "w-10/12 mx-auto mt-24 md:mt-32 flex",
+        staticClass: "w-full px-4 mx-auto  flex",
       },
       [
-        _c("div", { staticClass: "w-1/5 px-2" }, [_c("inventory-list")], 1),
+        _c("div", { staticClass: "w-1/5 " }, [_c("inventory-list")], 1),
         _vm._v(" "),
         _c("div", { staticClass: "w-4/5" }, [_c("product-list")], 1),
       ]
@@ -33037,14 +33041,14 @@ var render = function () {
             "div",
             {
               staticClass:
-                "\n            flex flex-wrap\n            justify-center\n            items-center\n            mb-4\n            border-gray-300\n            relative\n        ",
+                "\n            flex flex-wrap\n            justify-center\n            items-center\n            \n            border-gray-300\n            relative\n        ",
             },
             [
               _c(
                 "h3",
                 {
                   staticClass:
-                    "\n                w-64\n                text-gray-800\n                font-mono font-semibold\n                text-center\n                bg-purple-200\n                absolute\n                left-0\n                border-l-4 border-teal-500\n                py-5\n                px-4\n                leading-tight\n            ",
+                    "\n                w-64\n                text-gray-800\n                font-mono font-semibold\n                text-center\n                bg-purple-200\n                absolute\n                left-0\n                \n                py-5\n                px-4\n                leading-tight\n            ",
                 },
                 [
                   _c("warehouse-icon"),
@@ -33672,7 +33676,7 @@ var render = function () {
         "div",
         {
           staticClass:
-            "grid  grid-cols-1 md:grid-cols-4 2xl:grid-cols-5 gap-4 ",
+            "grid  grid-cols-1 md:grid-cols-4 2xl:grid-cols-5 gap-4 px-4 ",
         },
         [
           _c(
@@ -33683,13 +33687,13 @@ var render = function () {
             },
             [
               _c("search-by-category", {
-                staticClass: "md:w-1/4 w-3/4 mr-2",
+                staticClass: "md:w-2/4 w-3/4 mr-2",
                 attrs: { categories: _vm.categories },
               }),
               _vm._v(" "),
               _c("search-component", {
                 ref: "search",
-                staticClass: "md:w-1/4 w-3/4 ",
+                staticClass: "md:w-2/4 w-3/4 ",
               }),
             ],
             1
@@ -33944,7 +33948,7 @@ var render = function () {
       "div",
       {
         staticClass:
-          "\n            flex\n            justify-center\n            items-center\n            flex-wrap\n            px-4\n            w-9/12\n            mx-auto\n        ",
+          "\n            flex\n            justify-center\n            items-center\n            flex-wrap\n            px-4\n            w-full\n            mx-auto\n        ",
       },
       [
         _c(
@@ -33959,7 +33963,7 @@ var render = function () {
               },
             ],
             staticClass:
-              "\n                w-full\n                shadow-lg\n                rounded-lg\n                bg-white\n                md:px-6 md:py-6 md:mt-0\n                mt-10\n                md:mb-0\n            ",
+              "\n                w-full\n                shadow-sm\n                rounded-sm\n                bg-white\n                md:px-6 md:py-6 md:mt-0\n                mt-10\n                md:mb-0\n            ",
             attrs: { id: "product-form" },
             on: {
               submit: function ($event) {
@@ -34027,7 +34031,7 @@ var render = function () {
               "div",
               {
                 staticClass:
-                  "\n                    flex\n                    items-center\n                    pb-2\n                    text-dark text-center\n                    justify-center\n                    text-xl\n                    font-bold\n                ",
+                  "\n                    flex\n                    items-center\n                    pb-2\n                    text-blue-800\n                    form-header\n                    text-dark text-center\n                    justify-center\n                    text-xl\n                    font-bold\n                ",
               },
               [_vm._v("\n                Nuevo producto\n            ")]
             ),
@@ -35675,7 +35679,7 @@ var render = function () {
     [
       _c(
         "div",
-        { staticClass: "w-9/12 mx-auto shadow  pb-4 bg-white rounded-sm" },
+        { staticClass: "w-full px-4  shadow  pb-4 bg-white rounded-sm" },
         [
           _c(
             "h1",
@@ -37021,19 +37025,13 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "nav-component",
-    [
-      _c("create-inventory", {
-        attrs: {
-          inventory: _vm.inventory,
-          method: "put",
-          uri: "/warehouses/" + _vm.inventory.id,
-        },
-      }),
-    ],
-    1
-  )
+  return _c("create-inventory", {
+    attrs: {
+      inventory: _vm.inventory,
+      method: "put",
+      uri: "/warehouses/" + _vm.inventory.id,
+    },
+  })
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -37191,12 +37189,12 @@ var render = function () {
   return _c(
     "nav-component",
     [
-      _c("div", { staticClass: "w-9/12 mx-auto flex justify-center " }, [
+      _c("div", { staticClass: "w-full mx-auto flex justify-center px-4" }, [
         _c(
           "div",
           {
             staticClass:
-              "bg-white shadow rounded max-w-full sm:overflow-x-hidden overflow-x-auto",
+              "flex justify-center bg-white shadow-sm w-full rounded max-w-full sm:overflow-x-hidden overflow-x-auto",
           },
           [
             _vm.inventories.length

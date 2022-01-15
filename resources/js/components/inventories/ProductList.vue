@@ -5,7 +5,7 @@
                 flex flex-wrap
                 justify-center
                 items-center
-                mb-4
+                
                 border-gray-300
                 relative
             "
@@ -19,7 +19,7 @@
                     bg-purple-200
                     absolute
                     left-0
-                    border-l-4 border-teal-500
+                    
                     py-5
                     px-4
                     leading-tight

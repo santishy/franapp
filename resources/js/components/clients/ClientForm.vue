@@ -1,13 +1,13 @@
 <template>
     <nav-component>
-        <div class="w-9/12 mx-auto px-4  flex justify-center bg-transparent">
+        <div class="w-full mx-auto px-4  flex justify-center bg-transparent">
             <form
                 @submit.prevent="submit"
                 v-can="definePermission"
-                class="w-full shadow-lg rounded-lg bg-white px-6 py-8"
+                class="w-full shadow-sm rounded-sm bg-white px-3 py-4"
             >
                 <div
-                    class="flex items-center py-2 text-dark text-center justify-center text-xl font-bold"
+                    class="flex items-center py-2 text-blue-800 form-header border-gray-500 border-t text-dark text-center justify-center text-xl font-bold"
                 >
                     {{ getTitle }}
                 </div>

@@ -2,11 +2,11 @@
     <form
         @submit.prevent="submit"
         v-can="'create category'"
-        class="w-full  shadow-lg rounded-lg bg-white md:px-6 md:py-8  md:mt-0"
+        class="w-full  shadow-sm rounded-sm bg-white md:px-3 md:py-4  md:mt-0"
         :class="[getWidth]"
     >
         <div
-            class="flex items-center py-2 text-dark text-center justify-center text-xl font-bold "
+            class="flex text-blue-800 items-center py-2 text-dark text-center border-t border-gray-500 justify-center text-xl font-semibold form-header "
         >
             Añadir categoría
         </div>

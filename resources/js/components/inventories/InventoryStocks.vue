@@ -1,7 +1,7 @@
 <template>
     <nav-component>
-        <div  class="w-10/12 mx-auto mt-24 md:mt-32 flex" v-can="'view warehouses'">
-            <div class="w-1/5 px-2">
+        <div  class="w-full px-4 mx-auto  flex" v-can="'view warehouses'">
+            <div class="w-1/5 ">
                 <inventory-list></inventory-list>
             </div>
             <div class="w-4/5">
