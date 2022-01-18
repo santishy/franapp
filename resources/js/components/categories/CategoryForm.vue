@@ -6,7 +6,7 @@
         :class="[getWidth]"
     >
         <div
-            class="flex text-blue-800 items-center py-2 text-dark text-center border-t border-gray-500 justify-center text-xl font-semibold form-header "
+            class="flex text-blue-800 items-center py-2 text-dark text-center border-t border-gray-500 justify-center text-xl font-extralight form-header "
         >
             Añadir categoría
         </div>

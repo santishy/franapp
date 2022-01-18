@@ -1,8 +1,8 @@
 <template>
     <nav-component>
-        <div class="md:w-9/12 mx-auto flex flex-wrap items-baseline" >
+        <div class=" px-4 mx-auto grid grid-cols-2 gap-4 grid-flow-col" >
             <registration-form
-                class="mr-4"
+                class=""
                 :inventories="inventories"
                 :method="method"
                 :editable-user="editableUser"

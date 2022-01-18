@@ -1,16 +1,16 @@
 <template>
     <div
-        class="flex justify-between items-center rounded border-2 border-gray-200 p-2 "
+        class="flex justify-between items-center rounded border-2 border-gray-200 p-1 "
         @click="changeFilter"
     >
-        <h2 class="text-red-700  font-semibold mr-3">Canceladas</h2>
+        <h2 class="text-red-700  font-extralight text-sm mr-3">Canceladas</h2>
         <div
-            class="w-16 h-10 flex items-center bg-gray-200 rounded-full p-1 duration-300 ease-in-out border border-red-500"
+            class="w-12 h-8 flex items-center bg-gray-200 rounded-full  duration-300 ease-in-out border border-red-500"
             :class="{ 'bg-green-400': toggleActive }"
         >
             <div
-                class="bg-white w-8 h-8 rounded-full shadow-md transform duration-300 ease-in-out border border-red-500"
-                :class="{ 'translate-x-6': toggleActive }"
+                class="bg-white w-6 h-6 rounded-full shadow-md transform duration-300 ease-in-out border border-red-500"
+                :class="{ 'translate-x-4': toggleActive }"
             ></div>
         </div>
     </div>

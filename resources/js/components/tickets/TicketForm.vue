@@ -1,14 +1,14 @@
 <template>
     <nav-component>
         <div
-            class="md:w-9/12 mx-auto px-4  flex justify-center bg-transparent md:mt-32 mt-24"
+            class="w-full mx-auto px-4  flex justify-center bg-transparent "
         >
             <form
                 @submit.prevent="submit"
-                class="w-full  shadow-lg rounded-lg bg-white px-6 py-8"
+                class="w-full  shadow-sm rounded-sm bg-white px-3 py-4"
             >
                 <div
-                    class="flex items-center pb-1 text-dark text-center justify-center text-xl font-bold "
+                    class="flex items-center p-2 text-blue-800 form-header border-t border-gray-500 text-center justify-center text-xl font-extralight "
                 >
                     Modificar contenido del ticket
                 </div>

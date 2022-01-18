@@ -9,7 +9,7 @@
                 class="w-full  rounded bg-white px-2 py-2 "
             >
                 <div
-                    class="form-header border-t border-gray-500 p-2 text-dark text-center  text-xl font-black text-blue-800"
+                    class="form-header border-t border-gray-500 p-2 text-dark text-center  text-xl font-extralight text-blue-800"
                 >
                     Crear Almacén
                 </div>

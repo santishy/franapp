@@ -2,9 +2,9 @@
     <nav-component>
         <div
             v-can="'view users'"
-            class="  md:w-9/12 mx-auto flex justify-center sm:overflow-x-hidden overflow-x-auto"
+            class="  w-full px-4 mx-auto flex justify-center sm:overflow-x-hidden overflow-x-auto"
         >
-            <table class="table-auto text-center  bg-white shadow rounded ">
+            <table class="table-auto w-full text-center  bg-white shadow-sm rounded-sm ">
                 <thead class="bg-gray-400">
                     <th class="border px-4 py-2">Nombre</th>
                     <th class="border px-4 py-2">Email</th>

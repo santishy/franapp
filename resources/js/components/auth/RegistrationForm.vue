@@ -2,10 +2,10 @@
     <form
         @submit.prevent="submit"
         v-can="definePermission"
-        class="md:w-7/12 shadow-lg rounded-lg bg-white md:px-6 md:py-8"
+        class=" shadow-sm rounded-sm bg-white px-3 py-4"
     >
         <div
-            class="flex items-center pb-2 pt-0 text-dark text-center justify-center text-xl font-bold"
+            class="flex items-center p-2  text-center justify-center text-xl font-extralight text-blue-800 form-header border-t border-gray-500"
         >
             {{ getTitle }}
         </div>

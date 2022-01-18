@@ -1,6 +1,6 @@
 <template>
-    <div class="bg-white rounded shadow p-4 md:w-4/12">
-        <h3 class="text-xl text-center border-b-2 border-gray-300 px-4 py-1 mb-3 font-semibold">
+    <div class="bg-white rounded-sm shadow-sm p-4 ">
+        <h3 class="text-xl text-center border-b-2 form-header text-blue-800 border-gray-300 px-4 py-1 mb-3 font-extralight">
             Asignar roles
         </h3>
         <div v-for="role in roles" :key="role.id">

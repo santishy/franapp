@@ -52,7 +52,7 @@
                         text-dark text-center
                         justify-center
                         text-xl
-                        font-bold
+                        font-extralight
                     "
                 >
                     Nuevo producto

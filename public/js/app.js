@@ -7353,6 +7353,43 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -7792,6 +7829,27 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -7829,7 +7887,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     errorsFound: function errorsFound(errors) {
-      console.log('entro a los errors');
+      console.log("entro a los errors");
       this.getErrors(errors);
     }
   }
@@ -29908,13 +29966,13 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "bg-white rounded shadow p-4 md:w-4/12" },
+    { staticClass: "bg-white rounded-sm shadow-sm p-4 " },
     [
       _c(
         "h3",
         {
           staticClass:
-            "text-xl text-center border-b-2 border-gray-300 px-4 py-1 mb-3 font-semibold",
+            "text-xl text-center border-b-2 form-header text-blue-800 border-gray-300 px-4 py-1 mb-3 font-extralight",
         },
         [_vm._v("\n        Asignar roles\n    ")]
       ),
@@ -30174,10 +30232,9 @@ var render = function () {
   return _c("nav-component", [
     _c(
       "div",
-      { staticClass: "md:w-9/12 mx-auto flex flex-wrap items-baseline" },
+      { staticClass: " px-4 mx-auto grid grid-cols-2 gap-4 grid-flow-col" },
       [
         _c("registration-form", {
-          staticClass: "mr-4",
           attrs: {
             inventories: _vm.inventories,
             method: _vm.method,
@@ -30236,7 +30293,7 @@ var render = function () {
           expression: "definePermission",
         },
       ],
-      staticClass: "md:w-7/12 shadow-lg rounded-lg bg-white md:px-6 md:py-8",
+      staticClass: " shadow-sm rounded-sm bg-white px-3 py-4",
       on: {
         submit: function ($event) {
           $event.preventDefault()
@@ -30249,7 +30306,7 @@ var render = function () {
         "div",
         {
           staticClass:
-            "flex items-center pb-2 pt-0 text-dark text-center justify-center text-xl font-bold",
+            "flex items-center p-2  text-center justify-center text-xl font-extralight text-blue-800 form-header border-t border-gray-500",
         },
         [_vm._v("\n        " + _vm._s(_vm.getTitle) + "\n    ")]
       ),
@@ -30584,7 +30641,7 @@ var render = function () {
           },
         ],
         staticClass:
-          "md:w-11/12 mx-auto grid grid-cols-8 gap-4 grid-flow-col auto-cols-auto auto-rows-auto",
+          "w-full px-4 mx-auto grid grid-cols-8 gap-4 grid-flow-col auto-cols-auto auto-rows-auto",
       },
       [
         _c("create-new-role", {
@@ -30711,7 +30768,7 @@ var render = function () {
         "div",
         {
           staticClass:
-            "flex text-blue-800 items-center py-2 text-dark text-center border-t border-gray-500 justify-center text-xl font-semibold form-header ",
+            "flex text-blue-800 items-center py-2 text-dark text-center border-t border-gray-500 justify-center text-xl font-extralight form-header ",
         },
         [_vm._v("\n        Añadir categoría\n    ")]
       ),
@@ -31085,9 +31142,7 @@ var render = function () {
   return _c("nav-component", [
     _c(
       "div",
-      {
-        staticClass: "w-full mx-auto px-4  flex justify-center bg-transparent",
-      },
+      { staticClass: "w-full px-4  flex justify-center bg-transparent " },
       [
         _c(
           "form",
@@ -31100,7 +31155,7 @@ var render = function () {
                 expression: "definePermission",
               },
             ],
-            staticClass: "w-full shadow-sm rounded-sm bg-white px-3 py-4",
+            staticClass: "w-full shadow-sm rounded-sm bg-white px-2 py-4",
             on: {
               submit: function ($event) {
                 $event.preventDefault()
@@ -31113,7 +31168,7 @@ var render = function () {
               "div",
               {
                 staticClass:
-                  "flex items-center py-2 text-blue-800 form-header border-gray-500 border-t text-dark text-center justify-center text-xl font-bold",
+                  "flex items-center py-2 text-blue-800 form-header border-gray-500 border-t text-dark text-center justify-center text-xl font-extralight",
               },
               [
                 _vm._v(
@@ -32584,7 +32639,7 @@ var render = function () {
               "div",
               {
                 staticClass:
-                  "form-header border-t border-gray-500 p-2 text-dark text-center  text-xl font-black text-blue-800",
+                  "form-header border-t border-gray-500 p-2 text-dark text-center  text-xl font-extralight text-blue-800",
               },
               [_vm._v("\n                Crear Almacén\n            ")]
             ),
@@ -34031,7 +34086,7 @@ var render = function () {
               "div",
               {
                 staticClass:
-                  "\n                    flex\n                    items-center\n                    pb-2\n                    text-blue-800\n                    form-header\n                    text-dark text-center\n                    justify-center\n                    text-xl\n                    font-bold\n                ",
+                  "\n                    flex\n                    items-center\n                    pb-2\n                    text-blue-800\n                    form-header\n                    text-dark text-center\n                    justify-center\n                    text-xl\n                    font-extralight\n                ",
               },
               [_vm._v("\n                Nuevo producto\n            ")]
             ),
@@ -35342,93 +35397,98 @@ var render = function () {
     "div",
     { staticClass: "flex flex-wrap flex-col items-center justify-center" },
     [
-      _c("toggle-component", { staticClass: "col-span-1 mr-2 mb-4" }),
-      _vm._v(" "),
-      _c("div", { staticClass: "flex justify-center flex-wrap items-center" }, [
-        _c(
-          "div",
-          {
-            staticClass:
-              "p-1 border bg-purple-600 rounded text-white px-3 mr-2",
-          },
-          [
-            _c("span", [_vm._v("Reporte por rango")]),
+      _c(
+        "div",
+        { staticClass: "flex justify-center flex-wrap items-center" },
+        [
+          _c(
+            "div",
+            {
+              staticClass:
+                "p-1 border bg-gray-700 rounded text-white px-3 mr-2",
+            },
+            [
+              _c("span", [_vm._v("Reporte por rango")]),
+              _vm._v(" "),
+              _c("date-picker", {
+                staticClass: "shodow-inner",
+                attrs: {
+                  placeholder: "Da click para eligir el rango de fechas",
+                  lang: _vm.lang,
+                  "value-type": "YYYY-MM-DD",
+                  range: "",
+                },
+                on: {
+                  change: function ($event) {
+                    return _vm.getReport(_vm.range, "betweenDates")
+                  },
+                },
+                model: {
+                  value: _vm.dates,
+                  callback: function ($$v) {
+                    _vm.dates = $$v
+                  },
+                  expression: "dates",
+                },
+              }),
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c("div", [
+            _c(
+              "button",
+              {
+                staticClass:
+                  "\n                    text-white\n                    bg-gray-700\n                    hover:bg-gray-900\n                    focus:outline-none\n                    focus:ring-2\n                    focus:ring-purple-600\n                    focus:ring-opacity-50\n                    mr-2\n                    rounded\n                    px-4\n                    py-2\n                ",
+                on: {
+                  click: function ($event) {
+                    $event.preventDefault()
+                    return _vm.getReport(_vm.today)
+                  },
+                },
+              },
+              [_vm._v("\n                Hoy\n            ")]
+            ),
             _vm._v(" "),
-            _c("date-picker", {
-              attrs: {
-                placeholder: "Da click para eligir el rango de fechas",
-                lang: _vm.lang,
-                "value-type": "YYYY-MM-DD",
-                range: "",
-              },
-              on: {
-                change: function ($event) {
-                  return _vm.getReport(_vm.range, "betweenDates")
+            _c(
+              "button",
+              {
+                staticClass:
+                  "\n                    text-white\n                    bg-gray-700\n                    hover:bg-gray-900\n                    focus:outline-none\n                    focus:ring-2\n                    focus:ring-purple-600\n                    focus:ring-opacity-50\n                    mr-2\n                    rounded\n                    px-4\n                    py-2\n                ",
+                attrs: { href: "#" },
+                on: {
+                  click: function ($event) {
+                    $event.preventDefault()
+                    return _vm.getReport(_vm.week)
+                  },
                 },
               },
-              model: {
-                value: _vm.dates,
-                callback: function ($$v) {
-                  _vm.dates = $$v
-                },
-                expression: "dates",
-              },
-            }),
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _c("div", [
-          _c(
-            "button",
-            {
-              staticClass:
-                "text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50 mr-4 rounded px-4 py-2",
-              on: {
-                click: function ($event) {
-                  $event.preventDefault()
-                  return _vm.getReport(_vm.today)
+              [_vm._v("\n                Semana\n            ")]
+            ),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass:
+                  "\n                    text-white\n                    bg-gray-700\n                    hover:bg-gray-900\n                    focus:outline-none\n                    focus:ring-2\n                    focus:ring-purple-600\n                    focus:ring-opacity-50\n                    rounded\n                    px-4\n                    py-2\n                    mr-2\n                ",
+                attrs: { href: "#" },
+                on: {
+                  click: function ($event) {
+                    $event.preventDefault()
+                    return _vm.getReport(_vm.month)
+                  },
                 },
               },
-            },
-            [_vm._v("\n                Hoy\n            ")]
-          ),
+              [_vm._v("\n                Mes\n            ")]
+            ),
+          ]),
           _vm._v(" "),
-          _c(
-            "button",
-            {
-              staticClass:
-                "text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50 mr-4 rounded px-4 py-2",
-              attrs: { href: "#" },
-              on: {
-                click: function ($event) {
-                  $event.preventDefault()
-                  return _vm.getReport(_vm.week)
-                },
-              },
-            },
-            [_vm._v("\n                Semana\n            ")]
-          ),
-          _vm._v(" "),
-          _c(
-            "button",
-            {
-              staticClass:
-                "text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50 rounded px-4 py-2",
-              attrs: { href: "#" },
-              on: {
-                click: function ($event) {
-                  $event.preventDefault()
-                  return _vm.getReport(_vm.month)
-                },
-              },
-            },
-            [_vm._v("\n                Mes\n            ")]
-          ),
-        ]),
-      ]),
-    ],
-    1
+          _c("toggle-component", { staticClass: "col-span-1 mr-2" }),
+        ],
+        1
+      ),
+    ]
   )
 }
 var staticRenderFns = []
@@ -35457,11 +35517,11 @@ var render = function () {
     "div",
     {
       staticClass:
-        "flex justify-between items-center rounded border-2 border-gray-200 p-2 ",
+        "flex justify-between items-center rounded border-2 border-gray-200 p-1 ",
       on: { click: _vm.changeFilter },
     },
     [
-      _c("h2", { staticClass: "text-red-700  font-semibold mr-3" }, [
+      _c("h2", { staticClass: "text-red-700  font-extralight text-sm mr-3" }, [
         _vm._v("Canceladas"),
       ]),
       _vm._v(" "),
@@ -35469,14 +35529,14 @@ var render = function () {
         "div",
         {
           staticClass:
-            "w-16 h-10 flex items-center bg-gray-200 rounded-full p-1 duration-300 ease-in-out border border-red-500",
+            "w-12 h-8 flex items-center bg-gray-200 rounded-full  duration-300 ease-in-out border border-red-500",
           class: { "bg-green-400": _vm.toggleActive },
         },
         [
           _c("div", {
             staticClass:
-              "bg-white w-8 h-8 rounded-full shadow-md transform duration-300 ease-in-out border border-red-500",
-            class: { "translate-x-6": _vm.toggleActive },
+              "bg-white w-6 h-6 rounded-full shadow-md transform duration-300 ease-in-out border border-red-500",
+            class: { "translate-x-4": _vm.toggleActive },
           }),
         ]
       ),
@@ -35677,52 +35737,58 @@ var render = function () {
   return _c(
     "nav-component",
     [
-      _c(
-        "div",
-        { staticClass: "w-full px-4  shadow  pb-4 bg-white rounded-sm" },
-        [
-          _c(
-            "h1",
-            {
-              staticClass:
-                " text-gray-800  text-center border-b-2 border-gray-300 py-3 text-2xl font-extralight",
-            },
-            [
-              _vm._v(
-                "\n            Reporte de " + _vm._s(_vm.name) + "\n        "
-              ),
-            ]
-          ),
-          _vm._v(" "),
-          _c("transition", { attrs: { name: "fade" } }, [
-            _vm.total != null
-              ? _c(
-                  "div",
-                  {
-                    staticClass:
-                      "border-b-2 py-3 text-gray-800 border-gray-300 flex justify-center items-center",
-                  },
-                  [
-                    _c("span", { staticClass: "font-semibold text-xl " }, [
-                      _vm._v("Total:"),
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "font-bold text-2xl ml-2" }, [
-                      _vm._v("$" + _vm._s(_vm.total)),
-                    ]),
-                  ]
-                )
-              : _vm._e(),
-          ]),
-          _vm._v(" "),
-          _c("errors-component", { attrs: { "errors-found": _vm.errors } }),
-          _vm._v(" "),
-          _c("report-by", { staticClass: "mt-4" }),
-          _vm._v(" "),
-          _c("warehouse-checklist", { attrs: { warehouses: _vm.warehouses } }),
-        ],
-        1
-      ),
+      _c("div", { staticClass: "w-full px-4" }, [
+        _c(
+          "div",
+          { staticClass: "shadow pb-4 bg-white rounded-sm" },
+          [
+            _c(
+              "h1",
+              {
+                staticClass:
+                  "\n                    text-blue-800\n                    form-header\n                    text-center\n                    border-b-2 border-gray-300\n                    py-3\n                    text-xl\n                    font-extralight\n                ",
+              },
+              [
+                _vm._v(
+                  "\n                Reporte de " +
+                    _vm._s(_vm.name) +
+                    "\n            "
+                ),
+              ]
+            ),
+            _vm._v(" "),
+            _c("transition", { attrs: { name: "fade" } }, [
+              _vm.total != null
+                ? _c(
+                    "div",
+                    {
+                      staticClass:
+                        "\n                        border-b-2\n                        py-3\n                        text-gray-800\n                        border-gray-300\n                        flex\n                        justify-center\n                        items-center\n                    ",
+                    },
+                    [
+                      _c("span", { staticClass: "font-semibold text-xl" }, [
+                        _vm._v("Total:"),
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "font-bold text-2xl ml-2" }, [
+                        _vm._v("$" + _vm._s(_vm.total)),
+                      ]),
+                    ]
+                  )
+                : _vm._e(),
+            ]),
+            _vm._v(" "),
+            _c("errors-component", { attrs: { "errors-found": _vm.errors } }),
+            _vm._v(" "),
+            _c("report-by", { staticClass: "mt-2" }),
+            _vm._v(" "),
+            _c("warehouse-checklist", {
+              attrs: { warehouses: _vm.warehouses },
+            }),
+          ],
+          1
+        ),
+      ]),
       _vm._v(" "),
       _c("transaction-list", { attrs: { uri: _vm.uri, name: _vm.name } }),
     ],
@@ -36596,14 +36662,13 @@ var render = function () {
     _c(
       "div",
       {
-        staticClass:
-          "md:w-9/12 mx-auto px-4  flex justify-center bg-transparent md:mt-32 mt-24",
+        staticClass: "w-full mx-auto px-4  flex justify-center bg-transparent ",
       },
       [
         _c(
           "form",
           {
-            staticClass: "w-full  shadow-lg rounded-lg bg-white px-6 py-8",
+            staticClass: "w-full  shadow-sm rounded-sm bg-white px-3 py-4",
             on: {
               submit: function ($event) {
                 $event.preventDefault()
@@ -36616,7 +36681,7 @@ var render = function () {
               "div",
               {
                 staticClass:
-                  "flex items-center pb-1 text-dark text-center justify-center text-xl font-bold ",
+                  "flex items-center p-2 text-blue-800 form-header border-t border-gray-500 text-center justify-center text-xl font-extralight ",
               },
               [
                 _vm._v(
@@ -36879,12 +36944,15 @@ var render = function () {
           },
         ],
         staticClass:
-          "  md:w-9/12 mx-auto flex justify-center sm:overflow-x-hidden overflow-x-auto",
+          "  w-full px-4 mx-auto flex justify-center sm:overflow-x-hidden overflow-x-auto",
       },
       [
         _c(
           "table",
-          { staticClass: "table-auto text-center  bg-white shadow rounded " },
+          {
+            staticClass:
+              "table-auto w-full text-center  bg-white shadow-sm rounded-sm ",
+          },
           [
             _c("thead", { staticClass: "bg-gray-400" }, [
               _c("th", { staticClass: "border px-4 py-2" }, [_vm._v("Nombre")]),
