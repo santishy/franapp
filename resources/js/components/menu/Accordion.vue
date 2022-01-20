@@ -21,12 +21,16 @@
                     flex
                     justify-center
                     items-end
-                    
                 "
                 ><slot name="descriptive-icon"></slot> {{ name }}</span
             ><slot name="icon"></slot
         ></a>
-        <ul v-if="show" class="mb-2 divide-y divide-gray-200">
+        <transition-group
+            tag="ul"
+            v-if="show"
+            class="mb-2 divide-y divide-gray-200"
+            name="fade"
+        >
             <li v-for="item in itemsMenu" :key="item.name" class="bg-white">
                 <a
                     :href="item.url"
@@ -38,12 +42,11 @@
                         p-1
                         pl-12
                         text-sm
-                        
                     "
                     >{{ item.name }}</a
                 >
             </li>
-        </ul>
+        </transition-group>
     </div>
 </template>
 

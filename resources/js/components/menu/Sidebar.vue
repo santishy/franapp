@@ -1,12 +1,12 @@
 <template>
-    <div class="h-screen bg-gray-100 shadow fixed inset-y-0 left-0 w-64 ">
+    <div class="h-screen max-h-screen overflow-y-auto bg-gray-100 shadow-sm fixed inset-y-0 left-0 w-64 ">
         <div class="min-h-screen ">
             <h5
                 class="
                     text-2xl
                     w-full
                     mb-5
-                    py-5
+                    py-3
                     flex 
                     justify-center
                     bg-white

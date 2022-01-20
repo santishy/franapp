@@ -3,28 +3,29 @@
         <transition name="fade">
             <div
                 v-if="seletedInventoryId == null && isAdmin"
-                class="flex flex-col justify-center mx-auto md:w-1/3 w-full"
+                class="flex flex-col justify-center mx-auto px-4 w-full"
             >
                 <p
-                    class="border border-blue-400 px-4 py-2 text-blue-600 rounded bg-white mb-2 text-center"
+                    class="border w-full border-blue-400 px-4 py-2 text-blue-600 rounded-sm bg-white mb-2 text-center"
                 >
                     Al ser un usuario administrador, puedes elegir el inventario
                     para realizar la venta
                 </p>
                 <inventory-list></inventory-list>
             </div>
-            <div v-else class="w-full mt-24 md:mt-32">
-                <div class="flex justify-center items-baseline flex-wrap ">
-                    <search-by-category
-                        class="sm:w-64 w-4/5 md:mr-4"
-                        :categories="categories"
-                    ></search-by-category>
-                    <search-component class="sm:w-64 w-4/5"></search-component>
-                </div>
+            <div v-else class="w-full px-4">
+                <div class="col-span-4 2xl:col-span-5 flex justify-center items-baseline">
+                
+                <search-by-category
+                    class="md:w-2/4 w-3/4 mr-2"
+                    :categories="categories"
+                ></search-by-category>
+                <search-component  class="md:w-2/4 w-3/4 " />
+            </div>
                 <product-matching></product-matching>
-                <div class="flex flex-wrap justify-center items-center mt-4">
+                <div class="w-full flex flex-wrap justify-center items-center ">
                     <div
-                        class="bg-white px-4 py-2 md:w-4/5 w-full md:mx-0 mx-2 rounded shadow"
+                        class="bg-white px-4 py-2  w-full md:mx-0 mx-2 rounded-sm shadow-sm"
                     >
                         <div
                             class="w-full flex flex-wrap md:justify-between  text-gray-600 md:items-center"

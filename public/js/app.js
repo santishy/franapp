@@ -2709,6 +2709,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 
@@ -4946,6 +4948,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
 //
 //
 //
@@ -8318,6 +8323,7 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
 //
 //
 //
@@ -29499,7 +29505,7 @@ var render = function () {
         "nav",
         {
           staticClass:
-            "\n            flex\n            items-center\n            justify-between\n            flex-wrap\n            bg-white\n            shadow-sm\n            p-6\n            sm:mx-4 sm:right-0 sm:left-64\n            fixed\n            sm:w-auto\n            top-0\n            z-10\n        ",
+            "\n            flex\n            items-center\n            justify-between\n            flex-wrap\n            rounded-b-sm\n            bg-white\n            shadow-sm\n            p-4\n            sm:mx-4 sm:right-0 sm:left-64\n            fixed\n            sm:w-auto\n            top-0\n            z-10\n        ",
         },
         [
           _vm._m(0),
@@ -29670,7 +29676,7 @@ var render = function () {
                     "button",
                     {
                       staticClass:
-                        "\n                            inline-block\n                            text-sm\n                            px-4\n                            py-2\n                            leading-none\n                            border\n                            rounded\n                            text-gray-800\n                            border-teal-300\n                            hover:border-transparent\n                            md:hover:text-teal-500 md:hover:bg-white\n                            mt-4\n                            lg:mt-0\n                        ",
+                        "\n                            inline-block\n                            text-sm\n                            px-4\n                            py-2\n                            leading-none\n                            border\n                            bg-white\n                            rounded\n                            text-gray-800\n                            border-teal-300\n                            hover:border-transparent\n                            md:hover:text-teal-500 md:hover:bg-white\n                            mt-4\n                            lg:mt-0\n                        ",
                       attrs: { href: "/logout" },
                     },
                     [
@@ -29690,7 +29696,7 @@ var render = function () {
       _vm._v(" "),
       _c(
         "main",
-        { staticClass: "mt-24  w-ful z-0 flex flex-wrap" },
+        { staticClass: "mt-20 w-ful z-0 flex flex-wrap" },
         [
           _c(
             "sidebar",
@@ -33194,56 +33200,64 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "w-full px-3" }, [
-    _c(
-      "a",
-      {
-        staticClass:
-          "\n            flex\n            items-center\n            w-full\n            space-y-0\n            px-3\n            py-2\n            font-mono\n            text-blue-800\n            justify-between\n        ",
-        attrs: { href: "#" },
-        on: {
-          click: function ($event) {
-            $event.preventDefault()
-            return _vm.toggle.apply(null, arguments)
+  return _c(
+    "div",
+    { staticClass: "w-full px-3" },
+    [
+      _c(
+        "a",
+        {
+          staticClass:
+            "\n            flex\n            items-center\n            w-full\n            space-y-0\n            px-3\n            py-2\n            font-mono\n            text-blue-800\n            justify-between\n        ",
+          attrs: { href: "#" },
+          on: {
+            click: function ($event) {
+              $event.preventDefault()
+              return _vm.toggle.apply(null, arguments)
+            },
           },
         },
-      },
-      [
-        _c(
-          "span",
-          {
-            staticClass:
-              "\n                mr-1\n                font-mono font-semibold\n                flex\n                justify-center\n                items-end\n                \n            ",
-          },
-          [_vm._t("descriptive-icon"), _vm._v(" " + _vm._s(_vm.name))],
-          2
-        ),
-        _vm._t("icon"),
-      ],
-      2
-    ),
-    _vm._v(" "),
-    _vm.show
-      ? _c(
-          "ul",
-          { staticClass: "mb-2 divide-y divide-gray-200" },
-          _vm._l(_vm.itemsMenu, function (item) {
-            return _c("li", { key: item.name, staticClass: "bg-white" }, [
-              _c(
-                "a",
-                {
-                  staticClass:
-                    "\n                    block\n                    w-full\n                    text-blue-700\n                    font-mono\n                    p-1\n                    pl-12\n                    text-sm\n                    \n                ",
-                  attrs: { href: item.url },
-                },
-                [_vm._v(_vm._s(item.name))]
-              ),
-            ])
-          }),
-          0
-        )
-      : _vm._e(),
-  ])
+        [
+          _c(
+            "span",
+            {
+              staticClass:
+                "\n                mr-1\n                font-mono font-semibold\n                flex\n                justify-center\n                items-end\n            ",
+            },
+            [_vm._t("descriptive-icon"), _vm._v(" " + _vm._s(_vm.name))],
+            2
+          ),
+          _vm._t("icon"),
+        ],
+        2
+      ),
+      _vm._v(" "),
+      _vm.show
+        ? _c(
+            "transition-group",
+            {
+              staticClass: "mb-2 divide-y divide-gray-200",
+              attrs: { tag: "ul", name: "fade" },
+            },
+            _vm._l(_vm.itemsMenu, function (item) {
+              return _c("li", { key: item.name, staticClass: "bg-white" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass:
+                      "\n                    block\n                    w-full\n                    text-blue-700\n                    font-mono\n                    p-1\n                    pl-12\n                    text-sm\n                ",
+                    attrs: { href: item.url },
+                  },
+                  [_vm._v(_vm._s(item.name))]
+                ),
+              ])
+            }),
+            0
+          )
+        : _vm._e(),
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -33269,7 +33283,10 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "h-screen bg-gray-100 shadow fixed inset-y-0 left-0 w-64 " },
+    {
+      staticClass:
+        "h-screen max-h-screen overflow-y-auto bg-gray-100 shadow-sm fixed inset-y-0 left-0 w-64 ",
+    },
     [
       _c(
         "div",
@@ -33279,7 +33296,7 @@ var render = function () {
             "h5",
             {
               staticClass:
-                "\n                text-2xl\n                w-full\n                mb-5\n                py-5\n                flex \n                justify-center\n                bg-white\n            ",
+                "\n                text-2xl\n                w-full\n                mb-5\n                py-3\n                flex \n                justify-center\n                bg-white\n            ",
             },
             [
               _c("img", {
@@ -33519,7 +33536,7 @@ var render = function () {
           },
         ],
         staticClass:
-          "\n            appearance-none\n            bg-transparent\n            border-none\n            w-full\n            text-gray-700\n            mr-3\n            py-1\n            leading-tight\n            focus:outline-none\n            placeholder-blue-400\n        ",
+          "\n            appearance-none\n            bg-transparent\n            border-none\n            w-full\n            text-gray-700\n            mr-3\n            \n            leading-tight\n            focus:outline-none\n            placeholder-blue-400\n        ",
         class: [_vm.inputClass],
         attrs: {
           autocomplete: "off",
@@ -34687,7 +34704,7 @@ var render = function () {
     [
       _c("category-select", {
         staticClass:
-          "mb-4 relative block w-full appearance-none  border-l-4 border-orange-400 bg-white hover:border-gray-500 py-5  pr-8 rounded leading-tight focus:outline-none focus:shadow-outline",
+          "mb-4 relative block shadow-sm w-full appearance-none  border-l-4 border-orange-400 bg-white hover:border-gray-500 py-5  pr-8 rounded-sm leading-tight focus:outline-none focus:shadow-outline",
         attrs: { categories: _vm.categories },
       }),
     ],
@@ -34721,7 +34738,7 @@ var render = function () {
       { name: "model", rawName: "v-model", value: _vm.sku, expression: "sku" },
     ],
     staticClass:
-      "shadow border-l-4 border-purple-500 appearance-none py-5 px-4 rounded leading-tight focus:outline-none",
+      "shadow-sm border-l-4 border-purple-500 appearance-none py-5 px-4 rounded-sm leading-tight focus:outline-none",
     attrs: { type: "text", placeholder: "Busca por el SKU del producto" },
     domProps: { value: _vm.sku },
     on: {
@@ -36216,15 +36233,14 @@ var render = function () {
           ? _c(
               "div",
               {
-                staticClass:
-                  "flex flex-col justify-center mx-auto md:w-1/3 w-full",
+                staticClass: "flex flex-col justify-center mx-auto px-4 w-full",
               },
               [
                 _c(
                   "p",
                   {
                     staticClass:
-                      "border border-blue-400 px-4 py-2 text-blue-600 rounded bg-white mb-2 text-center",
+                      "border w-full border-blue-400 px-4 py-2 text-blue-600 rounded-sm bg-white mb-2 text-center",
                   },
                   [
                     _vm._v(
@@ -36239,21 +36255,21 @@ var render = function () {
             )
           : _c(
               "div",
-              { staticClass: "w-full mt-24 md:mt-32" },
+              { staticClass: "w-full px-4" },
               [
                 _c(
                   "div",
                   {
                     staticClass:
-                      "flex justify-center items-baseline flex-wrap ",
+                      "col-span-4 2xl:col-span-5 flex justify-center items-baseline",
                   },
                   [
                     _c("search-by-category", {
-                      staticClass: "sm:w-64 w-4/5 md:mr-4",
+                      staticClass: "md:w-2/4 w-3/4 mr-2",
                       attrs: { categories: _vm.categories },
                     }),
                     _vm._v(" "),
-                    _c("search-component", { staticClass: "sm:w-64 w-4/5" }),
+                    _c("search-component", { staticClass: "md:w-2/4 w-3/4 " }),
                   ],
                   1
                 ),
@@ -36264,14 +36280,14 @@ var render = function () {
                   "div",
                   {
                     staticClass:
-                      "flex flex-wrap justify-center items-center mt-4",
+                      "w-full flex flex-wrap justify-center items-center ",
                   },
                   [
                     _c(
                       "div",
                       {
                         staticClass:
-                          "bg-white px-4 py-2 md:w-4/5 w-full md:mx-0 mx-2 rounded shadow",
+                          "bg-white px-4 py-2  w-full md:mx-0 mx-2 rounded-sm shadow-sm",
                       },
                       [
                         _c(

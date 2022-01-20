@@ -1,7 +1,7 @@
 <template>
     <div class="w-full">
         <category-select
-            class="mb-4 relative block w-full appearance-none  border-l-4 border-orange-400 bg-white hover:border-gray-500 py-5  pr-8 rounded leading-tight focus:outline-none focus:shadow-outline"
+            class="mb-4 relative block shadow-sm w-full appearance-none  border-l-4 border-orange-400 bg-white hover:border-gray-500 py-5  pr-8 rounded-sm leading-tight focus:outline-none focus:shadow-outline"
             :categories="categories"
         ></category-select>
     </div>

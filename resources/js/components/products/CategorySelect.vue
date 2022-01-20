@@ -10,7 +10,7 @@
                 w-full
                 text-gray-700
                 mr-3
-                py-1
+                
                 leading-tight
                 focus:outline-none
                 placeholder-blue-400

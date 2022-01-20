@@ -6,9 +6,10 @@
                 items-center
                 justify-between
                 flex-wrap
+                rounded-b-sm
                 bg-white
                 shadow-sm
-                p-6
+                p-4
                 sm:mx-4 sm:right-0 sm:left-64
                 fixed
                 sm:w-auto
@@ -158,6 +159,7 @@
                                 py-2
                                 leading-none
                                 border
+                                bg-white
                                 rounded
                                 text-gray-800
                                 border-teal-300
@@ -175,7 +177,7 @@
         </nav>
 
         <!-- Page Content -->
-        <main class="mt-24  w-ful z-0 flex flex-wrap">
+        <main class="mt-20 w-ful z-0 flex flex-wrap">
             <sidebar>
                 <accordion :items-menu="InventoryMenu" name="Inventario">
                     <template slot="descriptive-icon">
