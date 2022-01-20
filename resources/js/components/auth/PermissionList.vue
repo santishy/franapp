@@ -4,7 +4,7 @@
     >
         <div
             v-if="role != null"
-            class="w-full text-xl border-gray-300 border-b-2 pb-1 col-span-3 mb-2"
+            class="w-full text-xl text-blue-800 font-extralight form-header border-gray-300 border-b-2  col-span-3 mb-2"
         >
             Agregar permisos al rol:
             <span v-if="!!role" class="text-dark font-semibold">{{

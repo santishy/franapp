@@ -6,10 +6,10 @@
             <form
                 @submit.prevent="submit"
                 v-can="'create warehouse'"
-                class="w-full  rounded bg-white px-2 py-2 "
+                class="w-full  rounded bg-white"
             >
                 <div
-                    class="form-header border-t border-gray-500 p-2 text-dark text-center  text-xl font-extralight text-blue-800"
+                    class="form-header p-2 text-dark text-center  text-xl font-extralight text-blue-800"
                 >
                     Crear Almacén
                 </div>
@@ -52,7 +52,7 @@
 
                 <div class="flex justify-center mt-0 mb-0">
                     <button
-                        class="bg-transparent transition-all duration-500 ease-in-out hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border-b-2 border-blue-500 hover:border-transparent w-full"
+                        class="bg-blue-500 transition-all duration-500 ease-in-out hover:bg-blue-700 text-gray-100 font-semibold hover:text-white py-2 px-4 border-b-2 border-blue-500 hover:border-transparent w-full"
                     >
                         Guardar
                     </button>

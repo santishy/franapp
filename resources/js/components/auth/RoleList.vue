@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-white rounded shadow p-4" v-can="'view roles'">
+    <div v-if="localRoles.length" class="bg-white rounded shadow p-4" v-can="'view roles'">
         <ul class="list-inside bg-gray-200">
             <li v-for="role in localRoles" :key="role.id">
                 <a

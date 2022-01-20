@@ -24,7 +24,7 @@
                     shadow-sm
                     rounded-sm
                     bg-white
-                    md:px-6 md:py-6 md:mt-0
+                    md:mt-0
                     mt-10
                     md:mb-0
                 "
@@ -254,12 +254,12 @@
                 <div class="flex justify-center mt-0 mb-0">
                     <button
                         class="
-                            bg-transparent
+                            bg-blue-500
                             transition-all
                             duration-500
                             ease-in-out
-                            hover:bg-blue-500
-                            text-blue-700
+                            hover:bg-blue-700
+                            text-white
                             font-semibold
                             hover:text-white
                             py-2

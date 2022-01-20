@@ -1,12 +1,12 @@
 <template>
     <div class=" ">
         <form
-            class="rounded bg-white shadow  p-4"
+            class="rounded bg-white shadow"
             @submit.prevent="submit"
             v-can="'create role'"
         >
             <div
-                class="flex items-center py-1 text-dark text-center justify-center text-xl font-bold"
+                class="flex items-center form-header py-1 text-blue-800 text-center justify-center text-xl font-extralight"
             >
                 Nuevo Role
             </div>
@@ -32,7 +32,7 @@
             </div>
             <div class="flex justify-center mt-0 mb-0">
                 <button
-                    class="bg-transparent transition-all duration-500 ease-in-out hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border-b-2 border-blue-500 hover:border-transparent w-full"
+                    class="bg-blue-500 transition-all duration-500 ease-in-out hover:bg-blue-500 text-white font-semibold hover:text-white py-2 px-4 border-b-2 border-blue-500 hover:border-transparent w-full"
                 >
                     Guardar
                 </button>

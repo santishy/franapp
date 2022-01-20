@@ -2,11 +2,11 @@
     <form
         @submit.prevent="submit"
         v-can="'create category'"
-        class="w-full  shadow-sm rounded-sm bg-white md:px-3 md:py-4  md:mt-0"
+        class="w-full  shadow-sm rounded-sm bg-white   md:mt-0"
         :class="[getWidth]"
     >
         <div
-            class="flex text-blue-800 items-center py-2 text-dark text-center border-t border-gray-500 justify-center text-xl font-extralight form-header "
+            class="flex text-blue-800 items-center py-2 text-dark text-center justify-center text-xl font-extralight form-header "
         >
             Añadir categoría
         </div>
@@ -40,7 +40,7 @@
 
         <div class="flex justify-center mt-0 mb-0">
             <button
-                class="bg-transparent transition-all duration-500 ease-in-out hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border-b-2 border-blue-500 hover:border-transparent w-full"
+                class="bg-transparent transition-all duration-500 ease-in-out hover:bg-blue-700 text-white bg-blue-500 font-semibold hover:text-white py-2 px-4 border-b-2 border-blue-500 hover:border-transparent w-full"
             >
                 Guardar
             </button>

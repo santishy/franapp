@@ -2,10 +2,10 @@
     <form
         @submit.prevent="submit"
         v-can="definePermission"
-        class=" shadow-sm rounded-sm bg-white px-3 py-4"
+        class=" shadow-sm rounded-sm bg-white "
     >
         <div
-            class="flex items-center p-2  text-center justify-center text-xl font-extralight text-blue-800 form-header border-t border-gray-500"
+            class="flex items-center p-2  text-center justify-center text-xl font-extralight text-blue-800 form-header "
         >
             {{ getTitle }}
         </div>
@@ -104,7 +104,7 @@
 
         <div class="flex justify-center mt-0 mb-0">
             <button
-                class="bg-transparent transition-all duration-500 ease-in-out hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border-b-2 border-blue-500 hover:border-transparent w-full"
+                class="bg-blue-500 transition-all duration-500 ease-in-out hover:bg-blue-700 text-white font-semibold hover:text-white py-2 px-4 border-b-2 border-blue-500 hover:border-transparent w-full"
             >
                 {{ getButtonTitle }}
             </button>
