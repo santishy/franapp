@@ -11,7 +11,7 @@
             Añadir categoría
         </div>
         <div
-            class="flex items-center border-b border-t border-gray-500 py-2 relative"
+            class="flex items-center border-b border-t border-gray-300 py-2 relative"
         >
             <input
                 v-model="form.name"

@@ -12,7 +12,7 @@
                 >
                     Modificar contenido del ticket
                 </div>
-                <div class="flex items-center  border-t border-b border-gray-500 py-2 relative">
+                <div class="flex items-center   border-t border-b border-gray-300 py-2 relative">
                     <input
                         v-model="form.company"
                         name="companty"
@@ -27,7 +27,7 @@
                     >Compañia</label
                 >
                 </div>
-                <div class="flex items-center  border-t border-b border-gray-500 py-2 relative">
+                <div class="flex items-center  border-b border-gray-300 py-2 relative">
                     <input
                         v-model="form.address"
                         name="address"
@@ -42,7 +42,7 @@
                     >Dirección</label
                 >
                 </div>
-                <div class="flex items-center  border-t border-b border-gray-500 py-2 relative">
+                <div class="flex items-center  border-b border-gray-300 py-2 relative">
                     <input
                         v-model="form.phone_number"
                         name="phone_number"
@@ -57,7 +57,7 @@
                     >Telefono</label
                 >
                 </div>
-                <div class="flex items-center  border-t border-b border-gray-500 py-2 relative">
+                <div class="flex items-center   border-b border-gray-300 py-2 relative">
                     <textarea
                         v-model="form.footer"
                         name="footer"

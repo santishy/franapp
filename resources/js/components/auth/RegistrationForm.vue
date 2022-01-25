@@ -9,7 +9,7 @@
         >
             {{ getTitle }}
         </div>
-        <div class="flex items-center  border-t border-gray-500 py-2 relative">
+        <div class="flex items-center  border-t border-gray-300 py-2 relative">
             <select
                 v-model="form.inventory_id"
                 name="inventory_id"
@@ -32,7 +32,7 @@
                 >Almacenes</label
             >
         </div>
-        <div class="flex items-center  border-t border-gray-500 py-2 relative">
+        <div class="flex items-center  border-t border-gray-300 py-2 relative">
             <input
                 v-model="form.name"
                 name="name"
@@ -47,7 +47,7 @@
                 >Nombre</label
             >
         </div>
-        <div class="flex items-center  border-t border-gray-500 py-2 relative">
+        <div class="flex items-center  border-t border-gray-300 py-2 relative">
             <input
                 v-model="form.email"
                 name="email"
@@ -64,7 +64,7 @@
         </div>
         <div
             v-if="!editableUser"
-            class="flex items-center  border-t border-gray-500 py-2 relative"
+            class="flex items-center  border-t border-gray-300 py-2 relative"
         >
             <input
                 v-model="form.password"
@@ -82,7 +82,7 @@
         </div>
         <div
             v-if="!editableUser"
-            class="flex items-center  border-t border-b border-gray-500 py-2 relative"
+            class="flex items-center  border-t border-b border-gray-300 py-2 relative"
         >
             <input
                 v-model="form.password_confirmation"

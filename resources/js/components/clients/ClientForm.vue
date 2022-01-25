@@ -11,7 +11,7 @@
                 >
                     {{ getTitle }}
                 </div>
-                <div class="flex items-center  border-t border-gray-500 py-2 relative">
+                <div class="flex items-center  border-t border-gray-300 py-2 relative">
                     <input
                         v-model="form.name"
                         name="name"
@@ -26,7 +26,7 @@
                         >Nombre</label
                     >
                 </div>
-                <div class="flex items-center  border-t border-gray-500 py-2 relative">
+                <div class="flex items-center  border-t border-gray-300 py-2 relative">
                     <input
                         v-model="form.address"
                         name="address"
@@ -41,7 +41,7 @@
                         >Dirección</label
                     >
                 </div>
-                <div class="flex items-center  border-t border-gray-500 py-2 relative">
+                <div class="flex items-center  border-t border-gray-300 py-2 relative">
                     <input
                         v-model="form.phone_number"
                         name="phone_number"
@@ -56,7 +56,7 @@
                         >Telefono</label
                     >
                 </div>
-                <div class="flex items-center  border-t border-gray-500 py-2 relative">
+                <div class="flex items-center  border-t border-gray-300 py-2 relative">
                     <input
                         v-model="form.email"
                         name="email"
@@ -71,12 +71,12 @@
                         >Email</label
                     >
                 </div>
-                <div class="flex items-center  border-t border-gray-500 py-2 relative">
+                <div class="flex items-center  border-t border-gray-300 py-2 relative">
                     <select
                         name="assigned_price"
                         v-model="form.assigned_price"
                         plahceholder="Asigna un precio al cliente"
-                        class="block appearance-none w-full bg-white hover:border-gray-500 px-4 pl-60 pr-8 rounded leading-tight focus:outline-none focus:shadow-outline"
+                        class="block appearance-none w-full bg-white hover:border-gray-300 px-4 pl-60 pr-8 rounded leading-tight focus:outline-none focus:shadow-outline"
                     >
                         <option disabled value="" selected class="text-gray-600"
                             >Asignar un precio</option
@@ -91,12 +91,12 @@
                     >
                 </div>
                 <div
-                    class="flex items-center  border-t border-gray-500 py-2 relative"
+                    class="flex items-center  border-t border-gray-300 py-2 relative"
                     :class="[
                         'flex',
                         'items-center',
                         'border-b',
-                        this.errors ? 'border-transparent' : 'border-gray-500',
+                        this.errors ? 'border-transparent' : 'border-gray-300',
                         'py-2'
                     ]"
                 >

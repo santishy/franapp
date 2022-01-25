@@ -1,10 +1,10 @@
 <template>
     <ul
-        class="w-full rounded shadow bg-white p-4 divide-y divide-gray-500 text-gray-700"
+        class="w-full rounded shadow bg-white p-2 divide-y divide-gray-300 text-gray-700"
         v-can="'view categories'"
         v-cloak
     >
-        <li class="px-4  form-header text-center border-t border-gray-500 py-2 text-blue-800 text-xl font-semibold">
+        <li class="px-4  form-header text-center  text-blue-800 text-xl font-semibold">
             Categorías
         </li>
         <category-list-item

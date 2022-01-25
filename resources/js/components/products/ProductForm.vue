@@ -80,7 +80,7 @@
                         </p>
                     </div>
                 </div>
-                <category-select class="border-t border-gray-500" inputClass="pl-60" :categories="categories" :product="product">
+                <category-select class="border-t border-gray-300" inputClass="pl-60" :categories="categories" :product="product">
                     <template slot="labelCategory">
                         <label
                             for=""
@@ -99,7 +99,7 @@
                     class="
                         flex
                         items-center
-                        border-t border-gray-500
+                        border-t border-gray-300
                         py-2
                         relative
                     "
@@ -204,7 +204,7 @@
                         :class="[
                             this.errors
                                 ? 'border-transparent'
-                                : 'border-gray-500',
+                                : 'border-gray-300',
                             controlsContainerStyle
                         ]"
                     >
@@ -396,7 +396,7 @@ export default {
             return "appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 pl-60 leading-tight focus:outline-none";
         },
         controlsContainerStyle() {
-            return "flex items-center border-t border-gray-500 py-2 relative";
+            return "flex items-center border-t border-gray-300 py-2 relative";
         }
     }
 };

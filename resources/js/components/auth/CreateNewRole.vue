@@ -11,7 +11,7 @@
                 Nuevo Role
             </div>
             <div
-                class="flex items-center  border-t border-b border-gray-500 py-2 relative"
+                class="flex items-center  border-t border-b border-gray-300 py-2 relative"
             >
                 <input
                     v-model="form.name"
