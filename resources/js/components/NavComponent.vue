@@ -3,6 +3,7 @@
         <nav
             class="
                 flex
+                
                 items-center
                 justify-between
                 flex-wrap
@@ -12,6 +13,10 @@
                 p-4
                 sm:mx-4 sm:right-0 sm:left-64
                 fixed
+                w-full
+                sm:h-auto
+              
+                max-h-screen
                 sm:w-auto
                 top-0
                 z-10
@@ -22,7 +27,7 @@
                     >ISCO</span
                 >
             </div>
-            <div @click="toggleNavegation" class="block lg:hidden">
+            <div @click="toggleNavegation" class="block sm:hidden ">
                 <button
                     class="
                         flex
@@ -48,14 +53,17 @@
             </div>
             <div
                 id="navegation"
-                class="w-full block flex-grow lg:flex lg:items-center lg:w-auto"
+                class="w-full block hidden  flex-grow md:flex md:items-center md:w-auto max-h-screen h-screen sm:h-auto sm:overflow-y-hidden overflow-y-scroll"
             >
                 <div
                     class="
                         text-sm
-                        lg:flex-grow
+                        md:flex-grow
                         flex flex-wrap
-                        lg:justify-center
+                        flex-col
+                        
+                        md:flex-row
+                        md:justify-center
                     "
                 >
                     <dropdown-component
@@ -98,8 +106,8 @@
                         <div
                             class="
                                 flex flex-wrap
-                                items-center
-                                justify-center
+                                sm:items-center
+                                sm:justify-center
                                 font-mono
                             "
                         >
@@ -220,7 +228,7 @@
                     </template>
                 </accordion>
             </sidebar>
-            <div class="flex-1 ml-64">
+            <div class="flex-1 sm:ml-64">
                 <slot class="bg-blue-500" />
             </div>
         </main>

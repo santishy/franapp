@@ -6,7 +6,7 @@
     >
         <div
             @click="isOpen = !isOpen"
-            class="relative md:text-base text-lg"
+            class="relative md:text-base text-lg flex justify-between"
             :class="getZ"
         >
             {{ name }}
@@ -15,7 +15,7 @@
                 focusable="false"
                 data-prefix="fas"
                 data-icon="chevron-down"
-                class="inline-block"
+                class="inline-block "
                 role="img"
                 height="1em"
                 width="1em"
