@@ -5,7 +5,6 @@
                 flex flex-wrap
                 justify-center
                 items-center
-                
                 border-gray-300
                 relative
             "
@@ -19,7 +18,6 @@
                     bg-purple-200
                     absolute
                     left-0
-                    
                     py-5
                     px-4
                     leading-tight
@@ -29,28 +27,98 @@
             </h3>
             <inventory-search-filter class="w-full"></inventory-search-filter>
         </div>
-        <table v-if="inventory" class="text-center bg-white">
-            <thead class="bg-purple-200">
-                <th class="p-3">Categoría</th>
-                <th class="p-3">SKU</th>
-                <th class="p-3">Descripción</th>
-                <th class="p-3">Existencias</th>
-            </thead>
-            <transition-group
-                tag="tbody"
-                name="bounce"
-                @after-leave="afterLeave"
+        <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
+            <div
+                class="
+                    inline-block
+                    min-w-full
+                    shadow
+                    rounded-lg
+                    overflow-hidden
+                "
             >
-                <produc-list-item
-                    v-for="(product, index) in products"
-                    :key="product.id"
-                    :index="index"
-                    :product="product"
-                    :inventory="inventory"
-                >
-                </produc-list-item>
-            </transition-group>
-        </table>
+                <table v-if="inventory" class="min-w-full leading-normal">
+                    <thead class="bg-purple-200">
+                        <tr>
+                            <th
+                                class="
+                                    px-5
+                                    py-3
+                                    border-b-2 border-gray-200
+                                    bg-gray-100
+                                    text-left text-xs
+                                    font-semibold
+                                    text-gray-600
+                                    uppercase
+                                    tracking-wider
+                                "
+                            >
+                                Categoría
+                            </th>
+                            <th
+                                class="
+                                    px-5
+                                    py-3
+                                    border-b-2 border-gray-200
+                                    bg-gray-100
+                                    text-left text-xs
+                                    font-semibold
+                                    text-gray-600
+                                    uppercase
+                                    tracking-wider
+                                "
+                            >
+                                SKU
+                            </th>
+                            <th
+                                class="
+                                    px-5
+                                    py-3
+                                    border-b-2 border-gray-200
+                                    bg-gray-100
+                                    text-left text-xs
+                                    font-semibold
+                                    text-gray-600
+                                    uppercase
+                                    tracking-wider
+                                "
+                            >
+                                Descripción
+                            </th>
+                            <th
+                                class="
+                                    px-5
+                                    py-3
+                                    border-b-2 border-gray-200
+                                    bg-gray-100
+                                    text-left text-xs
+                                    font-semibold
+                                    text-gray-600
+                                    uppercase
+                                    tracking-wider
+                                "
+                            >
+                                Existencias
+                            </th>
+                        </tr>
+                    </thead>
+                    <transition-group
+                        tag="tbody"
+                        name="bounce"
+                        @after-leave="afterLeave"
+                    >
+                        <produc-list-item
+                            v-for="(product, index) in products"
+                            :key="product.id"
+                            :index="index"
+                            :product="product"
+                            :inventory="inventory"
+                        >
+                        </produc-list-item>
+                    </transition-group>
+                </table>
+            </div>
+        </div>
         <infinite-loading
             :identifier="infiniteId"
             @infinite="getProducts"

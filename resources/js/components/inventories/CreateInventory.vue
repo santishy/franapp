@@ -14,35 +14,35 @@
                     Crear Almacén
                 </div>
                 <div
-                    class="flex items-center border-b border-t border-gray-300 py-2 relative"
+                    class="flex flex-col-reverse px-2 sm:px-0 sm:flex-row sm:items-center sm:border-b sm:border-t border-gray-300 sm:py-2 sm:relative"
                 >
                     <input
                         v-model="form.name"
                         name="name"
-                        class="appearance-none static bg-transparent border-none w-full text-gray-700 mr-3 py-1 pr-2 pl-56 leading-tight focus:outline-none"
+                        class="appearance-none  sm:shadow-none static sm:p-0 p-2 bg-gray-200 sm:bg-transparent border-none w-full text-gray-700 mr-3 sm:py-1 sm:pr-2 sm:pl-56 leading-tight focus:outline-none"
                         type="text"
                         placeholder="Jiquilpan..."
                         aria-label="Full name"
                     />
                     <label
                         for=""
-                        class="absolute  pl-0 bg-gray-200 h-full flex items-center w-52 justify-center text-indigo-800 font-mono"
+                        class="sm:absolute pl-2  sm:pl-0 sm:p-0 p-2 sm:bg-gray-200 h-full flex items-center sm:w-52 sm:justify-center text-indigo-800 font-mono"
                         >Nombre</label
                     >
                 </div>
                 <div
-                    class="flex items-center border-b border-gray-300 py-2 relative"
+                    class="flex px-2 sm:px-0  flex-col-reverse sm:flex-row sm:items-center sm:border-b sm:border-t border-gray-300 sm:py-2 sm:relative"
                 >
                     <input
                         v-model="form.address"
                         name="address"
-                        class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 pr-2 pl-56  leading-tight focus:outline-none"
+                        class=" sm:shadow-none appearance-none static sm:p-0 p-2 bg-gray-200 sm:bg-transparent border-none w-full text-gray-700 mr-3 sm:py-1 sm:pr-2 sm:pl-56 leading-tight focus:outline-none"
                         type="text"
                         placeholder="DIRECCION"
                         aria-label="Full name"
                     />
                     <label
-                        class="absolute pl-0 bg-gray-200 h-full flex items-center w-52 justify-center text-indigo-800 font-mono"
+                        class="sm:absolute  pl-2 sm:pl-0 sm:p-0 p-2 sm:bg-gray-200 h-full flex items-center sm:w-52 sm:justify-center text-indigo-800 font-mono"
                         >Dirección</label
                     >
                 </div>
@@ -50,7 +50,7 @@
                     <errors-component :errors-found="errors" />
                 </div>
 
-                <div class="flex justify-center mt-0 mb-0">
+                <div class="flex justify-center mt-4 sm:mt-0 mb-0">
                     <button
                         class="bg-blue-500 transition-all duration-500 ease-in-out hover:bg-blue-700 text-gray-100 font-semibold hover:text-white py-2 px-4 border-b-2 border-blue-500 hover:border-transparent w-full"
                     >

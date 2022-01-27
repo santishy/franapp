@@ -3,7 +3,6 @@
         <nav
             class="
                 flex
-                
                 items-center
                 justify-between
                 flex-wrap
@@ -15,7 +14,6 @@
                 fixed
                 w-full
                 sm:h-auto
-              
                 max-h-screen
                 sm:w-auto
                 top-0
@@ -27,7 +25,7 @@
                     >ISCO</span
                 >
             </div>
-            <div @click="toggleNavegation" class="block sm:hidden ">
+            <div @click="toggleNavegation" class="block sm:hidden">
                 <button
                     class="
                         flex
@@ -53,17 +51,24 @@
             </div>
             <div
                 id="navegation"
-                class="w-full block hidden  flex-grow md:flex md:items-center md:w-auto max-h-screen h-screen sm:h-auto sm:overflow-y-hidden overflow-y-scroll"
+                class="
+                    w-full
+                    block
+                    hidden
+                    flex-grow
+                    md:flex md:items-center md:w-auto
+                    max-h-screen
+                    h-screen
+                    sm:h-auto sm:overflow-y-hidden
+                    overflow-y-scroll
+                "
             >
                 <div
                     class="
                         text-sm
                         md:flex-grow
-                        flex flex-wrap
-                        flex-col
-                        
-                        md:flex-row
-                        md:justify-center
+                        flex flex-wrap flex-col
+                        md:flex-row md:justify-center
                     "
                 >
                     <dropdown-component
@@ -93,7 +98,8 @@
                     <a
                         href="/sales/create"
                         class="
-                            block
+                            sm:block
+                            hidden
                             mt-4
                             lg:inline-block lg:mt-0
                             text-blue-700
@@ -106,8 +112,7 @@
                         <div
                             class="
                                 flex flex-wrap
-                                sm:items-center
-                                sm:justify-center
+                                sm:items-center sm:justify-center
                                 font-mono
                             "
                         >
@@ -128,8 +133,39 @@
                         :items="ConfigMenu"
                         class="md:relative lg:hidden"
                     />
+                    <a
+                        href="/sales/create"
+                        class="
+                            sm:hidden
+                            border border-t border-b
+                            border-gray-300
+                            mt-2
+                            p-2
+                            rounded-sm bg-gray-300
+                            lg:mt-0
+                            text-blue-700
+                            sm:hover:text-blue-800
+                            
+                            md:text-base
+                            text-lg
+                        "
+                    >
+                        <div
+                            class="
+                                flex flex-wrap
+                                items-center justify-center
+                                font-mono
+                            "
+                        >
+                            <shopping-bag></shopping-bag>
+                            <span
+                                class="self-end leading-none font-xl font-bold"
+                                >Ventas</span
+                            >
+                        </div>
+                    </a>
                 </div>
-                <div class="flex flex-wrap items-center">
+                <div class="flex flex-wrap items-center w-full sm:w-auto">
                     <form
                         v-if="impersonation_id"
                         action="/impersonations"
@@ -137,6 +173,7 @@
                         class="
                             block
                             mt-4
+                           
                             lg:inline-block lg:mt-0
                             md:hover:text-white
                             mr-4
@@ -151,17 +188,20 @@
                                 rounded
                                 px-2
                                 py-1
+                                 
+                                
                             "
                         >
                             Regresar <i class="fas fa-user"></i>
                         </button>
                     </form>
-                    <form action="/logout" method="POST">
+                    <form action="/logout" method="POST" class=" w-full sm:w-auto">
                         <input type="hidden" name="_token" :value="crfsToken" />
                         <button
                             href="/logout"
                             class="
                                 inline-block
+                                w-full sm:w-auto
                                 text-sm
                                 px-4
                                 py-2

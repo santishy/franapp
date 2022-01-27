@@ -42,7 +42,7 @@
                 v-for="item in items"
                 :key="item.name"
                 :href="item.url"
-                class="md:pl-1 text-gray-700 bg-red-400 font-bold block md:text-gray-800 md:mt-0 py-2 md:border-none border-b border-red-500  md:bg-transparent md:p-1 md:hover:text-red-400"
+                class="sm:pl-1 pl-2 text-blue-600 bg-gray-300 font-bold block md:text-gray-800 md:mt-0 py-2 md:border-none border-b border-white  md:bg-transparent md:p-1 md:hover:text-red-400"
             >
                 {{ item.name }}
             </a>

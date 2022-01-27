@@ -2719,6 +2719,46 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -4843,6 +4883,74 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -29404,7 +29512,7 @@ var render = function () {
                 {
                   key: item.name,
                   staticClass:
-                    "md:pl-1 text-gray-700 bg-red-400 font-bold block md:text-gray-800 md:mt-0 py-2 md:border-none border-b border-red-500  md:bg-transparent md:p-1 md:hover:text-red-400",
+                    "sm:pl-1 pl-2 text-blue-600 bg-gray-300 font-bold block md:text-gray-800 md:mt-0 py-2 md:border-none border-b border-white  md:bg-transparent md:p-1 md:hover:text-red-400",
                   attrs: { href: item.url },
                 },
                 [_vm._v("\n            " + _vm._s(item.name) + "\n        ")]
@@ -29569,7 +29677,7 @@ var render = function () {
         "nav",
         {
           staticClass:
-            "\n            flex\n            \n            items-center\n            justify-between\n            flex-wrap\n            rounded-b-sm\n            bg-white\n            shadow-sm\n            p-4\n            sm:mx-4 sm:right-0 sm:left-64\n            fixed\n            w-full\n            sm:h-auto\n          \n            max-h-screen\n            sm:w-auto\n            top-0\n            z-10\n        ",
+            "\n            flex\n            items-center\n            justify-between\n            flex-wrap\n            rounded-b-sm\n            bg-white\n            shadow-sm\n            p-4\n            sm:mx-4 sm:right-0 sm:left-64\n            fixed\n            w-full\n            sm:h-auto\n            max-h-screen\n            sm:w-auto\n            top-0\n            z-10\n        ",
         },
         [
           _vm._m(0),
@@ -29577,7 +29685,7 @@ var render = function () {
           _c(
             "div",
             {
-              staticClass: "block sm:hidden ",
+              staticClass: "block sm:hidden",
               on: { click: _vm.toggleNavegation },
             },
             [
@@ -29616,7 +29724,7 @@ var render = function () {
             "div",
             {
               staticClass:
-                "w-full block hidden  flex-grow md:flex md:items-center md:w-auto max-h-screen h-screen sm:h-auto sm:overflow-y-hidden overflow-y-scroll",
+                "\n                w-full\n                block\n                hidden\n                flex-grow\n                md:flex md:items-center md:w-auto\n                max-h-screen\n                h-screen\n                sm:h-auto sm:overflow-y-hidden\n                overflow-y-scroll\n            ",
               attrs: { id: "navegation" },
             },
             [
@@ -29624,7 +29732,7 @@ var render = function () {
                 "div",
                 {
                   staticClass:
-                    "\n                    text-sm\n                    md:flex-grow\n                    flex flex-wrap\n                    flex-col\n                    \n                    md:flex-row\n                    md:justify-center\n                ",
+                    "\n                    text-sm\n                    md:flex-grow\n                    flex flex-wrap flex-col\n                    md:flex-row md:justify-center\n                ",
                 },
                 [
                   _c("dropdown-component", {
@@ -29662,7 +29770,7 @@ var render = function () {
                     "a",
                     {
                       staticClass:
-                        "\n                        block\n                        mt-4\n                        lg:inline-block lg:mt-0\n                        text-blue-700\n                        sm:hover:text-blue-800\n                        mr-4\n                        md:text-base\n                        text-lg\n                    ",
+                        "\n                        sm:block\n                        hidden\n                        mt-4\n                        lg:inline-block lg:mt-0\n                        text-blue-700\n                        sm:hover:text-blue-800\n                        mr-4\n                        md:text-base\n                        text-lg\n                    ",
                       attrs: { href: "/sales/create" },
                     },
                     [
@@ -29670,7 +29778,7 @@ var render = function () {
                         "div",
                         {
                           staticClass:
-                            "\n                            flex flex-wrap\n                            sm:items-center\n                            sm:justify-center\n                            font-mono\n                        ",
+                            "\n                            flex flex-wrap\n                            sm:items-center sm:justify-center\n                            font-mono\n                        ",
                         },
                         [
                           _c("shopping-bag"),
@@ -29698,61 +29806,103 @@ var render = function () {
                     staticClass: "md:relative lg:hidden",
                     attrs: { name: "Configuración", items: _vm.ConfigMenu },
                   }),
+                  _vm._v(" "),
+                  _c(
+                    "a",
+                    {
+                      staticClass:
+                        "\n                        sm:hidden\n                        border border-t border-b\n                        border-gray-300\n                        mt-2\n                        p-2\n                        rounded-sm bg-gray-300\n                        lg:mt-0\n                        text-blue-700\n                        sm:hover:text-blue-800\n                        \n                        md:text-base\n                        text-lg\n                    ",
+                      attrs: { href: "/sales/create" },
+                    },
+                    [
+                      _c(
+                        "div",
+                        {
+                          staticClass:
+                            "\n                            flex flex-wrap\n                            items-center justify-center\n                            font-mono\n                        ",
+                        },
+                        [
+                          _c("shopping-bag"),
+                          _vm._v(" "),
+                          _c(
+                            "span",
+                            {
+                              staticClass:
+                                "self-end leading-none font-xl font-bold",
+                            },
+                            [_vm._v("Ventas")]
+                          ),
+                        ],
+                        1
+                      ),
+                    ]
+                  ),
                 ],
                 1
               ),
               _vm._v(" "),
-              _c("div", { staticClass: "flex flex-wrap items-center" }, [
-                _vm.impersonation_id
-                  ? _c(
-                      "form",
-                      {
-                        staticClass:
-                          "\n                        block\n                        mt-4\n                        lg:inline-block lg:mt-0\n                        md:hover:text-white\n                        mr-4\n                    ",
-                        attrs: { action: "/impersonations", method: "post" },
-                      },
-                      [
-                        _c("input", {
-                          attrs: {
-                            type: "hidden",
-                            name: "_method",
-                            value: "delete",
-                          },
-                        }),
-                        _vm._v(" "),
-                        _c("input", {
-                          attrs: { type: "hidden", name: "_token" },
-                          domProps: { value: _vm.crfsToken },
-                        }),
-                        _vm._v(" "),
-                        _vm._m(1),
-                      ]
-                    )
-                  : _vm._e(),
-                _vm._v(" "),
-                _c("form", { attrs: { action: "/logout", method: "POST" } }, [
-                  _c("input", {
-                    attrs: { type: "hidden", name: "_token" },
-                    domProps: { value: _vm.crfsToken },
-                  }),
+              _c(
+                "div",
+                { staticClass: "flex flex-wrap items-center w-full sm:w-auto" },
+                [
+                  _vm.impersonation_id
+                    ? _c(
+                        "form",
+                        {
+                          staticClass:
+                            "\n                        block\n                        mt-4\n                       \n                        lg:inline-block lg:mt-0\n                        md:hover:text-white\n                        mr-4\n                    ",
+                          attrs: { action: "/impersonations", method: "post" },
+                        },
+                        [
+                          _c("input", {
+                            attrs: {
+                              type: "hidden",
+                              name: "_method",
+                              value: "delete",
+                            },
+                          }),
+                          _vm._v(" "),
+                          _c("input", {
+                            attrs: { type: "hidden", name: "_token" },
+                            domProps: { value: _vm.crfsToken },
+                          }),
+                          _vm._v(" "),
+                          _vm._m(1),
+                        ]
+                      )
+                    : _vm._e(),
                   _vm._v(" "),
                   _c(
-                    "button",
+                    "form",
                     {
-                      staticClass:
-                        "\n                            inline-block\n                            text-sm\n                            px-4\n                            py-2\n                            leading-none\n                            border\n                            bg-white\n                            rounded\n                            text-gray-800\n                            border-teal-300\n                            hover:border-transparent\n                            md:hover:text-teal-500 md:hover:bg-white\n                            mt-4\n                            lg:mt-0\n                        ",
-                      attrs: { href: "/logout" },
+                      staticClass: " w-full sm:w-auto",
+                      attrs: { action: "/logout", method: "POST" },
                     },
                     [
-                      _vm._v(
-                        "\n                        " +
-                          _vm._s(_vm.getCurrentUser.name) +
-                          " | Salir\n                    "
+                      _c("input", {
+                        attrs: { type: "hidden", name: "_token" },
+                        domProps: { value: _vm.crfsToken },
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticClass:
+                            "\n                            inline-block\n                            w-full sm:w-auto\n                            text-sm\n                            px-4\n                            py-2\n                            leading-none\n                            border\n                            bg-white\n                            rounded\n                            text-gray-800\n                            border-teal-300\n                            hover:border-transparent\n                            md:hover:text-teal-500 md:hover:bg-white\n                            mt-4\n                            lg:mt-0\n                        ",
+                          attrs: { href: "/logout" },
+                        },
+                        [
+                          _vm._v(
+                            "\n                        " +
+                              _vm._s(_vm.getCurrentUser.name) +
+                              " | Salir\n                    "
+                          ),
+                        ]
                       ),
                     ]
                   ),
-                ]),
-              ]),
+                ]
+              ),
             ]
           ),
         ]
@@ -29917,7 +30067,7 @@ var staticRenderFns = [
       "button",
       {
         staticClass:
-          "\n                            text-gray-300\n                            border-red-900 border\n                            rounded\n                            px-2\n                            py-1\n                        ",
+          "\n                            text-gray-300\n                            border-red-900 border\n                            rounded\n                            px-2\n                            py-1\n                             \n                            \n                        ",
       },
       [
         _vm._v("\n                        Regresar "),
@@ -32719,7 +32869,7 @@ var render = function () {
               "div",
               {
                 staticClass:
-                  "flex items-center border-b border-t border-gray-300 py-2 relative",
+                  "flex flex-col-reverse px-2 sm:px-0 sm:flex-row sm:items-center sm:border-b sm:border-t border-gray-300 sm:py-2 sm:relative",
               },
               [
                 _c("input", {
@@ -32732,7 +32882,7 @@ var render = function () {
                     },
                   ],
                   staticClass:
-                    "appearance-none static bg-transparent border-none w-full text-gray-700 mr-3 py-1 pr-2 pl-56 leading-tight focus:outline-none",
+                    "appearance-none  sm:shadow-none static sm:p-0 p-2 bg-gray-200 sm:bg-transparent border-none w-full text-gray-700 mr-3 sm:py-1 sm:pr-2 sm:pl-56 leading-tight focus:outline-none",
                   attrs: {
                     name: "name",
                     type: "text",
@@ -32754,7 +32904,7 @@ var render = function () {
                   "label",
                   {
                     staticClass:
-                      "absolute  pl-0 bg-gray-200 h-full flex items-center w-52 justify-center text-indigo-800 font-mono",
+                      "sm:absolute pl-2  sm:pl-0 sm:p-0 p-2 sm:bg-gray-200 h-full flex items-center sm:w-52 sm:justify-center text-indigo-800 font-mono",
                     attrs: { for: "" },
                   },
                   [_vm._v("Nombre")]
@@ -32766,7 +32916,7 @@ var render = function () {
               "div",
               {
                 staticClass:
-                  "flex items-center border-b border-gray-300 py-2 relative",
+                  "flex px-2 sm:px-0  flex-col-reverse sm:flex-row sm:items-center sm:border-b sm:border-t border-gray-300 sm:py-2 sm:relative",
               },
               [
                 _c("input", {
@@ -32779,7 +32929,7 @@ var render = function () {
                     },
                   ],
                   staticClass:
-                    "appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 pr-2 pl-56  leading-tight focus:outline-none",
+                    " sm:shadow-none appearance-none static sm:p-0 p-2 bg-gray-200 sm:bg-transparent border-none w-full text-gray-700 mr-3 sm:py-1 sm:pr-2 sm:pl-56 leading-tight focus:outline-none",
                   attrs: {
                     name: "address",
                     type: "text",
@@ -32801,7 +32951,7 @@ var render = function () {
                   "label",
                   {
                     staticClass:
-                      "absolute pl-0 bg-gray-200 h-full flex items-center w-52 justify-center text-indigo-800 font-mono",
+                      "sm:absolute  pl-2 sm:pl-0 sm:p-0 p-2 sm:bg-gray-200 h-full flex items-center sm:w-52 sm:justify-center text-indigo-800 font-mono",
                   },
                   [_vm._v("Dirección")]
                 ),
@@ -32819,16 +32969,20 @@ var render = function () {
               1
             ),
             _vm._v(" "),
-            _c("div", { staticClass: "flex justify-center mt-0 mb-0" }, [
-              _c(
-                "button",
-                {
-                  staticClass:
-                    "bg-blue-500 transition-all duration-500 ease-in-out hover:bg-blue-700 text-gray-100 font-semibold hover:text-white py-2 px-4 border-b-2 border-blue-500 hover:border-transparent w-full",
-                },
-                [_vm._v("\n                    Guardar\n                ")]
-              ),
-            ]),
+            _c(
+              "div",
+              { staticClass: "flex justify-center mt-4 sm:mt-0 mb-0" },
+              [
+                _c(
+                  "button",
+                  {
+                    staticClass:
+                      "bg-blue-500 transition-all duration-500 ease-in-out hover:bg-blue-700 text-gray-100 font-semibold hover:text-white py-2 px-4 border-b-2 border-blue-500 hover:border-transparent w-full",
+                  },
+                  [_vm._v("\n                    Guardar\n                ")]
+                ),
+              ]
+            ),
             _vm._v(" "),
             _c("notifications", { attrs: { group: "foo" } }),
           ],
@@ -33057,12 +33211,23 @@ var render = function () {
             expression: "'view warehouses'",
           },
         ],
-        staticClass: "w-full px-4 mx-auto  flex",
+        staticClass:
+          "w-full px-4 mx-auto  flex flex-wrap max-w-full overscroll-auto",
       },
       [
-        _c("div", { staticClass: "w-1/5 " }, [_c("inventory-list")], 1),
+        _c(
+          "div",
+          { staticClass: "w-full max-w-full sm:w-1/5 " },
+          [_c("inventory-list")],
+          1
+        ),
         _vm._v(" "),
-        _c("div", { staticClass: "w-4/5" }, [_c("product-list")], 1),
+        _c(
+          "div",
+          { staticClass: "w-full max-w-full sm:w-4/5" },
+          [_c("product-list")],
+          1
+        ),
       ]
     ),
   ])
@@ -33090,21 +33255,27 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("tr", [
-    _c("td", { staticClass: "border px-4 py-2" }, [
-      _vm._v(_vm._s(_vm.product.category_name)),
-    ]),
-    _vm._v(" "),
-    _c("td", { staticClass: "border px-4 py-2" }, [
-      _vm._v(_vm._s(_vm.product.sku)),
-    ]),
-    _vm._v(" "),
-    _c("td", { staticClass: "border px-4 py-2" }, [
-      _vm._v(_vm._s(_vm.product.description)),
-    ]),
+    _c(
+      "td",
+      { staticClass: "px-5 py-5 border-b border-gray-200 bg-white text-sm" },
+      [_vm._v(_vm._s(_vm.product.category_name))]
+    ),
     _vm._v(" "),
     _c(
       "td",
-      { staticClass: "border px-4 py-2" },
+      { staticClass: "px-5 py-5 border-b border-gray-200 bg-white text-sm" },
+      [_vm._v(_vm._s(_vm.product.sku))]
+    ),
+    _vm._v(" "),
+    _c(
+      "td",
+      { staticClass: "px-5 py-5 border-b border-gray-200 bg-white text-sm" },
+      [_vm._v(_vm._s(_vm.product.description))]
+    ),
+    _vm._v(" "),
+    _c(
+      "td",
+      { staticClass: "px-5 py-5 border-b border-gray-200 bg-white text-sm" },
       [
         _vm.show
           ? _c("input-stock", {
@@ -33167,14 +33338,14 @@ var render = function () {
             "div",
             {
               staticClass:
-                "\n            flex flex-wrap\n            justify-center\n            items-center\n            \n            border-gray-300\n            relative\n        ",
+                "\n            flex flex-wrap\n            justify-center\n            items-center\n            border-gray-300\n            relative\n        ",
             },
             [
               _c(
                 "h3",
                 {
                   staticClass:
-                    "\n                w-64\n                text-gray-800\n                font-mono font-semibold\n                text-center\n                bg-purple-200\n                absolute\n                left-0\n                \n                py-5\n                px-4\n                leading-tight\n            ",
+                    "\n                w-64\n                text-gray-800\n                font-mono font-semibold\n                text-center\n                bg-purple-200\n                absolute\n                left-0\n                py-5\n                px-4\n                leading-tight\n            ",
                 },
                 [
                   _c("warehouse-icon"),
@@ -33188,35 +33359,50 @@ var render = function () {
             1
           ),
           _vm._v(" "),
-          _vm.inventory
-            ? _c(
-                "table",
-                { staticClass: "text-center bg-white" },
+          _c(
+            "div",
+            { staticClass: "-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto" },
+            [
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "\n                inline-block\n                min-w-full\n                shadow\n                rounded-lg\n                overflow-hidden\n            ",
+                },
                 [
-                  _vm._m(0),
-                  _vm._v(" "),
-                  _c(
-                    "transition-group",
-                    {
-                      attrs: { tag: "tbody", name: "bounce" },
-                      on: { "after-leave": _vm.afterLeave },
-                    },
-                    _vm._l(_vm.products, function (product, index) {
-                      return _c("produc-list-item", {
-                        key: product.id,
-                        attrs: {
-                          index: index,
-                          product: product,
-                          inventory: _vm.inventory,
-                        },
-                      })
-                    }),
-                    1
-                  ),
-                ],
-                1
-              )
-            : _vm._e(),
+                  _vm.inventory
+                    ? _c(
+                        "table",
+                        { staticClass: "min-w-full leading-normal" },
+                        [
+                          _vm._m(0),
+                          _vm._v(" "),
+                          _c(
+                            "transition-group",
+                            {
+                              attrs: { tag: "tbody", name: "bounce" },
+                              on: { "after-leave": _vm.afterLeave },
+                            },
+                            _vm._l(_vm.products, function (product, index) {
+                              return _c("produc-list-item", {
+                                key: product.id,
+                                attrs: {
+                                  index: index,
+                                  product: product,
+                                  inventory: _vm.inventory,
+                                },
+                              })
+                            }),
+                            1
+                          ),
+                        ],
+                        1
+                      )
+                    : _vm._e(),
+                ]
+              ),
+            ]
+          ),
           _vm._v(" "),
           _c("infinite-loading", {
             ref: "infiniteLoading",
@@ -33234,13 +33420,59 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("thead", { staticClass: "bg-purple-200" }, [
-      _c("th", { staticClass: "p-3" }, [_vm._v("Categoría")]),
-      _vm._v(" "),
-      _c("th", { staticClass: "p-3" }, [_vm._v("SKU")]),
-      _vm._v(" "),
-      _c("th", { staticClass: "p-3" }, [_vm._v("Descripción")]),
-      _vm._v(" "),
-      _c("th", { staticClass: "p-3" }, [_vm._v("Existencias")]),
+      _c("tr", [
+        _c(
+          "th",
+          {
+            staticClass:
+              "\n                                px-5\n                                py-3\n                                border-b-2 border-gray-200\n                                bg-gray-100\n                                text-left text-xs\n                                font-semibold\n                                text-gray-600\n                                uppercase\n                                tracking-wider\n                            ",
+          },
+          [
+            _vm._v(
+              "\n                            Categoría\n                        "
+            ),
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "th",
+          {
+            staticClass:
+              "\n                                px-5\n                                py-3\n                                border-b-2 border-gray-200\n                                bg-gray-100\n                                text-left text-xs\n                                font-semibold\n                                text-gray-600\n                                uppercase\n                                tracking-wider\n                            ",
+          },
+          [
+            _vm._v(
+              "\n                            SKU\n                        "
+            ),
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "th",
+          {
+            staticClass:
+              "\n                                px-5\n                                py-3\n                                border-b-2 border-gray-200\n                                bg-gray-100\n                                text-left text-xs\n                                font-semibold\n                                text-gray-600\n                                uppercase\n                                tracking-wider\n                            ",
+          },
+          [
+            _vm._v(
+              "\n                            Descripción\n                        "
+            ),
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "th",
+          {
+            staticClass:
+              "\n                                px-5\n                                py-3\n                                border-b-2 border-gray-200\n                                bg-gray-100\n                                text-left text-xs\n                                font-semibold\n                                text-gray-600\n                                uppercase\n                                tracking-wider\n                            ",
+          },
+          [
+            _vm._v(
+              "\n                            Existencias\n                        "
+            ),
+          ]
+        ),
+      ]),
     ])
   },
 ]
