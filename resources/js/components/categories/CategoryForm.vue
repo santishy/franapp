@@ -7,26 +7,22 @@
     >
         <div
             class="
-                flex
-                text-blue-800
-                items-center
-                py-2
-                text-dark text-center
-                justify-center
-                text-xl
-                font-extralight
                 form-header
+                p-2
+                text-dark text-center text-xl
+                font-extralight
+                text-blue-800
             "
         >
             Añadir categoría
         </div>
         <div
             class="
-                flex
-                items-center
-                border-b border-t border-gray-300
-                py-2
-                relative
+                flex flex-col-reverse
+                px-2
+                sm:px-0 sm:flex-row sm:items-center sm:border-b sm:border-t
+                border-gray-300
+                sm:py-2 sm:relative
             "
         >
             <input
@@ -34,16 +30,19 @@
                 name="name"
                 class="
                     appearance-none
-                    bg-transparent
+                    sm:shadow-none
+                    static
+                    sm:p-0
+                    p-2
+                    bg-gray-200
+                    sm:bg-transparent
                     border-none
                     w-full
                     text-gray-700
                     mr-3
-                    py-1
-                    pl-32
+                    sm:py-1 sm:pr-2 sm:pl-56
                     leading-tight
                     focus:outline-none
-                    
                 "
                 :class="[
                     'flex',
@@ -56,21 +55,21 @@
                 placeholder="CATEGORÍA"
                 aria-label="Full name"
             />
-            
+
             <label
                 for=""
                 class="
-                    absolute
-                    pl-0
-                    bg-gray-200
+                    sm:absolute
+                    pl-2
+                    sm:pl-0 sm:p-0
+                    p-2
+                    sm:bg-gray-200
                     h-full
                     flex
                     items-center
-                    w-32
-                    justify-center
+                    sm:w-52 sm:justify-center
                     text-indigo-800
                     font-mono
-                    
                 "
                 >Nombre</label
             >
@@ -82,6 +81,8 @@
         <div class="flex justify-center mt-0 mb-0">
             <button
                 class="
+                    mt-2
+                    sm:mt-0
                     bg-transparent
                     transition-all
                     duration-500
