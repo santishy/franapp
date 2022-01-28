@@ -1,11 +1,11 @@
 <template>
     <nav-component>
-        <div class="flex flex-wrap items-baseline w-full mx-4 rounded-sm">
+        <div class="flex flex-wrap sm:items-baseline sm:w-full mx-4 rounded-sm">
             <category-form 
-                class="self-start "
+                class="sm:self-start "
                 uri='/categories'
             ></category-form>
-            <div class=" ml-4 w-6/12 p-4 bg-white rounded-sm">
+            <div class=" sm:ml-4 w-full sm:w-6/12 p-4 bg-white rounded-sm">
                 <div class="bg-gray-300 shadow-inner p-2 rounded-sm">
                 <category-list ></category-list>
                 </div>

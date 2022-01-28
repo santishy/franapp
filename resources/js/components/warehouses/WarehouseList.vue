@@ -2,21 +2,91 @@
     <nav-component>
         <div class="w-full mx-auto flex justify-center px-4">
             <div
-                class="flex justify-center bg-white shadow-sm w-full rounded max-w-full sm:overflow-x-hidden overflow-x-auto"
+                class="
+                    flex
+                    justify-center
+                    bg-white
+                    shadow-sm
+                    w-full
+                    rounded
+                    max-w-full
+                    sm:overflow-x-hidden
+                    overflow-x-auto
+                "
             >
                 <table
                     v-if="inventories.length"
                     v-can="'view warehouses'"
-                    class="table-auto"
+                    class="
+                        min-w-full
+                        border-collapse
+                        block
+                        md:table
+                        shadow-sm
+                        text-center
+                        rounded-lg
+                    "
                 >
-                    <thead>
-                        <tr class="bg-danger">
-                            <th class="px-4 py-2">Nombre</th>
-                            <th class="px-4 py-2">Dirección</th>
-                            <th class="px-4 py-2">Acciones</th>
+                    <thead class="block md:table-header-group ">
+                        <tr
+                            class="
+                                border-b border-gray-500
+                                rounded-t-sm
+                                md:border-none
+                                block
+                                md:table-row
+                                absolute
+                                -top-full
+                                md:top-auto
+                                -left-full
+                                md:left-auto md:relative
+                            "
+                        >
+                            <th
+                                class="
+                                    bg-blue-700
+                                    p-2
+                                    text-white
+                                    font-semibold
+                                    md:border md:border-grey-500
+                                    text-left
+                                    block
+                                    md:table-cell
+                                "
+                            >
+                                Nombre
+                            </th>
+                            <th
+                                class="
+                                    bg-blue-700
+                                    p-2
+                                    text-white
+                                    font-semibold
+                                    md:border md:border-grey-500
+                                    text-left
+                                    block
+                                    md:table-cell
+                                "
+                            >
+                                Dirección
+                            </th>
+                            <th
+                                class="
+                                    bg-blue-700
+                                    p-2
+                                    text-white
+                                    font-semibold
+                                    md:border md:border-grey-500
+                                    text-left
+                                    block
+                                    md:table-cell
+                                "
+                            >
+                                Acciones
+                            </th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="block md:table-row-group alternate-table-row">
                         <warehouse-list-item
                             v-for="(inventory, index) in localInventories"
                             :key="inventory.id"
@@ -28,9 +98,7 @@
             </div>
         </div>
         <information-component>
-            <template slot="title">
-                Almacenes
-            </template>
+            <template slot="title"> Almacenes </template>
 
             <message
                 :title="modalDataConfirm.title"
@@ -62,17 +130,17 @@ export default {
         Agree,
         WarehouseListItem,
         InformationComponent,
-        Message
+        Message,
     },
     props: {
         inventories: {
-            type: Array
-        }
+            type: Array,
+        },
     },
     data() {
         return {
             localInventories: [],
-            show:true
+            show: true,
         };
     },
     created() {
@@ -85,7 +153,7 @@ export default {
             if (this.modalDataConfirm?.inventory)
                 axios
                     .delete("/warehouses/" + this.modalDataConfirm.inventory.id)
-                    .then(res => {
+                    .then((res) => {
                         if (res.data.deleted) {
                             console.log(this.modalDataConfirm.index);
                             this.localInventories.splice(
@@ -97,35 +165,36 @@ export default {
                             this.setModalDataConfirm({
                                 title: "No se pudo eliminar",
                                 message: res.data.message,
-                                actionEnabled:false
+                                actionEnabled: false,
                             });
                             EventBus.$emit("open-modal", true);
                         }
                     })
-                    .catch(err => {
-                        this.getErrors(
-                            err
-                        );
+                    .catch((err) => {
+                        this.getErrors(err);
                     });
         },
         emptyWarehouse() {
-            EventBus.$emit('open-modal',false);
+            EventBus.$emit("open-modal", false);
             axios
                 .delete("/inventories/" + this.modalDataConfirm.inventory.id, {
-                    id: this.modalDataConfirm.inventory.id
+                    id: this.modalDataConfirm.inventory.id,
                 })
-                .then(res => {
-                    if(res.data.empty){
-                        this.notify({title:'Almacenes',message:'El almacén se vacio correctamente.'});
+                .then((res) => {
+                    if (res.data.empty) {
+                        this.notify({
+                            title: "Almacenes",
+                            message: "El almacén se vacio correctamente.",
+                        });
                     }
                 })
-                .catch(err =>{
+                .catch((err) => {
                     this.getErrors(err);
                 });
-        }
+        },
     },
     computed: {
-        ...mapState(["modalDataConfirm"])
-    }
+        ...mapState(["modalDataConfirm"]),
+    },
 };
 </script>

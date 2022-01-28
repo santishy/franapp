@@ -3696,6 +3696,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -4820,6 +4821,62 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
@@ -4883,6 +4940,10 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
+//
+//
 //
 //
 //
@@ -9408,6 +9469,74 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -9465,14 +9594,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     emptyWarehouse: function emptyWarehouse() {
       var _this2 = this;
 
-      EventBus.$emit('open-modal', false);
+      EventBus.$emit("open-modal", false);
       axios["delete"]("/inventories/" + this.modalDataConfirm.inventory.id, {
         id: this.modalDataConfirm.inventory.id
       }).then(function (res) {
         if (res.data.empty) {
           _this2.notify({
-            title: 'Almacenes',
-            message: 'El almacén se vacio correctamente.'
+            title: "Almacenes",
+            message: "El almacén se vacio correctamente."
           });
         }
       })["catch"](function (err) {
@@ -9497,6 +9626,64 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _DeleteWarehouse_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./DeleteWarehouse.vue */ "./resources/js/components/warehouses/DeleteWarehouse.vue");
 /* harmony import */ var _EmptyWarehouse_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./EmptyWarehouse.vue */ "./resources/js/components/warehouses/EmptyWarehouse.vue");
 /* harmony import */ var _LinkEditWarehouse_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./LinkEditWarehouse.vue */ "./resources/js/components/warehouses/LinkEditWarehouse.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -30989,7 +31176,7 @@ var render = function () {
         "div",
         {
           staticClass:
-            "\n            flex\n            text-blue-800\n            items-center\n            py-2\n            text-dark text-center\n            justify-center\n            text-xl\n            font-extralight\n            form-header\n        ",
+            "\n            form-header\n            p-2\n            text-dark text-center text-xl\n            font-extralight\n            text-blue-800\n        ",
         },
         [_vm._v("\n        Añadir categoría\n    ")]
       ),
@@ -30998,7 +31185,7 @@ var render = function () {
         "div",
         {
           staticClass:
-            "\n            flex\n            items-center\n            border-b border-t border-gray-300\n            py-2\n            relative\n        ",
+            "\n            flex flex-col-reverse\n            px-2\n            sm:px-0 sm:flex-row sm:items-center sm:border-b sm:border-t\n            border-gray-300\n            sm:py-2 sm:relative\n        ",
         },
         [
           _c("input", {
@@ -31011,7 +31198,7 @@ var render = function () {
               },
             ],
             staticClass:
-              "\n                appearance-none\n                bg-transparent\n                border-none\n                w-full\n                text-gray-700\n                mr-3\n                py-1\n                pl-32\n                leading-tight\n                focus:outline-none\n                \n            ",
+              "\n                appearance-none\n                sm:shadow-none\n                static\n                sm:p-0\n                p-2\n                bg-gray-200\n                sm:bg-transparent\n                border-none\n                w-full\n                text-gray-700\n                mr-3\n                sm:py-1 sm:pr-2 sm:pl-56\n                leading-tight\n                focus:outline-none\n            ",
             class: [
               "flex",
               "items-center",
@@ -31040,7 +31227,7 @@ var render = function () {
             "label",
             {
               staticClass:
-                "\n                absolute\n                pl-0\n                bg-gray-200\n                h-full\n                flex\n                items-center\n                w-32\n                justify-center\n                text-indigo-800\n                font-mono\n                \n            ",
+                "\n                sm:absolute\n                pl-2\n                sm:pl-0 sm:p-0\n                p-2\n                sm:bg-gray-200\n                h-full\n                flex\n                items-center\n                sm:w-52 sm:justify-center\n                text-indigo-800\n                font-mono\n            ",
               attrs: { for: "" },
             },
             [_vm._v("Nombre")]
@@ -31069,7 +31256,7 @@ var staticRenderFns = [
         "button",
         {
           staticClass:
-            "\n                bg-transparent\n                transition-all\n                duration-500\n                ease-in-out\n                hover:bg-blue-700\n                text-white\n                bg-blue-500\n                font-semibold\n                hover:text-white\n                py-2\n                px-4\n                border-b-2 border-blue-500\n                hover:border-transparent\n                w-full\n            ",
+            "\n                mt-2\n                sm:mt-0\n                bg-transparent\n                transition-all\n                duration-500\n                ease-in-out\n                hover:bg-blue-700\n                text-white\n                bg-blue-500\n                font-semibold\n                hover:text-white\n                py-2\n                px-4\n                border-b-2 border-blue-500\n                hover:border-transparent\n                w-full\n            ",
         },
         [_vm._v("\n            Guardar\n        ")]
       ),
@@ -31282,7 +31469,7 @@ var render = function () {
   return _c("nav-component", [
     _c(
       "div",
-      { staticClass: "w-9/12 mx-auto" },
+      { staticClass: "w-full px-4 mx-auto" },
       [
         _c("category-form", {
           staticClass: "w-full",
@@ -31318,21 +31505,28 @@ var render = function () {
   return _c("nav-component", [
     _c(
       "div",
-      { staticClass: "flex flex-wrap items-baseline w-full mx-4 rounded-sm" },
+      {
+        staticClass:
+          "flex flex-wrap sm:items-baseline sm:w-full mx-4 rounded-sm",
+      },
       [
         _c("category-form", {
-          staticClass: "self-start ",
+          staticClass: "sm:self-start ",
           attrs: { uri: "/categories" },
         }),
         _vm._v(" "),
-        _c("div", { staticClass: " ml-4 w-6/12 p-4 bg-white rounded-sm" }, [
-          _c(
-            "div",
-            { staticClass: "bg-gray-300 shadow-inner p-2 rounded-sm" },
-            [_c("category-list")],
-            1
-          ),
-        ]),
+        _c(
+          "div",
+          { staticClass: " sm:ml-4 w-full sm:w-6/12 p-4 bg-white rounded-sm" },
+          [
+            _c(
+              "div",
+              { staticClass: "bg-gray-300 shadow-inner p-2 rounded-sm" },
+              [_c("category-list")],
+              1
+            ),
+          ]
+        ),
       ],
       1
     ),
@@ -33162,7 +33356,7 @@ var render = function () {
           },
         ],
         staticClass:
-          "w-full  border-l-4 border-purple-500 appearance-none py-5 pl-64 leading-tight focus:outline-none mr-4 text-center",
+          "w-full  border-l-4  bg-gray border-purple-500 appearance-none py-5 sm:pl-64  mb-2 sm:mt-0 mt-2 leading-tight focus:outline-none mr-4 sm:text-center",
         attrs: { type: "text", placeholder: "Busca por el SKU ó Descripción" },
         domProps: { value: _vm.value },
         on: {
@@ -33254,58 +33448,104 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("tr", [
-    _c(
-      "td",
-      { staticClass: "px-5 py-5 border-b border-gray-200 bg-white text-sm" },
-      [_vm._v(_vm._s(_vm.product.category_name))]
-    ),
-    _vm._v(" "),
-    _c(
-      "td",
-      { staticClass: "px-5 py-5 border-b border-gray-200 bg-white text-sm" },
-      [_vm._v(_vm._s(_vm.product.sku))]
-    ),
-    _vm._v(" "),
-    _c(
-      "td",
-      { staticClass: "px-5 py-5 border-b border-gray-200 bg-white text-sm" },
-      [_vm._v(_vm._s(_vm.product.description))]
-    ),
-    _vm._v(" "),
-    _c(
-      "td",
-      { staticClass: "px-5 py-5 border-b border-gray-200 bg-white text-sm" },
-      [
-        _vm.show
-          ? _c("input-stock", {
-              attrs: {
-                product: _vm.product,
-                inventory: _vm.inventory,
-                index: _vm.index,
-              },
-            })
-          : _c(
-              "div",
-              {
-                staticClass:
-                  "text-lg text-blue-700 hover:text-indigo-500 transition-all cursor-pointer",
-                on: {
-                  dblclick: function ($event) {
-                    _vm.show = true
+  return _c(
+    "tr",
+    {
+      staticClass:
+        "\n        bg-white\n        border-b border-gray-400\n        md:border-none\n        block\n        md:table-row\n    ",
+    },
+    [
+      _c(
+        "td",
+        {
+          staticClass:
+            "\n            p-2\n            md:border md:border-grey-500\n            text-left\n            block\n            md:table-cell\n        ",
+        },
+        [
+          _c(
+            "span",
+            { staticClass: "inline-block w-1/3 md:hidden font-bold" },
+            [_vm._v("Categoría")]
+          ),
+          _vm._v(_vm._s(_vm.product.category_name) + "\n    "),
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "td",
+        {
+          staticClass:
+            "\n            p-2\n            md:border md:border-grey-500\n            text-left\n            block\n            md:table-cell\n        ",
+        },
+        [
+          _c(
+            "span",
+            { staticClass: "inline-block w-1/3 md:hidden font-bold" },
+            [_vm._v("SKU")]
+          ),
+          _vm._v(_vm._s(_vm.product.sku) + "\n    "),
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "td",
+        {
+          staticClass:
+            "\n            p-2\n            md:border md:border-grey-500\n            text-left\n            block\n            md:table-cell\n        ",
+        },
+        [
+          _c(
+            "span",
+            { staticClass: "inline-block w-1/3 md:hidden font-bold" },
+            [_vm._v("Descripción")]
+          ),
+          _vm._v(_vm._s(_vm.product.description) + "\n    "),
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "td",
+        {
+          staticClass:
+            "\n            p-2\n            md:border md:border-grey-500\n            text-left\n            block\n            md:table-cell\n        ",
+        },
+        [
+          _c(
+            "span",
+            { staticClass: "inline-block w-1/3 md:hidden font-bold" },
+            [_vm._v("Existencias")]
+          ),
+          _vm._v(" "),
+          _vm.show
+            ? _c("input-stock", {
+                attrs: {
+                  product: _vm.product,
+                  inventory: _vm.inventory,
+                  index: _vm.index,
+                },
+              })
+            : _c(
+                "div",
+                {
+                  staticClass:
+                    "\n                text-lg text-blue-700\n                hover:text-indigo-500\n                transition-all\n                cursor-pointer\n                inline-block\n            ",
+                  on: {
+                    dblclick: function ($event) {
+                      _vm.show = true
+                    },
                   },
                 },
-              },
-              [
-                _vm._v(
-                  "\n            " + _vm._s(_vm.product.stock) + "\n        "
-                ),
-              ]
-            ),
-      ],
-      1
-    ),
-  ])
+                [
+                  _vm._v(
+                    "\n            " + _vm._s(_vm.product.stock) + "\n        "
+                  ),
+                ]
+              ),
+        ],
+        1
+      ),
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -33345,7 +33585,7 @@ var render = function () {
                 "h3",
                 {
                   staticClass:
-                    "\n                w-64\n                text-gray-800\n                font-mono font-semibold\n                text-center\n                bg-purple-200\n                absolute\n                left-0\n                py-5\n                px-4\n                leading-tight\n            ",
+                    "\n                w-64\n                text-gray-800\n                font-mono font-semibold\n                text-center\n                bg-purple-200\n                absolute\n                left-0\n                py-5\n                invisible\n                m:visible\n                px-4\n                leading-tight\n            ",
                 },
                 [
                   _c("warehouse-icon"),
@@ -33359,50 +33599,40 @@ var render = function () {
             1
           ),
           _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto" },
-            [
-              _c(
-                "div",
+          _vm.inventory
+            ? _c(
+                "table",
                 {
                   staticClass:
-                    "\n                inline-block\n                min-w-full\n                shadow\n                rounded-lg\n                overflow-hidden\n            ",
+                    "min-w-full border-collapse block md:table shadow-sm text-center rounded-sm",
                 },
                 [
-                  _vm.inventory
-                    ? _c(
-                        "table",
-                        { staticClass: "min-w-full leading-normal" },
-                        [
-                          _vm._m(0),
-                          _vm._v(" "),
-                          _c(
-                            "transition-group",
-                            {
-                              attrs: { tag: "tbody", name: "bounce" },
-                              on: { "after-leave": _vm.afterLeave },
-                            },
-                            _vm._l(_vm.products, function (product, index) {
-                              return _c("produc-list-item", {
-                                key: product.id,
-                                attrs: {
-                                  index: index,
-                                  product: product,
-                                  inventory: _vm.inventory,
-                                },
-                              })
-                            }),
-                            1
-                          ),
-                        ],
-                        1
-                      )
-                    : _vm._e(),
-                ]
-              ),
-            ]
-          ),
+                  _vm._m(0),
+                  _vm._v(" "),
+                  _c(
+                    "transition-group",
+                    {
+                      staticClass:
+                        "block md:table-row-group alternate-table-row ",
+                      attrs: { tag: "tbody", name: "bounce" },
+                      on: { "after-leave": _vm.afterLeave },
+                    },
+                    _vm._l(_vm.products, function (product, index) {
+                      return _c("produc-list-item", {
+                        key: product.id,
+                        attrs: {
+                          index: index,
+                          product: product,
+                          inventory: _vm.inventory,
+                        },
+                      })
+                    }),
+                    1
+                  ),
+                ],
+                1
+              )
+            : _vm._e(),
           _vm._v(" "),
           _c("infinite-loading", {
             ref: "infiniteLoading",
@@ -33419,60 +33649,51 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("thead", { staticClass: "bg-purple-200" }, [
-      _c("tr", [
-        _c(
-          "th",
-          {
-            staticClass:
-              "\n                                px-5\n                                py-3\n                                border-b-2 border-gray-200\n                                bg-gray-100\n                                text-left text-xs\n                                font-semibold\n                                text-gray-600\n                                uppercase\n                                tracking-wider\n                            ",
-          },
-          [
-            _vm._v(
-              "\n                            Categoría\n                        "
-            ),
-          ]
-        ),
-        _vm._v(" "),
-        _c(
-          "th",
-          {
-            staticClass:
-              "\n                                px-5\n                                py-3\n                                border-b-2 border-gray-200\n                                bg-gray-100\n                                text-left text-xs\n                                font-semibold\n                                text-gray-600\n                                uppercase\n                                tracking-wider\n                            ",
-          },
-          [
-            _vm._v(
-              "\n                            SKU\n                        "
-            ),
-          ]
-        ),
-        _vm._v(" "),
-        _c(
-          "th",
-          {
-            staticClass:
-              "\n                                px-5\n                                py-3\n                                border-b-2 border-gray-200\n                                bg-gray-100\n                                text-left text-xs\n                                font-semibold\n                                text-gray-600\n                                uppercase\n                                tracking-wider\n                            ",
-          },
-          [
-            _vm._v(
-              "\n                            Descripción\n                        "
-            ),
-          ]
-        ),
-        _vm._v(" "),
-        _c(
-          "th",
-          {
-            staticClass:
-              "\n                                px-5\n                                py-3\n                                border-b-2 border-gray-200\n                                bg-gray-100\n                                text-left text-xs\n                                font-semibold\n                                text-gray-600\n                                uppercase\n                                tracking-wider\n                            ",
-          },
-          [
-            _vm._v(
-              "\n                            Existencias\n                        "
-            ),
-          ]
-        ),
-      ]),
+    return _c("thead", { staticClass: "block md:table-header-group" }, [
+      _c(
+        "tr",
+        {
+          staticClass:
+            "\n                    border-b border-gray-500\n                    md:border-none\n                    block\n                    md:table-row\n                    absolute\n                    -top-full\n                    md:top-auto\n                    -left-full\n                    md:left-auto md:relative\n                ",
+        },
+        [
+          _c(
+            "th",
+            {
+              staticClass:
+                "\n                        bg-blue-700\n                        p-2\n                        text-white\n                        font-semibold\n                        md:border md:border-grey-500\n                        text-left\n                        block\n                        md:table-cell\n                    ",
+            },
+            [_vm._v("\n                    Categoría\n                ")]
+          ),
+          _vm._v(" "),
+          _c(
+            "th",
+            {
+              staticClass:
+                "\n                        bg-blue-700\n                        p-2\n                        text-white\n                        font-semibold\n                        md:border md:border-grey-500\n                        text-left\n                        block\n                        md:table-cell\n                    ",
+            },
+            [_vm._v("\n                    SKU\n                ")]
+          ),
+          _vm._v(" "),
+          _c(
+            "th",
+            {
+              staticClass:
+                "\n                        bg-blue-700\n                        p-2\n                        text-white\n                        font-semibold\n                        md:border md:border-grey-500\n                        text-left\n                        block\n                        md:table-cell\n                    ",
+            },
+            [_vm._v("\n                    Descripción\n                ")]
+          ),
+          _vm._v(" "),
+          _c(
+            "th",
+            {
+              staticClass:
+                "\n                        bg-blue-700\n                        p-2\n                        text-white\n                        font-semibold\n                        md:border md:border-grey-500\n                        text-left\n                        block\n                        md:table-cell\n                    ",
+            },
+            [_vm._v("\n                    Existencias\n                ")]
+          ),
+        ]
+      ),
     ])
   },
 ]
@@ -34374,7 +34595,7 @@ var render = function () {
               { staticClass: "flex flex-wrap justify-between" },
               [
                 _c("toggle-purchase-visibility", {
-                  staticClass: "w-56",
+                  staticClass: "sm:w-56",
                   attrs: { method: _vm.method },
                 }),
                 _vm._v(" "),
@@ -37365,7 +37586,7 @@ var render = function () {
         "button",
         {
           staticClass:
-            "text-xs transition-all rounded border-2 border-red-800 text-red-700 p-1 hover:bg-red-800 hover:text-white",
+            "text-xs transition-all w-full sm:w-auto rounded border-2 border-red-800 text-red-700 p-1 hover:bg-red-800 hover:text-white",
           attrs: { type: "submit" },
         },
         [_c("trash-icon"), _vm._v("\n        Eliminar almacen\n    ")],
@@ -37441,7 +37662,7 @@ var render = function () {
         "button",
         {
           staticClass:
-            "text-xs transition-all rounded border-2 border-orange-800 text-orange-700 p-1 hover:bg-orange-800 hover:text-white",
+            "text-xs transition-all w-full sm:w-auto rounded border-2 border-orange-800 text-orange-700 p-1 hover:bg-orange-800 hover:text-white",
           attrs: { type: "submit" },
         },
         [_c("warehouse-icon"), _vm._v("\n        Vaciar almacén\n    ")],
@@ -37476,7 +37697,7 @@ var render = function () {
     "a",
     {
       staticClass:
-        "text-xs transition-all rounded border-2 border-blue-800 text-blue-700 p-1 hover:bg-blue-800 hover:text-white",
+        "text-xs text-center transition-all rounded border-2 border-blue-800 text-blue-700 p-1 hover:bg-blue-800 hover:text-white",
       attrs: { href: "/warehouses/" + _vm.inventory.id + "/edit" },
     },
     [_c("edit-icon"), _vm._v("\n    Editar almacén\n")],
@@ -37565,7 +37786,7 @@ var render = function () {
           "div",
           {
             staticClass:
-              "flex justify-center bg-white shadow-sm w-full rounded max-w-full sm:overflow-x-hidden overflow-x-auto",
+              "\n                flex\n                justify-center\n                bg-white\n                shadow-sm\n                w-full\n                rounded\n                max-w-full\n                sm:overflow-x-hidden\n                overflow-x-auto\n            ",
           },
           [
             _vm.inventories.length
@@ -37580,27 +37801,70 @@ var render = function () {
                         expression: "'view warehouses'",
                       },
                     ],
-                    staticClass: "table-auto",
+                    staticClass:
+                      "\n                    min-w-full\n                    border-collapse\n                    block\n                    md:table\n                    shadow-sm\n                    text-center\n                    rounded-lg\n                ",
                   },
                   [
-                    _c("thead", [
-                      _c("tr", { staticClass: "bg-danger" }, [
-                        _c("th", { staticClass: "px-4 py-2" }, [
-                          _vm._v("Nombre"),
-                        ]),
-                        _vm._v(" "),
-                        _c("th", { staticClass: "px-4 py-2" }, [
-                          _vm._v("Dirección"),
-                        ]),
-                        _vm._v(" "),
-                        _c("th", { staticClass: "px-4 py-2" }, [
-                          _vm._v("Acciones"),
-                        ]),
-                      ]),
-                    ]),
+                    _c(
+                      "thead",
+                      { staticClass: "block md:table-header-group " },
+                      [
+                        _c(
+                          "tr",
+                          {
+                            staticClass:
+                              "\n                            border-b border-gray-500\n                            rounded-t-sm\n                            md:border-none\n                            block\n                            md:table-row\n                            absolute\n                            -top-full\n                            md:top-auto\n                            -left-full\n                            md:left-auto md:relative\n                        ",
+                          },
+                          [
+                            _c(
+                              "th",
+                              {
+                                staticClass:
+                                  "\n                                bg-blue-700\n                                p-2\n                                text-white\n                                font-semibold\n                                md:border md:border-grey-500\n                                text-left\n                                block\n                                md:table-cell\n                            ",
+                              },
+                              [
+                                _vm._v(
+                                  "\n                            Nombre\n                        "
+                                ),
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "th",
+                              {
+                                staticClass:
+                                  "\n                                bg-blue-700\n                                p-2\n                                text-white\n                                font-semibold\n                                md:border md:border-grey-500\n                                text-left\n                                block\n                                md:table-cell\n                            ",
+                              },
+                              [
+                                _vm._v(
+                                  "\n                            Dirección\n                        "
+                                ),
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "th",
+                              {
+                                staticClass:
+                                  "\n                                bg-blue-700\n                                p-2\n                                text-white\n                                font-semibold\n                                md:border md:border-grey-500\n                                text-left\n                                block\n                                md:table-cell\n                            ",
+                              },
+                              [
+                                _vm._v(
+                                  "\n                            Acciones\n                        "
+                                ),
+                              ]
+                            ),
+                          ]
+                        ),
+                      ]
+                    ),
                     _vm._v(" "),
                     _c(
                       "tbody",
+                      {
+                        staticClass:
+                          "block md:table-row-group alternate-table-row",
+                      },
                       _vm._l(_vm.localInventories, function (inventory, index) {
                         return _c("warehouse-list-item", {
                           key: inventory.id,
@@ -37619,9 +37883,7 @@ var render = function () {
       _c(
         "information-component",
         [
-          _c("template", { slot: "title" }, [
-            _vm._v("\n            Almacenes\n        "),
-          ]),
+          _c("template", { slot: "title" }, [_vm._v(" Almacenes ")]),
           _vm._v(" "),
           _c("message", {
             attrs: {
@@ -37675,36 +37937,88 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("tr", [
-    _c("td", { staticClass: "border px-4 py-2" }, [
-      _vm._v(_vm._s(_vm.inventory.name)),
-    ]),
-    _vm._v(" "),
-    _c("td", { staticClass: "border px-4 py-2" }, [
-      _vm._v(_vm._s(_vm.inventory.address)),
-    ]),
-    _vm._v(" "),
-    _c(
-      "td",
-      { staticClass: "border px-4 py-2 flex flex-wrap justify-center" },
-      [
-        _c("link-edit-warehouse", {
-          staticClass: "mr-2",
-          attrs: { inventory: _vm.inventory },
-        }),
-        _vm._v(" "),
-        _c("empty-warehouse", {
-          staticClass: "mr-2",
-          attrs: { warehouse: _vm.inventory, index: _vm.index },
-        }),
-        _vm._v(" "),
-        _c("delete-warehouse", {
-          attrs: { inventory: _vm.inventory, index: _vm.index },
-        }),
-      ],
-      1
-    ),
-  ])
+  return _c(
+    "tr",
+    {
+      staticClass:
+        "\n        bg-white\n        border-b border-gray-400\n        md:border-none\n        block\n        md:table-row\n    ",
+    },
+    [
+      _c(
+        "td",
+        {
+          staticClass:
+            "\n            p-2\n            md:border md:border-grey-500\n            text-left\n            block\n            md:table-cell\n        ",
+        },
+        [
+          _c(
+            "span",
+            { staticClass: "inline-block w-1/3 md:hidden font-bold" },
+            [_vm._v("Nombre")]
+          ),
+          _vm._v(_vm._s(_vm.inventory.name) + "\n    "),
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "td",
+        {
+          staticClass:
+            "\n            p-2\n            md:border md:border-grey-500\n            text-left\n            flex flex-wrap\n            md:table-cell\n        ",
+        },
+        [
+          _c(
+            "span",
+            { staticClass: "inline-block w-1/3 md:hidden font-bold" },
+            [_vm._v("Dirección")]
+          ),
+          _c("p", { staticClass: "inline-block w-2/3 sm:w-full" }, [
+            _vm._v(_vm._s(_vm.inventory.address)),
+          ]),
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "td",
+        {
+          staticClass:
+            "\n            p-2\n            md:border md:border-grey-500\n            text-left\n            flex\n            items-center\n            block\n            md:table-cell\n        ",
+        },
+        [
+          _c(
+            "span",
+            { staticClass: "inline-block w-1/3 md:hidden font-bold" },
+            [_vm._v("Acciones")]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass:
+                "\n                flex flex-wrap sm:flex-row flex-col\n                justify-center\n                w-full\n                items-center\n                inline-block\n            ",
+            },
+            [
+              _c("link-edit-warehouse", {
+                staticClass: "mb-1 sm:mb-0 sm:w-auto w-full sm:mr-2",
+                attrs: { inventory: _vm.inventory },
+              }),
+              _vm._v(" "),
+              _c("empty-warehouse", {
+                staticClass: "mb-1 sm:mb-0 sm:w-auto w-full sm:mr-2",
+                attrs: { warehouse: _vm.inventory, index: _vm.index },
+              }),
+              _vm._v(" "),
+              _c("delete-warehouse", {
+                staticClass: "sm:w-auto w-full block",
+                attrs: { inventory: _vm.inventory, index: _vm.index },
+              }),
+            ],
+            1
+          ),
+        ]
+      ),
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true

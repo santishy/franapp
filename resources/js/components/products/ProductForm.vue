@@ -31,7 +31,7 @@
             >
                 <div class="flex flex-wrap justify-between">
                     <toggle-purchase-visibility
-                        class="w-56"
+                        class="sm:w-56"
                         :method="method"
                     ></toggle-purchase-visibility>
                     <button

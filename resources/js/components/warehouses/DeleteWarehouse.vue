@@ -1,7 +1,7 @@
 <template>
     <form @submit.prevent="openModal">
         <button
-            class="text-xs transition-all rounded border-2 border-red-800 text-red-700 p-1 hover:bg-red-800 hover:text-white"
+            class="text-xs transition-all w-full sm:w-auto rounded border-2 border-red-800 text-red-700 p-1 hover:bg-red-800 hover:text-white"
             type="submit"
         >
             <trash-icon></trash-icon>

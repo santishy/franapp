@@ -1,6 +1,6 @@
 <template>
     <nav-component>
-        <div class="w-9/12 mx-auto">
+        <div class="w-full px-4 mx-auto">
             <category-form class="w-full" :uri="`/categories/${category.id}`"> </category-form>
         </div>
     </nav-component>
