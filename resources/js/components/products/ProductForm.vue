@@ -80,7 +80,7 @@
                         </p>
                     </div>
                 </div>
-                <category-select class="border-t border-gray-300" inputClass="pl-60" :categories="categories" :product="product">
+                <category-select class="border-t border-gray-300" inputClass="sm:pl-60" :categories="categories" :product="product">
                     <template slot="labelCategory">
                         <label
                             for=""
@@ -390,13 +390,40 @@ export default {
             return "edit product";
         },
         labelStyle() {
-            return "absolute pl-0 bg-gray-200 h-full flex items-center w-56 justify-center text-indigo-800 font-mono font-semibold";
+            return`sm:absolute
+                    pl-2
+                    sm:pl-0 sm:p-0
+                    p-2
+                    sm:bg-gray-200
+                    h-full
+                    flex
+                    items-center
+                    sm:w-52 sm:justify-center
+                    text-indigo-800
+                    font-mono`;
         },
         inputStyle() {
-            return "appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 pl-60 leading-tight focus:outline-none";
+            return ` appearance-none
+                    sm:shadow-none
+                    static
+                    sm:p-0
+                    p-2
+                    bg-gray-200
+                    sm:bg-transparent
+                    border-none
+                    w-full
+                    text-gray-700
+                    mr-3
+                    sm:py-1 sm:pr-2 sm:pl-56
+                    leading-tight
+                    focus:outline-none`;
         },
         controlsContainerStyle() {
-            return "flex items-center border-t border-gray-300 py-2 relative";
+            return `flex flex-col-reverse
+                px-2
+                sm:px-0 sm:flex-row sm:items-center sm:border-b sm:border-t
+                border-gray-300
+                sm:py-2 sm:relative`;
         }
     }
 };

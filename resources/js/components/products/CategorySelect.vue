@@ -1,5 +1,19 @@
 <template>
-    <div class="flex items-center  py-2 relative">
+    <div
+        class="
+            sm:absolute
+            pl-2
+            sm:pl-0 sm:p-0
+            p-2
+            sm:bg-gray-200
+            h-full
+            flex
+            items-center
+            sm:w-52 sm:justify-center
+            text-indigo-800
+            font-mono
+        "
+    >
         <input
             v-model="term_search"
             :class="[inputClass]"
@@ -10,7 +24,6 @@
                 w-full
                 text-gray-700
                 mr-3
-                
                 leading-tight
                 focus:outline-none
                 placeholder-blue-400
@@ -30,7 +43,18 @@
 
         <button
             @click.prevent="close"
-            class="absolute  text-gray-700 border border-gray-400  font-semibold right-0 px-3 py-1 hover:bg-gray-300 rounded-sm shadow"
+            class="
+                absolute
+                text-gray-700
+                border border-gray-400
+                font-semibold
+                right-0
+                px-3
+                py-1
+                hover:bg-gray-300
+                rounded-sm
+                shadow
+            "
         >
             X
         </button>
@@ -46,7 +70,6 @@
                 rounded
                 max-h-64
                 overflow-x-auto
-                
             "
             v-if="items.length"
         >
@@ -81,17 +104,17 @@
 export default {
     props: {
         categories: {
-            type: Array
+            type: Array,
         },
         product: {
-            type: Object
+            type: Object,
         },
-        inputClass: { type:String }
+        inputClass: { type: String },
     },
     mounted() {
         if (this.product) {
             const category = this.categories.find(
-                ele => ele.id === this.product.id
+                (ele) => ele.id === this.product.id
             );
             this.term_search = category.name;
         }
@@ -105,7 +128,7 @@ export default {
             term_search: "",
             category_id: null,
             selectedCategoryId: null,
-            focusedIndex: 0
+            focusedIndex: 0,
         };
     },
     methods: {
@@ -115,7 +138,7 @@ export default {
             if (this.term_search == "") {
                 this.items = this.categories;
             } else {
-                this.items = this.categories.filter(category => {
+                this.items = this.categories.filter((category) => {
                     //var re = this.term_search.replace(/\s/g, '|'); idea nada mas,
                     //podria parter la cadena completa en dos partes mitad|mitad y buscar
 
@@ -162,7 +185,7 @@ export default {
             if (this.term_search == "") {
                 this.items = this.categories;
             }
-        }
-    }
+        },
+    },
 };
 </script>

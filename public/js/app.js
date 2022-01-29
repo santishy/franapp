@@ -5537,6 +5537,29 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     categories: {
@@ -6406,13 +6429,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       return "edit product";
     },
     labelStyle: function labelStyle() {
-      return "absolute pl-0 bg-gray-200 h-full flex items-center w-56 justify-center text-indigo-800 font-mono font-semibold";
+      return "sm:absolute\n                    pl-2\n                    sm:pl-0 sm:p-0\n                    p-2\n                    sm:bg-gray-200\n                    h-full\n                    flex\n                    items-center\n                    sm:w-52 sm:justify-center\n                    text-indigo-800\n                    font-mono";
     },
     inputStyle: function inputStyle() {
-      return "appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 pl-60 leading-tight focus:outline-none";
+      return " appearance-none\n                    sm:shadow-none\n                    static\n                    sm:p-0\n                    p-2\n                    bg-gray-200\n                    sm:bg-transparent\n                    border-none\n                    w-full\n                    text-gray-700\n                    mr-3\n                    sm:py-1 sm:pr-2 sm:pl-56\n                    leading-tight\n                    focus:outline-none";
     },
     controlsContainerStyle: function controlsContainerStyle() {
-      return "flex items-center border-t border-gray-300 py-2 relative";
+      return "flex flex-col-reverse\n                px-2\n                sm:px-0 sm:flex-row sm:items-center sm:border-b sm:border-t\n                border-gray-300\n                sm:py-2 sm:relative";
     }
   })
 });
@@ -34042,7 +34065,10 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "flex items-center  py-2 relative" },
+    {
+      staticClass:
+        "\n        sm:absolute\n        pl-2\n        sm:pl-0 sm:p-0\n        p-2\n        sm:bg-gray-200\n        h-full\n        flex\n        items-center\n        sm:w-52 sm:justify-center\n        text-indigo-800\n        font-mono\n    ",
+    },
     [
       _c("input", {
         directives: [
@@ -34054,7 +34080,7 @@ var render = function () {
           },
         ],
         staticClass:
-          "\n            appearance-none\n            bg-transparent\n            border-none\n            w-full\n            text-gray-700\n            mr-3\n            \n            leading-tight\n            focus:outline-none\n            placeholder-blue-400\n        ",
+          "\n            appearance-none\n            bg-transparent\n            border-none\n            w-full\n            text-gray-700\n            mr-3\n            leading-tight\n            focus:outline-none\n            placeholder-blue-400\n        ",
         class: [_vm.inputClass],
         attrs: {
           autocomplete: "off",
@@ -34138,7 +34164,7 @@ var render = function () {
         "button",
         {
           staticClass:
-            "absolute  text-gray-700 border border-gray-400  font-semibold right-0 px-3 py-1 hover:bg-gray-300 rounded-sm shadow",
+            "\n            absolute\n            text-gray-700\n            border border-gray-400\n            font-semibold\n            right-0\n            px-3\n            py-1\n            hover:bg-gray-300\n            rounded-sm\n            shadow\n        ",
           on: {
             click: function ($event) {
               $event.preventDefault()
@@ -34154,7 +34180,7 @@ var render = function () {
             "div",
             {
               staticClass:
-                "\n            absolute\n            mt-4\n            top-10\n            w-full\n            shadow\n            z-5\n            bg-white\n            rounded\n            max-h-64\n            overflow-x-auto\n            \n        ",
+                "\n            absolute\n            mt-4\n            top-10\n            w-full\n            shadow\n            z-5\n            bg-white\n            rounded\n            max-h-64\n            overflow-x-auto\n        ",
             },
             [
               _c(
@@ -34662,7 +34688,7 @@ var render = function () {
               {
                 staticClass: "border-t border-gray-300",
                 attrs: {
-                  inputClass: "pl-60",
+                  inputClass: "sm:pl-60",
                   categories: _vm.categories,
                   product: _vm.product,
                 },
