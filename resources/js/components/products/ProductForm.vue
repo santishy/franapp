@@ -10,6 +10,7 @@
                 px-4
                 w-full
                 mx-auto
+                mb-4 sm:mb-0
             "
         >
             <form
@@ -25,7 +26,7 @@
                     rounded-sm
                     bg-white
                     md:mt-0
-                    mt-10
+                    sm:mt-10
                     md:mb-0
                 "
             >
@@ -36,8 +37,17 @@
                     ></toggle-purchase-visibility>
                     <button
                         @click.prevent="cleanForm"
-                        class="rounded-lg bg-white border hover:text-white hover:bg-pink-500
-                                border-pink-500 font-mono font-extralight text-xs p-2 transition-all"
+                        class="
+                            rounded-lg
+                            bg-white
+                            border
+                            hover:text-white hover:bg-pink-500
+                            border-pink-500
+                            font-mono font-extralight
+                            text-xs
+                            p-2
+                            transition-all
+                        "
                     >
                         Limpiar
                     </button>
@@ -80,13 +90,15 @@
                         </p>
                     </div>
                 </div>
-                <category-select class="border-t border-gray-300" inputClass="sm:pl-60" :categories="categories" :product="product">
+                <category-select
+                    class="border-t border-gray-300  sm:py-2"
+                    inputClass="sm:pl-60"
+                    listContainer="sm:pl-52"
+                    :categories="categories"
+                    :product="product"
+                >
                     <template slot="labelCategory">
-                        <label
-                            for=""
-                            :class="[labelStyle]"
-                            >Categoría</label
-                        >
+                        <label for="" :class="[labelStyle]">Categoría</label>
                     </template>
                 </category-select>
 
@@ -96,13 +108,7 @@
                     v-model="form.category_id"
                 />
                 <div
-                    class="
-                        flex
-                        items-center
-                        border-t border-gray-300
-                        py-2
-                        relative
-                    "
+                     :class="[controlsContainerStyle]"
                 >
                     <input
                         type="file"
@@ -113,7 +119,7 @@
                         placeholder="Subir imagen"
                         aria-label="Full name"
                     />
-                    <label :class="labelStyle" class="flex-col"
+                    <label :class="labelStyle" class="sm:flex-col flex-wrap"
                         >Imagen
                         <span class="text-xs text-gray-600 block mt-0"
                             >(Opcional)</span
@@ -192,7 +198,7 @@
                             placeholder="CANTIDAD DE COMPRA (OPCIONAL)"
                             aria-label="Full name"
                         />
-                        <label for="" :class="[labelStyle]" class="flex-col"
+                        <label for="" :class="[labelStyle]" class="sm:flex-col flex-wrap"
                             >Cantidad de compra
                             <span class="text-xs text-gray-600 block mt-0"
                                 >(Opcional)</span
@@ -205,10 +211,10 @@
                             this.errors
                                 ? 'border-transparent'
                                 : 'border-gray-300',
-                            controlsContainerStyle
+                            controlsContainerStyle,
                         ]"
                     >
-                        <div class="pl-60 flex-wrap flex">
+                        <div class="sm:pl-60 flex-wrap flex">
                             <div
                                 v-for="warehouse in inventories"
                                 :key="warehouse.id"
@@ -238,7 +244,7 @@
                                 </label>
                             </div>
                         </div>
-                        <label class="flex-col" :class="[labelStyle]"
+                        <label class="sm:flex-col" :class="[labelStyle]"
                             >Almacen
                             <span class="text-xs text-gray-600 block mt-0"
                                 >(Opcional)</span
@@ -264,6 +270,7 @@
                             hover:text-white
                             py-2
                             px-4
+                            mt-2 sm:mt-0
                             border-b-2 border-blue-500
                             hover:border-transparent
                             w-full
@@ -272,6 +279,7 @@
                         Guardar
                     </button>
                 </div>
+                
             </form>
         </div>
     </nav-component>
@@ -286,40 +294,40 @@ export default {
     components: {
         NavComponent,
         TogglePurchaseVisibility,
-        CategorySelect
+        CategorySelect,
     },
     data() {
         return {
             form: {
-                category_id: ""
+                category_id: "",
             },
             category_name: "",
             src: null,
-            frutsi: null
+            frutsi: null,
         };
     },
     mounted() {
         if (!!this.product) {
             this.form = this.product;
         }
-        EventBus.$on("selected-category", id => {
+        EventBus.$on("selected-category", (id) => {
             this.form.category_id = id;
         });
     },
     props: {
         method: {
             type: String,
-            required: true
+            required: true,
         },
         product: {
-            type: Object
+            type: Object,
         },
         categories: {
-            type: Array
+            type: Array,
         },
         inventories: {
-            type: Array
-        }
+            type: Array,
+        },
     },
     methods: {
         async submit() {
@@ -341,20 +349,20 @@ export default {
             axios["post"](url, formData, {
                 headers: {
                     "Content-Type": "multipart/form-data",
-                    Accept: "application/json"
-                }
+                    Accept: "application/json",
+                },
             })
-                .then(res => {
+                .then((res) => {
                     let obj = { title: "Productos", ...message };
                     this.notify(obj);
                     if (this.method == "post")
                         this.form = {
                             sku: this.form.sku,
-                            category_id: this.form.category_id
+                            category_id: this.form.category_id,
                         };
                     this.errors = null;
                 })
-                .catch(err => {
+                .catch((err) => {
                     this.getErrors(err);
                 });
         },
@@ -375,7 +383,7 @@ export default {
             EventBus.$emit("clean-search-term");
             this.src = null;
             document.querySelector("#image").value = null;
-        }
+        },
     },
     computed: {
         ...mapState(["purchaseVisibility"]),
@@ -390,7 +398,7 @@ export default {
             return "edit product";
         },
         labelStyle() {
-            return`sm:absolute
+            return `sm:absolute
                     pl-2
                     sm:pl-0 sm:p-0
                     p-2
@@ -424,7 +432,7 @@ export default {
                 sm:px-0 sm:flex-row sm:items-center sm:border-b sm:border-t
                 border-gray-300
                 sm:py-2 sm:relative`;
-        }
-    }
+        },
+    },
 };
 </script>

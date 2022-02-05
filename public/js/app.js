@@ -5537,6 +5537,35 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     categories: {
@@ -5547,6 +5576,10 @@ __webpack_require__.r(__webpack_exports__);
     },
     inputClass: {
       type: String
+    },
+    listContainer: {
+      type: String,
+      "default": ""
     }
   },
   mounted: function mounted() {
@@ -6273,6 +6306,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -6637,24 +6678,6 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -34042,7 +34065,10 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "flex items-center  py-2 relative" },
+    {
+      staticClass:
+        "\n        flex flex-col-reverse\n        px-2\n        sm:px-0 sm:flex-row sm:items-center sm:border-b sm:border-t\n        border-gray-300\n        relative\n    ",
+    },
     [
       _c("input", {
         directives: [
@@ -34054,7 +34080,7 @@ var render = function () {
           },
         ],
         staticClass:
-          "\n            appearance-none\n            bg-transparent\n            border-none\n            w-full\n            text-gray-700\n            mr-3\n            \n            leading-tight\n            focus:outline-none\n            placeholder-blue-400\n        ",
+          "\n            appearance-none\n            bg-gray-200\n            sm:bg-transparent\n            p-2\n            sm:p-0\n            rounded-sm\n            border-none\n            w-full\n            text-gray-700\n            mr-3\n            focus:outline-none\n            placeholder-gray-600\n        ",
         class: [_vm.inputClass],
         attrs: {
           autocomplete: "off",
@@ -34138,7 +34164,7 @@ var render = function () {
         "button",
         {
           staticClass:
-            "absolute  text-gray-700 border border-gray-400  font-semibold right-0 px-3 py-1 hover:bg-gray-300 rounded-sm shadow",
+            "\n            absolute\n            text-gray-700\n            border border-gray-400\n            font-semibold\n            sm:right-0\n            px-3\n            sm:py-1\n            py-2\n            right-2\n            bg-white\n            hover:bg-gray-300\n            rounded-sm\n            shadow\n        ",
           on: {
             click: function ($event) {
               $event.preventDefault()
@@ -34154,14 +34180,19 @@ var render = function () {
             "div",
             {
               staticClass:
-                "\n            absolute\n            mt-4\n            top-10\n            w-full\n            shadow\n            z-5\n            bg-white\n            rounded\n            max-h-64\n            overflow-x-auto\n            \n        ",
+                "\n            absolute\n            sm:mt-0\n            top-10\n            mt-10\n            sm:w-9/12\n            w-10/12\n            shadow-lg\n            z-5\n            bg-white\n            rounded\n            max-h-64\n            overflow-x-auto\n        ",
+              class: _vm.listContainer,
             },
             [
               _c(
                 "ul",
-                { ref: "dropdown", staticClass: "bg-white w-fullrelative" },
+                {
+                  ref: "dropdown",
+                  staticClass:
+                    "bg-white border border-orange-300 w-full relative",
+                },
                 _vm._l(_vm.items, function (item, index) {
-                  return _c("li", { key: item.id, staticClass: "mt-2" }, [
+                  return _c("li", { key: item.id }, [
                     _c(
                       "a",
                       {
@@ -34273,7 +34304,7 @@ var render = function () {
             "div",
             {
               staticClass:
-                "col-span-4 2xl:col-span-5 flex justify-center items-baseline",
+                "col-span-4 2xl:col-span-5 flex justify-center  border border-gray-800 items-baseline",
             },
             [
               _c("search-by-category", {
@@ -34538,7 +34569,7 @@ var render = function () {
       "div",
       {
         staticClass:
-          "\n            flex\n            justify-center\n            items-center\n            flex-wrap\n            px-4\n            w-full\n            mx-auto\n        ",
+          "\n            flex\n            justify-center\n            items-center\n            flex-wrap\n            px-4\n            w-full\n            mx-auto\n            mb-4 sm:mb-0\n        ",
       },
       [
         _c(
@@ -34553,7 +34584,7 @@ var render = function () {
               },
             ],
             staticClass:
-              "\n                w-full\n                shadow-sm\n                rounded-sm\n                bg-white\n                md:mt-0\n                mt-10\n                md:mb-0\n            ",
+              "\n                w-full\n                shadow-sm\n                rounded-sm\n                bg-white\n                md:mt-0\n                sm:mt-10\n                md:mb-0\n            ",
             attrs: { id: "product-form" },
             on: {
               submit: function ($event) {
@@ -34603,7 +34634,7 @@ var render = function () {
                   "button",
                   {
                     staticClass:
-                      "rounded-lg bg-white border hover:text-white hover:bg-pink-500\n                            border-pink-500 font-mono font-extralight text-xs p-2 transition-all",
+                      "\n                        rounded-lg\n                        bg-white\n                        border\n                        hover:text-white hover:bg-pink-500\n                        border-pink-500\n                        font-mono font-extralight\n                        text-xs\n                        p-2\n                        transition-all\n                    ",
                     on: {
                       click: function ($event) {
                         $event.preventDefault()
@@ -34660,9 +34691,10 @@ var render = function () {
             _c(
               "category-select",
               {
-                staticClass: "border-t border-gray-300",
+                staticClass: "border-t border-gray-300  sm:py-2",
                 attrs: {
                   inputClass: "sm:pl-60",
+                  listContainer: "sm:pl-52",
                   categories: _vm.categories,
                   product: _vm.product,
                 },
@@ -34698,39 +34730,32 @@ var render = function () {
               },
             }),
             _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass:
-                  "\n                    flex\n                    items-center\n                    border-t border-gray-300\n                    py-2\n                    relative\n                ",
-              },
-              [
-                _c("input", {
-                  class: [_vm.inputStyle],
-                  attrs: {
-                    type: "file",
-                    name: "image",
-                    id: "image",
-                    placeholder: "Subir imagen",
-                    "aria-label": "Full name",
-                  },
-                  on: { change: _vm.onFileSelected },
-                }),
-                _vm._v(" "),
-                _c(
-                  "label",
-                  { staticClass: "flex-col", class: _vm.labelStyle },
-                  [
-                    _vm._v("Imagen\n                    "),
-                    _c(
-                      "span",
-                      { staticClass: "text-xs text-gray-600 block mt-0" },
-                      [_vm._v("(Opcional)")]
-                    ),
-                  ]
-                ),
-              ]
-            ),
+            _c("div", { class: [_vm.controlsContainerStyle] }, [
+              _c("input", {
+                class: [_vm.inputStyle],
+                attrs: {
+                  type: "file",
+                  name: "image",
+                  id: "image",
+                  placeholder: "Subir imagen",
+                  "aria-label": "Full name",
+                },
+                on: { change: _vm.onFileSelected },
+              }),
+              _vm._v(" "),
+              _c(
+                "label",
+                { staticClass: "sm:flex-col flex-wrap", class: _vm.labelStyle },
+                [
+                  _vm._v("Imagen\n                    "),
+                  _c(
+                    "span",
+                    { staticClass: "text-xs text-gray-600 block mt-0" },
+                    [_vm._v("(Opcional)")]
+                  ),
+                ]
+              ),
+            ]),
             _vm._v(" "),
             _c("div", { class: [_vm.controlsContainerStyle] }, [
               _c("input", {
@@ -34928,7 +34953,7 @@ var render = function () {
                     _c(
                       "label",
                       {
-                        staticClass: "flex-col",
+                        staticClass: "sm:flex-col flex-wrap",
                         class: [_vm.labelStyle],
                         attrs: { for: "" },
                       },
@@ -34957,7 +34982,7 @@ var render = function () {
                         [
                           _c(
                             "div",
-                            { staticClass: "pl-60 flex-wrap flex" },
+                            { staticClass: "sm:pl-60 flex-wrap flex" },
                             _vm._l(_vm.inventories, function (warehouse) {
                               return _c(
                                 "div",
@@ -35022,7 +35047,7 @@ var render = function () {
                           _c(
                             "label",
                             {
-                              staticClass: "flex-col",
+                              staticClass: "sm:flex-col",
                               class: [_vm.labelStyle],
                             },
                             [
@@ -35059,7 +35084,7 @@ var render = function () {
                 "button",
                 {
                   staticClass:
-                    "\n                        bg-blue-500\n                        transition-all\n                        duration-500\n                        ease-in-out\n                        hover:bg-blue-700\n                        text-white\n                        font-semibold\n                        hover:text-white\n                        py-2\n                        px-4\n                        border-b-2 border-blue-500\n                        hover:border-transparent\n                        w-full\n                    ",
+                    "\n                        bg-blue-500\n                        transition-all\n                        duration-500\n                        ease-in-out\n                        hover:bg-blue-700\n                        text-white\n                        font-semibold\n                        hover:text-white\n                        py-2\n                        px-4\n                        mt-2 sm:mt-0\n                        border-b-2 border-blue-500\n                        hover:border-transparent\n                        w-full\n                    ",
                 },
                 [_vm._v("\n                    Guardar\n                ")]
               ),

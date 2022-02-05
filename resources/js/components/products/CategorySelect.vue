@@ -1,19 +1,29 @@
 <template>
-    <div class="flex items-center  py-2 relative">
+    <div
+        class="
+            flex flex-col-reverse
+            px-2
+            sm:px-0 sm:flex-row sm:items-center sm:border-b sm:border-t
+            border-gray-300
+            relative
+        "
+    >
         <input
             v-model="term_search"
             :class="[inputClass]"
             class="
                 appearance-none
-                bg-transparent
+                bg-gray-200
+                sm:bg-transparent
+                p-2
+                sm:p-0
+                rounded-sm
                 border-none
                 w-full
                 text-gray-700
                 mr-3
-                
-                leading-tight
                 focus:outline-none
-                placeholder-blue-400
+                placeholder-gray-600
             "
             autocomplete="off"
             @focus="allCategories"
@@ -30,28 +40,47 @@
 
         <button
             @click.prevent="close"
-            class="absolute  text-gray-700 border border-gray-400  font-semibold right-0 px-3 py-1 hover:bg-gray-300 rounded-sm shadow"
+            class="
+                absolute
+                text-gray-700
+                border border-gray-400
+                font-semibold
+                sm:right-0
+                px-3
+                sm:py-1
+                py-2
+                right-2
+                bg-white
+                hover:bg-gray-300
+                rounded-sm
+                shadow
+            "
         >
             X
         </button>
         <div
+            :class="listContainer"
             class="
                 absolute
-                mt-4
+                sm:mt-0
                 top-10
-                w-full
-                shadow
+                mt-10
+                sm:w-9/12
+                w-10/12
+                shadow-lg
                 z-5
                 bg-white
                 rounded
                 max-h-64
                 overflow-x-auto
-                
             "
             v-if="items.length"
         >
-            <ul class="bg-white w-fullrelative" ref="dropdown">
-                <li class="mt-2" v-for="(item, index) in items" :key="item.id">
+            <ul
+                class="bg-white border border-orange-300 w-full relative"
+                ref="dropdown"
+            >
+                <li v-for="(item, index) in items" :key="item.id">
                     <a
                         class="
                             pl-4
@@ -81,17 +110,21 @@
 export default {
     props: {
         categories: {
-            type: Array
+            type: Array,
         },
         product: {
-            type: Object
+            type: Object,
         },
-        inputClass: { type:String }
+        inputClass: { type: String },
+        listContainer: {
+            type: String,
+            default: "",
+        },
     },
     mounted() {
         if (this.product) {
             const category = this.categories.find(
-                ele => ele.id === this.product.id
+                (ele) => ele.id === this.product.id
             );
             this.term_search = category.name;
         }
@@ -105,7 +138,7 @@ export default {
             term_search: "",
             category_id: null,
             selectedCategoryId: null,
-            focusedIndex: 0
+            focusedIndex: 0,
         };
     },
     methods: {
@@ -115,7 +148,7 @@ export default {
             if (this.term_search == "") {
                 this.items = this.categories;
             } else {
-                this.items = this.categories.filter(category => {
+                this.items = this.categories.filter((category) => {
                     //var re = this.term_search.replace(/\s/g, '|'); idea nada mas,
                     //podria parter la cadena completa en dos partes mitad|mitad y buscar
 
@@ -162,7 +195,7 @@ export default {
             if (this.term_search == "") {
                 this.items = this.categories;
             }
-        }
-    }
+        },
+    },
 };
 </script>
