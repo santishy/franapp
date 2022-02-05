@@ -6686,6 +6686,21 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -6706,7 +6721,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   mounted: function mounted() {
     var _this = this;
 
-    EventBus.$on('selected-category', function (id) {
+    EventBus.$on("selected-category", function (id) {
       _this.category_id = id;
       if (id) _this.handleSearh();
     });
@@ -35247,7 +35262,7 @@ var render = function () {
     [
       _c("category-select", {
         staticClass:
-          "mb-4 relative block shadow-sm w-full appearance-none  border-l-4 border-orange-400 bg-white hover:border-gray-500 py-5  pr-8 rounded-sm leading-tight focus:outline-none focus:shadow-outline",
+          "\n           \n            relative\n            block\n            shadow-sm\n            \n            appearance-none\n            border-l-4 border-orange-400\n            bg-white\n            hover:border-gray-500\n            py-5\n            pr-8\n            rounded-sm\n            leading-tight\n            focus:outline-none focus:shadow-outline\n        ",
         attrs: { categories: _vm.categories },
       }),
     ],

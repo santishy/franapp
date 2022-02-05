@@ -1,7 +1,22 @@
 <template>
     <div class="w-full">
         <category-select
-            class="mb-4 relative block shadow-sm w-full appearance-none  border-l-4 border-orange-400 bg-white hover:border-gray-500 py-5  pr-8 rounded-sm leading-tight focus:outline-none focus:shadow-outline"
+            class="
+               
+                relative
+                block
+                shadow-sm
+                
+                appearance-none
+                border-l-4 border-orange-400
+                bg-white
+                hover:border-gray-500
+                py-5
+                pr-8
+                rounded-sm
+                leading-tight
+                focus:outline-none focus:shadow-outline
+            "
             :categories="categories"
         ></category-select>
     </div>
@@ -13,21 +28,20 @@ export default {
     components: { CategorySelect },
     props: {
         categories: {
-            type: Array
-        }
+            type: Array,
+        },
     },
     data() {
         return {
             category_id: "",
-            params: {}
+            params: {},
         };
     },
-    mounted(){
-        EventBus.$on('selected-category',(id) => {
+    mounted() {
+        EventBus.$on("selected-category", (id) => {
             this.category_id = id;
-            if(id)
-                this.handleSearh()
-        })
+            if (id) this.handleSearh();
+        });
     },
     methods: {
         async handleSearh() {
@@ -39,13 +53,13 @@ export default {
                 this.params.page++;
                 EventBus.$emit("matching-products", {
                     products,
-                    params: this.params
+                    params: this.params,
                 });
             } catch (error) {
                 console.log(error);
             }
         },
-        ...mapActions(["search"])
-    }
+        ...mapActions(["search"]),
+    },
 };
 </script>
