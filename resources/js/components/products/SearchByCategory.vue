@@ -2,11 +2,9 @@
     <div class="w-full">
         <category-select
             class="
-               
                 relative
                 block
                 shadow-sm
-                
                 appearance-none
                 border-l-4 border-orange-400
                 bg-white

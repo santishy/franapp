@@ -6699,8 +6699,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -35262,7 +35260,7 @@ var render = function () {
     [
       _c("category-select", {
         staticClass:
-          "\n           \n            relative\n            block\n            shadow-sm\n            \n            appearance-none\n            border-l-4 border-orange-400\n            bg-white\n            hover:border-gray-500\n            py-5\n            pr-8\n            rounded-sm\n            leading-tight\n            focus:outline-none focus:shadow-outline\n        ",
+          "\n            relative\n            block\n            shadow-sm\n            appearance-none\n            border-l-4 border-orange-400\n            bg-white\n            hover:border-gray-500\n            py-5\n            pr-8\n            rounded-sm\n            leading-tight\n            focus:outline-none focus:shadow-outline\n        ",
         attrs: { categories: _vm.categories },
       }),
     ],
