@@ -93,7 +93,7 @@
                 <category-select
                     class="border-t border-gray-300  sm:py-2"
                     inputClass="sm:pl-60"
-                    listContainer="sm:pl-52"
+                    list-container="sm:left-52"
                     :categories="categories"
                     :product="product"
                 >

@@ -1,13 +1,22 @@
 <template>
     <nav-component>
-        <div class="grid  grid-cols-1 md:grid-cols-4 2xl:grid-cols-5 gap-4 px-4 ">
-            <div class="col-span-4 2xl:col-span-5 flex justify-center  border border-gray-800 items-baseline">
-                
+        <div class="grid grid-cols-1 md:grid-cols-4 2xl:grid-cols-5 gap-4 px-4">
+            <div
+                class="
+                    col-span-5
+                    2xl:col-span-5
+                    flex
+                    sm:flex-row
+                    flex-col
+                    justify-center
+                    items-baseline
+                "
+            >
                 <search-by-category
-                    class="md:w-2/4 w-3/4 mr-2"
+                    class="md:w-2/4 w-full mr-2 mb-4 sm:mb-0"
                     :categories="categories"
                 ></search-by-category>
-                <search-component ref="search" class="md:w-2/4 w-3/4 " />
+                <search-component ref="search" class="md:w-2/4 w-full" />
             </div>
             <product-card
                 v-for="(product, index) in products"
@@ -15,7 +24,7 @@
                 :product="product"
                 :index="index"
                 transaction-type="purchase"
-                class="col-span-3 md:col-span-1"
+                class="col-span-5 md:col-span-1"
             />
             <infinite-loading
                 :identifier="infiniteId"
@@ -23,9 +32,7 @@
             ></infinite-loading>
         </div>
         <information-component>
-            <template slot="title">
-                Productos
-            </template>
+            <template slot="title"> Productos </template>
 
             <message
                 :title="modalDataConfirm.title"
@@ -54,8 +61,8 @@ import InformationComponent from "../modals/InformationComponent.vue";
 export default {
     props: {
         categories: {
-            type: Array
-        }
+            type: Array,
+        },
     },
     data() {
         return {
@@ -66,7 +73,7 @@ export default {
             infiniteId: 1,
             obj: new Object(),
             arr: new Array(),
-            message: null
+            message: null,
         };
     },
     created() {
@@ -76,7 +83,7 @@ export default {
         this.cleanLocalStorage();
         EventBus.$on("matching-products", this.matchingProducts);
         EventBus.$on("empty-search", this.reloadIndex);
-        EventBus.$on("failed-deletion", message => {
+        EventBus.$on("failed-deletion", (message) => {
             this.message = message;
         });
     },
@@ -88,7 +95,7 @@ export default {
         InformationComponent,
         Agree,
         Message,
-        SearchByCategory
+        SearchByCategory,
     },
     methods: {
         ...mapActions(["getProducts", "search"]),
@@ -98,7 +105,7 @@ export default {
         },
         infiniteHandler($state) {
             this.search(this.params)
-                .then(res => {
+                .then((res) => {
                     if (res.data.data.length) {
                         this.params.page += 1;
                         this.products.push(...res.data.data);
@@ -107,7 +114,7 @@ export default {
                         $state.complete();
                     }
                 })
-                .catch(err => {});
+                .catch((err) => {});
         },
         matchingProducts(data) {
             this.products = data.products;
@@ -133,7 +140,7 @@ export default {
             EventBus.$emit("open-modal", false);
             axios
                 .delete(`/products/${this.modalDataConfirm.product.id}`)
-                .then(res => {
+                .then((res) => {
                     if (res.data) {
                         if (res.data.deleted) {
                             this.removeFromArray(this.modalDataConfirm.index);
@@ -142,18 +149,18 @@ export default {
                         }
                         this.setModalDataConfirm({
                             message: res.data.message,
-                            title: "No se pudo eliminar"
+                            title: "No se pudo eliminar",
                         });
                         EventBus.$emit("open-modal", true);
                     }
                 })
-                .catch(err => {
+                .catch((err) => {
                     console.log(err);
                 });
-        }
+        },
     },
     computed: {
-        ...mapState(["modalDataConfirm"])
-    }
+        ...mapState(["modalDataConfirm"]),
+    },
 };
 </script>

@@ -5740,6 +5740,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -6678,6 +6685,8 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
 //
 //
 //
@@ -34193,7 +34202,7 @@ var render = function () {
             "div",
             {
               staticClass:
-                "\n            absolute\n            sm:mt-0\n            top-10\n            mt-10\n            sm:w-9/12\n            w-10/12\n            shadow-lg\n            z-5\n            bg-white\n            rounded\n            max-h-64\n            overflow-x-auto\n        ",
+                "\n            absolute\n            sm:mt-0\n            top-10\n            mt-10\n            sm:w-10/12\n            w-10/12\n            shadow-lg\n            z-5\n            \n            rounded\n           \n            overflow-x-auto\n        ",
               class: _vm.listContainer,
             },
             [
@@ -34310,24 +34319,24 @@ var render = function () {
         "div",
         {
           staticClass:
-            "grid  grid-cols-1 md:grid-cols-4 2xl:grid-cols-5 gap-4 px-4 ",
+            "grid grid-cols-1 md:grid-cols-4 2xl:grid-cols-5 gap-4 px-4",
         },
         [
           _c(
             "div",
             {
               staticClass:
-                "col-span-4 2xl:col-span-5 flex justify-center  border border-gray-800 items-baseline",
+                "\n                col-span-5\n                2xl:col-span-5\n                flex\n                sm:flex-row\n                flex-col\n                justify-center\n                items-baseline\n            ",
             },
             [
               _c("search-by-category", {
-                staticClass: "md:w-2/4 w-3/4 mr-2",
+                staticClass: "md:w-2/4 w-full mr-2 mb-4 sm:mb-0",
                 attrs: { categories: _vm.categories },
               }),
               _vm._v(" "),
               _c("search-component", {
                 ref: "search",
-                staticClass: "md:w-2/4 w-3/4 ",
+                staticClass: "md:w-2/4 w-full",
               }),
             ],
             1
@@ -34336,7 +34345,7 @@ var render = function () {
           _vm._l(_vm.products, function (product, index) {
             return _c("product-card", {
               key: product.id,
-              staticClass: "col-span-3 md:col-span-1",
+              staticClass: "col-span-5 md:col-span-1",
               attrs: {
                 product: product,
                 index: index,
@@ -34356,9 +34365,7 @@ var render = function () {
       _c(
         "information-component",
         [
-          _c("template", { slot: "title" }, [
-            _vm._v("\n            Productos\n        "),
-          ]),
+          _c("template", { slot: "title" }, [_vm._v(" Productos ")]),
           _vm._v(" "),
           _c("message", {
             attrs: {
@@ -34707,7 +34714,7 @@ var render = function () {
                 staticClass: "border-t border-gray-300  sm:py-2",
                 attrs: {
                   inputClass: "sm:pl-60",
-                  listContainer: "sm:pl-52",
+                  "list-container": "sm:left-52",
                   categories: _vm.categories,
                   product: _vm.product,
                 },
@@ -35260,8 +35267,8 @@ var render = function () {
     [
       _c("category-select", {
         staticClass:
-          "\n            relative\n            block\n            shadow-sm\n            appearance-none\n            border-l-4 border-orange-400\n            bg-white\n            hover:border-gray-500\n            py-5\n            pr-8\n            rounded-sm\n            leading-tight\n            focus:outline-none focus:shadow-outline\n        ",
-        attrs: { categories: _vm.categories },
+          "\n            relative\n            \n            block\n            shadow-sm\n            appearance-none\n            border-l-4 border-orange-400\n            bg-white\n            hover:border-gray-500\n            py-5\n            pr-8\n            rounded-sm\n            leading-tight\n            focus:outline-none focus:shadow-outline\n        ",
+        attrs: { "list-container": "sm:top-12", categories: _vm.categories },
       }),
     ],
     1

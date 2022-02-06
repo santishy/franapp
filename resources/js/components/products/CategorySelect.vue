@@ -65,13 +65,13 @@
                 sm:mt-0
                 top-10
                 mt-10
-                sm:w-9/12
+                sm:w-10/12
                 w-10/12
                 shadow-lg
                 z-5
-                bg-white
+                
                 rounded
-                max-h-64
+               
                 overflow-x-auto
             "
             v-if="items.length"

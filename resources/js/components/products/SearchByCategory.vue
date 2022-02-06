@@ -1,8 +1,10 @@
 <template>
     <div class="w-full">
         <category-select
+            list-container="sm:top-12"
             class="
                 relative
+                
                 block
                 shadow-sm
                 appearance-none
