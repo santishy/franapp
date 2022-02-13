@@ -4135,6 +4135,271 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -4143,7 +4408,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       form: {
-        assigned_price: ''
+        assigned_price: ""
       },
       errors: null
     };
@@ -4255,6 +4520,119 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -4305,6 +4683,98 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _icons_TrashIcon_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../icons/TrashIcon.vue */ "./resources/js/components/icons/TrashIcon.vue");
 /* harmony import */ var _icons_EditIcon_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../icons/EditIcon.vue */ "./resources/js/components/icons/EditIcon.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -31602,7 +32072,7 @@ var render = function () {
   return _c("nav-component", [
     _c(
       "div",
-      { staticClass: "w-full px-4  flex justify-center bg-transparent " },
+      { staticClass: "w-full px-4 flex justify-center bg-transparent" },
       [
         _c(
           "form",
@@ -31628,7 +32098,7 @@ var render = function () {
               "div",
               {
                 staticClass:
-                  "flex items-center py-2 text-blue-800 form-header  text-dark text-center justify-center text-xl font-extralight",
+                  "\n                    flex\n                    items-center\n                    py-2\n                    text-blue-800\n                    form-header\n                    text-dark text-center\n                    justify-center\n                    text-xl\n                    font-extralight\n                ",
               },
               [
                 _vm._v(
@@ -31641,7 +32111,7 @@ var render = function () {
               "div",
               {
                 staticClass:
-                  "flex items-center  border-t border-gray-300 py-2 relative",
+                  "\n                    flex flex-col-reverse\n                    px-2\n                    sm:px-0\n                    sm:flex-row\n                    sm:items-center\n                    sm:border-b\n                    sm:border-t\n                    border-gray-300\n                    sm:py-2 sm:relative\n                ",
               },
               [
                 _c("input", {
@@ -31654,7 +32124,7 @@ var render = function () {
                     },
                   ],
                   staticClass:
-                    "appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 pl-60 leading-tight focus:outline-none",
+                    "\n                        appearance-none\n                        sm:shadow-none\n                        static\n                        sm:p-0\n                        p-2\n                        bg-gray-200\n                        sm:bg-transparent\n                        border-none\n                        w-full\n                        text-gray-700\n                        mr-3\n                        sm:py-1 sm:pr-2 sm:pl-56\n                        leading-tight\n                        focus:outline-none\n                    ",
                   attrs: {
                     name: "name",
                     type: "text",
@@ -31676,7 +32146,7 @@ var render = function () {
                   "label",
                   {
                     staticClass:
-                      "absolute  pl-0 bg-gray-200 h-full flex items-center w-56 justify-center text-indigo-800 font-mono",
+                      "\n                        sm:absolute\n                        pl-2\n                        sm:pl-0 sm:p-0\n                        p-2\n                        sm:bg-gray-200\n                        h-full\n                        flex\n                        items-center\n                        sm:w-52 sm:justify-center\n                        text-indigo-800\n                        font-mono\n                    ",
                     attrs: { for: "" },
                   },
                   [_vm._v("Nombre")]
@@ -31688,7 +32158,7 @@ var render = function () {
               "div",
               {
                 staticClass:
-                  "flex items-center  border-t border-gray-300 py-2 relative",
+                  "\n                    flex flex-col-reverse\n                    px-2\n                    sm:px-0\n                    sm:flex-row\n                    sm:items-center\n                    sm:border-b\n                    sm:border-t\n                    border-gray-300\n                    sm:py-2 sm:relative\n                ",
               },
               [
                 _c("input", {
@@ -31701,7 +32171,7 @@ var render = function () {
                     },
                   ],
                   staticClass:
-                    "appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 pl-60 leading-tight focus:outline-none",
+                    "\n                        appearance-none\n                        sm:shadow-none\n                        static\n                        sm:p-0\n                        p-2\n                        bg-gray-200\n                        sm:bg-transparent\n                        border-none\n                        w-full\n                        text-gray-700\n                        mr-3\n                        sm:py-1 sm:pr-2 sm:pl-56\n                        leading-tight\n                        focus:outline-none\n                    ",
                   attrs: {
                     name: "address",
                     type: "text",
@@ -31723,7 +32193,7 @@ var render = function () {
                   "label",
                   {
                     staticClass:
-                      "absolute  pl-0 bg-gray-200 h-full flex items-center w-56 justify-center text-indigo-800 font-mono",
+                      "\n                        sm:absolute\n                        pl-2\n                        sm:pl-0 sm:p-0\n                        p-2\n                        sm:bg-gray-200\n                        h-full\n                        flex\n                        items-center\n                        sm:w-52 sm:justify-center\n                        text-indigo-800\n                        font-mono\n                    ",
                     attrs: { for: "" },
                   },
                   [_vm._v("Dirección")]
@@ -31735,7 +32205,7 @@ var render = function () {
               "div",
               {
                 staticClass:
-                  "flex items-center  border-t border-gray-300 py-2 relative",
+                  "\n                    flex flex-col-reverse\n                    px-2\n                    sm:px-0\n                    sm:flex-row\n                    sm:items-center\n                    sm:border-b\n                    sm:border-t\n                    border-gray-300\n                    sm:py-2 sm:relative\n                ",
               },
               [
                 _c("input", {
@@ -31748,7 +32218,7 @@ var render = function () {
                     },
                   ],
                   staticClass:
-                    "appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 pl-60 leading-tight focus:outline-none",
+                    "\n                        appearance-none\n                        sm:shadow-none\n                        static\n                        sm:p-0\n                        p-2\n                        bg-gray-200\n                        sm:bg-transparent\n                        border-none\n                        w-full\n                        text-gray-700\n                        mr-3\n                        sm:py-1 sm:pr-2 sm:pl-56\n                        leading-tight\n                        focus:outline-none\n                    ",
                   attrs: {
                     name: "phone_number",
                     type: "text",
@@ -31770,7 +32240,7 @@ var render = function () {
                   "label",
                   {
                     staticClass:
-                      "absolute  pl-0 bg-gray-200 h-full flex items-center w-56 justify-center text-indigo-800 font-mono",
+                      "\n                        sm:absolute\n                        pl-2\n                        sm:pl-0 sm:p-0\n                        p-2\n                        sm:bg-gray-200\n                        h-full\n                        flex\n                        items-center\n                        sm:w-52 sm:justify-center\n                        text-indigo-800\n                        font-mono\n                    ",
                     attrs: { for: "" },
                   },
                   [_vm._v("Telefono")]
@@ -31782,7 +32252,7 @@ var render = function () {
               "div",
               {
                 staticClass:
-                  "flex items-center  border-t border-gray-300 py-2 relative",
+                  "\n                    flex flex-col-reverse\n                    px-2\n                    sm:px-0\n                    sm:flex-row\n                    sm:items-center\n                    sm:border-b\n                    sm:border-t\n                    border-gray-300\n                    sm:py-2 sm:relative\n                ",
               },
               [
                 _c("input", {
@@ -31795,7 +32265,7 @@ var render = function () {
                     },
                   ],
                   staticClass:
-                    "appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 pl-60 leading-tight focus:outline-none",
+                    "\n                        appearance-none\n                        sm:shadow-none\n                        static\n                        sm:p-0\n                        p-2\n                        bg-gray-200\n                        sm:bg-transparent\n                        border-none\n                        w-full\n                        text-gray-700\n                        mr-3\n                        sm:py-1 sm:pr-2 sm:pl-56\n                        leading-tight\n                        focus:outline-none\n                    ",
                   attrs: {
                     name: "email",
                     type: "email",
@@ -31817,7 +32287,7 @@ var render = function () {
                   "label",
                   {
                     staticClass:
-                      "absolute  pl-0 bg-gray-200 h-full flex items-center w-56 justify-center text-indigo-800 font-mono",
+                      "\n                        sm:absolute\n                        pl-2\n                        sm:pl-0 sm:p-0\n                        p-2\n                        sm:bg-gray-200\n                        h-full\n                        flex\n                        items-center\n                        sm:w-52 sm:justify-center\n                        text-indigo-800\n                        font-mono\n                    ",
                     attrs: { for: "" },
                   },
                   [_vm._v("Email")]
@@ -31829,7 +32299,7 @@ var render = function () {
               "div",
               {
                 staticClass:
-                  "flex items-center  border-t border-gray-300 py-2 relative",
+                  "\n                    flex flex-col-reverse\n                    px-2\n                    sm:px-0\n                    sm:flex-row\n                    sm:items-center\n                    sm:border-b\n                    sm:border-t\n                    border-gray-300\n                    sm:py-2 sm:relative\n                ",
               },
               [
                 _c(
@@ -31844,7 +32314,7 @@ var render = function () {
                       },
                     ],
                     staticClass:
-                      "block appearance-none w-full bg-white hover:border-gray-300 px-4 pl-60 pr-8 rounded leading-tight focus:outline-none focus:shadow-outline",
+                      "\n                        appearance-none\n                        sm:shadow-none\n                        static\n                        sm:p-0\n                        p-2\n                        bg-gray-200\n                        sm:bg-transparent\n                        border-none\n                        w-full\n                        text-gray-700\n                        mr-3\n                        sm:py-1 sm:pr-2 sm:pl-56\n                        leading-tight\n                        focus:outline-none\n                    ",
                     attrs: {
                       name: "assigned_price",
                       plahceholder: "Asigna un precio al cliente",
@@ -31876,15 +32346,23 @@ var render = function () {
                         staticClass: "text-gray-600",
                         attrs: { disabled: "", value: "", selected: "" },
                       },
-                      [_vm._v("Asignar un precio")]
+                      [
+                        _vm._v(
+                          "\n                        Asignar un precio\n                    "
+                        ),
+                      ]
                     ),
                     _vm._v(" "),
                     _c("option", { attrs: { value: "retail_price" } }, [
-                      _vm._v("Precio al por menor"),
+                      _vm._v(
+                        "\n                        Precio al por menor\n                    "
+                      ),
                     ]),
                     _vm._v(" "),
                     _c("option", { attrs: { value: "wholesale_price" } }, [
-                      _vm._v("Precio al por mayor"),
+                      _vm._v(
+                        "\n                        Precio al por mayor\n                    "
+                      ),
                     ]),
                   ]
                 ),
@@ -31893,7 +32371,7 @@ var render = function () {
                   "label",
                   {
                     staticClass:
-                      "absolute  pl-0 bg-gray-200 h-full flex items-center w-56 justify-center text-indigo-800 font-mono",
+                      "\n                        sm:absolute\n                        pl-2\n                        sm:pl-0 sm:p-0\n                        p-2\n                        sm:bg-gray-200\n                        h-full\n                        flex\n                        items-center\n                        sm:w-52 sm:justify-center\n                        text-indigo-800\n                        font-mono\n                    ",
                     attrs: { for: "" },
                   },
                   [_vm._v("Precio asignado")]
@@ -31905,11 +32383,8 @@ var render = function () {
               "div",
               {
                 staticClass:
-                  "flex items-center  border-t border-gray-300 py-2 relative",
+                  "\n                    flex flex-col-reverse\n                    px-2\n                    sm:px-0\n                    sm:flex-row\n                    sm:items-center\n                    sm:border-b\n                    sm:border-t\n                    border-gray-300\n                    sm:py-2 sm:relative\n                ",
                 class: [
-                  "flex",
-                  "items-center",
-                  "border-b",
                   this.errors ? "border-transparent" : "border-gray-300",
                   "py-2",
                 ],
@@ -31925,7 +32400,7 @@ var render = function () {
                     },
                   ],
                   staticClass:
-                    "appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 pl-60 leading-tight focus:outline-none",
+                    "\n                        appearance-none\n                        sm:shadow-none\n                        static\n                        sm:p-0\n                        p-2\n                        bg-gray-200\n                        sm:bg-transparent\n                        border-none\n                        w-full\n                        text-gray-700\n                        mr-3\n                        sm:py-1 sm:pr-2 sm:pl-56\n                        leading-tight\n                        focus:outline-none\n                    ",
                   attrs: {
                     name: "distributor_price",
                     type: "text",
@@ -31947,7 +32422,7 @@ var render = function () {
                   "label",
                   {
                     staticClass:
-                      "absolute  pl-0 bg-gray-200 h-full flex items-center w-56 justify-center text-indigo-800 font-mono",
+                      "\n                        sm:absolute\n                        pl-2\n                        sm:pl-0 sm:p-0\n                        p-2\n                        sm:bg-gray-200\n                        h-full\n                        flex\n                        items-center\n                        sm:w-52 sm:justify-center\n                        text-indigo-800\n                        font-mono\n                    ",
                     attrs: { for: "" },
                   },
                   [_vm._v("Empresa")]
@@ -31957,7 +32432,7 @@ var render = function () {
             _vm._v(" "),
             _c(
               "div",
-              { staticClass: "flex items-center " },
+              { staticClass: "flex items-center" },
               [
                 _c("errors-component", {
                   attrs: { "errors-found": _vm.errors },
@@ -31971,7 +32446,7 @@ var render = function () {
                 "button",
                 {
                   staticClass:
-                    "bg-blue-500 transition-all duration-500 ease-in-out hover:bg-blue-700 text-white font-semibold hover:text-white py-2 px-4 border-b-2 border-blue-500 hover:border-transparent w-full",
+                    "\n                        mt-2\n                        sm:mt-0\n                        bg-transparent\n                        transition-all\n                        duration-500\n                        ease-in-out\n                        hover:bg-blue-700\n                        text-white\n                        bg-blue-500\n                        font-semibold\n                        hover:text-white\n                        py-2\n                        px-4\n                        border-b-2 border-blue-500\n                        hover:border-transparent\n                        w-full\n                    ",
                 },
                 [_vm._v("\n                    Guardar\n                ")]
               ),
@@ -32010,7 +32485,7 @@ var render = function () {
         "div",
         {
           staticClass:
-            "bg-white w-full shadow rounded-sm max-w-full sm:overflow-x-hidden overflow-x-auto",
+            "\n                flex\n                justify-center\n                bg-white\n                shadow-sm\n                w-full\n                rounded\n                max-w-full\n                sm:overflow-x-hidden\n                overflow-x-auto\n            ",
         },
         [
           _vm.clients.length
@@ -32025,37 +32500,105 @@ var render = function () {
                       expression: "'view clients'",
                     },
                   ],
-                  staticClass: "table-auto",
+                  staticClass:
+                    "\n                    min-w-full\n                    border-collapse\n                    block\n                    md:table\n                    shadow-sm\n                    text-center\n                    rounded-lg\n                ",
                 },
                 [
-                  _c("thead", [
-                    _c("tr", { staticClass: "bg-danger" }, [
-                      _c("th", { staticClass: "px-4 py-2" }, [
-                        _vm._v("Nombre"),
-                      ]),
-                      _vm._v(" "),
-                      _c("th", { staticClass: "px-4 py-2" }, [
-                        _vm._v("Dirección"),
-                      ]),
-                      _vm._v(" "),
-                      _c("th", { staticClass: "px-4 py-2" }, [
-                        _vm._v("Número tel."),
-                      ]),
-                      _vm._v(" "),
-                      _c("th", { staticClass: "px-4 py-2" }, [_vm._v("Email")]),
-                      _vm._v(" "),
-                      _c("th", { staticClass: "px-4 py-2" }, [
-                        _vm._v("Empresa"),
-                      ]),
-                      _vm._v(" "),
-                      _c("th", { staticClass: "px-4 py-2" }, [
-                        _vm._v("Acciones"),
-                      ]),
-                    ]),
+                  _c("thead", { staticClass: "block md:table-header-group" }, [
+                    _c(
+                      "tr",
+                      {
+                        staticClass:
+                          "\n                            border-b border-gray-500\n                            rounded-t-sm\n                            md:border-none\n                            block\n                            md:table-row\n                            absolute\n                            -top-full\n                            md:top-auto\n                            -left-full\n                            md:left-auto md:relative\n                        ",
+                      },
+                      [
+                        _c(
+                          "th",
+                          {
+                            staticClass:
+                              "\n                                bg-blue-700\n                                p-2\n                                text-white\n                                font-semibold\n                                md:border md:border-grey-500\n                                text-left\n                                block\n                                md:table-cell\n                            ",
+                          },
+                          [
+                            _vm._v(
+                              "\n                            Nombre\n                        "
+                            ),
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "th",
+                          {
+                            staticClass:
+                              "\n                                bg-blue-700\n                                p-2\n                                text-white\n                                font-semibold\n                                md:border md:border-grey-500\n                                text-left\n                                block\n                                md:table-cell\n                            ",
+                          },
+                          [
+                            _vm._v(
+                              "\n                            Dirección\n                        "
+                            ),
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "th",
+                          {
+                            staticClass:
+                              "\n                                bg-blue-700\n                                p-2\n                                text-white\n                                font-semibold\n                                md:border md:border-grey-500\n                                text-left\n                                block\n                                md:table-cell\n                            ",
+                          },
+                          [
+                            _vm._v(
+                              "\n                            Número tel.\n                        "
+                            ),
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "th",
+                          {
+                            staticClass:
+                              "\n                                bg-blue-700\n                                p-2\n                                text-white\n                                font-semibold\n                                md:border md:border-grey-500\n                                text-left\n                                block\n                                md:table-cell\n                            ",
+                          },
+                          [
+                            _vm._v(
+                              "\n                            Email\n                        "
+                            ),
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "th",
+                          {
+                            staticClass:
+                              "\n                                bg-blue-700\n                                p-2\n                                text-white\n                                font-semibold\n                                md:border md:border-grey-500\n                                text-left\n                                block\n                                md:table-cell\n                            ",
+                          },
+                          [
+                            _vm._v(
+                              "\n                            Empresa\n                        "
+                            ),
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "th",
+                          {
+                            staticClass:
+                              "\n                                bg-blue-700\n                                p-2\n                                text-white\n                                font-semibold\n                                md:border md:border-grey-500\n                                text-left\n                                block\n                                md:table-cell\n                            ",
+                          },
+                          [
+                            _vm._v(
+                              "\n                            Acciones\n                        "
+                            ),
+                          ]
+                        ),
+                      ]
+                    ),
                   ]),
                   _vm._v(" "),
                   _c(
                     "tbody",
+                    {
+                      staticClass:
+                        "block md:table-row-group alternate-table-row",
+                    },
                     _vm._l(_vm.clients, function (client, index) {
                       return _c("client-list-item", {
                         key: client.id,
@@ -32094,67 +32637,147 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("tr", [
-    _c("td", { staticClass: "border px-4 py-2" }, [
-      _vm._v(_vm._s(_vm.client.name)),
-    ]),
-    _vm._v(" "),
-    _c("td", { staticClass: "border px-4 py-2" }, [
-      _vm._v(_vm._s(_vm.client.address)),
-    ]),
-    _vm._v(" "),
-    _c("td", { staticClass: "border px-4 py-2" }, [
-      _vm._v(_vm._s(_vm.client.phone_number)),
-    ]),
-    _vm._v(" "),
-    _c("td", { staticClass: "border px-4 py-2" }, [
-      _vm._v(_vm._s(_vm.client.email)),
-    ]),
-    _vm._v(" "),
-    _c("td", { staticClass: "border px-4 py-2" }, [
-      _vm._v(_vm._s(_vm.client.company)),
-    ]),
-    _vm._v(" "),
-    _c("td", { staticClass: "border px-4 py-2" }, [
+  return _c(
+    "tr",
+    {
+      staticClass:
+        "\n        bg-white\n        border-b border-gray-400\n        md:border-none\n        block\n        md:table-row\n    ",
+    },
+    [
       _c(
-        "a",
+        "td",
         {
-          directives: [
-            {
-              name: "can",
-              rawName: "v-can",
-              value: "edit client",
-              expression: "'edit client'",
-            },
-          ],
           staticClass:
-            "bg-blue-500 inline-block cursor-pointer hover:bg-blue-400 text-white font-bold py-2 px-4 hover:border-blue-500 rounded",
-          attrs: { href: " clients/" + _vm.client.phone_number + "/edit" },
+            "\n            p-2\n            md:border md:border-grey-500\n            text-left\n            block\n            md:table-cell\n        ",
         },
-        [_c("edit-icon")],
-        1
+        [
+          _c(
+            "span",
+            { staticClass: "inline-block w-1/3 md:hidden font-bold" },
+            [_vm._v("Nombre")]
+          ),
+          _vm._v(_vm._s(_vm.client.name) + "\n    "),
+        ]
       ),
       _vm._v(" "),
       _c(
-        "button",
+        "td",
         {
-          directives: [
-            {
-              name: "can",
-              rawName: "v-can",
-              value: "delete client",
-              expression: "'delete client'",
-            },
-          ],
           staticClass:
-            "bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4  hover:border-red-500 rounded",
-          on: { click: _vm.deleteClient },
+            "\n            p-2\n            md:border md:border-grey-500\n            text-left\n            block\n            md:table-cell\n        ",
         },
-        [_c("trash-icon")],
-        1
+        [
+          _c(
+            "span",
+            { staticClass: "inline-block w-1/3 md:hidden font-bold" },
+            [_vm._v("Dirección")]
+          ),
+          _vm._v(_vm._s(_vm.client.address) + "\n    "),
+        ]
       ),
-    ]),
-  ])
+      _vm._v(" "),
+      _c(
+        "td",
+        {
+          staticClass:
+            "\n            p-2\n            md:border md:border-grey-500\n            text-left\n            block\n            md:table-cell\n        ",
+        },
+        [
+          _c(
+            "span",
+            { staticClass: "inline-block w-1/3 md:hidden font-bold" },
+            [_vm._v("Télefono")]
+          ),
+          _vm._v(_vm._s(_vm.client.phone_number) + "\n    "),
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "td",
+        {
+          staticClass:
+            "\n            p-2\n            md:border md:border-grey-500\n            text-left\n            block\n            md:table-cell\n        ",
+        },
+        [
+          _c(
+            "span",
+            { staticClass: "inline-block w-1/3 md:hidden font-bold" },
+            [_vm._v("Correo")]
+          ),
+          _vm._v(_vm._s(_vm.client.email) + "\n    "),
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "td",
+        {
+          staticClass:
+            "\n            p-2\n            md:border md:border-grey-500\n            text-left\n            block\n            md:table-cell\n        ",
+        },
+        [
+          _c(
+            "span",
+            { staticClass: "inline-block w-1/3 md:hidden font-bold" },
+            [_vm._v("Empresa")]
+          ),
+          _vm._v(_vm._s(_vm.client.company) + "\n    "),
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "td",
+        {
+          staticClass:
+            "\n            p-2\n            md:border md:border-grey-500\n            text-left\n            block\n            md:table-cell\n        ",
+        },
+        [
+          _c(
+            "span",
+            { staticClass: "inline-block w-1/3 md:hidden font-bold" },
+            [_vm._v("Acciones")]
+          ),
+          _vm._v(" "),
+          _c(
+            "a",
+            {
+              directives: [
+                {
+                  name: "can",
+                  rawName: "v-can",
+                  value: "edit client",
+                  expression: "'edit client'",
+                },
+              ],
+              staticClass:
+                "\n                bg-blue-500\n                inline-block\n                cursor-pointer\n                hover:bg-blue-400\n                text-white\n                font-bold\n                py-2\n                px-4\n                hover:border-blue-500\n                rounded\n            ",
+              attrs: { href: " clients/" + _vm.client.phone_number + "/edit" },
+            },
+            [_c("edit-icon")],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              directives: [
+                {
+                  name: "can",
+                  rawName: "v-can",
+                  value: "delete client",
+                  expression: "'delete client'",
+                },
+              ],
+              staticClass:
+                "\n                bg-red-500\n                hover:bg-red-400\n                text-white\n                font-bold\n                py-2\n                px-4\n                hover:border-red-500\n                rounded\n            ",
+              on: { click: _vm.deleteClient },
+            },
+            [_c("trash-icon")],
+            1
+          ),
+        ]
+      ),
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true

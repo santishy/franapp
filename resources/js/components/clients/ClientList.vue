@@ -2,20 +2,133 @@
     <nav-component>
         <div class="w-full flex justify-center px-4">
             <div
-                class="bg-white w-full shadow rounded-sm max-w-full sm:overflow-x-hidden overflow-x-auto"
+                class="
+                    flex
+                    justify-center
+                    bg-white
+                    shadow-sm
+                    w-full
+                    rounded
+                    max-w-full
+                    sm:overflow-x-hidden
+                    overflow-x-auto
+                "
             >
-                <table v-if="clients.length" v-can="'view clients'" class="table-auto">
-                    <thead>
-                        <tr class="bg-danger">
-                            <th class="px-4 py-2">Nombre</th>
-                            <th class="px-4 py-2">Dirección</th>
-                            <th class="px-4 py-2">Número tel.</th>
-                            <th class="px-4 py-2">Email</th>
-                            <th class="px-4 py-2">Empresa</th>
-                            <th class="px-4 py-2">Acciones</th>
+                <table
+                    v-if="clients.length"
+                    v-can="'view clients'"
+                    class="
+                        min-w-full
+                        border-collapse
+                        block
+                        md:table
+                        shadow-sm
+                        text-center
+                        rounded-lg
+                    "
+                >
+                    <thead class="block md:table-header-group">
+                        <tr
+                            class="
+                                border-b border-gray-500
+                                rounded-t-sm
+                                md:border-none
+                                block
+                                md:table-row
+                                absolute
+                                -top-full
+                                md:top-auto
+                                -left-full
+                                md:left-auto md:relative
+                            "
+                        >
+                            <th
+                                class="
+                                    bg-blue-700
+                                    p-2
+                                    text-white
+                                    font-semibold
+                                    md:border md:border-grey-500
+                                    text-left
+                                    block
+                                    md:table-cell
+                                "
+                            >
+                                Nombre
+                            </th>
+                            <th
+                                class="
+                                    bg-blue-700
+                                    p-2
+                                    text-white
+                                    font-semibold
+                                    md:border md:border-grey-500
+                                    text-left
+                                    block
+                                    md:table-cell
+                                "
+                            >
+                                Dirección
+                            </th>
+                            <th
+                                class="
+                                    bg-blue-700
+                                    p-2
+                                    text-white
+                                    font-semibold
+                                    md:border md:border-grey-500
+                                    text-left
+                                    block
+                                    md:table-cell
+                                "
+                            >
+                                Número tel.
+                            </th>
+                            <th
+                                class="
+                                    bg-blue-700
+                                    p-2
+                                    text-white
+                                    font-semibold
+                                    md:border md:border-grey-500
+                                    text-left
+                                    block
+                                    md:table-cell
+                                "
+                            >
+                                Email
+                            </th>
+                            <th
+                                class="
+                                    bg-blue-700
+                                    p-2
+                                    text-white
+                                    font-semibold
+                                    md:border md:border-grey-500
+                                    text-left
+                                    block
+                                    md:table-cell
+                                "
+                            >
+                                Empresa
+                            </th>
+                            <th
+                                class="
+                                    bg-blue-700
+                                    p-2
+                                    text-white
+                                    font-semibold
+                                    md:border md:border-grey-500
+                                    text-left
+                                    block
+                                    md:table-cell
+                                "
+                            >
+                                Acciones
+                            </th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="block md:table-row-group alternate-table-row">
                         <client-list-item
                             v-for="(client, index) in clients"
                             :key="client.id"
@@ -36,12 +149,12 @@ export default {
 
     data() {
         return {
-            clients: []
+            clients: [],
         };
     },
 
     mounted() {
-        EventBus.$on("client-removed", index => {
+        EventBus.$on("client-removed", (index) => {
             this.clients.splice(index, 1);
         });
         this.getClients();
@@ -50,14 +163,14 @@ export default {
         getClients() {
             axios
                 .get("/clients")
-                .then(res => {
+                .then((res) => {
                     this.clients.push(...res.data.data);
                     console.log(res.data.data);
                 })
-                .catch(err => {
+                .catch((err) => {
                     console.log(err);
                 });
-        }
-    }
+        },
+    },
 };
 </script>
