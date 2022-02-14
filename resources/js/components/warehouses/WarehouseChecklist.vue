@@ -1,7 +1,16 @@
 <template>
     <div class="flex flex-wrap space-x-2 px-2">
         <label
-            class="inline-flex items-center mt-3 border p-2 border-gray-300 rounded-lg cursor-pointer "
+            class="
+                inline-flex
+                items-center
+                mt-3
+                border
+                p-2
+                border-gray-300
+                rounded-lg
+                cursor-pointer
+            "
             v-for="warehouse in warehouses"
             :key="warehouse.id"
         >
@@ -16,11 +25,11 @@
 <script>
 export default {
     props: {
-        warehouses: { type: Array }
+        warehouses: { type: Array },
     },
     data() {
         return {
-            selectedWarehouses: []
+            selectedWarehouses: [],
         };
     },
     methods: {
@@ -35,7 +44,7 @@ export default {
             }
 
             EventBus.$emit("selected-warehouses", this.selectedWarehouses);
-        }
-    }
+        },
+    },
 };
 </script>

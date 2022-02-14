@@ -1,7 +1,7 @@
 <template>
     <div class="flex flex-wrap flex-col items-center justify-center">
-        <div class="flex justify-center flex-wrap items-center">
-            <div class="p-1 border bg-gray-700 rounded text-white px-3 mr-2">
+        <div class="flex justify-center flex-wrap items-center max-w-xs">
+            <div class="p-1 border bg-gray-700 rounded text-white px-2">
                 <span>Reporte por rango</span>
                 <date-picker
                     @change="getReport(range, 'betweenDates')"
@@ -121,3 +121,10 @@ export default {
     },
 };
 </script>
+<style scoped>
+@media (max-width: 600px)  {
+    .mx-datepicker-range {
+        width: 100%;
+    }
+}
+</style>
