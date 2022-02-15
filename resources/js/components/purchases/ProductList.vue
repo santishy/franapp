@@ -1,18 +1,102 @@
 <template>
-    <div class="mx-auto">
-        <table class="w-full shadow-sm">
-            <thead>
-                <tr class="text-md font-semibold tracking-wide text-left text-gray-900 bg-gray-100 uppercase border-b border-gray-600">
-                    <th class="px-4 py-3">SKU</th>
-                    <th class="px-4 py-3">Categoría</th>
-                    <th class="px-4 py-3">Descripción</th>
-                    <th class="px-4 py-3">Precio</th>
-                    <th class="px-4 py-3">Cantidad</th>
-                    <th class="px-4 py-3">Total</th>
-                    <th  class="px-4 py-3">Acciones</th>
+    <div
+        class="
+            flex
+            justify-center
+            bg-white
+            shadow-sm
+            w-full
+            rounded
+            max-w-full
+            sm:overflow-x-hidden
+            overflow-x-auto
+        "
+    >
+        <table
+            class="
+                min-w-full
+                border-collapse
+                block
+                md:table
+                shadow-sm
+                text-center
+                rounded-lg
+            "
+        >
+            <thead class="block md:table-header-group">
+                <tr
+                    class="
+                        border-b border-gray-500
+                        rounded-t-sm
+                        md:border-none
+                        block
+                        md:table-row
+                        absolute
+                        -top-full
+                        md:top-auto
+                        -left-full
+                        md:left-auto md:relative
+                    "
+                >
+                    <th class="bg-blue-700
+                                    p-2
+                                    text-white
+                                    font-semibold
+                                    md:border md:border-grey-500
+                                    text-left
+                                    block
+                                    md:table-cell">SKU</th>
+                    <th class="bg-blue-700
+                                    p-2
+                                    text-white
+                                    font-semibold
+                                    md:border md:border-grey-500
+                                    text-left
+                                    block
+                                    md:table-cell">Categoría</th>
+                    <th class="bg-blue-700
+                                    p-2
+                                    text-white
+                                    font-semibold
+                                    md:border md:border-grey-500
+                                    text-left
+                                    block
+                                    md:table-cell">Descripción</th>
+                    <th class="bg-blue-700
+                                    p-2
+                                    text-white
+                                    font-semibold
+                                    md:border md:border-grey-500
+                                    text-left
+                                    block
+                                    md:table-cell">Precio</th>
+                    <th class="bg-blue-700
+                                    p-2
+                                    text-white
+                                    font-semibold
+                                    md:border md:border-grey-500
+                                    text-left
+                                    block
+                                    md:table-cell">Cantidad</th>
+                    <th class="bg-blue-700
+                                    p-2
+                                    text-white
+                                    font-semibold
+                                    md:border md:border-grey-500
+                                    text-left
+                                    block
+                                    md:table-cell">Total</th>
+                    <th class="bg-blue-700
+                                    p-2
+                                    text-white
+                                    font-semibold
+                                    md:border md:border-grey-500
+                                    text-left
+                                    block
+                                    md:table-cell">Acciones</th>
                 </tr>
             </thead>
-            <tbody class="bg-white">
+            <tbody class="block md:table-row-group alternate-table-row">
                 <product-list-item
                     v-for="(product, index) in products"
                     :key="product.id"
@@ -29,12 +113,12 @@
 import ProductListItem from "./ProductListItem.vue";
 export default {
     components: {
-        ProductListItem
+        ProductListItem,
     },
     props: {
         products: {
-            type: Array
-        }
-    }
+            type: Array,
+        },
+    },
 };
 </script>

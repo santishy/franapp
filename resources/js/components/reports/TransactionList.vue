@@ -1,9 +1,7 @@
 <template>
-    <div class="container mx-auto mt-4 flex justify-center">
+    <div class="container mx-auto mt-4 flex justify-center px-4">
         <information-component>
-            <template slot="title">
-                Reportes
-            </template>
+            <template slot="title"> Reportes </template>
 
             <message
                 :title="modalDataConfirm.title"
@@ -16,39 +14,159 @@
                 @cancelTransaction="cancelTransaction"
             ></agree>
         </information-component>
+        <div
+            class="
+                flex
+                justify-center
+                bg-white
+                shadow-sm
+                w-full
+                rounded
+                max-w-full
+                sm:overflow-x-hidden
+                overflow-x-auto
+            "
+        >
+            <table
+                v-if="params"
+                class="
+                    min-w-full
+                    border-collapse
+                    block
+                    md:table
+                    shadow-sm
+                    text-center
+                    rounded-lg
+                "
+            >
+                <thead class="block md:table-header-group">
+                    <tr
+                        class="
+                            border-b border-gray-500
+                            rounded-t-sm
+                            md:border-none
+                            block
+                            md:table-row
+                            absolute
+                            -top-full
+                            md:top-auto
+                            -left-full
+                            md:left-auto md:relative
+                        "
+                    >
+                        <th
+                            class="
+                                bg-blue-700
+                                p-2
+                                text-white
+                                font-semibold
+                                md:border md:border-grey-500
+                                text-left
+                                block
+                                md:table-cell
+                            "
+                        >
+                            ID
+                        </th>
+                        <th
+                            class="
+                                bg-blue-700
+                                p-2
+                                text-white
+                                font-semibold
+                                md:border md:border-grey-500
+                                text-left
+                                block
+                                md:table-cell
+                            "
+                        >
+                            Usuario
+                        </th>
+                        <th v-if="areTheySales">Cliente</th>
+                        <th
+                            class="
+                                bg-blue-700
+                                p-2
+                                text-white
+                                font-semibold
+                                md:border md:border-grey-500
+                                text-left
+                                block
+                                md:table-cell
+                            "
+                        >
+                            Fecha
+                        </th>
+                        <th
+                            class="
+                                bg-blue-700
+                                p-2
+                                text-white
+                                font-semibold
+                                md:border md:border-grey-500
+                                text-left
+                                block
+                                md:table-cell
+                            "
+                        >
+                            Total
+                        </th>
+                        <th
+                            class="
+                                bg-blue-700
+                                p-2
+                                text-white
+                                font-semibold
+                                md:border md:border-grey-500
+                                text-left
+                                block
+                                md:table-cell
+                            "
+                        >
+                            Ver
+                        </th>
+                        <th
+                            class="
+                                bg-blue-700
+                                p-2
+                                text-white
+                                font-semibold
+                                md:border md:border-grey-500
+                                text-left
+                                block
+                                md:table-cell
+                            "
+                        >
+                            Acciones
+                        </th>
+                    </tr>
+                </thead>
 
-        <table v-if="params" class="table-auto bg-white text-center">
-            <thead>
-                <tr class="bg-purple-200">
-                    <th class="px-4 py-2">ID</th>
-                    <th class="px-4 py-2">Usuario</th>
-                    <th v-if="areTheySales">Cliente</th>
-                    <th class="px-4 py-2">Fecha</th>
-                    <th class="px-4 py-2">Total</th>
-                    <th class="px-4 py-2">Ver</th>
-                    <th class="px-4 py-2">Acciones</th>
-                </tr>
-            </thead>
-
-            <transition-group name="bounce" tag="tbody" @after-leave="afterLeave">
-                <transaction-list-item
-                    v-for="(transaction, index) in transactions"
-                    :transaction="transaction"
-                    :index="index"
-                    :transaction-type="transaction.transactionType"
-                    :key="transaction.id"
-                    :uri="uri"
-                    :are-they-sales="areTheySales"
+                <transition-group
+                    name="bounce"
+                    tag="tbody"
+                    class="block md:table-row-group alternate-table-row"
+                    @after-leave="afterLeave"
                 >
-                </transaction-list-item>
-            </transition-group>
+                    <transaction-list-item
+                        v-for="(transaction, index) in transactions"
+                        :transaction="transaction"
+                        :index="index"
+                        :transaction-type="transaction.transactionType"
+                        :key="transaction.id"
+                        :uri="uri"
+                        :are-they-sales="areTheySales"
+                    >
+                    </transaction-list-item>
+                </transition-group>
 
-            <infinite-loading
-                @infinite="infiniteHandler"
-                :identifier="infiniteId"
-                ref="infiniteLoading"
-            ></infinite-loading>
-        </table>
+                <infinite-loading
+                    @infinite="infiniteHandler"
+                    :identifier="infiniteId"
+                    ref="infiniteLoading"
+                ></infinite-loading>
+            </table>
+        </div>
     </div>
 </template>
 <script>
@@ -65,15 +183,15 @@ export default {
         Message,
         Agree,
         InfiniteLoading,
-        InformationComponent
+        InformationComponent,
     },
     props: {
         name: {
-            type: String
+            type: String,
         },
         uri: {
-            type: String
-        }
+            type: String,
+        },
     },
     data() {
         return {
@@ -81,19 +199,18 @@ export default {
             page: 1,
             params: null,
             searchTheWarehouses: {
-                "filter[byWarehouses]": null
+                "filter[byWarehouses]": null,
             },
-            infiniteId: 1
+            infiniteId: 1,
         };
     },
     mounted() {
-        EventBus.$on("set-parameters", data => {
+        EventBus.$on("set-parameters", (data) => {
             this.changeParams(data);
         });
-        EventBus.$on("selected-warehouses", warehouses => {
-            this.searchTheWarehouses[
-                "filter[byWarehouses]"
-            ] = warehouses.toString();
+        EventBus.$on("selected-warehouses", (warehouses) => {
+            this.searchTheWarehouses["filter[byWarehouses]"] =
+                warehouses.toString();
         });
     },
     methods: {
@@ -103,10 +220,10 @@ export default {
                     params: {
                         page: this.page,
                         ..._.merge(this.params, this.getRelathionships),
-                        ...this.searchTheWarehouses
-                    }
+                        ...this.searchTheWarehouses,
+                    },
                 })
-                .then(res => {
+                .then((res) => {
                     if (this.page == 1)
                         EventBus.$emit("calculated-total", res.data.total);
                     if (res.data.data.length) {
@@ -129,11 +246,11 @@ export default {
                 .delete(this.uri + "/" + this.modalDataConfirm.transaction.id, {
                     params: {
                         factor: this.getFactor(),
-                        inventory_id: this.modalDataConfirm.transaction
-                            .inventory_id
-                    }
+                        inventory_id:
+                            this.modalDataConfirm.transaction.inventory_id,
+                    },
                 })
-                .then(res => {
+                .then((res) => {
                     if (res.data.status == "cancelled") {
                         this.transactions.splice(
                             this.modalDataConfirm.index,
@@ -141,7 +258,7 @@ export default {
                         );
                     }
                 })
-                .catch(err => {
+                .catch((err) => {
                     EventBus.$emit("errors-found", err);
                 });
             this.setModalDataConfirm({});
@@ -174,6 +291,6 @@ export default {
         areTheySales() {
             return this.name.toUpperCase() == "VENTAS";
         },
-    }
+    },
 };
 </script>

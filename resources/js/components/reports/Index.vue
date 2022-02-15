@@ -1,8 +1,10 @@
 <template>
     <nav-component>
-        <transaction-report :uri='uri' :name="name">
-        </transaction-report>
-        <transaction-list :uri="uri" :name="name"> </transaction-list>
+        <div class="px-2">
+            
+            <transaction-report :uri="uri" :name="name"> </transaction-report>
+            <transaction-list :uri="uri" :name="name"> </transaction-list>
+        </div>
     </nav-component>
 </template>
 <script>
@@ -12,7 +14,7 @@ export default {
     components: { NavComponent },
     props: {
         uri: String,
-        name: String
-    }
+        name: String,
+    },
 };
 </script>
