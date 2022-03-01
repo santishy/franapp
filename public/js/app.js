@@ -2962,6 +2962,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     roles: {
@@ -3208,6 +3216,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -3235,8 +3250,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {
     definePermission: function definePermission() {
-      if (this.method.toUpperCase() === 'POST') return 'create user';
-      return 'edit user';
+      if (this.method.toUpperCase() === "POST") return "create user";
+      return "edit user";
     }
   }
 });
@@ -3252,6 +3267,199 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -8811,6 +9019,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Modal_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../Modal.vue */ "./resources/js/components/Modal.vue");
 /* harmony import */ var _CancelTransaction_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CancelTransaction.vue */ "./resources/js/components/reports/CancelTransaction.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -31335,13 +31552,13 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "bg-white rounded-sm shadow-sm p-4 " },
+    { staticClass: "bg-white rounded-sm shadow-sm p-2" },
     [
       _c(
         "h3",
         {
           staticClass:
-            "text-xl text-center border-b-2 form-header text-blue-800 border-gray-300 px-4  mb-3 font-extralight",
+            "\n            form-header\n            p-2\n            text-dark text-center text-xl\n            font-extralight\n            text-blue-800\n        ",
         },
         [_vm._v("\n        Asignar roles\n    ")]
       ),
@@ -31601,9 +31818,13 @@ var render = function () {
   return _c("nav-component", [
     _c(
       "div",
-      { staticClass: " px-4 mx-auto grid grid-cols-2 gap-4 grid-flow-col" },
+      {
+        staticClass:
+          "\n            px-4\n            mx-auto\n            grid grid-cols-1 \n            sm:grid sm:grid-cols-2 sm:gap-4 sm:grid-flow-col\n        ",
+      },
       [
         _c("registration-form", {
+          staticClass: "row-start-2 sm:row-start-1 sm:mt-0 mt-4",
           attrs: {
             inventories: _vm.inventories,
             method: _vm.method,
@@ -31662,7 +31883,7 @@ var render = function () {
           expression: "definePermission",
         },
       ],
-      staticClass: " shadow-sm rounded-sm bg-white ",
+      staticClass: "shadow-sm rounded-sm bg-white",
       on: {
         submit: function ($event) {
           $event.preventDefault()
@@ -31675,7 +31896,7 @@ var render = function () {
         "div",
         {
           staticClass:
-            "flex items-center p-2  text-center justify-center text-xl font-extralight text-blue-800 form-header ",
+            "\n            form-header\n            p-2\n            text-dark text-center text-xl\n            font-extralight\n            text-blue-800\n        ",
         },
         [_vm._v("\n        " + _vm._s(_vm.getTitle) + "\n    ")]
       ),
@@ -31684,7 +31905,7 @@ var render = function () {
         "div",
         {
           staticClass:
-            "flex items-center  border-t border-gray-300 py-2 relative",
+            "\n            flex flex-col-reverse\n            px-2\n            sm:px-0 sm:flex-row sm:items-center sm:border-b sm:border-t\n            border-gray-300\n            sm:py-2 sm:relative\n        ",
         },
         [
           _c(
@@ -31699,7 +31920,7 @@ var render = function () {
                 },
               ],
               staticClass:
-                "appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 pl-60 leading-tight focus:outline-none",
+                "\n                appearance-none\n                sm:shadow-none\n                static\n                sm:p-0\n                p-2\n                bg-gray-200\n                sm:bg-transparent\n                border-none\n                w-full\n                text-gray-700\n                mr-3\n                sm:py-1 sm:pr-2 sm:pl-56\n                leading-tight\n                focus:outline-none\n            ",
               attrs: {
                 name: "inventory_id",
                 placeholder: "Nombre completo",
@@ -31751,7 +31972,7 @@ var render = function () {
             "label",
             {
               staticClass:
-                "absolute  pl-0 bg-gray-200 h-full flex items-center w-56 justify-center text-indigo-800 font-mono",
+                "\n                sm:absolute\n                pl-2\n                sm:pl-0 sm:p-0\n                p-2\n                sm:bg-gray-200\n                h-full\n                flex\n                items-center\n                sm:w-52 sm:justify-center\n                text-indigo-800\n                font-mono\n            ",
               attrs: { for: "" },
             },
             [_vm._v("Almacenes")]
@@ -31763,7 +31984,7 @@ var render = function () {
         "div",
         {
           staticClass:
-            "flex items-center  border-t border-gray-300 py-2 relative",
+            "\n            flex flex-col-reverse\n            px-2\n            sm:px-0 sm:flex-row sm:items-center sm:border-b sm:border-t\n            border-gray-300\n            sm:py-2 sm:relative\n        ",
         },
         [
           _c("input", {
@@ -31776,7 +31997,7 @@ var render = function () {
               },
             ],
             staticClass:
-              "appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 pl-60 leading-tight focus:outline-none",
+              "\n                appearance-none\n                sm:shadow-none\n                static\n                sm:p-0\n                p-2\n                bg-gray-200\n                sm:bg-transparent\n                border-none\n                w-full\n                text-gray-700\n                mr-3\n                sm:py-1 sm:pr-2 sm:pl-56\n                leading-tight\n                focus:outline-none\n            ",
             attrs: {
               name: "name",
               type: "text",
@@ -31798,7 +32019,7 @@ var render = function () {
             "label",
             {
               staticClass:
-                "absolute  pl-0 bg-gray-200 h-full flex items-center w-56 justify-center text-indigo-800 font-mono",
+                "\n                sm:absolute\n                pl-2\n                sm:pl-0 sm:p-0\n                p-2\n                sm:bg-gray-200\n                h-full\n                flex\n                items-center\n                sm:w-52 sm:justify-center\n                text-indigo-800\n                font-mono\n            ",
               attrs: { for: "" },
             },
             [_vm._v("Nombre")]
@@ -31810,7 +32031,7 @@ var render = function () {
         "div",
         {
           staticClass:
-            "flex items-center  border-t border-gray-300 py-2 relative",
+            "\n            flex flex-col-reverse\n            px-2\n            sm:px-0 sm:flex-row sm:items-center sm:border-b sm:border-t\n            border-gray-300\n            sm:py-2 sm:relative\n        ",
         },
         [
           _c("input", {
@@ -31823,7 +32044,7 @@ var render = function () {
               },
             ],
             staticClass:
-              "appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 pl-60 leading-tight focus:outline-none",
+              "\n                appearance-none\n                sm:shadow-none\n                static\n                sm:p-0\n                p-2\n                bg-gray-200\n                sm:bg-transparent\n                border-none\n                w-full\n                text-gray-700\n                mr-3\n                sm:py-1 sm:pr-2 sm:pl-56\n                leading-tight\n                focus:outline-none\n            ",
             attrs: {
               name: "email",
               type: "email",
@@ -31845,7 +32066,7 @@ var render = function () {
             "label",
             {
               staticClass:
-                "absolute  pl-0 bg-gray-200 h-full flex items-center w-56 justify-center text-indigo-800 font-mono",
+                "\n                sm:absolute\n                pl-2\n                sm:pl-0 sm:p-0\n                p-2\n                sm:bg-gray-200\n                h-full\n                flex\n                items-center\n                sm:w-52 sm:justify-center\n                text-indigo-800\n                font-mono\n            ",
               attrs: { for: "" },
             },
             [_vm._v("Email")]
@@ -31858,7 +32079,7 @@ var render = function () {
             "div",
             {
               staticClass:
-                "flex items-center  border-t border-gray-300 py-2 relative",
+                "\n            flex flex-col-reverse\n            px-2\n            sm:px-0 sm:flex-row sm:items-center sm:border-b sm:border-t\n            border-gray-300\n            sm:py-2 sm:relative\n        ",
             },
             [
               _c("input", {
@@ -31871,7 +32092,7 @@ var render = function () {
                   },
                 ],
                 staticClass:
-                  "appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 pl-60 leading-tight focus:outline-none",
+                  "\n                appearance-none\n                sm:shadow-none\n                static\n                sm:p-0\n                p-2\n                bg-gray-200\n                sm:bg-transparent\n                border-none\n                w-full\n                text-gray-700\n                mr-3\n                sm:py-1 sm:pr-2 sm:pl-56\n                leading-tight\n                focus:outline-none\n            ",
                 attrs: {
                   name: "password",
                   type: "password",
@@ -31893,7 +32114,7 @@ var render = function () {
                 "label",
                 {
                   staticClass:
-                    "absolute  pl-0 bg-gray-200 h-full flex items-center w-56 justify-center text-indigo-800 font-mono",
+                    "\n                sm:absolute\n                pl-2\n                sm:pl-0 sm:p-0\n                p-2\n                sm:bg-gray-200\n                h-full\n                flex\n                items-center\n                sm:w-52 sm:justify-center\n                text-indigo-800\n                font-mono\n            ",
                   attrs: { for: "" },
                 },
                 [_vm._v("Contraseña")]
@@ -31907,7 +32128,7 @@ var render = function () {
             "div",
             {
               staticClass:
-                "flex items-center  border-t border-b border-gray-300 py-2 relative",
+                "\n            flex flex-col-reverse\n            px-2\n            sm:px-0 sm:flex-row sm:items-center sm:border-b sm:border-t\n            border-gray-300\n            sm:py-2 sm:relative\n        ",
             },
             [
               _c("input", {
@@ -31920,7 +32141,7 @@ var render = function () {
                   },
                 ],
                 staticClass:
-                  "appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 pl-60 leading-tight focus:outline-none",
+                  "\n                appearance-none\n                sm:shadow-none\n                static\n                sm:p-0\n                p-2\n                bg-gray-200\n                sm:bg-transparent\n                border-none\n                w-full\n                text-gray-700\n                mr-3\n                sm:py-1 sm:pr-2 sm:pl-56\n                leading-tight\n                focus:outline-none\n            ",
                 attrs: {
                   name: "password_confirmation",
                   type: "password",
@@ -31946,7 +32167,7 @@ var render = function () {
                 "label",
                 {
                   staticClass:
-                    "absolute  pl-0 bg-gray-200 h-full flex items-center w-56 justify-center text-indigo-800 font-mono",
+                    "\n                sm:absolute\n                pl-2\n                sm:pl-0 sm:p-0\n                p-2\n                sm:bg-gray-200\n                h-full\n                flex\n                items-center\n                sm:w-52 sm:justify-center\n                text-indigo-800\n                font-mono\n            ",
                   attrs: { for: "" },
                 },
                 [_vm._v("Confirmar Contraseña")]
@@ -31967,7 +32188,7 @@ var render = function () {
           "button",
           {
             staticClass:
-              "bg-blue-500 transition-all duration-500 ease-in-out hover:bg-blue-700 text-white font-semibold hover:text-white py-2 px-4 border-b-2 border-blue-500 hover:border-transparent w-full",
+              "\n                mt-4 \n                sm:mt-0\n                bg-blue-500\n                transition-all\n                duration-500\n                ease-in-out\n                hover:bg-blue-700\n                text-gray-100\n                font-semibold\n                hover:text-white\n                py-2\n                px-4\n                border-b-2 border-blue-500\n                hover:border-transparent\n                w-full\n            ",
           },
           [_vm._v("\n            " + _vm._s(_vm.getButtonTitle) + "\n        ")]
         ),
@@ -37682,13 +37903,20 @@ var render = function () {
             [_vm._v("Ver")]
           ),
           _vm._v(" "),
-          _c("modal-component", { attrs: { transaction: _vm.transaction } }),
+          _c("modal-component", {
+            staticClass: "inline-block",
+            attrs: { transaction: _vm.transaction },
+          }),
         ],
         1
       ),
       _vm._v(" "),
       _c(
         "td",
+        {
+          staticClass:
+            "\n            p-2\n            md:border md:border-grey-500\n            text-left\n            block\n            md:table-cell\n        ",
+        },
         [
           _c(
             "span",
@@ -37697,6 +37925,7 @@ var render = function () {
           ),
           _vm._v(" "),
           _c("cancel-transaction", {
+            staticClass: "inline-block",
             attrs: { uri: _vm.uri, transaction: _vm.transaction },
           }),
         ],

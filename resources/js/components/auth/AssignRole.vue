@@ -1,6 +1,14 @@
 <template>
-    <div class="bg-white rounded-sm shadow-sm p-4 ">
-        <h3 class="text-xl text-center border-b-2 form-header text-blue-800 border-gray-300 px-4  mb-3 font-extralight">
+    <div class="bg-white rounded-sm shadow-sm p-2">
+        <h3
+            class="
+                form-header
+                p-2
+                text-dark text-center text-xl
+                font-extralight
+                text-blue-800
+            "
+        >
             Asignar roles
         </h3>
         <div v-for="role in roles" :key="role.id">
@@ -21,11 +29,11 @@
 export default {
     props: {
         roles: {
-            type: Array
+            type: Array,
         },
         hasRoles: {
-            type: Array
-        }
+            type: Array,
+        },
     },
     methods: {
         toggleRole(event, id) {
@@ -34,9 +42,9 @@ export default {
         },
         isChecked(role) {
             if (this.hasRoles)
-                return this.hasRoles.some(element => role.id === element.id);
-        }
+                return this.hasRoles.some((element) => role.id === element.id);
+        },
     },
-    computed: {}
+    computed: {},
 };
 </script>

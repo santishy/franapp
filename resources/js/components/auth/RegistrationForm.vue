@@ -2,18 +2,47 @@
     <form
         @submit.prevent="submit"
         v-can="definePermission"
-        class=" shadow-sm rounded-sm bg-white "
+        class="shadow-sm rounded-sm bg-white"
     >
         <div
-            class="flex items-center p-2  text-center justify-center text-xl font-extralight text-blue-800 form-header "
+            class="
+                form-header
+                p-2
+                text-dark text-center text-xl
+                font-extralight
+                text-blue-800
+            "
         >
             {{ getTitle }}
         </div>
-        <div class="flex items-center  border-t border-gray-300 py-2 relative">
+        <div
+            class="
+                flex flex-col-reverse
+                px-2
+                sm:px-0 sm:flex-row sm:items-center sm:border-b sm:border-t
+                border-gray-300
+                sm:py-2 sm:relative
+            "
+        >
             <select
                 v-model="form.inventory_id"
                 name="inventory_id"
-                class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 pl-60 leading-tight focus:outline-none"
+                class="
+                    appearance-none
+                    sm:shadow-none
+                    static
+                    sm:p-0
+                    p-2
+                    bg-gray-200
+                    sm:bg-transparent
+                    border-none
+                    w-full
+                    text-gray-700
+                    mr-3
+                    sm:py-1 sm:pr-2 sm:pl-56
+                    leading-tight
+                    focus:outline-none
+                "
                 placeholder="Nombre completo"
                 aria-label="Full name"
             >
@@ -28,73 +57,221 @@
             </select>
             <label
                 for=""
-                class="absolute  pl-0 bg-gray-200 h-full flex items-center w-56 justify-center text-indigo-800 font-mono"
+                class="
+                    sm:absolute
+                    pl-2
+                    sm:pl-0 sm:p-0
+                    p-2
+                    sm:bg-gray-200
+                    h-full
+                    flex
+                    items-center
+                    sm:w-52 sm:justify-center
+                    text-indigo-800
+                    font-mono
+                "
                 >Almacenes</label
             >
         </div>
-        <div class="flex items-center  border-t border-gray-300 py-2 relative">
+        <div
+            class="
+                flex flex-col-reverse
+                px-2
+                sm:px-0 sm:flex-row sm:items-center sm:border-b sm:border-t
+                border-gray-300
+                sm:py-2 sm:relative
+            "
+        >
             <input
                 v-model="form.name"
                 name="name"
-                class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 pl-60 leading-tight focus:outline-none"
+                class="
+                    appearance-none
+                    sm:shadow-none
+                    static
+                    sm:p-0
+                    p-2
+                    bg-gray-200
+                    sm:bg-transparent
+                    border-none
+                    w-full
+                    text-gray-700
+                    mr-3
+                    sm:py-1 sm:pr-2 sm:pl-56
+                    leading-tight
+                    focus:outline-none
+                "
                 type="text"
                 placeholder="Nombre completo"
                 aria-label="Full name"
             />
             <label
                 for=""
-                class="absolute  pl-0 bg-gray-200 h-full flex items-center w-56 justify-center text-indigo-800 font-mono"
+                class="
+                    sm:absolute
+                    pl-2
+                    sm:pl-0 sm:p-0
+                    p-2
+                    sm:bg-gray-200
+                    h-full
+                    flex
+                    items-center
+                    sm:w-52 sm:justify-center
+                    text-indigo-800
+                    font-mono
+                "
                 >Nombre</label
             >
         </div>
-        <div class="flex items-center  border-t border-gray-300 py-2 relative">
+        <div
+            class="
+                flex flex-col-reverse
+                px-2
+                sm:px-0 sm:flex-row sm:items-center sm:border-b sm:border-t
+                border-gray-300
+                sm:py-2 sm:relative
+            "
+        >
             <input
                 v-model="form.email"
                 name="email"
-                class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 pl-60 leading-tight focus:outline-none"
+                class="
+                    appearance-none
+                    sm:shadow-none
+                    static
+                    sm:p-0
+                    p-2
+                    bg-gray-200
+                    sm:bg-transparent
+                    border-none
+                    w-full
+                    text-gray-700
+                    mr-3
+                    sm:py-1 sm:pr-2 sm:pl-56
+                    leading-tight
+                    focus:outline-none
+                "
                 type="email"
                 placeholder="Correo electronico"
                 aria-label="Full name"
             />
             <label
                 for=""
-                class="absolute  pl-0 bg-gray-200 h-full flex items-center w-56 justify-center text-indigo-800 font-mono"
+                class="
+                    sm:absolute
+                    pl-2
+                    sm:pl-0 sm:p-0
+                    p-2
+                    sm:bg-gray-200
+                    h-full
+                    flex
+                    items-center
+                    sm:w-52 sm:justify-center
+                    text-indigo-800
+                    font-mono
+                "
                 >Email</label
             >
         </div>
         <div
             v-if="!editableUser"
-            class="flex items-center  border-t border-gray-300 py-2 relative"
+            class="
+                flex flex-col-reverse
+                px-2
+                sm:px-0 sm:flex-row sm:items-center sm:border-b sm:border-t
+                border-gray-300
+                sm:py-2 sm:relative
+            "
         >
             <input
                 v-model="form.password"
                 name="password"
-                class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 pl-60 leading-tight focus:outline-none"
+                class="
+                    appearance-none
+                    sm:shadow-none
+                    static
+                    sm:p-0
+                    p-2
+                    bg-gray-200
+                    sm:bg-transparent
+                    border-none
+                    w-full
+                    text-gray-700
+                    mr-3
+                    sm:py-1 sm:pr-2 sm:pl-56
+                    leading-tight
+                    focus:outline-none
+                "
                 type="password"
                 placeholder="Contraseña"
                 aria-label="Full name"
             />
             <label
                 for=""
-                class="absolute  pl-0 bg-gray-200 h-full flex items-center w-56 justify-center text-indigo-800 font-mono"
+                class="
+                    sm:absolute
+                    pl-2
+                    sm:pl-0 sm:p-0
+                    p-2
+                    sm:bg-gray-200
+                    h-full
+                    flex
+                    items-center
+                    sm:w-52 sm:justify-center
+                    text-indigo-800
+                    font-mono
+                "
                 >Contraseña</label
             >
         </div>
         <div
             v-if="!editableUser"
-            class="flex items-center  border-t border-b border-gray-300 py-2 relative"
+            class="
+                flex flex-col-reverse
+                px-2
+                sm:px-0 sm:flex-row sm:items-center sm:border-b sm:border-t
+                border-gray-300
+                sm:py-2 sm:relative
+            "
         >
             <input
                 v-model="form.password_confirmation"
                 name="password_confirmation"
-                class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 pl-60 leading-tight focus:outline-none"
+                class="
+                    appearance-none
+                    sm:shadow-none
+                    static
+                    sm:p-0
+                    p-2
+                    bg-gray-200
+                    sm:bg-transparent
+                    border-none
+                    w-full
+                    text-gray-700
+                    mr-3
+                    sm:py-1 sm:pr-2 sm:pl-56
+                    leading-tight
+                    focus:outline-none
+                "
                 type="password"
                 placeholder="Confirmar contraseña"
                 aria-label="Full name"
             />
             <label
                 for=""
-                class="absolute  pl-0 bg-gray-200 h-full flex items-center w-56 justify-center text-indigo-800 font-mono"
+                class="
+                    sm:absolute
+                    pl-2
+                    sm:pl-0 sm:p-0
+                    p-2
+                    sm:bg-gray-200
+                    h-full
+                    flex
+                    items-center
+                    sm:w-52 sm:justify-center
+                    text-indigo-800
+                    font-mono
+                "
                 >Confirmar Contraseña</label
             >
         </div>
@@ -104,7 +281,23 @@
 
         <div class="flex justify-center mt-0 mb-0">
             <button
-                class="bg-blue-500 transition-all duration-500 ease-in-out hover:bg-blue-700 text-white font-semibold hover:text-white py-2 px-4 border-b-2 border-blue-500 hover:border-transparent w-full"
+                class="
+                    mt-4 
+                    sm:mt-0
+                    bg-blue-500
+                    transition-all
+                    duration-500
+                    ease-in-out
+                    hover:bg-blue-700
+                    text-gray-100
+                    font-semibold
+                    hover:text-white
+                    py-2
+                    px-4
+                    border-b-2 border-blue-500
+                    hover:border-transparent
+                    w-full
+                "
             >
                 {{ getButtonTitle }}
             </button>
@@ -115,34 +308,34 @@
 export default {
     props: {
         editableUser: {
-            type: Object
+            type: Object,
         },
         inventories: {
-            type: Array
+            type: Array,
         },
         uri: {
             type: String,
-            required: true
+            required: true,
         },
         method: {
             type: String,
-            required: true
-        }
+            required: true,
+        },
     },
     data: () => ({
         form: {
-            inventory_id: ""
+            inventory_id: "",
         },
         roles: [],
         obj: {
-            title: "Usuarios"
-        }
+            title: "Usuarios",
+        },
     }),
     created() {
-        EventBus.$on("assign-role", role => {
+        EventBus.$on("assign-role", (role) => {
             this.roles.push(role);
         });
-        EventBus.$on("remove-role", role => {
+        EventBus.$on("remove-role", (role) => {
             let index = this.roles.indexOf(role);
             this.roles.splice(index, 1);
         });
@@ -158,7 +351,7 @@ export default {
             this.form.roles = this.roles;
             this.form._method = this.method;
             axios["post"](this.uri, this.form)
-                .then(res => {
+                .then((res) => {
                     if (this.method == "post") {
                         this.form = { inventory_id: "" };
                         this.obj.message = "Usuario agregado correctamente.";
@@ -167,10 +360,10 @@ export default {
                     }
                     this.notify(this.obj);
                 })
-                .catch(err => {
+                .catch((err) => {
                     this.getErrors(err);
                 });
-        }
+        },
     },
     computed: {
         getTitle() {
@@ -182,7 +375,7 @@ export default {
         definePermission() {
             if (this.method.toUpperCase() === "POST") return "create user";
             return "edit user";
-        }
-    }
+        },
+    },
 };
 </script>

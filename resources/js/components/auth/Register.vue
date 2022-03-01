@@ -1,8 +1,15 @@
 <template>
     <nav-component>
-        <div class=" px-4 mx-auto grid grid-cols-2 gap-4 grid-flow-col" >
+        <div
+            class="
+                px-4
+                mx-auto
+                grid grid-cols-1 
+                sm:grid sm:grid-cols-2 sm:gap-4 sm:grid-flow-col
+            "
+        >
             <registration-form
-                class=""
+                class="row-start-2 sm:row-start-1 sm:mt-0 mt-4"
                 :inventories="inventories"
                 :method="method"
                 :editable-user="editableUser"
@@ -25,30 +32,29 @@ export default {
     components: { NavComponent },
     props: {
         roles: {
-            type: Array
+            type: Array,
         },
         inventories: {
-            type: Array
+            type: Array,
         },
         editableUser: {
-            type: Object
+            type: Object,
         },
         hasRoles: {
-            type: Array
+            type: Array,
         },
         method: {
-            type: String
+            type: String,
         },
         uri: {
-            type: String
-        }
+            type: String,
+        },
     },
-    computed:{
-        definePermission(){
-            if(this.method.toUpperCase() === 'POST' )
-                return 'create user';
-            return 'edit user';
-        }
-    }
+    computed: {
+        definePermission() {
+            if (this.method.toUpperCase() === "POST") return "create user";
+            return "edit user";
+        },
+    },
 };
 </script>
