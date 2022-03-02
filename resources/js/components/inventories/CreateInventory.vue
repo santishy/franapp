@@ -6,7 +6,7 @@
             <form
                 @submit.prevent="submit"
                 v-can="'create warehouse'"
-                class="w-full  rounded bg-white"
+                class="w-full  rounded-sm bg-white"
             >
                 <div
                     class="form-header p-2 text-dark text-center  text-xl font-extralight text-blue-800"

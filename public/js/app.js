@@ -3054,6 +3054,59 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = (_data$props$component = {
@@ -3101,6 +3154,27 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -3670,6 +3744,19 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _NavComponent_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../NavComponent.vue */ "./resources/js/components/NavComponent.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -8180,6 +8267,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -10241,6 +10335,161 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -10253,7 +10502,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       users: [],
-      csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+      csrf: document.querySelector('meta[name="csrf-token"]').getAttribute("content")
     };
   },
   mounted: function mounted() {
@@ -31615,7 +31864,7 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: " " },
+    {},
     [
       _c(
         "form",
@@ -31628,7 +31877,7 @@ var render = function () {
               expression: "'create role'",
             },
           ],
-          staticClass: "rounded bg-white shadow",
+          staticClass: "rounded-sm bg-white shadow mt-4 sm:mt-0",
           on: {
             submit: function ($event) {
               $event.preventDefault()
@@ -31641,7 +31890,7 @@ var render = function () {
             "div",
             {
               staticClass:
-                "flex items-center form-header py-1 text-blue-800 text-center justify-center text-xl font-extralight",
+                "\n                form-header\n                p-2\n                text-dark text-center text-xl\n                font-extralight\n                text-blue-800\n            ",
             },
             [_vm._v("\n            Nuevo Role\n        ")]
           ),
@@ -31650,7 +31899,7 @@ var render = function () {
             "div",
             {
               staticClass:
-                "flex items-center  border-t border-b border-gray-300 py-2 relative",
+                "\n                flex flex-col-reverse\n                px-2\n                sm:px-0 sm:flex-row sm:items-center sm:border-b sm:border-t\n                border-gray-300\n                sm:py-2 sm:relative\n            ",
             },
             [
               _c("input", {
@@ -31663,7 +31912,7 @@ var render = function () {
                   },
                 ],
                 staticClass:
-                  "appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 pl-48 leading-tight focus:outline-none",
+                  "\n                    appearance-none\n                    sm:shadow-none\n                    static\n                    sm:p-0\n                    p-2\n                    bg-gray-200\n                    sm:bg-transparent\n                    border-none\n                    w-full\n                    text-gray-700\n                    mr-3\n                    sm:py-1 sm:pr-2 sm:pl-56\n                    leading-tight\n                    focus:outline-none\n                ",
                 attrs: {
                   name: "name",
                   type: "text",
@@ -31685,7 +31934,7 @@ var render = function () {
                 "label",
                 {
                   staticClass:
-                    "absolute  pl-0 bg-gray-200 h-full flex items-center w-44 justify-center text-indigo-800 font-mono",
+                    "\n                    sm:absolute\n                    pl-2\n                    sm:pl-0 sm:p-0\n                    p-2\n                    sm:bg-gray-200\n                    h-full\n                    flex\n                    items-center\n                    sm:w-52 sm:justify-center\n                    text-indigo-800\n                    font-mono\n                ",
                   attrs: { for: "" },
                 },
                 [_vm._v("Nombre")]
@@ -31695,7 +31944,7 @@ var render = function () {
           _vm._v(" "),
           _c(
             "div",
-            { staticClass: "flex items-center " },
+            { staticClass: "flex items-center" },
             [_c("errors-component", { attrs: { "errors-found": _vm.errors } })],
             1
           ),
@@ -31714,12 +31963,12 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "flex justify-center mt-0 mb-0" }, [
+    return _c("div", { staticClass: "flex justify-center mt-4 sm:mt-0 mb-0" }, [
       _c(
         "button",
         {
           staticClass:
-            "bg-blue-500 transition-all duration-500 ease-in-out hover:bg-blue-500 text-white font-semibold hover:text-white py-2 px-4 border-b-2 border-blue-500 hover:border-transparent w-full",
+            "\n                    bg-blue-500\n                    transition-all\n                    duration-500\n                    ease-in-out\n                    hover:bg-blue-500\n                    text-white\n                    font-semibold\n                    hover:text-white\n                    py-2\n                    px-4\n                    border-b-2 border-blue-500\n                    hover:border-transparent\n                    w-full\n                ",
         },
         [_vm._v("\n                Guardar\n            ")]
       ),
@@ -31749,14 +31998,17 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "rounded bg-white shadow py-2 px-4 grid grid-cols-3" },
+    {
+      staticClass:
+        "\n        rounded\n        bg-white\n        shadow\n        \n        px-4\n        grid\n        sm:grid-cols-3\n        grid-cols-2\n    ",
+    },
     [
       _vm.role != null
         ? _c(
             "div",
             {
               staticClass:
-                "w-full text-xl text-blue-800 font-extralight form-header border-gray-300 border-b-2  col-span-3 mb-2",
+                "\n            w-full\n            text-xl text-blue-800\n            font-extralight\n            form-header\n            border-gray-300 border-b-2\n            sm:col-span-3\n            col-span-2\n            mb-2\n            p-2\n        ",
             },
             [
               _vm._v("\n        Agregar permisos al rol:\n        "),
@@ -31770,7 +32022,7 @@ var render = function () {
         : _vm._e(),
       _vm._v(" "),
       _vm._l(_vm.permissions, function (permission) {
-        return _c("div", { key: permission.id, staticClass: "mr-8 mb-1" }, [
+        return _c("div", { key: permission.id, staticClass: "sm:mr-8 mb-1" }, [
           _c("label", { staticClass: "inline-flex items-center" }, [
             _c("input", {
               staticClass: "form-checkbox",
@@ -31783,9 +32035,11 @@ var render = function () {
               },
             }),
             _vm._v(" "),
-            _c("span", { staticClass: "ml-2 text-gray-900 text-xs" }, [
-              _vm._v(_vm._s(permission.translate.toUpperCase())),
-            ]),
+            _c(
+              "span",
+              { staticClass: "ml-2 text-gray-900 sm:text-xs text-base" },
+              [_vm._v(_vm._s(permission.translate.toUpperCase()))]
+            ),
           ]),
         ])
       }),
@@ -32231,16 +32485,16 @@ var render = function () {
           },
         ],
         staticClass:
-          "w-full px-4 mx-auto grid grid-cols-8 gap-4 grid-flow-col auto-cols-auto auto-rows-auto",
+          "\n            w-full\n            px-4\n            mx-auto\n            grid grid-cols-8\n            sm:gap-4 sm:grid-flow-col sm:auto-cols-auto\n            auto-rows-auto\n        ",
       },
       [
         _c("create-new-role", {
-          staticClass: "col-span-3",
+          staticClass: "sm:col-span-3 col-span-8 row-start-2 sm:row-start-1",
           attrs: { roles: _vm.roles },
         }),
         _vm._v(" "),
         _c("permission-list", {
-          staticClass: "col-span-5",
+          staticClass: "sm:col-span-5 col-span-8",
           attrs: { permissions: _vm.permissions },
         }),
       ],
@@ -34377,7 +34631,7 @@ var render = function () {
                 expression: "'create warehouse'",
               },
             ],
-            staticClass: "w-full  rounded bg-white",
+            staticClass: "w-full  rounded-sm bg-white",
             on: {
               submit: function ($event) {
                 $event.preventDefault()
@@ -37198,28 +37452,27 @@ var render = function () {
             [_vm._v("Acciones")]
           ),
           _vm._v(" "),
-          _c("div", { staticClass: "flex flex-wrap inline-block" }, [
-            _c(
-              "button",
-              {
-                staticClass:
-                  "\n                    bg-blue-500\n                    rounded\n                    p-0\n                    px-2\n                    text-center\n                    hover:bg-blue-400\n                    mr-1\n                ",
-                on: { click: _vm.update },
-              },
-              [_c("edit-icon")],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass: "bg-red-500 hover:bg-red-400 p-0 px-2 rounded",
-                on: { click: _vm.destroy },
-              },
-              [_c("trash-icon")],
-              1
-            ),
-          ]),
+          _c(
+            "button",
+            {
+              staticClass:
+                "\n                bg-blue-500\n                inline-block\n                rounded\n                p-0\n                px-2\n                text-center\n                hover:bg-blue-400\n                mr-1\n            ",
+              on: { click: _vm.update },
+            },
+            [_c("edit-icon")],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass:
+                "\n                bg-red-500\n                inline-block\n                hover:bg-red-400\n                p-0\n                px-2\n                rounded\n            ",
+              on: { click: _vm.destroy },
+            },
+            [_c("trash-icon")],
+            1
+          ),
         ]
       ),
     ]
@@ -37258,7 +37511,7 @@ var render = function () {
           "div",
           {
             staticClass:
-              "col-span-5 flex justify-between items-center row-span-1  bg-white px-2 py-2",
+              "col-span-5 flex sm:flex-row flex-col justify-between items-center row-span-1  bg-white px-2 py-2",
           },
           [
             _c("div", { staticClass: "text-xl text-gray-800 ml-4" }, [
@@ -37335,7 +37588,7 @@ var render = function () {
                         {
                           key: inventory.id,
                           staticClass:
-                            "flex mr-2 mb-2 items-center rounded-md border border-teal-500 py-2 justify-center",
+                            "flex flex-wrap mr-2 mb-2 items-center rounded-sm border border-teal-500 p-2 justify-center",
                           on: {
                             click: function ($event) {
                               return _vm.selectedInventory(inventory)
@@ -38880,244 +39133,256 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("nav-component", [
-    _c("div", { staticClass: "w-full mx-auto px-4  flex justify-center  " }, [
-      _c(
-        "form",
-        {
-          staticClass: "w-full  shadow-sm rounded-sm bg-white ",
-          on: {
-            submit: function ($event) {
-              $event.preventDefault()
-              return _vm.submit.apply(null, arguments)
+    _c(
+      "div",
+      { staticClass: "w-full px-4  flex justify-center bg-transparent" },
+      [
+        _c(
+          "form",
+          {
+            staticClass: "w-full  shadow-sm rounded-sm bg-white ",
+            on: {
+              submit: function ($event) {
+                $event.preventDefault()
+                return _vm.submit.apply(null, arguments)
+              },
             },
           },
-        },
-        [
-          _c(
-            "div",
-            {
-              staticClass:
-                "flex items-center  text-blue-800 p-2 form-header text-center justify-center text-xl font-extralight ",
-            },
-            [
-              _vm._v(
-                "\n                Modificar contenido del ticket\n            "
-              ),
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            {
-              staticClass:
-                "flex items-center   border-t border-b border-gray-300 py-2 relative",
-            },
-            [
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.form.company,
-                    expression: "form.company",
-                  },
-                ],
-                staticClass:
-                  "appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 pl-60 leading-tight focus:outline-none",
-                attrs: {
-                  name: "companty",
-                  type: "text",
-                  placeholder: "COMPAÑIA",
-                  "aria-label": "Full name",
-                },
-                domProps: { value: _vm.form.company },
-                on: {
-                  input: function ($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.$set(_vm.form, "company", $event.target.value)
-                  },
-                },
-              }),
-              _vm._v(" "),
-              _c(
-                "label",
-                {
-                  staticClass:
-                    "absolute  pl-0 bg-gray-200 h-full flex items-center w-44 justify-center text-indigo-800 font-mono",
-                  attrs: { for: "" },
-                },
-                [_vm._v("Compañia")]
-              ),
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            {
-              staticClass:
-                "flex items-center  border-b border-gray-300 py-2 relative",
-            },
-            [
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.form.address,
-                    expression: "form.address",
-                  },
-                ],
-                staticClass:
-                  "appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 pl-60 leading-tight focus:outline-none",
-                attrs: {
-                  name: "address",
-                  type: "text",
-                  placeholder: "DIRECCION",
-                  "aria-label": "Full name",
-                },
-                domProps: { value: _vm.form.address },
-                on: {
-                  input: function ($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.$set(_vm.form, "address", $event.target.value)
-                  },
-                },
-              }),
-              _vm._v(" "),
-              _c(
-                "label",
-                {
-                  staticClass:
-                    "absolute  pl-0 bg-gray-200 h-full flex items-center w-44 justify-center text-indigo-800 font-mono",
-                  attrs: { for: "" },
-                },
-                [_vm._v("Dirección")]
-              ),
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            {
-              staticClass:
-                "flex items-center  border-b border-gray-300 py-2 relative",
-            },
-            [
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.form.phone_number,
-                    expression: "form.phone_number",
-                  },
-                ],
-                staticClass:
-                  "appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 pl-60 leading-tight focus:outline-none",
-                attrs: {
-                  name: "phone_number",
-                  type: "text",
-                  placeholder: "NUMERO DE TELEFONO",
-                  "aria-label": "Full name",
-                },
-                domProps: { value: _vm.form.phone_number },
-                on: {
-                  input: function ($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.$set(_vm.form, "phone_number", $event.target.value)
-                  },
-                },
-              }),
-              _vm._v(" "),
-              _c(
-                "label",
-                {
-                  staticClass:
-                    "absolute  pl-0 bg-gray-200 h-full flex items-center w-44 justify-center text-indigo-800 font-mono",
-                  attrs: { for: "" },
-                },
-                [_vm._v("Telefono")]
-              ),
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            {
-              staticClass:
-                "flex items-center   border-b border-gray-300 py-2 relative",
-            },
-            [
-              _c("textarea", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.form.footer,
-                    expression: "form.footer",
-                  },
-                ],
-                staticClass:
-                  "appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 pl-60 leading-tight focus:outline-none",
-                attrs: {
-                  name: "footer",
-                  rows: "5",
-                  type: "text",
-                  placeholder: "PIE DE PAGINA",
-                  "aria-label": "Full name",
-                },
-                domProps: { value: _vm.form.footer },
-                on: {
-                  input: function ($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.$set(_vm.form, "footer", $event.target.value)
-                  },
-                },
-              }),
-              _vm._v(" "),
-              _c(
-                "label",
-                {
-                  staticClass:
-                    "absolute  pl-0 bg-gray-200 h-full flex items-center w-44 justify-center text-indigo-800 font-mono",
-                  attrs: { for: "" },
-                },
-                [_vm._v("Pie de pagina")]
-              ),
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "flex items-center " },
-            [_c("errors-component", { attrs: { "errors-found": _vm.errors } })],
-            1
-          ),
-          _vm._v(" "),
-          _c("div", { staticClass: "flex justify-center mt-0 mb-0" }, [
+          [
             _c(
-              "button",
+              "div",
               {
                 staticClass:
-                  "bg-blue-500 transition-all duration-500 ease-in-out hover:bg-blue-700 text-white font-semibold hover:text-white py-2 px-4 border-b-2 border-blue-500 hover:border-transparent w-full",
+                  "form-header p-2 text-dark text-center  text-xl font-extralight text-blue-800",
               },
-              [_vm._v("\n                    Guardar\n                ")]
+              [
+                _vm._v(
+                  "\n                Modificar contenido del ticket\n            "
+                ),
+              ]
             ),
-          ]),
-          _vm._v(" "),
-          _c("notifications", { attrs: { group: "foo" } }),
-        ],
-        1
-      ),
-    ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass:
+                  "flex flex-col-reverse px-2 sm:px-0 sm:flex-row sm:items-center sm:border-b sm:border-t border-gray-300 sm:py-2 sm:relative",
+              },
+              [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.form.company,
+                      expression: "form.company",
+                    },
+                  ],
+                  staticClass:
+                    "appearance-none  sm:shadow-none static sm:p-0 p-2 bg-gray-200 sm:bg-transparent border-none w-full text-gray-700 mr-3 sm:py-1 sm:pr-2 sm:pl-56 leading-tight focus:outline-none",
+                  attrs: {
+                    name: "companty",
+                    type: "text",
+                    placeholder: "COMPAÑIA",
+                    "aria-label": "Full name",
+                  },
+                  domProps: { value: _vm.form.company },
+                  on: {
+                    input: function ($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.form, "company", $event.target.value)
+                    },
+                  },
+                }),
+                _vm._v(" "),
+                _c(
+                  "label",
+                  {
+                    staticClass:
+                      "sm:absolute pl-2  sm:pl-0 sm:p-0 p-2 sm:bg-gray-200 h-full flex items-center sm:w-52 sm:justify-center text-indigo-800 font-mono",
+                    attrs: { for: "" },
+                  },
+                  [_vm._v("Compañia")]
+                ),
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass:
+                  "flex flex-col-reverse px-2 sm:px-0 sm:flex-row sm:items-center sm:border-b sm:border-t border-gray-300 sm:py-2 sm:relative",
+              },
+              [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.form.address,
+                      expression: "form.address",
+                    },
+                  ],
+                  staticClass:
+                    "appearance-none  sm:shadow-none static sm:p-0 p-2 bg-gray-200 sm:bg-transparent border-none w-full text-gray-700 mr-3 sm:py-1 sm:pr-2 sm:pl-56 leading-tight focus:outline-none",
+                  attrs: {
+                    name: "address",
+                    type: "text",
+                    placeholder: "DIRECCION",
+                    "aria-label": "Full name",
+                  },
+                  domProps: { value: _vm.form.address },
+                  on: {
+                    input: function ($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.form, "address", $event.target.value)
+                    },
+                  },
+                }),
+                _vm._v(" "),
+                _c(
+                  "label",
+                  {
+                    staticClass:
+                      "sm:absolute pl-2  sm:pl-0 sm:p-0 p-2 sm:bg-gray-200 h-full flex items-center sm:w-52 sm:justify-center text-indigo-800 font-mono",
+                    attrs: { for: "" },
+                  },
+                  [_vm._v("Dirección")]
+                ),
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass:
+                  "flex flex-col-reverse px-2 sm:px-0 sm:flex-row sm:items-center sm:border-b sm:border-t border-gray-300 sm:py-2 sm:relative",
+              },
+              [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.form.phone_number,
+                      expression: "form.phone_number",
+                    },
+                  ],
+                  staticClass:
+                    "appearance-none  sm:shadow-none static sm:p-0 p-2 bg-gray-200 sm:bg-transparent border-none w-full text-gray-700 mr-3 sm:py-1 sm:pr-2 sm:pl-56 leading-tight focus:outline-none",
+                  attrs: {
+                    name: "phone_number",
+                    type: "text",
+                    placeholder: "NUMERO DE TELEFONO",
+                    "aria-label": "Full name",
+                  },
+                  domProps: { value: _vm.form.phone_number },
+                  on: {
+                    input: function ($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.form, "phone_number", $event.target.value)
+                    },
+                  },
+                }),
+                _vm._v(" "),
+                _c(
+                  "label",
+                  {
+                    staticClass:
+                      "sm:absolute pl-2  sm:pl-0 sm:p-0 p-2 sm:bg-gray-200 h-full flex items-center sm:w-52 sm:justify-center text-indigo-800 font-mono",
+                    attrs: { for: "" },
+                  },
+                  [_vm._v("Telefono")]
+                ),
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass:
+                  "flex flex-col-reverse px-2 sm:px-0 sm:flex-row sm:items-center sm:border-b sm:border-t border-gray-300 sm:py-2 sm:relative",
+              },
+              [
+                _c("textarea", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.form.footer,
+                      expression: "form.footer",
+                    },
+                  ],
+                  staticClass:
+                    "appearance-none  sm:shadow-none static sm:p-0 p-2 bg-gray-200 sm:bg-transparent border-none w-full text-gray-700 mr-3 sm:py-1 sm:pr-2 sm:pl-56 leading-tight focus:outline-none",
+                  attrs: {
+                    name: "footer",
+                    rows: "5",
+                    type: "text",
+                    placeholder: "PIE DE PAGINA",
+                    "aria-label": "Full name",
+                  },
+                  domProps: { value: _vm.form.footer },
+                  on: {
+                    input: function ($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.form, "footer", $event.target.value)
+                    },
+                  },
+                }),
+                _vm._v(" "),
+                _c(
+                  "label",
+                  {
+                    staticClass:
+                      "sm:absolute pl-2  sm:pl-0 sm:p-0 p-2 sm:bg-gray-200 h-full flex items-center sm:w-52 sm:justify-center text-indigo-800 font-mono",
+                    attrs: { for: "" },
+                  },
+                  [_vm._v("Pie de pagina")]
+                ),
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "flex items-center " },
+              [
+                _c("errors-component", {
+                  attrs: { "errors-found": _vm.errors },
+                }),
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "flex justify-center mt-4 sm:mt-0 mb-0" },
+              [
+                _c(
+                  "button",
+                  {
+                    staticClass:
+                      "bg-blue-500 transition-all duration-500 ease-in-out hover:bg-blue-700 text-white font-semibold hover:text-white py-2 px-4 border-b-2 border-blue-500 hover:border-transparent w-full",
+                  },
+                  [_vm._v("\n                    Guardar\n                ")]
+                ),
+              ]
+            ),
+            _vm._v(" "),
+            _c("notifications", { attrs: { group: "foo" } }),
+          ],
+          1
+        ),
+      ]
+    ),
   ])
 }
 var staticRenderFns = []
@@ -39155,78 +39420,213 @@ var render = function () {
           },
         ],
         staticClass:
-          "  w-full px-4 mx-auto flex justify-center sm:overflow-x-hidden overflow-x-auto",
+          "\n            flex\n            justify-center\n            shadow-sm\n            w-full\n            rounded\n            max-w-full\n            sm:overflow-x-hidden\n            overflow-x-auto\n            px-4\n        ",
       },
       [
         _c(
           "table",
           {
             staticClass:
-              "table-auto w-full text-center  bg-white shadow-sm rounded-sm ",
+              "\n                min-w-full\n                border-collapse\n                block\n                md:table\n                shadow-sm\n                text-center\n                rounded-lg\n            ",
           },
           [
-            _c("thead", { staticClass: "bg-gray-400" }, [
-              _c("th", { staticClass: "border px-4 py-2" }, [_vm._v("Nombre")]),
-              _vm._v(" "),
-              _c("th", { staticClass: "border px-4 py-2" }, [_vm._v("Email")]),
-              _vm._v(" "),
-              _c("th", { staticClass: "border px-4 py-2" }, [_vm._v("Rols")]),
-              _vm._v(" "),
-              _c("th", { staticClass: "border px-4 py-2" }, [
-                _vm._v("Acciones"),
-              ]),
+            _c("thead", { staticClass: "block md:table-header-group" }, [
+              _c(
+                "tr",
+                {
+                  staticClass:
+                    "\n                        border-b border-gray-500\n                        rounded-t-sm\n                        md:border-none\n                        block\n                        md:table-row\n                        absolute\n                        -top-full\n                        md:top-auto\n                        -left-full\n                        md:left-auto md:relative\n                    ",
+                },
+                [
+                  _c(
+                    "th",
+                    {
+                      staticClass:
+                        "\n                            bg-blue-700\n                            p-2\n                            text-white\n                            font-semibold\n                            md:border md:border-grey-500\n                            text-left\n                            block\n                            md:table-cell\n                        ",
+                    },
+                    [
+                      _vm._v(
+                        "\n                        Nombre\n                    "
+                      ),
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "th",
+                    {
+                      staticClass:
+                        "\n                            bg-blue-700\n                            p-2\n                            text-white\n                            font-semibold\n                            md:border md:border-grey-500\n                            text-left\n                            block\n                            md:table-cell\n                        ",
+                    },
+                    [
+                      _vm._v(
+                        "\n                        Email\n                    "
+                      ),
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "th",
+                    {
+                      staticClass:
+                        "\n                            bg-blue-700\n                            p-2\n                            text-white\n                            font-semibold\n                            md:border md:border-grey-500\n                            text-left\n                            block\n                            md:table-cell\n                        ",
+                    },
+                    [
+                      _vm._v(
+                        "\n                        Rols\n                    "
+                      ),
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "th",
+                    {
+                      staticClass:
+                        "\n                            bg-blue-700\n                            p-2\n                            text-white\n                            font-semibold\n                            md:border md:border-grey-500\n                            text-left\n                            block\n                            md:table-cell\n                        ",
+                    },
+                    [
+                      _vm._v(
+                        "\n                        Acciones\n                    "
+                      ),
+                    ]
+                  ),
+                ]
+              ),
             ]),
             _vm._v(" "),
             _c(
               "tbody",
+              { staticClass: "block md:table-row-group alternate-table-row" },
               _vm._l(_vm.users, function (user) {
-                return _c("tr", { key: user.id }, [
-                  _c("td", { staticClass: "border px-4 py-2" }, [
-                    _vm._v(_vm._s(user.name)),
-                  ]),
-                  _vm._v(" "),
-                  _c("td", { staticClass: "border px-4 py-2" }, [
-                    _vm._v(_vm._s(user.email)),
-                  ]),
-                  _vm._v(" "),
-                  _c("td", { staticClass: "border px-4 py-2" }, [
-                    _vm._v(
-                      "\n                        " +
-                        _vm._s(_vm.roles(user.roles)) +
-                        "\n                    "
-                    ),
-                  ]),
-                  _vm._v(" "),
-                  _c("td", { staticClass: "border px-4 py-2 flex flex-wrap" }, [
+                return _c(
+                  "tr",
+                  {
+                    key: user.id,
+                    staticClass:
+                      "\n                        bg-white\n                        border-b border-gray-400\n                        md:border-none\n                        block\n                        md:table-row\n                    ",
+                  },
+                  [
                     _c(
-                      "a",
+                      "td",
                       {
-                        staticClass: "mr-2 block",
-                        attrs: { href: "/users/" + user.id + "/edit" },
+                        staticClass:
+                          "\n                            p-2\n                            md:border md:border-grey-500\n                            text-left\n                            block\n                            md:table-cell\n                        ",
                       },
-                      [_c("user-edit-icon")],
-                      1
+                      [
+                        _c(
+                          "span",
+                          {
+                            staticClass:
+                              "inline-block w-1/3 md:hidden font-bold",
+                          },
+                          [_vm._v("Nombre")]
+                        ),
+                        _vm._v(
+                          "\n                        " +
+                            _vm._s(user.name) +
+                            "\n                    "
+                        ),
+                      ]
                     ),
                     _vm._v(" "),
                     _c(
-                      "form",
-                      { attrs: { action: "/impersonations", method: "post" } },
+                      "td",
+                      {
+                        staticClass:
+                          "\n                            p-2\n                            md:border md:border-grey-500\n                            text-left\n                            block\n                            md:table-cell\n                        ",
+                      },
                       [
-                        _c("input", {
-                          attrs: { type: "hidden", name: "user_id" },
-                          domProps: { value: "" + user.id },
-                        }),
-                        _vm._v(" "),
-                        _c("input", {
-                          attrs: { type: "hidden", name: "_token" },
-                          domProps: { value: _vm.csrf },
-                        }),
-                        _vm._v(" "),
-                        _c("button", [_c("ninja-icon")], 1),
+                        _c(
+                          "span",
+                          {
+                            staticClass:
+                              "inline-block w-1/3 md:hidden font-bold",
+                          },
+                          [_vm._v("Correo")]
+                        ),
+                        _vm._v(
+                          "\n                        " +
+                            _vm._s(user.email) +
+                            "\n                    "
+                        ),
                       ]
                     ),
-                  ]),
-                ])
+                    _vm._v(" "),
+                    _c(
+                      "td",
+                      {
+                        staticClass:
+                          "\n                            p-2\n                            md:border md:border-grey-500\n                            text-left\n                            block\n                            md:table-cell\n                        ",
+                      },
+                      [
+                        _c(
+                          "span",
+                          {
+                            staticClass:
+                              "inline-block w-1/3 md:hidden font-bold",
+                          },
+                          [_vm._v("Rols")]
+                        ),
+                        _vm._v(
+                          "\n                        " +
+                            _vm._s(_vm.roles(user.roles)) +
+                            "\n                    "
+                        ),
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "td",
+                      {
+                        staticClass:
+                          "\n                            p-2\n                            md:border md:border-grey-500\n                            text-left\n                            block\n                            md:table-cell\n                        ",
+                      },
+                      [
+                        _c(
+                          "span",
+                          {
+                            staticClass:
+                              "inline-block w-1/3 md:hidden font-bold",
+                          },
+                          [_vm._v("Acciones")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "a",
+                          {
+                            staticClass: "mr-2 inline-block",
+                            attrs: { href: "/users/" + user.id + "/edit" },
+                          },
+                          [_c("user-edit-icon")],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "form",
+                          {
+                            staticClass: "inline-block",
+                            attrs: {
+                              action: "/impersonations",
+                              method: "post",
+                            },
+                          },
+                          [
+                            _c("input", {
+                              attrs: { type: "hidden", name: "user_id" },
+                              domProps: { value: "" + user.id },
+                            }),
+                            _vm._v(" "),
+                            _c("input", {
+                              attrs: { type: "hidden", name: "_token" },
+                              domProps: { value: _vm.csrf },
+                            }),
+                            _vm._v(" "),
+                            _c("button", [_c("ninja-icon")], 1),
+                          ]
+                        ),
+                      ]
+                    ),
+                  ]
+                )
               }),
               0
             ),

@@ -137,28 +137,35 @@
             "
         >
             <span class="inline-block w-1/3 md:hidden font-bold">Acciones</span>
-            <div class="flex flex-wrap inline-block">
-                <button
-                    @click="update"
-                    class="
-                        bg-blue-500
-                        rounded
-                        p-0
-                        px-2
-                        text-center
-                        hover:bg-blue-400
-                        mr-1
-                    "
-                >
-                    <edit-icon></edit-icon>
-                </button>
-                <button
-                    @click="destroy"
-                    class="bg-red-500 hover:bg-red-400 p-0 px-2 rounded"
-                >
-                    <trash-icon></trash-icon>
-                </button>
-            </div>
+
+            <button
+                @click="update"
+                class="
+                    bg-blue-500
+                    inline-block
+                    rounded
+                    p-0
+                    px-2
+                    text-center
+                    hover:bg-blue-400
+                    mr-1
+                "
+            >
+                <edit-icon></edit-icon>
+            </button>
+            <button
+                @click="destroy"
+                class="
+                    bg-red-500
+                    inline-block
+                    hover:bg-red-400
+                    p-0
+                    px-2
+                    rounded
+                "
+            >
+                <trash-icon></trash-icon>
+            </button>
         </td>
     </tr>
     <!-- <div class="rounded overflow-hidden shadow-lg bg-white text-center">

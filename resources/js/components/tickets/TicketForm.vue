@@ -1,75 +1,75 @@
 <template>
     <nav-component>
         <div
-            class="w-full mx-auto px-4  flex justify-center  "
+            class="w-full px-4  flex justify-center bg-transparent"
         >
             <form
                 @submit.prevent="submit"
                 class="w-full  shadow-sm rounded-sm bg-white "
             >
                 <div
-                    class="flex items-center  text-blue-800 p-2 form-header text-center justify-center text-xl font-extralight "
+                    class="form-header p-2 text-dark text-center  text-xl font-extralight text-blue-800"
                 >
                     Modificar contenido del ticket
                 </div>
-                <div class="flex items-center   border-t border-b border-gray-300 py-2 relative">
+                <div class="flex flex-col-reverse px-2 sm:px-0 sm:flex-row sm:items-center sm:border-b sm:border-t border-gray-300 sm:py-2 sm:relative">
                     <input
                         v-model="form.company"
                         name="companty"
-                        class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 pl-60 leading-tight focus:outline-none"
+                        class="appearance-none  sm:shadow-none static sm:p-0 p-2 bg-gray-200 sm:bg-transparent border-none w-full text-gray-700 mr-3 sm:py-1 sm:pr-2 sm:pl-56 leading-tight focus:outline-none"
                         type="text"
                         placeholder="COMPAÑIA"
                         aria-label="Full name"
                     />
                     <label
                     for=""
-                    class="absolute  pl-0 bg-gray-200 h-full flex items-center w-44 justify-center text-indigo-800 font-mono"
+                    class="sm:absolute pl-2  sm:pl-0 sm:p-0 p-2 sm:bg-gray-200 h-full flex items-center sm:w-52 sm:justify-center text-indigo-800 font-mono"
                     >Compañia</label
                 >
                 </div>
-                <div class="flex items-center  border-b border-gray-300 py-2 relative">
+                <div class="flex flex-col-reverse px-2 sm:px-0 sm:flex-row sm:items-center sm:border-b sm:border-t border-gray-300 sm:py-2 sm:relative">
                     <input
                         v-model="form.address"
                         name="address"
-                        class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 pl-60 leading-tight focus:outline-none"
+                        class="appearance-none  sm:shadow-none static sm:p-0 p-2 bg-gray-200 sm:bg-transparent border-none w-full text-gray-700 mr-3 sm:py-1 sm:pr-2 sm:pl-56 leading-tight focus:outline-none"
                         type="text"
                         placeholder="DIRECCION"
                         aria-label="Full name"
                     />
                     <label
                     for=""
-                    class="absolute  pl-0 bg-gray-200 h-full flex items-center w-44 justify-center text-indigo-800 font-mono"
+                    class="sm:absolute pl-2  sm:pl-0 sm:p-0 p-2 sm:bg-gray-200 h-full flex items-center sm:w-52 sm:justify-center text-indigo-800 font-mono"
                     >Dirección</label
                 >
                 </div>
-                <div class="flex items-center  border-b border-gray-300 py-2 relative">
+                <div class="flex flex-col-reverse px-2 sm:px-0 sm:flex-row sm:items-center sm:border-b sm:border-t border-gray-300 sm:py-2 sm:relative">
                     <input
                         v-model="form.phone_number"
                         name="phone_number"
-                        class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 pl-60 leading-tight focus:outline-none"
+                        class="appearance-none  sm:shadow-none static sm:p-0 p-2 bg-gray-200 sm:bg-transparent border-none w-full text-gray-700 mr-3 sm:py-1 sm:pr-2 sm:pl-56 leading-tight focus:outline-none"
                         type="text"
                         placeholder="NUMERO DE TELEFONO"
                         aria-label="Full name"
                     />
                     <label
                     for=""
-                    class="absolute  pl-0 bg-gray-200 h-full flex items-center w-44 justify-center text-indigo-800 font-mono"
+                    class="sm:absolute pl-2  sm:pl-0 sm:p-0 p-2 sm:bg-gray-200 h-full flex items-center sm:w-52 sm:justify-center text-indigo-800 font-mono"
                     >Telefono</label
                 >
                 </div>
-                <div class="flex items-center   border-b border-gray-300 py-2 relative">
+                <div class="flex flex-col-reverse px-2 sm:px-0 sm:flex-row sm:items-center sm:border-b sm:border-t border-gray-300 sm:py-2 sm:relative">
                     <textarea
                         v-model="form.footer"
                         name="footer"
                         rows="5"
-                        class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 pl-60 leading-tight focus:outline-none"
+                        class="appearance-none  sm:shadow-none static sm:p-0 p-2 bg-gray-200 sm:bg-transparent border-none w-full text-gray-700 mr-3 sm:py-1 sm:pr-2 sm:pl-56 leading-tight focus:outline-none"
                         type="text"
                         placeholder="PIE DE PAGINA"
                         aria-label="Full name"
                     />
                     <label
                     for=""
-                    class="absolute  pl-0 bg-gray-200 h-full flex items-center w-44 justify-center text-indigo-800 font-mono"
+                    class="sm:absolute pl-2  sm:pl-0 sm:p-0 p-2 sm:bg-gray-200 h-full flex items-center sm:w-52 sm:justify-center text-indigo-800 font-mono"
                     >Pie de pagina</label
                 >
                 </div>
@@ -77,7 +77,7 @@
                     <errors-component :errors-found="errors" />
                 </div>
 
-                <div class="flex justify-center mt-0 mb-0">
+                <div class="flex justify-center mt-4 sm:mt-0 mb-0">
                     <button
                         class="bg-blue-500 transition-all duration-500 ease-in-out hover:bg-blue-700 text-white font-semibold hover:text-white py-2 px-4 border-b-2 border-blue-500 hover:border-transparent w-full"
                     >

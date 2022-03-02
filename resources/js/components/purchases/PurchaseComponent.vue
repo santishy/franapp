@@ -4,7 +4,7 @@
             class="grid md:grid-cols-5   grid-flow-row mx-auto w-full px-4"
         >
             <div
-                class="col-span-5 flex justify-between items-center row-span-1  bg-white px-2 py-2"
+                class="col-span-5 flex sm:flex-row flex-col justify-between items-center row-span-1  bg-white px-2 py-2"
             >
                 <div class="text-xl text-gray-800 ml-4">
                     <span class="text-2x text-gray-600">Status:</span>
@@ -41,7 +41,7 @@
                     </h3>
                     <label
                         v-for="inventory in inventories"
-                        class="flex mr-2 mb-2 items-center rounded-md border border-teal-500 py-2 justify-center"
+                        class="flex flex-wrap mr-2 mb-2 items-center rounded-sm border border-teal-500 p-2 justify-center"
                         :key="inventory.id"
                         @click="selectedInventory(inventory)"
                     >

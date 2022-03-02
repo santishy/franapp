@@ -1,10 +1,29 @@
 <template>
     <div
-        class="rounded bg-white shadow py-2 px-4 grid grid-cols-3"
+        class="
+            rounded
+            bg-white
+            shadow
+            
+            px-4
+            grid
+            sm:grid-cols-3
+            grid-cols-2
+        "
     >
         <div
             v-if="role != null"
-            class="w-full text-xl text-blue-800 font-extralight form-header border-gray-300 border-b-2  col-span-3 mb-2"
+            class="
+                w-full
+                text-xl text-blue-800
+                font-extralight
+                form-header
+                border-gray-300 border-b-2
+                sm:col-span-3
+                col-span-2
+                mb-2
+                p-2
+            "
         >
             Agregar permisos al rol:
             <span v-if="!!role" class="text-dark font-semibold">{{
@@ -14,7 +33,7 @@
         <div
             v-for="permission in permissions"
             :key="permission.id"
-            class="mr-8 mb-1"
+            class="sm:mr-8 mb-1"
         >
             <label class="inline-flex items-center">
                 <input
@@ -23,7 +42,9 @@
                     class="form-checkbox"
                     :checked="isChecked(permission.name)"
                 />
-                <span class="ml-2 text-gray-900 text-xs">{{ permission.translate.toUpperCase() }}</span>
+                <span class="ml-2 text-gray-900 sm:text-xs text-base">{{
+                    permission.translate.toUpperCase()
+                }}</span>
             </label>
         </div>
     </div>
@@ -33,14 +54,14 @@
 export default {
     props: {
         permissions: {
-            type: Array
-        }
+            type: Array,
+        },
     },
     data: () => ({
         role: false,
     }),
     created() {
-        EventBus.$on("permissions-found", role => {
+        EventBus.$on("permissions-found", (role) => {
             Vue.set(this.$data, "role", role.data);
         });
     },
@@ -62,13 +83,13 @@ export default {
                 params = { data: params };
             }
             axios[method](`/roles/${this.role.id}/permissions`, params)
-                .then(res => {
+                .then((res) => {
                     this.role.permissions = res.data.permissions;
                 })
-                .catch(err => {
+                .catch((err) => {
                     console.log(err);
                 });
         },
-    }
+    },
 };
 </script>
