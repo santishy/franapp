@@ -36,7 +36,7 @@
                         rounded
                         text-teal-200
                         border-teal-400
-                        hover:text-white hover:border-white
+                        
                     "
                 >
                     <svg
@@ -54,13 +54,13 @@
                 class="
                     w-full
                     block
-                    hidden
                     flex-grow
                     md:flex md:items-center md:w-auto
                     max-h-screen
-                    h-screen
+                    h-0
                     sm:h-auto sm:overflow-y-hidden
                     overflow-y-scroll
+                    transition-[height] easy-out duration-500
                 "
             >
                 <div
@@ -384,7 +384,10 @@ export default {
     },
     methods: {
         toggleNavegation() {
-            document.querySelector("#navegation").classList.toggle("hidden");
+            document.querySelector("#navegation").classList.toggle("h-0");
+            //document.querySelector("#navegation").classList.toggle("hidden");
+            document.querySelector("#navegation").classList.toggle("h-screen");
+            
         },
         setPurchaseId(id) {
             this.purchase = id;

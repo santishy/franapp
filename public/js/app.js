@@ -2843,7 +2843,9 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     toggleNavegation: function toggleNavegation() {
-      document.querySelector("#navegation").classList.toggle("hidden");
+      document.querySelector("#navegation").classList.toggle("h-0"); //document.querySelector("#navegation").classList.toggle("hidden");
+
+      document.querySelector("#navegation").classList.toggle("h-screen");
     },
     setPurchaseId: function setPurchaseId(id) {
       this.purchase = id;
@@ -31308,7 +31310,7 @@ var render = function () {
                 "button",
                 {
                   staticClass:
-                    "\n                    flex\n                    items-center\n                    px-3\n                    py-2\n                    border\n                    rounded\n                    text-teal-200\n                    border-teal-400\n                    hover:text-white hover:border-white\n                ",
+                    "\n                    flex\n                    items-center\n                    px-3\n                    py-2\n                    border\n                    rounded\n                    text-teal-200\n                    border-teal-400\n                    \n                ",
                 },
                 [
                   _c(
@@ -31339,7 +31341,7 @@ var render = function () {
             "div",
             {
               staticClass:
-                "\n                w-full\n                block\n                hidden\n                flex-grow\n                md:flex md:items-center md:w-auto\n                max-h-screen\n                h-screen\n                sm:h-auto sm:overflow-y-hidden\n                overflow-y-scroll\n            ",
+                "\n                w-full\n                block\n                flex-grow\n                md:flex md:items-center md:w-auto\n                max-h-screen\n                h-0\n                sm:h-auto sm:overflow-y-hidden\n                overflow-y-scroll\n                transition-[height] easy-out duration-500\n            ",
               attrs: { id: "navegation" },
             },
             [

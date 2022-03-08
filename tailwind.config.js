@@ -10,7 +10,12 @@ module.exports = {
     './resources/views/**/*.php'
   ],
   theme: {
-    extend: {},
+    extend: {
+      transitionProperty: {
+        'height': 'height',
+        'spacing': 'margin, padding',
+      }
+    },
     zIndex: {
       '0': 0,
       '5': 5,
