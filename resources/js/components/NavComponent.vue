@@ -36,7 +36,6 @@
                         rounded
                         text-teal-200
                         border-teal-400
-                        
                     "
                 >
                     <svg
@@ -60,7 +59,9 @@
                     h-0
                     sm:h-auto sm:overflow-y-hidden
                     overflow-y-scroll
-                    transition-[height] easy-out duration-500
+                    transition-[height]
+                    easy-out
+                    duration-500
                 "
             >
                 <div
@@ -137,15 +138,14 @@
                         href="/sales/create"
                         class="
                             sm:hidden
-                            border border-t border-b
-                            border-gray-300
+                            border border-t border-b border-gray-300
                             mt-2
                             p-2
-                            rounded-sm bg-gray-300
+                            rounded-sm
+                            bg-gray-300
                             lg:mt-0
                             text-blue-700
                             sm:hover:text-blue-800
-                            
                             md:text-base
                             text-lg
                         "
@@ -153,7 +153,8 @@
                         <div
                             class="
                                 flex flex-wrap
-                                items-center justify-center
+                                items-center
+                                justify-center
                                 font-mono
                             "
                         >
@@ -173,7 +174,6 @@
                         class="
                             block
                             mt-4
-                           
                             lg:inline-block lg:mt-0
                             md:hover:text-white
                             mr-4
@@ -188,20 +188,23 @@
                                 rounded
                                 px-2
                                 py-1
-                                 
-                                
                             "
                         >
                             Regresar <i class="fas fa-user"></i>
                         </button>
                     </form>
-                    <form action="/logout" method="POST" class=" w-full sm:w-auto">
+                    <form
+                        action="/logout"
+                        method="POST"
+                        class="w-full sm:w-auto"
+                    >
                         <input type="hidden" name="_token" :value="crfsToken" />
                         <button
                             href="/logout"
                             class="
                                 inline-block
-                                w-full sm:w-auto
+                                w-full
+                                sm:w-auto
                                 text-sm
                                 px-4
                                 py-2
@@ -387,7 +390,6 @@ export default {
             document.querySelector("#navegation").classList.toggle("h-0");
             //document.querySelector("#navegation").classList.toggle("hidden");
             document.querySelector("#navegation").classList.toggle("h-screen");
-            
         },
         setPurchaseId(id) {
             this.purchase = id;

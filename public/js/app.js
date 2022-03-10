@@ -2279,6 +2279,44 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2305,15 +2343,13 @@ __webpack_require__.r(__webpack_exports__);
     document.addEventListener("keydown", handleEscape);
     this.$once("hook:beforeDestroy", function () {
       document.removeEventListener("keydown", handleEscape);
-    });
-    EventBus.$on("open", function (name) {
-      if (name != _this.name) _this.isOpen = false;
-    });
+    }); // EventBus.$on("open", (name) => {
+    //     if (name != this.name) this.isOpen = false;
+    // });
   },
-  watch: {
-    isOpen: function isOpen() {
-      EventBus.$emit("open", this.name);
-    }
+  watch: {// isOpen() {
+    //     EventBus.$emit("open", this.name);
+    // },
   },
   computed: {
     getZ: function getZ() {
@@ -2482,6 +2518,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _icons_DownArrow_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./icons/DownArrow.vue */ "./resources/js/components/icons/DownArrow.vue");
 /* harmony import */ var _icons_BarsIcon_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./icons/BarsIcon.vue */ "./resources/js/components/icons/BarsIcon.vue");
 /* harmony import */ var _icons_SettingIcon_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./icons/SettingIcon.vue */ "./resources/js/components/icons/SettingIcon.vue");
+//
+//
+//
 //
 //
 //
@@ -31054,12 +31093,11 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "a",
+    "div",
     {
       staticClass:
-        "block  transition-all duration-500 ease-in-out mt-4 lg:mt-0 text-gray-700 md:hover:text-gray-900 hover:font-bold mr-4",
+        "\n        block\n        transition-all\n        duration-500\n        ease-in-out\n        mt-4\n        lg:mt-0\n        text-gray-700\n        md:hover:text-gray-900 md:hover:font-bold md:mr-4\n    ",
       class: _vm.getZ,
-      attrs: { href: "#responsive-header" },
     },
     [
       _c(
@@ -31078,7 +31116,7 @@ var render = function () {
           _c(
             "svg",
             {
-              staticClass: "inline-block ",
+              staticClass: "inline-block",
               attrs: {
                 "aria-hidden": "true",
                 focusable: "false",
@@ -31106,7 +31144,7 @@ var render = function () {
       _vm.isOpen
         ? _c("button", {
             staticClass:
-              "hidden sm:block fixed inset-0 h-full w-full bg-black opacity-50 cursor-default md:z-5",
+              "\n            hidden\n            sm:block\n            fixed\n            inset-0\n            h-full\n            w-full\n            opacity-50\n            cursor-default\n            md:z-5\n            focus:outline-none\n        ",
             attrs: { tabindex: "-1" },
             on: {
               click: function ($event) {
@@ -31121,7 +31159,7 @@ var render = function () {
             "div",
             {
               staticClass:
-                "bg-transparent w-full md:bg-white static md:w-40 rounded-md md:absolute md:z-10 md:shadow-md md:mt-3 md:p-2 md:text-center",
+                "\n            w-full\n            md:bg-white\n            static\n            md:w-40\n            rounded-md\n            md:absolute md:z-10 md:shadow-md md:mt-3 md:p-2 md:text-center\n        ",
             },
             _vm._l(_vm.items, function (item) {
               return _c(
@@ -31129,7 +31167,7 @@ var render = function () {
                 {
                   key: item.name,
                   staticClass:
-                    "sm:pl-1 pl-2 text-blue-600 bg-gray-300 font-bold block md:text-gray-800 md:mt-0 py-2 md:border-none border-b border-white  md:bg-transparent md:p-1 md:hover:text-red-400",
+                    "\n                sm:pl-1\n                pl-2\n                text-blue-600\n                bg-gray-300\n                font-bold\n                block\n                md:text-gray-800 md:mt-0\n                py-2\n                md:border-none\n                border-b border-white\n                md:bg-transparent md:p-1 md:hover:text-red-400\n            ",
                   attrs: { href: item.url },
                 },
                 [_vm._v("\n            " + _vm._s(item.name) + "\n        ")]
@@ -31310,7 +31348,7 @@ var render = function () {
                 "button",
                 {
                   staticClass:
-                    "\n                    flex\n                    items-center\n                    px-3\n                    py-2\n                    border\n                    rounded\n                    text-teal-200\n                    border-teal-400\n                    \n                ",
+                    "\n                    flex\n                    items-center\n                    px-3\n                    py-2\n                    border\n                    rounded\n                    text-teal-200\n                    border-teal-400\n                ",
                 },
                 [
                   _c(
@@ -31341,7 +31379,7 @@ var render = function () {
             "div",
             {
               staticClass:
-                "\n                w-full\n                block\n                flex-grow\n                md:flex md:items-center md:w-auto\n                max-h-screen\n                h-0\n                sm:h-auto sm:overflow-y-hidden\n                overflow-y-scroll\n                transition-[height] easy-out duration-500\n            ",
+                "\n                w-full\n                block\n                flex-grow\n                md:flex md:items-center md:w-auto\n                max-h-screen\n                h-0\n                sm:h-auto sm:overflow-y-hidden\n                overflow-y-scroll\n                transition-[height]\n                easy-out\n                duration-500\n            ",
               attrs: { id: "navegation" },
             },
             [
@@ -31428,7 +31466,7 @@ var render = function () {
                     "a",
                     {
                       staticClass:
-                        "\n                        sm:hidden\n                        border border-t border-b\n                        border-gray-300\n                        mt-2\n                        p-2\n                        rounded-sm bg-gray-300\n                        lg:mt-0\n                        text-blue-700\n                        sm:hover:text-blue-800\n                        \n                        md:text-base\n                        text-lg\n                    ",
+                        "\n                        sm:hidden\n                        border border-t border-b border-gray-300\n                        mt-2\n                        p-2\n                        rounded-sm\n                        bg-gray-300\n                        lg:mt-0\n                        text-blue-700\n                        sm:hover:text-blue-800\n                        md:text-base\n                        text-lg\n                    ",
                       attrs: { href: "/sales/create" },
                     },
                     [
@@ -31436,7 +31474,7 @@ var render = function () {
                         "div",
                         {
                           staticClass:
-                            "\n                            flex flex-wrap\n                            items-center justify-center\n                            font-mono\n                        ",
+                            "\n                            flex flex-wrap\n                            items-center\n                            justify-center\n                            font-mono\n                        ",
                         },
                         [
                           _c("shopping-bag"),
@@ -31467,7 +31505,7 @@ var render = function () {
                         "form",
                         {
                           staticClass:
-                            "\n                        block\n                        mt-4\n                       \n                        lg:inline-block lg:mt-0\n                        md:hover:text-white\n                        mr-4\n                    ",
+                            "\n                        block\n                        mt-4\n                        lg:inline-block lg:mt-0\n                        md:hover:text-white\n                        mr-4\n                    ",
                           attrs: { action: "/impersonations", method: "post" },
                         },
                         [
@@ -31492,7 +31530,7 @@ var render = function () {
                   _c(
                     "form",
                     {
-                      staticClass: " w-full sm:w-auto",
+                      staticClass: "w-full sm:w-auto",
                       attrs: { action: "/logout", method: "POST" },
                     },
                     [
@@ -31505,7 +31543,7 @@ var render = function () {
                         "button",
                         {
                           staticClass:
-                            "\n                            inline-block\n                            w-full sm:w-auto\n                            text-sm\n                            px-4\n                            py-2\n                            leading-none\n                            border\n                            bg-white\n                            rounded\n                            text-gray-800\n                            border-teal-300\n                            hover:border-transparent\n                            md:hover:text-teal-500 md:hover:bg-white\n                            mt-4\n                            lg:mt-0\n                        ",
+                            "\n                            inline-block\n                            w-full\n                            sm:w-auto\n                            text-sm\n                            px-4\n                            py-2\n                            leading-none\n                            border\n                            bg-white\n                            rounded\n                            text-gray-800\n                            border-teal-300\n                            hover:border-transparent\n                            md:hover:text-teal-500 md:hover:bg-white\n                            mt-4\n                            lg:mt-0\n                        ",
                           attrs: { href: "/logout" },
                         },
                         [
@@ -31684,7 +31722,7 @@ var staticRenderFns = [
       "button",
       {
         staticClass:
-          "\n                            text-gray-300\n                            border-red-900 border\n                            rounded\n                            px-2\n                            py-1\n                             \n                            \n                        ",
+          "\n                            text-gray-300\n                            border-red-900 border\n                            rounded\n                            px-2\n                            py-1\n                        ",
       },
       [
         _vm._v("\n                        Regresar "),

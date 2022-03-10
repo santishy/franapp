@@ -1,7 +1,15 @@
 <template>
-    <a
-        href="#responsive-header"
-        class="block  transition-all duration-500 ease-in-out mt-4 lg:mt-0 text-gray-700 md:hover:text-gray-900 hover:font-bold mr-4"
+    <div
+        class="
+            block
+            transition-all
+            duration-500
+            ease-in-out
+            mt-4
+            lg:mt-0
+            text-gray-700
+            md:hover:text-gray-900 md:hover:font-bold md:mr-4
+        "
         :class="getZ"
     >
         <div
@@ -15,7 +23,7 @@
                 focusable="false"
                 data-prefix="fas"
                 data-icon="chevron-down"
-                class="inline-block "
+                class="inline-block"
                 role="img"
                 height="1em"
                 width="1em"
@@ -32,40 +40,70 @@
             v-if="isOpen"
             tabindex="-1"
             @click="isOpen = false"
-            class="hidden sm:block fixed inset-0 h-full w-full bg-black opacity-50 cursor-default md:z-5"
+            class="
+                hidden
+                sm:block
+                fixed
+                inset-0
+                h-full
+                w-full
+                opacity-50
+                cursor-default
+                md:z-5
+                focus:outline-none
+            "
         ></button>
         <div
             v-if="isOpen"
-            class="bg-transparent w-full md:bg-white static md:w-40 rounded-md md:absolute md:z-10 md:shadow-md md:mt-3 md:p-2 md:text-center"
+            class="
+                w-full
+                md:bg-white
+                static
+                md:w-40
+                rounded-md
+                md:absolute md:z-10 md:shadow-md md:mt-3 md:p-2 md:text-center
+            "
         >
             <a
                 v-for="item in items"
                 :key="item.name"
                 :href="item.url"
-                class="sm:pl-1 pl-2 text-blue-600 bg-gray-300 font-bold block md:text-gray-800 md:mt-0 py-2 md:border-none border-b border-white  md:bg-transparent md:p-1 md:hover:text-red-400"
+                class="
+                    sm:pl-1
+                    pl-2
+                    text-blue-600
+                    bg-gray-300
+                    font-bold
+                    block
+                    md:text-gray-800 md:mt-0
+                    py-2
+                    md:border-none
+                    border-b border-white
+                    md:bg-transparent md:p-1 md:hover:text-red-400
+                "
             >
                 {{ item.name }}
             </a>
         </div>
-    </a>
+    </div>
 </template>
 <script>
 export default {
     data() {
         return {
-            isOpen: false
+            isOpen: false,
         };
     },
     props: {
         items: {
-            type: Array
+            type: Array,
         },
         name: {
-            type: String
-        }
+            type: String,
+        },
     },
     created() {
-        const handleEscape = e => {
+        const handleEscape = (e) => {
             if (e.key == "Esc" || e.key == "Escape") {
                 this.isOpen = false;
             }
@@ -76,14 +114,14 @@ export default {
         this.$once("hook:beforeDestroy", () => {
             document.removeEventListener("keydown", handleEscape);
         });
-        EventBus.$on("open", name => {
-            if (name != this.name) this.isOpen = false;
-        });
+        // EventBus.$on("open", (name) => {
+        //     if (name != this.name) this.isOpen = false;
+        // });
     },
     watch: {
-        isOpen() {
-            EventBus.$emit("open", this.name);
-        }
+        // isOpen() {
+        //     EventBus.$emit("open", this.name);
+        // },
     },
     computed: {
         getZ() {
@@ -99,7 +137,7 @@ export default {
                 return ["z-10"];
 
             return this.isOpen ? ["z-10"] : ["z-0"];
-        }
-    }
+        },
+    },
 };
 </script>
