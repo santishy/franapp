@@ -13,7 +13,7 @@
         :class="getZ"
     >
         <div
-            @click="isOpen = !isOpen"
+            @click="toggleOpen"
             class="relative md:text-base text-lg flex justify-between"
             :class="getZ"
         >
@@ -53,13 +53,15 @@
                 focus:outline-none
             "
         ></button>
-        <div
-            
+        <transition-group
+            name="bounce"
+            tag="div"
             v-if="isOpen"
+            :ref="name"
             class="
                 w-full
                 md:bg-white
-                static
+                
                 md:w-40
                 rounded-md
                 md:absolute md:z-10 md:shadow-md md:mt-3 md:p-2 md:text-center
@@ -85,7 +87,7 @@
             >
                 {{ item.name }}
             </a>
-        </div>
+        </transition-group>
     </div>
 </template>
 <script>
@@ -138,6 +140,11 @@ export default {
                 return ["z-10"];
 
             return this.isOpen ? ["z-10"] : ["z-0"];
+        },
+    },
+    methods: {
+        toggleOpen() {
+            this.isOpen = !this.isOpen;
         },
     },
 };

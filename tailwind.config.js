@@ -13,7 +13,7 @@ module.exports = {
     extend: {
       transitionProperty: {
         'height': 'height',
-        'spacing': 'margin, padding',
+        'spacing': ' padding',
         'display': 'display'
       }
     },
