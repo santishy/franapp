@@ -138,7 +138,8 @@
                         href="/sales/create"
                         class="
                             sm:hidden
-                            border border-t border-b border-gray-300
+                            border border-t border-b 
+                            border-gray-300
                             mt-2
                             p-2
                             rounded-sm

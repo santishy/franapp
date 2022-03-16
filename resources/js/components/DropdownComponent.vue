@@ -53,41 +53,39 @@
                 focus:outline-none
             "
         ></button>
-        <transition-group
-            name="bounce"
-            tag="div"
+        <transition
             v-if="isOpen"
             :ref="name"
             class="
                 w-full
-                md:bg-white
-                
-                md:w-40
+                md:bg-white md:w-40
                 rounded-md
                 md:absolute md:z-10 md:shadow-md md:mt-3 md:p-2 md:text-center
             "
         >
-            <a
-                v-for="item in items"
-                :key="item.name"
-                :href="item.url"
-                class="
-                    sm:pl-1
-                    pl-2
-                    text-blue-600
-                    bg-gray-300
-                    font-bold
-                    block
-                    md:text-gray-800 md:mt-0
-                    py-2
-                    md:border-none
-                    border-b border-white
-                    md:bg-transparent md:p-1 md:hover:text-red-400
-                "
-            >
-                {{ item.name }}
-            </a>
-        </transition-group>
+            <template>
+                <a
+                    v-for="item in items"
+                    :key="item.name"
+                    :href="item.url"
+                    class="
+                        sm:pl-1
+                        pl-2
+                        text-blue-600
+                        bg-gray-300
+                        font-bold
+                        block
+                        md:text-gray-800 md:mt-0
+                        py-2
+                        md:border-none
+                        border-b border-white
+                        md:bg-transparent md:p-1 md:hover:text-red-400
+                    "
+                >
+                    {{ item.name }}
+                </a>
+            </template>
+        </transition>
     </div>
 </template>
 <script>
