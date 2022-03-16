@@ -53,7 +53,8 @@
                 focus:outline-none
             "
         ></button>
-        <transition
+        <transition>
+        <div
             v-if="isOpen"
             :ref="name"
             class="
@@ -63,7 +64,7 @@
                 md:absolute md:z-10 md:shadow-md md:mt-3 md:p-2 md:text-center
             "
         >
-            <template>
+            
                 <a
                     v-for="item in items"
                     :key="item.name"
@@ -84,7 +85,8 @@
                 >
                     {{ item.name }}
                 </a>
-            </template>
+
+        </div>
         </transition>
     </div>
 </template>

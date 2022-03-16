@@ -2318,6 +2318,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -31157,15 +31159,15 @@ var render = function () {
           })
         : _vm._e(),
       _vm._v(" "),
-      _vm.isOpen
-        ? _c(
-            "transition",
-            {
-              ref: _vm.name,
-              staticClass:
-                "\n            w-full\n            md:bg-white md:w-40\n            rounded-md\n            md:absolute md:z-10 md:shadow-md md:mt-3 md:p-2 md:text-center\n        ",
-            },
-            [
+      _c("transition", [
+        _vm.isOpen
+          ? _c(
+              "div",
+              {
+                ref: _vm.name,
+                staticClass:
+                  "\n            w-full\n            md:bg-white md:w-40\n            rounded-md\n            md:absolute md:z-10 md:shadow-md md:mt-3 md:p-2 md:text-center\n        ",
+              },
               _vm._l(_vm.items, function (item) {
                 return _c(
                   "a",
@@ -31184,10 +31186,10 @@ var render = function () {
                   ]
                 )
               }),
-            ],
-            2
-          )
-        : _vm._e(),
+              0
+            )
+          : _vm._e(),
+      ]),
     ],
     1
   )
