@@ -34,7 +34,7 @@
                         py-2
                         border
                         rounded
-                        text-teal-200
+                        text-black
                         border-teal-400
                     "
                 >
@@ -48,184 +48,208 @@
                     </svg>
                 </button>
             </div>
-            <div
-                id="navegation"
-                class="
-                    w-full
-                    block
-                    flex-grow
-                    md:flex md:items-center md:w-auto
-                    max-h-screen
-                    h-0
-                    sm:h-auto sm:overflow-y-hidden
-                    overflow-y-scroll
-                    transition-[height]
-                    easy-out
-                    duration-500
-                "
+            <transition
+                name="expand"
+                @enter="enter"
+                @after-enter="afterEnter"
+                @leave="leave"
             >
                 <div
+                    v-if="show"
+                    id="navegation"
                     class="
-                        text-sm
-                        md:flex-grow
-                        flex flex-wrap flex-col
-                        md:flex-row md:justify-center
+                        w-full
+                        block
+                        flex-grow
+                        md:flex md:items-center md:w-auto
+                        max-h-screen
+                        h-screen
+                        sm:h-auto sm:overflow-y-hidden
+                        overflow-y-scroll
                     "
                 >
-                    <dropdown-component
-                        name="Inventario"
-                        :items="InventoryMenu"
-                        class="md:relative md:hidden"
-                    />
-                    <a
-                        v-if="purchase"
-                        :href="purchase ? `/purchases/${purchase}` : '#'"
-                        :class="highlight"
+                    <div
                         class="
-                            block
-                            mt-4
-                            lg:inline-block lg:mt-0
-                            md:hover:text-white
-                            mr-4
+                            text-sm
+                            md:flex-grow
+                            flex flex-wrap flex-col
+                            md:flex-row md:justify-center
                         "
                     >
-                        Realizar Compra
-                    </a>
-                    <dropdown-component
-                        name="Clientes"
-                        :items="clientsMenu"
-                        class="md:relative md:hidden"
-                    />
-                    <a
-                        href="/sales/create"
-                        class="
-                            sm:block
-                            hidden
-                            mt-4
-                            lg:inline-block lg:mt-0
-                            text-blue-700
-                            sm:hover:text-blue-800
-                            mr-4
-                            md:text-base
-                            text-lg
-                        "
-                    >
-                        <div
+                        <dropdown-component
+                            name="Inventario"
+                            :items="InventoryMenu"
+                            class="md:relative md:hidden"
+                        />
+                        <a
+                            v-if="purchase"
+                            :href="purchase ? `/purchases/${purchase}` : '#'"
+                            :class="highlight"
                             class="
-                                flex flex-wrap
-                                sm:items-center sm:justify-center
-                                font-mono
-                            "
-                        >
-                            <shopping-bag></shopping-bag>
-                            <span
-                                class="self-end leading-none font-xl font-bold"
-                                >Ventas</span
-                            >
-                        </div>
-                    </a>
-                    <dropdown-component
-                        name="Reportes"
-                        :items="ReportsMenu"
-                        class="md:relative md:hidden"
-                    />
-                    <dropdown-component
-                        name="Configuración"
-                        :items="ConfigMenu"
-                        class="md:relative lg:hidden"
-                    />
-                    <a
-                        href="/sales/create"
-                        class="
-                            sm:hidden
-                            border border-t border-b 
-                            border-gray-300
-                            mt-2
-                            p-2
-                            rounded-sm
-                            bg-gray-300
-                            lg:mt-0
-                            text-blue-700
-                            sm:hover:text-blue-800
-                            md:text-base
-                            text-lg
-                        "
-                    >
-                        <div
-                            class="
-                                flex flex-wrap
-                                items-center
-                                justify-center
-                                font-mono
-                            "
-                        >
-                            <shopping-bag></shopping-bag>
-                            <span
-                                class="self-end leading-none font-xl font-bold"
-                                >Ventas</span
-                            >
-                        </div>
-                    </a>
-                </div>
-                <div class="flex flex-wrap items-center w-full sm:w-auto">
-                    <form
-                        v-if="impersonation_id"
-                        action="/impersonations"
-                        method="post"
-                        class="
-                            block
-                            mt-4
-                            lg:inline-block lg:mt-0
-                            md:hover:text-white
-                            mr-4
-                        "
-                    >
-                        <input type="hidden" name="_method" value="delete" />
-                        <input type="hidden" name="_token" :value="crfsToken" />
-                        <button
-                            class="
-                                text-gray-300
-                                border-red-900 border
-                                rounded
-                                px-2
-                                py-1
-                            "
-                        >
-                            Regresar <i class="fas fa-user"></i>
-                        </button>
-                    </form>
-                    <form
-                        action="/logout"
-                        method="POST"
-                        class="w-full sm:w-auto"
-                    >
-                        <input type="hidden" name="_token" :value="crfsToken" />
-                        <button
-                            href="/logout"
-                            class="
-                                inline-block
-                                w-full
-                                sm:w-auto
-                                text-sm
-                                px-4
-                                py-2
-                                leading-none
-                                border
-                                bg-white
-                                rounded
-                                text-gray-800
-                                border-teal-300
-                                hover:border-transparent
-                                md:hover:text-teal-500 md:hover:bg-white
+                                block
                                 mt-4
-                                lg:mt-0
+                                lg:inline-block lg:mt-0
+                                md:hover:text-white
+                                mr-4
                             "
                         >
-                            {{ getCurrentUser.name }} | Salir
-                        </button>
-                    </form>
+                            Realizar Compra
+                        </a>
+                        <dropdown-component
+                            name="Clientes"
+                            :items="clientsMenu"
+                            class="md:relative md:hidden"
+                        />
+                        <a
+                            href="/sales/create"
+                            class="
+                                sm:block
+                                hidden
+                                mt-4
+                                lg:inline-block lg:mt-0
+                                text-blue-700
+                                sm:hover:text-blue-800
+                                mr-4
+                                md:text-base
+                                text-lg
+                            "
+                        >
+                            <div
+                                class="
+                                    flex flex-wrap
+                                    sm:items-center sm:justify-center
+                                    font-mono
+                                "
+                            >
+                                <shopping-bag></shopping-bag>
+                                <span
+                                    class="
+                                        self-end
+                                        leading-none
+                                        font-xl font-bold
+                                    "
+                                    >Ventas</span
+                                >
+                            </div>
+                        </a>
+                        <dropdown-component
+                            name="Reportes"
+                            :items="ReportsMenu"
+                            class="md:relative md:hidden"
+                        />
+                        <dropdown-component
+                            name="Configuración"
+                            :items="ConfigMenu"
+                            class="md:relative lg:hidden"
+                        />
+                        <a
+                            href="/sales/create"
+                            class="
+                                sm:hidden
+                                border border-t border-b border-gray-300
+                                mt-2
+                                p-2
+                                rounded-sm
+                                bg-gray-300
+                                lg:mt-0
+                                text-blue-700
+                                sm:hover:text-blue-800
+                                md:text-base
+                                text-lg
+                            "
+                        >
+                            <div
+                                class="
+                                    flex flex-wrap
+                                    items-center
+                                    justify-center
+                                    font-mono
+                                "
+                            >
+                                <shopping-bag></shopping-bag>
+                                <span
+                                    class="
+                                        self-end
+                                        leading-none
+                                        font-xl font-bold
+                                    "
+                                    >Ventas</span
+                                >
+                            </div>
+                        </a>
+                    </div>
+                    <div class="flex flex-wrap items-center w-full sm:w-auto">
+                        <form
+                            v-if="impersonation_id"
+                            action="/impersonations"
+                            method="post"
+                            class="
+                                block
+                                mt-4
+                                lg:inline-block lg:mt-0
+                                md:hover:text-white
+                                mr-4
+                            "
+                        >
+                            <input
+                                type="hidden"
+                                name="_method"
+                                value="delete"
+                            />
+                            <input
+                                type="hidden"
+                                name="_token"
+                                :value="crfsToken"
+                            />
+                            <button
+                                class="
+                                    text-gray-300
+                                    border-red-900 border
+                                    rounded
+                                    px-2
+                                    py-1
+                                "
+                            >
+                                Regresar <i class="fas fa-user"></i>
+                            </button>
+                        </form>
+                        <form
+                            action="/logout"
+                            method="POST"
+                            class="w-full sm:w-auto"
+                        >
+                            <input
+                                type="hidden"
+                                name="_token"
+                                :value="crfsToken"
+                            />
+                            <button
+                                href="/logout"
+                                class="
+                                    inline-block
+                                    w-full
+                                    sm:w-auto
+                                    text-sm
+                                    px-4
+                                    py-2
+                                    leading-none
+                                    border
+                                    bg-white
+                                    rounded
+                                    text-gray-800
+                                    border-teal-300
+                                    hover:border-transparent
+                                    md:hover:text-teal-500 md:hover:bg-white
+                                    mt-4
+                                    lg:mt-0
+                                "
+                            >
+                                {{ getCurrentUser.name }} | Salir
+                            </button>
+                        </form>
+                    </div>
                 </div>
-            </div>
+            </transition>
         </nav>
 
         <!-- Page Content -->
@@ -374,6 +398,7 @@ export default {
             impersonation_id: document.querySelector(
                 'meta[name="impersonation_id"]'
             ).content,
+            show: false,
         };
     },
     created() {
@@ -388,9 +413,10 @@ export default {
     },
     methods: {
         toggleNavegation() {
-            document.querySelector("#navegation").classList.toggle("h-0");
+            this.show = !this.show;
+            // document.querySelector("#navegation").classList.toggle("h-0");
             //document.querySelector("#navegation").classList.toggle("hidden");
-            document.querySelector("#navegation").classList.toggle("h-screen");
+            // document.querySelector("#navegation").classList.toggle("h-screen");
         },
         setPurchaseId(id) {
             this.purchase = id;
@@ -404,6 +430,25 @@ export default {
             )
                 localStorage.removeItem("productsInPurchase");
         },
+        enter(el) {
+            el.style.height = "100vh";
+            const height = "100vh";
+            el.style.height = 0;
+            getComputedStyle(el);
+            setTimeout(() => {
+                el.style.height = height;
+            });
+        },
+        afterEnter(el) {
+            el.style.height = "100vh";
+        },
+        leave(el) {
+            el.style.height = getComputedStyle(el).height;
+            getComputedStyle(el);
+            setTimeout(() => {
+                el.style.height = 0;
+            });
+        },
     },
     computed: {
         highlight() {
@@ -414,3 +459,10 @@ export default {
     },
 };
 </script>
+<style scoped>
+.expand-enter-active,
+.expand-leave-active {
+    transition: height 0.5s ease-in-out;
+    overflow: hidden;
+}
+</style>

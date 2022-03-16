@@ -53,18 +53,27 @@
                 focus:outline-none
             "
         ></button>
-        <transition>
-        <div
-            v-if="isOpen"
-            :ref="name"
-            class="
-                w-full
-                md:bg-white md:w-40
-                rounded-md
-                md:absolute md:z-10 md:shadow-md md:mt-3 md:p-2 md:text-center
-            "
+        <transition
+            name="expand"
+            @enter="enter"
+            @after-enter="afterEnter"
+            @leave="leave"
         >
-            
+            <div
+                v-if="isOpen"
+                :ref="name"
+                class="
+                    w-full
+                    md:bg-white md:w-40
+                    rounded-md
+                    md:absolute
+                    md:z-10
+                    md:shadow-md
+                    md:mt-3
+                    md:p-2
+                    md:text-center
+                "
+            >
                 <a
                     v-for="item in items"
                     :key="item.name"
@@ -72,9 +81,9 @@
                     class="
                         sm:pl-1
                         pl-2
-                        text-blue-600
+                        text-gray-800
                         bg-gray-300
-                        font-bold
+                        font-extralight
                         block
                         md:text-gray-800 md:mt-0
                         py-2
@@ -85,8 +94,7 @@
                 >
                     {{ item.name }}
                 </a>
-
-        </div>
+            </div>
         </transition>
     </div>
 </template>
@@ -146,6 +154,32 @@ export default {
         toggleOpen() {
             this.isOpen = !this.isOpen;
         },
+        enter(el) {
+            el.style.height = "auto";
+            const height = getComputedStyle(el).height;
+            el.style.height = 0;
+            //getComputedStyle(el);
+            setTimeout(() => {
+                el.style.height = height;
+            });
+        },
+        afterEnter(el) {
+            el.style.height = "auto";
+        },
+        leave(el) {
+            el.style.height = getComputedStyle(el).height;
+            // getComputedStyle(el);
+            setTimeout(() => {
+                el.style.height = 0;
+            });
+        },
     },
 };
 </script>
+<style scoped>
+
+.expand-enter-active,.expand-leave-active {
+    transition: height 0.5s ease-in-out;
+    overflow: hidden;
+}
+</style>
