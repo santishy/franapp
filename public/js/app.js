@@ -2183,10 +2183,10 @@ module.exports = {
 /*!*****************************************!*\
   !*** ./node_modules/axios/package.json ***!
   \*****************************************/
-/*! exports provided: _args, _development, _from, _id, _inBundle, _integrity, _location, _phantomChildren, _requested, _requiredBy, _resolved, _spec, _where, author, browser, bugs, bundlesize, dependencies, description, devDependencies, homepage, jsdelivr, keywords, license, main, name, repository, scripts, typings, unpkg, version, default */
+/*! exports provided: name, version, description, main, scripts, repository, keywords, author, license, bugs, homepage, devDependencies, browser, jsdelivr, unpkg, typings, dependencies, bundlesize, default */
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"_args\":[[\"axios@0.21.4\",\"C:\\\\xampp\\\\htdocs\\\\franapp\"]],\"_development\":true,\"_from\":\"axios@0.21.4\",\"_id\":\"axios@0.21.4\",\"_inBundle\":false,\"_integrity\":\"sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==\",\"_location\":\"/axios\",\"_phantomChildren\":{},\"_requested\":{\"type\":\"version\",\"registry\":true,\"raw\":\"axios@0.21.4\",\"name\":\"axios\",\"escapedName\":\"axios\",\"rawSpec\":\"0.21.4\",\"saveSpec\":null,\"fetchSpec\":\"0.21.4\"},\"_requiredBy\":[\"#DEV:/\",\"/localtunnel\"],\"_resolved\":\"https://registry.npmjs.org/axios/-/axios-0.21.4.tgz\",\"_spec\":\"0.21.4\",\"_where\":\"C:\\\\xampp\\\\htdocs\\\\franapp\",\"author\":{\"name\":\"Matt Zabriskie\"},\"browser\":{\"./lib/adapters/http.js\":\"./lib/adapters/xhr.js\"},\"bugs\":{\"url\":\"https://github.com/axios/axios/issues\"},\"bundlesize\":[{\"path\":\"./dist/axios.min.js\",\"threshold\":\"5kB\"}],\"dependencies\":{\"follow-redirects\":\"^1.14.0\"},\"description\":\"Promise based HTTP client for the browser and node.js\",\"devDependencies\":{\"coveralls\":\"^3.0.0\",\"es6-promise\":\"^4.2.4\",\"grunt\":\"^1.3.0\",\"grunt-banner\":\"^0.6.0\",\"grunt-cli\":\"^1.2.0\",\"grunt-contrib-clean\":\"^1.1.0\",\"grunt-contrib-watch\":\"^1.0.0\",\"grunt-eslint\":\"^23.0.0\",\"grunt-karma\":\"^4.0.0\",\"grunt-mocha-test\":\"^0.13.3\",\"grunt-ts\":\"^6.0.0-beta.19\",\"grunt-webpack\":\"^4.0.2\",\"istanbul-instrumenter-loader\":\"^1.0.0\",\"jasmine-core\":\"^2.4.1\",\"karma\":\"^6.3.2\",\"karma-chrome-launcher\":\"^3.1.0\",\"karma-firefox-launcher\":\"^2.1.0\",\"karma-jasmine\":\"^1.1.1\",\"karma-jasmine-ajax\":\"^0.1.13\",\"karma-safari-launcher\":\"^1.0.0\",\"karma-sauce-launcher\":\"^4.3.6\",\"karma-sinon\":\"^1.0.5\",\"karma-sourcemap-loader\":\"^0.3.8\",\"karma-webpack\":\"^4.0.2\",\"load-grunt-tasks\":\"^3.5.2\",\"minimist\":\"^1.2.0\",\"mocha\":\"^8.2.1\",\"sinon\":\"^4.5.0\",\"terser-webpack-plugin\":\"^4.2.3\",\"typescript\":\"^4.0.5\",\"url-search-params\":\"^0.10.0\",\"webpack\":\"^4.44.2\",\"webpack-dev-server\":\"^3.11.0\"},\"homepage\":\"https://axios-http.com\",\"jsdelivr\":\"dist/axios.min.js\",\"keywords\":[\"xhr\",\"http\",\"ajax\",\"promise\",\"node\"],\"license\":\"MIT\",\"main\":\"index.js\",\"name\":\"axios\",\"repository\":{\"type\":\"git\",\"url\":\"git+https://github.com/axios/axios.git\"},\"scripts\":{\"build\":\"NODE_ENV=production grunt build\",\"coveralls\":\"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js\",\"examples\":\"node ./examples/server.js\",\"fix\":\"eslint --fix lib/**/*.js\",\"postversion\":\"git push && git push --tags\",\"preversion\":\"npm test\",\"start\":\"node ./sandbox/server.js\",\"test\":\"grunt test\",\"version\":\"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json\"},\"typings\":\"./index.d.ts\",\"unpkg\":\"dist/axios.min.js\",\"version\":\"0.21.4\"}");
+module.exports = JSON.parse("{\"name\":\"axios\",\"version\":\"0.21.4\",\"description\":\"Promise based HTTP client for the browser and node.js\",\"main\":\"index.js\",\"scripts\":{\"test\":\"grunt test\",\"start\":\"node ./sandbox/server.js\",\"build\":\"NODE_ENV=production grunt build\",\"preversion\":\"npm test\",\"version\":\"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json\",\"postversion\":\"git push && git push --tags\",\"examples\":\"node ./examples/server.js\",\"coveralls\":\"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js\",\"fix\":\"eslint --fix lib/**/*.js\"},\"repository\":{\"type\":\"git\",\"url\":\"https://github.com/axios/axios.git\"},\"keywords\":[\"xhr\",\"http\",\"ajax\",\"promise\",\"node\"],\"author\":\"Matt Zabriskie\",\"license\":\"MIT\",\"bugs\":{\"url\":\"https://github.com/axios/axios/issues\"},\"homepage\":\"https://axios-http.com\",\"devDependencies\":{\"coveralls\":\"^3.0.0\",\"es6-promise\":\"^4.2.4\",\"grunt\":\"^1.3.0\",\"grunt-banner\":\"^0.6.0\",\"grunt-cli\":\"^1.2.0\",\"grunt-contrib-clean\":\"^1.1.0\",\"grunt-contrib-watch\":\"^1.0.0\",\"grunt-eslint\":\"^23.0.0\",\"grunt-karma\":\"^4.0.0\",\"grunt-mocha-test\":\"^0.13.3\",\"grunt-ts\":\"^6.0.0-beta.19\",\"grunt-webpack\":\"^4.0.2\",\"istanbul-instrumenter-loader\":\"^1.0.0\",\"jasmine-core\":\"^2.4.1\",\"karma\":\"^6.3.2\",\"karma-chrome-launcher\":\"^3.1.0\",\"karma-firefox-launcher\":\"^2.1.0\",\"karma-jasmine\":\"^1.1.1\",\"karma-jasmine-ajax\":\"^0.1.13\",\"karma-safari-launcher\":\"^1.0.0\",\"karma-sauce-launcher\":\"^4.3.6\",\"karma-sinon\":\"^1.0.5\",\"karma-sourcemap-loader\":\"^0.3.8\",\"karma-webpack\":\"^4.0.2\",\"load-grunt-tasks\":\"^3.5.2\",\"minimist\":\"^1.2.0\",\"mocha\":\"^8.2.1\",\"sinon\":\"^4.5.0\",\"terser-webpack-plugin\":\"^4.2.3\",\"typescript\":\"^4.0.5\",\"url-search-params\":\"^0.10.0\",\"webpack\":\"^4.44.2\",\"webpack-dev-server\":\"^3.11.0\"},\"browser\":{\"./lib/adapters/http.js\":\"./lib/adapters/xhr.js\"},\"jsdelivr\":\"dist/axios.min.js\",\"unpkg\":\"dist/axios.min.js\",\"typings\":\"./index.d.ts\",\"dependencies\":{\"follow-redirects\":\"^1.14.0\"},\"bundlesize\":[{\"path\":\"./dist/axios.min.js\",\"threshold\":\"5kB\"}]}");
 
 /***/ }),
 
@@ -2833,31 +2833,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -2943,9 +2918,9 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     toggleNavegation: function toggleNavegation() {
-      this.show = !this.show; // document.querySelector("#navegation").classList.toggle("h-0");
-      //document.querySelector("#navegation").classList.toggle("hidden");
-      // document.querySelector("#navegation").classList.toggle("h-screen");
+      this.show = !this.show;
+      document.querySelector("#navegation").classList.toggle("h-screen");
+      document.querySelector("#navegation").classList.toggle("h-0"); //document.querySelector("#navegation").classList.toggle("hidden");
     },
     setPurchaseId: function setPurchaseId(id) {
       this.purchase = id;
@@ -2954,6 +2929,7 @@ __webpack_require__.r(__webpack_exports__);
       if (document.head.querySelector('meta[name="purchase_id"]').content == "" || document.head.querySelector('meta[name="purchase_id"]').content == null) localStorage.removeItem("productsInPurchase");
     },
     enter: function enter(el) {
+      console.log("entro");
       el.style.height = "100vh";
       var height = "100vh";
       el.style.height = 0;
@@ -2976,7 +2952,8 @@ __webpack_require__.r(__webpack_exports__);
   computed: {
     highlight: function highlight() {
       return this.purchase ? "text-lg text-black-700 border-teal-300 border-b-2" : "text-gray-200";
-    }
+    },
+    getShow: function getShow() {}
   }
 });
 
@@ -11251,7 +11228,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".expand-enter-active[data-v-4b7819de],.expand-leave-active[data-v-4b7819de] {\n  transition: height 0.5s ease-in-out;\n  overflow: hidden;\n}\r\n", ""]);
+exports.push([module.i, ".expand-enter-active[data-v-4b7819de],.expand-leave-active[data-v-4b7819de] {\n  transition: height 0.5s ease-in-out;\n  overflow: hidden;\n}\n", ""]);
 
 // exports
 
@@ -11270,7 +11247,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".modal[data-v-53ab54d2] {\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n}\r\n", ""]);
+exports.push([module.i, ".modal[data-v-53ab54d2] {\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n}\n", ""]);
 
 // exports
 
@@ -11289,7 +11266,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".expand-enter-active[data-v-152c8205],\r\n.expand-leave-active[data-v-152c8205] {\n  transition: height 0.5s ease-in-out;\n  overflow: hidden;\n}\r\n", ""]);
+exports.push([module.i, ".expand-enter-active[data-v-152c8205],\n.expand-leave-active[data-v-152c8205] {\n  transition: height 0.5s ease-in-out;\n  overflow: hidden;\n}\n", ""]);
 
 // exports
 
@@ -11308,7 +11285,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "@media (max-width: 600px)  {\n.mx-datepicker-range[data-v-15c59834] {\n    width: 100%;\n}\n}\r\n", ""]);
+exports.push([module.i, "@media (max-width: 600px)  {\n.mx-datepicker-range[data-v-15c59834] {\n    width: 100%;\n}\n}\n", ""]);
 
 // exports
 
@@ -31574,231 +31551,191 @@ var render = function () {
           ),
           _vm._v(" "),
           _c(
-            "transition",
+            "div",
             {
-              attrs: { name: "expand" },
-              on: {
-                enter: _vm.enter,
-                "after-enter": _vm.afterEnter,
-                leave: _vm.leave,
-              },
+              staticClass:
+                "\n                w-full\n                h-0\n                flex-grow\n                md:flex md:items-center md:w-auto\n                max-h-screen\n                sm:h-auto sm:overflow-y-hidden\n                overflow-y-hidden\n                transition-[height]\n                duration-700\n                ease-in-out\n            ",
+              attrs: { id: "navegation" },
             },
             [
-              _vm.show
-                ? _c(
-                    "div",
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "\n                    text-sm\n                    md:flex-grow\n                    flex flex-wrap flex-col\n                    md:flex-row md:justify-center\n                ",
+                },
+                [
+                  _c("dropdown-component", {
+                    staticClass: "md:relative md:hidden",
+                    attrs: { name: "Inventario", items: _vm.InventoryMenu },
+                  }),
+                  _vm._v(" "),
+                  _vm.purchase
+                    ? _c(
+                        "a",
+                        {
+                          staticClass:
+                            "\n                        block\n                        mt-4\n                        lg:inline-block lg:mt-0\n                        md:hover:text-white\n                        mr-4\n                    ",
+                          class: _vm.highlight,
+                          attrs: {
+                            href: _vm.purchase
+                              ? "/purchases/" + _vm.purchase
+                              : "#",
+                          },
+                        },
+                        [
+                          _vm._v(
+                            "\n                    Realizar Compra\n                "
+                          ),
+                        ]
+                      )
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _c("dropdown-component", {
+                    staticClass: "md:relative md:hidden",
+                    attrs: { name: "Clientes", items: _vm.clientsMenu },
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "a",
                     {
                       staticClass:
-                        "\n                    w-full\n                    block\n                    flex-grow\n                    md:flex md:items-center md:w-auto\n                    max-h-screen\n                    h-screen\n                    sm:h-auto sm:overflow-y-hidden\n                    overflow-y-scroll\n                ",
-                      attrs: { id: "navegation" },
+                        "\n                        sm:block\n                        hidden\n                        mt-4\n                        lg:inline-block lg:mt-0\n                        text-blue-700\n                        sm:hover:text-blue-800\n                        mr-4\n                        md:text-base\n                        text-lg\n                    ",
+                      attrs: { href: "/sales/create" },
                     },
                     [
                       _c(
                         "div",
                         {
                           staticClass:
-                            "\n                        text-sm\n                        md:flex-grow\n                        flex flex-wrap flex-col\n                        md:flex-row md:justify-center\n                    ",
+                            "\n                            flex flex-wrap\n                            sm:items-center sm:justify-center\n                            font-mono\n                        ",
                         },
                         [
-                          _c("dropdown-component", {
-                            staticClass: "md:relative md:hidden",
-                            attrs: {
-                              name: "Inventario",
-                              items: _vm.InventoryMenu,
-                            },
-                          }),
-                          _vm._v(" "),
-                          _vm.purchase
-                            ? _c(
-                                "a",
-                                {
-                                  staticClass:
-                                    "\n                            block\n                            mt-4\n                            lg:inline-block lg:mt-0\n                            md:hover:text-white\n                            mr-4\n                        ",
-                                  class: _vm.highlight,
-                                  attrs: {
-                                    href: _vm.purchase
-                                      ? "/purchases/" + _vm.purchase
-                                      : "#",
-                                  },
-                                },
-                                [
-                                  _vm._v(
-                                    "\n                        Realizar Compra\n                    "
-                                  ),
-                                ]
-                              )
-                            : _vm._e(),
-                          _vm._v(" "),
-                          _c("dropdown-component", {
-                            staticClass: "md:relative md:hidden",
-                            attrs: { name: "Clientes", items: _vm.clientsMenu },
-                          }),
+                          _c("shopping-bag"),
                           _vm._v(" "),
                           _c(
-                            "a",
+                            "span",
                             {
                               staticClass:
-                                "\n                            sm:block\n                            hidden\n                            mt-4\n                            lg:inline-block lg:mt-0\n                            text-blue-700\n                            sm:hover:text-blue-800\n                            mr-4\n                            md:text-base\n                            text-lg\n                        ",
-                              attrs: { href: "/sales/create" },
+                                "self-end leading-none font-xl font-bold",
                             },
-                            [
-                              _c(
-                                "div",
-                                {
-                                  staticClass:
-                                    "\n                                flex flex-wrap\n                                sm:items-center sm:justify-center\n                                font-mono\n                            ",
-                                },
-                                [
-                                  _c("shopping-bag"),
-                                  _vm._v(" "),
-                                  _c(
-                                    "span",
-                                    {
-                                      staticClass:
-                                        "\n                                    self-end\n                                    leading-none\n                                    font-xl font-bold\n                                ",
-                                    },
-                                    [_vm._v("Ventas")]
-                                  ),
-                                ],
-                                1
-                              ),
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c("dropdown-component", {
-                            staticClass: "md:relative md:hidden",
-                            attrs: { name: "Reportes", items: _vm.ReportsMenu },
-                          }),
-                          _vm._v(" "),
-                          _c("dropdown-component", {
-                            staticClass: "md:relative lg:hidden",
-                            attrs: {
-                              name: "Configuración",
-                              items: _vm.ConfigMenu,
-                            },
-                          }),
-                          _vm._v(" "),
-                          _c(
-                            "a",
-                            {
-                              staticClass:
-                                "\n                            sm:hidden\n                            border border-t border-b border-gray-300\n                            mt-2\n                            p-2\n                            rounded-sm\n                            bg-gray-300\n                            lg:mt-0\n                            text-blue-700\n                            sm:hover:text-blue-800\n                            md:text-base\n                            text-lg\n                        ",
-                              attrs: { href: "/sales/create" },
-                            },
-                            [
-                              _c(
-                                "div",
-                                {
-                                  staticClass:
-                                    "\n                                flex flex-wrap\n                                items-center\n                                justify-center\n                                font-mono\n                            ",
-                                },
-                                [
-                                  _c("shopping-bag"),
-                                  _vm._v(" "),
-                                  _c(
-                                    "span",
-                                    {
-                                      staticClass:
-                                        "\n                                    self-end\n                                    leading-none\n                                    font-xl font-bold\n                                ",
-                                    },
-                                    [_vm._v("Ventas")]
-                                  ),
-                                ],
-                                1
-                              ),
-                            ]
+                            [_vm._v("Ventas")]
                           ),
                         ],
                         1
                       ),
-                      _vm._v(" "),
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("dropdown-component", {
+                    staticClass: "md:relative md:hidden",
+                    attrs: { name: "Reportes", items: _vm.ReportsMenu },
+                  }),
+                  _vm._v(" "),
+                  _c("dropdown-component", {
+                    staticClass: "md:relative lg:hidden",
+                    attrs: { name: "Configuración", items: _vm.ConfigMenu },
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "a",
+                    {
+                      staticClass:
+                        "\n                        sm:hidden\n                        border border-t border-b border-gray-300\n                        mt-2\n                        p-2\n                        rounded-sm\n                        bg-gray-300\n                        lg:mt-0\n                        text-blue-700\n                        sm:hover:text-blue-800\n                        md:text-base\n                        text-lg\n                    ",
+                      attrs: { href: "/sales/create" },
+                    },
+                    [
                       _c(
                         "div",
                         {
                           staticClass:
-                            "flex flex-wrap items-center w-full sm:w-auto",
+                            "\n                            flex flex-wrap\n                            items-center\n                            justify-center\n                            font-mono\n                        ",
                         },
                         [
-                          _vm.impersonation_id
-                            ? _c(
-                                "form",
-                                {
-                                  staticClass:
-                                    "\n                            block\n                            mt-4\n                            lg:inline-block lg:mt-0\n                            md:hover:text-white\n                            mr-4\n                        ",
-                                  attrs: {
-                                    action: "/impersonations",
-                                    method: "post",
-                                  },
-                                },
-                                [
-                                  _c("input", {
-                                    attrs: {
-                                      type: "hidden",
-                                      name: "_method",
-                                      value: "delete",
-                                    },
-                                  }),
-                                  _vm._v(" "),
-                                  _c("input", {
-                                    attrs: { type: "hidden", name: "_token" },
-                                    domProps: { value: _vm.crfsToken },
-                                  }),
-                                  _vm._v(" "),
-                                  _c(
-                                    "button",
-                                    {
-                                      staticClass:
-                                        "\n                                text-gray-300\n                                border-red-900 border\n                                rounded\n                                px-2\n                                py-1\n                            ",
-                                    },
-                                    [
-                                      _vm._v(
-                                        "\n                            Regresar "
-                                      ),
-                                      _c("i", { staticClass: "fas fa-user" }),
-                                    ]
-                                  ),
-                                ]
-                              )
-                            : _vm._e(),
+                          _c("shopping-bag"),
                           _vm._v(" "),
                           _c(
-                            "form",
+                            "span",
                             {
-                              staticClass: "w-full sm:w-auto",
-                              attrs: { action: "/logout", method: "POST" },
+                              staticClass:
+                                "self-end leading-none font-xl font-bold",
                             },
-                            [
-                              _c("input", {
-                                attrs: { type: "hidden", name: "_token" },
-                                domProps: { value: _vm.crfsToken },
-                              }),
-                              _vm._v(" "),
-                              _c(
-                                "button",
-                                {
-                                  staticClass:
-                                    "\n                                inline-block\n                                w-full\n                                sm:w-auto\n                                text-sm\n                                px-4\n                                py-2\n                                leading-none\n                                border\n                                bg-white\n                                rounded\n                                text-gray-800\n                                border-teal-300\n                                hover:border-transparent\n                                md:hover:text-teal-500 md:hover:bg-white\n                                mt-4\n                                lg:mt-0\n                            ",
-                                  attrs: { href: "/logout" },
-                                },
-                                [
-                                  _vm._v(
-                                    "\n                            " +
-                                      _vm._s(_vm.getCurrentUser.name) +
-                                      " | Salir\n                        "
-                                  ),
-                                ]
-                              ),
-                            ]
+                            [_vm._v("Ventas")]
+                          ),
+                        ],
+                        1
+                      ),
+                    ]
+                  ),
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "flex flex-wrap items-center w-full sm:w-auto" },
+                [
+                  _vm.impersonation_id
+                    ? _c(
+                        "form",
+                        {
+                          staticClass:
+                            "\n                        block\n                        mt-4\n                        lg:inline-block lg:mt-0\n                        md:hover:text-white\n                        mr-4\n                    ",
+                          attrs: { action: "/impersonations", method: "post" },
+                        },
+                        [
+                          _c("input", {
+                            attrs: {
+                              type: "hidden",
+                              name: "_method",
+                              value: "delete",
+                            },
+                          }),
+                          _vm._v(" "),
+                          _c("input", {
+                            attrs: { type: "hidden", name: "_token" },
+                            domProps: { value: _vm.crfsToken },
+                          }),
+                          _vm._v(" "),
+                          _vm._m(1),
+                        ]
+                      )
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _c(
+                    "form",
+                    {
+                      staticClass: "w-full sm:w-auto",
+                      attrs: { action: "/logout", method: "POST" },
+                    },
+                    [
+                      _c("input", {
+                        attrs: { type: "hidden", name: "_token" },
+                        domProps: { value: _vm.crfsToken },
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticClass:
+                            "\n                            inline-block\n                            w-full\n                            sm:w-auto\n                            text-sm\n                            px-4\n                            py-2\n                            leading-none\n                            border\n                            bg-white\n                            rounded\n                            text-gray-800\n                            border-teal-300\n                            hover:border-transparent\n                            md:hover:text-teal-500 md:hover:bg-white\n                            mt-4\n                            lg:mt-0\n                        ",
+                          attrs: { href: "/logout" },
+                        },
+                        [
+                          _vm._v(
+                            "\n                        " +
+                              _vm._s(_vm.getCurrentUser.name) +
+                              " | Salir\n                    "
                           ),
                         ]
                       ),
                     ]
-                  )
-                : _vm._e(),
+                  ),
+                ]
+              ),
             ]
           ),
-        ],
-        1
+        ]
       ),
       _vm._v(" "),
       _c(
@@ -31949,6 +31886,22 @@ var staticRenderFns = [
           { staticClass: "font-semibold text-xl tracking-tight md:hidden" },
           [_vm._v("ISCO")]
         ),
+      ]
+    )
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      {
+        staticClass:
+          "\n                            text-gray-300\n                            border-red-900 border\n                            rounded\n                            px-2\n                            py-1\n                        ",
+      },
+      [
+        _vm._v("\n                        Regresar "),
+        _c("i", { staticClass: "fas fa-user" }),
       ]
     )
   },
@@ -65605,8 +65558,8 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\htdocs\franapp\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\franapp\resources\css\app.css */"./resources/css/app.css");
+__webpack_require__(/*! /home/vagrant/code/franapp/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/vagrant/code/franapp/resources/css/app.css */"./resources/css/app.css");
 
 
 /***/ })
