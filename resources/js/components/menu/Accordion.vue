@@ -25,28 +25,31 @@
                 ><slot name="descriptive-icon"></slot> {{ name }}</span
             ><slot name="icon"></slot
         ></a>
-        <transition-group
-            tag="ul"
-            v-if="show"
-            class="mb-2 divide-y divide-gray-200"
-            name="fade"
+        <transition
+            name="expand"
+            class=""
+            @enter="enter"
+            @after-enter="afterEnter"
+            @leave="leave"
         >
-            <li v-for="item in itemsMenu" :key="item.name" class="bg-white">
-                <a
-                    :href="item.url"
-                    class="
-                        block
-                        w-full
-                        text-blue-700
-                        font-mono
-                        p-1
-                        pl-12
-                        text-sm
-                    "
-                    >{{ item.name }}</a
-                >
-            </li>
-        </transition-group>
+            <ul class="mb-2 divide-y divide-gray-200" v-if="show">
+                <li v-for="item in itemsMenu" :key="item.name" class="bg-white">
+                    <a
+                        :href="item.url"
+                        class="
+                            block
+                            w-full
+                            text-blue-700
+                            font-mono
+                            p-1
+                            pl-12
+                            text-sm
+                        "
+                        >{{ item.name }}</a
+                    >
+                </li>
+            </ul>
+        </transition>
     </div>
 </template>
 
@@ -61,6 +64,25 @@ export default {
     methods: {
         toggle() {
             this.show = !this.show;
+        },
+        enter(el) {
+            el.style.height = "auto";
+            const height = getComputedStyle(el).height;
+            el.style.height = 0;
+            //getComputedStyle(el);
+            setTimeout(() => {
+                el.style.height = height;
+            });
+        },
+        afterEnter(el) {
+            el.style.height = "auto";
+        },
+        leave(el) {
+            el.style.height = getComputedStyle(el).height;
+            // getComputedStyle(el);
+            setTimeout(() => {
+                el.style.height = 0;
+            });
         },
     },
 };

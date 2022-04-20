@@ -230,40 +230,43 @@
         <!-- Page Content -->
         <main class="mt-20 w-ful z-0 flex flex-wrap">
             <sidebar>
-                <accordion :items-menu="InventoryMenu" name="Inventario">
+                <accordion class="border-b border-teal-500 " :items-menu="InventoryMenu" name="Inventario">
                     <template slot="descriptive-icon">
-                        <boxes
+                        <!-- <boxes
                             class="mr-2 h-8 w-8 p-1 text-gray-700 rounded-sm"
-                        ></boxes>
+                        ></boxes> -->
+                        <view-grid-icon
+                            class="mr-2 h-8 w-8 p-1 text-gray-700 rounded-sm"
+                        ></view-grid-icon>
                     </template>
                     <template slot="icon">
                         <down-arrow class="text-xs"></down-arrow>
                     </template>
                 </accordion>
-                <accordion :items-menu="clientsMenu" name="Clientes">
+                <accordion class="border-b border-teal-500"  :items-menu="clientsMenu" name="Clientes">
                     <template slot="descriptive-icon">
                         <users-icon
-                            class="mr-2 h-7 w-7 p-1 text-gray-700 rounded-sm"
+                            class="mr-2 h-8 w-8 p-1 text-gray-700 rounded-sm"
                         ></users-icon>
                     </template>
                     <template slot="icon">
                         <down-arrow class="text-xs"></down-arrow>
                     </template>
                 </accordion>
-                <accordion :items-menu="ReportsMenu" name="Reportes">
+                <accordion class="border-b border-teal-500"  :items-menu="ReportsMenu" name="Reportes">
                     <template slot="descriptive-icon">
                         <bars-icon
-                            class="mr-2 h-7 w-7 p-1 text-gray-700 rounded-sm"
+                            class="mr-2 h-8 w-8 p-1 text-gray-700 rounded-sm"
                         ></bars-icon>
                     </template>
                     <template slot="icon">
                         <down-arrow class="text-xs"></down-arrow>
                     </template>
                 </accordion>
-                <accordion :items-menu="ConfigMenu" name="Configuración">
+                <accordion class="border-b border-teal-500"  :items-menu="ConfigMenu" name="Configuración">
                     <template slot="descriptive-icon">
                         <setting-icon
-                            class="mr-2 h-7 w-7 p-1 text-gray-700 rounded-sm"
+                            class="mr-2 h-8 w-8 p-1 text-gray-700 rounded-sm"
                         ></setting-icon>
                     </template>
                     <template slot="icon">
@@ -283,7 +286,8 @@ import Sidebar from "./menu/Sidebar.vue";
 import Accordion from "./menu/Accordion.vue";
 import WarehouseIcon from "./icons/WarehouseIcon";
 import ShoppingBag from "./icons/ShoppingBag.vue";
-import Boxes from "./icons/Boxes.vue";
+import ViewGridIcon from "./icons/ViewGridIcon.vue";
+// import Boxes from "./icons/Boxes.vue";
 import UsersIcon from "./icons/UsersIcon.vue";
 import DownArrow from "./icons/DownArrow.vue";
 import BarsIcon from "./icons/BarsIcon.vue";
@@ -294,7 +298,8 @@ export default {
         SettingIcon,
         BarsIcon,
         UsersIcon,
-        Boxes,
+        // Boxes,
+        ViewGridIcon,
         Sidebar,
         Accordion,
         WarehouseIcon,
@@ -436,10 +441,3 @@ export default {
     },
 };
 </script>
-<style scoped>
-.expand-enter-active,
-.expand-leave-active {
-    transition: height 0.5s ease-in-out;
-    overflow: hidden;
-}
-</style>
