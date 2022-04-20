@@ -6104,6 +6104,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["itemsMenu", "name"],
   data: function data() {
@@ -31726,7 +31729,7 @@ var render = function () {
               _c(
                 "accordion",
                 {
-                  staticClass: "border-b border-teal-500 ",
+                  staticClass: " ",
                   attrs: {
                     "items-menu": _vm.InventoryMenu,
                     name: "Inventario",
@@ -31757,10 +31760,7 @@ var render = function () {
               _vm._v(" "),
               _c(
                 "accordion",
-                {
-                  staticClass: "border-b border-teal-500",
-                  attrs: { "items-menu": _vm.clientsMenu, name: "Clientes" },
-                },
+                { attrs: { "items-menu": _vm.clientsMenu, name: "Clientes" } },
                 [
                   _c(
                     "template",
@@ -31786,10 +31786,7 @@ var render = function () {
               _vm._v(" "),
               _c(
                 "accordion",
-                {
-                  staticClass: "border-b border-teal-500",
-                  attrs: { "items-menu": _vm.ReportsMenu, name: "Reportes" },
-                },
+                { attrs: { "items-menu": _vm.ReportsMenu, name: "Reportes" } },
                 [
                   _c(
                     "template",
@@ -31816,7 +31813,6 @@ var render = function () {
               _c(
                 "accordion",
                 {
-                  staticClass: "border-b border-teal-500",
                   attrs: {
                     "items-menu": _vm.ConfigMenu,
                     name: "Configuración",
@@ -34880,7 +34876,7 @@ var render = function () {
                   attrs: {
                     name: "name",
                     type: "text",
-                    placeholder: "Jiquilpan...",
+                    placeholder: "Ejemplo: Jiquilpan Michoacán",
                     "aria-label": "Full name",
                   },
                   domProps: { value: _vm.form.name },
@@ -34927,7 +34923,7 @@ var render = function () {
                   attrs: {
                     name: "address",
                     type: "text",
-                    placeholder: "DIRECCION",
+                    placeholder: "Ejemplo: Madero #121",
                     "aria-label": "Full name",
                   },
                   domProps: { value: _vm.form.address },
@@ -35520,7 +35516,7 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "w-full px-3" },
+    { staticClass: "w-full px-0" },
     [
       _c(
         "a",
@@ -35540,7 +35536,7 @@ var render = function () {
             "span",
             {
               staticClass:
-                "\n                mr-1\n                font-mono font-semibold\n                flex\n                justify-center\n                items-end\n            ",
+                "\n                mr-1\n                font-mono font-semibold\n                text-lg\n                flex\n                justify-center\n                items-end\n            ",
             },
             [_vm._t("descriptive-icon"), _vm._v(" " + _vm._s(_vm.name))],
             2
@@ -35564,14 +35560,14 @@ var render = function () {
           _vm.show
             ? _c(
                 "ul",
-                { staticClass: "mb-2 divide-y divide-gray-200" },
+                { staticClass: " divide-y-2 divide-gray-200" },
                 _vm._l(_vm.itemsMenu, function (item) {
                   return _c("li", { key: item.name, staticClass: "bg-white" }, [
                     _c(
                       "a",
                       {
                         staticClass:
-                          "\n                        block\n                        w-full\n                        text-blue-700\n                        font-mono\n                        p-1\n                        pl-12\n                        text-sm\n                    ",
+                          "\n                        block\n                        w-full\n                        text-gray-800\n                        subpixel-antialiased \n                        hover:bg-gray-200\n                        font-mono\n                        p-2\n                        pl-6\n                        text-sm\n                    ",
                         attrs: { href: item.url },
                       },
                       [_vm._v(_vm._s(item.name))]

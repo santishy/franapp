@@ -230,7 +230,7 @@
         <!-- Page Content -->
         <main class="mt-20 w-ful z-0 flex flex-wrap">
             <sidebar>
-                <accordion class="border-b border-teal-500 " :items-menu="InventoryMenu" name="Inventario">
+                <accordion class=" " :items-menu="InventoryMenu" name="Inventario">
                     <template slot="descriptive-icon">
                         <!-- <boxes
                             class="mr-2 h-8 w-8 p-1 text-gray-700 rounded-sm"
@@ -243,7 +243,7 @@
                         <down-arrow class="text-xs"></down-arrow>
                     </template>
                 </accordion>
-                <accordion class="border-b border-teal-500"  :items-menu="clientsMenu" name="Clientes">
+                <accordion class=""  :items-menu="clientsMenu" name="Clientes">
                     <template slot="descriptive-icon">
                         <users-icon
                             class="mr-2 h-8 w-8 p-1 text-gray-700 rounded-sm"
@@ -253,7 +253,7 @@
                         <down-arrow class="text-xs"></down-arrow>
                     </template>
                 </accordion>
-                <accordion class="border-b border-teal-500"  :items-menu="ReportsMenu" name="Reportes">
+                <accordion class=""  :items-menu="ReportsMenu" name="Reportes">
                     <template slot="descriptive-icon">
                         <bars-icon
                             class="mr-2 h-8 w-8 p-1 text-gray-700 rounded-sm"
@@ -263,7 +263,7 @@
                         <down-arrow class="text-xs"></down-arrow>
                     </template>
                 </accordion>
-                <accordion class="border-b border-teal-500"  :items-menu="ConfigMenu" name="Configuración">
+                <accordion class=""  :items-menu="ConfigMenu" name="Configuración">
                     <template slot="descriptive-icon">
                         <setting-icon
                             class="mr-2 h-8 w-8 p-1 text-gray-700 rounded-sm"

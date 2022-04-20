@@ -21,7 +21,7 @@
                         name="name"
                         class="appearance-none  sm:shadow-none static sm:p-0 p-2 bg-gray-200 sm:bg-transparent border-none w-full text-gray-700 mr-3 sm:py-1 sm:pr-2 sm:pl-56 leading-tight focus:outline-none"
                         type="text"
-                        placeholder="Jiquilpan..."
+                        placeholder="Ejemplo: Jiquilpan Michoacán"
                         aria-label="Full name"
                     />
                     <label
@@ -38,7 +38,7 @@
                         name="address"
                         class=" sm:shadow-none appearance-none static sm:p-0 p-2 bg-gray-200 sm:bg-transparent border-none w-full text-gray-700 mr-3 sm:py-1 sm:pr-2 sm:pl-56 leading-tight focus:outline-none"
                         type="text"
-                        placeholder="DIRECCION"
+                        placeholder="Ejemplo: Madero #121"
                         aria-label="Full name"
                     />
                     <label

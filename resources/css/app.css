@@ -10,6 +10,11 @@ body {
     max-width: 100vw !important;
     overflow-x: hidden;
 }
+.bg-stripes-pink {
+    background-color: #f472b61a;
+    background-image: linear-gradient(135deg,#ec489980 10%,transparent 0,transparent 50%,#ec489980 0,#ec489980 60%,transparent 0,transparent);
+    background-size: 7.07px 7.07px;
+}
 .expand-enter-active,
 .expand-leave-active {
     transition: height 0.3s ease-in-out;

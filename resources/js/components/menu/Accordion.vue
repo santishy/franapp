@@ -1,5 +1,5 @@
 <template>
-    <div class="w-full px-3">
+    <div class="w-full px-0">
         <a
             href="#"
             class="
@@ -18,6 +18,7 @@
                 class="
                     mr-1
                     font-mono font-semibold
+                    text-lg
                     flex
                     justify-center
                     items-end
@@ -32,17 +33,19 @@
             @after-enter="afterEnter"
             @leave="leave"
         >
-            <ul class="mb-2 divide-y divide-gray-200" v-if="show">
+            <ul class=" divide-y-2 divide-gray-200" v-if="show">
                 <li v-for="item in itemsMenu" :key="item.name" class="bg-white">
                     <a
                         :href="item.url"
                         class="
                             block
                             w-full
-                            text-blue-700
+                            text-gray-800
+                            subpixel-antialiased 
+                            hover:bg-gray-200
                             font-mono
-                            p-1
-                            pl-12
+                            p-2
+                            pl-6
                             text-sm
                         "
                         >{{ item.name }}</a
