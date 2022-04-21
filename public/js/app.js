@@ -9970,6 +9970,55 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -31742,7 +31791,7 @@ var render = function () {
                     [
                       _c("view-grid-icon", {
                         staticClass:
-                          "mr-2 h-8 w-8 p-1 text-gray-700 rounded-sm",
+                          "mr-2 h-7 w-7 p-1 text-gray-700 rounded-sm",
                       }),
                     ],
                     1
@@ -31768,7 +31817,7 @@ var render = function () {
                     [
                       _c("users-icon", {
                         staticClass:
-                          "mr-2 h-8 w-8 p-1 text-gray-700 rounded-sm",
+                          "mr-2 h-7 w-7 p-1 text-gray-700 rounded-sm",
                       }),
                     ],
                     1
@@ -31794,7 +31843,7 @@ var render = function () {
                     [
                       _c("bars-icon", {
                         staticClass:
-                          "mr-2 h-8 w-8 p-1 text-gray-700 rounded-sm",
+                          "mr-2 h-7 w-7 p-1 text-gray-700 rounded-sm",
                       }),
                     ],
                     1
@@ -31825,7 +31874,7 @@ var render = function () {
                     [
                       _c("setting-icon", {
                         staticClass:
-                          "mr-2 h-8 w-8 p-1 text-gray-700 rounded-sm",
+                          "mr-2 h-7 w-7 p-1 text-gray-700 rounded-sm",
                       }),
                     ],
                     1
@@ -35536,7 +35585,7 @@ var render = function () {
             "span",
             {
               staticClass:
-                "\n                mr-1\n                font-mono font-semibold\n                text-lg\n                flex\n                justify-center\n                items-end\n            ",
+                "\n                mr-1\n                font-mono \n                text-lg\n                flex\n                justify-center\n                items-end\n            ",
             },
             [_vm._t("descriptive-icon"), _vm._v(" " + _vm._s(_vm.name))],
             2
@@ -38914,7 +38963,7 @@ var render = function () {
                   "p",
                   {
                     staticClass:
-                      "border w-full border-blue-400 px-4 py-2 text-blue-600 rounded-sm bg-white mb-2 text-center",
+                      "\n                    border\n                    w-full\n                    px-4\n                    py-2\n                    ring-2 ring-blue-500\n                    decoration-dotted\n                    text-gray-700\n                    rounded-sm\n                    bg-teal-100\n                    mb-2\n                    text-center\n                ",
                   },
                   [
                     _vm._v(
@@ -38935,7 +38984,7 @@ var render = function () {
                   "div",
                   {
                     staticClass:
-                      "col-span-4 2xl:col-span-5 flex justify-center items-baseline",
+                      "\n                    col-span-4\n                    2xl:col-span-5\n                    flex\n                    justify-center\n                    items-baseline\n                ",
                   },
                   [
                     _c("search-by-category", {
@@ -38943,7 +38992,7 @@ var render = function () {
                       attrs: { categories: _vm.categories },
                     }),
                     _vm._v(" "),
-                    _c("search-component", { staticClass: "md:w-2/4 w-3/4 " }),
+                    _c("search-component", { staticClass: "md:w-2/4 w-3/4" }),
                   ],
                   1
                 ),
@@ -38954,21 +39003,21 @@ var render = function () {
                   "div",
                   {
                     staticClass:
-                      "w-full flex flex-wrap justify-center items-center ",
+                      "w-full flex flex-wrap justify-center items-center",
                   },
                   [
                     _c(
                       "div",
                       {
                         staticClass:
-                          "bg-white px-4 py-2  w-full md:mx-0 mx-2 rounded-sm shadow-sm",
+                          "\n                        bg-white\n                        px-4\n                        py-2\n                        w-full\n                        md:mx-0\n                        mx-2\n                        rounded-sm\n                        shadow-sm\n                    ",
                       },
                       [
                         _c(
                           "div",
                           {
                             staticClass:
-                              "w-full flex flex-wrap md:justify-between  text-gray-600 md:items-center",
+                              "\n                            w-full\n                            flex flex-wrap\n                            md:justify-between\n                            text-gray-600\n                            md:items-center\n                        ",
                           },
                           [
                             _vm.show
@@ -38977,7 +39026,7 @@ var render = function () {
                                   "button",
                                   {
                                     staticClass:
-                                      "bg-teal-300 rounded transition-all duration-500 ease-in-out hover:bg-teal-500 text-teal-700 font-semibold hover:text-white py-1 px-4 border-b-2 border-teal-500 hover:border-transparent mr-1",
+                                      "\n                                bg-teal-300\n                                rounded\n                                transition-all\n                                duration-500\n                                ease-in-out\n                                hover:bg-teal-500\n                                text-teal-700\n                                font-semibold\n                                hover:text-white\n                                py-1\n                                px-4\n                                border-b-2 border-teal-500\n                                hover:border-transparent\n                                mr-1\n                            ",
                                     on: {
                                       click: function ($event) {
                                         _vm.show = true
@@ -39010,7 +39059,7 @@ var render = function () {
                                 ],
                               },
                               [
-                                _c("div", { staticClass: "text-gray-600 " }, [
+                                _c("div", { staticClass: "text-gray-600" }, [
                                   _vm._v(
                                     "\n                            ID Venta - #" +
                                       _vm._s(_vm.localSale.id) +

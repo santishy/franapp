@@ -17,7 +17,7 @@
             ><span
                 class="
                     mr-1
-                    font-mono font-semibold
+                    font-mono 
                     text-lg
                     flex
                     justify-center

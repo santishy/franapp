@@ -6,7 +6,19 @@
                 class="flex flex-col justify-center mx-auto px-4 w-full"
             >
                 <p
-                    class="border w-full border-blue-400 px-4 py-2 text-blue-600 rounded-sm bg-white mb-2 text-center"
+                    class="
+                        border
+                        w-full
+                        px-4
+                        py-2
+                        ring-2 ring-blue-500
+                        decoration-dotted
+                        text-gray-700
+                        rounded-sm
+                        bg-teal-100
+                        mb-2
+                        text-center
+                    "
                 >
                     Al ser un usuario administrador, puedes elegir el inventario
                     para realizar la venta
@@ -14,27 +26,64 @@
                 <inventory-list></inventory-list>
             </div>
             <div v-else class="w-full px-4">
-                <div class="col-span-4 2xl:col-span-5 flex justify-center items-baseline">
-                
-                <search-by-category
-                    class="md:w-2/4 w-3/4 mr-2"
-                    :categories="categories"
-                ></search-by-category>
-                <search-component  class="md:w-2/4 w-3/4 " />
-            </div>
+                <div
+                    class="
+                        col-span-4
+                        2xl:col-span-5
+                        flex
+                        justify-center
+                        items-baseline
+                    "
+                >
+                    <search-by-category
+                        class="md:w-2/4 w-3/4 mr-2"
+                        :categories="categories"
+                    ></search-by-category>
+                    <search-component class="md:w-2/4 w-3/4" />
+                </div>
                 <product-matching></product-matching>
-                <div class="w-full flex flex-wrap justify-center items-center ">
+                <div class="w-full flex flex-wrap justify-center items-center">
                     <div
-                        class="bg-white px-4 py-2  w-full md:mx-0 mx-2 rounded-sm shadow-sm"
+                        class="
+                            bg-white
+                            px-4
+                            py-2
+                            w-full
+                            md:mx-0
+                            mx-2
+                            rounded-sm
+                            shadow-sm
+                        "
                     >
                         <div
-                            class="w-full flex flex-wrap md:justify-between  text-gray-600 md:items-center"
+                            class="
+                                w-full
+                                flex flex-wrap
+                                md:justify-between
+                                text-gray-600
+                                md:items-center
+                            "
                         >
                             <sale-to-customer class="mr-4" v-if="show" />
                             <button
                                 v-else
                                 @click="show = true"
-                                class="bg-teal-300 rounded transition-all duration-500 ease-in-out hover:bg-teal-500 text-teal-700 font-semibold hover:text-white py-1 px-4 border-b-2 border-teal-500 hover:border-transparent mr-1"
+                                class="
+                                    bg-teal-300
+                                    rounded
+                                    transition-all
+                                    duration-500
+                                    ease-in-out
+                                    hover:bg-teal-500
+                                    text-teal-700
+                                    font-semibold
+                                    hover:text-white
+                                    py-1
+                                    px-4
+                                    border-b-2 border-teal-500
+                                    hover:border-transparent
+                                    mr-1
+                                "
                             >
                                 Cliente registrado
                             </button>
@@ -47,10 +96,10 @@
                             v-if="localSale"
                             :class="[
                                 'flex flex-wrap px-2 py-2 items-center mb-4 border-b-2 border-blue-400',
-                                alignStatus
+                                alignStatus,
                             ]"
                         >
-                            <div class="text-gray-600 ">
+                            <div class="text-gray-600">
                                 ID Venta - #{{ localSale.id }}
                             </div>
                             <div class="text-xl text-green-900">
@@ -88,34 +137,34 @@ export default {
         NavComponent,
         SaleToCustomer,
         SearchByCategory,
-        DeleteSale
+        DeleteSale,
     },
     props: {
         sale: {
-            type: Object
+            type: Object,
         },
         categories: {
-            type: Array
-        }
+            type: Array,
+        },
     },
     created() {
         if (this.sale) {
             this.sale_status = this.sale.status;
             this.localSale = this.sale;
         }
-        EventBus.$on("selected-inventory", inventary_id => {
+        EventBus.$on("selected-inventory", (inventary_id) => {
             this.seletedInventoryId = inventary_id;
         });
-        EventBus.$on("sale-deleted", res => {
+        EventBus.$on("sale-deleted", (res) => {
             this.sale_status = null;
             this.localSale = null;
             this.show = false;
         });
-        EventBus.$on("product-added-sales-cart", sale => {
+        EventBus.$on("product-added-sales-cart", (sale) => {
             this.localSale = sale;
             this.sale_status = sale.status;
         });
-        EventBus.$on("sale-to-client", data => {
+        EventBus.$on("sale-to-client", (data) => {
             this.localSale = data.sale;
         });
     },
@@ -123,7 +172,7 @@ export default {
         return {
             seletedInventoryId: null,
             show: false,
-            localSale: null
+            localSale: null,
         };
     },
     computed: {
@@ -135,7 +184,7 @@ export default {
         },
         alignStatus() {
             return this.localSale ? "justify-between" : "justify-center";
-        }
-    }
+        },
+    },
 };
 </script>

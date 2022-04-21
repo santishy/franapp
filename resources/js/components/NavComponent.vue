@@ -233,10 +233,10 @@
                 <accordion class=" " :items-menu="InventoryMenu" name="Inventario">
                     <template slot="descriptive-icon">
                         <!-- <boxes
-                            class="mr-2 h-8 w-8 p-1 text-gray-700 rounded-sm"
+                            class="mr-2 h-7 w-7 p-1 text-gray-700 rounded-sm"
                         ></boxes> -->
                         <view-grid-icon
-                            class="mr-2 h-8 w-8 p-1 text-gray-700 rounded-sm"
+                            class="mr-2 h-7 w-7 p-1 text-gray-700 rounded-sm"
                         ></view-grid-icon>
                     </template>
                     <template slot="icon">
@@ -246,7 +246,7 @@
                 <accordion class=""  :items-menu="clientsMenu" name="Clientes">
                     <template slot="descriptive-icon">
                         <users-icon
-                            class="mr-2 h-8 w-8 p-1 text-gray-700 rounded-sm"
+                            class="mr-2 h-7 w-7 p-1 text-gray-700 rounded-sm"
                         ></users-icon>
                     </template>
                     <template slot="icon">
@@ -256,7 +256,7 @@
                 <accordion class=""  :items-menu="ReportsMenu" name="Reportes">
                     <template slot="descriptive-icon">
                         <bars-icon
-                            class="mr-2 h-8 w-8 p-1 text-gray-700 rounded-sm"
+                            class="mr-2 h-7 w-7 p-1 text-gray-700 rounded-sm"
                         ></bars-icon>
                     </template>
                     <template slot="icon">
@@ -266,7 +266,7 @@
                 <accordion class=""  :items-menu="ConfigMenu" name="Configuración">
                     <template slot="descriptive-icon">
                         <setting-icon
-                            class="mr-2 h-8 w-8 p-1 text-gray-700 rounded-sm"
+                            class="mr-2 h-7 w-7 p-1 text-gray-700 rounded-sm"
                         ></setting-icon>
                     </template>
                     <template slot="icon">
