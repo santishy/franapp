@@ -1,22 +1,21 @@
 <template>
     <svg
-        aria-hidden="true"
-        focusable="false"
-        data-prefix="fas"
-        data-icon="dolly-flatbed"
-        class="inline-block"
-        width="1em"
-        height="1em"
-        role="img"
         xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 640 512"
+        class="h-6 w-6"
+        fill="none"
+        viewBox="0 0 24 24"
+        height="1em"
+        width="1em"
+        stroke="currentColor"
+        stroke-width="2"
     >
         <path
-            fill="currentColor"
-            d="M208 320h384c8.8 0 16-7.2 16-16V48c0-8.8-7.2-16-16-16H448v128l-48-32-48 32V32H208c-8.8 0-16 7.2-16 16v256c0 8.8 7.2 16 16 16zm416 64H128V16c0-8.8-7.2-16-16-16H16C7.2 0 0 7.2 0 16v32c0 8.8 7.2 16 16 16h48v368c0 8.8 7.2 16 16 16h82.9c-1.8 5-2.9 10.4-2.9 16 0 26.5 21.5 48 48 48s48-21.5 48-48c0-5.6-1.2-11-2.9-16H451c-1.8 5-2.9 10.4-2.9 16 0 26.5 21.5 48 48 48s48-21.5 48-48c0-5.6-1.2-11-2.9-16H624c8.8 0 16-7.2 16-16v-32c0-8.8-7.2-16-16-16z"
-        ></path>
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M17 14v6m-3-3h6M6 10h2a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2zm10 0h2a2 2 0 002-2V6a2 2 0 00-2-2h-2a2 2 0 00-2 2v2a2 2 0 002 2zM6 20h2a2 2 0 002-2v-2a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2z"
+        />
     </svg>
 </template>
 <script>
-    export default{}
+export default {};
 </script>

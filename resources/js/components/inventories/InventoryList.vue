@@ -1,6 +1,6 @@
 <template>
     <ul
-        class="bg-white shadow-sm rounded w-full text-center border-2 border-gray-500"
+        class="bg-white shadow-sm rounded w-full text-center"
     >
         <li
             v-for="(inventory, index) in inventories"
@@ -9,8 +9,8 @@
             class="border-gray-500 border-b last:border-b-0"
             :class="{ 'bg-gray-500 text-white': selectedIndex === index }"
         >
-            <a href="#" class="block p-4" @click.prevent="">{{
-                inventory.name
+            <a href="#" class="block p-2 hover:line-through hover:bg-gray-200 uppercase font-normal text-gray-800" @click.prevent="">{{
+                inventory.name 
             }}</a>
         </li>
     </ul>

@@ -15,7 +15,7 @@
                         decoration-dotted
                         text-gray-700
                         rounded-sm
-                        bg-teal-100
+                        bg-indigo-100
                         mb-2
                         text-center
                     "
@@ -30,27 +30,29 @@
                     class="
                         col-span-4
                         2xl:col-span-5
-                        flex
+                        flex flex-col
+                        sm:flex-row
                         justify-center
                         items-baseline
                     "
                 >
                     <search-by-category
-                        class="md:w-2/4 w-3/4 mr-2"
+                        class="sm:w-2/4 w-full sm:mr-2"
                         :categories="categories"
                     ></search-by-category>
-                    <search-component class="md:w-2/4 w-3/4" />
+                    <search-component class="md:w-2/4 w-full sm:mt-0 mt-4" />
                 </div>
                 <product-matching></product-matching>
                 <div class="w-full flex flex-wrap justify-center items-center">
                     <div
                         class="
                             bg-white
-                            px-4
+                            mt-4
+                            sm:mt-0
+                            px-2
                             py-2
                             w-full
                             md:mx-0
-                            mx-2
                             rounded-sm
                             shadow-sm
                         "

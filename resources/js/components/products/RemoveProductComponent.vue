@@ -2,7 +2,17 @@
     <button
         @click="openAlert"
         v-can="'delete product'"
-        class="text-red-500 hover:text-red-700 shadow-xs border-b-2 border-t-2 border-red-500 font-bold py-2  hover:border-red-700 rounded"
+        class="
+            rounded-full
+            hover:text-gray-800
+            shadow-xs
+            text-gray-600
+            font-bold
+            py-2
+            bg-white
+            px-2
+            text-2xl
+        "
     >
         <trash-icon></trash-icon>
     </button>
@@ -11,14 +21,14 @@
 import { mapMutations } from "vuex";
 import TrashIcon from "../icons/TrashIcon.vue";
 export default {
-    components:{TrashIcon},
+    components: { TrashIcon },
     props: {
         product: {
-            type: Object
+            type: Object,
         },
         index: {
-            type: Number
-        }
+            type: Number,
+        },
     },
     methods: {
         ...mapMutations(["setModalDataConfirm"]),
@@ -29,10 +39,10 @@ export default {
                 message:
                     "Si eliminas este producto, no se podran revertir los cambios en la base de datos.",
                 title: "¿Estas seguro de eliminar el producto?",
-                action: "deleteProduct"
+                action: "deleteProduct",
             });
             EventBus.$emit("open-modal", true);
-        }
-    }
+        },
+    },
 };
 </script>

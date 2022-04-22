@@ -2,7 +2,17 @@
     <form @submit.prevent="submit" v-can="'create purchase'">
         <input type="hidden" name="product_id" />
         <button
-            class="  border-yellow-500 border-b-2 hover:text-yellow-700 border-t-2 shadow-xs hover:border-yellow-700 text-yellow-500 font-bold py-1 px-4 rounded text-2xl"
+            class="
+                rounded-full
+                hover:text-gray-800
+                shadow-xs
+                text-gray-600
+                font-bold
+                py-2
+                bg-white
+                px-2
+                text-2xl
+            "
         >
             <div
                 v-if="qtyPurchase(productExistsInPurchase(product_id))"
@@ -18,20 +28,20 @@
 </template>
 <script>
 import { mapGetters, mapMutations } from "vuex";
-import PurchaseIcon from '../icons/PurchaseIcon.vue';
+import PurchaseIcon from "../icons/PurchaseIcon.vue";
 export default {
-    components:{PurchaseIcon},
+    components: { PurchaseIcon },
     props: {
         product_id: {
-            type: Number
+            type: Number,
         },
         purchase_price: {
-            type: Number
-        }
+            type: Number,
+        },
     },
     data() {
         return {
-            purchase_id: null
+            purchase_id: null,
         };
     },
     mounted() {
@@ -46,9 +56,9 @@ export default {
             axios
                 .post("/purchases", {
                     product_id: this.product_id,
-                    purchase_price: this.purchase_price
+                    purchase_price: this.purchase_price,
                 })
-                .then(res => {
+                .then((res) => {
                     var obj = new Object();
                     obj.hasProductsInPurchase = this.hasProductsInPurchase;
 
@@ -56,7 +66,7 @@ export default {
 
                     obj.productInPurchase = {
                         qty: res.data.qty,
-                        product_id: this.product_id
+                        product_id: this.product_id,
                     };
                     if (this.purchase_id == "") {
                         EventBus.$emit(
@@ -69,17 +79,17 @@ export default {
                     }
                     this.setProductsInPurchase(obj);
                 })
-                .catch(err => {
+                .catch((err) => {
                     this.getErrors(err);
                 });
-        }
+        },
     },
     computed: {
         ...mapGetters([
             "hasProductsInPurchase",
             "productExistsInPurchase",
-            "qtyPurchase"
-        ])
-    }
+            "qtyPurchase",
+        ]),
+    },
 };
 </script>
