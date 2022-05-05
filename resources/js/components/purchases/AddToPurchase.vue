@@ -12,13 +12,15 @@
                 bg-white
                 px-2
                 text-2xl
+                
+                flex flex-wrap justify-center items-center
             "
         >
             <div
                 v-if="qtyPurchase(productExistsInPurchase(product_id))"
                 class="inline-block"
             >
-                <span class="bg-purple-900 rounded-full py-0 px-2 text-xl">{{
+                <span class="bg-gray-800 rounded-full text-white py-0 px-2 text-xl">{{
                     qtyPurchase(productExistsInPurchase(product_id))
                 }}</span>
             </div>

@@ -1,22 +1,14 @@
 <template>
     <nav-component>
-        <div class="grid grid-cols-1 md:grid-cols-4 2xl:grid-cols-5 gap-4 px-4">
+        <div class="grid grid-cols-1 gap-4 px-4 md:grid-cols-4 2xl:grid-cols-5">
             <div
-                class="
-                    col-span-5
-                    2xl:col-span-5
-                    flex
-                    sm:flex-row
-                    flex-col
-                    justify-center
-                    items-baseline
-                "
+                class="flex flex-col items-baseline justify-center col-span-5 2xl:col-span-5 sm:flex-row"
             >
                 <search-by-category
-                    class="md:w-2/4 w-full mr-2 mb-4 sm:mb-0"
+                    class="w-full mb-4 mr-2 md:w-2/4 sm:mb-0"
                     :categories="categories"
                 ></search-by-category>
-                <search-component ref="search" class="md:w-2/4 w-full" />
+                <search-component ref="search" class="w-full md:w-2/4" />
             </div>
             <product-card
                 v-for="(product, index) in products"
@@ -25,7 +17,11 @@
                 :index="index"
                 transaction-type="purchase"
                 class="col-span-5 md:col-span-1"
-            />
+            >
+                <template slot="options">
+                    <add-to-purchase></add-to-purchase>
+                </template>
+            </product-card>
             <infinite-loading
                 :identifier="infiniteId"
                 @infinite="infiniteHandler"
@@ -57,6 +53,7 @@ import SearchByCategory from "./SearchByCategory.vue";
 import { mapActions, mapState, mapMutations } from "vuex";
 import ProductCardComponent from "./ProductCardComponent.vue";
 import InformationComponent from "../modals/InformationComponent.vue";
+import AddToPurchase from "../purchases/AddToPurchase.vue";
 
 export default {
     props: {
@@ -96,6 +93,7 @@ export default {
         Agree,
         Message,
         SearchByCategory,
+        AddToPurchase,
     },
     methods: {
         ...mapActions(["getProducts", "search"]),

@@ -1,12 +1,31 @@
 <template>
     <div
-        class="rounded overflow-hidden"
+        class="overflow-hidden rounded"
         :class="[
             darkMode,
             selected ? 'border-2 border-red-400 bg-red-200' : '',
         ]"
     >
         <div class="text-justify" :class="['text-justify']">
+            <div
+                class="flex flex-wrap items-center justify-between p-2 bg-gray-600 "
+            >
+                <!-- <add-to-purchase
+                    :product_id="product.id"
+                    :purchase_price="product.distributor_price"
+                    :index="index"
+                />
+                <a
+                    :href="`/products/${product.id}/edit`"
+                    class="px-2 py-2 text-2xl font-bold text-gray-600 bg-white rounded-full shadow-xs hover:text-gray-800"
+                    v-can="'edit product'"
+                >
+                    <edit-icon></edit-icon>
+                </a>
+                <remove-product :product="product" :index="index" />
+                <add-to-sale :product="product" :index="index"></add-to-sale> -->
+                <slot name="options"></slot>
+            </div>
             <div class="w-full">
                 <img
                     :src="product.image_url"
@@ -14,76 +33,72 @@
                     class="object-contain md:object-scale-down"
                 />
             </div>
-            <div
-                class="
-                    flex flex-wrap
-                    justify-between
-                    bg-slate-50
-                    [mask-image:linear-gradient(0deg,#fff,rgba(255,255,255,0.6))] dark:bg-grid-slate-700/25 dark:[mask-image:linear-gradient(0deg,rgba(255,255,255,0.1),rgba(255,255,255,0.5))]
-                    items-center
-                    p-2
-                "
-            >
-                <add-to-purchase
-                    :product_id="product.id"
-                    :purchase_price="product.distributor_price"
-                    :index="index"
-                />
-                <a
-                    :href="`/products/${product.id}/edit`"
-                    class="
-                        rounded-full
-                        hover:text-gray-800
-                        shadow-xs
-                        text-gray-600
-                        font-bold
-                        py-2
-                        bg-white
-                        px-2
-                        text-2xl
-                    "
-                    v-can="'edit product'"
+
+            <div class="px-4 py-2 border border-gray-300">
+                <p
+                    class="flex flex-wrap items-center justify-between font-semibold text-gray-700 "
                 >
-                    <edit-icon></edit-icon>
-                </a>
-                <remove-product :product="product" :index="index" />
-                <add-to-sale :product="product" :index="index"></add-to-sale>
-            </div>
-            <div class="py-1 pl-4 pr-2">
-                <p class="text-gray-700 font-semibold mb-1">SKU</p>
-                <p class="text-gray-600 text-base">
-                    {{ product.sku }}
+                    <span class="flex flex-wrap"> SKU </span>
+
+                    <span
+                        class="p-1 font-mono text-base font-light text-blue-800 uppercase bg-teal-300 rounded "
+                    >
+                        {{ product.sku }}
+                    </span>
                 </p>
             </div>
-            <div class="py-1 pl-4 pr-2">
-                <p class="text-gray-700 font-semibold mb-1">Categoría</p>
-                <p class="text-gray-600 text-base">
-                    {{ product.category_name }}
+            <div class="px-4 py-2 border border-gray-300">
+                <p
+                    class="flex flex-wrap justify-between font-semibold text-gray-700 "
+                >
+                    <span class="flex flex-wrap"> Categoría </span>
+                    <span class="font-mono text-base font-light uppercase">{{
+                        product.category_name
+                    }}</span>
                 </p>
             </div>
-            <div class="py-1 pl-4 pr-2">
-                <p class="text-gray-700 font-bold mb-1">Descripción</p>
-                <p class="text-gray-600 text-base">
-                    {{ product.description }}
+            <div class="px-4 py-2 border border-gray-300">
+                <p
+                    class="flex flex-wrap justify-between font-bold text-gray-700 "
+                >
+                    <span class="flex flex-wrap"> Descripción </span>
+                    <span class="font-mono text-base font-light uppercase">
+                        {{ product.description }}
+                    </span>
                 </p>
             </div>
-            <div class="py-1 pl-4 pr-2">
-                <p class="text-gray-700 font-bold mb-1">Precio al por mayor</p>
-                <p class="text-gray-600 text-base">
-                    {{ product.formatted_wholesale_price }}
+            <div class="px-4 py-2 border border-gray-300">
+                <p
+                    class="flex flex-wrap justify-between font-bold text-gray-700 "
+                >
+                    <span class="flex flex-wrap"> Precio al por mayor </span>
+                    <span class="font-mono text-base font-light uppercase">
+                        {{ product.formatted_wholesale_price }}
+                    </span>
                 </p>
             </div>
-            <div class="py-1 pl-4 pr-2">
-                <p class="text-gray-700 font-bold mb-1">Precio al por menor</p>
-                <p class="text-gray-600 text-base">
-                    {{ product.formatted_retail_price }}
+            <div class="px-4 py-2 border border-gray-300">
+                <p
+                    class="flex flex-wrap justify-between font-bold text-gray-700 "
+                >
+                    <span class="flex flex-wrap"> Precio al por menor </span>
+                    <span class="font-mono text-base font-light uppercase">
+                        {{ product.formatted_retail_price }}
+                    </span>
                 </p>
             </div>
 
-            <div class="py-1 pl-4 pr-2">
-                <p class="text-gray-700 font-bold mb-1">Precio distribuidor</p>
-                <p class="text-gray-600 text-base">
-                    {{ product.formatted_distributor_price }}
+            <div class="px-4 py-2 border border-gray-300">
+                <p
+                    class="flex flex-wrap justify-between font-bold text-gray-700 "
+                >
+                    <span class="flex flex-wrap">
+                        Precio distribuidor
+
+                    </span>
+                    <span class="font-mono text-base font-light uppercase">
+                        {{ product.formatted_distributor_price }}</span
+                    >
                 </p>
             </div>
         </div>
@@ -94,6 +109,7 @@ import RemoveProductComponent from "./RemoveProductComponent.vue";
 import AddToSale from "../sales/AddToSale.vue";
 import AddToPurchase from "../purchases/AddToPurchase.vue";
 import EditIcon from "../icons/EditIcon.vue";
+import ArrowNarrowRightIcon from "../icons/ArrowNarrowRightIcon.vue";
 import { mapState } from "vuex";
 export default {
     props: {
@@ -116,6 +132,7 @@ export default {
         "add-to-purchase": AddToPurchase,
         "add-to-sale": AddToSale,
         EditIcon,
+        ArrowNarrowRightIcon,
     },
     mounted() {
         console.log(this.selected);
