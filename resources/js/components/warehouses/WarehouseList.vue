@@ -51,6 +51,7 @@
                                     md:border md:border-grey-500
                                     text-left
                                     block
+                                    rounded-sm
                                     md:table-cell
                                 "
                             >

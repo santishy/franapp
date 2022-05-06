@@ -105,13 +105,13 @@
     </div>
 </template>
 <script>
-import RemoveProductComponent from "./RemoveProductComponent.vue";
-import AddToSale from "../sales/AddToSale.vue";
-import AddToPurchase from "../purchases/AddToPurchase.vue";
-import EditIcon from "../icons/EditIcon.vue";
+
 import ArrowNarrowRightIcon from "../icons/ArrowNarrowRightIcon.vue";
 import { mapState } from "vuex";
 export default {
+    components: {
+        ArrowNarrowRightIcon,
+    },
     props: {
         product: {
             type: Object,
@@ -126,13 +126,6 @@ export default {
         transactionType: {
             type: String,
         },
-    },
-    components: {
-        "remove-product": RemoveProductComponent,
-        "add-to-purchase": AddToPurchase,
-        "add-to-sale": AddToSale,
-        EditIcon,
-        ArrowNarrowRightIcon,
     },
     mounted() {
         console.log(this.selected);

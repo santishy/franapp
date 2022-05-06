@@ -2,7 +2,14 @@
     <nav-component>
         <div class="grid grid-cols-1 gap-4 px-4 md:grid-cols-4 2xl:grid-cols-5">
             <div
-                class="flex flex-col items-baseline justify-center col-span-5 2xl:col-span-5 sm:flex-row"
+                class="
+                    flex flex-col
+                    items-baseline
+                    justify-center
+                    col-span-5
+                    2xl:col-span-5
+                    sm:flex-row
+                "
             >
                 <search-by-category
                     class="w-full mb-4 mr-2 md:w-2/4 sm:mb-0"
@@ -19,7 +26,32 @@
                 class="col-span-5 md:col-span-1"
             >
                 <template slot="options">
-                    <add-to-purchase></add-to-purchase>
+                    <add-to-purchase
+                        :product_id="product.id"
+                        :purchase_price="product.distributor_price"
+                        :index="index"
+                    ></add-to-purchase>
+                    <a
+                        :href="`/products/${product.id}/edit`"
+                        class="
+                            px-2
+                            py-2
+                            text-2xl
+                            font-bold
+                            text-gray-600
+                            bg-white
+                            rounded-full
+                            shadow-xs
+                            hover:text-gray-800
+                        "
+                        v-can="'edit product'"
+                    >
+                        <edit-icon></edit-icon>
+                    </a>
+                    <remove-product-component
+                        :product="product"
+                        :index="index"
+                    />
                 </template>
             </product-card>
             <infinite-loading
@@ -54,8 +86,22 @@ import { mapActions, mapState, mapMutations } from "vuex";
 import ProductCardComponent from "./ProductCardComponent.vue";
 import InformationComponent from "../modals/InformationComponent.vue";
 import AddToPurchase from "../purchases/AddToPurchase.vue";
-
+import EditIcon from "../icons/EditIcon.vue";
+import RemoveProductComponent from "./RemoveProductComponent.vue";
 export default {
+    components: {
+        "product-card": ProductCardComponent,
+        InfiniteLoading,
+        "search-component": SearchComponent,
+        NavComponent,
+        InformationComponent,
+        Agree,
+        Message,
+        SearchByCategory,
+        AddToPurchase,
+        RemoveProductComponent,
+        EditIcon,
+    },
     props: {
         categories: {
             type: Array,
@@ -83,17 +129,6 @@ export default {
         EventBus.$on("failed-deletion", (message) => {
             this.message = message;
         });
-    },
-    components: {
-        "product-card": ProductCardComponent,
-        InfiniteLoading,
-        "search-component": SearchComponent,
-        NavComponent,
-        InformationComponent,
-        Agree,
-        Message,
-        SearchByCategory,
-        AddToPurchase,
     },
     methods: {
         ...mapActions(["getProducts", "search"]),

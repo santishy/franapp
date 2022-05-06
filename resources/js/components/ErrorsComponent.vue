@@ -1,31 +1,46 @@
 <template>
-    
-    <div
-        v-if="show"
-        class="w-full mb-3 bg-blue-100 border-t border-b border-red-500 text-red-700 px-4 py-3"
-        role="alert"
+    <transition
+        name="expand"
+        class=""
+        @enter="enter"
+        @after-enter="afterEnter"
+        @leave="leave"
     >
-        <p class="font-bold">Se detecto los siguientes errores:</p>
-        <p v-for="error in errorsFound" class="text-sm" :key="error">
-            {{ error }}
-        </p>
-    </div>
+        <div
+            v-if="show"
+            class="
+                w-full
+                
+                bg-blue-100
+                border-t border-b border-red-500
+                text-red-700
+                px-4
+                py-3
+            "
+            role="alert"
+        >
+            <p class="font-bold">Se detecto los siguientes errores:</p>
+            <p v-for="error in errorsFound" class="text-sm" :key="error">
+                {{ error }}
+            </p>
+        </div>
+    </transition>
 </template>
 
 <script>
 export default {
     data() {
         return {
-            show: false
+            show: false,
         };
     },
     props: {
         errorsFound: {
-            type: Array
+            type: Array,
         },
         errorsLength: {
-            type: Number
-        }
+            type: Number,
+        },
     },
     watch: {
         errorsFound: {
@@ -37,10 +52,31 @@ export default {
 
                 await setTimeout(() => {
                     this.show = false;
-                    EventBus.$emit("emptyErrors")
-                }, 3000);
-            }
-        }
+                    EventBus.$emit("emptyErrors");
+                }, 5000);
+            },
+        },
+    },
+    methods:{
+        enter(el) {
+            el.style.height = "auto";
+            const height = getComputedStyle(el).height;
+            el.style.height = 0;
+            //getComputedStyle(el);
+            setTimeout(() => {
+                el.style.height = height;
+            });
+        },
+        afterEnter(el) {
+            el.style.height = "auto";
+        },
+        leave(el) {
+            el.style.height = getComputedStyle(el).height;
+            // getComputedStyle(el);
+            setTimeout(() => {
+                el.style.height = 0;
+            });
+        },
     }
 };
 </script>

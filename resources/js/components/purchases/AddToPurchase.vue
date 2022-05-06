@@ -3,24 +3,25 @@
         <input type="hidden" name="product_id" />
         <button
             class="
-                rounded-full
+                
                 hover:text-gray-800
                 shadow-xs
                 text-gray-600
                 font-bold
-                py-2
-                bg-white
-                px-2
+                
+                
+                
                 text-2xl
                 
                 flex flex-wrap justify-center items-center
             "
+            :class="[qtyPurchase(productExistsInPurchase(product_id)) ? 'rounded-sm p-1 bg-teal-100' : 'py-2 rounded-full px-2 bg-white']"
         >
             <div
                 v-if="qtyPurchase(productExistsInPurchase(product_id))"
-                class="inline-block"
+                class="inline-block mr-2"
             >
-                <span class="bg-gray-800 rounded-full text-white py-0 px-2 text-xl">{{
+                <span class="text-teal-500 text-xl font-extralight underline decoration-wavy">{{
                     qtyPurchase(productExistsInPurchase(product_id))
                 }}</span>
             </div>

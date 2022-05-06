@@ -20,12 +20,23 @@
             <div class="flex justify-end">
                 <button
                     @click="isOpen = false"
-                    class="mt-2 mb-2 text-2xl p-0 m-0 fixed top-2 rounded bg-white shadow-lg"
+                    class="
+                        mt-2
+                        mb-2
+                        text-2xl
+                        p-0
+                        m-0
+                        fixed
+                        top-2
+                        rounded
+                        bg-white
+                        shadow-lg
+                    "
                 >
                     <x-icon class="stroke-2 stroke-cyan-500"></x-icon>
                 </button>
             </div>
-            <div class="grid md:grid-cols-3 grid-cols-1 gap-4">
+            <div class="grid md:grid-cols-4 grid-cols-1 gap-4">
                 <product-card
                     v-for="(product, index) in products"
                     :key="product.id"
@@ -33,6 +44,13 @@
                     :search-in-sales="true"
                     :index="index"
                 >
+                    <template slot="options">
+                        <add-to-sale
+                            :product="product"
+                            :index="index"
+                        ></add-to-sale>
+                        
+                    </template>
                 </product-card>
             </div>
             <infinite-loading @infinite="getProducts"></infinite-loading>
@@ -43,7 +61,13 @@
 import { mapActions } from "vuex";
 import XIcon from "../icons/XIcon.vue";
 import ProductCardComponent from "./ProductCardComponent";
+import AddToSale from "../sales/AddToSale.vue";
 export default {
+    components: {
+        "product-card": ProductCardComponent,
+        XIcon,
+        AddToSale,
+    },
     data() {
         return {
             products: [],
@@ -58,10 +82,6 @@ export default {
             this.params = obj.params;
             this.isOpen = true;
         });
-    },
-    components: {
-        "product-card": ProductCardComponent,
-        XIcon,
     },
     methods: {
         ...mapActions(["search"]),
