@@ -2186,7 +2186,7 @@ module.exports = {
 /*! exports provided: _args, _development, _from, _id, _inBundle, _integrity, _location, _phantomChildren, _requested, _requiredBy, _resolved, _spec, _where, author, browser, bugs, bundlesize, dependencies, description, devDependencies, homepage, jsdelivr, keywords, license, main, name, repository, scripts, typings, unpkg, version, default */
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"_args\":[[\"axios@0.21.4\",\"/home/santiago/code/franapp\"]],\"_development\":true,\"_from\":\"axios@0.21.4\",\"_id\":\"axios@0.21.4\",\"_inBundle\":false,\"_integrity\":\"sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==\",\"_location\":\"/axios\",\"_phantomChildren\":{},\"_requested\":{\"type\":\"version\",\"registry\":true,\"raw\":\"axios@0.21.4\",\"name\":\"axios\",\"escapedName\":\"axios\",\"rawSpec\":\"0.21.4\",\"saveSpec\":null,\"fetchSpec\":\"0.21.4\"},\"_requiredBy\":[\"#DEV:/\",\"/localtunnel\"],\"_resolved\":\"https://registry.npmjs.org/axios/-/axios-0.21.4.tgz\",\"_spec\":\"0.21.4\",\"_where\":\"/home/santiago/code/franapp\",\"author\":{\"name\":\"Matt Zabriskie\"},\"browser\":{\"./lib/adapters/http.js\":\"./lib/adapters/xhr.js\"},\"bugs\":{\"url\":\"https://github.com/axios/axios/issues\"},\"bundlesize\":[{\"path\":\"./dist/axios.min.js\",\"threshold\":\"5kB\"}],\"dependencies\":{\"follow-redirects\":\"^1.14.0\"},\"description\":\"Promise based HTTP client for the browser and node.js\",\"devDependencies\":{\"coveralls\":\"^3.0.0\",\"es6-promise\":\"^4.2.4\",\"grunt\":\"^1.3.0\",\"grunt-banner\":\"^0.6.0\",\"grunt-cli\":\"^1.2.0\",\"grunt-contrib-clean\":\"^1.1.0\",\"grunt-contrib-watch\":\"^1.0.0\",\"grunt-eslint\":\"^23.0.0\",\"grunt-karma\":\"^4.0.0\",\"grunt-mocha-test\":\"^0.13.3\",\"grunt-ts\":\"^6.0.0-beta.19\",\"grunt-webpack\":\"^4.0.2\",\"istanbul-instrumenter-loader\":\"^1.0.0\",\"jasmine-core\":\"^2.4.1\",\"karma\":\"^6.3.2\",\"karma-chrome-launcher\":\"^3.1.0\",\"karma-firefox-launcher\":\"^2.1.0\",\"karma-jasmine\":\"^1.1.1\",\"karma-jasmine-ajax\":\"^0.1.13\",\"karma-safari-launcher\":\"^1.0.0\",\"karma-sauce-launcher\":\"^4.3.6\",\"karma-sinon\":\"^1.0.5\",\"karma-sourcemap-loader\":\"^0.3.8\",\"karma-webpack\":\"^4.0.2\",\"load-grunt-tasks\":\"^3.5.2\",\"minimist\":\"^1.2.0\",\"mocha\":\"^8.2.1\",\"sinon\":\"^4.5.0\",\"terser-webpack-plugin\":\"^4.2.3\",\"typescript\":\"^4.0.5\",\"url-search-params\":\"^0.10.0\",\"webpack\":\"^4.44.2\",\"webpack-dev-server\":\"^3.11.0\"},\"homepage\":\"https://axios-http.com\",\"jsdelivr\":\"dist/axios.min.js\",\"keywords\":[\"xhr\",\"http\",\"ajax\",\"promise\",\"node\"],\"license\":\"MIT\",\"main\":\"index.js\",\"name\":\"axios\",\"repository\":{\"type\":\"git\",\"url\":\"git+https://github.com/axios/axios.git\"},\"scripts\":{\"build\":\"NODE_ENV=production grunt build\",\"coveralls\":\"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js\",\"examples\":\"node ./examples/server.js\",\"fix\":\"eslint --fix lib/**/*.js\",\"postversion\":\"git push && git push --tags\",\"preversion\":\"npm test\",\"start\":\"node ./sandbox/server.js\",\"test\":\"grunt test\",\"version\":\"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json\"},\"typings\":\"./index.d.ts\",\"unpkg\":\"dist/axios.min.js\",\"version\":\"0.21.4\"}");
+module.exports = JSON.parse("{\"_args\":[[\"axios@0.21.4\",\"C:\\\\xampp\\\\htdocs\\\\franapp\"]],\"_development\":true,\"_from\":\"axios@0.21.4\",\"_id\":\"axios@0.21.4\",\"_inBundle\":false,\"_integrity\":\"sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==\",\"_location\":\"/axios\",\"_phantomChildren\":{},\"_requested\":{\"type\":\"version\",\"registry\":true,\"raw\":\"axios@0.21.4\",\"name\":\"axios\",\"escapedName\":\"axios\",\"rawSpec\":\"0.21.4\",\"saveSpec\":null,\"fetchSpec\":\"0.21.4\"},\"_requiredBy\":[\"#DEV:/\",\"/localtunnel\"],\"_resolved\":\"https://registry.npmjs.org/axios/-/axios-0.21.4.tgz\",\"_spec\":\"0.21.4\",\"_where\":\"C:\\\\xampp\\\\htdocs\\\\franapp\",\"author\":{\"name\":\"Matt Zabriskie\"},\"browser\":{\"./lib/adapters/http.js\":\"./lib/adapters/xhr.js\"},\"bugs\":{\"url\":\"https://github.com/axios/axios/issues\"},\"bundlesize\":[{\"path\":\"./dist/axios.min.js\",\"threshold\":\"5kB\"}],\"dependencies\":{\"follow-redirects\":\"^1.14.0\"},\"description\":\"Promise based HTTP client for the browser and node.js\",\"devDependencies\":{\"coveralls\":\"^3.0.0\",\"es6-promise\":\"^4.2.4\",\"grunt\":\"^1.3.0\",\"grunt-banner\":\"^0.6.0\",\"grunt-cli\":\"^1.2.0\",\"grunt-contrib-clean\":\"^1.1.0\",\"grunt-contrib-watch\":\"^1.0.0\",\"grunt-eslint\":\"^23.0.0\",\"grunt-karma\":\"^4.0.0\",\"grunt-mocha-test\":\"^0.13.3\",\"grunt-ts\":\"^6.0.0-beta.19\",\"grunt-webpack\":\"^4.0.2\",\"istanbul-instrumenter-loader\":\"^1.0.0\",\"jasmine-core\":\"^2.4.1\",\"karma\":\"^6.3.2\",\"karma-chrome-launcher\":\"^3.1.0\",\"karma-firefox-launcher\":\"^2.1.0\",\"karma-jasmine\":\"^1.1.1\",\"karma-jasmine-ajax\":\"^0.1.13\",\"karma-safari-launcher\":\"^1.0.0\",\"karma-sauce-launcher\":\"^4.3.6\",\"karma-sinon\":\"^1.0.5\",\"karma-sourcemap-loader\":\"^0.3.8\",\"karma-webpack\":\"^4.0.2\",\"load-grunt-tasks\":\"^3.5.2\",\"minimist\":\"^1.2.0\",\"mocha\":\"^8.2.1\",\"sinon\":\"^4.5.0\",\"terser-webpack-plugin\":\"^4.2.3\",\"typescript\":\"^4.0.5\",\"url-search-params\":\"^0.10.0\",\"webpack\":\"^4.44.2\",\"webpack-dev-server\":\"^3.11.0\"},\"homepage\":\"https://axios-http.com\",\"jsdelivr\":\"dist/axios.min.js\",\"keywords\":[\"xhr\",\"http\",\"ajax\",\"promise\",\"node\"],\"license\":\"MIT\",\"main\":\"index.js\",\"name\":\"axios\",\"repository\":{\"type\":\"git\",\"url\":\"git+https://github.com/axios/axios.git\"},\"scripts\":{\"build\":\"NODE_ENV=production grunt build\",\"coveralls\":\"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js\",\"examples\":\"node ./examples/server.js\",\"fix\":\"eslint --fix lib/**/*.js\",\"postversion\":\"git push && git push --tags\",\"preversion\":\"npm test\",\"start\":\"node ./sandbox/server.js\",\"test\":\"grunt test\",\"version\":\"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json\"},\"typings\":\"./index.d.ts\",\"unpkg\":\"dist/axios.min.js\",\"version\":\"0.21.4\"}");
 
 /***/ }),
 
@@ -8265,6 +8265,13 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -8273,6 +8280,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     purchase: {
@@ -8294,7 +8302,7 @@ __webpack_require__.r(__webpack_exports__);
       _this.inventory_id = id;
     });
   },
-  methods: {
+  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapMutations"])(['setErrors'])), {}, {
     completePurchase: function completePurchase() {
       var _this2 = this;
 
@@ -8310,10 +8318,11 @@ __webpack_require__.r(__webpack_exports__);
           localStorage.removeItem("productsInPurchase");
         }
       })["catch"](function (err) {
-        _this2.getErrors(err);
+        _this2.setErrors(err); //this.getErrors(err);
+
       });
     }
-  }
+  })
 });
 
 /***/ }),
@@ -8761,6 +8770,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _CancelPurchaseButton__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CancelPurchaseButton */ "./resources/js/components/purchases/CancelPurchaseButton.vue");
 /* harmony import */ var _NavComponent_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../NavComponent.vue */ "./resources/js/components/NavComponent.vue");
 /* harmony import */ var _ProductList_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./ProductList.vue */ "./resources/js/components/purchases/ProductList.vue");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -8827,6 +8843,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+
 
 
 
@@ -8879,12 +8900,16 @@ __webpack_require__.r(__webpack_exports__);
       EventBus.$emit("selected-inventory", inventory.id);
     }
   },
-  computed: {
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["errorsFound"])), {}, {
     translateStatus: function translateStatus() {
       if (this.localPurchase.status === "pending") return "Pendiente";
       return "Completado";
     }
-  }
+    /* getErrors(){
+        return this.errorsFound;
+    } */
+
+  })
 });
 
 /***/ }),
@@ -11596,7 +11621,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".expand-enter-active[data-v-4b7819de],.expand-leave-active[data-v-4b7819de] {\n  transition: height 0.5s ease-in-out;\n  overflow: hidden;\n}\n", ""]);
+exports.push([module.i, ".expand-enter-active[data-v-4b7819de],.expand-leave-active[data-v-4b7819de] {\n  transition: height 0.5s ease-in-out;\n  overflow: hidden;\n}\r\n", ""]);
 
 // exports
 
@@ -11615,7 +11640,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".modal[data-v-53ab54d2] {\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n}\n", ""]);
+exports.push([module.i, ".modal[data-v-53ab54d2] {\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n}\r\n", ""]);
 
 // exports
 
@@ -11634,7 +11659,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "@media (max-width: 600px)  {\n.mx-datepicker-range[data-v-15c59834] {\n    width: 100%;\n}\n}\n", ""]);
+exports.push([module.i, "@media (max-width: 600px)  {\n.mx-datepicker-range[data-v-15c59834] {\n    width: 100%;\n}\n}\r\n", ""]);
 
 // exports
 
@@ -37864,7 +37889,7 @@ var render = function () {
     "button",
     {
       staticClass:
-        "rounded px-4 py-1 bg-teal-600 hover:bg-teal-400 text-white mr-4",
+        "px-4 py-1 mr-4 text-white bg-teal-600 rounded hover:bg-teal-400",
       on: { click: _vm.completePurchase },
     },
     [
@@ -38260,25 +38285,23 @@ var render = function () {
   return _c("nav-component", [
     _c(
       "div",
-      {
-        staticClass: "grid md:grid-cols-5   grid-flow-row mx-auto w-full px-4",
-      },
+      { staticClass: "grid w-full grid-flow-row px-4 mx-auto md:grid-cols-5" },
       [
         _c(
           "div",
           {
             staticClass:
-              "col-span-5 flex sm:flex-row flex-col justify-between items-center row-span-1  bg-white px-2 py-2",
+              "flex flex-col items-center justify-between col-span-5 row-span-1 px-2 py-2 bg-white sm:flex-row",
           },
           [
-            _c("div", { staticClass: "text-xl text-gray-800 ml-4" }, [
-              _c("span", { staticClass: "text-2x text-gray-600" }, [
+            _c("div", { staticClass: "ml-4 text-xl text-gray-800" }, [
+              _c("span", { staticClass: "text-gray-600 text-2x" }, [
                 _vm._v("Status:"),
               ]),
               _vm._v(" "),
               _c(
                 "span",
-                { staticClass: "text-2x text-blue-600 font-semibold" },
+                { staticClass: "font-semibold text-blue-600 text-2x" },
                 [_vm._v(_vm._s(_vm.translateStatus))]
               ),
             ]),
@@ -38298,7 +38321,7 @@ var render = function () {
               1
             ),
             _vm._v(" "),
-            _c("div", { staticClass: "text-xl text-gray-800 mr-4" }, [
+            _c("div", { staticClass: "mr-4 text-xl text-gray-800" }, [
               _c("span", { staticClass: "text-2xl" }, [
                 _vm._v("Total Compra:"),
               ]),
@@ -38317,21 +38340,32 @@ var render = function () {
           ]
         ),
         _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "w-full col-span-5" },
+          [
+            _c("errors-component", {
+              attrs: { "errors-found": _vm.errorsFound },
+            }),
+          ],
+          1
+        ),
+        _vm._v(" "),
         _vm.isAdmin && !_vm.user.inventory_id
           ? _c(
               "div",
               {
                 staticClass:
-                  "bg-white border-b border-t border-blue-400 px-4 py-2 text-gray-700  text-center col-span-5",
+                  "col-span-5 px-4 py-2 text-center text-gray-700 bg-white border-t border-b border-blue-400 ",
               },
               [
                 _c(
                   "div",
-                  { staticClass: "grid md:grid-cols-5 grid-cols-1 " },
+                  { staticClass: "grid grid-cols-1 md:grid-cols-5" },
                   [
                     _c(
                       "h3",
-                      { staticClass: "text-xl mb-2 text-center col-span-5" },
+                      { staticClass: "col-span-5 mb-2 text-xl text-center" },
                       [
                         _vm._v(
                           "\n                    Elige un almacén\n                "
@@ -38345,7 +38379,7 @@ var render = function () {
                         {
                           key: inventory.id,
                           staticClass:
-                            "flex flex-wrap mr-2 mb-2 items-center rounded-sm border border-teal-500 p-2 justify-center",
+                            "flex flex-wrap items-center justify-center p-2 mb-2 mr-2 border border-teal-500 rounded-sm ",
                           on: {
                             click: function ($event) {
                               return _vm.selectedInventory(inventory)
@@ -66128,9 +66162,20 @@ var SET_PURCHASE_VISIBILITY = function SET_PURCHASE_VISIBILITY(state, value) {
   window.localStorage.setItem('allow-to-buy-new-product', value);
 };
 
+var setErrors = function setErrors(state, err) {
+  var _err$response, _err$response2, _err$response2$data;
+
+  if ((err === null || err === void 0 ? void 0 : (_err$response = err.response) === null || _err$response === void 0 ? void 0 : _err$response.status) === 403) {
+    return window.location.href = '/403';
+  }
+
+  state.errorsFound = Object.values(err === null || err === void 0 ? void 0 : (_err$response2 = err.response) === null || _err$response2 === void 0 ? void 0 : (_err$response2$data = _err$response2.data) === null || _err$response2$data === void 0 ? void 0 : _err$response2$data.errors).flat();
+};
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   setProductsInPurchase: setProductsInPurchase,
   SET_USER: SET_USER,
+  setErrors: setErrors,
   setSalePriceOption: setSalePriceOption,
   deleteProductInPurchase: deleteProductInPurchase,
   addToTransaction: addToTransaction,
@@ -66171,6 +66216,7 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
     purchaseStatus: '',
     user: {},
     auth: false,
+    errorsFound: null,
     salePriceOption: sessionStorage.getItem('salePriceOption'),
     productsInTransaction: [],
     modalDataConfirm: {},
@@ -66190,8 +66236,8 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/vagrant/code/franapp/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/vagrant/code/franapp/resources/css/app.css */"./resources/css/app.css");
+__webpack_require__(/*! C:\xampp\htdocs\franapp\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\franapp\resources\css\app.css */"./resources/css/app.css");
 
 
 /***/ })

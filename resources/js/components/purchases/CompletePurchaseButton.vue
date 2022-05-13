@@ -1,13 +1,15 @@
 <template>
     <button
-        class="rounded px-4 py-1 bg-teal-600 hover:bg-teal-400 text-white mr-4"
+        class="px-4 py-1 mr-4 text-white bg-teal-600 rounded hover:bg-teal-400"
         @click="completePurchase"
     >
         <i class="far fa-check-circle"></i> Completar compra
     </button>
 </template>
 <script>
+import {mapMutations} from "vuex"
 export default {
+    
     props: {
         purchase: {
             type: Object
@@ -27,6 +29,7 @@ export default {
         });
     },
     methods: {
+        ...mapMutations(['setErrors']),
         completePurchase() {
             axios
                 .put(`/purchases/${this.purchase.id}`, {
@@ -42,7 +45,8 @@ export default {
                     }
                 })
                 .catch(err => {
-                    this.getErrors(err);
+                    this.setErrors(err);
+                    //this.getErrors(err);
                 });
         }
     }

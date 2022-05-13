@@ -1,14 +1,12 @@
 <template>
     <nav-component>
-        <div
-            class="grid md:grid-cols-5   grid-flow-row mx-auto w-full px-4"
-        >
+        <div class="grid w-full grid-flow-row px-4 mx-auto md:grid-cols-5">
             <div
-                class="col-span-5 flex sm:flex-row flex-col justify-between items-center row-span-1  bg-white px-2 py-2"
+                class="flex flex-col items-center justify-between col-span-5 row-span-1 px-2 py-2 bg-white sm:flex-row"
             >
-                <div class="text-xl text-gray-800 ml-4">
-                    <span class="text-2x text-gray-600">Status:</span>
-                    <span class="text-2x text-blue-600 font-semibold">{{
+                <div class="ml-4 text-xl text-gray-800">
+                    <span class="text-gray-600 text-2x">Status:</span>
+                    <span class="font-semibold text-blue-600 text-2x">{{
                         translateStatus
                     }}</span>
                 </div>
@@ -20,7 +18,7 @@
                     <cancel-purchase-btn :id="purchase.id" />
                 </div>
 
-                <div class="text-xl text-gray-800 mr-4">
+                <div class="mr-4 text-xl text-gray-800">
                     <span class="text-2xl">Total Compra:</span>
                     <span class="text-2xl font-semibold"
                         >${{
@@ -31,17 +29,23 @@
                     >
                 </div>
             </div>
+            <div class="w-full col-span-5">
+                <errors-component
+                    :errors-found="errorsFound"
+                ></errors-component>
+            </div>
+
             <div
                 v-if="isAdmin && !user.inventory_id"
-                class="bg-white border-b border-t border-blue-400 px-4 py-2 text-gray-700  text-center col-span-5"
+                class="col-span-5 px-4 py-2 text-center text-gray-700 bg-white border-t border-b border-blue-400 "
             >
-                <div class="grid md:grid-cols-5 grid-cols-1 ">
-                    <h3 class="text-xl mb-2 text-center col-span-5">
+                <div class="grid grid-cols-1 md:grid-cols-5">
+                    <h3 class="col-span-5 mb-2 text-xl text-center">
                         Elige un almacén
                     </h3>
                     <label
                         v-for="inventory in inventories"
-                        class="flex flex-wrap mr-2 mb-2 items-center rounded-sm border border-teal-500 p-2 justify-center"
+                        class="flex flex-wrap items-center justify-center p-2 mb-2 mr-2 border border-teal-500 rounded-sm "
                         :key="inventory.id"
                         @click="selectedInventory(inventory)"
                     >
@@ -69,39 +73,39 @@ import CompletePurchaseButton from "./CompletePurchaseButton.vue";
 import CancelPurchaseButton from "./CancelPurchaseButton";
 import NavComponent from "../NavComponent.vue";
 import ProductList from "./ProductList.vue";
-
+import { mapState } from "vuex";
 export default {
     components: {
         "complete-purchase-btn": CompletePurchaseButton,
         "cancel-purchase-btn": CancelPurchaseButton,
         NavComponent,
-        ProductList
+        ProductList,
     },
     props: {
         productsInPurchase: {
-            type: Array
+            type: Array,
         },
         totalPurchase: {
-            type: Number
+            type: Number,
         },
         purchase: {
-            type: Object
+            type: Object,
         },
         inventories: {
-            type: Array
-        }
+            type: Array,
+        },
     },
     data() {
         return {
             localProductsInPurchase: this.productsInPurchase,
             localTotalPurchase: this.totalPurchase,
-            localPurchase: this.purchase
+            localPurchase: this.purchase,
         };
     },
     mounted() {
         EventBus.$on("purchase-extracted", this.removeProductFromPurchase);
         EventBus.$on("total-updated-purchase", this.changeTotal);
-        EventBus.$on("purchase-completed", purchase => {
+        EventBus.$on("purchase-completed", (purchase) => {
             this.localPurchase.status = purchase.status;
         });
     },
@@ -115,13 +119,17 @@ export default {
         },
         selectedInventory(inventory) {
             EventBus.$emit("selected-inventory", inventory.id);
-        }
+        },
     },
     computed: {
+        ...mapState(["errorsFound"]),
         translateStatus() {
             if (this.localPurchase.status === "pending") return "Pendiente";
             return "Completado";
-        }
-    }
+        },
+        /* getErrors(){
+            return this.errorsFound;
+        } */
+    },
 };
 </script>

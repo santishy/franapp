@@ -85,6 +85,9 @@ class PurchaseController extends Controller
         $request->validate([
             'status' => ['required'],
             'inventory_id' => ['required']
+        ],[
+            'status.required' => 'El status es requerido.',
+            'inventory_id.required' => 'El inventario es requerido.',
         ]);
 
         if ($request->status === 'completed')

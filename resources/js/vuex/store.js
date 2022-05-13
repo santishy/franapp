@@ -17,6 +17,7 @@ export const store = new Vuex.Store({
     purchaseStatus:'',
     user:{},
     auth:false,
+    errorsFound:null,
     salePriceOption:sessionStorage.getItem('salePriceOption'),
     productsInTransaction:[],
     modalDataConfirm:{},

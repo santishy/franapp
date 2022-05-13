@@ -47,9 +47,20 @@ const SET_PURCHASE_VISIBILITY = (state,value) =>{
     state.purchaseVisibility = value;
     window.localStorage.setItem('allow-to-buy-new-product',value);
 }
+
+const setErrors = (state,err) => {
+    if (err?.response?.status === 403) {
+        return window.location.href = '/403';
+    }
+    state.errorsFound = Object.values(
+        err?.response?.data?.errors
+    ).flat()
+}
+
 export default {
     setProductsInPurchase,
     SET_USER,
+    setErrors,
     setSalePriceOption,
     deleteProductInPurchase,
     addToTransaction,
