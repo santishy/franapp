@@ -44,20 +44,9 @@ class PurchaseController extends Controller
             ]
         );
         $purchase = Purchase::findOrCreateThePurchase();
-        //$productInPurchase = $purchase->getProductInPurchase();
-
+        
         $purchase->addProduct();
-        /*if ($productInPurchase->exists()) {
-            $productInPurchase->updateExistingPivot(
-                $request->product_id,
-                ['qty' => ($productInPurchase->first()->pivot->qty + 1)]
-            );
-        } else {
-            $purchase->products()->attach($request->product_id, [
-                'purchase_price' => $request->purchase_price,
-                'qty' => 1
-            ]);
-        }*/
+        
         return response()->json([
             'qty' => $purchase->products()->where('product_id', $request->product_id)->sum('qty'),
             'purchase_id' => $purchase->id,
@@ -82,6 +71,7 @@ class PurchaseController extends Controller
     public function update(Request $request, Purchase $purchase)
     {
         $this->authorize('update', $purchase); // puede ser el metodo create?
+
         $request->validate([
             'status' => ['required'],
             'inventory_id' => ['required']
@@ -93,10 +83,7 @@ class PurchaseController extends Controller
         if ($request->status === 'completed')
             $this->deleteSessionVariable('purchase_id');
 
-
-
         $purchase->update($request->all());
-
 
         TransactionComplete::dispatch($purchase);
 
@@ -105,7 +92,10 @@ class PurchaseController extends Controller
     public function destroy(Purchase $purchase)
     {
         $this->authorize('delete', $purchase);
-        TransactionComplete::dispatch($purchase, request('factor'));
+
+        if($purchase->status === 'completed')
+            TransactionComplete::dispatch($purchase, request('factor'));
+        
         $purchase->status = 'cancelled';
         $purchase->save();
         $this->deleteSessionVariable('purchase_id');

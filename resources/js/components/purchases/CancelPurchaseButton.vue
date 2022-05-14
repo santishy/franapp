@@ -14,20 +14,21 @@ export default {
         }
     },
     props: {
-        id: {
-            type: Number
+        purchase: {
+            type: Object,
+            required:true
         }
     },
     mounted(){
-        console.log(this.transaction)
         EventBus.$on('selected-inventory',(id)=>{
             this.inventory_id = id;
         })
+        this.inventory_id = this.purchase.inventory_id;
     },
     methods: {
         cancelPurchase() {
             axios
-                .delete("/purchases/" + this.id,{
+                .delete("/purchases/" + this.purchase.id,{
                     params:{
                         inventory_id:this.inventory_id,
                         factor:-1

@@ -30,8 +30,11 @@ class UpdateInventory
     public function handle(TransactionComplete $event)
     {
         $inventory = Inventory::find(request('inventory_id'));
+
         $factor = $event->factor; // para sumar o restar segun se tenga que actualizar
+
         DB::beginTransaction();
+
         $event->transaction->products()->get()->map(
             function ($product) use ($inventory, $factor) {
 
@@ -53,7 +56,6 @@ class UpdateInventory
                     $inventory->products()->attach($product->id, ['stock' => $product->pivot->qty]);
                 }
             }
-        
         );
         DB::commit();
     }

@@ -2186,7 +2186,7 @@ module.exports = {
 /*! exports provided: _args, _development, _from, _id, _inBundle, _integrity, _location, _phantomChildren, _requested, _requiredBy, _resolved, _spec, _where, author, browser, bugs, bundlesize, dependencies, description, devDependencies, homepage, jsdelivr, keywords, license, main, name, repository, scripts, typings, unpkg, version, default */
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"_args\":[[\"axios@0.21.4\",\"C:\\\\xampp\\\\htdocs\\\\franapp\"]],\"_development\":true,\"_from\":\"axios@0.21.4\",\"_id\":\"axios@0.21.4\",\"_inBundle\":false,\"_integrity\":\"sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==\",\"_location\":\"/axios\",\"_phantomChildren\":{},\"_requested\":{\"type\":\"version\",\"registry\":true,\"raw\":\"axios@0.21.4\",\"name\":\"axios\",\"escapedName\":\"axios\",\"rawSpec\":\"0.21.4\",\"saveSpec\":null,\"fetchSpec\":\"0.21.4\"},\"_requiredBy\":[\"#DEV:/\",\"/localtunnel\"],\"_resolved\":\"https://registry.npmjs.org/axios/-/axios-0.21.4.tgz\",\"_spec\":\"0.21.4\",\"_where\":\"C:\\\\xampp\\\\htdocs\\\\franapp\",\"author\":{\"name\":\"Matt Zabriskie\"},\"browser\":{\"./lib/adapters/http.js\":\"./lib/adapters/xhr.js\"},\"bugs\":{\"url\":\"https://github.com/axios/axios/issues\"},\"bundlesize\":[{\"path\":\"./dist/axios.min.js\",\"threshold\":\"5kB\"}],\"dependencies\":{\"follow-redirects\":\"^1.14.0\"},\"description\":\"Promise based HTTP client for the browser and node.js\",\"devDependencies\":{\"coveralls\":\"^3.0.0\",\"es6-promise\":\"^4.2.4\",\"grunt\":\"^1.3.0\",\"grunt-banner\":\"^0.6.0\",\"grunt-cli\":\"^1.2.0\",\"grunt-contrib-clean\":\"^1.1.0\",\"grunt-contrib-watch\":\"^1.0.0\",\"grunt-eslint\":\"^23.0.0\",\"grunt-karma\":\"^4.0.0\",\"grunt-mocha-test\":\"^0.13.3\",\"grunt-ts\":\"^6.0.0-beta.19\",\"grunt-webpack\":\"^4.0.2\",\"istanbul-instrumenter-loader\":\"^1.0.0\",\"jasmine-core\":\"^2.4.1\",\"karma\":\"^6.3.2\",\"karma-chrome-launcher\":\"^3.1.0\",\"karma-firefox-launcher\":\"^2.1.0\",\"karma-jasmine\":\"^1.1.1\",\"karma-jasmine-ajax\":\"^0.1.13\",\"karma-safari-launcher\":\"^1.0.0\",\"karma-sauce-launcher\":\"^4.3.6\",\"karma-sinon\":\"^1.0.5\",\"karma-sourcemap-loader\":\"^0.3.8\",\"karma-webpack\":\"^4.0.2\",\"load-grunt-tasks\":\"^3.5.2\",\"minimist\":\"^1.2.0\",\"mocha\":\"^8.2.1\",\"sinon\":\"^4.5.0\",\"terser-webpack-plugin\":\"^4.2.3\",\"typescript\":\"^4.0.5\",\"url-search-params\":\"^0.10.0\",\"webpack\":\"^4.44.2\",\"webpack-dev-server\":\"^3.11.0\"},\"homepage\":\"https://axios-http.com\",\"jsdelivr\":\"dist/axios.min.js\",\"keywords\":[\"xhr\",\"http\",\"ajax\",\"promise\",\"node\"],\"license\":\"MIT\",\"main\":\"index.js\",\"name\":\"axios\",\"repository\":{\"type\":\"git\",\"url\":\"git+https://github.com/axios/axios.git\"},\"scripts\":{\"build\":\"NODE_ENV=production grunt build\",\"coveralls\":\"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js\",\"examples\":\"node ./examples/server.js\",\"fix\":\"eslint --fix lib/**/*.js\",\"postversion\":\"git push && git push --tags\",\"preversion\":\"npm test\",\"start\":\"node ./sandbox/server.js\",\"test\":\"grunt test\",\"version\":\"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json\"},\"typings\":\"./index.d.ts\",\"unpkg\":\"dist/axios.min.js\",\"version\":\"0.21.4\"}");
+module.exports = JSON.parse("{\"_args\":[[\"axios@0.21.4\",\"/home/santiago/code/franapp\"]],\"_development\":true,\"_from\":\"axios@0.21.4\",\"_id\":\"axios@0.21.4\",\"_inBundle\":false,\"_integrity\":\"sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==\",\"_location\":\"/axios\",\"_phantomChildren\":{},\"_requested\":{\"type\":\"version\",\"registry\":true,\"raw\":\"axios@0.21.4\",\"name\":\"axios\",\"escapedName\":\"axios\",\"rawSpec\":\"0.21.4\",\"saveSpec\":null,\"fetchSpec\":\"0.21.4\"},\"_requiredBy\":[\"#DEV:/\",\"/localtunnel\"],\"_resolved\":\"https://registry.npmjs.org/axios/-/axios-0.21.4.tgz\",\"_spec\":\"0.21.4\",\"_where\":\"/home/santiago/code/franapp\",\"author\":{\"name\":\"Matt Zabriskie\"},\"browser\":{\"./lib/adapters/http.js\":\"./lib/adapters/xhr.js\"},\"bugs\":{\"url\":\"https://github.com/axios/axios/issues\"},\"bundlesize\":[{\"path\":\"./dist/axios.min.js\",\"threshold\":\"5kB\"}],\"dependencies\":{\"follow-redirects\":\"^1.14.0\"},\"description\":\"Promise based HTTP client for the browser and node.js\",\"devDependencies\":{\"coveralls\":\"^3.0.0\",\"es6-promise\":\"^4.2.4\",\"grunt\":\"^1.3.0\",\"grunt-banner\":\"^0.6.0\",\"grunt-cli\":\"^1.2.0\",\"grunt-contrib-clean\":\"^1.1.0\",\"grunt-contrib-watch\":\"^1.0.0\",\"grunt-eslint\":\"^23.0.0\",\"grunt-karma\":\"^4.0.0\",\"grunt-mocha-test\":\"^0.13.3\",\"grunt-ts\":\"^6.0.0-beta.19\",\"grunt-webpack\":\"^4.0.2\",\"istanbul-instrumenter-loader\":\"^1.0.0\",\"jasmine-core\":\"^2.4.1\",\"karma\":\"^6.3.2\",\"karma-chrome-launcher\":\"^3.1.0\",\"karma-firefox-launcher\":\"^2.1.0\",\"karma-jasmine\":\"^1.1.1\",\"karma-jasmine-ajax\":\"^0.1.13\",\"karma-safari-launcher\":\"^1.0.0\",\"karma-sauce-launcher\":\"^4.3.6\",\"karma-sinon\":\"^1.0.5\",\"karma-sourcemap-loader\":\"^0.3.8\",\"karma-webpack\":\"^4.0.2\",\"load-grunt-tasks\":\"^3.5.2\",\"minimist\":\"^1.2.0\",\"mocha\":\"^8.2.1\",\"sinon\":\"^4.5.0\",\"terser-webpack-plugin\":\"^4.2.3\",\"typescript\":\"^4.0.5\",\"url-search-params\":\"^0.10.0\",\"webpack\":\"^4.44.2\",\"webpack-dev-server\":\"^3.11.0\"},\"homepage\":\"https://axios-http.com\",\"jsdelivr\":\"dist/axios.min.js\",\"keywords\":[\"xhr\",\"http\",\"ajax\",\"promise\",\"node\"],\"license\":\"MIT\",\"main\":\"index.js\",\"name\":\"axios\",\"repository\":{\"type\":\"git\",\"url\":\"git+https://github.com/axios/axios.git\"},\"scripts\":{\"build\":\"NODE_ENV=production grunt build\",\"coveralls\":\"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js\",\"examples\":\"node ./examples/server.js\",\"fix\":\"eslint --fix lib/**/*.js\",\"postversion\":\"git push && git push --tags\",\"preversion\":\"npm test\",\"start\":\"node ./sandbox/server.js\",\"test\":\"grunt test\",\"version\":\"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json\"},\"typings\":\"./index.d.ts\",\"unpkg\":\"dist/axios.min.js\",\"version\":\"0.21.4\"}");
 
 /***/ }),
 
@@ -8221,23 +8221,24 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   props: {
-    id: {
-      type: Number
+    purchase: {
+      type: Object,
+      required: true
     }
   },
   mounted: function mounted() {
     var _this = this;
 
-    console.log(this.transaction);
     EventBus.$on('selected-inventory', function (id) {
       _this.inventory_id = id;
     });
+    this.inventory_id = this.purchase.inventory_id;
   },
   methods: {
     cancelPurchase: function cancelPurchase() {
       var _this2 = this;
 
-      axios["delete"]("/purchases/" + this.id, {
+      axios["delete"]("/purchases/" + this.purchase.id, {
         params: {
           inventory_id: this.inventory_id,
           factor: -1
@@ -8847,6 +8848,34 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -8905,10 +8934,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       if (this.localPurchase.status === "pending") return "Pendiente";
       return "Completado";
     }
-    /* getErrors(){
-        return this.errorsFound;
-    } */
-
   })
 });
 
@@ -11621,7 +11646,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".expand-enter-active[data-v-4b7819de],.expand-leave-active[data-v-4b7819de] {\n  transition: height 0.5s ease-in-out;\n  overflow: hidden;\n}\r\n", ""]);
+exports.push([module.i, ".expand-enter-active[data-v-4b7819de],.expand-leave-active[data-v-4b7819de] {\n  transition: height 0.5s ease-in-out;\n  overflow: hidden;\n}\n", ""]);
 
 // exports
 
@@ -11640,7 +11665,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".modal[data-v-53ab54d2] {\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n}\r\n", ""]);
+exports.push([module.i, ".modal[data-v-53ab54d2] {\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n}\n", ""]);
 
 // exports
 
@@ -11659,7 +11684,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "@media (max-width: 600px)  {\n.mx-datepicker-range[data-v-15c59834] {\n    width: 100%;\n}\n}\r\n", ""]);
+exports.push([module.i, "@media (max-width: 600px)  {\n.mx-datepicker-range[data-v-15c59834] {\n    width: 100%;\n}\n}\n", ""]);
 
 // exports
 
@@ -38291,7 +38316,7 @@ var render = function () {
           "div",
           {
             staticClass:
-              "flex flex-col items-center justify-between col-span-5 row-span-1 px-2 py-2 bg-white sm:flex-row",
+              "\n                flex flex-col\n                items-center\n                justify-between\n                col-span-5\n                row-span-1\n                px-2\n                py-2\n                bg-white\n                sm:flex-row\n            ",
           },
           [
             _c("div", { staticClass: "ml-4 text-xl text-gray-800" }, [
@@ -38316,7 +38341,9 @@ var render = function () {
                   },
                 }),
                 _vm._v(" "),
-                _c("cancel-purchase-btn", { attrs: { id: _vm.purchase.id } }),
+                _c("cancel-purchase-btn", {
+                  attrs: { purchase: _vm.purchase },
+                }),
               ],
               1
             ),
@@ -38356,7 +38383,7 @@ var render = function () {
               "div",
               {
                 staticClass:
-                  "col-span-5 px-4 py-2 text-center text-gray-700 bg-white border-t border-b border-blue-400 ",
+                  "\n                col-span-5\n                px-4\n                py-2\n                text-center text-gray-700\n                bg-white\n                border-t border-b border-blue-400\n            ",
               },
               [
                 _c(
@@ -38379,12 +38406,7 @@ var render = function () {
                         {
                           key: inventory.id,
                           staticClass:
-                            "flex flex-wrap items-center justify-center p-2 mb-2 mr-2 border border-teal-500 rounded-sm ",
-                          on: {
-                            click: function ($event) {
-                              return _vm.selectedInventory(inventory)
-                            },
-                          },
+                            "\n                        flex flex-wrap\n                        items-center\n                        justify-center\n                        p-2\n                        mb-2\n                        mr-2\n                        border border-teal-500\n                        rounded-sm\n                    ",
                         },
                         [
                           _c("span", { staticClass: "mr-2" }, [
@@ -38394,7 +38416,16 @@ var render = function () {
                           _c("input", {
                             staticClass: "form-radio",
                             attrs: { type: "radio", name: "inventory_id" },
-                            domProps: { value: inventory.id },
+                            domProps: {
+                              value: inventory.id,
+                              checked:
+                                inventory.id == _vm.purchase.inventory_id,
+                            },
+                            on: {
+                              change: function ($event) {
+                                return _vm.selectedInventory(inventory)
+                              },
+                            },
                           }),
                         ]
                       )
@@ -38406,10 +38437,12 @@ var render = function () {
             )
           : _vm._e(),
         _vm._v(" "),
-        _c("product-list", {
-          staticClass: "col-span-5 mt-4",
-          attrs: { products: _vm.localProductsInPurchase },
-        }),
+        _vm.localPurchase.status === "pending"
+          ? _c("product-list", {
+              staticClass: "col-span-5 mt-4",
+              attrs: { products: _vm.localProductsInPurchase },
+            })
+          : _vm._e(),
       ],
       1
     ),
@@ -66236,8 +66269,8 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\htdocs\franapp\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\franapp\resources\css\app.css */"./resources/css/app.css");
+__webpack_require__(/*! /home/vagrant/code/franapp/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/vagrant/code/franapp/resources/css/app.css */"./resources/css/app.css");
 
 
 /***/ })
