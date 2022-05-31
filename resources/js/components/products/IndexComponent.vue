@@ -1,12 +1,13 @@
 <template>
     <nav-component>
-        <div class="grid grid-cols-1 gap-4 px-4 md:grid-cols-4 2xl:grid-cols-5">
+        <div class="grid grid-cols-1 gap-4 px-4 md:grid-cols-4 2xl:grid-cols-4">
             <div
                 class="
                     flex flex-col
                     items-baseline
                     justify-center
                     col-span-5
+                    md:col-span-4
                     2xl:col-span-5
                     sm:flex-row
                 "

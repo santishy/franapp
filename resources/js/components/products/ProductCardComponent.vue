@@ -29,6 +29,7 @@
             <div class="w-full">
                 <img
                     :src="product.image_url"
+                    loading="lazy"
                     alt="product.sku"
                     class="object-contain md:object-scale-down"
                 />

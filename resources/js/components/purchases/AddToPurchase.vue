@@ -3,16 +3,11 @@
         <input type="hidden" name="product_id" />
         <button
             class="
-                
                 hover:text-gray-800
                 shadow-xs
                 text-gray-600
-                font-bold
-                
-                
-                
-                text-2xl
-                
+                font-bold               
+                text-2xl                
                 flex flex-wrap justify-center items-center
             "
             :class="[qtyPurchase(productExistsInPurchase(product_id)) ? 'rounded-sm p-1 bg-teal-100' : 'py-2 rounded-full px-2 bg-white']"
@@ -31,6 +26,7 @@
 </template>
 <script>
 import { mapGetters, mapMutations } from "vuex";
+
 import PurchaseIcon from "../icons/PurchaseIcon.vue";
 export default {
     components: { PurchaseIcon },

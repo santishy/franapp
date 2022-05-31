@@ -1,13 +1,15 @@
 <template>
     <button
-        class="rounded px-4 py-1 bg-red-600 hover:bg-red-400 text-white"
+        class="rounded-full text-2xl p-1 bg-red-600 hover:bg-red-400 text-white"
         @click="cancelPurchase"
     >
-        <i class="far fa-times-circle"></i> Cancelar compra
+        <x-icon/>
     </button>
 </template>
 <script>
+import XIcon from "../icons/XIcon.vue"
 export default {
+    components:{XIcon},
     data(){
         return {
             inventory_id:null

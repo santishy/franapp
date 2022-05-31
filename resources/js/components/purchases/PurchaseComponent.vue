@@ -4,8 +4,9 @@
             <div
                 class="
                     flex flex-col
-                    items-center
-                    justify-between
+                    md:items-center
+                    items-start
+                    md:justify-around
                     col-span-5
                     row-span-1
                     px-2
@@ -14,13 +15,13 @@
                     sm:flex-row
                 "
             >
-                <div class="ml-4 text-xl text-gray-800">
+                <div class="md:ml-4 ml-0 text-xl text-gray-800">
                     <span class="text-gray-600 text-2x">Status:</span>
                     <span class="font-semibold text-blue-600 text-2x">{{
                         translateStatus
                     }}</span>
                 </div>
-                <div>
+                <div class="mt-2 md:mt-0">
                     <complete-purchase-btn
                         :purchase="purchase"
                         :total-purchase="localTotalPurchase"
@@ -28,7 +29,7 @@
                     <cancel-purchase-btn :purchase="purchase" />
                 </div>
 
-                <div class="mr-4 text-xl text-gray-800">
+                <div class="mr-4 text-xl text-gray-800 mt-2 md:mt-0">
                     <span class="text-2xl">Total Compra:</span>
                     <span class="text-2xl font-semibold"
                         >${{
@@ -53,11 +54,10 @@
                     py-2
                     text-center text-gray-700
                     bg-white
-                    border-t border-b border-blue-400
                 "
             >
                 <div class="grid grid-cols-1 md:grid-cols-5">
-                    <h3 class="col-span-5 mb-2 text-xl text-center">
+                    <h3 class="col-span-5 mb-2 text-lg text-gray-800 text-left">
                         Elige un almacén
                     </h3>
                     <label
@@ -69,8 +69,8 @@
                             p-2
                             mb-2
                             mr-2
-                            border border-teal-500
                             rounded-sm
+                            bg-gray-300
                         "
                         :key="inventory.id"
                     >
