@@ -230,49 +230,102 @@
         <!-- Page Content -->
         <main class="mt-20 w-ful z-0 flex flex-wrap">
             <sidebar>
-                <accordion class=" " :items-menu="InventoryMenu" name="Inventario">
-                    <template slot="descriptive-icon">
-                        <!-- <boxes
-                            class="mr-2 h-7 w-7 p-1 text-gray-700 rounded-sm"
-                        ></boxes> -->
-                        <view-grid-icon
-                            class="mr-2 h-7 w-7 p-1 text-gray-700 rounded-sm"
-                        ></view-grid-icon>
+                <submenu-container name="Catalagos">
+                    <template slot="list">
+                        <li>
+                            <accordion
+                                class=""
+                                :items-menu="InventoryMenu"
+                                name="Inventario"
+                            >
+                                <template slot="descriptive-icon">
+                                    <view-grid-icon
+                                        class="
+                                            mr-2
+                                            h-7
+                                            w-7
+                                            p-1
+                                            text-gray-700
+                                            rounded-sm
+                                        "
+                                    ></view-grid-icon>
+                                </template>
+                                <template slot="icon">
+                                    <down-arrow class="text-xs"></down-arrow>
+                                </template>
+                            </accordion>
+                        </li>
+                        <li>
+                            <accordion
+                                class=""
+                                :items-menu="clientsMenu"
+                                name="Clientes"
+                            >
+                                <template slot="descriptive-icon">
+                                    <users-icon
+                                        class="
+                                            mr-2
+                                            h-7
+                                            w-7
+                                            p-1
+                                            text-gray-700
+                                            rounded-sm
+                                        "
+                                    ></users-icon>
+                                </template>
+                                <template slot="icon">
+                                    <down-arrow class="text-xs"></down-arrow>
+                                </template>
+                            </accordion>
+                        </li>
+                        <li>
+                            <accordion
+                                class=""
+                                :items-menu="ReportsMenu"
+                                name="Reportes"
+                            >
+                                <template slot="descriptive-icon">
+                                    <bars-icon
+                                        class="
+                                            mr-2
+                                            h-7
+                                            w-7
+                                            p-1
+                                            text-gray-700
+                                            rounded-sm
+                                        "
+                                    ></bars-icon>
+                                </template>
+                                <template slot="icon">
+                                    <down-arrow class="text-xs"></down-arrow>
+                                </template>
+                            </accordion>
+                        </li>
+                        <li>
+                            <accordion
+                                class=""
+                                :items-menu="ConfigMenu"
+                                name="Configuración"
+                            >
+                                <template slot="descriptive-icon">
+                                    <setting-icon
+                                        class="
+                                            mr-2
+                                            h-7
+                                            w-7
+                                            p-1
+                                            text-gray-700
+                                            rounded-sm
+                                        "
+                                    ></setting-icon>
+                                </template>
+                                <template slot="icon">
+                                    <down-arrow class="text-xs"></down-arrow>
+                                </template>
+                            </accordion>
+                        </li>
                     </template>
-                    <template slot="icon">
-                        <down-arrow class="text-xs"></down-arrow>
-                    </template>
-                </accordion>
-                <accordion class=""  :items-menu="clientsMenu" name="Clientes">
-                    <template slot="descriptive-icon">
-                        <users-icon
-                            class="mr-2 h-7 w-7 p-1 text-gray-700 rounded-sm"
-                        ></users-icon>
-                    </template>
-                    <template slot="icon">
-                        <down-arrow class="text-xs"></down-arrow>
-                    </template>
-                </accordion>
-                <accordion class=""  :items-menu="ReportsMenu" name="Reportes">
-                    <template slot="descriptive-icon">
-                        <bars-icon
-                            class="mr-2 h-7 w-7 p-1 text-gray-700 rounded-sm"
-                        ></bars-icon>
-                    </template>
-                    <template slot="icon">
-                        <down-arrow class="text-xs"></down-arrow>
-                    </template>
-                </accordion>
-                <accordion class=""  :items-menu="ConfigMenu" name="Configuración">
-                    <template slot="descriptive-icon">
-                        <setting-icon
-                            class="mr-2 h-7 w-7 p-1 text-gray-700 rounded-sm"
-                        ></setting-icon>
-                    </template>
-                    <template slot="icon">
-                        <down-arrow class="text-xs"></down-arrow>
-                    </template>
-                </accordion>
+                </submenu-container>
             </sidebar>
             <div class="flex-1 sm:ml-64">
                 <slot class="bg-blue-500" />
@@ -287,7 +340,7 @@ import Accordion from "./menu/Accordion.vue";
 import WarehouseIcon from "./icons/WarehouseIcon";
 import ShoppingBag from "./icons/ShoppingBag.vue";
 import ViewGridIcon from "./icons/ViewGridIcon.vue";
-// import Boxes from "./icons/Boxes.vue";
+import SubmenuContainer from "./menu/SubmenuContainer";
 import UsersIcon from "./icons/UsersIcon.vue";
 import DownArrow from "./icons/DownArrow.vue";
 import BarsIcon from "./icons/BarsIcon.vue";
@@ -298,7 +351,7 @@ export default {
         SettingIcon,
         BarsIcon,
         UsersIcon,
-        // Boxes,
+        SubmenuContainer,
         ViewGridIcon,
         Sidebar,
         Accordion,
@@ -308,6 +361,28 @@ export default {
     },
     data() {
         return {
+            catalogs: [
+                {
+                    name: "Clientes",
+                    url: "#",
+                },
+                {
+                    name: "Proveedores",
+                    url: "#",
+                },
+                {
+                    name: "Productos",
+                    url: "#",
+                },
+                {
+                    name: "Almacenes",
+                    url: "#",
+                },
+                {
+                    name: "Categorias",
+                    url: "#",
+                },
+            ],
             clientsMenu: [
                 {
                     name: "Nuevo cliente",
