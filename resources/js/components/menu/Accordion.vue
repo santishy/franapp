@@ -10,9 +10,10 @@
                 px-3
                 py-2
                 font-mono
-                text-blue-800
+                
                 justify-between
             "
+            :class="getTextColor"
             @click.prevent="toggle"
             ><span
                 class="
@@ -58,7 +59,7 @@
 
 <script>
 export default {
-    props: ["itemsMenu", "name"],
+    props: ["itemsMenu", "name","textColor"],
     data() {
         return {
             show: false,
@@ -88,5 +89,10 @@ export default {
             });
         },
     },
+    computed:{
+        getTextColor(){
+            return this.textColor ? this.textColor : 'text-blue-800'
+        }
+    }
 };
 </script>

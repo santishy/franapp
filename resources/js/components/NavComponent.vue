@@ -231,10 +231,20 @@
         <main class="mt-20 w-ful z-0 flex flex-wrap">
             <sidebar>
                 <submenu-container name="Catalagos">
+                    <template slot="descriptive-icon">
+                        <view-boards
+                            class="mr-2 h-7 w-7 p-1 text-gray-700 rounded-sm"
+                        ></view-boards>
+                    </template>
+                    <template slot="icon">
+                        <dots-vertical
+                            class="mr-2 h-7 w-7 p-1 text-gray-700 rounded-sm"
+                        ></dots-vertical>
+                    </template>
                     <template slot="list">
-                        <li>
+                        <li class="bg-gray-800 ">
                             <accordion
-                                class=""
+                                class=" text-white"
                                 :items-menu="InventoryMenu"
                                 name="Inventario"
                             >
@@ -245,7 +255,7 @@
                                             h-7
                                             w-7
                                             p-1
-                                            text-gray-700
+                                            
                                             rounded-sm
                                         "
                                     ></view-grid-icon>
@@ -344,10 +354,13 @@ import SubmenuContainer from "./menu/SubmenuContainer";
 import UsersIcon from "./icons/UsersIcon.vue";
 import DownArrow from "./icons/DownArrow.vue";
 import BarsIcon from "./icons/BarsIcon.vue";
+import DotsVertical from "./icons/DotsVertical.vue";
 import SettingIcon from "./icons/SettingIcon.vue";
+import ViewBoards from "./icons/ViewBoards.vue";
 
 export default {
     components: {
+        ViewBoards,
         SettingIcon,
         BarsIcon,
         UsersIcon,
@@ -358,6 +371,7 @@ export default {
         WarehouseIcon,
         ShoppingBag,
         DownArrow,
+        DotsVertical,
     },
     data() {
         return {
