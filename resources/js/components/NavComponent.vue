@@ -242,45 +242,16 @@
                         ></dots-vertical>
                     </template>
                     <template slot="list">
-                        <li class="bg-gray-800 ">
+                        <li class=" bg-gray-800">
                             <accordion
-                                class=" text-white"
-                                :items-menu="InventoryMenu"
-                                name="Inventario"
-                            >
-                                <template slot="descriptive-icon">
-                                    <view-grid-icon
-                                        class="
-                                            mr-2
-                                            h-7
-                                            w-7
-                                            p-1
-                                            
-                                            rounded-sm
-                                        "
-                                    ></view-grid-icon>
-                                </template>
-                                <template slot="icon">
-                                    <down-arrow class="text-xs"></down-arrow>
-                                </template>
-                            </accordion>
-                        </li>
-                        <li>
-                            <accordion
-                                class=""
                                 :items-menu="clientsMenu"
+                                textColor="text-white"
+                                
                                 name="Clientes"
                             >
                                 <template slot="descriptive-icon">
                                     <users-icon
-                                        class="
-                                            mr-2
-                                            h-7
-                                            w-7
-                                            p-1
-                                            text-gray-700
-                                            rounded-sm
-                                        "
+                                        class="mr-2 h-7 w-7 p-1 rounded-sm"
                                     ></users-icon>
                                 </template>
                                 <template slot="icon">
@@ -288,14 +259,14 @@
                                 </template>
                             </accordion>
                         </li>
-                        <li>
+                        <li class="px-4">
                             <accordion
                                 class=""
-                                :items-menu="ReportsMenu"
-                                name="Reportes"
+                                :items-menu="ProductsMenu"
+                                name="Productos"
                             >
                                 <template slot="descriptive-icon">
-                                    <bars-icon
+                                    <star
                                         class="
                                             mr-2
                                             h-7
@@ -304,30 +275,39 @@
                                             text-gray-700
                                             rounded-sm
                                         "
-                                    ></bars-icon>
+                                    ></star>
                                 </template>
                                 <template slot="icon">
                                     <down-arrow class="text-xs"></down-arrow>
                                 </template>
                             </accordion>
                         </li>
-                        <li>
+                        <li class="px-4">
                             <accordion
                                 class=""
-                                :items-menu="ConfigMenu"
-                                name="Configuración"
+                                :items-menu="WarehousesMenu"
+                                name="Almacenes"
                             >
                                 <template slot="descriptive-icon">
-                                    <setting-icon
-                                        class="
-                                            mr-2
-                                            h-7
-                                            w-7
-                                            p-1
-                                            text-gray-700
-                                            rounded-sm
-                                        "
-                                    ></setting-icon>
+                                    <view-grid-icon
+                                        class="mr-2 h-7 w-7 p-1 rounded-sm"
+                                    ></view-grid-icon>
+                                </template>
+                                <template slot="icon">
+                                    <down-arrow class="text-xs"></down-arrow>
+                                </template>
+                            </accordion>
+                        </li>
+                        <li class="px-4">
+                            <accordion
+                                class=""
+                                :items-menu="CategoriesMenu"
+                                name="Categorías"
+                            >
+                                <template slot="descriptive-icon">
+                                    <color-swatch
+                                        class="mr-2 h-7 w-7 p-1 rounded-sm"
+                                    ></color-swatch>
                                 </template>
                                 <template slot="icon">
                                     <down-arrow class="text-xs"></down-arrow>
@@ -336,6 +316,53 @@
                         </li>
                     </template>
                 </submenu-container>
+
+                <li>
+                    <accordion
+                        class=""
+                        :items-menu="ReportsMenu"
+                        name="Reportes"
+                    >
+                        <template slot="descriptive-icon">
+                            <bars-icon
+                                class="
+                                    mr-2
+                                    h-7
+                                    w-7
+                                    p-1
+                                    text-gray-700
+                                    rounded-sm
+                                "
+                            ></bars-icon>
+                        </template>
+                        <template slot="icon">
+                            <down-arrow class="text-xs"></down-arrow>
+                        </template>
+                    </accordion>
+                </li>
+                <li>
+                    <accordion
+                        class=""
+                        :items-menu="ConfigMenu"
+                        name="Configuración"
+                    >
+                        <template slot="descriptive-icon">
+                            <setting-icon
+                                class="
+                                    mr-2
+                                    h-7
+                                    w-7
+                                    p-1
+                                    text-gray-700
+                                    rounded-sm
+                                "
+                            ></setting-icon>
+                        </template>
+                        <template slot="icon">
+                            <down-arrow class="text-xs"></down-arrow>
+                        </template>
+                    </accordion>
+                </li>
             </sidebar>
             <div class="flex-1 sm:ml-64">
                 <slot class="bg-blue-500" />
@@ -357,9 +384,12 @@ import BarsIcon from "./icons/BarsIcon.vue";
 import DotsVertical from "./icons/DotsVertical.vue";
 import SettingIcon from "./icons/SettingIcon.vue";
 import ViewBoards from "./icons/ViewBoards.vue";
+import Star from "./icons/Star.vue";
+import ColorSwatch from "./icons/ColorSwatch.vue";
 
 export default {
     components: {
+        ColorSwatch,
         ViewBoards,
         SettingIcon,
         BarsIcon,
@@ -372,6 +402,7 @@ export default {
         ShoppingBag,
         DownArrow,
         DotsVertical,
+        Star,
     },
     data() {
         return {
@@ -407,23 +438,53 @@ export default {
                     url: "/clients",
                 },
             ],
-            InventoryMenu: [
+            WarehousesMenu: [
                 {
-                    name: "Nuevo inventario",
+                    name: "Nuevo almacen",
                     url: "/inventories/create",
                 },
                 {
-                    name: "Catalago almacenes",
+                    name: "Lista de almacenes",
                     url: "/warehouses",
                 },
                 {
                     name: "Existencias",
                     url: "/inventories",
                 },
+            ],
+            CategoriesMenu: [
                 {
                     name: "Nueva categoría",
                     url: "/categories",
                 },
+            ],
+            //InventoryMenu: [
+            // {
+            //     name: "Nuevo almacen",
+            //     url: "/inventories/create",
+            // },
+            // {
+            //     name: "Lista de almacenes",
+            //     url: "/warehouses",
+            // },
+            // {
+            //     name: "Existencias",
+            //     url: "/inventories",
+            // },
+            // {
+            //     name: "Nueva categoría",
+            //     url: "/categories",
+            // },
+            // {
+            //     name: "Nuevo producto",
+            //     url: "/products/create",
+            // },
+            // {
+            //     name: "Comprar productos",
+            //     url: "/products",
+            // },
+            //],
+            ProductsMenu: [
                 {
                     name: "Nuevo producto",
                     url: "/products/create",
