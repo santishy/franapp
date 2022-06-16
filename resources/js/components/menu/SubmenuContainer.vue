@@ -25,7 +25,7 @@
             @after-enter="afterEnter"
             @leave="leave"
         >
-            <ul class="divide-y-2 divide-white" v-if="show">
+            <ul class="divide-y-0 divide-white" v-if="show">
                 <slot name="list"> </slot>
             </ul>
             <!-- <ul class=" divide-y-2 divide-gray-200" v-if="show">

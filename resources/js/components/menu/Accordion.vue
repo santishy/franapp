@@ -10,20 +10,11 @@
                 px-3
                 py-2
                 font-mono
-                
                 justify-between
             "
             :class="getTextColor"
             @click.prevent="toggle"
-            ><span
-                class="
-                    mr-1
-                    font-mono 
-                    text-lg
-                    flex
-                    justify-center
-                    items-end
-                "
+            ><span class="mr-1 font-mono flex justify-center items-end"
                 ><slot name="descriptive-icon"></slot> {{ name }}</span
             ><slot name="icon"></slot
         ></a>
@@ -34,20 +25,24 @@
             @after-enter="afterEnter"
             @leave="leave"
         >
-            <ul class=" divide-y-2 divide-gray-200" v-if="show">
-                <li v-for="item in itemsMenu" :key="item.name" class="bg-white">
+            <ul class="divide-y-2 divide-gray-200" v-if="show">
+                <li v-for="item in itemsMenu" 
+                    :key="item.name" 
+                    class="bg-white"
+                >
                     <a
                         :href="item.url"
+                        :class="getTextSize"
                         class="
                             block
                             w-full
                             text-gray-800
-                            subpixel-antialiased 
+                            subpixel-antialiased
                             hover:bg-gray-200
                             font-mono
                             p-2
                             pl-6
-                            text-sm
+                            
                         "
                         >{{ item.name }}</a
                     >
@@ -59,7 +54,7 @@
 
 <script>
 export default {
-    props: ["itemsMenu", "name","textColor"],
+    props: ["itemsMenu", "name", "isSubmenu"],
     data() {
         return {
             show: false,
@@ -89,10 +84,13 @@ export default {
             });
         },
     },
-    computed:{
+    computed: {
         getTextColor(){
-            return this.textColor ? this.textColor : 'text-blue-800'
+            return this.isSubmenu ? 'text-white' : 'text-black';
+        },
+        getBackgroundColor(){
+            return this.isSubmenu ? '' : ''
         }
-    }
+    },
 };
 </script>

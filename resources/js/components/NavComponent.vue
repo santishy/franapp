@@ -242,11 +242,10 @@
                         ></dots-vertical>
                     </template>
                     <template slot="list">
-                        <li class=" bg-gray-800">
+                        <li class="bg-gray-800">
                             <accordion
                                 :items-menu="clientsMenu"
-                                textColor="text-white"
-                                
+                                :is-submenu="true"
                                 name="Clientes"
                             >
                                 <template slot="descriptive-icon">
@@ -259,9 +258,9 @@
                                 </template>
                             </accordion>
                         </li>
-                        <li class="px-4">
+                        <li class="bg-gray-800">
                             <accordion
-                                class=""
+                                textColor="text-white"
                                 :items-menu="ProductsMenu"
                                 name="Productos"
                             >
@@ -272,7 +271,6 @@
                                             h-7
                                             w-7
                                             p-1
-                                            text-gray-700
                                             rounded-sm
                                         "
                                     ></star>
@@ -282,9 +280,9 @@
                                 </template>
                             </accordion>
                         </li>
-                        <li class="px-4">
+                        <li class="bg-gray-800">
                             <accordion
-                                class=""
+                                textColor="text-white"
                                 :items-menu="WarehousesMenu"
                                 name="Almacenes"
                             >
@@ -298,9 +296,9 @@
                                 </template>
                             </accordion>
                         </li>
-                        <li class="px-4">
+                        <li class="bg-gray-800">
                             <accordion
-                                class=""
+                                textColor="text-white"
                                 :items-menu="CategoriesMenu"
                                 name="Categorías"
                             >
@@ -317,52 +315,31 @@
                     </template>
                 </submenu-container>
 
-                <li>
-                    <accordion
-                        class=""
-                        :items-menu="ReportsMenu"
-                        name="Reportes"
-                    >
-                        <template slot="descriptive-icon">
-                            <bars-icon
-                                class="
-                                    mr-2
-                                    h-7
-                                    w-7
-                                    p-1
-                                    text-gray-700
-                                    rounded-sm
-                                "
-                            ></bars-icon>
-                        </template>
-                        <template slot="icon">
-                            <down-arrow class="text-xs"></down-arrow>
-                        </template>
-                    </accordion>
-                </li>
-                <li>
-                    <accordion
-                        class=""
-                        :items-menu="ConfigMenu"
-                        name="Configuración"
-                    >
-                        <template slot="descriptive-icon">
-                            <setting-icon
-                                class="
-                                    mr-2
-                                    h-7
-                                    w-7
-                                    p-1
-                                    text-gray-700
-                                    rounded-sm
-                                "
-                            ></setting-icon>
-                        </template>
-                        <template slot="icon">
-                            <down-arrow class="text-xs"></down-arrow>
-                        </template>
-                    </accordion>
-                </li>
+                <accordion class="" :items-menu="ReportsMenu" name="Reportes">
+                    <template slot="descriptive-icon">
+                        <bars-icon
+                            class="mr-2 h-7 w-7 p-1 text-gray-700 rounded-sm"
+                        ></bars-icon>
+                    </template>
+                    <template slot="icon">
+                        <down-arrow class="text-xs"></down-arrow>
+                    </template>
+                </accordion>
+
+                <accordion
+                    class=""
+                    :items-menu="ConfigMenu"
+                    name="Configuración"
+                >
+                    <template slot="descriptive-icon">
+                        <setting-icon
+                            class="mr-2 h-7 w-7 p-1 text-gray-700 rounded-sm"
+                        ></setting-icon>
+                    </template>
+                    <template slot="icon">
+                        <down-arrow class="text-xs"></down-arrow>
+                    </template>
+                </accordion>
             </sidebar>
             <div class="flex-1 sm:ml-64">
                 <slot class="bg-blue-500" />
@@ -458,32 +435,32 @@ export default {
                     url: "/categories",
                 },
             ],
-            //InventoryMenu: [
-            // {
-            //     name: "Nuevo almacen",
-            //     url: "/inventories/create",
-            // },
-            // {
-            //     name: "Lista de almacenes",
-            //     url: "/warehouses",
-            // },
-            // {
-            //     name: "Existencias",
-            //     url: "/inventories",
-            // },
-            // {
-            //     name: "Nueva categoría",
-            //     url: "/categories",
-            // },
-            // {
-            //     name: "Nuevo producto",
-            //     url: "/products/create",
-            // },
-            // {
-            //     name: "Comprar productos",
-            //     url: "/products",
-            // },
-            //],
+            InventoryMenu: [
+            {
+                name: "Nuevo almacen",
+                url: "/inventories/create",
+            },
+            {
+                name: "Lista de almacenes",
+                url: "/warehouses",
+            },
+            {
+                name: "Existencias",
+                url: "/inventories",
+            },
+            {
+                name: "Nueva categoría",
+                url: "/categories",
+            },
+            {
+                name: "Nuevo producto",
+                url: "/products/create",
+            },
+            {
+                name: "Comprar productos",
+                url: "/products",
+            },
+            ],
             ProductsMenu: [
                 {
                     name: "Nuevo producto",

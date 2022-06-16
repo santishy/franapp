@@ -2944,29 +2944,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -3037,32 +3014,25 @@ __webpack_require__.r(__webpack_exports__);
         name: "Nueva categoría",
         url: "/categories"
       }],
-      //InventoryMenu: [
-      // {
-      //     name: "Nuevo almacen",
-      //     url: "/inventories/create",
-      // },
-      // {
-      //     name: "Lista de almacenes",
-      //     url: "/warehouses",
-      // },
-      // {
-      //     name: "Existencias",
-      //     url: "/inventories",
-      // },
-      // {
-      //     name: "Nueva categoría",
-      //     url: "/categories",
-      // },
-      // {
-      //     name: "Nuevo producto",
-      //     url: "/products/create",
-      // },
-      // {
-      //     name: "Comprar productos",
-      //     url: "/products",
-      // },
-      //],
+      InventoryMenu: [{
+        name: "Nuevo almacen",
+        url: "/inventories/create"
+      }, {
+        name: "Lista de almacenes",
+        url: "/warehouses"
+      }, {
+        name: "Existencias",
+        url: "/inventories"
+      }, {
+        name: "Nueva categoría",
+        url: "/categories"
+      }, {
+        name: "Nuevo producto",
+        url: "/products/create"
+      }, {
+        name: "Comprar productos",
+        url: "/products"
+      }],
       ProductsMenu: [{
         name: "Nuevo producto",
         url: "/products/create"
@@ -6405,13 +6375,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ["itemsMenu", "name", "textColor"],
+  props: ["itemsMenu", "name", "isSubmenu"],
   data: function data() {
     return {
       show: false
@@ -6443,7 +6408,10 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {
     getTextColor: function getTextColor() {
-      return this.textColor ? this.textColor : 'text-blue-800';
+      return this.isSubmenu ? 'text-white' : 'text-black';
+    },
+    getBackgroundColor: function getBackgroundColor() {
+      return this.isSubmenu ? '' : '';
     }
   }
 });
@@ -32412,14 +32380,14 @@ var render = function () {
                   _c("template", { slot: "list" }, [
                     _c(
                       "li",
-                      { staticClass: " bg-gray-800" },
+                      { staticClass: "bg-gray-800" },
                       [
                         _c(
                           "accordion",
                           {
                             attrs: {
                               "items-menu": _vm.clientsMenu,
-                              textColor: "text-white",
+                              "is-submenu": true,
                               name: "Clientes",
                             },
                           },
@@ -32450,12 +32418,13 @@ var render = function () {
                     _vm._v(" "),
                     _c(
                       "li",
-                      { staticClass: "px-4" },
+                      { staticClass: "bg-gray-800" },
                       [
                         _c(
                           "accordion",
                           {
                             attrs: {
+                              textColor: "text-white",
                               "items-menu": _vm.ProductsMenu,
                               name: "Productos",
                             },
@@ -32467,7 +32436,7 @@ var render = function () {
                               [
                                 _c("star", {
                                   staticClass:
-                                    "\n                                        mr-2\n                                        h-7\n                                        w-7\n                                        p-1\n                                        text-gray-700\n                                        rounded-sm\n                                    ",
+                                    "\n                                        mr-2\n                                        h-7\n                                        w-7\n                                        p-1\n                                        rounded-sm\n                                    ",
                                 }),
                               ],
                               1
@@ -32488,12 +32457,13 @@ var render = function () {
                     _vm._v(" "),
                     _c(
                       "li",
-                      { staticClass: "px-4" },
+                      { staticClass: "bg-gray-800" },
                       [
                         _c(
                           "accordion",
                           {
                             attrs: {
+                              textColor: "text-white",
                               "items-menu": _vm.WarehousesMenu,
                               name: "Almacenes",
                             },
@@ -32525,12 +32495,13 @@ var render = function () {
                     _vm._v(" "),
                     _c(
                       "li",
-                      { staticClass: "px-4" },
+                      { staticClass: "bg-gray-800" },
                       [
                         _c(
                           "accordion",
                           {
                             attrs: {
+                              textColor: "text-white",
                               "items-menu": _vm.CategoriesMenu,
                               name: "Categorías",
                             },
@@ -32565,77 +32536,60 @@ var render = function () {
               ),
               _vm._v(" "),
               _c(
-                "li",
+                "accordion",
+                { attrs: { "items-menu": _vm.ReportsMenu, name: "Reportes" } },
                 [
                   _c(
-                    "accordion",
-                    {
-                      attrs: {
-                        "items-menu": _vm.ReportsMenu,
-                        name: "Reportes",
-                      },
-                    },
+                    "template",
+                    { slot: "descriptive-icon" },
                     [
-                      _c(
-                        "template",
-                        { slot: "descriptive-icon" },
-                        [
-                          _c("bars-icon", {
-                            staticClass:
-                              "\n                                mr-2\n                                h-7\n                                w-7\n                                p-1\n                                text-gray-700\n                                rounded-sm\n                            ",
-                          }),
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "template",
-                        { slot: "icon" },
-                        [_c("down-arrow", { staticClass: "text-xs" })],
-                        1
-                      ),
+                      _c("bars-icon", {
+                        staticClass:
+                          "mr-2 h-7 w-7 p-1 text-gray-700 rounded-sm",
+                      }),
                     ],
-                    2
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "template",
+                    { slot: "icon" },
+                    [_c("down-arrow", { staticClass: "text-xs" })],
+                    1
                   ),
                 ],
-                1
+                2
               ),
               _vm._v(" "),
               _c(
-                "li",
+                "accordion",
+                {
+                  attrs: {
+                    "items-menu": _vm.ConfigMenu,
+                    name: "Configuración",
+                  },
+                },
                 [
                   _c(
-                    "accordion",
-                    {
-                      attrs: {
-                        "items-menu": _vm.ConfigMenu,
-                        name: "Configuración",
-                      },
-                    },
+                    "template",
+                    { slot: "descriptive-icon" },
                     [
-                      _c(
-                        "template",
-                        { slot: "descriptive-icon" },
-                        [
-                          _c("setting-icon", {
-                            staticClass:
-                              "\n                                mr-2\n                                h-7\n                                w-7\n                                p-1\n                                text-gray-700\n                                rounded-sm\n                            ",
-                          }),
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "template",
-                        { slot: "icon" },
-                        [_c("down-arrow", { staticClass: "text-xs" })],
-                        1
-                      ),
+                      _c("setting-icon", {
+                        staticClass:
+                          "mr-2 h-7 w-7 p-1 text-gray-700 rounded-sm",
+                      }),
                     ],
-                    2
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "template",
+                    { slot: "icon" },
+                    [_c("down-arrow", { staticClass: "text-xs" })],
+                    1
                   ),
                 ],
-                1
+                2
               ),
             ],
             1
@@ -36626,7 +36580,7 @@ var render = function () {
         "a",
         {
           staticClass:
-            "\n            flex\n            items-center\n            w-full\n            space-y-0\n            px-3\n            py-2\n            font-mono\n            \n            justify-between\n        ",
+            "\n            flex\n            items-center\n            w-full\n            space-y-0\n            px-3\n            py-2\n            font-mono\n            justify-between\n        ",
           class: _vm.getTextColor,
           attrs: { href: "#" },
           on: {
@@ -36639,10 +36593,7 @@ var render = function () {
         [
           _c(
             "span",
-            {
-              staticClass:
-                "\n                mr-1\n                font-mono \n                text-lg\n                flex\n                justify-center\n                items-end\n            ",
-            },
+            { staticClass: "mr-1 font-mono flex justify-center items-end" },
             [_vm._t("descriptive-icon"), _vm._v(" " + _vm._s(_vm.name))],
             2
           ),
@@ -36665,14 +36616,15 @@ var render = function () {
           _vm.show
             ? _c(
                 "ul",
-                { staticClass: " divide-y-2 divide-gray-200" },
+                { staticClass: "divide-y-2 divide-gray-200" },
                 _vm._l(_vm.itemsMenu, function (item) {
                   return _c("li", { key: item.name, staticClass: "bg-white" }, [
                     _c(
                       "a",
                       {
                         staticClass:
-                          "\n                        block\n                        w-full\n                        text-gray-800\n                        subpixel-antialiased \n                        hover:bg-gray-200\n                        font-mono\n                        p-2\n                        pl-6\n                        text-sm\n                    ",
+                          "\n                        block\n                        w-full\n                        text-gray-800\n                        subpixel-antialiased\n                        hover:bg-gray-200\n                        font-mono\n                        p-2\n                        pl-6\n                        \n                    ",
+                        class: _vm.getTextSize,
                         attrs: { href: item.url },
                       },
                       [_vm._v(_vm._s(item.name))]
@@ -36810,7 +36762,7 @@ var render = function () {
           _vm.show
             ? _c(
                 "ul",
-                { staticClass: "divide-y-2 divide-white" },
+                { staticClass: "divide-y-0 divide-white" },
                 [_vm._t("list")],
                 2
               )
