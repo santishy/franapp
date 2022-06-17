@@ -262,17 +262,12 @@
                             <accordion
                                 textColor="text-white"
                                 :items-menu="ProductsMenu"
+                                :is-submenu="true"
                                 name="Productos"
                             >
                                 <template slot="descriptive-icon">
                                     <star
-                                        class="
-                                            mr-2
-                                            h-7
-                                            w-7
-                                            p-1
-                                            rounded-sm
-                                        "
+                                        class="mr-2 h-7 w-7 p-1 rounded-sm"
                                     ></star>
                                 </template>
                                 <template slot="icon">
@@ -284,6 +279,7 @@
                             <accordion
                                 textColor="text-white"
                                 :items-menu="WarehousesMenu"
+                                :is-submenu="true"
                                 name="Almacenes"
                             >
                                 <template slot="descriptive-icon">
@@ -300,6 +296,7 @@
                             <accordion
                                 textColor="text-white"
                                 :items-menu="CategoriesMenu"
+                                :is-submenu="true"
                                 name="Categorías"
                             >
                                 <template slot="descriptive-icon">
@@ -314,7 +311,35 @@
                         </li>
                     </template>
                 </submenu-container>
-
+                <submenu-container name="Movientos">
+                    <template slot="descriptive-icon">
+                        <switch-horizontal class="mr-2 h-7 w-7 p-1 rounded-sm"></switch-horizontal>
+                    </template>
+                    <template slot="icon">
+                        <dots-vertical
+                            class="mr-2 h-7 w-7 p-1 text-gray-700 rounded-sm"
+                        ></dots-vertical>
+                    </template>
+                    <template slot="list">
+                        <li class="bg-gray-800">
+                            <accordion
+                                :items-menu="clientsMenu"
+                                :is-submenu="true"
+                                name="Ventas"
+                            >
+                                <template slot="descriptive-icon">
+                                    <users-icon
+                                        class="mr-2 h-7 w-7 p-1 rounded-sm"
+                                    ></users-icon>
+                                </template>
+                                <template slot="icon">
+                                    <down-arrow class="text-xs"></down-arrow>
+                                </template>
+                            </accordion>
+                        </li>
+                        
+                    </template>
+                </submenu-container>
                 <accordion class="" :items-menu="ReportsMenu" name="Reportes">
                     <template slot="descriptive-icon">
                         <bars-icon
@@ -363,9 +388,11 @@ import SettingIcon from "./icons/SettingIcon.vue";
 import ViewBoards from "./icons/ViewBoards.vue";
 import Star from "./icons/Star.vue";
 import ColorSwatch from "./icons/ColorSwatch.vue";
+import SwitchHorizontal from "./icons/SwitchHorizontal.vue"
 
 export default {
     components: {
+        SwitchHorizontal,
         ColorSwatch,
         ViewBoards,
         SettingIcon,
@@ -436,30 +463,30 @@ export default {
                 },
             ],
             InventoryMenu: [
-            {
-                name: "Nuevo almacen",
-                url: "/inventories/create",
-            },
-            {
-                name: "Lista de almacenes",
-                url: "/warehouses",
-            },
-            {
-                name: "Existencias",
-                url: "/inventories",
-            },
-            {
-                name: "Nueva categoría",
-                url: "/categories",
-            },
-            {
-                name: "Nuevo producto",
-                url: "/products/create",
-            },
-            {
-                name: "Comprar productos",
-                url: "/products",
-            },
+                {
+                    name: "Nuevo almacen",
+                    url: "/inventories/create",
+                },
+                {
+                    name: "Lista de almacenes",
+                    url: "/warehouses",
+                },
+                {
+                    name: "Existencias",
+                    url: "/inventories",
+                },
+                {
+                    name: "Nueva categoría",
+                    url: "/categories",
+                },
+                {
+                    name: "Nuevo producto",
+                    url: "/products/create",
+                },
+                {
+                    name: "Comprar productos",
+                    url: "/products",
+                },
             ],
             ProductsMenu: [
                 {

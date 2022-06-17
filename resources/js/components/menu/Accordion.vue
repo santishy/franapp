@@ -14,7 +14,9 @@
             "
             :class="getTextColor"
             @click.prevent="toggle"
-            ><span class="mr-1 font-mono flex justify-center items-end"
+            ><span
+                :class="getTextSize"
+                class="mr-1 font-mono flex justify-center items-end"
                 ><slot name="descriptive-icon"></slot> {{ name }}</span
             ><slot name="icon"></slot
         ></a>
@@ -25,24 +27,27 @@
             @after-enter="afterEnter"
             @leave="leave"
         >
-            <ul class="divide-y-2 divide-gray-200" v-if="show">
-                <li v-for="item in itemsMenu" 
-                    :key="item.name" 
-                    class="bg-white"
-                >
+            <ul
+                :class="[isSubmenu ? 'divide-gray-800' : 'divide-gray-200']"
+                class="divide-y-2"
+                v-if="show"
+            >
+                <li v-for="item in itemsMenu" :key="item.name" class="bg-white">
                     <a
                         :href="item.url"
-                        :class="getTextSize"
+                        :class="[
+                            getTextSize, 
+                            getBackgroundColor, 
+                            getTextColor,
+                            isSubmenu ? 'pl-10' : 'pl-6'
+                        ]"
                         class="
                             block
                             w-full
-                            text-gray-800
                             subpixel-antialiased
-                            hover:bg-gray-200
                             font-mono
-                            p-2
-                            pl-6
-                            
+                            pr-2
+                            py-2
                         "
                         >{{ item.name }}</a
                     >
@@ -59,6 +64,9 @@ export default {
         return {
             show: false,
         };
+    },
+    created() {
+        console.log("isSubmenu: " + this.isSubmenu);
     },
     methods: {
         toggle() {
@@ -85,12 +93,17 @@ export default {
         },
     },
     computed: {
-        getTextColor(){
-            return this.isSubmenu ? 'text-white' : 'text-black';
+        getTextColor() {
+            return this.isSubmenu ? "text-white" : "text-gray-800";
         },
-        getBackgroundColor(){
-            return this.isSubmenu ? '' : ''
-        }
+        getBackgroundColor() {
+            return this.isSubmenu
+                ? "bg-gray-700 hover:text-gray-900"
+                : "hover:bg-gray-200";
+        },
+        getTextSize() {
+            return this.isSubmenu ? "text-sm" : "text-lg";
+        },
     },
 };
 </script>
