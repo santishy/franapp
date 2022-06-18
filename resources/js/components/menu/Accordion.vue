@@ -28,29 +28,35 @@
             @leave="leave"
         >
             <ul
-                :class="[isSubmenu ? 'divide-gray-800' : 'divide-gray-200']"
+                :class="[isSubmenu ? 'divide-gray-800' : 'divide-gray-700']"
                 class="divide-y-2"
                 v-if="show"
             >
-                <li v-for="item in itemsMenu" :key="item.name" class="bg-white">
+                <li
+                    v-for="item in itemsMenu"
+                    :key="item.name"
+                    :class="[isSubmenu ? 'bg-gray-700' : 'bg-gray-800']"
+                    class="text-sm hover:bg-gray-900"
+                >
                     <a
                         :href="item.url"
-                        :class="[
-                            getTextSize, 
-                            getBackgroundColor, 
-                            getTextColor,
-                            isSubmenu ? 'pl-10' : 'pl-6'
-                        ]"
                         class="
-                            block
                             w-full
                             subpixel-antialiased
                             font-mono
+                            text-white
                             pr-2
                             py-2
+                            pl-8
+                            flex flex-wrap
+                            items-center
                         "
-                        >{{ item.name }}</a
                     >
+                        <arrow-narrow-right-icon
+                            class="mr-2 h-5 w-5 p-1 rounded-sm"
+                        />
+                        {{ item.name }}
+                    </a>
                 </li>
             </ul>
         </transition>
@@ -58,16 +64,18 @@
 </template>
 
 <script>
+import ArrowNarrowRightIcon from "../icons/ArrowNarrowRightIcon.vue";
 export default {
+    components: {
+        ArrowNarrowRightIcon,
+    },
     props: ["itemsMenu", "name", "isSubmenu"],
     data() {
         return {
             show: false,
         };
     },
-    created() {
-        console.log("isSubmenu: " + this.isSubmenu);
-    },
+    
     methods: {
         toggle() {
             this.show = !this.show;
@@ -102,7 +110,7 @@ export default {
                 : "hover:bg-gray-200";
         },
         getTextSize() {
-            return this.isSubmenu ? "text-sm" : "text-lg";
+            return this.isSubmenu ? "text-sm" : "";
         },
     },
 };

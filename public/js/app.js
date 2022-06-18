@@ -2954,22 +2954,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -3021,6 +3005,16 @@ __webpack_require__.r(__webpack_exports__);
         name: "Categorias",
         url: "#"
       }],
+      movementsMenu: [{
+        name: "Ventas",
+        url: "/sales/create"
+      }, {
+        name: "Compras",
+        url: "/products"
+      }, {
+        name: "Existencias",
+        url: "/inventories"
+      }],
       clientsMenu: [{
         name: "Nuevo cliente",
         url: "/clients/create"
@@ -3064,9 +3058,6 @@ __webpack_require__.r(__webpack_exports__);
       ProductsMenu: [{
         name: "Nuevo producto",
         url: "/products/create"
-      }, {
-        name: "Comprar productos",
-        url: "/products"
       }],
       ReportsMenu: [{
         name: "Ventas",
@@ -6349,6 +6340,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _icons_ArrowNarrowRightIcon_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../icons/ArrowNarrowRightIcon.vue */ "./resources/js/components/icons/ArrowNarrowRightIcon.vue");
 //
 //
 //
@@ -6408,15 +6400,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    ArrowNarrowRightIcon: _icons_ArrowNarrowRightIcon_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
   props: ["itemsMenu", "name", "isSubmenu"],
   data: function data() {
     return {
       show: false
     };
-  },
-  created: function created() {
-    console.log("isSubmenu: " + this.isSubmenu);
   },
   methods: {
     toggle: function toggle() {
@@ -6450,7 +6449,7 @@ __webpack_require__.r(__webpack_exports__);
       return this.isSubmenu ? "bg-gray-700 hover:text-gray-900" : "hover:bg-gray-200";
     },
     getTextSize: function getTextSize() {
-      return this.isSubmenu ? "text-sm" : "text-lg";
+      return this.isSubmenu ? "text-sm" : "";
     }
   }
 });
@@ -6510,25 +6509,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -32409,8 +32389,7 @@ var render = function () {
                     { slot: "icon" },
                     [
                       _c("dots-vertical", {
-                        staticClass:
-                          "mr-2 h-7 w-7 p-1 text-gray-700 rounded-sm",
+                        staticClass: " h-7 w-7 p-1 text-gray-700 rounded-sm",
                       }),
                     ],
                     1
@@ -32445,7 +32424,11 @@ var render = function () {
                             _c(
                               "template",
                               { slot: "icon" },
-                              [_c("down-arrow", { staticClass: "text-xs" })],
+                              [
+                                _c("down-arrow", {
+                                  staticClass: "text-xs h-4 w-4",
+                                }),
+                              ],
                               1
                             ),
                           ],
@@ -32484,7 +32467,11 @@ var render = function () {
                             _c(
                               "template",
                               { slot: "icon" },
-                              [_c("down-arrow", { staticClass: "text-xs" })],
+                              [
+                                _c("down-arrow", {
+                                  staticClass: "text-xs h-4 w-4",
+                                }),
+                              ],
                               1
                             ),
                           ],
@@ -32523,7 +32510,11 @@ var render = function () {
                             _c(
                               "template",
                               { slot: "icon" },
-                              [_c("down-arrow", { staticClass: "text-xs" })],
+                              [
+                                _c("down-arrow", {
+                                  staticClass: "text-xs h-4 w-4",
+                                }),
+                              ],
                               1
                             ),
                           ],
@@ -32562,7 +32553,11 @@ var render = function () {
                             _c(
                               "template",
                               { slot: "icon" },
-                              [_c("down-arrow", { staticClass: "text-xs" })],
+                              [
+                                _c("down-arrow", {
+                                  staticClass: "text-xs h-4 w-4",
+                                }),
+                              ],
                               1
                             ),
                           ],
@@ -32577,15 +32572,22 @@ var render = function () {
               ),
               _vm._v(" "),
               _c(
-                "submenu-container",
-                { attrs: { name: "Movientos" } },
+                "accordion",
+                {
+                  attrs: {
+                    "is-submenu": false,
+                    "items-menu": _vm.movementsMenu,
+                    name: "Movimientos",
+                  },
+                },
                 [
                   _c(
                     "template",
                     { slot: "descriptive-icon" },
                     [
                       _c("switch-horizontal", {
-                        staticClass: "mr-2 h-7 w-7 p-1 rounded-sm",
+                        staticClass:
+                          "mr-2 h-7 w-7 p-1 text-gray-700 rounded-sm",
                       }),
                     ],
                     1
@@ -32594,54 +32596,9 @@ var render = function () {
                   _c(
                     "template",
                     { slot: "icon" },
-                    [
-                      _c("dots-vertical", {
-                        staticClass:
-                          "mr-2 h-7 w-7 p-1 text-gray-700 rounded-sm",
-                      }),
-                    ],
+                    [_c("down-arrow", { staticClass: "text-xs w-6 h-6" })],
                     1
                   ),
-                  _vm._v(" "),
-                  _c("template", { slot: "list" }, [
-                    _c(
-                      "li",
-                      { staticClass: "bg-gray-800" },
-                      [
-                        _c(
-                          "accordion",
-                          {
-                            attrs: {
-                              "items-menu": _vm.clientsMenu,
-                              "is-submenu": true,
-                              name: "Ventas",
-                            },
-                          },
-                          [
-                            _c(
-                              "template",
-                              { slot: "descriptive-icon" },
-                              [
-                                _c("users-icon", {
-                                  staticClass: "mr-2 h-7 w-7 p-1 rounded-sm",
-                                }),
-                              ],
-                              1
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "template",
-                              { slot: "icon" },
-                              [_c("down-arrow", { staticClass: "text-xs" })],
-                              1
-                            ),
-                          ],
-                          2
-                        ),
-                      ],
-                      1
-                    ),
-                  ]),
                 ],
                 2
               ),
@@ -32665,7 +32622,7 @@ var render = function () {
                   _c(
                     "template",
                     { slot: "icon" },
-                    [_c("down-arrow", { staticClass: "text-xs" })],
+                    [_c("down-arrow", { staticClass: "text-xs w-6 h-6" })],
                     1
                   ),
                 ],
@@ -32696,7 +32653,7 @@ var render = function () {
                   _c(
                     "template",
                     { slot: "icon" },
-                    [_c("down-arrow", { staticClass: "text-xs" })],
+                    [_c("down-arrow", { staticClass: "text-xs w-6 h-6" })],
                     1
                   ),
                 ],
@@ -35191,7 +35148,6 @@ var render = function () {
   return _c(
     "svg",
     {
-      staticClass: "h-6 w-6",
       attrs: {
         xmlns: "http://www.w3.org/2000/svg",
         fill: "none",
@@ -36778,27 +36734,39 @@ var render = function () {
                 {
                   staticClass: "divide-y-2",
                   class: [
-                    _vm.isSubmenu ? "divide-gray-800" : "divide-gray-200",
+                    _vm.isSubmenu ? "divide-gray-800" : "divide-gray-700",
                   ],
                 },
                 _vm._l(_vm.itemsMenu, function (item) {
-                  return _c("li", { key: item.name, staticClass: "bg-white" }, [
-                    _c(
-                      "a",
-                      {
-                        staticClass:
-                          "\n                        block\n                        w-full\n                        subpixel-antialiased\n                        font-mono\n                        pr-2\n                        py-2\n                    ",
-                        class: [
-                          _vm.getTextSize,
-                          _vm.getBackgroundColor,
-                          _vm.getTextColor,
-                          _vm.isSubmenu ? "pl-10" : "pl-6",
+                  return _c(
+                    "li",
+                    {
+                      key: item.name,
+                      staticClass: "text-sm hover:bg-gray-900",
+                      class: [_vm.isSubmenu ? "bg-gray-700" : "bg-gray-800"],
+                    },
+                    [
+                      _c(
+                        "a",
+                        {
+                          staticClass:
+                            "\n                        w-full\n                        subpixel-antialiased\n                        font-mono\n                        text-white\n                        pr-2\n                        py-2\n                        pl-8\n                        flex flex-wrap\n                        items-center\n                    ",
+                          attrs: { href: item.url },
+                        },
+                        [
+                          _c("arrow-narrow-right-icon", {
+                            staticClass: "mr-2 h-5 w-5 p-1 rounded-sm",
+                          }),
+                          _vm._v(
+                            "\n                    " +
+                              _vm._s(item.name) +
+                              "\n                "
+                          ),
                         ],
-                        attrs: { href: item.url },
-                      },
-                      [_vm._v(_vm._s(item.name))]
-                    ),
-                  ])
+                        1
+                      ),
+                    ]
+                  )
                 }),
                 0
               )
@@ -36893,7 +36861,7 @@ var render = function () {
         "a",
         {
           staticClass:
-            "\n            flex\n            items-center\n            w-full\n            space-y-0\n            px-3\n            py-2\n            font-mono\n            text-blue-800\n            justify-between\n        ",
+            "\n            flex\n            items-center\n            w-full\n            space-y-0\n            px-3\n            py-2\n            font-mono\n            text-gray-800\n            justify-between\n        ",
           attrs: { href: "#" },
           on: {
             click: function ($event) {

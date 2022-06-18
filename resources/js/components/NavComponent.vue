@@ -238,7 +238,7 @@
                     </template>
                     <template slot="icon">
                         <dots-vertical
-                            class="mr-2 h-7 w-7 p-1 text-gray-700 rounded-sm"
+                            class=" h-7 w-7 p-1 text-gray-700 rounded-sm"
                         ></dots-vertical>
                     </template>
                     <template slot="list">
@@ -254,7 +254,7 @@
                                     ></users-icon>
                                 </template>
                                 <template slot="icon">
-                                    <down-arrow class="text-xs"></down-arrow>
+                                    <down-arrow class="text-xs h-4 w-4"></down-arrow>
                                 </template>
                             </accordion>
                         </li>
@@ -271,7 +271,7 @@
                                     ></star>
                                 </template>
                                 <template slot="icon">
-                                    <down-arrow class="text-xs"></down-arrow>
+                                    <down-arrow class="text-xs h-4 w-4"></down-arrow>
                                 </template>
                             </accordion>
                         </li>
@@ -288,7 +288,7 @@
                                     ></view-grid-icon>
                                 </template>
                                 <template slot="icon">
-                                    <down-arrow class="text-xs"></down-arrow>
+                                    <down-arrow class="text-xs h-4 w-4"></down-arrow>
                                 </template>
                             </accordion>
                         </li>
@@ -305,41 +305,26 @@
                                     ></color-swatch>
                                 </template>
                                 <template slot="icon">
-                                    <down-arrow class="text-xs"></down-arrow>
+                                    <down-arrow class="text-xs h-4 w-4"></down-arrow>
                                 </template>
                             </accordion>
                         </li>
                     </template>
                 </submenu-container>
-                <submenu-container name="Movientos">
+                <accordion
+                    :is-submenu="false"
+                    :items-menu="movementsMenu"
+                    name="Movimientos"
+                >
                     <template slot="descriptive-icon">
-                        <switch-horizontal class="mr-2 h-7 w-7 p-1 rounded-sm"></switch-horizontal>
+                        <switch-horizontal
+                            class="mr-2 h-7 w-7 p-1 text-gray-700 rounded-sm"
+                        ></switch-horizontal>
                     </template>
                     <template slot="icon">
-                        <dots-vertical
-                            class="mr-2 h-7 w-7 p-1 text-gray-700 rounded-sm"
-                        ></dots-vertical>
+                        <down-arrow class="text-xs w-6 h-6"></down-arrow>
                     </template>
-                    <template slot="list">
-                        <li class="bg-gray-800">
-                            <accordion
-                                :items-menu="clientsMenu"
-                                :is-submenu="true"
-                                name="Ventas"
-                            >
-                                <template slot="descriptive-icon">
-                                    <users-icon
-                                        class="mr-2 h-7 w-7 p-1 rounded-sm"
-                                    ></users-icon>
-                                </template>
-                                <template slot="icon">
-                                    <down-arrow class="text-xs"></down-arrow>
-                                </template>
-                            </accordion>
-                        </li>
-                        
-                    </template>
-                </submenu-container>
+                </accordion>
                 <accordion class="" :items-menu="ReportsMenu" name="Reportes">
                     <template slot="descriptive-icon">
                         <bars-icon
@@ -347,10 +332,9 @@
                         ></bars-icon>
                     </template>
                     <template slot="icon">
-                        <down-arrow class="text-xs"></down-arrow>
+                        <down-arrow class="text-xs w-6 h-6"></down-arrow>
                     </template>
                 </accordion>
-
                 <accordion
                     class=""
                     :items-menu="ConfigMenu"
@@ -362,7 +346,7 @@
                         ></setting-icon>
                     </template>
                     <template slot="icon">
-                        <down-arrow class="text-xs"></down-arrow>
+                        <down-arrow class="text-xs w-6 h-6"></down-arrow>
                     </template>
                 </accordion>
             </sidebar>
@@ -388,7 +372,7 @@ import SettingIcon from "./icons/SettingIcon.vue";
 import ViewBoards from "./icons/ViewBoards.vue";
 import Star from "./icons/Star.vue";
 import ColorSwatch from "./icons/ColorSwatch.vue";
-import SwitchHorizontal from "./icons/SwitchHorizontal.vue"
+import SwitchHorizontal from "./icons/SwitchHorizontal.vue";
 
 export default {
     components: {
@@ -430,6 +414,20 @@ export default {
                 {
                     name: "Categorias",
                     url: "#",
+                },
+            ],
+            movementsMenu: [
+                {
+                    name: "Ventas",
+                    url: "/sales/create",
+                },
+                {
+                    name: "Compras",
+                    url: "/products",
+                },
+                {
+                    name: "Existencias",
+                    url: "/inventories",
                 },
             ],
             clientsMenu: [
@@ -493,10 +491,7 @@ export default {
                     name: "Nuevo producto",
                     url: "/products/create",
                 },
-                {
-                    name: "Comprar productos",
-                    url: "/products",
-                },
+                
             ],
             ReportsMenu: [
                 {

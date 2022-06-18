@@ -10,7 +10,7 @@
                 px-3
                 py-2
                 font-mono
-                text-blue-800
+                text-gray-800
                 justify-between
             "
             @click.prevent="toggle"
@@ -28,25 +28,6 @@
             <ul class="divide-y-0 divide-white" v-if="show">
                 <slot name="list"> </slot>
             </ul>
-            <!-- <ul class=" divide-y-2 divide-gray-200" v-if="show">
-                <li v-for="item in itemsMenu" :key="item.name" class="bg-white">
-                    <a
-                        :href="item.url"
-                        class="
-                            block
-                            w-full
-                            text-gray-800
-                            subpixel-antialiased 
-                            hover:bg-gray-200
-                            font-mono
-                            p-2
-                            pl-6
-                            text-sm
-                        "
-                        >{{ item.name }}</a
-                    >
-                </li>
-            </ul> -->
         </transition>
     </div>
 </template>
