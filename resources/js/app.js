@@ -17,6 +17,7 @@ Vue.mixin(Errors);
 Vue.mixin(Authorizations);
 Vue.mixin(Notify);
 
+
 Vue.component('nav-component', require('./components/NavComponent.vue').default)
 Vue.component('errors-component', require('./components/ErrorsComponent.vue').default)
 Vue.component('dropdown-component', require('./components/DropdownComponent.vue').default);
@@ -59,22 +60,22 @@ Vue.component('user-list', require('./components/users/UserList.vue').default);
 //inventories
 Vue.component('create-inventory', require('./components/inventories/CreateInventory.vue').default)
 Vue.component('inventory-stocks', require('./components/inventories/InventoryStocks.vue').default)
-Vue.component('edit-warehouse',require('./components/warehouses/EditWarehouse.vue').default);
+Vue.component('edit-warehouse', require('./components/warehouses/EditWarehouse.vue').default);
 
 //Inventories -> warehouses
 
-Vue.component('warehouse-list',require('./components/warehouses/WarehouseList.vue').default);
+Vue.component('warehouse-list', require('./components/warehouses/WarehouseList.vue').default);
 
 //dashboard
 Vue.component('dashboard', require('./components/Dashboard.vue').default);
 
 //errors
-Vue.component('forbidden',require('./components/errors/Forbidden.vue').default);
+Vue.component('forbidden', require('./components/errors/Forbidden.vue').default);
 
 /**
  * tickets
  */
-Vue.component('ticket-form',require('./components/tickets/TicketForm.vue').default);
+Vue.component('ticket-form', require('./components/tickets/TicketForm.vue').default);
 
 Vue.directive('can',
     async function (el, binding) {

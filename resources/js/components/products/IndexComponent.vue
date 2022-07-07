@@ -18,7 +18,16 @@
                 ></search-by-category>
                 <search-component ref="search" class="w-full md:w-2/4" />
             </div>
-            <product-card
+            <product-list v-if="!isMobile" class="col-span-5">
+                <product-list-item
+                    v-for="(product, index) in products"
+                    :key="product.id"
+                    :product="product"
+                    :index="index"
+                ></product-list-item>
+            </product-list>
+            <product-card 
+                v-else
                 v-for="(product, index) in products"
                 :key="product.id"
                 :product="product"
@@ -89,11 +98,16 @@ import InformationComponent from "../modals/InformationComponent.vue";
 import AddToPurchase from "../purchases/AddToPurchase.vue";
 import EditIcon from "../icons/EditIcon.vue";
 import RemoveProductComponent from "./RemoveProductComponent.vue";
+import checkMobile from "../../helpers/CheckMobile.js";
+import ProductList from "./ProductList.vue";
+import ProductListItem from "./ProductListItem.vue";
 export default {
     components: {
         "product-card": ProductCardComponent,
+        ProductList,
+        ProductListItem,
         InfiniteLoading,
-        "search-component": SearchComponent,
+        SearchComponent,
         NavComponent,
         InformationComponent,
         Agree,
@@ -124,6 +138,7 @@ export default {
         this.cleanLocalStorage();
     },
     mounted() {
+        
         this.cleanLocalStorage();
         EventBus.$on("matching-products", this.matchingProducts);
         EventBus.$on("empty-search", this.reloadIndex);
@@ -195,6 +210,9 @@ export default {
     },
     computed: {
         ...mapState(["modalDataConfirm"]),
+        isMobile(){
+            return checkMobile();
+        }
     },
 };
 </script>
