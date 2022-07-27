@@ -1,7 +1,7 @@
 <template>
     <tr class="border-b text-center">
         <td class="flex flex-wrap justify-center items-center">
-            <div class=" image-container ">
+            <div class="image-container">
                 <img
                     :src="product.image_url"
                     loading="lazy"
@@ -29,11 +29,17 @@
             {{ product.formatted_distributor_price }}
         </td>
         <td>
-            
+            <add-to-purchase
+                :product_id="product.id"
+                :purchase_price="product.distributor_price"
+            >
+            </add-to-purchase>
         </td>
     </tr>
 </template>
 <script>
+import AddToPurchase from "../purchases/AddToPurchase.vue";
+
 export default {
     props: {
         product: {
@@ -43,10 +49,13 @@ export default {
             type: Number,
         },
     },
+    components: {
+        AddToPurchase,
+    },
 };
 </script>
 <style lang="css">
-    .image-container{
-        width: 100px;
-    }
+.image-container {
+    width: 100px;
+}
 </style>

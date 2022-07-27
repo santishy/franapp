@@ -33,9 +33,11 @@ export default {
     props: {
         product_id: {
             type: Number,
+            required: true
         },
         purchase_price: {
             type: Number,
+            required: true
         },
     },
     data() {

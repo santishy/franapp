@@ -3058,6 +3058,9 @@ __webpack_require__.r(__webpack_exports__);
       ProductsMenu: [{
         name: "Nuevo producto",
         url: "/products/create"
+      }, {
+        name: "Catalago",
+        url: "/products"
       }],
       ReportsMenu: [{
         name: "Ventas",
@@ -7077,6 +7080,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 
@@ -7877,6 +7881,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _purchases_AddToPurchase_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../purchases/AddToPurchase.vue */ "./resources/js/components/purchases/AddToPurchase.vue");
 //
 //
 //
@@ -7912,6 +7917,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     product: {
@@ -7920,6 +7930,9 @@ __webpack_require__.r(__webpack_exports__);
     index: {
       type: Number
     }
+  },
+  components: {
+    AddToPurchase: _purchases_AddToPurchase_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   }
 });
 
@@ -8494,10 +8507,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   props: {
     product_id: {
-      type: Number
+      type: Number,
+      required: true
     },
     purchase_price: {
-      type: Number
+      type: Number,
+      required: true
     }
   },
   data: function data() {
@@ -12038,7 +12053,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".image-container{\n  width: 100px;\n}\n", ""]);
+exports.push([module.i, ".image-container {\n  width: 100px;\n}\n", ""]);
 
 // exports
 
@@ -38432,7 +38447,7 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "rounded-sm shadow-sm bg-white px-4 py-2" }, [
+  return _c("div", { staticClass: "shadow-sm bg-white " }, [
     _c("table", { staticClass: "table-auto w-full" }, [
       _vm._m(0),
       _vm._v(" "),
@@ -38460,6 +38475,8 @@ var staticRenderFns = [
         _c("th", { staticClass: "px-1 py-2" }, [_vm._v("Precio por menor")]),
         _vm._v(" "),
         _c("th", { staticClass: "px-1 py-2" }, [_vm._v("Precio distribuidor")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "px-1 py-2" }, [_vm._v("Acciones")]),
       ]),
     ])
   },
@@ -38487,7 +38504,7 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c("tr", { staticClass: "border-b text-center" }, [
     _c("td", { staticClass: "flex flex-wrap justify-center items-center" }, [
-      _c("div", { staticClass: " image-container " }, [
+      _c("div", { staticClass: "image-container" }, [
         _c("img", {
           staticClass: "object-contain md:object-fill",
           attrs: {
@@ -38529,7 +38546,18 @@ var render = function () {
       ),
     ]),
     _vm._v(" "),
-    _c("td"),
+    _c(
+      "td",
+      [
+        _c("add-to-purchase", {
+          attrs: {
+            product_id: _vm.product.id,
+            purchase_price: _vm.product.distributor_price,
+          },
+        }),
+      ],
+      1
+    ),
   ])
 }
 var staticRenderFns = []

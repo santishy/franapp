@@ -24,7 +24,8 @@
                     :key="product.id"
                     :product="product"
                     :index="index"
-                ></product-list-item>
+                >
+                </product-list-item>
             </product-list>
             <product-card 
                 v-else

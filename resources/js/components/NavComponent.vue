@@ -491,6 +491,10 @@ export default {
                     name: "Nuevo producto",
                     url: "/products/create",
                 },
+                {
+                    name: "Catalago",
+                    url: "/products",
+                },
                 
             ],
             ReportsMenu: [

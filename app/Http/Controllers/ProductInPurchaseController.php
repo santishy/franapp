@@ -10,6 +10,10 @@ use Illuminate\Http\Request;
 
 class ProductInPurchaseController extends Controller
 {
+
+    public function index(){
+        
+    }
     //corregir parametro en el update
     public function update(Request $request, Product $product)
     {
