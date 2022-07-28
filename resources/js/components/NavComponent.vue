@@ -423,7 +423,7 @@ export default {
                 },
                 {
                     name: "Compras",
-                    url: "/products",
+                    url: "/products/?queryType=toBuy",
                 },
                 {
                     name: "Existencias",
@@ -493,7 +493,7 @@ export default {
                 },
                 {
                     name: "Catalago",
-                    url: "/products",
+                    url: "/products/?queryType=list",
                 },
                 
             ],

@@ -72,7 +72,6 @@
         </div>
         <information-component>
             <template slot="title"> Productos </template>
-
             <message
                 :title="modalDataConfirm.title"
                 :message="modalDataConfirm.message"

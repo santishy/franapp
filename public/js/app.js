@@ -3010,7 +3010,7 @@ __webpack_require__.r(__webpack_exports__);
         url: "/sales/create"
       }, {
         name: "Compras",
-        url: "/products"
+        url: "/products/?queryType=toBuy"
       }, {
         name: "Existencias",
         url: "/inventories"
@@ -3060,7 +3060,7 @@ __webpack_require__.r(__webpack_exports__);
         url: "/products/create"
       }, {
         name: "Catalago",
-        url: "/products"
+        url: "/products/?queryType=list"
       }],
       ReportsMenu: [{
         name: "Ventas",
@@ -6993,7 +6993,6 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-//
 //
 //
 //
