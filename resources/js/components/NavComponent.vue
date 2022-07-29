@@ -419,7 +419,7 @@ export default {
             movementsMenu: [
                 {
                     name: "Ventas",
-                    url: "/sales/create",
+                    url: "/sales/create/?queryType=sell",
                 },
                 {
                     name: "Compras",

@@ -37,7 +37,20 @@
                 </button>
             </div>
             <div class="grid md:grid-cols-4 grid-cols-1 gap-4">
+                <product-list
+                    v-if="!isMobile && windowResizing > 960"
+                    class="col-span-5"
+                >
+                    <product-list-item
+                        v-for="(product, index) in products"
+                        :key="product.id"
+                        :product="product"
+                        :index="index"
+                    >
+                    </product-list-item>
+                </product-list>
                 <product-card
+                    v-else
                     v-for="(product, index) in products"
                     :key="product.id"
                     :product="product"
@@ -49,7 +62,6 @@
                             :product="product"
                             :index="index"
                         ></add-to-sale>
-                        
                     </template>
                 </product-card>
             </div>
@@ -61,11 +73,18 @@
 import { mapActions } from "vuex";
 import XIcon from "../icons/XIcon.vue";
 import ProductCardComponent from "./ProductCardComponent";
+import ProductListItem from "./ProductListItem.vue";
+import ProductList from "./ProductList.vue"
 import AddToSale from "../sales/AddToSale.vue";
+import ResizeObs from "../../helpers/ResizeObs";
+import checkMobile from "../../helpers/CheckMobile.js";
+
 export default {
     components: {
         "product-card": ProductCardComponent,
         XIcon,
+        ProductListItem,
+        ProductList,
         AddToSale,
     },
     data() {
@@ -74,6 +93,7 @@ export default {
             isOpen: false,
             sku: "",
             params: {},
+            resizeObserver:null
         };
     },
     created() {
@@ -82,6 +102,7 @@ export default {
             this.params = obj.params;
             this.isOpen = true;
         });
+        this.resizeObserver = new ResizeObs();
     },
     methods: {
         ...mapActions(["search"]),
@@ -98,5 +119,13 @@ export default {
             } catch (error) {}
         },
     },
+    computed:{
+        isMobile(){
+            return checkMobile();
+        },
+        windowResizing(){ 
+            return this.resizeObserver.windowWidth;
+        }
+    }
 };
 </script>

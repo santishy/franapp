@@ -18,8 +18,7 @@
                 ></search-by-category>
                 <search-component ref="search" class="w-full md:w-2/4" />
             </div>
-            <div class="text-xl font-extralight">{{windowResizing}}</div>
-            <product-list v-if="!isMobile" class="col-span-5">
+            <product-list v-if="!isMobile && windowResizing > 960" class="col-span-5">
                 <product-list-item
                     v-for="(product, index) in products"
                     :key="product.id"
@@ -134,11 +133,12 @@ export default {
             obj: new Object(),
             arr: new Array(),
             message: null,
+            resizeObserver:null,
         };
     },
     created() {
         this.cleanLocalStorage();
-
+        this.resizeObserver = new ResizeObs(); 
         this.getQueryType();
         
     },
@@ -222,11 +222,10 @@ export default {
         isMobile(){
             return checkMobile();
         },
-        windowResizing(){
-            let resizeObserver = new ResizeObs();
-            console.log("getter: ",resizeObserver.windowWidth)
-            return resizeObserver.windowWidth;
+        windowResizing(){ 
+            return this.resizeObserver.windowWidth;
         }
+        
     },
 };
 </script>

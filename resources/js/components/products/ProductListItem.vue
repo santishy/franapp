@@ -29,37 +29,18 @@
             {{ product.formatted_distributor_price }}
         </td>
         <td>
-            <div class="flex flex-wrap justify-center items-center">
+            <div v-if="queryTypeExists" class="flex flex-wrap justify-center items-center">
                 <add-to-purchase
-                    v-show="
-                        visibleActions.purchase.toUpperCase() ===
-                        queryType.toUpperCase()
-                    "
+                    v-show="isPurchase"
                     :product_id="product.id"
                     :purchase_price="product.distributor_price"
                 >
                 </add-to-purchase>
-                <add-to-sale
-                    v-show="
-                        visibleActions.sale.toUpperCase() ===
-                        queryType.toUpperCase()
-                    "
-                    :index="index"
-                    :product="product"
-                >
+                <add-to-sale v-show="isSale" :index="index" :product="product">
                 </add-to-sale>
-                <edit-product
-                    v-show="
-                        visibleActions.edit.toUpperCase() ===
-                        queryType.toUpperCase()
-                    "
-                    :product="product"
-                ></edit-product>
+                <edit-product v-show="isEdit" :product="product"></edit-product>
                 <remove-product-component
-                    v-show="
-                        visibleActions.delete.toUpperCase() ===
-                        queryType.toUpperCase()
-                    "
+                    v-show="isRemove"
                     :product="product"
                     :index="index"
                 ></remove-product-component>
@@ -98,8 +79,37 @@ export default {
             },
         };
     },
+    methods:{
+        queryTypeExists(){
+            if (!this.queryType) {
+                console.log("Debe habilitar queryType en la url");
+                return false;
+            }
+        }
+    },
     computed: {
         ...mapState(["queryType"]),
+        isPurchase() {
+            return (
+                this.visibleActions.purchase.toUpperCase() ===
+                this.queryType.toUpperCase()
+            );
+        },
+        isSale() {
+            return (
+                this.visibleActions.sale.toUpperCase() === this.queryType.toUpperCase()
+            );
+        },
+        isEdit() {
+            return (
+                this.visibleActions.edit.toUpperCase() === this.queryType.toUpperCase()
+            );
+        },
+        isRemove() {
+            return (
+                this.visibleActions.delete.toUpperCase() === this.queryType.toUpperCase()
+            );
+        },
     },
 };
 </script>

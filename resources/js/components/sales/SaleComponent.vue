@@ -124,7 +124,7 @@
 import ProductMatching from "../products/ProductMatching.vue";
 import SearchComponent from "../products/SearchComponent.vue";
 import InventoryList from "../inventories/InventoryList.vue";
-import { mapState } from "vuex";
+import { mapState, mapMutations } from "vuex";
 import SalesCart from "./SalesCart";
 import NavComponent from "../NavComponent.vue";
 import SaleToCustomer from "./SaleToCustomer.vue";
@@ -169,6 +169,7 @@ export default {
         EventBus.$on("sale-to-client", (data) => {
             this.localSale = data.sale;
         });
+        this.getQueryType();
     },
     data() {
         return {
@@ -176,6 +177,13 @@ export default {
             show: false,
             localSale: null,
         };
+    },
+    methods:{
+        ...mapMutations(["SET_QUERY_TYPE"]),
+        getQueryType(){
+            let url = new URL(window.location.href);
+            this.SET_QUERY_TYPE(url.searchParams.get('queryType'));
+        },
     },
     computed: {
         ...mapState(["salePriceOption"]),
