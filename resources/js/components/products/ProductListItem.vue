@@ -29,17 +29,50 @@
             {{ product.formatted_distributor_price }}
         </td>
         <td>
-            <add-to-purchase
-                :product_id="product.id"
-                :purchase_price="product.distributor_price"
-            >
-            </add-to-purchase>
+            <div class="flex flex-wrap justify-center items-center">
+                <add-to-purchase
+                    v-show="
+                        visibleActions.purchase.toUpperCase() ===
+                        queryType.toUpperCase()
+                    "
+                    :product_id="product.id"
+                    :purchase_price="product.distributor_price"
+                >
+                </add-to-purchase>
+                <add-to-sale
+                    v-show="
+                        visibleActions.sale.toUpperCase() ===
+                        queryType.toUpperCase()
+                    "
+                    :index="index"
+                    :product="product"
+                >
+                </add-to-sale>
+                <edit-product
+                    v-show="
+                        visibleActions.edit.toUpperCase() ===
+                        queryType.toUpperCase()
+                    "
+                    :product="product"
+                ></edit-product>
+                <remove-product-component
+                    v-show="
+                        visibleActions.delete.toUpperCase() ===
+                        queryType.toUpperCase()
+                    "
+                    :product="product"
+                    :index="index"
+                ></remove-product-component>
+            </div>
         </td>
     </tr>
 </template>
 <script>
 import AddToPurchase from "../purchases/AddToPurchase.vue";
-
+import AddToSale from "../sales/AddToSale.vue";
+import EditProduct from "./EditProduct.vue";
+import RemoveProductComponent from "./RemoveProductComponent.vue";
+import { mapState } from "vuex";
 export default {
     props: {
         product: {
@@ -51,6 +84,22 @@ export default {
     },
     components: {
         AddToPurchase,
+        AddToSale,
+        EditProduct,
+        RemoveProductComponent,
+    },
+    data() {
+        return {
+            visibleActions: {
+                purchase: "toBuy",
+                sale: "sell",
+                edit: "list",
+                delete: "list",
+            },
+        };
+    },
+    computed: {
+        ...mapState(["queryType"]),
     },
 };
 </script>

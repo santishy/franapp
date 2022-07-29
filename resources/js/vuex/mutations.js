@@ -57,6 +57,10 @@ const setErrors = (state,err) => {
     ).flat()
 }
 
+const SET_QUERY_TYPE = (state,value) => {
+    state.queryType = value;
+}
+
 export default {
     setProductsInPurchase,
     SET_USER,
@@ -67,4 +71,5 @@ export default {
     removeTransactionProduct,
     setModalDataConfirm,
     SET_PURCHASE_VISIBILITY,
+    SET_QUERY_TYPE
 }

@@ -18,6 +18,7 @@
                 ></search-by-category>
                 <search-component ref="search" class="w-full md:w-2/4" />
             </div>
+            <div class="text-xl font-extralight">{{windowResizing}}</div>
             <product-list v-if="!isMobile" class="col-span-5">
                 <product-list-item
                     v-for="(product, index) in products"
@@ -101,6 +102,7 @@ import RemoveProductComponent from "./RemoveProductComponent.vue";
 import checkMobile from "../../helpers/CheckMobile.js";
 import ProductList from "./ProductList.vue";
 import ProductListItem from "./ProductListItem.vue";
+import ResizeObs from "../../helpers/ResizeObs.js"
 export default {
     components: {
         "product-card": ProductCardComponent,
@@ -136,6 +138,9 @@ export default {
     },
     created() {
         this.cleanLocalStorage();
+
+        this.getQueryType();
+        
     },
     mounted() {
         
@@ -148,7 +153,11 @@ export default {
     },
     methods: {
         ...mapActions(["getProducts", "search"]),
-        ...mapMutations(["setModalDataConfirm"]),
+        ...mapMutations(["setModalDataConfirm","SET_QUERY_TYPE"]),
+        getQueryType(){
+            let url = new URL(window.location.href);
+            this.SET_QUERY_TYPE(url.searchParams.get('queryType'));
+        },
         removeFromArray(index) {
             this.products.splice(index, 1);
         },
@@ -212,6 +221,11 @@ export default {
         ...mapState(["modalDataConfirm"]),
         isMobile(){
             return checkMobile();
+        },
+        windowResizing(){
+            let resizeObserver = new ResizeObs();
+            console.log("getter: ",resizeObserver.windowWidth)
+            return resizeObserver.windowWidth;
         }
     },
 };
