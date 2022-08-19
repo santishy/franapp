@@ -10,7 +10,8 @@
                 px-4
                 w-full
                 mx-auto
-                mb-4 sm:mb-0
+                mb-4
+                sm:mb-0
             "
         >
             <form
@@ -71,6 +72,7 @@
                     v-if="src"
                     class="flex flex-wrap justify-center w-full bg-gray-200 p-2"
                 >
+                
                     <div class="w-8/12 sm:w-6/12 px-4">
                         <img
                             :src="src"
@@ -89,42 +91,6 @@
                             Presiona guardar para que se reflejen los cambios
                         </p>
                     </div>
-                </div>
-                <category-select
-                    class="border-t border-gray-300  sm:py-2"
-                    inputClass="sm:pl-60"
-                    list-container="sm:left-52"
-                    :categories="categories"
-                    :product="product"
-                >
-                    <template slot="labelCategory">
-                        <label for="" :class="[labelStyle]">Categoría</label>
-                    </template>
-                </category-select>
-
-                <input
-                    type="hidden"
-                    name="category_id"
-                    v-model="form.category_id"
-                />
-                <div
-                     :class="[controlsContainerStyle]"
-                >
-                    <input
-                        type="file"
-                        name="image"
-                        id="image"
-                        @change="onFileSelected"
-                        :class="[inputStyle]"
-                        placeholder="Subir imagen"
-                        aria-label="Full name"
-                    />
-                    <label :class="labelStyle" class="sm:flex-col flex-wrap"
-                        >Imagen
-                        <span class="text-xs text-gray-600 block mt-0"
-                            >(Opcional)</span
-                        ></label
-                    >
                 </div>
                 <div :class="[controlsContainerStyle]">
                     <input
@@ -149,19 +115,41 @@
                     </textarea>
                     <label for="" :class="[labelStyle]">Descripción</label>
                 </div>
+                <category-select
+                    class="border-t border-gray-300 sm:py-2"
+                    inputClass="sm:pl-60"
+                    list-container="sm:left-52"
+                    :categories="categories"
+                    :product="product"
+                >
+                    <template slot="labelCategory">
+                        <label for="" :class="[labelStyle]">Categoría</label>
+                    </template>
+                </category-select>
+
+                <input
+                    type="hidden"
+                    name="category_id"
+                    v-model="form.category_id"
+                />
                 <div :class="[controlsContainerStyle]">
                     <input
-                        v-model="form.wholesale_price"
-                        name="wholesale_price"
+                        type="file"
+                        name="image"
+                        id="image"
+                        @change="onFileSelected"
                         :class="[inputStyle]"
-                        type="text"
-                        placeholder="PRECIO AL POR MAYOR"
+                        placeholder="Subir imagen"
                         aria-label="Full name"
                     />
-                    <label for="" :class="[labelStyle]"
-                        >Precio al por mayor</label
+                    <label :class="labelStyle" class="sm:flex-col flex-wrap"
+                        >Imagen
+                        <span class="text-xs text-gray-600 block mt-0"
+                            >(Opcional)</span
+                        ></label
                     >
                 </div>
+                
                 <div :class="[controlsContainerStyle]">
                     <input
                         v-model="form.retail_price"
@@ -172,9 +160,23 @@
                         aria-label="Full name"
                     />
                     <label for="" :class="[labelStyle]"
-                        >Precio al por menor</label
+                        >Lista de precios 1</label
                     >
                 </div>
+                <div :class="[controlsContainerStyle]">
+                    <input
+                        v-model="form.wholesale_price"
+                        name="wholesale_price"
+                        :class="[inputStyle]"
+                        type="text"
+                        placeholder="PRECIO AL POR MAYOR"
+                        aria-label="Full name"
+                    />
+                    <label for="" :class="[labelStyle]"
+                        >Lista de precios 2</label
+                    >
+                </div>
+                
                 <div :class="[controlsContainerStyle]">
                     <input
                         v-model="form.distributor_price"
@@ -184,7 +186,7 @@
                         placeholder="PRECIO PROVEEDOR"
                         aria-label="Full name"
                     />
-                    <label for="" :class="[labelStyle]">Precio proveedor</label>
+                    <label for="" :class="[labelStyle]">Costo</label>
                 </div>
                 <div
                     v-if="purchaseVisibility && method.toUpperCase() == 'POST'"
@@ -198,7 +200,10 @@
                             placeholder="CANTIDAD DE COMPRA (OPCIONAL)"
                             aria-label="Full name"
                         />
-                        <label for="" :class="[labelStyle]" class="sm:flex-col flex-wrap"
+                        <label
+                            for=""
+                            :class="[labelStyle]"
+                            class="sm:flex-col flex-wrap"
                             >Cantidad de compra
                             <span class="text-xs text-gray-600 block mt-0"
                                 >(Opcional)</span
@@ -270,7 +275,8 @@
                             hover:text-white
                             py-2
                             px-4
-                            mt-2 sm:mt-0
+                            mt-2
+                            sm:mt-0
                             border-b-2 border-blue-500
                             hover:border-transparent
                             w-full
@@ -279,7 +285,6 @@
                         Guardar
                     </button>
                 </div>
-                
             </form>
         </div>
     </nav-component>
