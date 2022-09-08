@@ -37,6 +37,8 @@
                     <input
                         v-model="form.phone_number"
                         name="phone_number"
+                        autocomplete="off"
+                        
                         class="
                             appearance-none
                             sm:shadow-none
@@ -91,6 +93,7 @@
                 >
                     <input
                         v-model="form.name"
+                        autocomplete="off"
                         name="name"
                         class="
                             appearance-none
@@ -145,6 +148,7 @@
                 >
                     <input
                         v-model="form.address"
+                        autocomplete="off"
                         name="address"
                         class="
                             appearance-none
@@ -201,6 +205,7 @@
                     <input
                         v-model="form.email"
                         name="email"
+                        autocomplete="off"
                         class="
                             appearance-none
                             sm:shadow-none
@@ -306,7 +311,7 @@
                         >Precio asignado</label
                     >
                 </div>
-                <div
+                <!-- <div
                     class="
                         flex flex-col-reverse
                         px-2
@@ -363,7 +368,7 @@
                         "
                         >Empresa</label
                     >
-                </div>
+                </div> -->
                 <div class="flex items-center">
                     <errors-component :errors-found="errors" />
                 </div>
@@ -405,12 +410,14 @@ export default {
         return {
             form: { assigned_price: "" },
             errors: null,
+            localMethod:''
         };
     },
     mounted() {
         if (!!this.client) {
             this.form = this.client;
         }
+        this.localMethod = this.method;
     },
     props: {
         method: {
@@ -426,12 +433,16 @@ export default {
             if(this.form?.phone_number.length === 10){
                 axios.get('/clients/' + this.form.phone_number)
                     .then( res => {
-                        console.log(res)
+                        if(res.data.error){
+                            return;
+                        }
+                        this.form = res.data.client;
+                        this.localMethod = 'put';
                     })
-                    .catch(e)
-                    {
-                        console.log(e.message)
-                    };
+                    .catch(e => {
+                        console.log(e)
+                    })
+                    
 
             }
         },
@@ -441,15 +452,15 @@ export default {
                 message: "EL cliente se creo correctamente",
             };
             var url = "/clients";
-            if (this.method == "put") {
+            if (this.localMethod == "put") {
                 obj.message = "El cliente se modifico correctamente";
                 this.form._method = "put";
-                url = `/clients/${this.client.phone_number}`;
+                url = `/clients/${this.form.phone_number}`;
             }
             axios["post"](url, this.form)
                 .then((res) => {
                     this.notify(obj);
-                    if (this.method == "post") this.form = {};
+                    if (this.localMethod == "post") this.form = {};
                     this.errors = null;
                 })
                 .catch((err) => {
@@ -459,11 +470,11 @@ export default {
     },
     computed: {
         definePermission() {
-            if (this.method.toUpperCase() === "POST") return "create client";
+            if (this.localMethod.toUpperCase() === "POST") return "create client";
             return "edit client";
         },
         getTitle() {
-            if (this.method.toUpperCase() === "POST") return "Nuevo cliente";
+            if (this.localMethod.toUpperCase() === "POST") return "Nuevo cliente";
             return "Modificar cliente";
         },
     },

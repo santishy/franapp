@@ -98,20 +98,7 @@
                             >
                                 Email
                             </th>
-                            <th
-                                class="
-                                    bg-blue-700
-                                    p-2
-                                    text-white
-                                    font-semibold
-                                    md:border md:border-grey-500
-                                    text-left
-                                    block
-                                    md:table-cell
-                                "
-                            >
-                                Empresa
-                            </th>
+
                             <th
                                 class="
                                     bg-blue-700

@@ -51,8 +51,9 @@ class Handler extends ExceptionHandler
     {
         if($e instanceof ModelNotFoundException)
         {
-            return response(['message' => "No query results for model {$e->getModel()} {$request->route()->client}"
-        ],404);
+            return response([
+                'error' => "No query results for model {$e->getModel()} {$request->route()->client}",
+        ],200);
         }
         return parent::render($request, $e);
     }

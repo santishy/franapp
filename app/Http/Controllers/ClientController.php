@@ -25,7 +25,7 @@ class ClientController extends Controller
     public function show(Client $client)
     {
         return response()->json([
-            'check' => $client
+            'client' => $client
         ]);
     }
     public function store(Request $request){
@@ -42,7 +42,6 @@ class ClientController extends Controller
             'address' => 'required',
             'phone_number' => ['required',Rule::unique('clients')->ignore($request->id)],
             'email' => "required|email|unique:clients,email,$request->id",
-            'company' => 'required',
             'assigned_price' => 'required'
         ],
         [
@@ -53,7 +52,6 @@ class ClientController extends Controller
             'email.required' => 'El email es requerido',
             'email.email' => 'El email debe ser valido',
             'email.unique' => 'El email ya existe en la base de datos',
-            'company.required' => 'La empresa o negocio es requerido.',
             'assigned_price.required' => 'El precio es requerido'
         ]);
     }
