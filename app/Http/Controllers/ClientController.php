@@ -22,7 +22,12 @@ class ClientController extends Controller
         return view('clients.create');
 
     }
-
+    public function show(Client $client)
+    {
+        return response()->json([
+            'check' => $client
+        ]);
+    }
     public function store(Request $request){
 
         $this->authorize('create',new Client);

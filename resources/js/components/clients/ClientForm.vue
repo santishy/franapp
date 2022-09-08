@@ -35,6 +35,61 @@
                     "
                 >
                     <input
+                        v-model="form.phone_number"
+                        name="phone_number"
+                        class="
+                            appearance-none
+                            sm:shadow-none
+                            static
+                            sm:p-0
+                            p-2
+                            bg-gray-200
+                            sm:bg-transparent
+                            border-none
+                            w-full
+                            text-gray-700
+                            mr-3
+                            sm:py-1 sm:pr-2 sm:pl-56
+                            leading-tight
+                            focus:outline-none
+                        "
+                        @keyup="searchPhoneNumber"
+                        type="text"
+                        placeholder="NUMERO DE TELEFONO"
+                        aria-label="Full name"
+                    />
+                    <label
+                        for=""
+                        class="
+                            sm:absolute
+                            pl-2
+                            sm:pl-0 sm:p-0
+                            p-2
+                            sm:bg-gray-200
+                            h-full
+                            flex
+                            items-center
+                            sm:w-52 sm:justify-center
+                            text-indigo-800
+                            font-mono
+                        "
+                        >Telefono</label
+                    >
+                </div>
+                <div
+                    class="
+                        flex flex-col-reverse
+                        px-2
+                        sm:px-0
+                        sm:flex-row
+                        sm:items-center
+                        sm:border-b
+                        sm:border-t
+                        border-gray-300
+                        sm:py-2 sm:relative
+                    "
+                >
+                    <input
                         v-model="form.name"
                         name="name"
                         class="
@@ -129,60 +184,7 @@
                         >Dirección</label
                     >
                 </div>
-                <div
-                    class="
-                        flex flex-col-reverse
-                        px-2
-                        sm:px-0
-                        sm:flex-row
-                        sm:items-center
-                        sm:border-b
-                        sm:border-t
-                        border-gray-300
-                        sm:py-2 sm:relative
-                    "
-                >
-                    <input
-                        v-model="form.phone_number"
-                        name="phone_number"
-                        class="
-                            appearance-none
-                            sm:shadow-none
-                            static
-                            sm:p-0
-                            p-2
-                            bg-gray-200
-                            sm:bg-transparent
-                            border-none
-                            w-full
-                            text-gray-700
-                            mr-3
-                            sm:py-1 sm:pr-2 sm:pl-56
-                            leading-tight
-                            focus:outline-none
-                        "
-                        type="text"
-                        placeholder="NUMERO DE TELEFONO"
-                        aria-label="Full name"
-                    />
-                    <label
-                        for=""
-                        class="
-                            sm:absolute
-                            pl-2
-                            sm:pl-0 sm:p-0
-                            p-2
-                            sm:bg-gray-200
-                            h-full
-                            flex
-                            items-center
-                            sm:w-52 sm:justify-center
-                            text-indigo-800
-                            font-mono
-                        "
-                        >Telefono</label
-                    >
-                </div>
+                
                 <div
                     class="
                         flex flex-col-reverse
@@ -420,6 +422,19 @@ export default {
         },
     },
     methods: {
+        async searchPhoneNumber(){
+            if(this.form?.phone_number.length === 10){
+                axios.get('/clients/' + this.form.phone_number)
+                    .then( res => {
+                        console.log(res)
+                    })
+                    .catch(e)
+                    {
+                        console.log(e.message)
+                    };
+
+            }
+        },
         submit() {
             var obj = {
                 title: "Clientes",
