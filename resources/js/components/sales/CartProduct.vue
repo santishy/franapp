@@ -1,7 +1,128 @@
 <template>
     <form @submit.prevent="submit">
         <div
-            class="mt-2 flex  
+            class="
+                mt-2
+                flex flex-wrap
+                items-center
+                justify-center
+                bg-gray-200
+                px-2
+                py-4
+                rounded
+            "
+        >
+            <span
+                class="
+                    text-gray-700 text-center
+                    w-full
+                    md:w-1/12
+                    col-span-2
+                    flex-none
+                    font-semibold
+                "
+            >
+                {{ product.sku }}
+            </span>
+            <span
+                class="
+                    text-gray-700 text-center
+                    mb-2
+                    w-full
+                    col-span-2
+                    md:w-1/12
+                    flex-none
+                "
+            >
+                {{ product.description }}
+            </span>
+            <div class="w-full md:w-6/12 flex flex-wrap items-center">
+
+                <div class="w-2/12 flex-grow">
+                    <label> Cantidad </label>
+                </div>
+                <div class="w-4/12 flex-grow">
+                    <input
+                        v-model="form.qty"
+                        name="qty"
+                        class="
+                            appearance-none
+                            bg-white
+                            border-gray-600 border-2
+                            rounded-sm
+                            w-full
+                            text-gray-700
+                            mr-3
+                            py-1
+                            px-2
+                            leading-tight
+                            focus:outline-none
+                        "
+                        type="number"
+                        placeholder="Cantidad de venta"
+                        aria-label="Full name"
+                    />
+                </div>
+                <div class="w-2/12 flex-grow mt-2">
+                    <label> Precio </label>
+                </div>
+                <div class="w-4/12 flex-grow mt-2">
+                    <input
+                        v-model="form.sale_price"
+                        name="qty"
+                        class="
+                            appearance-none
+                            bg-white
+                            border-gray-600 border-2
+                            rounded-sm
+                            w-full
+                            text-gray-700
+                            mr-3
+                            py-1
+                            px-2
+                            leading-tight
+                            focus:outline-none
+                        "
+                        type="text"
+                        placeholder="Precio de venta"
+                        aria-label="Full name"
+                    />
+                </div>
+            </div>
+            <div
+                v-if="saleStatus === 'pending'"
+                class="w-full flex flex-wrap justify-center"
+            >
+                <delete-sale-product :id="product.id"> </delete-sale-product>
+                <button
+                    type="submit"
+                    class="
+                        bg-blue-300
+                        font-semibold
+                        mt-2
+                        rounded
+                        transition-all
+                        duration-500
+                        ease-in-out
+                        hover:bg-blue-500
+                        text-blue-700
+                        hover:text-white
+                        py-2
+                        px-4
+                        border-b-2 border-blue-500
+                        hover:border-transparent
+                        w-2/3
+                    "
+                >
+                    <edit-icon></edit-icon>
+                    Modificar
+                </button>
+            </div>
+        </div>
+    </form>
+    <!-- <form @submit.prevent="submit">
+        <div
+            class="mt-2 flex
                 flex-wrap items-center justify-center bg-gray-200 px-2 py-4 rounded"
         >
             <p
@@ -55,7 +176,7 @@
                 </button>
             </div>
         </div>
-    </form>
+    </form> -->
 </template>
 
 <script>
@@ -66,19 +187,19 @@ export default {
     props: {
         product: {
             type: Object,
-            required: true
+            required: true,
         },
         index: {
-            type: Number
+            type: Number,
         },
         saleStatus: {
-            type: String
-        }
+            type: String,
+        },
     },
     components: { DeleteSaleProduct, EditIcon },
     data() {
         return {
-            form: {}
+            form: {},
         };
     },
     created() {
@@ -96,19 +217,19 @@ export default {
             }
             axios
                 .post(`/sales/${this.product.id}/products`, this.form)
-                .then(res => {
+                .then((res) => {
                     EventBus.$emit("updated-sales-product", {
                         index: this.index,
-                        transaction: res.data
+                        transaction: res.data,
                     });
                 })
-                .catch(err => {
+                .catch((err) => {
                     console.log(err);
                 });
-        }
+        },
     },
     computed: {
-        ...mapState(["salePriceOption"])
-    }
+        ...mapState(["salePriceOption"]),
+    },
 };
 </script>

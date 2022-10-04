@@ -34,10 +34,11 @@
                         sm:flex-row
                         justify-center
                         items-baseline
+                        mb-4
                     "
                 >
                     <search-by-category
-                        class="sm:w-2/4 w-full sm:mr-2"
+                        class="sm:w-2/4 w-full sm:mr-2 "
                         :categories="categories"
                     ></search-by-category>
                     <search-component class="md:w-2/4 w-full sm:mt-0 mt-4" />
