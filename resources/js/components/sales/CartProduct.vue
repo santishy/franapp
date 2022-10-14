@@ -2,61 +2,37 @@
     <form @submit.prevent="submit">
         <div
             class="
-                mt-2
-                flex flex-wrap
-                items-center
-                justify-center
-                bg-gray-200
-                px-2
-                py-4
-                rounded
+                grid grid-cols-5
             "
         >
+            <div class="w-32">
+                <img class="w-100" :src="product?.image_url" :alt="product?.sku"/>
+            </div>
             <span
                 class="
-                    text-gray-700 text-center
-                    w-full
-                    md:w-1/12
-                    col-span-2
-                    flex-none
-                    font-semibold
+
                 "
             >
                 {{ product.sku }}
             </span>
             <span
                 class="
-                    text-gray-700 text-center
-                    mb-2
-                    w-full
-                    col-span-2
-                    md:w-1/12
-                    flex-none
+
                 "
             >
                 {{ product.description }}
             </span>
-            <div class="w-full md:w-6/12 flex flex-wrap items-center">
+            <div class="">
 
-                <div class="w-2/12 flex-grow">
+                <div class="">
                     <label> Cantidad </label>
                 </div>
-                <div class="w-4/12 flex-grow">
+                <div class="">
                     <input
                         v-model="form.qty"
                         name="qty"
                         class="
-                            appearance-none
-                            bg-white
-                            border-gray-600 border-2
-                            rounded-sm
-                            w-full
-                            text-gray-700
-                            mr-3
-                            py-1
-                            px-2
-                            leading-tight
-                            focus:outline-none
+
                         "
                         type="number"
                         placeholder="Cantidad de venta"
@@ -71,17 +47,7 @@
                         v-model="form.sale_price"
                         name="qty"
                         class="
-                            appearance-none
-                            bg-white
-                            border-gray-600 border-2
-                            rounded-sm
-                            w-full
-                            text-gray-700
-                            mr-3
-                            py-1
-                            px-2
-                            leading-tight
-                            focus:outline-none
+
                         "
                         type="text"
                         placeholder="Precio de venta"
@@ -91,27 +57,13 @@
             </div>
             <div
                 v-if="saleStatus === 'pending'"
-                class="w-full flex flex-wrap justify-center"
+                class=""
             >
                 <delete-sale-product :id="product.id"> </delete-sale-product>
                 <button
                     type="submit"
                     class="
-                        bg-blue-300
-                        font-semibold
-                        mt-2
-                        rounded
-                        transition-all
-                        duration-500
-                        ease-in-out
-                        hover:bg-blue-500
-                        text-blue-700
-                        hover:text-white
-                        py-2
-                        px-4
-                        border-b-2 border-blue-500
-                        hover:border-transparent
-                        w-2/3
+
                     "
                 >
                     <edit-icon></edit-icon>

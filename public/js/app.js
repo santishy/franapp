@@ -12430,6 +12430,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
 var render = function render() {
+  var _vm$product, _vm$product2;
+
   var _vm = this,
       _c = _vm._self._c;
 
@@ -12441,23 +12443,27 @@ var render = function render() {
       }
     }
   }, [_c("div", {
-    staticClass: "mt-2 flex flex-wrap items-center justify-center bg-gray-200 px-2 py-4 rounded"
-  }, [_c("span", {
-    staticClass: "text-gray-700 text-center w-full md:w-1/12 col-span-2 flex-none font-semibold"
+    staticClass: "grid grid-cols-5"
+  }, [_c("div", {
+    staticClass: "w-32"
+  }, [_c("img", {
+    staticClass: "w-100",
+    attrs: {
+      src: (_vm$product = _vm.product) === null || _vm$product === void 0 ? void 0 : _vm$product.image_url,
+      alt: (_vm$product2 = _vm.product) === null || _vm$product2 === void 0 ? void 0 : _vm$product2.sku
+    }
+  })]), _vm._v(" "), _c("span", {
+    staticClass: ""
   }, [_vm._v("\n            " + _vm._s(_vm.product.sku) + "\n        ")]), _vm._v(" "), _c("span", {
-    staticClass: "text-gray-700 text-center mb-2 w-full col-span-2 md:w-1/12 flex-none"
-  }, [_vm._v("\n            " + _vm._s(_vm.product.description) + "\n        ")]), _vm._v(" "), _c("div", {
-    staticClass: "w-full md:w-6/12 flex flex-wrap items-center"
-  }, [_vm._m(0), _vm._v(" "), _c("div", {
-    staticClass: "w-4/12 flex-grow"
-  }, [_c("input", {
+    staticClass: ""
+  }, [_vm._v("\n            " + _vm._s(_vm.product.description) + "\n        ")]), _vm._v(" "), _c("div", {}, [_vm._m(0), _vm._v(" "), _c("div", {}, [_c("input", {
     directives: [{
       name: "model",
       rawName: "v-model",
       value: _vm.form.qty,
       expression: "form.qty"
     }],
-    staticClass: "appearance-none bg-white border-gray-600 border-2 rounded-sm w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none",
+    staticClass: "",
     attrs: {
       name: "qty",
       type: "number",
@@ -12483,7 +12489,7 @@ var render = function render() {
       value: _vm.form.sale_price,
       expression: "form.sale_price"
     }],
-    staticClass: "appearance-none bg-white border-gray-600 border-2 rounded-sm w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none",
+    staticClass: "",
     attrs: {
       name: "qty",
       type: "text",
@@ -12500,14 +12506,12 @@ var render = function render() {
         _vm.$set(_vm.form, "sale_price", $event.target.value);
       }
     }
-  })])]), _vm._v(" "), _vm.saleStatus === "pending" ? _c("div", {
-    staticClass: "w-full flex flex-wrap justify-center"
-  }, [_c("delete-sale-product", {
+  })])]), _vm._v(" "), _vm.saleStatus === "pending" ? _c("div", {}, [_c("delete-sale-product", {
     attrs: {
       id: _vm.product.id
     }
   }), _vm._v(" "), _c("button", {
-    staticClass: "bg-blue-300 font-semibold mt-2 rounded transition-all duration-500 ease-in-out hover:bg-blue-500 text-blue-700 hover:text-white py-2 px-4 border-b-2 border-blue-500 hover:border-transparent w-2/3",
+    staticClass: "",
     attrs: {
       type: "submit"
     }
@@ -12518,9 +12522,7 @@ var staticRenderFns = [function () {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _c("div", {
-    staticClass: "w-2/12 flex-grow"
-  }, [_c("label", [_vm._v(" Cantidad ")])]);
+  return _c("div", {}, [_c("label", [_vm._v(" Cantidad ")])]);
 }, function () {
   var _vm = this,
       _c = _vm._self._c;
