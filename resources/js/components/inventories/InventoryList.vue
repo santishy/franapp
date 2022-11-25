@@ -10,7 +10,7 @@
             :class="{ 'bg-gray-500 text-white': selectedIndex === index }"
         >
             <a href="#" class="block p-2 hover:line-through hover:bg-gray-200 uppercase font-normal text-gray-800" @click.prevent="">{{
-                inventory.name 
+                inventory.name
             }}</a>
         </li>
     </ul>

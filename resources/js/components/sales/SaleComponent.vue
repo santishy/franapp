@@ -23,7 +23,7 @@
                     Al ser un usuario administrador, puedes elegir el inventario
                     para realizar la venta
                 </p>
-                <inventory-list></inventory-list>
+                <inventory-list @click.prevent=""></inventory-list>
             </div>
             <div v-else class="w-full px-4">
                 <div
