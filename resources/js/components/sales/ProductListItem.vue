@@ -18,6 +18,9 @@
         <td class="py-4 px-6">
             {{ product.sale_price * product.sale_quantity }}
         </td>
+        <td class="py-4 px-6">
+            <delete-sale-product :id="product.id" :index="index"></delete-sale-product>
+        </td>
     </tr>
 
 </template>
