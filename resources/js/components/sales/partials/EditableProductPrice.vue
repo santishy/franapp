@@ -4,7 +4,7 @@
         <input
             v-model="product.sale_price"
             name="sale_price"
-            class="px-4 py-2  text-center  sm:w-6/12 "
+            class="px-4 py-2  text-center  sm:w-full "
             type="number"
             :class="[disabled ? 'bg-gray-100 text-gray-400' : 'bg-gray-100 text-gray-600']"
             placeholder="Precio de venta"
