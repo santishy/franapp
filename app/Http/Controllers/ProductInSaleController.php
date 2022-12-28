@@ -30,6 +30,7 @@ class ProductInSaleController extends Controller
         Inventory::find($request->inventory_id)->existsProductInStock($product);
 
         $sale = Sale::getTransaction();
+
         $sale->transactions($product);
         $request->product = $product;
         return new TransactionResponse($sale->load('products'));

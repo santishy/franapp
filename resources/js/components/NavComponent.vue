@@ -97,7 +97,7 @@
                         class="md:relative md:hidden"
                     />
                     <a
-                        href="/sales/create"
+                        href="/sales/create/?queryType=sell"
                         class="
                             sm:block
                             hidden
@@ -135,7 +135,7 @@
                         class="md:relative lg:hidden"
                     />
                     <a
-                        href="/sales/create"
+                        href="/sales/create/?queryType=sell"
                         class="
                             sm:hidden
                             border border-t border-b border-gray-300
@@ -495,7 +495,7 @@ export default {
                     name: "Catalago",
                     url: "/products/?queryType=list",
                 },
-                
+
             ],
             ReportsMenu: [
                 {

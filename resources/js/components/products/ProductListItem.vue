@@ -11,7 +11,15 @@
             </div>
         </td>
         <td>
-            {{ product.sku }}
+            <div class="flex justify-center flex-col w-full items-center">
+
+                <p>
+                {{ product.sku }}
+                </p>
+                <a :href="`/barcode/${product.sku}`"  target="_blank">
+                    <barcode class="text-blue-700"/>
+                </a>
+            </div>
         </td>
         <td>
             {{ product.category_name }}
@@ -53,6 +61,7 @@ import AddToPurchase from "../purchases/AddToPurchase.vue";
 import AddToSale from "../sales/AddToSale.vue";
 import EditProduct from "./EditProduct.vue";
 import RemoveProductComponent from "./RemoveProductComponent.vue";
+import Barcode from "../icons/Barcode.vue";
 import { mapState } from "vuex";
 export default {
     props: {
@@ -68,6 +77,7 @@ export default {
         AddToSale,
         EditProduct,
         RemoveProductComponent,
+        Barcode
     },
     data() {
         return {
