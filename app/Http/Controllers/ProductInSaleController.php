@@ -11,6 +11,8 @@ use App\Http\Responses\TransactionResponse;
 use App\Http\Traits\HasTransaction;
 use App\Models\Inventory;
 use App\Rules\Stock;
+use App\Rules\TransactionInventory;
+use Illuminate\Validation\ValidationException;
 
 class ProductInSaleController extends Controller
 {
@@ -20,16 +22,15 @@ class ProductInSaleController extends Controller
 
     public function store(Request $request, Product $product)
     {
-        $this->authorize('create', new Sale);
+        $sale = Sale::getTransaction();
+        $this->authorize('create', $sale);
         $request->validate(
             [
-                'inventory_id' => ['required'],
+                'inventory_id' => ['required',new TransactionInventory($sale)],
             ],
         );
 
         Inventory::find($request->inventory_id)->existsProductInStock($product);
-
-        $sale = Sale::getTransaction();
 
         $sale->transactions($product);
         $request->product = $product;
@@ -38,11 +39,15 @@ class ProductInSaleController extends Controller
 
     public function update(Request $request, Product $product)
     {
-        $this->authorize('update',  $sale = Sale::find(session()->get('sale_id')));
+        $sale = Sale::find(session()->get('sale_id'));
+
+        $this->authorize('update', $sale );
+
         $fields = $request->validate([
             'qty' => 'numeric|min:1',
             'sale_price' => 'numeric|min:1',
-            'product_id' => 'required|exists:product_sale,product_id'
+            'product_id' => 'required|exists:product_sale,product_id',
+            'inventory_id' => [new TransactionInventory($sale)]
         ]);
 
         Inventory::find($request->inventory_id)->hasStock($product, $request->qty);
@@ -67,7 +72,6 @@ class ProductInSaleController extends Controller
 
         if (!session()->exists('sale_id'))
             return new SessionInactive('venta');
-
 
         return response()->json([
             'data' =>  $this->deleteTransactionProduct(

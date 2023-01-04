@@ -6100,7 +6100,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     return {
       seletedInventoryId: null,
       show: false,
-      localSale: null
+      localSale: {}
     };
   },
   methods: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_8__.mapMutations)(["SET_QUERY_TYPE"])), {}, {
@@ -6280,6 +6280,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       });
     },
     updateCart: function updateCart(data) {
+      var _this3 = this;
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
         var res;
         return _regeneratorRuntime().wrap(function _callee$(_context) {
@@ -6294,13 +6295,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 3:
                 res = _context.sent;
                 EventBus.$emit('enabled');
-                _context.next = 10;
+                _context.next = 11;
                 break;
               case 7:
                 _context.prev = 7;
                 _context.t0 = _context["catch"](0);
-                console.log(_context.t0);
-              case 10:
+                _this3.getErrors(_context.t0);
+                _this3.$notify({
+                  group: "foo",
+                  title: "Error",
+                  type: "error",
+                  text: _this3.errors[0]
+                });
+              case 11:
               case "end":
                 return _context.stop();
             }
@@ -12416,7 +12423,7 @@ var render = function render() {
     attrs: {
       name: "fade"
     }
-  }, [_vm.seletedInventoryId == null && _vm.isAdmin ? _c("div", {
+  }, [_vm.seletedInventoryId == null && _vm.isAdmin && !_vm.localSale.inventory_id ? _c("div", {
     staticClass: "flex flex-col justify-center mx-auto px-4 w-full"
   }, [_c("p", {
     staticClass: "border w-full px-4 py-2 ring-2 ring-blue-500 decoration-dotted text-gray-700 rounded-sm bg-indigo-100 mb-2 text-center"

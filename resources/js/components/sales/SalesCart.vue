@@ -2,33 +2,24 @@
     <div>
         <form @submit.prevent="submit" v-can="'create sale'">
             <div v-if="localSale != null">
-                <div
-                    v-show="products.length"
-                    class="
+                <div v-show="products.length" class="
                         flex flex-wrap
                         justify-center
                         items-center
                         text-center
                         mb-2
                         bg-teal-100
-                    "
-                >
+                    ">
                     <label class="mr-4 text-2xl">Total</label>
                     <p class="text-gray-700 text-3xl">${{ getTotal }}</p>
-                    <input
-                        name="total"
-                        type="hidden"
-                        :v-model="(form.total = getTotal)"
-                    />
+                    <input name="total" type="hidden" :v-model="(form.total = getTotal)" />
                 </div>
             </div>
             <div v-if="errors" class="flex items-center mb-3">
                 <errors-component :errors="errors" />
             </div>
             <div class="flex flex-wrap justify-center">
-                <button
-                    v-show="products.length"
-                    class="
+                <button v-show="products.length" class="
                         rounded
                         transition-all
                         duration-500
@@ -41,22 +32,15 @@
                         hover:bg-red-500 hover:border-transparent
                         md:w-2/4
                         w-full
-                    "
-                    :class="[getClass]"
-                >
+                    " :class="[getClass]">
                     Cambiar a {{ modifyTo }}
                 </button>
             </div>
         </form>
         <div v-if="localSale !== null" class="overflow-x-auto relative">
             <product-list>
-                <product-list-item
-                    v-for="(product, index) in products"
-                    :key="product.id"
-                    :product="product"
-                    :sale-status="getStatus"
-                    :index="index"
-                >
+                <product-list-item v-for="(product, index) in products" :key="product.id" :product="product"
+                    :sale-status="getStatus" :index="index">
                 </product-list-item>
             </product-list>
         </div>
@@ -111,7 +95,7 @@ export default {
         EventBus.$on("sale-to-client", (data) => {
             this.localSale = data.sale;
         });
-        EventBus.$on("update-cart",data => this.updateCart(data))
+        EventBus.$on("update-cart", data => this.updateCart(data))
     },
     computed: {
         getClass() {
@@ -162,17 +146,22 @@ export default {
                     });
                 });
         },
-        async updateCart(data){
-            try{
+        async updateCart(data) {
+            try {
 
                 const res = await axios.post(`/sales/${data?.product_id}/products`,
-                    {_method:'put',...data}
-                    );
+                    { _method: 'put', ...data }
+                );
                 EventBus.$emit('enabled');
 
-            }catch(error)
-            {
-                console.log(error);
+            } catch (error) {
+                this.getErrors(error);
+                this.$notify({
+                    group: "foo",
+                    title: "Error",
+                    type: "error",
+                    text: this.errors[0],
+                });
             }
         }
     },
