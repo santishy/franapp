@@ -1,8 +1,10 @@
 <template>
     <div class="w-full">
-        <nav
-            class="
+        <nav class="
                 flex
+                h-16
+                max-h-16
+                overflow-y-hidden
                 items-center
                 justify-between
                 flex-wrap
@@ -13,21 +15,15 @@
                 sm:mx-4 sm:right-0 sm:left-64
                 fixed
                 w-full
-                sm:h-auto
-                max-h-screen
                 sm:w-auto
                 top-0
                 z-10
-            "
-        >
+            ">
             <div class="flex items-center flex-shrink-0 text-gray-800 mr-6">
-                <span class="font-semibold text-xl tracking-tight md:hidden"
-                    >ISCO</span
-                >
+                <span class="font-semibold text-xl tracking-tight md:hidden">ISCO</span>
             </div>
             <div @click="toggleNavegation" class="block sm:hidden">
-                <button
-                    class="
+                <button class="
                         flex
                         items-center
                         px-3
@@ -36,22 +32,15 @@
                         rounded
                         text-black
                         border-teal-400
-                    "
-                >
-                    <svg
-                        class="fill-current h-3 w-3"
-                        viewBox="0 0 20 20"
-                        xmlns="http://www.w3.org/2000/svg"
-                    >
+                    ">
+                    <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                         <title>Menu</title>
                         <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
                     </svg>
                 </button>
             </div>
 
-            <div
-                id="navegation"
-                class="
+            <div id="navegation" class="
                     w-full
                     h-0
                     flex-grow
@@ -62,43 +51,25 @@
                     transition-[height]
                     duration-700
                     ease-in-out
-                "
-            >
-                <div
-                    class="
+                ">
+                <div class="
                         text-sm
                         md:flex-grow
                         flex flex-wrap flex-col
                         md:flex-row md:justify-center
-                    "
-                >
-                    <dropdown-component
-                        name="Inventario"
-                        :items="InventoryMenu"
-                        class="md:relative md:hidden"
-                    />
-                    <a
-                        v-if="purchase"
-                        :href="purchase ? `/purchases/${purchase}` : '#'"
-                        :class="highlight"
-                        class="
+                    ">
+                    <dropdown-component name="Inventario" :items="InventoryMenu" class="md:relative md:hidden" />
+                    <a v-if="purchase" :href="purchase ? `/purchases/${purchase}` : '#'" :class="highlight" class="
                             block
                             mt-4
                             lg:inline-block lg:mt-0
                             md:hover:text-white
                             mr-4
-                        "
-                    >
+                        ">
                         Realizar Compra
                     </a>
-                    <dropdown-component
-                        name="Clientes"
-                        :items="clientsMenu"
-                        class="md:relative md:hidden"
-                    />
-                    <a
-                        href="/sales/create/?queryType=sell"
-                        class="
+                    <dropdown-component name="Clientes" :items="clientsMenu" class="md:relative md:hidden" />
+                    <a href="/sales/create/?queryType=sell" class="
                             sm:block
                             hidden
                             mt-4
@@ -108,35 +79,19 @@
                             mr-4
                             md:text-base
                             text-lg
-                        "
-                    >
-                        <div
-                            class="
+                        ">
+                        <div class="
                                 flex flex-wrap
                                 sm:items-center sm:justify-center
                                 font-mono
-                            "
-                        >
+                            ">
                             <shopping-bag></shopping-bag>
-                            <span
-                                class="self-end leading-none font-xl font-bold"
-                                >Ventas</span
-                            >
+                            <span class="self-end leading-none font-xl font-bold">Ventas</span>
                         </div>
                     </a>
-                    <dropdown-component
-                        name="Reportes"
-                        :items="ReportsMenu"
-                        class="md:relative md:hidden"
-                    />
-                    <dropdown-component
-                        name="Configuración"
-                        :items="ConfigMenu"
-                        class="md:relative lg:hidden"
-                    />
-                    <a
-                        href="/sales/create/?queryType=sell"
-                        class="
+                    <dropdown-component name="Reportes" :items="ReportsMenu" class="md:relative md:hidden" />
+                    <dropdown-component name="Configuración" :items="ConfigMenu" class="md:relative lg:hidden" />
+                    <a href="/sales/create/?queryType=sell" class="
                             sm:hidden
                             border border-t border-b border-gray-300
                             mt-2
@@ -148,60 +103,41 @@
                             sm:hover:text-blue-800
                             md:text-base
                             text-lg
-                        "
-                    >
-                        <div
-                            class="
+                        ">
+                        <div class="
                                 flex flex-wrap
                                 items-center
                                 justify-center
                                 font-mono
-                            "
-                        >
+                            ">
                             <shopping-bag></shopping-bag>
-                            <span
-                                class="self-end leading-none font-xl font-bold"
-                                >Ventas</span
-                            >
+                            <span class="self-end leading-none font-xl font-bold">Ventas</span>
                         </div>
                     </a>
                 </div>
                 <div class="flex flex-wrap items-center w-full sm:w-auto">
-                    <form
-                        v-if="impersonation_id"
-                        action="/impersonations"
-                        method="post"
-                        class="
+                    <form v-if="impersonation_id" action="/impersonations" method="post" class="
                             block
                             mt-4
                             lg:inline-block lg:mt-0
                             md:hover:text-white
                             mr-4
-                        "
-                    >
+                        ">
                         <input type="hidden" name="_method" value="delete" />
                         <input type="hidden" name="_token" :value="crfsToken" />
-                        <button
-                            class="
+                        <button class="
                                 text-gray-300
                                 border-red-900 border
                                 rounded
                                 px-2
                                 py-1
-                            "
-                        >
+                            ">
                             Regresar <i class="fas fa-user"></i>
                         </button>
                     </form>
-                    <form
-                        action="/logout"
-                        method="POST"
-                        class="w-full sm:w-auto"
-                    >
+                    <form action="/logout" method="POST" class="w-full sm:w-auto">
                         <input type="hidden" name="_token" :value="crfsToken" />
-                        <button
-                            href="/logout"
-                            class="
+                        <button href="/logout" class="
                                 inline-block
                                 w-full
                                 sm:w-auto
@@ -218,8 +154,7 @@
                                 md:hover:text-teal-500 md:hover:bg-white
                                 mt-4
                                 lg:mt-0
-                            "
-                        >
+                            ">
                             {{ getCurrentUser.name }} | Salir
                         </button>
                     </form>
@@ -232,26 +167,16 @@
             <sidebar>
                 <submenu-container name="Catalagos">
                     <template slot="descriptive-icon">
-                        <view-boards
-                            class="mr-2 h-7 w-7 p-1 text-gray-700 rounded-sm"
-                        ></view-boards>
+                        <view-boards class="mr-2 h-7 w-7 p-1 text-gray-700 rounded-sm"></view-boards>
                     </template>
                     <template slot="icon">
-                        <dots-vertical
-                            class=" h-7 w-7 p-1 text-gray-700 rounded-sm"
-                        ></dots-vertical>
+                        <dots-vertical class=" h-7 w-7 p-1 text-gray-700 rounded-sm"></dots-vertical>
                     </template>
                     <template slot="list">
                         <li class="bg-gray-800">
-                            <accordion
-                                :items-menu="clientsMenu"
-                                :is-submenu="true"
-                                name="Clientes"
-                            >
+                            <accordion :items-menu="clientsMenu" :is-submenu="true" name="Clientes">
                                 <template slot="descriptive-icon">
-                                    <users-icon
-                                        class="mr-2 h-7 w-7 p-1 rounded-sm"
-                                    ></users-icon>
+                                    <users-icon class="mr-2 h-7 w-7 p-1 rounded-sm"></users-icon>
                                 </template>
                                 <template slot="icon">
                                     <down-arrow class="text-xs h-4 w-4"></down-arrow>
@@ -259,16 +184,10 @@
                             </accordion>
                         </li>
                         <li class="bg-gray-800">
-                            <accordion
-                                textColor="text-white"
-                                :items-menu="ProductsMenu"
-                                :is-submenu="true"
-                                name="Productos"
-                            >
+                            <accordion textColor="text-white" :items-menu="ProductsMenu" :is-submenu="true"
+                                name="Productos">
                                 <template slot="descriptive-icon">
-                                    <star
-                                        class="mr-2 h-7 w-7 p-1 rounded-sm"
-                                    ></star>
+                                    <star class="mr-2 h-7 w-7 p-1 rounded-sm"></star>
                                 </template>
                                 <template slot="icon">
                                     <down-arrow class="text-xs h-4 w-4"></down-arrow>
@@ -276,16 +195,10 @@
                             </accordion>
                         </li>
                         <li class="bg-gray-800">
-                            <accordion
-                                textColor="text-white"
-                                :items-menu="WarehousesMenu"
-                                :is-submenu="true"
-                                name="Almacenes"
-                            >
+                            <accordion textColor="text-white" :items-menu="WarehousesMenu" :is-submenu="true"
+                                name="Almacenes">
                                 <template slot="descriptive-icon">
-                                    <view-grid-icon
-                                        class="mr-2 h-7 w-7 p-1 rounded-sm"
-                                    ></view-grid-icon>
+                                    <view-grid-icon class="mr-2 h-7 w-7 p-1 rounded-sm"></view-grid-icon>
                                 </template>
                                 <template slot="icon">
                                     <down-arrow class="text-xs h-4 w-4"></down-arrow>
@@ -293,16 +206,10 @@
                             </accordion>
                         </li>
                         <li class="bg-gray-800">
-                            <accordion
-                                textColor="text-white"
-                                :items-menu="CategoriesMenu"
-                                :is-submenu="true"
-                                name="Categorías"
-                            >
+                            <accordion textColor="text-white" :items-menu="CategoriesMenu" :is-submenu="true"
+                                name="Categorías">
                                 <template slot="descriptive-icon">
-                                    <color-swatch
-                                        class="mr-2 h-7 w-7 p-1 rounded-sm"
-                                    ></color-swatch>
+                                    <color-swatch class="mr-2 h-7 w-7 p-1 rounded-sm"></color-swatch>
                                 </template>
                                 <template slot="icon">
                                     <down-arrow class="text-xs h-4 w-4"></down-arrow>
@@ -311,15 +218,9 @@
                         </li>
                     </template>
                 </submenu-container>
-                <accordion
-                    :is-submenu="false"
-                    :items-menu="movementsMenu"
-                    name="Movimientos"
-                >
+                <accordion :is-submenu="false" :items-menu="movementsMenu" name="Movimientos">
                     <template slot="descriptive-icon">
-                        <switch-horizontal
-                            class="mr-2 h-7 w-7 p-1 text-gray-700 rounded-sm"
-                        ></switch-horizontal>
+                        <switch-horizontal class="mr-2 h-7 w-7 p-1 text-gray-700 rounded-sm"></switch-horizontal>
                     </template>
                     <template slot="icon">
                         <down-arrow class="text-xs w-6 h-6"></down-arrow>
@@ -327,23 +228,15 @@
                 </accordion>
                 <accordion class="" :items-menu="ReportsMenu" name="Reportes">
                     <template slot="descriptive-icon">
-                        <bars-icon
-                            class="mr-2 h-7 w-7 p-1 text-gray-700 rounded-sm"
-                        ></bars-icon>
+                        <bars-icon class="mr-2 h-7 w-7 p-1 text-gray-700 rounded-sm"></bars-icon>
                     </template>
                     <template slot="icon">
                         <down-arrow class="text-xs w-6 h-6"></down-arrow>
                     </template>
                 </accordion>
-                <accordion
-                    class=""
-                    :items-menu="ConfigMenu"
-                    name="Configuración"
-                >
+                <accordion class="" :items-menu="ConfigMenu" name="Configuración">
                     <template slot="descriptive-icon">
-                        <setting-icon
-                            class="mr-2 h-7 w-7 p-1 text-gray-700 rounded-sm"
-                        ></setting-icon>
+                        <setting-icon class="mr-2 h-7 w-7 p-1 text-gray-700 rounded-sm"></setting-icon>
                     </template>
                     <template slot="icon">
                         <down-arrow class="text-xs w-6 h-6"></down-arrow>
@@ -590,7 +483,7 @@ export default {
                 ? "text-lg text-black-700 border-teal-300 border-b-2"
                 : "text-gray-200";
         },
-        getShow() {},
+        getShow() { },
     },
 };
 </script>

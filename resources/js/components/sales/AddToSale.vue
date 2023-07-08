@@ -2,8 +2,7 @@
     <div can="'create sale'">
         <form class="block" @submit.prevent="submit">
             <input type="hidden" name="product_id" />
-            <button
-                class="
+            <button class="
                     rounded-full
                     hover:text-gray-800
                     shadow-xs
@@ -13,8 +12,7 @@
                     bg-white
                     px-2
                     text-2xl
-                "
-            >
+                ">
                 <shopping-cart-icon></shopping-cart-icon>
             </button>
         </form>
@@ -30,7 +28,7 @@ export default {
     props: {
         product: {
             type: Object,
-            required:true
+            required: true
         },
         index: {
             type: Number,
@@ -53,6 +51,7 @@ export default {
                         "product-added-sales-cart",
                         res.data.transaction
                     );
+                    EventBus.$emit("toggle-product-list")
                     this.addProductToTranscation();
                 })
                 .catch((err) => {

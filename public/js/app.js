@@ -4658,6 +4658,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       _this.params = obj.params;
       _this.isOpen = true;
     });
+    EventBus.$on("toggle-product-list", function () {
+      _this.isOpen = !_this.isOpen;
+    });
     this.resizeObserver = new _helpers_ResizeObs__WEBPACK_IMPORTED_MODULE_5__["default"]();
   },
   methods: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_7__.mapActions)(["search"])), {}, {
@@ -5853,6 +5856,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         inventory_id: inventory_id
       }).then(function (res) {
         EventBus.$emit("product-added-sales-cart", res.data.transaction);
+        EventBus.$emit("toggle-product-list");
         _this.addProductToTranscation();
       })["catch"](function (err) {
         _this.getErrors(err);
@@ -7056,7 +7060,7 @@ var render = function render() {
   return _c("div", {
     staticClass: "w-full"
   }, [_c("nav", {
-    staticClass: "flex items-center justify-between flex-wrap rounded-b-sm bg-white shadow-sm p-4 sm:mx-4 sm:right-0 sm:left-64 fixed w-full sm:h-auto max-h-screen sm:w-auto top-0 z-10"
+    staticClass: "flex h-16 max-h-16 overflow-y-hidden items-center justify-between flex-wrap rounded-b-sm bg-white shadow-sm p-4 sm:mx-4 sm:right-0 sm:left-64 fixed w-full sm:w-auto top-0 z-10"
   }, [_vm._m(0), _vm._v(" "), _c("div", {
     staticClass: "block sm:hidden",
     on: {
@@ -11333,7 +11337,7 @@ var render = function render() {
       value: _vm.sku,
       expression: "sku"
     }],
-    staticClass: "shadow-sm border-l-4 border-purple-500 appearance-none py-5 px-4 rounded-sm leading-tight focus:outline-none",
+    staticClass: "shadow-sm border-l-4 border-purple-500 appearance-none py-4 px-2 rounded-sm leading-tight focus:outline-none",
     attrs: {
       type: "text",
       placeholder: "Busca por el SKU del producto"
@@ -12436,13 +12440,8 @@ var render = function render() {
   })], 1) : _c("div", {
     staticClass: "w-full px-4"
   }, [_c("div", {
-    staticClass: "col-span-4 2xl:col-span-5 flex flex-col sm:flex-row justify-center items-baseline mb-4"
-  }, [_c("search-by-category", {
-    staticClass: "sm:w-2/4 w-full sm:mr-2",
-    attrs: {
-      categories: _vm.categories
-    }
-  }), _vm._v(" "), _c("search-component", {
+    staticClass: "col-span-4 2xl:col-span-5 flex flex-col sm:flex-row justify-start items-baseline"
+  }, [_c("search-component", {
     staticClass: "md:w-2/4 w-full sm:mt-0 mt-4"
   })], 1), _vm._v(" "), _c("product-matching"), _vm._v(" "), _c("div", {
     staticClass: "w-full flex flex-wrap justify-center items-center"

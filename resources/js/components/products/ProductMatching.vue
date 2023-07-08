@@ -1,11 +1,7 @@
 <template>
-    <div
-        v-if="isOpen"
-        class="fixed inset-0 flex items-center justify-center z-20"
-    >
+    <div v-if="isOpen" class="fixed inset-0 flex items-center justify-center z-20">
         <div @click="isOpen = false" class="fixed inset-0 z-10"></div>
-        <div
-            class="
+        <div class="
                 w-full
                 md:w-10/12
                 shadow
@@ -15,12 +11,9 @@
                 bg-white
                 py-6
                 px-6
-            "
-        >
+            ">
             <div class="flex justify-end">
-                <button
-                    @click="isOpen = false"
-                    class="
+                <button @click="isOpen = false" class="
                         mt-2
                         mb-2
                         text-2xl
@@ -31,37 +24,20 @@
                         rounded
                         bg-white
                         shadow-lg
-                    "
-                >
+                    ">
                     <x-icon class="stroke-2 stroke-cyan-500"></x-icon>
                 </button>
             </div>
             <div class="grid md:grid-cols-4 grid-cols-1 gap-4">
-                <product-list
-                    v-if="!isMobile && windowResizing > 960"
-                    class="col-span-5"
-                >
-                    <product-list-item
-                        v-for="(product, index) in products"
-                        :key="product.id"
-                        :product="product"
-                        :index="index"
-                    >
+                <product-list v-if="!isMobile && windowResizing > 960" class="col-span-5">
+                    <product-list-item v-for="(product, index) in products" :key="product.id" :product="product"
+                        :index="index">
                     </product-list-item>
                 </product-list>
-                <product-card
-                    v-else
-                    v-for="(product, index) in products"
-                    :key="product.id"
-                    :product="product"
-                    :search-in-sales="true"
-                    :index="index"
-                >
+                <product-card v-else v-for="(product, index) in products" :key="product.id" :product="product"
+                    :search-in-sales="true" :index="index">
                     <template slot="options">
-                        <add-to-sale
-                            :product="product"
-                            :index="index"
-                        ></add-to-sale>
+                        <add-to-sale :product="product" :index="index"></add-to-sale>
                     </template>
                 </product-card>
             </div>
@@ -93,7 +69,7 @@ export default {
             isOpen: false,
             sku: "",
             params: {},
-            resizeObserver:null
+            resizeObserver: null
         };
     },
     created() {
@@ -102,6 +78,9 @@ export default {
             this.params = obj.params;
             this.isOpen = true;
         });
+        EventBus.$on("toggle-product-list", () => {
+            this.isOpen = !this.isOpen;
+        })
         this.resizeObserver = new ResizeObs();
     },
     methods: {
@@ -116,14 +95,14 @@ export default {
                 } else {
                     $state.complete();
                 }
-            } catch (error) {}
+            } catch (error) { }
         },
     },
-    computed:{
-        isMobile(){
+    computed: {
+        isMobile() {
             return checkMobile();
         },
-        windowResizing(){ 
+        windowResizing() {
             return this.resizeObserver.windowWidth;
         }
     }

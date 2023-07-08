@@ -1,11 +1,6 @@
 <template>
-    <input
-        type="text"
-        v-model="sku"
-        v-on:keyup.enter="handleSearh"
-        placeholder="Busca por el SKU del producto"
-        class="shadow-sm border-l-4 border-purple-500 appearance-none py-5 px-4 rounded-sm leading-tight focus:outline-none"
-    />
+    <input type="text" v-model="sku" v-on:keyup.enter="handleSearh" placeholder="Busca por el SKU del producto"
+        class="shadow-sm border-l-4 border-purple-500 appearance-none py-4 px-2 rounded-sm leading-tight focus:outline-none" />
 </template>
 <script>
 import { mapActions } from "vuex";
