@@ -1,78 +1,35 @@
 <template>
     <nav-component>
         <transition name="fade">
-            <div v-if="seletedInventoryId == null && (isAdmin && !localSale.inventory_id)"
-                class="flex flex-col justify-center mx-auto px-4 w-full">
-                <p class="
-                        border
-                        w-full
-                        px-4
-                        py-2
-                        ring-2 ring-blue-500
-                        decoration-dotted
-                        text-gray-700
-                        rounded-sm
-                        bg-indigo-100
-                        mb-2
-                        text-center
-                    ">
+            <div v-if="seletedInventoryId == null &&
+                isAdmin &&
+                !localSale.inventory_id
+                " class="flex flex-col justify-center mx-auto px-4 w-full">
+                <p
+                    class="border w-full px-4 py-2 ring-2 ring-blue-500 decoration-dotted text-gray-700 rounded-sm bg-indigo-100 mb-2 text-center">
                     Al ser un usuario administrador, puedes elegir el inventario
                     para realizar la venta
                 </p>
                 <inventory-list @click.prevent=""></inventory-list>
             </div>
             <div v-else class="w-full px-4">
-                <div class="
-                        col-span-4
-                        2xl:col-span-5
-                        flex flex-col
-                        sm:flex-row
-                        justify-start
-                        items-baseline
-                    ">
-                    <!-- <search-by-category
+                <!-- <div class="
+                    "> -->
+                <!-- <search-by-category
                         class="sm:w-2/4 w-full sm:mr-2 "
                         :categories="categories"
                     ></search-by-category> -->
-                    <search-component class="md:w-2/4 w-full sm:mt-0 mt-4" />
-                </div>
+                <search-component
+                    styles="bg-white placeholder:text-slate-300 rounded-sm focus:bg-slate-100 transition-colors focus:ring-sky-500 focus:ring-2 mb-2"
+                    class="md:w-2/4 w-full sm:mt-0 mt-4" />
+                <!-- </div> -->
                 <product-matching></product-matching>
                 <div class="w-full flex flex-wrap justify-center items-center">
-                    <div class="
-                            bg-white
-                            mt-4
-                            sm:mt-0
-                            px-2
-                            py-2
-                            w-full
-                            md:mx-0
-                            rounded-sm
-                            shadow-sm
-                        ">
-                        <div class="
-                                w-full
-                                flex flex-wrap
-                                md:justify-between
-                                text-gray-600
-                                md:items-center
-                            ">
+                    <div class="bg-white mt-4 sm:mt-0 px-2 py-2 w-full md:mx-0 rounded-sm shadow-sm">
+                        <div class="w-full flex flex-wrap md:justify-between text-gray-600 md:items-center">
                             <sale-to-customer class="mr-4" v-if="show" />
-                            <button v-else @click="show = true" class="
-                                    bg-teal-300
-                                    rounded
-                                    transition-all
-                                    duration-500
-                                    ease-in-out
-                                    hover:bg-teal-500
-                                    text-teal-700
-                                    font-semibold
-                                    hover:text-white
-                                    py-1
-                                    px-4
-                                    border-b-2 border-teal-500
-                                    hover:border-transparent
-                                    mr-1
-                                ">
+                            <button v-else @click="show = true"
+                                class="bg-teal-300 rounded transition-all duration-500 ease-in-out hover:bg-teal-500 text-teal-700 font-semibold hover:text-white py-1 px-4 border-b-2 border-teal-500 hover:border-transparent mr-1">
                                 Cliente registrado
                             </button>
                             <delete-sale v-if="localSale" :sale="localSale"></delete-sale>
@@ -162,7 +119,7 @@ export default {
         ...mapMutations(["SET_QUERY_TYPE"]),
         getQueryType() {
             let url = new URL(window.location.href);
-            this.SET_QUERY_TYPE(url.searchParams.get('queryType'));
+            this.SET_QUERY_TYPE(url.searchParams.get("queryType"));
         },
     },
     computed: {

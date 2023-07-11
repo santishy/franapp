@@ -1,5 +1,5 @@
 <template>
-    <div class="w-full">
+    <div class="w-full flex flex-col">
         <nav class="
                 flex
                 h-16
@@ -163,7 +163,7 @@
         </nav>
 
         <!-- Page Content -->
-        <main class="mt-20 w-ful z-0 flex flex-wrap">
+        <main class="mt-20 w-full z-0 flex flex-wrap flex-1">
             <sidebar>
                 <submenu-container name="Catalagos">
                     <template slot="descriptive-icon">

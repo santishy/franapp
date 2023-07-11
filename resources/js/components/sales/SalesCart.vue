@@ -1,20 +1,6 @@
 <template>
     <div>
         <form @submit.prevent="submit" v-can="'create sale'">
-            <div v-if="localSale != null">
-                <div v-show="products.length" class="
-                        flex flex-wrap
-                        justify-center
-                        items-center
-                        text-center
-                        mb-2
-                        bg-teal-100
-                    ">
-                    <label class="mr-4 text-2xl">Total</label>
-                    <p class="text-gray-700 text-3xl">${{ getTotal }}</p>
-                    <input name="total" type="hidden" :v-model="(form.total = getTotal)" />
-                </div>
-            </div>
             <div v-if="errors" class="flex items-center mb-3">
                 <errors-component :errors="errors" />
             </div>
@@ -37,12 +23,26 @@
                 </button>
             </div>
         </form>
-        <div v-if="localSale !== null" class="overflow-x-auto relative">
+        <div v-if="localSale !== null" class="relative max-h-96 ">
             <product-list>
                 <product-list-item v-for="(product, index) in products" :key="product.id" :product="product"
                     :sale-status="getStatus" :index="index">
                 </product-list-item>
             </product-list>
+        </div>
+        <div v-if="localSale != null" class="mt-4">
+            <div v-show="products.length" class="
+                        flex flex-wrap
+                        justify-center
+                        items-center
+                        text-center
+
+                        bg-teal-100
+                    ">
+                <label class="mr-4 text-2xl">Total</label>
+                <p class="text-gray-700 text-3xl">${{ getTotal }}</p>
+                <input name="total" type="hidden" :v-model="(form.total = getTotal)" />
+            </div>
         </div>
     </div>
 </template>

@@ -21,7 +21,7 @@
 
 </head>
 
-<body class="bg-gray-300 h-screen ">
+<body class="bg-slate-300 h-screen ">
     <div id="app">
         {{-- <nav-component></nav-component> --}}
         @yield('content')

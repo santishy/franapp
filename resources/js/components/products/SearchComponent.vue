@@ -1,10 +1,11 @@
 <template>
-    <input type="text" v-model="sku" v-on:keyup.enter="handleSearh" placeholder="Busca por el SKU del producto"
-        class="shadow-sm border-l-4 border-purple-500 appearance-none py-4 px-2 rounded-sm leading-tight focus:outline-none" />
+    <input type="text" v-model="sku" v-on:keyup.enter="handleSearch" placeholder="Busca por el SKU del producto"
+        :class="styles" class="appearance-none py-3 px-2  leading-tight focus:outline-none" />
 </template>
 <script>
 import { mapActions } from "vuex";
 export default {
+    props: ["styles"],
     data() {
         return {
             sku: "",
@@ -16,7 +17,7 @@ export default {
     },
     methods: {
         ...mapActions(["search"]),
-        handleSearh(e) {
+        handleSearch(e) {
             if (this.sku == "" || this.sku == "") {
                 return EventBus.$emit("empty-search");
             }
