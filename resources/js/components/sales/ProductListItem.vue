@@ -1,28 +1,27 @@
 <template>
-    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-        <td class="py-4 px-6 w-20">
+    <tr class="bg-white border-b">
+        <td class="p-2 w-20">
             <img class="w-100" :src="product?.image_url" :alt="product?.sku" />
         </td>
-        <td class="py-4 px-6 font-normal text-gray-800">
+        <td class="p-2 font-normal text-gray-800">
             {{ product.sku }}
         </td>
-        <td class="py-4 px-6">
+        <td class="p-2">
             {{ product.description }}
         </td>
-        <td class="py-4 px-6">
+        <td class="p-2">
             <editable-product-quantity :product="product"></editable-product-quantity>
         </td>
-        <td class="py-4 px-6">
+        <td class="p-2">
             <editable-product-price :product="product"></editable-product-price>
         </td>
-        <td class="py-4 px-6">
+        <td class="p-2">
             {{ product.sale_price * product.sale_quantity }}
         </td>
-        <td class="py-4 px-6">
+        <td class="p-2">
             <delete-sale-product :id="product.id" :index="index"></delete-sale-product>
         </td>
     </tr>
-
 </template>
 
 <script>

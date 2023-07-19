@@ -17,6 +17,10 @@ module.exports = {
                 spacing: " padding",
                 display: "display",
             },
+            colors: {
+                primary: '#0098DA',
+                secondary: '#4E4E4E',
+            },
         },
         zIndex: {
             0: 0,

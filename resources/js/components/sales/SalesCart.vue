@@ -23,7 +23,7 @@
                 </button>
             </div>
         </form>
-        <div v-if="localSale !== null" class="relative max-h-96 ">
+        <div v-if="localSale !== null" class="relative md:max-h-80 overflow-y-auto ">
             <product-list>
                 <product-list-item v-for="(product, index) in products" :key="product.id" :product="product"
                     :sale-status="getStatus" :index="index">

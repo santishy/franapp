@@ -74,8 +74,8 @@
                             hidden
                             mt-4
                             lg:inline-block lg:mt-0
-                            text-blue-700
-                            sm:hover:text-blue-800
+                            text-secondary
+                            sm:hover:text-primary
                             mr-4
                             md:text-base
                             text-lg

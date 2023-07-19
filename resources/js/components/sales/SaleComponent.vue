@@ -29,7 +29,7 @@
                         <div class="w-full flex flex-wrap md:justify-between text-gray-600 md:items-center">
                             <sale-to-customer class="mr-4" v-if="show" />
                             <button v-else @click="show = true"
-                                class="bg-teal-300 rounded transition-all duration-500 ease-in-out hover:bg-teal-500 text-teal-700 font-semibold hover:text-white py-1 px-4 border-b-2 border-teal-500 hover:border-transparent mr-1">
+                                class="bg-teal-300 rounded transition-all duration-500 ease-in-out hover:bg-teal-500 text-primary font-semibold hover:text-white py-1 px-4 border-b-2 border-teal-500 hover:border-transparent mr-1">
                                 Cliente registrado
                             </button>
                             <delete-sale v-if="localSale" :sale="localSale"></delete-sale>

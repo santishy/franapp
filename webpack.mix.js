@@ -16,13 +16,13 @@ mix.js('resources/js/app.js', 'public/js')
     .postCss('resources/css/app.css', 'public/css', [
         require('tailwindcss'),
         tailwindcss('./tailwind.config.js')
-    ])
+    ]).version();
 mix.browserSync({
-        proxy: 'http://franapp.test',
-        host: 'franapp.test',
-        open: false,
-        browser:'Google chrome',
-        ghostMode: false,
-        online:true,
-        watch:true,
-    });
+    proxy: 'http://franapp.test',
+    host: 'franapp.test',
+    open: false,
+    browser: 'Google chrome',
+    ghostMode: false,
+    online: true,
+    watch: true,
+});
