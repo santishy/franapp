@@ -22,7 +22,7 @@
             <div class="flex items-center flex-shrink-0 text-gray-800 mr-6">
                 <span class="font-semibold text-xl tracking-tight md:hidden">ISCO</span>
             </div>
-            <div @click="toggleNavegation" class="block sm:hidden">
+            <div @click="toggleNavigation" class="block sm:hidden">
                 <button class="
                         flex
                         items-center
@@ -40,7 +40,7 @@
                 </button>
             </div>
 
-            <div id="navegation" class="
+            <div id="navigation" class="
                     w-full
                     h-0
                     flex-grow
@@ -63,10 +63,10 @@
                             block
                             mt-4
                             lg:inline-block lg:mt-0
-                            md:hover:text-white
+
                             mr-4
                         ">
-                        Realizar Compra
+                        Lista de compras
                     </a>
                     <dropdown-component name="Clientes" :items="clientsMenu" class="md:relative md:hidden" />
                     <a href="/sales/create/?queryType=sell" class="
@@ -163,7 +163,7 @@
         </nav>
 
         <!-- Page Content -->
-        <main class="mt-20 w-full z-0 flex flex-wrap flex-1">
+        <main class="mt-20 w-full z-0 flex flex-col flex-1">
             <sidebar>
                 <submenu-container name="Catalagos">
                     <template slot="descriptive-icon">
@@ -244,7 +244,7 @@
                 </accordion>
             </sidebar>
             <div class="flex-1 sm:ml-64">
-                <slot class="bg-blue-500" />
+                <slot />
             </div>
         </main>
         <notifications group="foo"></notifications>
@@ -438,11 +438,12 @@ export default {
         this.cleanLocalStorage();
     },
     methods: {
-        toggleNavegation() {
+        toggleNavigation() {
+            console.log('toggleNavigation')
             this.show = !this.show;
-            document.querySelector("#navegation").classList.toggle("h-screen");
-            document.querySelector("#navegation").classList.toggle("h-0");
-            //document.querySelector("#navegation").classList.toggle("hidden");
+            document.querySelector("#navigation").classList.toggle("h-screen");
+            document.querySelector("#navigation").classList.toggle("h-0");
+            document.querySelector("#navigation").classList.toggle("hidden");
         },
         setPurchaseId(id) {
             this.purchase = id;

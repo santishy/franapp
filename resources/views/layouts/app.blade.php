@@ -21,9 +21,8 @@
 
 </head>
 
-<body class="bg-slate-300 h-screen ">
+<body class="bg-slate-300 h-screen max-w-full">
     <div id="app">
-        {{-- <nav-component></nav-component> --}}
         @yield('content')
     </div>
     <script src="{{ mix('js/app.js') }}"></script>
