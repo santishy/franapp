@@ -4,44 +4,48 @@
             <div v-if="errors" class="flex items-center mb-3">
                 <errors-component :errors="errors" />
             </div>
-            <div class="flex flex-wrap justify-center">
+            <div v-if="localSale != null" class="flex justify-end">
+                <div v-show="products.length">
+                    <input name="total" type="hidden" :v-model="(form.total = getTotal)" />
+                </div>
+            </div>
+            <div class="flex flex-wrap justify-end">
                 <button v-show="products.length" class="
                         rounded
                         transition-all
                         duration-500
                         ease-in-out
-                        font-semibold
-                        hover:text-black
+                        font-bold
+                        mb-2
+
                         py-2
                         px-4
-                        border-l-2 border-r-2 border-green-500
-                        hover:bg-red-500 hover:border-transparent
-                        md:w-2/4
-                        w-full
+
                     " :class="[getClass]">
-                    Cambiar a {{ modifyTo }}
+                    {{ modifyTo }}
                 </button>
             </div>
         </form>
-        <div v-if="localSale !== null" class="relative md:max-h-80 overflow-y-auto ">
+        <div v-if="localSale !== null" class="relative md:max-h-80 overflow-y-auto shadow-inner p-2">
             <product-list>
                 <product-list-item v-for="(product, index) in products" :key="product.id" :product="product"
                     :sale-status="getStatus" :index="index">
                 </product-list-item>
             </product-list>
         </div>
-        <div v-if="localSale != null" class="mt-4">
+        <div v-if="localSale != null" class="mt-2 flex justify-end">
             <div v-show="products.length" class="
                         flex flex-wrap
                         justify-center
                         items-center
-                        text-center
-
-                        bg-teal-100
+                        md:w-64
+                        px-4
+                        py-2
+                        rounded
+                        bg-amber-300
                     ">
-                <label class="mr-4 text-2xl">Total</label>
-                <p class="text-gray-700 text-3xl">${{ getTotal }}</p>
-                <input name="total" type="hidden" :v-model="(form.total = getTotal)" />
+                <label class="mr-4 text-2xl font-semibold text-secondary">Total</label>
+                <p class="text-secondary text-3xl  font-semibold">${{ getTotal }}</p>
             </div>
         </div>
     </div>
@@ -100,9 +104,9 @@ export default {
     computed: {
         getClass() {
             if (this.getStatus == "pending")
-                return "hover:bg-green-500 text-green-700 bg-green-300";
+                return "bg-sky-600 text-slate-100 hover:bg-sky-300 hover:text-sky-600";
             if (this.getStatus == "completed")
-                return "hover:bg-yellow-500 text-yellow-700 bg-yellow-300";
+                return "bg-lime-300 text-slate-600 hover:bg-slate-100 hover:text-slate-800";
         },
         getTotal() {
             var total = 0;
@@ -113,8 +117,8 @@ export default {
         },
 
         modifyTo() {
-            if (this.localSale.status == "pending") return "Completada";
-            if (this.localSale.status == "completed") return "Pendiente";
+            if (this.localSale.status == "pending") return "Finalizar Venta";
+            if (this.localSale.status == "completed") return "Modificar Venta";
         },
         getStatus() {
             return this.localSale.status;

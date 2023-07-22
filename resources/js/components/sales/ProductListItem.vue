@@ -1,9 +1,9 @@
 <template>
-    <tr class="bg-white border-b">
-        <td class="p-2 w-20">
+    <tr class="bg-slate-100  ">
+        <td class="p-2 w-16">
             <img class="w-100" :src="product?.image_url" :alt="product?.sku" />
         </td>
-        <td class="p-2 font-normal text-gray-800">
+        <td class="p-2 text-slate-700 font-mono">
             {{ product.sku }}
         </td>
         <td class="p-2">

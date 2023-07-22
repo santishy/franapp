@@ -163,7 +163,7 @@
         </nav>
 
         <!-- Page Content -->
-        <main class="mt-20 w-full z-0 flex flex-col flex-1">
+        <main class="mt-20 w-full z-0 flex flex-col flex-1 mb-4">
             <sidebar>
                 <submenu-container name="Catalagos">
                     <template slot="descriptive-icon">

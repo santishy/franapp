@@ -1,7 +1,7 @@
 <template>
-    <div class="relative overflow-x-auto bg-white">
-        <table class="w-full table-auto text-sm text-center text-gray-500">
-            <thead class="text-xs font-mono border-b-2 border-gray-100 text-gray-700 uppercase  dark:text-gray-400">
+    <div class="relative overflow-x-auto bg-slate-100">
+        <table class="w-full bg-slate-100 table-auto text-sm text-center text-gray-500">
+            <thead class="font-mono  text-gray-700 uppercase border-b-2 border-white">
                 <tr>
                     <th class="py-2 px-2">Imagen</th>
                     <th class="py-2 px-2">SKU</th>
@@ -12,7 +12,7 @@
                     <th class="py-2 px-2">Eliminar</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="divide-y divide-white">
                 <slot></slot>
             </tbody>
         </table>

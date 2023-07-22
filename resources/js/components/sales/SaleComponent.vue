@@ -1,7 +1,7 @@
 <template>
     <nav-component>
         <transition name="fade">
-            <div v-if="seletedInventoryId == null &&
+            <div v-if="selectedInventoryId == null &&
                 isAdmin &&
                 !localSale.inventory_id
                 " class="flex flex-col justify-center mx-auto px-4 w-full">
@@ -24,8 +24,8 @@
                     class="md:w-2/4 w-full sm:mt-0 mt-4" />
                 <!-- </div> -->
                 <product-matching></product-matching>
-                <div class="w-full flex flex-wrap justify-center items-center">
-                    <div class="bg-white mt-4 sm:mt-0 px-2 py-2 w-full md:mx-0 rounded-sm shadow-sm">
+                <div class="w-full bg-white rounded-sm flex flex-wrap justify-center items-center">
+                    <div class=" mt-4 sm:mt-0 px-2 py-2 w-full md:mx-0 rounded-sm shadow-sm">
                         <div class="w-full flex flex-wrap md:justify-between text-gray-600 md:items-center">
                             <sale-to-customer class="mr-4" v-if="show" />
                             <button v-else @click="show = true"
@@ -35,7 +35,7 @@
                             <delete-sale v-if="localSale" :sale="localSale"></delete-sale>
                         </div>
                         <div v-if="localSale" :class="[
-                            'flex flex-wrap px-2 py-2 items-center mb-4 border-b-2 border-blue-400',
+                            'flex flex-wrap  px-2 py-2 items-center mb-4 border-b-2 border-blue-400',
                             alignStatus,
                         ]">
                             <div class="text-gray-600">
@@ -49,7 +49,6 @@
                                 <p class="text-xs">{{ localSale.status }}</p>
                             </div>
                         </div>
-
                         <sales-cart :sale="sale"></sales-cart>
                     </div>
                 </div>
@@ -91,8 +90,8 @@ export default {
             this.sale_status = this.sale.status;
             this.localSale = this.sale;
         }
-        EventBus.$on("selected-inventory", (inventary_id) => {
-            this.seletedInventoryId = inventary_id;
+        EventBus.$on("selected-inventory", (inventory_id) => {
+            this.selectedInventoryId = inventory_id;
         });
         EventBus.$on("sale-deleted", (res) => {
             this.sale_status = null;
@@ -110,7 +109,7 @@ export default {
     },
     data() {
         return {
-            seletedInventoryId: null,
+            selectedInventoryId: null,
             show: false,
             localSale: {},
         };

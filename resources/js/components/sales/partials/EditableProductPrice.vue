@@ -1,16 +1,9 @@
 <template>
     <div class="flex flex-wrap justify-center">
 
-        <input
-            v-model="product.sale_price"
-            name="sale_price"
-            class="px-4 py-2  text-center  sm:w-full "
-            type="number"
-            :class="[disabled ? 'bg-gray-100 text-gray-400' : 'bg-gray-100 text-gray-600']"
-            placeholder="Precio de venta"
-            aria-label="Full name"
-            :disabled="disabled"
-        />
+        <input v-model="product.sale_price" name="sale_price" class="px-4 py-2  text-center  sm:w-full bg-white rounded-sm "
+            type="number" :class="[disabled ? ' text-gray-400' : ' text-gray-600']" placeholder="Precio de venta"
+            aria-label="Full name" :disabled="disabled" />
     </div>
 </template>
 
@@ -21,14 +14,14 @@ export default {
             type: Object,
         },
     },
-    data(){
+    data() {
         return {
-            disabled:false
+            disabled: false
         }
     },
     created() {
         this.$watch("product.sale_price", this.updateCart);
-        EventBus.$on('enabled',this.enabled)
+        EventBus.$on('enabled', this.enabled)
     },
     methods: {
 
@@ -45,10 +38,10 @@ export default {
                     product_id: this.product.id,
                     inventory_id: inventory_id,
                 });
-                this.disabled=true;
+                this.disabled = true;
             }
         },
-        enabled(){
+        enabled() {
             this.disabled = false;
         }
     },
