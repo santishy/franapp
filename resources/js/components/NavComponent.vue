@@ -68,7 +68,7 @@
                         ">
                         Lista de compras
                     </a>
-                    <dropdown-component name="Clientes" :items="clientsMenu" class="md:relative md:hidden" />
+                    <!-- <dropdown-component name="Clientes" :items="clientsMenu" class="md:relative md:hidden" /> -->
                     <a href="/sales/create/?queryType=sell" class="
                             sm:block
                             hidden
@@ -89,9 +89,9 @@
                             <span class="self-end leading-none font-xl font-bold">Ventas</span>
                         </div>
                     </a>
-                    <dropdown-component name="Reportes" :items="ReportsMenu" class="md:relative md:hidden" />
-                    <dropdown-component name="Configuración" :items="ConfigMenu" class="md:relative lg:hidden" />
-                    <a href="/sales/create/?queryType=sell" class="
+                    <!-- <dropdown-component name="Reportes" :items="ReportsMenu" class="md:relative md:hidden" />
+                    <dropdown-component name="Configuración" :items="ConfigMenu" class="md:relative lg:hidden" /> -->
+                    <!-- <a href="/sales/create/?queryType=sell" class="
                             sm:hidden
                             border border-t border-b border-gray-300
                             mt-2
@@ -113,7 +113,7 @@
                             <shopping-bag></shopping-bag>
                             <span class="self-end leading-none font-xl font-bold">Ventas</span>
                         </div>
-                    </a>
+                    </a> -->
                 </div>
                 <div class="flex flex-wrap items-center w-full sm:w-auto">
                     <form v-if="impersonation_id" action="/impersonations" method="post" class="
@@ -159,6 +159,9 @@
                         </button>
                     </form>
                 </div>
+            </div>
+            <div id="mobile-menu" class="sm:hidden ">
+
             </div>
         </nav>
 
