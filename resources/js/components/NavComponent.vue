@@ -19,8 +19,8 @@
                 top-0
                 z-10
             ">
-            <div class="flex items-center flex-shrink-0 text-gray-800 mr-6">
-                <span class="font-semibold text-xl tracking-tight md:hidden">ISCO</span>
+            <div class="flex items-center flex-shrink-0  mr-6">
+                <span class="font-semibold text-xl tracking-tight md:hidden text-primary">ISCO</span>
             </div>
             <div class="block sm:hidden">
                 <button @click="toggleNavigation" class="
@@ -397,7 +397,8 @@ export default {
             nav.classList.toggle("max-h-screen")
             nav.classList.toggle("overflow-y-hidden")
             nav.classList.toggle("overflow-y-scroll")
-            nav.classList.toggle("fixed")
+            nav.classList.toggle('fixed')
+            nav.classList.toggle("absolute")
             // document.querySelector("#navigation").classList.toggle("h-screen");
             // document.querySelector("#navigation").classList.toggle("h-0");
             // document.querySelector("#navigation").classList.toggle("hidden");
