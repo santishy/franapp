@@ -397,6 +397,7 @@ export default {
             nav.classList.toggle("max-h-screen")
             nav.classList.toggle("overflow-y-hidden")
             nav.classList.toggle("overflow-y-scroll")
+            nav.classList.toggle("fixed")
             // document.querySelector("#navigation").classList.toggle("h-screen");
             // document.querySelector("#navigation").classList.toggle("h-0");
             // document.querySelector("#navigation").classList.toggle("hidden");
