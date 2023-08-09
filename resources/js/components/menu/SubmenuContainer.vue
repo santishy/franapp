@@ -1,8 +1,6 @@
 <template>
     <div class="w-full px-0">
-        <a
-            href="#"
-            class="
+        <a href="#" class="
                 flex
                 items-center
                 w-full
@@ -12,19 +10,12 @@
                 font-mono
                 text-gray-800
                 justify-between
-            "
-            @click.prevent="toggle"
-            ><span class="mr-1 font-mono text-lg flex justify-center items-end"
-                ><slot name="descriptive-icon"></slot> {{ name }}</span
-            ><slot name="icon"></slot
-        ></a>
-        <transition
-            name="expand"
-            class=""
-            @enter="enter"
-            @after-enter="afterEnter"
-            @leave="leave"
-        >
+            " @click.prevent="toggle"><span class="mr-1 font-mono text-lg flex justify-center items-end">
+                <slot name="descriptive-icon"></slot> {{ name }}
+            </span>
+            <slot name="icon"></slot>
+        </a>
+        <transition name="expand" class="" @enter="enter" @after-enter="afterEnter" @leave="leave">
             <ul class="divide-y-0 divide-white" v-if="show">
                 <slot name="list"> </slot>
             </ul>

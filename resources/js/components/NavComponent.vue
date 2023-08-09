@@ -22,8 +22,8 @@
             <div class="flex items-center flex-shrink-0 text-gray-800 mr-6">
                 <span class="font-semibold text-xl tracking-tight md:hidden">ISCO</span>
             </div>
-            <div @click="toggleNavigation" class="block sm:hidden">
-                <button class="
+            <div class="block sm:hidden">
+                <button @click="toggleNavigation" class="
                         flex
                         items-center
                         px-3
@@ -160,8 +160,84 @@
                     </form>
                 </div>
             </div>
-            <div id="mobile-menu" class="sm:hidden ">
-
+            <div id="mobile-menu" class="hidden sm:hidden  relative border-t pt-2 w-full mt-3  ">
+                <submenu-container name="Catalagos">
+                    <template slot="descriptive-icon">
+                        <view-boards class="mr-2 h-7 w-7 p-1 text-gray-700 rounded-sm"></view-boards>
+                    </template>
+                    <template slot="icon">
+                        <dots-vertical class=" h-7 w-7 p-1 text-gray-700 rounded-sm"></dots-vertical>
+                    </template>
+                    <template slot="list">
+                        <li class="bg-gray-800">
+                            <accordion :items-menu="clientsMenu" :is-submenu="true" name="Clientes">
+                                <template slot="descriptive-icon">
+                                    <users-icon class="mr-2 h-7 w-7 p-1 rounded-sm"></users-icon>
+                                </template>
+                                <template slot="icon">
+                                    <down-arrow class="text-xs h-4 w-4"></down-arrow>
+                                </template>
+                            </accordion>
+                        </li>
+                        <li class="bg-gray-800">
+                            <accordion textColor="text-white" :items-menu="ProductsMenu" :is-submenu="true"
+                                name="Productos">
+                                <template slot="descriptive-icon">
+                                    <star class="mr-2 h-7 w-7 p-1 rounded-sm"></star>
+                                </template>
+                                <template slot="icon">
+                                    <down-arrow class="text-xs h-4 w-4"></down-arrow>
+                                </template>
+                            </accordion>
+                        </li>
+                        <li class="bg-gray-800">
+                            <accordion textColor="text-white" :items-menu="WarehousesMenu" :is-submenu="true"
+                                name="Almacenes">
+                                <template slot="descriptive-icon">
+                                    <view-grid-icon class="mr-2 h-7 w-7 p-1 rounded-sm"></view-grid-icon>
+                                </template>
+                                <template slot="icon">
+                                    <down-arrow class="text-xs h-4 w-4"></down-arrow>
+                                </template>
+                            </accordion>
+                        </li>
+                        <li class="bg-gray-800">
+                            <accordion textColor="text-white" :items-menu="CategoriesMenu" :is-submenu="true"
+                                name="Categorías">
+                                <template slot="descriptive-icon">
+                                    <color-swatch class="mr-2 h-7 w-7 p-1 rounded-sm"></color-swatch>
+                                </template>
+                                <template slot="icon">
+                                    <down-arrow class="text-xs h-4 w-4"></down-arrow>
+                                </template>
+                            </accordion>
+                        </li>
+                    </template>
+                </submenu-container>
+                <accordion :is-submenu="false" :items-menu="movementsMenu" name="Movimientos">
+                    <template slot="descriptive-icon">
+                        <switch-horizontal class="mr-2 h-7 w-7 p-1 text-gray-700 rounded-sm"></switch-horizontal>
+                    </template>
+                    <template slot="icon">
+                        <down-arrow class="text-xs w-6 h-6"></down-arrow>
+                    </template>
+                </accordion>
+                <accordion class="" :items-menu="ReportsMenu" name="Reportes">
+                    <template slot="descriptive-icon">
+                        <bars-icon class="mr-2 h-7 w-7 p-1 text-gray-700 rounded-sm"></bars-icon>
+                    </template>
+                    <template slot="icon">
+                        <down-arrow class="text-xs w-6 h-6"></down-arrow>
+                    </template>
+                </accordion>
+                <accordion class="" :items-menu="ConfigMenu" name="Configuración">
+                    <template slot="descriptive-icon">
+                        <setting-icon class="mr-2 h-7 w-7 p-1 text-gray-700 rounded-sm"></setting-icon>
+                    </template>
+                    <template slot="icon">
+                        <down-arrow class="text-xs w-6 h-6"></down-arrow>
+                    </template>
+                </accordion>
             </div>
         </nav>
 
@@ -269,7 +345,7 @@ import ViewBoards from "./icons/ViewBoards.vue";
 import Star from "./icons/Star.vue";
 import ColorSwatch from "./icons/ColorSwatch.vue";
 import SwitchHorizontal from "./icons/SwitchHorizontal.vue";
-
+import menuData from "../utilities/menu";
 export default {
     components: {
         SwitchHorizontal,
@@ -290,137 +366,7 @@ export default {
     },
     data() {
         return {
-            catalogs: [
-                {
-                    name: "Clientes",
-                    url: "#",
-                },
-                {
-                    name: "Proveedores",
-                    url: "#",
-                },
-                {
-                    name: "Productos",
-                    url: "#",
-                },
-                {
-                    name: "Almacenes",
-                    url: "#",
-                },
-                {
-                    name: "Categorias",
-                    url: "#",
-                },
-            ],
-            movementsMenu: [
-                {
-                    name: "Ventas",
-                    url: "/sales/create/?queryType=sell",
-                },
-                {
-                    name: "Compras",
-                    url: "/products/?queryType=toBuy",
-                },
-                {
-                    name: "Existencias",
-                    url: "/inventories",
-                },
-            ],
-            clientsMenu: [
-                {
-                    name: "Nuevo cliente",
-                    url: "/clients/create",
-                },
-                {
-                    name: "Catalago clientes",
-                    url: "/clients",
-                },
-            ],
-            WarehousesMenu: [
-                {
-                    name: "Nuevo almacen",
-                    url: "/inventories/create",
-                },
-                {
-                    name: "Lista de almacenes",
-                    url: "/warehouses",
-                },
-                {
-                    name: "Existencias",
-                    url: "/inventories",
-                },
-            ],
-            CategoriesMenu: [
-                {
-                    name: "Nueva categoría",
-                    url: "/categories",
-                },
-            ],
-            InventoryMenu: [
-                {
-                    name: "Nuevo almacen",
-                    url: "/inventories/create",
-                },
-                {
-                    name: "Lista de almacenes",
-                    url: "/warehouses",
-                },
-                {
-                    name: "Existencias",
-                    url: "/inventories",
-                },
-                {
-                    name: "Nueva categoría",
-                    url: "/categories",
-                },
-                {
-                    name: "Nuevo producto",
-                    url: "/products/create",
-                },
-                {
-                    name: "Comprar productos",
-                    url: "/products",
-                },
-            ],
-            ProductsMenu: [
-                {
-                    name: "Nuevo producto",
-                    url: "/products/create",
-                },
-                {
-                    name: "Catalago",
-                    url: "/products/?queryType=list",
-                },
-
-            ],
-            ReportsMenu: [
-                {
-                    name: "Ventas",
-                    url: "/sales/",
-                },
-                {
-                    name: "Compras",
-                    url: "/purchases",
-                },
-            ],
-            ConfigMenu: [
-                {
-                    name: "Nuevo usuario",
-                    url: "/register/",
-                },
-                {
-                    name: "Modificar usuario",
-                    url: "/users",
-                },
-                {
-                    name: "Nuevo rol",
-                    url: "/roles/create",
-                },
-                {
-                    name: "Contenido del ticket",
-                    url: "/tickets/1/edit",
-                },
-            ],
+            ...menuData,
             crfsToken: document.querySelector('meta[name="csrf-token"]')
                 .content,
             purchase: false,
@@ -442,11 +388,18 @@ export default {
     },
     methods: {
         toggleNavigation() {
-            console.log('toggleNavigation')
             this.show = !this.show;
-            document.querySelector("#navigation").classList.toggle("h-screen");
-            document.querySelector("#navigation").classList.toggle("h-0");
-            document.querySelector("#navigation").classList.toggle("hidden");
+            document.querySelector("#mobile-menu").classList.toggle("hidden")
+            const nav = document.querySelector("nav");
+            nav.classList.toggle("max-h-16")
+            nav.classList.toggle("h-16")
+            nav.classList.toggle("h-auto")
+            nav.classList.toggle("max-h-screen")
+            nav.classList.toggle("overflow-y-hidden")
+            nav.classList.toggle("overflow-y-scroll")
+            // document.querySelector("#navigation").classList.toggle("h-screen");
+            // document.querySelector("#navigation").classList.toggle("h-0");
+            // document.querySelector("#navigation").classList.toggle("hidden");
         },
         setPurchaseId(id) {
             this.purchase = id;

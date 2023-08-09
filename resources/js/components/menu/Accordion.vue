@@ -1,8 +1,6 @@
 <template>
     <div class="w-full px-0">
-        <a
-            href="#"
-            class="
+        <a href="#" class="
                 flex
                 items-center
                 w-full
@@ -11,36 +9,17 @@
                 py-2
                 font-mono
                 justify-between
-            "
-            :class="getTextColor"
-            @click.prevent="toggle"
-            ><span
-                :class="getTextSize"
-                class="mr-1 font-mono flex justify-center items-end"
-                ><slot name="descriptive-icon"></slot> {{ name }}</span
-            ><slot name="icon"></slot
-        ></a>
-        <transition
-            name="expand"
-            class=""
-            @enter="enter"
-            @after-enter="afterEnter"
-            @leave="leave"
-        >
-            <ul
-                :class="[isSubmenu ? 'divide-gray-800' : 'divide-gray-700']"
-                class="divide-y-2"
-                v-if="show"
-            >
-                <li
-                    v-for="item in itemsMenu"
-                    :key="item.name"
-                    :class="[isSubmenu ? 'bg-gray-700' : 'bg-gray-800']"
-                    class="text-sm hover:bg-gray-900"
-                >
-                    <a
-                        :href="item.url"
-                        class="
+            " :class="getTextColor" @click.prevent="toggle"><span :class="getTextSize"
+                class="mr-1 font-mono flex justify-center items-end">
+                <slot name="descriptive-icon"></slot> {{ name }}
+            </span>
+            <slot name="icon"></slot>
+        </a>
+        <transition name="expand" class="" @enter="enter" @after-enter="afterEnter" @leave="leave">
+            <ul :class="[isSubmenu ? 'divide-gray-800' : 'divide-gray-700']" class="divide-y-2" v-if="show">
+                <li v-for="item in itemsMenu" :key="item.name" :class="[isSubmenu ? 'bg-gray-700' : 'bg-gray-800']"
+                    class="text-sm hover:bg-gray-900">
+                    <a :href="item.url" class="
                             w-full
                             subpixel-antialiased
                             font-mono
@@ -50,11 +29,8 @@
                             pl-8
                             flex flex-wrap
                             items-center
-                        "
-                    >
-                        <arrow-narrow-right-icon
-                            class="mr-2 h-5 w-5 p-1 rounded-sm"
-                        />
+                        ">
+                        <arrow-narrow-right-icon class="mr-2 h-5 w-5 p-1 rounded-sm" />
                         {{ item.name }}
                     </a>
                 </li>
@@ -75,7 +51,7 @@ export default {
             show: false,
         };
     },
-    
+
     methods: {
         toggle() {
             this.show = !this.show;
