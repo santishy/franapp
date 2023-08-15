@@ -163,13 +163,13 @@
             <div id="mobile-menu" class="hidden sm:hidden  relative border-t pt-2 w-full mt-3  ">
                 <submenu-container name="Catalagos">
                     <template slot="descriptive-icon">
-                        <view-boards class="mr-2 h-7 w-7 p-1 text-gray-700 rounded-sm"></view-boards>
+                        <view-boards class="mr-2 h-6 w-6 text-primary rounded-sm"></view-boards>
                     </template>
                     <template slot="icon">
                         <dots-vertical class=" h-7 w-7 p-1 text-gray-700 rounded-sm"></dots-vertical>
                     </template>
                     <template slot="list">
-                        <li class="bg-gray-800">
+                        <li class="bg-slate-100">
                             <accordion :items-menu="clientsMenu" :is-submenu="true" name="Clientes">
                                 <template slot="descriptive-icon">
                                     <users-icon class="mr-2 h-7 w-7 p-1 rounded-sm"></users-icon>
@@ -179,7 +179,7 @@
                                 </template>
                             </accordion>
                         </li>
-                        <li class="bg-gray-800">
+                        <li class="bg-slate-100">
                             <accordion textColor="text-white" :items-menu="ProductsMenu" :is-submenu="true"
                                 name="Productos">
                                 <template slot="descriptive-icon">
@@ -190,7 +190,7 @@
                                 </template>
                             </accordion>
                         </li>
-                        <li class="bg-gray-800">
+                        <li class="bg-slate-100">
                             <accordion textColor="text-white" :items-menu="WarehousesMenu" :is-submenu="true"
                                 name="Almacenes">
                                 <template slot="descriptive-icon">
@@ -201,7 +201,7 @@
                                 </template>
                             </accordion>
                         </li>
-                        <li class="bg-gray-800">
+                        <li class="bg-slate-100">
                             <accordion textColor="text-white" :items-menu="CategoriesMenu" :is-submenu="true"
                                 name="Categorías">
                                 <template slot="descriptive-icon">

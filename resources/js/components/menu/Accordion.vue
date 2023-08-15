@@ -9,21 +9,21 @@
                 py-2
                 font-mono
                 justify-between
-            " :class="getTextColor" @click.prevent="toggle"><span :class="getTextSize"
-                class="mr-1 font-mono flex justify-center items-end">
-                <slot name="descriptive-icon"></slot> {{ name }}
-            </span>
+            " :class="getTextColor" @click.prevent="toggle">
+            <div :class="getTextSize" class="mr-1 font-mono flex justify-center items-center">
+                <slot name="descriptive-icon"></slot> <span class="h-5 block">{{ name }}</span>
+            </div>
             <slot name="icon"></slot>
         </a>
         <transition name="expand" class="" @enter="enter" @after-enter="afterEnter" @leave="leave">
-            <ul :class="[isSubmenu ? 'divide-gray-800' : 'divide-gray-700']" class="divide-y-2" v-if="show">
-                <li v-for="item in itemsMenu" :key="item.name" :class="[isSubmenu ? 'bg-gray-700' : 'bg-gray-800']"
-                    class="text-sm hover:bg-gray-900">
+            <ul :class="[isSubmenu ? 'divide-slate-50' : 'divide-slate-50']" class="divide-y-2" v-if="show">
+                <li v-for="item in itemsMenu" :key="item.name" :class="[isSubmenu ? 'bg-slate-100' : 'bg-slate-100']"
+                    class="text-sm hover:bg-slate-100">
                     <a :href="item.url" class="
                             w-full
                             subpixel-antialiased
                             font-mono
-                            text-white
+                            text-slate-800
                             pr-2
                             py-2
                             pl-8
@@ -78,12 +78,12 @@ export default {
     },
     computed: {
         getTextColor() {
-            return this.isSubmenu ? "text-white" : "text-gray-800";
+            return this.isSubmenu ? "text-slate800" : "text-gray-800";
         },
         getBackgroundColor() {
             return this.isSubmenu
-                ? "bg-gray-700 hover:text-gray-900"
-                : "hover:bg-gray-200";
+                ? "bg-slate-100 hover:text-gray-900"
+                : "hover:bg-slate-200";
         },
         getTextSize() {
             return this.isSubmenu ? "text-sm" : "";
