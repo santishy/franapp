@@ -6,7 +6,7 @@
                 w-full
                 space-y-0
                 px-3
-                py-2
+                py-1
                 font-mono
                 justify-between
             " :class="getTextColor" @click.prevent="toggle">
@@ -78,11 +78,11 @@ export default {
     },
     computed: {
         getTextColor() {
-            return this.isSubmenu ? "text-slate800" : "text-gray-800";
+            return this.isSubmenu ? "text-slate-600 " : "text-slate-800";
         },
         getBackgroundColor() {
             return this.isSubmenu
-                ? "bg-slate-100 hover:text-gray-900"
+                ? "bg-white hover:text-gray-900"
                 : "hover:bg-slate-200";
         },
         getTextSize() {

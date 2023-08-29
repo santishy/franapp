@@ -3786,10 +3786,10 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {
     getTextColor: function getTextColor() {
-      return this.isSubmenu ? "text-slate800" : "text-gray-800";
+      return this.isSubmenu ? "text-slate-600 " : "text-slate-800";
     },
     getBackgroundColor: function getBackgroundColor() {
-      return this.isSubmenu ? "bg-slate-100 hover:text-gray-900" : "hover:bg-slate-200";
+      return this.isSubmenu ? "bg-white hover:text-gray-900" : "hover:bg-slate-200";
     },
     getTextSize: function getTextSize() {
       return this.isSubmenu ? "text-sm" : "";
@@ -3846,7 +3846,6 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     toggle: function toggle() {
       this.show = !this.show;
-      console.log("hello world");
     },
     enter: function enter(el) {
       el.style.height = "auto";
@@ -7083,11 +7082,11 @@ var render = function render() {
   }, [_c("template", {
     slot: "descriptive-icon"
   }, [_c("view-boards", {
-    staticClass: "mr-2 h-6 w-6 text-primary rounded-sm"
+    staticClass: "mr-2 h-6 w-6 text-sky-500 rounded-sm"
   })], 1), _vm._v(" "), _c("template", {
     slot: "icon"
   }, [_c("dots-vertical", {
-    staticClass: "h-7 w-7 p-1 text-gray-700 rounded-sm"
+    staticClass: "h-7 w-7 p-1 text-primary rounded-sm"
   })], 1), _vm._v(" "), _c("template", {
     slot: "list"
   }, [_c("li", {
@@ -7206,15 +7205,15 @@ var render = function render() {
   }, [_c("template", {
     slot: "descriptive-icon"
   }, [_c("view-boards", {
-    staticClass: "mr-2 h-7 w-7 p-1 text-gray-700 rounded-sm"
+    staticClass: "mr-2 h-7 w-7 p-1 text-primary rounded-sm"
   })], 1), _vm._v(" "), _c("template", {
     slot: "icon"
   }, [_c("dots-vertical", {
-    staticClass: "h-7 w-7 p-1 text-gray-700 rounded-sm"
+    staticClass: "h-7 w-7 p-1 text-slate-400 rounded-sm"
   })], 1), _vm._v(" "), _c("template", {
     slot: "list"
   }, [_c("li", {
-    staticClass: "bg-gray-800"
+    staticClass: "pl-3"
   }, [_c("accordion", {
     attrs: {
       "items-menu": _vm.clientsMenu,
@@ -7224,13 +7223,13 @@ var render = function render() {
   }, [_c("template", {
     slot: "descriptive-icon"
   }, [_c("users-icon", {
-    staticClass: "mr-2 h-7 w-7 p-1 rounded-sm"
+    staticClass: "mr-2 h-7 w-7 p-1 text-primary rounded-sm"
   })], 1), _vm._v(" "), _c("template", {
     slot: "icon"
   }, [_c("down-arrow", {
-    staticClass: "text-xs h-4 w-4"
+    staticClass: "text-xs h-4 w-4 text-slate-400"
   })], 1)], 2)], 1), _vm._v(" "), _c("li", {
-    staticClass: "bg-gray-800"
+    staticClass: "pl-3"
   }, [_c("accordion", {
     attrs: {
       textColor: "text-white",
@@ -7241,13 +7240,13 @@ var render = function render() {
   }, [_c("template", {
     slot: "descriptive-icon"
   }, [_c("star", {
-    staticClass: "mr-2 h-7 w-7 p-1 rounded-sm"
+    staticClass: "mr-2 h-7 w-7 p-1 text-primary rounded-sm"
   })], 1), _vm._v(" "), _c("template", {
     slot: "icon"
   }, [_c("down-arrow", {
-    staticClass: "text-xs h-4 w-4"
+    staticClass: "text-xs text-slate-400 h-4 w-4"
   })], 1)], 2)], 1), _vm._v(" "), _c("li", {
-    staticClass: "bg-gray-800"
+    staticClass: "pl-3"
   }, [_c("accordion", {
     attrs: {
       textColor: "text-white",
@@ -7258,13 +7257,13 @@ var render = function render() {
   }, [_c("template", {
     slot: "descriptive-icon"
   }, [_c("view-grid-icon", {
-    staticClass: "mr-2 h-7 w-7 p-1 rounded-sm"
+    staticClass: "mr-2 h-7 w-7 text-primary p-1 rounded-sm"
   })], 1), _vm._v(" "), _c("template", {
     slot: "icon"
   }, [_c("down-arrow", {
-    staticClass: "text-xs h-4 w-4"
+    staticClass: "text-xs h-4 text-slate-400 w-4"
   })], 1)], 2)], 1), _vm._v(" "), _c("li", {
-    staticClass: "bg-gray-800"
+    staticClass: "pl-3"
   }, [_c("accordion", {
     attrs: {
       textColor: "text-white",
@@ -7275,11 +7274,11 @@ var render = function render() {
   }, [_c("template", {
     slot: "descriptive-icon"
   }, [_c("color-swatch", {
-    staticClass: "mr-2 h-7 w-7 p-1 rounded-sm"
+    staticClass: "mr-2 h-7 w-7 text-primary p-1 rounded-sm"
   })], 1), _vm._v(" "), _c("template", {
     slot: "icon"
   }, [_c("down-arrow", {
-    staticClass: "text-xs h-4 w-4"
+    staticClass: "text-xs text-slate-400 h-4 w-4"
   })], 1)], 2)], 1)])], 2), _vm._v(" "), _c("accordion", {
     attrs: {
       "is-submenu": false,
@@ -7289,11 +7288,11 @@ var render = function render() {
   }, [_c("template", {
     slot: "descriptive-icon"
   }, [_c("switch-horizontal", {
-    staticClass: "mr-2 h-7 w-7 p-1 text-gray-700 rounded-sm"
+    staticClass: "mr-2 h-7 w-7 p-1 text-primary rounded-sm"
   })], 1), _vm._v(" "), _c("template", {
     slot: "icon"
   }, [_c("down-arrow", {
-    staticClass: "text-xs w-6 h-6"
+    staticClass: "text-xs w-6 h-6 text-slate-400"
   })], 1)], 2), _vm._v(" "), _c("accordion", {
     attrs: {
       "items-menu": _vm.ReportsMenu,
@@ -7302,11 +7301,11 @@ var render = function render() {
   }, [_c("template", {
     slot: "descriptive-icon"
   }, [_c("bars-icon", {
-    staticClass: "mr-2 h-7 w-7 p-1 text-gray-700 rounded-sm"
+    staticClass: "mr-2 h-7 w-7 p-1 text-primary rounded-sm"
   })], 1), _vm._v(" "), _c("template", {
     slot: "icon"
   }, [_c("down-arrow", {
-    staticClass: "text-xs w-6 h-6"
+    staticClass: "text-xs w-6 text-slate-400 h-6"
   })], 1)], 2), _vm._v(" "), _c("accordion", {
     attrs: {
       "items-menu": _vm.ConfigMenu,
@@ -7315,11 +7314,11 @@ var render = function render() {
   }, [_c("template", {
     slot: "descriptive-icon"
   }, [_c("setting-icon", {
-    staticClass: "mr-2 h-7 w-7 p-1 text-gray-700 rounded-sm"
+    staticClass: "mr-2 h-7 w-7 p-1 text-primary rounded-sm"
   })], 1), _vm._v(" "), _c("template", {
     slot: "icon"
   }, [_c("down-arrow", {
-    staticClass: "text-xs w-6 h-6"
+    staticClass: "text-xs w-6 h-6 text-slate-400"
   })], 1)], 2)], 1), _vm._v(" "), _c("div", {
     staticClass: "flex-1 sm:ml-64"
   }, [_vm._t("default")], 2)], 1), _vm._v(" "), _c("notifications", {
@@ -10120,7 +10119,7 @@ var render = function render() {
   return _c("div", {
     staticClass: "w-full px-0"
   }, [_c("a", {
-    staticClass: "flex items-center w-full space-y-0 px-3 py-2 font-mono justify-between",
+    staticClass: "flex items-center w-full space-y-0 px-3 py-1 font-mono justify-between",
     "class": _vm.getTextColor,
     attrs: {
       href: "#"
@@ -10247,7 +10246,7 @@ var render = function render() {
       leave: _vm.leave
     }
   }, [_vm.show ? _c("ul", {
-    staticClass: "divide-y-0 divide-white"
+    staticClass: "divide-y divide-white bg-slate-50 text-slate-700"
   }, [_vm._t("list")], 2) : _vm._e()])], 1);
 };
 var staticRenderFns = [];

@@ -11,7 +11,7 @@
         </a>
 
         <transition name="expand" class="" @enter="enter" @after-enter="afterEnter" @leave="leave">
-            <ul class="divide-y-0 divide-white" v-if="show">
+            <ul class="divide-y divide-white bg-slate-50 text-slate-700" v-if="show">
                 <slot name="list"> </slot>
             </ul>
         </transition>
@@ -29,7 +29,6 @@ export default {
     methods: {
         toggle() {
             this.show = !this.show;
-            console.log("hello world");
         },
         enter(el) {
             el.style.height = "auto";
