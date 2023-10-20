@@ -1,6 +1,6 @@
 <template>
     <div class="flex flex-wrap justify-center">
-        <button @click.prevent="increase" :disabled="disabled" class="
+        <button @click.prevent="increase" class="
                 px-3
                 py-2
                 rounded-l
@@ -11,8 +11,7 @@
             +
         </button>
         <input v-model="product.sale_quantity" name="qty" class="px-4 py-2 bg-white text-center sm:w-3/12 " type="text"
-            :class="[disabled ? 'text-gray-400' : 'text-gray-600']" placeholder="Precio de venta" aria-label="Full name"
-            :disabled="disabled" />
+            :class="[disabled ? 'text-gray-400' : 'text-gray-600']" placeholder="Precio de venta" aria-label="Full name" />
         <button @click.prevent="decrease" class="
                 px-3
                 py-2
@@ -20,7 +19,7 @@
                 text-center
                 font-bold
                 shadow-sm
-            " :class="[disabled ? 'bg-gray-100 text-gray-400' : 'bg-gray-200 text-gray-700']" :disabled="disabled">
+            " :class="[disabled ? 'bg-gray-100 text-gray-400' : 'bg-gray-200 text-gray-700']">
             -
         </button>
     </div>
