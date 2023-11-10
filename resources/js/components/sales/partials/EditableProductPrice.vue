@@ -1,9 +1,8 @@
 <template>
     <div class="flex flex-wrap justify-center">
-
         <input v-model="product.sale_price" name="sale_price" class="px-4 py-2  text-center  sm:w-full bg-white rounded-sm "
             type="number" :class="[disabled ? ' text-gray-400' : ' text-gray-600']" placeholder="Precio de venta"
-            aria-label="Full name" :disabled="disabled" />
+            aria-label="Full name" />
     </div>
 </template>
 
