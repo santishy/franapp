@@ -27,7 +27,10 @@ class Product extends Model
             $index++;
         }
     }
-
+    public function scopePaginate(Builder $query, $value = 25)
+    {
+        $query->paginate($value);
+    }
     public function scopeByCategory(Builder $query, $id)
     {
         $query->where('category_id', $id);
@@ -69,10 +72,9 @@ class Product extends Model
                 $constraint->aspectRatio();
             });
             $name = str::uuid() . '.' . request()->file('image')->extension();
-            $resize->save(storage_path('app/public/images/'.$name));
+            $resize->save(storage_path('app/public/images/' . $name));
             return Storage::url("public/images/$name");
         }
         return "/images/not-found.png";
-        
     }
 }

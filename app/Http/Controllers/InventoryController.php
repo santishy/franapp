@@ -31,7 +31,7 @@ class InventoryController extends Controller
     public function store(UpdateStoreWarehouse $request)
     {
         $this->authorize('create', new Inventory);
-        return Inventory::create($request->only('name','address'));
+        return Inventory::create($request->only('name', 'address'));
     }
 
     public function edit(Inventory $inventory, Request $request)
@@ -42,7 +42,7 @@ class InventoryController extends Controller
      */
     public function update(Inventory $inventory, Request $request)
     {
-        Gate::authorize('edit-stock',$inventory);
+        Gate::authorize('edit-stock', $inventory);
         request()->validate([
             'product_id' => ['required', 'exists:products,id'],
             'stock' => ['min:0', 'required', 'numeric']
@@ -64,15 +64,20 @@ class InventoryController extends Controller
      */
     public function destroy(Inventory $inventory)
     {
-        Gate::authorize('empty-stock',$inventory);
+        Gate::authorize('empty-stock', $inventory);
         return response()->json(['empty' => $inventory->epmtyStock()]);
     }
 
     public function show(Inventory $inventory)
     {
-        Gate::authorize('view-stock',$inventory);
-        return ProductResource::collection(
-            $inventory->products()->applyFilters()->paginate(25)
-        );
+        Gate::authorize('view-stock', $inventory);
+        $products = $inventory->products();
+        $data = ["products" =>  ProductResource::collection(
+            $products->applyFilters()->paginate(25),
+        )];
+        if (request('page') == 1) {
+            $data["total_stocks"] = $products->sum('inventory_product.stock');
+        }
+        return response()->json($data);
     }
 }
