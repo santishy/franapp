@@ -1,30 +1,11 @@
 <template>
     <div
-        class="
-            flex flex-col-reverse
-            px-2
-            sm:px-0 sm:flex-row sm:items-center sm:border-b sm:border-t
-            border-gray-300
-            relative
-        "
+        class="flex flex-col-reverse px-2 sm:px-0 sm:flex-row sm:items-center sm:border-b sm:border-t border-gray-300 relative"
     >
         <input
             v-model="term_search"
             :class="[inputClass]"
-            class="
-                appearance-none
-                bg-gray-200
-                sm:bg-transparent
-                p-2
-                sm:p-0
-                rounded-sm
-                border-none
-                w-full
-                text-gray-700
-                mr-3
-                focus:outline-none
-                placeholder-gray-600
-            "
+            class="appearance-none bg-gray-200 sm:bg-transparent p-2 sm:p-0 rounded-sm border-none w-full text-gray-700 mr-3 focus:outline-none placeholder-gray-600"
             autocomplete="off"
             @focus="allCategories"
             @keyup.prevent="search"
@@ -40,40 +21,13 @@
 
         <button
             @click.prevent="close"
-            class="
-                absolute
-                text-gray-700
-                border border-gray-400
-                font-semibold
-                sm:right-0
-                px-3
-                sm:py-1
-                py-2
-                right-2
-                bg-white
-                hover:bg-gray-300
-                rounded-sm
-                shadow
-            "
+            class="absolute text-gray-700 border border-gray-400 font-semibold sm:right-0 px-3 sm:py-1 py-2 right-2 bg-white hover:bg-gray-300 rounded-sm shadow"
         >
             X
         </button>
         <div
             :class="listContainer"
-            class="
-                absolute
-                sm:mt-0
-                top-10
-                mt-10
-                sm:w-10/12
-                w-10/12
-                shadow-lg
-                z-5
-                
-                rounded
-               
-                overflow-x-auto
-            "
+            class="absolute sm:mt-0 top-10 mt-10 sm:w-10/12 w-10/12 shadow-lg z-5 rounded overflow-x-auto"
             v-if="items.length"
         >
             <ul
@@ -82,17 +36,7 @@
             >
                 <li v-for="(item, index) in items" :key="item.id">
                     <a
-                        class="
-                            pl-4
-                            block
-                            w-full
-                            focus:ring-2
-                            focus:bg-gray-300
-                            focus:border-transparent
-                            font-mono font-light
-                            hover:bg-gray-300
-                            cursor-pointer
-                        "
+                        class="pl-4 block w-full focus:ring-2 focus:bg-gray-300 focus:border-transparent font-mono font-light hover:bg-gray-300 cursor-pointer"
                         href="#"
                         :class="{ 'bg-gray-300': index == focusedIndex }"
                         @keyup.exact.down="nextFocused"
@@ -123,9 +67,11 @@ export default {
     },
     mounted() {
         if (this.product) {
+            console.log(this.product.category_id);
             const category = this.categories.find(
-                (ele) => ele.id === this.product.id
+                (ele) => ele.id == this.product.category_id
             );
+            console.log(category);
             this.term_search = category.name;
         }
         EventBus.$on("clean-search-term", () => {
