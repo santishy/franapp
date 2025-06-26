@@ -20,7 +20,7 @@ class Product extends Model
         $term = "%" . Str::of($values)->trim() . "%";
         $query->where('sku', 'LIKE', $term)
             ->orWhere('description', 'LIKE', $term)
-            ->orderRaw('CASE WHEN sku ? then 0 WHEN description then 1 else 2 END', [$term, $term]);
+            ->orderByRaw('CASE WHEN sku ? then 0 WHEN description then 1 else 2 END', [$term, $term]);
         // $terms = array_filter(explode(' ', $values), fn($v) => $v !== ' ');
 
         // foreach ($terms as $index => $term) {
