@@ -17,16 +17,20 @@ class Product extends Model
 
     public function scopeSearch(Builder $query, $values)
     {
-        $terms = array_filter(explode(' ', $values), fn($v) => $v !== ' ');
+        $term = "%" . Str::of($values)->trim() . "%";
+        $query->where('sku', 'LIKE', $term)
+            ->orWhere('description', 'LIKE', $term)
+            ->orderRaw('CASE WHEN sku ? then 0 WHEN description then 1 else 2 END');
+        // $terms = array_filter(explode(' ', $values), fn($v) => $v !== ' ');
 
-        foreach ($terms as $index => $term) {
-            $method = $index === 0 ? 'where' : 'orWhere';
-            $query->{$method}(function ($q) use ($term) {
-                $like = "%{$term}%";
-                $q->where('sku', 'LIKE', $like)
-                    ->orWhere('description', 'LIKE', $like);
-            });
-        }
+        // foreach ($terms as $index => $term) {
+        //     $method = $index === 0 ? 'where' : 'orWhere';
+        //     $query->{$method}(function ($q) use ($term) {
+        //         $like = "%{$term}%";
+        //         $q->where('sku', 'LIKE', $like)
+        //             ->orWhere('description', 'LIKE', $like);
+        //     });
+        // }
         // $index = 0;
         // foreach (Str::of($values)->explode(' ') as $value) {
         //     if ($index == 0) $clause = 'where';
