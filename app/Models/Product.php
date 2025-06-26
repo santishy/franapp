@@ -17,20 +17,20 @@ class Product extends Model
 
     public function scopeSearch(Builder $query, $values)
     {
-        // $term = "%" . Str::of($values)->trim() . "%";
-        // $query->where('sku', 'LIKE', $term)
-        //     ->orWhere('description', 'LIKE', $term)
-        //     ->orderByRaw('CASE WHEN sku ? then 0 WHEN description then 1 else 2 END', [$term, $term]);
-        $terms = array_filter(explode(' ', $values), fn($v) => $v !== ' ');
+        $term = "%" . Str::of($values)->trim() . "%";
+        $query->where('sku', 'LIKE', $term)
+            ->orWhere('description', 'LIKE', $term)
+            ->orderByRaw('CASE WHEN sku LIKE ? then 0 WHEN description LIKE ? then 1 else 2 END', [$term, $term]);
+        // $terms = array_filter(explode(' ', $values), fn($v) => $v !== ' ');
 
-        foreach ($terms as $index => $term) {
-            $method = $index === 0 ? 'where' : 'orWhere';
-            $query->{$method}(function ($q) use ($term) {
-                $like = "%{$term}%";
-                $q->where('sku', 'LIKE', $like)
-                    ->orWhere('description', 'LIKE', $like);
-            });
-        }
+        // foreach ($terms as $index => $term) {
+        //     $method = $index === 0 ? 'where' : 'orWhere';
+        //     $query->{$method}(function ($q) use ($term) {
+        //         $like = "%{$term}%";
+        //         $q->where('sku', 'LIKE', $like)
+        //             ->orWhere('description', 'LIKE', $like);
+        //     });
+        // }
         // $index = 0;
         // foreach (Str::of($values)->explode(' ') as $value) {
         //     if ($index == 0) $clause = 'where';
