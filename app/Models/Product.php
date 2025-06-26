@@ -17,15 +17,24 @@ class Product extends Model
 
     public function scopeSearch(Builder $query, $values)
     {
-        $index = 0;
-        foreach (Str::of($values)->explode(' ') as $value) {
-            if ($index == 0) $clause = 'where';
-            else $clause = 'orWhere';
+        $terms = array_filter(explode(' ', $values), fn($v) => $v !== ' ');
 
-            $query->{$clause}('sku', 'LIKE', "%{$value}%")
-                ->orWhere('description', 'LIKE', "%{$value}%");
-            $index++;
+        foreach ($terms as $index => $term) {
+            $method = $index === 0 ? 'where' : 'orWhere';
+            $query->{$method}(function ($q) use ($term) {
+                $like = "%{$term}%";
+                $q->where('sku', 'LIKE', $like)
+                    ->orWhere('description', 'LIKE', $like);
+            });
         }
+        // $index = 0;
+        // foreach (Str::of($values)->explode(' ') as $value) {
+        //     if ($index == 0) $clause = 'where';
+        //     else $clause = 'orWhere';
+        //     $query->{$clause}('sku', 'LIKE', "%{$value}%")
+        //         ->orWhere('description', 'LIKE', "%{$value}%");
+        //     $index++;
+        // }
     }
     public function scopePaginate(Builder $query, $value = 25)
     {
