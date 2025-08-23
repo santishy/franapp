@@ -1,7 +1,7 @@
 <template>
     <div v-if="inventory" class="justify-center">
-        <div class="p-2 rounded-sm shadow-sm mb-4 bg-primary font-mono  text-white">{{ inventory?.name
-        }} | Existencias totales: <span class="font-bold text-slate-800">{{
+        <div class="p-2 rounded-sm shadow-sm mb-4 bg-primary font-mono  text-white">
+            {{ inventory && inventory.name ? inventory.name : '' }} | Existencias totales: <span class="font-bold text-slate-800">{{
     totalStocks
 }}</span></div>
         <div class="

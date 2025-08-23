@@ -15,6 +15,13 @@ class Product extends Model
 
     protected $fillable = ['sku', 'distributor_price', 'image', 'wholesale_price', 'retail_price', 'description', 'category_id'];
 
+    public function setAttribute($key, $value)
+    {
+        if ($key === 'sku' || $key === 'description') {
+            $value =  Str::of($value)->upper()->trim();
+        }
+        return parent::setAttribute($key, $value);
+    }
     public function scopeSearch(Builder $query, $values)
     {
         $term = "%" . Str::of($values)->trim() . "%";

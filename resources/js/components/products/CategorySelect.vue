@@ -4,6 +4,7 @@
     >
         <input
             v-model="term_search"
+            ref="searchInput"
             :class="[inputClass]"
             class="appearance-none bg-gray-200 sm:bg-transparent p-2 sm:p-0 rounded-sm border-none w-full text-gray-700 mr-3 focus:outline-none placeholder-gray-600"
             autocomplete="off"
@@ -114,6 +115,9 @@ export default {
                 this.term_search = this.items[index].name.toUpperCase();
                 this.items = [];
             }
+        },
+        focus(){
+            $this.$refs.searchInput.focus();
         },
         close() {
             EventBus.$emit("selected-category", null);

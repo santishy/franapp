@@ -72,7 +72,7 @@
                     v-if="src"
                     class="flex flex-wrap justify-center w-full bg-gray-200 p-2"
                 >
-                
+
                     <div class="w-8/12 sm:w-6/12 px-4">
                         <img
                             :src="src"
@@ -95,18 +95,28 @@
                 <div :class="[controlsContainerStyle]">
                     <input
                         v-model="form.sku"
+                        ref="skuInput"
+                        @keyup.enter="focusNext('descriptionInput')"
                         name="sku"
                         :class="[inputStyle]"
+                        @input="form.sku = convertToUpperCase(form.sku)"
                         type="text"
                         placeholder="SKU"
                         aria-label="Full name"
+                        @blur="onSkuBlur"
                     />
                     <label :class="[labelStyle]">SKU</label>
+                </div>
+                <div :class="[!skuAvailability ? 'block bg-red-200' : 'hidden']" class="flex items-center justify-center p-2">
+                    <span class="text-red-600 font-mono text-sm">{{skuFeedBack }}</span>
                 </div>
                 <div :class="[controlsContainerStyle]">
                     <textarea
                         v-model="form.description"
+                        ref="descriptionInput"
+                        @keyup.enter.prevent="focusNext('categorySelectInput')"
                         name="description"
+                        @input = "form.description = convertToUpperCase(form.description) "
                         :class="[inputStyle]"
                         type="text"
                         placeholder="DESCRIPCIÓN DEL PRODUCTO"
@@ -116,6 +126,7 @@
                     <label for="" :class="[labelStyle]">Descripción</label>
                 </div>
                 <category-select
+                    ref="categorySelectInput"
                     class="border-t border-gray-300 sm:py-2"
                     inputClass="sm:pl-60"
                     list-container="sm:left-52"
@@ -129,6 +140,7 @@
 
                 <input
                     type="hidden"
+
                     name="category_id"
                     v-model="form.category_id"
                 />
@@ -136,6 +148,7 @@
                     <input
                         type="file"
                         name="image"
+                        ref="imageInput"
                         id="image"
                         @change="onFileSelected"
                         :class="[inputStyle]"
@@ -149,10 +162,12 @@
                         ></label
                     >
                 </div>
-                
+
                 <div :class="[controlsContainerStyle]">
                     <input
                         v-model="form.retail_price"
+                        ref="retailPriceInput"
+                        @input="form.retail_price = convertToUpperCase(form.retail_price)"
                         name="retail_price"
                         :class="[inputStyle]"
                         type="text"
@@ -160,30 +175,33 @@
                         aria-label="Full name"
                     />
                     <label for="" :class="[labelStyle]"
-                        >Lista de precios 1</label
+                        >Precio 1</label
                     >
                 </div>
                 <div :class="[controlsContainerStyle]">
                     <input
                         v-model="form.wholesale_price"
                         name="wholesale_price"
+                        ref="wholesalePriceInput"
                         :class="[inputStyle]"
                         type="text"
                         placeholder="PRECIO AL POR MAYOR"
                         aria-label="Full name"
                     />
                     <label for="" :class="[labelStyle]"
-                        >Lista de precios 2</label
+                        >Precio 2</label
                     >
                 </div>
-                
+
                 <div :class="[controlsContainerStyle]">
                     <input
                         v-model="form.distributor_price"
+                        ref="distributorPriceInput"
+                         @input="form.distributor_price = convertToUpperCase(form.distributor_price)"
                         name="distributor_price"
                         :class="[inputStyle]"
                         type="text"
-                        placeholder="PRECIO PROVEEDOR"
+                        placeholder="COSTO "
                         aria-label="Full name"
                     />
                     <label for="" :class="[labelStyle]">Costo</label>
@@ -194,6 +212,8 @@
                     <div :class="[controlsContainerStyle]">
                         <input
                             v-model="form.qty"
+                            ref="qtyInput"
+                             @input="form.qty = convertToUpperCase(form.qty)"
                             name="qty"
                             :class="[inputStyle]"
                             type="text"
@@ -308,7 +328,9 @@ export default {
             },
             category_name: "",
             src: null,
-            frutsi: null,
+          //  frutsi: null,
+            skuAvailability:true,
+            skuFeedBack:""
         };
     },
     mounted() {
@@ -371,12 +393,28 @@ export default {
                     this.getErrors(err);
                 });
         },
+        async onSkuBlur(){
+            const params ={
+                sku: this.form.sku,
+                ignoreId: this.product ? this.product.id : undefined
+            };
+            try{
+                const {data} = await axios.get('/products/sku-exists', {params});
+                this.skuAvailability = data.available;
+            }catch (error) {
+                console.error("Error checking SKU availability:", error);
+
+                this.skuAvailability = error.response.data?.available || false;
+                this.skuFeedBack = error.response.data?.message || 'Error de validación'
+                return;
+            }
+
+        },
         onFileSelected(event) {
             this.form.image = event.target.files[0];
             if (event.target.files[0]) {
                 const fileReader = new FileReader();
                 fileReader.readAsDataURL(event.target.files[0]);
-
                 fileReader.addEventListener("load", this.showImage);
             }
         },
@@ -388,6 +426,12 @@ export default {
             EventBus.$emit("clean-search-term");
             this.src = null;
             document.querySelector("#image").value = null;
+        },
+        convertToUpperCase(value) {
+            return value ? value.toUpperCase() : "";
+        },
+        focusNext(refName) {
+            this.$refs[refName].focus();
         },
     },
     computed: {
