@@ -6958,6 +6958,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
@@ -6978,11 +6979,9 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this = this;
     if (this.product) {
-      console.log(this.product.category_id);
       var category = this.categories.find(function (ele) {
         return ele.id == _this.product.category_id;
       });
-      console.log(category);
       this.term_search = category.name;
     }
     EventBus.$on("clean-search-term", function () {
@@ -7018,13 +7017,15 @@ __webpack_require__.r(__webpack_exports__);
     },
     selectedCategory: function selectedCategory(index, event) {
       if (this.items.length) {
+        console.log('items: ' + this.items.length);
         EventBus.$emit("selected-category", this.items[index].id);
         this.term_search = this.items[index].name.toUpperCase();
         this.items = [];
+        this.$emit("focus-next");
       }
     },
     focus: function focus() {
-      $this.$refs.searchInput.focus();
+      this.$refs.searchInput.focus();
     },
     close: function close() {
       EventBus.$emit("selected-category", null);
@@ -7873,6 +7874,13 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -7953,11 +7961,12 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                   title: "Productos"
                 }, message);
                 _this2.notify(obj);
-                if (_this2.method == "post") _this2.form = {
-                  sku: _this2.form.sku,
-                  category_id: _this2.form.category_id
-                };
+                if (_this2.method == "post") {
+                  _this2.form = {};
+                  EventBus.$emit('clean-search-term');
+                }
                 _this2.errors = null;
+                _this2.focusNext('skuInput');
               })["catch"](function (err) {
                 _this2.getErrors(err);
               });
@@ -7976,7 +7985,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
             case 0:
               params = {
                 sku: _this3.form.sku,
-                ignoreId: _this3.product ? _this3.product.id : undefined
+                ignore_id: _this3.product ? _this3.product.id : undefined
               };
               _context2.p = 1;
               _context2.n = 2;
@@ -8008,6 +8017,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
         var fileReader = new FileReader();
         fileReader.readAsDataURL(event.target.files[0]);
         fileReader.addEventListener("load", this.showImage);
+        this.focusNext('retailPriceInput');
       }
     },
     showImage: function showImage(e) {
@@ -8024,6 +8034,9 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
     },
     focusNext: function focusNext(refName) {
       this.$refs[refName].focus();
+    },
+    focusCategorySelect: function focusCategorySelect() {
+      this.$refs.categorySelectInput.focus();
     }
   },
   computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapState)(["purchaseVisibility"])), {}, {
@@ -39013,6 +39026,22 @@ var render = function () {
                               }
                               return _vm.previousFocused.apply(null, arguments)
                             },
+                            function ($event) {
+                              if (
+                                !$event.type.indexOf("key") &&
+                                _vm._k(
+                                  $event.keyCode,
+                                  "enter",
+                                  13,
+                                  $event.key,
+                                  "Enter"
+                                )
+                              ) {
+                                return null
+                              }
+                              $event.preventDefault()
+                              return _vm.selectedCategory(index)
+                            },
                           ],
                           click: function ($event) {
                             $event.preventDefault()
@@ -39539,7 +39568,7 @@ var render = function () {
           [
             _c(
               "div",
-              { staticClass: "flex flex-wrap justify-between" },
+              { staticClass: "flex flex-wrap justify-between p-4" },
               [
                 _c("toggle-purchase-visibility", {
                   staticClass: "sm:w-56",
@@ -39550,7 +39579,7 @@ var render = function () {
                   "button",
                   {
                     staticClass:
-                      "\n                        rounded-lg\n                        bg-white\n                        border\n                        hover:text-white hover:bg-pink-500\n                        border-pink-500\n                        font-mono font-extralight\n                        text-xs\n                        p-2\n                        transition-all\n                    ",
+                      "\n                        rounded-lg\n                        border\n                        hover:text-white hover:bg-pink-500\n                        border-pink-500\n                        font-mono font-extralight\n                        text-xs\n                        p-2\n                         bg-slate-100\n                        transition-all\n                    ",
                     on: {
                       click: function ($event) {
                         $event.preventDefault()
@@ -39568,7 +39597,7 @@ var render = function () {
               "div",
               {
                 staticClass:
-                  "\n                    flex\n                    items-center\n                    pb-2\n                    text-blue-800\n                    form-header\n                    text-dark text-center\n                    justify-center\n                    text-xl\n                    font-extralight\n                ",
+                  "\n                    flex\n                    items-center\n                    p-2\n                    text-blue-800\n                    form-header\n                    text-dark text-center\n                    justify-center\n                    text-xl\n                    font-extralight\n                ",
               },
               [_vm._v("\n                Nuevo producto\n            ")]
             ),
@@ -39631,6 +39660,7 @@ var render = function () {
                     ) {
                       return null
                     }
+                    $event.preventDefault()
                     return _vm.focusNext("descriptionInput")
                   },
                   input: [
@@ -39692,7 +39722,7 @@ var render = function () {
                       return null
                     }
                     $event.preventDefault()
-                    return _vm.focusNext("categorySelectInput")
+                    return _vm.focusCategorySelect()
                   },
                   input: [
                     function ($event) {
@@ -39725,6 +39755,11 @@ var render = function () {
                   "list-container": "sm:left-52",
                   categories: _vm.categories,
                   product: _vm.product,
+                },
+                on: {
+                  "focus-next": function ($event) {
+                    return _vm.focusNext("imageInput")
+                  },
                 },
               },
               [
@@ -39761,7 +39796,10 @@ var render = function () {
             _c("div", { class: [_vm.controlsContainerStyle] }, [
               _c("input", {
                 ref: "imageInput",
-                class: [_vm.inputStyle],
+                class: [
+                  _vm.inputStyle,
+                  "focus-within:ring focus-within:ring-sky-300 focus-within:border-sky-300",
+                ],
                 attrs: {
                   type: "file",
                   name: "image",
@@ -39806,6 +39844,16 @@ var render = function () {
                 },
                 domProps: { value: _vm.form.retail_price },
                 on: {
+                  keyup: function ($event) {
+                    if (
+                      !$event.type.indexOf("key") &&
+                      _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
+                    ) {
+                      return null
+                    }
+                    $event.preventDefault()
+                    return _vm.focusNext("wholesalePriceInput")
+                  },
                   input: [
                     function ($event) {
                       if ($event.target.composing) {
@@ -39847,6 +39895,16 @@ var render = function () {
                 },
                 domProps: { value: _vm.form.wholesale_price },
                 on: {
+                  keyup: function ($event) {
+                    if (
+                      !$event.type.indexOf("key") &&
+                      _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
+                    ) {
+                      return null
+                    }
+                    $event.preventDefault()
+                    return _vm.focusNext("distributorPriceInput")
+                  },
                   input: function ($event) {
                     if ($event.target.composing) {
                       return
@@ -39881,6 +39939,18 @@ var render = function () {
                 },
                 domProps: { value: _vm.form.distributor_price },
                 on: {
+                  keyup: function ($event) {
+                    if (
+                      !$event.type.indexOf("key") &&
+                      _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
+                    ) {
+                      return null
+                    }
+                    $event.preventDefault()
+                    _vm.purchaseVisibility
+                      ? _vm.focusNext("qtyInput")
+                      : _vm.focusNext("saveButton")
+                  },
                   input: [
                     function ($event) {
                       if ($event.target.composing) {
@@ -39928,6 +39998,22 @@ var render = function () {
                       },
                       domProps: { value: _vm.form.qty },
                       on: {
+                        keyup: function ($event) {
+                          if (
+                            !$event.type.indexOf("key") &&
+                            _vm._k(
+                              $event.keyCode,
+                              "enter",
+                              13,
+                              $event.key,
+                              "Enter"
+                            )
+                          ) {
+                            return null
+                          }
+                          $event.preventDefault()
+                          return _vm.focusNext("saveButton")
+                        },
                         input: [
                           function ($event) {
                             if ($event.target.composing) {
@@ -40075,8 +40161,21 @@ var render = function () {
               _c(
                 "button",
                 {
+                  ref: "saveButton",
                   staticClass:
                     "\n                        bg-blue-500\n                        transition-all\n                        duration-500\n                        ease-in-out\n                        hover:bg-blue-700\n                        text-white\n                        font-semibold\n                        hover:text-white\n                        py-2\n                        px-4\n                        mt-2\n                        sm:mt-0\n                        border-b-2 border-blue-500\n                        hover:border-transparent\n                        w-full\n                    ",
+                  on: {
+                    keyup: function ($event) {
+                      if (
+                        !$event.type.indexOf("key") &&
+                        _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
+                      ) {
+                        return null
+                      }
+                      $event.preventDefault()
+                      return _vm.submit.apply(null, arguments)
+                    },
+                  },
                 },
                 [_vm._v("\n                    Guardar\n                ")]
               ),

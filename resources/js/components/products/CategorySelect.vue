@@ -42,6 +42,7 @@
                         :class="{ 'bg-gray-300': index == focusedIndex }"
                         @keyup.exact.down="nextFocused"
                         @keyup.exact.up="previousFocused"
+                        @keyup.enter.prevent="selectedCategory(index)"
                         @click.prevent="selectedCategory(index)"
                     >
                         {{ item.name }}
@@ -68,11 +69,9 @@ export default {
     },
     mounted() {
         if (this.product) {
-            console.log(this.product.category_id);
             const category = this.categories.find(
                 (ele) => ele.id == this.product.category_id
             );
-            console.log(category);
             this.term_search = category.name;
         }
         EventBus.$on("clean-search-term", () => {
@@ -111,13 +110,15 @@ export default {
         },
         selectedCategory(index, event) {
             if (this.items.length) {
+                console.log('items: '+this.items.length)
                 EventBus.$emit("selected-category", this.items[index].id);
                 this.term_search = this.items[index].name.toUpperCase();
                 this.items = [];
+                this.$emit("focus-next");
             }
         },
         focus(){
-            $this.$refs.searchInput.focus();
+            this.$refs.searchInput.focus();
         },
         close() {
             EventBus.$emit("selected-category", null);

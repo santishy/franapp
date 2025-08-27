@@ -31,7 +31,7 @@
                     md:mb-0
                 "
             >
-                <div class="flex flex-wrap justify-between">
+                <div class="flex flex-wrap justify-between p-4">
                     <toggle-purchase-visibility
                         class="sm:w-56"
                         :method="method"
@@ -40,13 +40,13 @@
                         @click.prevent="cleanForm"
                         class="
                             rounded-lg
-                            bg-white
                             border
                             hover:text-white hover:bg-pink-500
                             border-pink-500
                             font-mono font-extralight
                             text-xs
                             p-2
+                             bg-slate-100
                             transition-all
                         "
                     >
@@ -57,7 +57,7 @@
                     class="
                         flex
                         items-center
-                        pb-2
+                        p-2
                         text-blue-800
                         form-header
                         text-dark text-center
@@ -96,7 +96,7 @@
                     <input
                         v-model="form.sku"
                         ref="skuInput"
-                        @keyup.enter="focusNext('descriptionInput')"
+                        @keyup.enter.prevent="focusNext('descriptionInput')"
                         name="sku"
                         :class="[inputStyle]"
                         @input="form.sku = convertToUpperCase(form.sku)"
@@ -114,7 +114,7 @@
                     <textarea
                         v-model="form.description"
                         ref="descriptionInput"
-                        @keyup.enter.prevent="focusNext('categorySelectInput')"
+                        @keyup.enter.prevent="focusCategorySelect()"
                         name="description"
                         @input = "form.description = convertToUpperCase(form.description) "
                         :class="[inputStyle]"
@@ -127,6 +127,7 @@
                 </div>
                 <category-select
                     ref="categorySelectInput"
+                    @focus-next="focusNext('imageInput')"
                     class="border-t border-gray-300 sm:py-2"
                     inputClass="sm:pl-60"
                     list-container="sm:left-52"
@@ -151,7 +152,7 @@
                         ref="imageInput"
                         id="image"
                         @change="onFileSelected"
-                        :class="[inputStyle]"
+                        :class="[inputStyle,'focus-within:ring focus-within:ring-sky-300 focus-within:border-sky-300']"
                         placeholder="Subir imagen"
                         aria-label="Full name"
                     />
@@ -167,6 +168,7 @@
                     <input
                         v-model="form.retail_price"
                         ref="retailPriceInput"
+                        @keyup.enter.prevent="focusNext('wholesalePriceInput')"
                         @input="form.retail_price = convertToUpperCase(form.retail_price)"
                         name="retail_price"
                         :class="[inputStyle]"
@@ -181,6 +183,7 @@
                 <div :class="[controlsContainerStyle]">
                     <input
                         v-model="form.wholesale_price"
+                        @keyup.enter.prevent="focusNext('distributorPriceInput')"
                         name="wholesale_price"
                         ref="wholesalePriceInput"
                         :class="[inputStyle]"
@@ -196,6 +199,7 @@
                 <div :class="[controlsContainerStyle]">
                     <input
                         v-model="form.distributor_price"
+                         @keyup.enter.prevent="purchaseVisibility ? focusNext('qtyInput') : focusNext('saveButton')"
                         ref="distributorPriceInput"
                          @input="form.distributor_price = convertToUpperCase(form.distributor_price)"
                         name="distributor_price"
@@ -212,6 +216,7 @@
                     <div :class="[controlsContainerStyle]">
                         <input
                             v-model="form.qty"
+                            @keyup.enter.prevent="focusNext('saveButton')"
                             ref="qtyInput"
                              @input="form.qty = convertToUpperCase(form.qty)"
                             name="qty"
@@ -284,6 +289,8 @@
 
                 <div class="flex justify-center mt-0 mb-0">
                     <button
+                        ref="saveButton"
+                        @keyup.enter.prevent="submit"
                         class="
                             bg-blue-500
                             transition-all
@@ -383,11 +390,12 @@ export default {
                     let obj = { title: "Productos", ...message };
                     this.notify(obj);
                     if (this.method == "post")
-                        this.form = {
-                            sku: this.form.sku,
-                            category_id: this.form.category_id,
-                        };
+                {
+                    this.form = {};
+                    EventBus.$emit('clean-search-term');
+                }
                     this.errors = null;
+                    this.focusNext('skuInput')
                 })
                 .catch((err) => {
                     this.getErrors(err);
@@ -396,7 +404,7 @@ export default {
         async onSkuBlur(){
             const params ={
                 sku: this.form.sku,
-                ignoreId: this.product ? this.product.id : undefined
+                ignore_id: this.product ? this.product.id : undefined
             };
             try{
                 const {data} = await axios.get('/products/sku-exists', {params});
@@ -416,6 +424,7 @@ export default {
                 const fileReader = new FileReader();
                 fileReader.readAsDataURL(event.target.files[0]);
                 fileReader.addEventListener("load", this.showImage);
+                this.focusNext('retailPriceInput')
             }
         },
         showImage(e) {
@@ -432,6 +441,9 @@ export default {
         },
         focusNext(refName) {
             this.$refs[refName].focus();
+        },
+        focusCategorySelect() {
+            this.$refs.categorySelectInput.focus();
         },
     },
     computed: {
