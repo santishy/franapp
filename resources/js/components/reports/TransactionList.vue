@@ -16,7 +16,6 @@
         </information-component>
         <div
             class="
-
                 bg-white
                 shadow-sm
                 w-full
@@ -160,12 +159,12 @@
                     >
                     </transaction-list-item>
                 </transition-group>
+                <infinite-loading
+                    @infinite="infiniteHandler"
+                    :identifier="infiniteId"
+                    ref="infiniteLoading"
+                ></infinite-loading>
             </table>
-            <infinite-loading
-                @infinite="infiniteHandler"
-                :identifier="infiniteId"
-                ref="infiniteLoading"
-            ></infinite-loading>
         </div>
     </div>
 </template>

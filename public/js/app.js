@@ -10029,7 +10029,6 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
 //
 //
 //
-//
 
 
 
@@ -42310,7 +42309,7 @@ var render = function () {
         "div",
         {
           staticClass:
-            "\n\n            bg-white\n            shadow-sm\n            w-full\n            rounded\n            max-w-full\n            sm:overflow-x-hidden\n            overflow-x-auto\n            overflow-y-hidden\n        ",
+            "\n            bg-white\n            shadow-sm\n            w-full\n            rounded\n            max-w-full\n            sm:overflow-x-hidden\n            overflow-x-auto\n            overflow-y-hidden\n        ",
         },
         [
           _vm.params
@@ -42436,18 +42435,17 @@ var render = function () {
                     }),
                     1
                   ),
+                  _vm._v(" "),
+                  _c("infinite-loading", {
+                    ref: "infiniteLoading",
+                    attrs: { identifier: _vm.infiniteId },
+                    on: { infinite: _vm.infiniteHandler },
+                  }),
                 ],
                 1
               )
             : _vm._e(),
-          _vm._v(" "),
-          _c("infinite-loading", {
-            ref: "infiniteLoading",
-            attrs: { identifier: _vm.infiniteId },
-            on: { infinite: _vm.infiniteHandler },
-          }),
-        ],
-        1
+        ]
       ),
     ],
     1
