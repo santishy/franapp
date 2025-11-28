@@ -33,12 +33,13 @@
         <td>
             {{ product.formatted_retail_price }}
         </td>
-        <td>
+        <td v-if="showDistributorPrice">
             {{ product.formatted_distributor_price }}
         </td>
         <td>
             <div v-if="queryTypeExists" class="flex flex-wrap justify-center items-center">
                 <add-to-purchase
+                    v-if="product.distributor_price"
                     v-show="isPurchase"
                     :product_id="product.id"
                     :purchase_price="product.distributor_price"
@@ -64,6 +65,7 @@ import RemoveProductComponent from "./RemoveProductComponent.vue";
 import Barcode from "../icons/Barcode.vue";
 import { mapState } from "vuex";
 export default {
+    inject: ['showDistributorPrice'],
     props: {
         product: {
             type: Object,

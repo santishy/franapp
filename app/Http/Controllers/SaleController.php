@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Events\TransactionComplete;
-use App\Models\Client;
+//use App\Models\Client;
 use Illuminate\Http\Request;
 use App\Http\Resources\TransactionResource;
 use App\Http\Responses\ReportResponse;
@@ -11,10 +11,11 @@ use App\Http\Traits\HasTransaction;
 use App\Models\Category;
 use App\Models\Inventory;
 use App\Models\Sale;
-use Facade\Ignition\QueryRecorder\Query;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Support\Facades\DB;
-use SebastianBergmann\Environment\Console;
+use App\Models\User;
+// use Facade\Ignition\QueryRecorder\Query;
+// use Illuminate\Database\Eloquent\Builder;
+// use Illuminate\Support\Facades\DB;
+// use SebastianBergmann\Environment\Console;
 
 class SaleController extends Controller
 {
@@ -22,22 +23,24 @@ class SaleController extends Controller
 
     public function index()
     {
-        $this->authorize('viewAny',new Sale);
-
+        $this->authorize('viewAny', new Sale);
         if (request()->wantsJson()) {
+
             return new ReportResponse(Sale::query());
         }
-        $inventories = Inventory::all('id','name');
+        $inventories = Inventory::all('id', 'name');
+        $users = User::all('id', 'name');
 
         return view('transactions.index', [
             'uri' => '/sales',
             'inventories' => $inventories,
+            'users' => $users,
             'name' => 'Ventas'
         ]);
     }
     public function create()
     {
-        $this->authorize('create',new Sale);
+        $this->authorize('create', new Sale);
 
         $sale = Sale::with('client')->where('id', session('sale_id'))->first();
         $inventories = Inventory::all();
@@ -53,7 +56,7 @@ class SaleController extends Controller
 
     public function store(Request $request, Sale $sale)
     {
-        $this->authorize('create',$sale);
+        $this->authorize('create', $sale);
 
         $fields = $request->validate([
             'status' => ['required', 'regex:/completed|cancelled|pending/'],
@@ -83,7 +86,7 @@ class SaleController extends Controller
 
     public function destroy(Sale $sale)
     {
-        $this->authorize('delete',$sale);
+        $this->authorize('delete', $sale);
 
         if ($sale->status != 'completed') {
             $saleDeleted = $sale->delete();

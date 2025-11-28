@@ -4,11 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Sale;
 use App\Models\Ticket;
-use Barryvdh\DomPDF\Facade as PDF;
-use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
-use Dompdf\Dompdf;
-use Illuminate\Support\Facades\DB;
+
 
 class PDFController extends Controller
 {

@@ -2,8 +2,10 @@ require('./bootstrap');
 window.Vue = require('vue').default;
 window.EventBus = new Vue();
 import Vuex from 'vuex'
+import PortalVue from 'portal-vue'
 
 Vue.use(Vuex)
+Vue.use(PortalVue)
 import Notifications from 'vue-notification'
 Vue.component('notifications', Notifications);
 Vue.use(Notifications);
@@ -18,7 +20,7 @@ Vue.mixin(Authorizations);
 Vue.mixin(Notify);
 
 
-Vue.component('nav-component', require('./components/NavComponent.vue').default)
+Vue.component('layout-component', require('./components/LayoutComponent.vue').default)
 Vue.component('errors-component', require('./components/ErrorsComponent.vue').default)
 Vue.component('dropdown-component', require('./components/DropdownComponent.vue').default);
 Vue.component('product-form', require('./components/products/ProductForm.vue').default);
@@ -54,7 +56,7 @@ Vue.component('role-component', require('./components/auth/RoleComponent.vue').d
 //permissions
 Vue.component('permission-list', require('./components/auth/PermissionList.vue').default);
 
-//users 
+//users
 Vue.component('user-list', require('./components/users/UserList.vue').default);
 
 //inventories

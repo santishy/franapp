@@ -1,5 +1,5 @@
 <template>
-    <nav-component>
+    <layout-component>
         <div
             v-can="'view users'"
             class="
@@ -161,7 +161,7 @@
                         >
                             <span class="inline-block w-1/3 md:hidden font-bold">Acciones</span
                             >
-                            
+
                                 <a
                                     class="mr-2 inline-block"
                                     :href="`/users/${user.id}/edit`"
@@ -181,20 +181,19 @@
                                     />
                                     <button><ninja-icon></ninja-icon></button>
                                 </form>
-                           
+
                         </td>
                     </tr>
                 </tbody>
             </table>
         </div>
-    </nav-component>
+    </layout-component>
 </template>
 <script>
-import NavComponent from "../NavComponent.vue";
 import UserEditIcon from "../icons/UserEditIcon.vue";
 import NinjaIcon from "../icons/NinjaIcon.vue";
 export default {
-    components: { NavComponent, NinjaIcon, UserEditIcon },
+    components: {  NinjaIcon, UserEditIcon },
     data: () => ({
         users: [],
         csrf: document

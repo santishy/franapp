@@ -21,7 +21,7 @@ class ReportResponse implements Responsable
 
         $data = [
             'data' =>  TransactionResource::collection(
-                $transactions->paginate(50)
+                $transactions->paginate(20)
             ),
         ];
 

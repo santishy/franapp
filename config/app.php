@@ -161,7 +161,7 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-        
+
         /*
          * Package Service Providers...
          */
@@ -169,7 +169,7 @@ return [
         Barryvdh\Debugbar\ServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
 
-        
+
         /*
          * Application Service Providers...
          */
@@ -232,8 +232,8 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'CurrentUser' => App\Authorization\Facades\CurrentUser::class,
-        'PDF' => Barryvdh\DomPDF\Facade::class,
-        'Debugbar' => Barryvdh\Debugbar\Facade::class,
+        // 'PDF' => Barryvdh\DomPDF\Facade::class,
+        // 'Debugbar' => Barryvdh\Debugbar\Facade::class,
         'Image' => Intervention\Image\Facades\Image::class,
     ],
 

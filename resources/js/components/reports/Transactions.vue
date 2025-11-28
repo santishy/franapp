@@ -1,5 +1,5 @@
 <template>
-    <nav-component>
+    <layout-component>
         <div class="w-full px-4">
             <div class="shadow pb-4 bg-white rounded-sm">
                 <h1
@@ -35,23 +35,24 @@
                 <errors-component :errors-found="errors"></errors-component>
 
                 <report-by class="mt-2"></report-by>
+                <div class="px-10">
 
-                <warehouse-checklist :warehouses="warehouses">
-                </warehouse-checklist>
+                    <warehouse-checklist :warehouses="warehouses">
+                    </warehouse-checklist>
+                </div>
             </div>
         </div>
 
         <transaction-list :uri="uri" :name="name"> </transaction-list>
-    </nav-component>
+    </layout-component>
 </template>
 <script>
 import ReportBy from "./ReportBy.vue";
-import NavComponent from "../NavComponent.vue";
 import ErrorsComponent from "../ErrorsComponent.vue";
 import WarehouseChecklist from "../warehouses/WarehouseChecklist.vue";
 
 export default {
-    components: { ReportBy, NavComponent, ErrorsComponent, WarehouseChecklist },
+    components: { ReportBy,  ErrorsComponent, WarehouseChecklist },
     props: {
         name: {
             type: String,
@@ -59,9 +60,17 @@ export default {
         uri: {
             type: String,
         },
+        users: {
+            type: Array,
+        },
         warehouses: {
             type: Array,
         },
+    },
+    provide() {
+        return {
+            users: this.users,
+        };
     },
     data() {
         return {
@@ -73,12 +82,14 @@ export default {
             this.total = total;
         });
         EventBus.$on("errors-found", this.errorsFound);
+        console.log(this.users, "usuarios en Transactions.vue");
     },
     methods: {
         errorsFound(errors) {
             console.log("entro a los errors");
             this.getErrors(errors);
         },
+
     },
 };
 </script>

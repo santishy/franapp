@@ -1,5 +1,5 @@
 <template>
-    <nav-component>
+    <layout-component>
         <div class="grid grid-cols-1 gap-4 px-4 md:grid-cols-4 2xl:grid-cols-4">
             <div
                 class="
@@ -18,7 +18,7 @@
                 ></search-by-category>
                 <search-component ref="search" class="w-full md:w-2/4" />
             </div>
-            <product-list v-if="!isMobile && windowResizing > 960" class="col-span-5">
+            <product-list :showDistributorPrice="true" v-if="!isMobile && windowResizing > 960" class="col-span-5">
                 <product-list-item
                     v-for="(product, index) in products"
                     :key="product.id"
@@ -27,8 +27,9 @@
                 >
                 </product-list-item>
             </product-list>
-            <product-card 
-                v-else
+
+            <!-- <product-card
+
                 v-for="(product, index) in products"
                 :key="product.id"
                 :product="product"
@@ -38,6 +39,7 @@
             >
                 <template slot="options">
                     <add-to-purchase
+                        v-if="product.distributor_price"
                         :product_id="product.id"
                         :purchase_price="product.distributor_price"
                         :index="index"
@@ -64,7 +66,7 @@
                         :index="index"
                     />
                 </template>
-            </product-card>
+            </product-card> -->
             <infinite-loading
                 :identifier="infiniteId"
                 @infinite="infiniteHandler"
@@ -83,12 +85,11 @@
                 ></agree>
             </template>
         </information-component>
-    </nav-component>
+    </layout-component>
 </template>
 <script>
 import Agree from "../alerts/Agree.vue";
 import Message from "../alerts/Message.vue";
-import NavComponent from "../NavComponent.vue";
 import InfiniteLoading from "vue-infinite-loading";
 import SearchComponent from "./SearchComponent.vue";
 import SearchByCategory from "./SearchByCategory.vue";
@@ -109,7 +110,6 @@ export default {
         ProductListItem,
         InfiniteLoading,
         SearchComponent,
-        NavComponent,
         InformationComponent,
         Agree,
         Message,
@@ -138,12 +138,12 @@ export default {
     },
     created() {
         this.cleanLocalStorage();
-        this.resizeObserver = new ResizeObs(); 
+        this.resizeObserver = new ResizeObs();
         this.getQueryType();
-        
+
     },
     mounted() {
-        
+
         this.cleanLocalStorage();
         EventBus.$on("matching-products", this.matchingProducts);
         EventBus.$on("empty-search", this.reloadIndex);
@@ -222,10 +222,10 @@ export default {
         isMobile(){
             return checkMobile();
         },
-        windowResizing(){ 
+        windowResizing(){
             return this.resizeObserver.windowWidth;
         }
-        
+
     },
 };
 </script>

@@ -16,8 +16,7 @@
         </information-component>
         <div
             class="
-                flex
-                justify-center
+
                 bg-white
                 shadow-sm
                 w-full
@@ -25,7 +24,9 @@
                 max-w-full
                 sm:overflow-x-hidden
                 overflow-x-auto
+                overflow-y-hidden
             "
+
         >
             <table
                 v-if="params"
@@ -159,13 +160,12 @@
                     >
                     </transaction-list-item>
                 </transition-group>
-
-                <infinite-loading
-                    @infinite="infiniteHandler"
-                    :identifier="infiniteId"
-                    ref="infiniteLoading"
-                ></infinite-loading>
             </table>
+            <infinite-loading
+                @infinite="infiniteHandler"
+                :identifier="infiniteId"
+                ref="infiniteLoading"
+            ></infinite-loading>
         </div>
     </div>
 </template>
@@ -219,7 +219,7 @@ export default {
                 .get(this.uri, {
                     params: {
                         page: this.page,
-                        ..._.merge(this.params, this.getRelathionships),
+                        ..._.merge(this.params, this.getRelationships),
                         ...this.searchTheWarehouses,
                     },
                 })
@@ -281,7 +281,7 @@ export default {
     },
     computed: {
         ...mapState(["modalDataConfirm"]),
-        getRelathionships() {
+        getRelationships() {
             if (this.name.toUpperCase() == "VENTAS") {
                 return { include: "user,client" };
             } else if (this.name.toUpperCase() == "COMPRAS") {

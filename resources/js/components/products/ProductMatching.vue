@@ -1,35 +1,38 @@
 <template>
-    <div v-if="isOpen" class="fixed inset-0 flex items-center justify-center z-20">
-        <div @click="isOpen = false" class="fixed inset-0 z-10"></div>
+    <portal to="modals">
+    <div v-if="isOpen" class="fixed inset-0 flex items-start mt-4 justify-center z-30">
+        <div @click="isOpen = false" class="fixed inset-0 z-20 bg-black opacity-50"></div>
         <div class="
                 w-full
                 md:w-10/12
-                shadow
-                z-20
-                h-screen
+                h-5/6
+                z-30
+                rounded-lg
+                shadow-lg
                 overflow-y-scroll overflow-x-hidden
                 bg-white
                 py-6
+                relative
                 px-6
             ">
-            <div class="flex justify-end">
-                <button @click="isOpen = false" class="
-                        mt-2
+             <button @click="isOpen = false" class="
                         mb-2
                         text-2xl
+
                         p-0
+                        absolute
                         m-0
-                        fixed
                         top-2
+                        right-2
                         rounded
-                        bg-white
+                        bg-gray-50
                         shadow-lg
                     ">
-                    <x-icon class="stroke-2 stroke-cyan-500"></x-icon>
+                    <x-icon class="stroke-2 stroke-gray-500"></x-icon>
                 </button>
-            </div>
+
             <div class="grid md:grid-cols-4 grid-cols-1 gap-4">
-                <product-list v-if="!isMobile && windowResizing > 960" class="col-span-5">
+                <product-list :show-distributor-price="false" v-if="!isMobile && windowResizing > 960" class="col-span-5">
                     <product-list-item v-for="(product, index) in products" :key="product.id" :product="product"
                         :index="index">
                     </product-list-item>
@@ -44,7 +47,8 @@
             <infinite-loading @infinite="getProducts"></infinite-loading>
         </div>
     </div>
-</template>
+    </portal>
+    </template>
 <script>
 import { mapActions } from "vuex";
 import XIcon from "../icons/XIcon.vue";

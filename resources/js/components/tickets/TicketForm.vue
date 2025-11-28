@@ -1,5 +1,5 @@
 <template>
-    <nav-component>
+    <layout-component>
         <div
             class="w-full px-4  flex justify-center bg-transparent"
         >
@@ -87,11 +87,10 @@
                 <notifications group="foo"></notifications>
             </form>
         </div>
-    </nav-component>
+    </layout-component>
 </template>
 
 <script>
-import NavComponent from "../NavComponent.vue";
 
 export default {
     created() {
@@ -102,7 +101,6 @@ export default {
             type: Object
         }
     },
-    components: { NavComponent },
     data() {
         return {
             form: {},

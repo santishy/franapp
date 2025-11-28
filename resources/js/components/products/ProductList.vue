@@ -9,7 +9,7 @@
                     <th class="px-1 py-2">Descripción</th>
                     <th class="px-1 py-2">Precio por mayor</th>
                     <th class="px-1 py-2">Precio por menor</th>
-                    <th class="px-1 py-2">Precio distribuidor</th>
+                    <th v-if="showDistributorPrice" class="px-1 py-2">Precio distribuidor </th>
                     <th class="px-1 py-2">Acciones</th>
                 </tr>
             </thead>
@@ -19,4 +19,21 @@
         </table>
     </div>
 </template>
-<script></script>
+<script>
+import { provide } from 'vue';
+
+export default {
+    name: "ProductList",
+    props: {
+        showDistributorPrice: {
+            type: Boolean,
+            default: true,
+        },
+    },
+    provide() {
+        return {
+            showDistributorPrice: this.showDistributorPrice,
+        };
+    },
+};
+</script>

@@ -10,8 +10,13 @@ class ProductsSearchController extends Controller
 {
     public function index(Request $request)
     {
+        $paginator = Product::with('category')->applyFilters()->paginate(20);
+        // llena el coleccionador con los productos y les hace visible el campo distributor_price
+        $paginator->getCollection()->makeVisible(
+            'distributor_price'
+        );
         return ProductResource::collection(
-            Product::with('category')->applyFilters()->paginate(20)
+            $paginator
         );
     }
 }

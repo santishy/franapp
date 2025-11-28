@@ -14,7 +14,7 @@ class Product extends Model
     use HasFactory;
 
     protected $fillable = ['sku', 'distributor_price', 'image', 'wholesale_price', 'retail_price', 'description', 'category_id'];
-
+    protected $hidden = ['distributor_price'];
     public function setAttribute($key, $value)
     {
         if ($key === 'sku' || $key === 'description') {
@@ -28,24 +28,6 @@ class Product extends Model
         $query->where('sku', 'LIKE', $term)
             ->orWhere('description', 'LIKE', $term)
             ->orderByRaw('CASE WHEN sku LIKE ? then 0 WHEN description LIKE ? then 1 else 2 END', [$term, $term]);
-        // $terms = array_filter(explode(' ', $values), fn($v) => $v !== ' ');
-
-        // foreach ($terms as $index => $term) {
-        //     $method = $index === 0 ? 'where' : 'orWhere';
-        //     $query->{$method}(function ($q) use ($term) {
-        //         $like = "%{$term}%";
-        //         $q->where('sku', 'LIKE', $like)
-        //             ->orWhere('description', 'LIKE', $like);
-        //     });
-        // }
-        // $index = 0;
-        // foreach (Str::of($values)->explode(' ') as $value) {
-        //     if ($index == 0) $clause = 'where';
-        //     else $clause = 'orWhere';
-        //     $query->{$clause}('sku', 'LIKE', "%{$value}%")
-        //         ->orWhere('description', 'LIKE', "%{$value}%");
-        //     $index++;
-        // }
     }
     public function scopePaginate(Builder $query, $value = 25)
     {

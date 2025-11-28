@@ -1,7 +1,7 @@
 <template>
-    <nav-component>
+    <layout-component>
         <div class="flex flex-wrap sm:items-baseline sm:w-full mx-4 rounded-sm">
-            <category-form 
+            <category-form
                 class="sm:self-start "
                 uri='/categories'
             ></category-form>
@@ -11,15 +11,12 @@
                 </div>
             </div>
         </div>
-    </nav-component>
+    </layout-component>
 </template>
 <script>
 
-import NavComponent from "../NavComponent.vue";
 
 export default {
-    components: {
-        NavComponent
-    }
+
 };
 </script>

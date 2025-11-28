@@ -1,5 +1,5 @@
 <template>
-    <nav-component>
+    <layout-component>
         <div class="w-full mx-auto flex justify-center px-4">
             <div
                 class="
@@ -114,20 +114,18 @@
                 ></agree>
             </template>
         </information-component>
-    </nav-component>
+    </layout-component>
 </template>
 
 <script>
 import { mapState, mapMutations } from "vuex";
 import Agree from "../alerts/Agree.vue";
 import Message from "../alerts/Message.vue";
-import NavComponent from "../NavComponent.vue";
 import WarehouseListItem from "./WarehouseListItem.vue";
 import InformationComponent from "../modals/InformationComponent.vue";
 
 export default {
     components: {
-        NavComponent,
         Agree,
         WarehouseListItem,
         InformationComponent,

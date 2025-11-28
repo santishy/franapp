@@ -328,6 +328,7 @@
                 <slot />
             </div>
         </main>
+        <portal-target name="modals" multiple></portal-target>
         <notifications group="foo"></notifications>
     </div>
 </template>

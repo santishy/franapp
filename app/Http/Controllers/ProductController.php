@@ -18,7 +18,13 @@ class ProductController extends Controller
     {
         $this->authorize('view', new Product());
         if (request()->wantsJson()) {
-            return ProductResource::collection(Product::with('category')->applyFilters()->paginate(21));
+            return ProductResource::collection(
+                Product::with('category')
+                    ->applyFilters()
+                    ->paginate(21)
+                    ->getCollection()
+                    ->makeVisible(['distributor_price'])
+            );
         }
         $categories = Category::all();
         return view('products.index', compact('categories'));
@@ -56,7 +62,7 @@ class ProductController extends Controller
 
         $purchase = Purchase::findOrCreateThePurchase();
 
-        $purchase->addProduct($product->id,$product->distributor_price);
+        $purchase->addProduct($product->id, $product->distributor_price);
 
         $this->deleteSessionVariable('purchase_id');
 

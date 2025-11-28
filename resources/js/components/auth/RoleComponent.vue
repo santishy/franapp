@@ -1,5 +1,5 @@
 <template>
-    <nav-component>
+    <layout-component>
         <div
             class="
                 w-full
@@ -22,12 +22,10 @@
             >
             </permission-list>
         </div>
-    </nav-component>
+    </layout-component>
 </template>
 <script>
-import NavComponent from "../NavComponent.vue";
 export default {
-    components: { NavComponent },
     props: {
         permissions: {
             type: Array,

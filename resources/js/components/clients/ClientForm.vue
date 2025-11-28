@@ -1,5 +1,5 @@
 <template>
-    <nav-component>
+    <layout-component>
         <div class="w-full px-4 flex justify-center bg-transparent">
             <form
                 @submit.prevent="submit"
@@ -38,7 +38,7 @@
                         v-model="form.phone_number"
                         name="phone_number"
                         autocomplete="off"
-                        
+
                         class="
                             appearance-none
                             sm:shadow-none
@@ -188,7 +188,7 @@
                         >Dirección</label
                     >
                 </div>
-                
+
                 <div
                     class="
                         flex flex-col-reverse
@@ -399,13 +399,11 @@
                 </div>
             </form>
         </div>
-    </nav-component>
+    </layout-component>
 </template>
 
 <script>
-import NavComponent from "../NavComponent.vue";
 export default {
-    components: { NavComponent },
     data() {
         return {
             form: { assigned_price: "" },
@@ -442,7 +440,7 @@ export default {
                     .catch(e => {
                         console.log(e)
                     })
-                    
+
 
             }
         },

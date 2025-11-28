@@ -1,10 +1,10 @@
 <template>
-    <nav-component>
+    <layout-component>
         <div
             class="
                 px-4
                 mx-auto
-                grid grid-cols-1 
+                grid grid-cols-1
                 sm:grid sm:grid-cols-2 sm:gap-4 sm:grid-flow-col
             "
         >
@@ -23,13 +23,11 @@
                 v-can="definePermission"
             ></assign-role>
         </div>
-    </nav-component>
+    </layout-component>
 </template>
 <script>
-import NavComponent from "../NavComponent.vue";
 
 export default {
-    components: { NavComponent },
     props: {
         roles: {
             type: Array,

@@ -1,5 +1,5 @@
 <template>
-    <nav-component>
+    <layout-component>
         <div class="w-full flex justify-center px-4">
             <div
                 class="
@@ -126,13 +126,12 @@
                 </table>
             </div>
         </div>
-    </nav-component>
+    </layout-component>
 </template>
 <script>
-import NavComponent from "../NavComponent.vue";
 import ClientListItem from "./ClientListItem.vue";
 export default {
-    components: { ClientListItem, NavComponent },
+    components: { ClientListItem },
 
     data() {
         return {

@@ -1,6 +1,6 @@
 <template>
     <!-- <div class="w-full  flex justify-center mt-20 bg-transparent"> -->
-    <nav-component>
+   <layout-component>
         <div
             class="
                 flex
@@ -314,17 +314,16 @@
                 </div>
             </form>
         </div>
-    </nav-component>
+    </layout-component>
 </template>
 
 <script>
-import NavComponent from "../NavComponent.vue";
+
 import TogglePurchaseVisibility from "./TogglePurchaseVisibility.vue";
 import { mapState } from "vuex";
 import CategorySelect from "./CategorySelect.vue";
 export default {
     components: {
-        NavComponent,
         TogglePurchaseVisibility,
         CategorySelect,
     },

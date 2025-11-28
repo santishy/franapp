@@ -39,12 +39,12 @@ trait ReportBy
         ]);
     }
 
-    public function scopeBetweenDates(Builder $query,$value){
+    public function scopeBetweenDates(Builder $query, $value)
+    {
 
         $dates = str::of($value)->explode(',');
-        
-        $query->whereBetween(DB::raw('Date(created_at)'),[$dates[0],$dates[1]]);
 
+        $query->whereBetween(DB::raw('Date(created_at)'), [$dates[0], $dates[1]]);
     }
 
     public function scopeTotal(Builder $query)
@@ -58,5 +58,9 @@ trait ReportBy
         if (count($warehouses)) {
             $query->whereIn('inventory_id', $warehouses);
         }
+    }
+    public function scopeUser(Builder $query, $value)
+    {
+        $query->where('user_id', $value);
     }
 }

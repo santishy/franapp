@@ -1,5 +1,5 @@
 <template>
-    <nav-component>
+    <layout-component>
         <div  class="w-full px-4 mx-auto  flex flex-wrap max-w-full overscroll-auto" v-can="'view warehouses'">
             <div class="w-full max-w-full sm:w-1/5 ">
                 <inventory-list></inventory-list>
@@ -8,15 +8,14 @@
                 <product-list></product-list>
             </div>
         </div>
-    </nav-component>
+    </layout-component>
 </template>
 
 <script>
 import InventoryList from "./InventoryList.vue";
 import ProductList from "./ProductList";
-import NavComponent from "../NavComponent.vue";
 export default {
-    components: { ProductList, InventoryList, NavComponent },
+    components: { ProductList, InventoryList },
     props: {
         InventoryListinventories: {
             type: Array

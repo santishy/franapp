@@ -1,5 +1,5 @@
 <template>
-    <nav-component>
+    <layout-component>
         <transition name="fade">
             <div v-if="selectedInventoryId == null &&
                 isAdmin &&
@@ -54,7 +54,7 @@
                 </div>
             </div>
         </transition>
-    </nav-component>
+    </layout-component>
 </template>
 <script>
 import ProductMatching from "../products/ProductMatching.vue";
@@ -62,7 +62,6 @@ import SearchComponent from "../products/SearchComponent.vue";
 import InventoryList from "../inventories/InventoryList.vue";
 import { mapState, mapMutations } from "vuex";
 import SalesCart from "./SalesCart";
-import NavComponent from "../NavComponent.vue";
 import SaleToCustomer from "./SaleToCustomer.vue";
 import SearchByCategory from "../products/SearchByCategory.vue";
 import DeleteSale from "./DeleteSale.vue";
@@ -72,7 +71,7 @@ export default {
         SalesCart,
         ProductMatching,
         InventoryList,
-        NavComponent,
+
         SaleToCustomer,
         SearchByCategory,
         DeleteSale,

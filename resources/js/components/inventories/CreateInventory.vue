@@ -1,5 +1,5 @@
 <template>
-    <nav-component>
+    <layout-component>
         <div class="w-full px-4 flex justify-center bg-transparent">
             <form
                 @submit.prevent="submit"
@@ -151,11 +151,10 @@
                 <notifications group="foo"></notifications>
             </form>
         </div>
-    </nav-component>
+    </layout-component>
 </template>
 
 <script>
-import NavComponent from "../NavComponent.vue";
 import DatabaseIcon from "../icons/DatabaseIcon.vue";
 export default {
     created() {
@@ -174,7 +173,7 @@ export default {
             type: String,
         },
     },
-    components: { NavComponent, DatabaseIcon },
+    components: {  DatabaseIcon },
     data() {
         return {
             form: {},

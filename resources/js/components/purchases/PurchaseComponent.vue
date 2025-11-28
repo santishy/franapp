@@ -1,5 +1,5 @@
 <template>
-    <nav-component>
+    <layout-component>
         <div class="grid w-full grid-flow-row px-4 mx-auto md:grid-cols-5">
             <div
                 class="
@@ -94,19 +94,17 @@
             >
             </product-list>
         </div>
-    </nav-component>
+    </layout-component>
 </template>
 <script>
 import CompletePurchaseButton from "./CompletePurchaseButton.vue";
 import CancelPurchaseButton from "./CancelPurchaseButton";
-import NavComponent from "../NavComponent.vue";
 import ProductList from "./ProductList.vue";
 import { mapState } from "vuex";
 export default {
     components: {
         "complete-purchase-btn": CompletePurchaseButton,
         "cancel-purchase-btn": CancelPurchaseButton,
-        NavComponent,
         ProductList,
     },
     props: {
