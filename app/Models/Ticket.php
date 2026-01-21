@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Ticket extends Model
 {
     use HasFactory;
-    protected $fillable = ['address', 'image', 'company', 'footer', 'phone_number'];
+    protected $fillable = ['address', 'image', 'company', 'footer', 'phone_number', 'whatsapp', 'postal_code', 'city'];
 
     /**
      * Hilo de la pregunta como hacer la altura dinamica en dompdf

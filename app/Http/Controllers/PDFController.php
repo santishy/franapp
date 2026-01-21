@@ -6,7 +6,7 @@ use App\Models\Sale;
 use App\Models\Ticket;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
-
+use Illuminate\Support\Str;
 
 class PDFController extends Controller
 {
@@ -15,6 +15,8 @@ class PDFController extends Controller
         $now = Carbon::now()->format('Y-m-d');
 
         $products = $sale->products;
+
+        $customerName = $sale->client ? Str::upper($sale->client->name)  : 'CLIENTE MOSTRADOR';
 
         $ticketConfig = Ticket::first();
 
@@ -29,7 +31,7 @@ class PDFController extends Controller
             'isFontSubsettingEnabled' => true, // incrusta solo glifos usados (más nítido)
         ])->loadView(
             'tickets.pdf',
-            compact('sale', 'now', 'products', 'ticketConfig')
+            compact('sale', 'now', 'products', 'ticketConfig', 'customerName')
         )->setPaper(array(0, 0, 227.67, 2000));
 
         /**
@@ -48,7 +50,7 @@ class PDFController extends Controller
             'isFontSubsettingEnabled' => true, // incrusta solo glifos usados (más nítido)
         ])->loadView(
             'tickets.pdf',
-            compact('sale', 'now', 'products', 'ticketConfig')
+            compact('sale', 'now', 'products', 'ticketConfig', 'customerName')
         )->setPaper(array(0, 0, 227.67, $height + 20));
 
         return $pdf->stream();
