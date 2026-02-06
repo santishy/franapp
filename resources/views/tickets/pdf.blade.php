@@ -240,8 +240,10 @@
 <body>
     <table style="width:100%; margin-top: 8px;">
         <tr>
-            <td style="width:150px; vertical-align:top;">
-                <img src="{{ asset('images/logo.png') }}" style="width:200px; height:auto;">
+            <td style="width:200px; height:90px;vertical-align:top;">
+                <img src="{{ asset('storage/images/logo.png') }}"
+                    style="max-width:200px; max-height:90px; width:auto;
+                    height:auto; display:block;">
             </td>
 
             <td style="text-align:center; vertical-align:top;">

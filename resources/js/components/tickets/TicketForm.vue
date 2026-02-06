@@ -7,6 +7,14 @@
                 </div>
                 <div
                     class="flex flex-col-reverse px-2 sm:px-0 sm:flex-row sm:items-center sm:border-b sm:border-t border-gray-300 sm:py-2 sm:relative">
+                    <input name="image" type="file" @change="onFileChanged"
+                        class="appearance-none  sm:shadow-none static sm:p-0 p-2 bg-gray-200 sm:bg-transparent border-none w-full text-gray-700 mr-3 sm:py-1 sm:pr-2 sm:pl-56 leading-tight focus:outline-none"
+                        placeholder="Subir imagen" aria-label="Full name" />
+                    <label for=""
+                        class="sm:absolute pl-2  sm:pl-0 sm:p-0 p-2 sm:bg-gray-200 h-full flex items-center sm:w-52 sm:justify-center text-indigo-800 font-mono">Logo</label>
+                </div>
+                <div
+                    class="flex flex-col-reverse px-2 sm:px-0 sm:flex-row sm:items-center sm:border-b sm:border-t border-gray-300 sm:py-2 sm:relative">
                     <input v-model="form.company" name="companty"
                         class="appearance-none  sm:shadow-none static sm:p-0 p-2 bg-gray-200 sm:bg-transparent border-none w-full text-gray-700 mr-3 sm:py-1 sm:pr-2 sm:pl-56 leading-tight focus:outline-none"
                         type="text" placeholder="COMPAÑIA" aria-label="Full name" />
@@ -15,7 +23,7 @@
                 </div>
                 <div
                     class="flex flex-col-reverse px-2 sm:px-0 sm:flex-row sm:items-center sm:border-b sm:border-t border-gray-300 sm:py-2 sm:relative">
-                    <input v-model="form.address" name="address"
+                    <input v-model="form.address" name="address" @change="onFileChanged"
                         class="appearance-none  sm:shadow-none static sm:p-0 p-2 bg-gray-200 sm:bg-transparent border-none w-full text-gray-700 mr-3 sm:py-1 sm:pr-2 sm:pl-56 leading-tight focus:outline-none"
                         type="text" placeholder="DIRECCION" aria-label="Full name" />
                     <label for=""
@@ -92,7 +100,10 @@ export default {
     },
     data() {
         return {
-            form: {},
+            form: {
+                image: null,
+            },
+            previewLogoUrl: null,
             errors: null,
             obj: { title: "Tickets" }
         };
@@ -100,8 +111,22 @@ export default {
     methods: {
         submit() {
             this.obj.message = "EL ticket se modifico correctamente";
-            this.form._method = 'put';
-            axios["post"](`/tickets/${this.ticket.id}`, this.form)
+            const fd = new FormData();
+            Object.keys(this.form).forEach(key => {
+                const value = this.form[key];
+                if (value === null || value === undefined) return;
+                if (key === 'image') {
+                    if (value instanceof File) fd.append(key, value)
+                    return;
+                }
+                fd.append(key, value)
+            });
+            fd.append('_method', 'put');
+            axios["post"](`/tickets/${this.ticket.id}`, fd, {
+                headers: {
+                    'Content-type': 'multipart/form-data'
+                }
+            })
                 .then(res => {
                     this.notify(this.obj);
                     this.errors = null;
@@ -109,6 +134,16 @@ export default {
                 .catch(err => {
                     this.getErrors(err);
                 });
+        },
+        onFileChanged(event) {
+            const file = event.target.files && event.target.files[0] ? event.target.files[0] : null;
+            this.form.image = file;
+            if (file) {
+                this.previewLogoUrl = URL.createObjectURL(file);
+            } else {
+                this.previewLogoUrl = null;
+            }
+            console.log('image', this.form.image)
         }
     }
 };
