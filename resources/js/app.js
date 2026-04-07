@@ -78,6 +78,8 @@ Vue.component('forbidden', require('./components/errors/Forbidden.vue').default)
  * tickets
  */
 Vue.component('ticket-form', require('./components/tickets/TicketForm.vue').default);
+//select inventory
+Vue.component('select-inventory', require('./components/inventories/SelectInventory.vue').default);
 
 Vue.directive('can',
     async function (el, binding) {

@@ -1,7 +1,7 @@
 <template>
     <layout-component>
         <transition name="fade">
-            <div v-if="selectedInventoryId == null &&
+            <!-- <div v-if="selectedInventoryId == null &&
                 isAdmin &&
                 !localSale.inventory_id
                 " class="flex flex-col justify-center mx-auto px-4 w-full">
@@ -11,8 +11,9 @@
                     para realizar la venta
                 </p>
                 <inventory-list @click.prevent=""></inventory-list>
-            </div>
-            <div v-else class="w-full px-4">
+            </div> -->
+            <!-- quite el v-else del div de abajo para quitar la eleccion de inventario -->
+            <div class="w-full px-4">
                 <!-- <div class="
                     "> -->
                 <!-- <search-by-category

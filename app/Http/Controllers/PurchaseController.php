@@ -29,6 +29,7 @@ class PurchaseController extends Controller
             [
                 'uri' => '/purchases',
                 'name' => 'Compras',
+                'users' => DB::table('users')->select('id', 'name')->get(),
                 'inventories' => $inventories
             ]
         );
@@ -44,9 +45,9 @@ class PurchaseController extends Controller
             ]
         );
         $purchase = Purchase::findOrCreateThePurchase();
-        
+
         $purchase->addProduct();
-        
+
         return response()->json([
             'qty' => $purchase->products()->where('product_id', $request->product_id)->sum('qty'),
             'purchase_id' => $purchase->id,
@@ -65,9 +66,7 @@ class PurchaseController extends Controller
             ->with(compact('purchase'))
             ->with(compact('inventories'));
     }
-    public function edit(Purchase $purchase)
-    {
-    }
+    public function edit(Purchase $purchase) {}
     public function update(Request $request, Purchase $purchase)
     {
         $this->authorize('update', $purchase); // puede ser el metodo create?
@@ -75,7 +74,7 @@ class PurchaseController extends Controller
         $request->validate([
             'status' => ['required'],
             'inventory_id' => ['required']
-        ],[
+        ], [
             'status.required' => 'El status es requerido.',
             'inventory_id.required' => 'El inventario es requerido.',
         ]);
@@ -93,9 +92,9 @@ class PurchaseController extends Controller
     {
         $this->authorize('delete', $purchase);
 
-        if($purchase->status === 'completed')
+        if ($purchase->status === 'completed')
             TransactionComplete::dispatch($purchase, request('factor'));
-        
+
         $purchase->status = 'cancelled';
         $purchase->save();
         $this->deleteSessionVariable('purchase_id');

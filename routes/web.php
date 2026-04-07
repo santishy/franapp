@@ -9,18 +9,15 @@ use App\Http\Controllers\ProductsSearchController;
 use App\Http\Controllers\ProductInPurchaseController;
 use App\Http\Controllers\{ClientController, CurrentUserController, ImpersonationController, InventoryController, PDFController, ProductBarcodeController, ProductValidation, RolesPermissionsController, SaleToClientController, TicketController, TransactionProductsController, UserController, WarehouseController};
 use App\Http\Controllers\{PurchaseController, ProductInSaleController, RoleController};
-use App\Models\Category;
-use App\Models\Ticket;
-use Illuminate\Support\Facades\Auth;
-use Spatie\Permission\Contracts\Role;
+use App\Http\Controllers\InventoryContextController;
 
 Route::get('/', function () {
     return view('dashboard');
-})->middleware('auth');
+})->middleware(['auth', 'context.inventory']);
 
 Route::get('home', function () {
     return view('dashboard');
-});
+})->middleware(['auth', 'context.inventory']);
 /**
  * SKU check
  */
@@ -29,7 +26,7 @@ Route::get('products/sku-exists', [ProductValidation::class, 'skuAvailability'])
 //productos
 
 
-Route::resource('products', ProductController::class)->middleware('auth');
+Route::resource('products', ProductController::class)->middleware(['auth', 'context.inventory']);
 
 //productos en venta
 
@@ -132,3 +129,11 @@ Route::get('transaction-products', [TransactionProductsController::class, 'index
 
 
 Route::get('barcode/{product:sku}', [ProductBarcodeController::class, 'show'])->middleware('auth');
+
+/**
+ * Select inventory
+ */
+Route::middleware(['auth'])->group(function () {
+    Route::get('select-inventory', [InventoryContextController::class, 'show'])->name('select-inventory');
+    Route::post('select-inventory', [InventoryContextController::class, 'store'])->name('select.inventory.store');
+});

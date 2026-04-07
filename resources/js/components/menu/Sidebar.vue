@@ -1,5 +1,6 @@
 <template>
-    <div class="h-screen max-h-screen overflow-y-auto invisible sm:visible bg-white shadow-sm fixed inset-y-0 left-0 w-64 ">
+    <div
+        class="h-screen  max-h-screen overflow-y-auto invisible sm:visible bg-white shadow-sm fixed inset-y-0 left-0 w-64 ">
         <div class="min-h-screen ">
             <h5 class="
                     text-2xl

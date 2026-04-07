@@ -83,6 +83,7 @@
                         <div class="
                                 flex flex-wrap
                                 sm:items-center sm:justify-center
+
                                 font-mono
                             ">
                             <shopping-bag></shopping-bag>
