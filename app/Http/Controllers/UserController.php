@@ -46,9 +46,25 @@ class UserController extends Controller
             ],
             'password' => ['string', 'min:8', 'confirmed', 'required_with:password_confirmation'],
             'roles.*' => 'exists:roles,id'
+        ], [
+            'roles.*.exists' => 'El rol seleccionado es inválido.',
+            'inventory_id.exists' => 'El inventario seleccionado es inválido.',
+            'password.required_with' => 'La contraseña es requerida cuando se proporciona la confirmación de contraseña.',
+            'password.confirmed' => 'La confirmación de contraseña no coincide.',
+            'email.unique' => 'El correo electrónico ya está en uso por otro usuario.',
+            'email.email' => 'El correo electrónico debe ser una dirección de correo válida.',
+            'email.string' => 'El correo electrónico debe ser una cadena de texto.',
+            'email.max' => 'El correo electrónico no debe exceder los 255 caracteres.',
+            'name.string' => 'El nombre debe ser una cadena de texto.',
+            'name.max' => 'El nombre no debe exceder los 255 caracteres.',
+            'password.string' => 'La contraseña debe ser una cadena de texto.',
+            'password.min' => 'La contraseña debe tener al menos 8 caracteres.',
+
         ]);
         $data =  $fields->validate();
-        $user->password = bcrypt($data['password']);
+        if (!empty($data['password'])) {
+            $user->password = bcrypt($data['password']);
+        }
         $user->inventory_id = $data['inventory_id'];
         $user->name = $data['name'];
         $user->email = $data['email'];
