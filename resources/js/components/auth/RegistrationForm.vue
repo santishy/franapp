@@ -1,33 +1,22 @@
 <template>
-    <form
-        @submit.prevent="submit"
-        v-can="definePermission"
-        class="shadow-sm rounded-sm bg-white"
-    >
-        <div
-            class="
+    <form @submit.prevent="submit" v-can="definePermission" class="shadow-sm rounded-sm bg-white">
+        <div class="
                 form-header
                 p-2
                 text-dark text-center text-xl
                 font-extralight
                 text-blue-800
-            "
-        >
+            ">
             {{ getTitle }}
         </div>
-        <div
-            class="
+        <div class="
                 flex flex-col-reverse
                 px-2
                 sm:px-0 sm:flex-row sm:items-center sm:border-b sm:border-t
                 border-gray-300
                 sm:py-2 sm:relative
-            "
-        >
-            <select
-                v-model="form.inventory_id"
-                name="inventory_id"
-                class="
+            ">
+            <select v-model="form.inventory_id" name="inventory_id" class="
                     appearance-none
                     sm:shadow-none
                     static
@@ -42,22 +31,13 @@
                     sm:py-1 sm:pr-2 sm:pl-56
                     leading-tight
                     focus:outline-none
-                "
-                placeholder="Nombre completo"
-                aria-label="Full name"
-            >
+                " placeholder="Nombre completo" aria-label="Full name">
                 <option value="" disabled selected>Elige un almacén</option>
-                <option
-                    v-for="inventory in inventories"
-                    :key="inventory.id"
-                    :value="inventory.id"
-                >
+                <option v-for="inventory in inventories" :key="inventory.id" :value="inventory.id">
                     {{ inventory.name }}
                 </option>
             </select>
-            <label
-                for=""
-                class="
+            <label for="" class="
                     sm:absolute
                     pl-2
                     sm:pl-0 sm:p-0
@@ -69,23 +49,16 @@
                     sm:w-52 sm:justify-center
                     text-indigo-800
                     font-mono
-                "
-                >Almacenes</label
-            >
+                ">Almacenes</label>
         </div>
-        <div
-            class="
+        <div class="
                 flex flex-col-reverse
                 px-2
                 sm:px-0 sm:flex-row sm:items-center sm:border-b sm:border-t
                 border-gray-300
                 sm:py-2 sm:relative
-            "
-        >
-            <input
-                v-model="form.name"
-                name="name"
-                class="
+            ">
+            <input v-model="form.name" name="name" class="
                     appearance-none
                     sm:shadow-none
                     static
@@ -100,14 +73,8 @@
                     sm:py-1 sm:pr-2 sm:pl-56
                     leading-tight
                     focus:outline-none
-                "
-                type="text"
-                placeholder="Nombre completo"
-                aria-label="Full name"
-            />
-            <label
-                for=""
-                class="
+                " type="text" placeholder="Nombre completo" aria-label="Full name" />
+            <label for="" class="
                     sm:absolute
                     pl-2
                     sm:pl-0 sm:p-0
@@ -119,23 +86,16 @@
                     sm:w-52 sm:justify-center
                     text-indigo-800
                     font-mono
-                "
-                >Nombre</label
-            >
+                ">Nombre</label>
         </div>
-        <div
-            class="
+        <div class="
                 flex flex-col-reverse
                 px-2
                 sm:px-0 sm:flex-row sm:items-center sm:border-b sm:border-t
                 border-gray-300
                 sm:py-2 sm:relative
-            "
-        >
-            <input
-                v-model="form.email"
-                name="email"
-                class="
+            ">
+            <input v-model="form.email" name="email" class="
                     appearance-none
                     sm:shadow-none
                     static
@@ -150,14 +110,8 @@
                     sm:py-1 sm:pr-2 sm:pl-56
                     leading-tight
                     focus:outline-none
-                "
-                type="email"
-                placeholder="Correo electronico"
-                aria-label="Full name"
-            />
-            <label
-                for=""
-                class="
+                " type="email" placeholder="Correo electronico" aria-label="Full name" />
+            <label for="" class="
                     sm:absolute
                     pl-2
                     sm:pl-0 sm:p-0
@@ -169,24 +123,16 @@
                     sm:w-52 sm:justify-center
                     text-indigo-800
                     font-mono
-                "
-                >Email</label
-            >
+                ">Email</label>
         </div>
-        <div
-            v-if="!editableUser"
-            class="
+        <div v-if="!!editableUser" class="
                 flex flex-col-reverse
                 px-2
                 sm:px-0 sm:flex-row sm:items-center sm:border-b sm:border-t
                 border-gray-300
                 sm:py-2 sm:relative
-            "
-        >
-            <input
-                v-model="form.password"
-                name="password"
-                class="
+            ">
+            <input v-model="form.password" name="password" class="
                     appearance-none
                     sm:shadow-none
                     static
@@ -201,14 +147,8 @@
                     sm:py-1 sm:pr-2 sm:pl-56
                     leading-tight
                     focus:outline-none
-                "
-                type="password"
-                placeholder="Contraseña"
-                aria-label="Full name"
-            />
-            <label
-                for=""
-                class="
+                " type="password" placeholder="Contraseña" aria-label="Full name" />
+            <label for="" class="
                     sm:absolute
                     pl-2
                     sm:pl-0 sm:p-0
@@ -220,24 +160,16 @@
                     sm:w-52 sm:justify-center
                     text-indigo-800
                     font-mono
-                "
-                >Contraseña</label
-            >
+                ">Contraseña</label>
         </div>
-        <div
-            v-if="!editableUser"
-            class="
+        <div v-if="!!editableUser" class="
                 flex flex-col-reverse
                 px-2
                 sm:px-0 sm:flex-row sm:items-center sm:border-b sm:border-t
                 border-gray-300
                 sm:py-2 sm:relative
-            "
-        >
-            <input
-                v-model="form.password_confirmation"
-                name="password_confirmation"
-                class="
+            ">
+            <input v-model="form.password_confirmation" name="password_confirmation" class="
                     appearance-none
                     sm:shadow-none
                     static
@@ -252,14 +184,8 @@
                     sm:py-1 sm:pr-2 sm:pl-56
                     leading-tight
                     focus:outline-none
-                "
-                type="password"
-                placeholder="Confirmar contraseña"
-                aria-label="Full name"
-            />
-            <label
-                for=""
-                class="
+                " type="password" placeholder="Confirmar contraseña" aria-label="Full name" />
+            <label for="" class="
                     sm:absolute
                     pl-2
                     sm:pl-0 sm:p-0
@@ -271,17 +197,14 @@
                     sm:w-52 sm:justify-center
                     text-indigo-800
                     font-mono
-                "
-                >Confirmar Contraseña</label
-            >
+                ">Confirmar Contraseña</label>
         </div>
         <div class="flex items-center">
             <errors-component :errors-found="errors" />
         </div>
 
         <div class="flex justify-center mt-0 mb-0">
-            <button
-                class="
+            <button class="
                     mt-4 
                     sm:mt-0
                     bg-blue-500
@@ -297,8 +220,7 @@
                     border-b-2 border-blue-500
                     hover:border-transparent
                     w-full
-                "
-            >
+                ">
                 {{ getButtonTitle }}
             </button>
         </div>
@@ -361,6 +283,7 @@ export default {
                     this.notify(this.obj);
                 })
                 .catch((err) => {
+
                     this.getErrors(err);
                 });
         },
