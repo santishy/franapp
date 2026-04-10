@@ -35611,107 +35611,99 @@ var render = function () {
         ]
       ),
       _vm._v(" "),
-      !!_vm.editableUser
-        ? _c(
-            "div",
+      _c(
+        "div",
+        {
+          staticClass:
+            "\n            flex flex-col-reverse\n            px-2\n            sm:px-0 sm:flex-row sm:items-center sm:border-b sm:border-t\n            border-gray-300\n            sm:py-2 sm:relative\n        ",
+        },
+        [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.form.password,
+                expression: "form.password",
+              },
+            ],
+            staticClass:
+              "\n                appearance-none\n                sm:shadow-none\n                static\n                sm:p-0\n                p-2\n                bg-gray-200\n                sm:bg-transparent\n                border-none\n                w-full\n                text-gray-700\n                mr-3\n                sm:py-1 sm:pr-2 sm:pl-56\n                leading-tight\n                focus:outline-none\n            ",
+            attrs: {
+              name: "password",
+              type: "password",
+              placeholder: "Contraseña",
+              "aria-label": "Full name",
+            },
+            domProps: { value: _vm.form.password },
+            on: {
+              input: function ($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.form, "password", $event.target.value)
+              },
+            },
+          }),
+          _vm._v(" "),
+          _c(
+            "label",
             {
               staticClass:
-                "\n            flex flex-col-reverse\n            px-2\n            sm:px-0 sm:flex-row sm:items-center sm:border-b sm:border-t\n            border-gray-300\n            sm:py-2 sm:relative\n        ",
+                "\n                sm:absolute\n                pl-2\n                sm:pl-0 sm:p-0\n                p-2\n                sm:bg-gray-200\n                h-full\n                flex\n                items-center\n                sm:w-52 sm:justify-center\n                text-indigo-800\n                font-mono\n            ",
+              attrs: { for: "" },
             },
-            [
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.form.password,
-                    expression: "form.password",
-                  },
-                ],
-                staticClass:
-                  "\n                appearance-none\n                sm:shadow-none\n                static\n                sm:p-0\n                p-2\n                bg-gray-200\n                sm:bg-transparent\n                border-none\n                w-full\n                text-gray-700\n                mr-3\n                sm:py-1 sm:pr-2 sm:pl-56\n                leading-tight\n                focus:outline-none\n            ",
-                attrs: {
-                  name: "password",
-                  type: "password",
-                  placeholder: "Contraseña",
-                  "aria-label": "Full name",
-                },
-                domProps: { value: _vm.form.password },
-                on: {
-                  input: function ($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.$set(_vm.form, "password", $event.target.value)
-                  },
-                },
-              }),
-              _vm._v(" "),
-              _c(
-                "label",
-                {
-                  staticClass:
-                    "\n                sm:absolute\n                pl-2\n                sm:pl-0 sm:p-0\n                p-2\n                sm:bg-gray-200\n                h-full\n                flex\n                items-center\n                sm:w-52 sm:justify-center\n                text-indigo-800\n                font-mono\n            ",
-                  attrs: { for: "" },
-                },
-                [_vm._v("Contraseña")]
-              ),
-            ]
-          )
-        : _vm._e(),
+            [_vm._v("Contraseña")]
+          ),
+        ]
+      ),
       _vm._v(" "),
-      !!_vm.editableUser
-        ? _c(
-            "div",
+      _c(
+        "div",
+        {
+          staticClass:
+            "\n            flex flex-col-reverse\n            px-2\n            sm:px-0 sm:flex-row sm:items-center sm:border-b sm:border-t\n            border-gray-300\n            sm:py-2 sm:relative\n        ",
+        },
+        [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.form.password_confirmation,
+                expression: "form.password_confirmation",
+              },
+            ],
+            staticClass:
+              "\n                appearance-none\n                sm:shadow-none\n                static\n                sm:p-0\n                p-2\n                bg-gray-200\n                sm:bg-transparent\n                border-none\n                w-full\n                text-gray-700\n                mr-3\n                sm:py-1 sm:pr-2 sm:pl-56\n                leading-tight\n                focus:outline-none\n            ",
+            attrs: {
+              name: "password_confirmation",
+              type: "password",
+              placeholder: "Confirmar contraseña",
+              "aria-label": "Full name",
+            },
+            domProps: { value: _vm.form.password_confirmation },
+            on: {
+              input: function ($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.form, "password_confirmation", $event.target.value)
+              },
+            },
+          }),
+          _vm._v(" "),
+          _c(
+            "label",
             {
               staticClass:
-                "\n            flex flex-col-reverse\n            px-2\n            sm:px-0 sm:flex-row sm:items-center sm:border-b sm:border-t\n            border-gray-300\n            sm:py-2 sm:relative\n        ",
+                "\n                sm:absolute\n                pl-2\n                sm:pl-0 sm:p-0\n                p-2\n                sm:bg-gray-200\n                h-full\n                flex\n                items-center\n                sm:w-52 sm:justify-center\n                text-indigo-800\n                font-mono\n            ",
+              attrs: { for: "" },
             },
-            [
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.form.password_confirmation,
-                    expression: "form.password_confirmation",
-                  },
-                ],
-                staticClass:
-                  "\n                appearance-none\n                sm:shadow-none\n                static\n                sm:p-0\n                p-2\n                bg-gray-200\n                sm:bg-transparent\n                border-none\n                w-full\n                text-gray-700\n                mr-3\n                sm:py-1 sm:pr-2 sm:pl-56\n                leading-tight\n                focus:outline-none\n            ",
-                attrs: {
-                  name: "password_confirmation",
-                  type: "password",
-                  placeholder: "Confirmar contraseña",
-                  "aria-label": "Full name",
-                },
-                domProps: { value: _vm.form.password_confirmation },
-                on: {
-                  input: function ($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.$set(
-                      _vm.form,
-                      "password_confirmation",
-                      $event.target.value
-                    )
-                  },
-                },
-              }),
-              _vm._v(" "),
-              _c(
-                "label",
-                {
-                  staticClass:
-                    "\n                sm:absolute\n                pl-2\n                sm:pl-0 sm:p-0\n                p-2\n                sm:bg-gray-200\n                h-full\n                flex\n                items-center\n                sm:w-52 sm:justify-center\n                text-indigo-800\n                font-mono\n            ",
-                  attrs: { for: "" },
-                },
-                [_vm._v("Confirmar Contraseña")]
-              ),
-            ]
-          )
-        : _vm._e(),
+            [_vm._v("Confirmar Contraseña")]
+          ),
+        ]
+      ),
       _vm._v(" "),
       _c(
         "div",

@@ -125,7 +125,7 @@
                     font-mono
                 ">Email</label>
         </div>
-        <div v-if="!!editableUser" class="
+        <div class="
                 flex flex-col-reverse
                 px-2
                 sm:px-0 sm:flex-row sm:items-center sm:border-b sm:border-t
@@ -162,7 +162,7 @@
                     font-mono
                 ">Contraseña</label>
         </div>
-        <div v-if="!!editableUser" class="
+        <div class="
                 flex flex-col-reverse
                 px-2
                 sm:px-0 sm:flex-row sm:items-center sm:border-b sm:border-t
