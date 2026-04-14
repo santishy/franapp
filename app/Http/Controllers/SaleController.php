@@ -61,7 +61,7 @@ class SaleController extends Controller
         $fields = $request->validate([
             'status' => ['required', 'regex:/completed|cancelled|pending/'],
             'total' => 'numeric|required',
-            'inventory_id' => ['required']
+            // 'inventory_id' => ['required']
         ]);
 
         if ($fields['status'] == 'completed') {

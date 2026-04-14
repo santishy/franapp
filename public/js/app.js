@@ -8896,7 +8896,6 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
 //
 //
 //
-//
 
 
 
@@ -8914,7 +8913,8 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
   },
   data: function data() {
     return {
-      inventory_id: null
+      inventory_id: null,
+      disabled: false
     };
   },
   mounted: function mounted() {
@@ -8926,6 +8926,7 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
   methods: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapMutations)(["setErrors"])), {}, {
     completePurchase: function completePurchase() {
       var _this2 = this;
+      this.disabled = true;
       axios.put("/purchases/".concat(this.purchase.id), {
         status: "completed",
         total: this.totalPurchase,
@@ -8935,9 +8936,11 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
         EventBus.$emit("purchase-completed", res.data.data);
         if (res.data.data.status === "COMPLETADA") {
           localStorage.removeItem("productsInPurchase");
+          _this2.disabled = true;
         }
       })["catch"](function (err) {
         _this2.setErrors(err);
+        _this2.disabled = false;
         //this.getErrors(err);
       });
     }
@@ -11097,8 +11100,6 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
 //
 //
 //
-//
-//
 
 
 
@@ -11178,7 +11179,9 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   methods: {
     submit: function submit() {
       var _this2 = this;
-      this.form.inventory_id = this.isAdmin ? sessionStorage.getItem("inventory_id") : this.user.inventory_id;
+      // this.form.inventory_id = this.isAdmin
+      //     ? sessionStorage.getItem("inventory_id")
+      //     : this.user.inventory_id;
       if (this.getStatus === "pending") this.form.status = "completed";else this.form.status = "pending";
       axios.post("/sales/".concat(this.localSale.id), this.form).then(function (res) {
         _this2.localSale.status = res.data.sale_status;
@@ -41506,7 +41509,8 @@ var render = function () {
     "button",
     {
       staticClass:
-        "mr-4 text-white p-1 text-2xl bg-teal-600 rounded-full hover:bg-teal-400",
+        "mr-4 text-white disabled:opacity-50 disabled:cursor-not-allowed p-1 text-2xl bg-teal-600 rounded-full hover:bg-teal-400",
+      attrs: { disabled: _vm.disabled },
       on: { click: _vm.completePurchase },
     },
     [_c("check-icon")],
@@ -43516,7 +43520,7 @@ var render = function () {
                 },
               ],
               staticClass:
-                "\n                    rounded\n                    transition-all\n                    duration-500\n                    ease-in-out\n                    font-bold\n                    mb-2\n\n                    py-2\n                    px-4\n\n                ",
+                "\n                    rounded\n                    transition-all\n                    duration-500\n                    ease-in-out\n                    font-bold\n                    mb-2\n                    py-2\n                    px-4\n                ",
               class: [_vm.getClass],
             },
             [

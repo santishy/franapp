@@ -17,10 +17,8 @@
                         ease-in-out
                         font-bold
                         mb-2
-
                         py-2
                         px-4
-
                     " :class="[getClass]">
                     {{ modifyTo }}
                 </button>
@@ -126,9 +124,9 @@ export default {
     },
     methods: {
         submit() {
-            this.form.inventory_id = this.isAdmin
-                ? sessionStorage.getItem("inventory_id")
-                : this.user.inventory_id;
+            // this.form.inventory_id = this.isAdmin
+            //     ? sessionStorage.getItem("inventory_id")
+            //     : this.user.inventory_id;
             if (this.getStatus === "pending") this.form.status = "completed";
             else this.form.status = "pending";
             axios

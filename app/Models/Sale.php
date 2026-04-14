@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Facades\InventoryContext;
 use App\Models\Traits\ReportBy;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
@@ -34,7 +35,7 @@ class Sale extends Model
 
             $sale = $query->create([
                 'user_id' => auth()->id(),
-                'inventory_id' => request('inventory_id', null)
+                'inventory_id' => InventoryContext::id()
             ]);
             session()->put('sale_id', $sale->id);
         }

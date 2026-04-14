@@ -9,7 +9,7 @@ use Illuminate\Auth\Access\HandlesAuthorization;
 
 class SalePolicy
 {
-    use HandlesAuthorization,HasAdministrator;
+    use HandlesAuthorization, HasAdministrator;
 
     /**
      * Determine whether the user can view any models.
@@ -54,6 +54,7 @@ class SalePolicy
      */
     public function update(User $user, sale $sale)
     {
+
         return $user->haspermissionTo('edit sale');
     }
 

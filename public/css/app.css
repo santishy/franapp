@@ -2495,6 +2495,12 @@ element.style {
 .focus\:ring-offset-2:focus {
   --tw-ring-offset-width: 2px;
 }
+.disabled\:cursor-not-allowed:disabled {
+  cursor: not-allowed;
+}
+.disabled\:opacity-50:disabled {
+  opacity: 0.5;
+}
 :is(.dark .dark\:border-gray-700) {
   --tw-border-opacity: 1;
   border-color: rgb(55 65 81 / var(--tw-border-opacity));

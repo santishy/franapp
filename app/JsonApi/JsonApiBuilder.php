@@ -2,16 +2,16 @@
 
 namespace App\JsonApi;
 
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
-use Illuminate\Validation\ValidationException;
 
+/** @mixin Builder */
 class JsonApiBuilder
 {
 
     public function applyFilters()
     {
         return function () {
+            /** @var Builder $this */
             foreach (request('filter', []) as $filter => $value) {
                 abort_unless($this->hasNamedScope($filter), 400, 'El filtro no existe');
                 $this->{$filter}($value);
@@ -23,6 +23,7 @@ class JsonApiBuilder
     public function transactions()
     {
         return function ($product) {
+            /** @var Builder $this */
             $transaction = $this->model->products();
             $price = $this->model->client()->count() ? $this->model->client->assigned_price : 'retail_price';
             if (!$transaction->where('product_id', $product->id)->exists()) {
@@ -43,6 +44,7 @@ class JsonApiBuilder
     public function getTransaction()
     {
         return function () {
+            /** @var Builder $this */
             $transaction = $this->findOrCreateTheTransaction();
             return $transaction;
         };
@@ -52,6 +54,7 @@ class JsonApiBuilder
     {
         // include=relationship:scope|scope,relationship,
         return function () {
+            /** @var Builder $this */
             if (request()->has('include')) {
                 $relationships = Str::of(request()->include)->explode(',');
                 foreach ($relationships as $relationship) {

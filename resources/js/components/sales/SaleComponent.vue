@@ -72,7 +72,6 @@ export default {
         SalesCart,
         ProductMatching,
         InventoryList,
-
         SaleToCustomer,
         SearchByCategory,
         DeleteSale,

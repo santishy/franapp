@@ -2,17 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Facades\InventoryContext;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Sale;
-use App\Http\Resources\ProductResource;
 use App\Http\Responses\SessionInactive;
 use App\Http\Responses\TransactionResponse;
 use App\Http\Traits\HasTransaction;
 use App\Models\Inventory;
-use App\Rules\Stock;
-use App\Rules\TransactionInventory;
-use Illuminate\Validation\ValidationException;
 
 class ProductInSaleController extends Controller
 {
@@ -24,16 +21,17 @@ class ProductInSaleController extends Controller
     {
         $sale = Sale::getTransaction();
         $this->authorize('create', $sale);
-        $request->validate(
-            [
-                'inventory_id' => ['required',new TransactionInventory($sale)],
-            ],
-        );
+        // $request->validate(
+        //     [
+        //         'inventory_id' => ['required', new TransactionInventory($sale)],
+        //     ],
+        // );
 
-        Inventory::find($request->inventory_id)->existsProductInStock($product);
+        Inventory::find($sale->inventory_id)->existsProductInStock($product);
 
         $sale->transactions($product);
-        $request->product = $product;
+
+        $request->attributes->set('product', $product);
         return new TransactionResponse($sale->load('products'));
     }
 
@@ -41,16 +39,15 @@ class ProductInSaleController extends Controller
     {
         $sale = Sale::find(session()->get('sale_id'));
 
-        $this->authorize('update', $sale );
+        $this->authorize('update', $sale);
 
         $fields = $request->validate([
             'qty' => 'numeric|min:1',
             'sale_price' => 'numeric|min:1',
             'product_id' => 'required|exists:product_sale,product_id',
-            'inventory_id' => [new TransactionInventory($sale)]
         ]);
-
-        Inventory::find($request->inventory_id)->hasStock($product, $request->qty);
+        $inventory_id = InventoryContext::id();
+        Inventory::find($inventory_id)->hasStock($product, $request->qty);
 
         $sale->products()
             ->updateExistingPivot(
@@ -68,7 +65,7 @@ class ProductInSaleController extends Controller
         /**
          * pongo el update ya que en si es actualizar la compra aun que borre elementos de la tabla pivot
          */
-        $this->authorize('update',new Sale);
+        $this->authorize('update', new Sale);
 
         if (!session()->exists('sale_id'))
             return new SessionInactive('venta');

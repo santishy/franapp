@@ -29,7 +29,8 @@ class UpdateInventory
      */
     public function handle(TransactionComplete $event)
     {
-        $inventory = Inventory::find(request('inventory_id'));
+        $inventory_id = $event->transaction->inventory_id;
+        $inventory = Inventory::find($inventory_id);
 
         $factor = $event->factor; // para sumar o restar segun se tenga que actualizar
 
