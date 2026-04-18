@@ -88,7 +88,8 @@ Route::get('users/{user}/edit', [UserController::class, 'edit'])->middleware('au
 Route::put('users/{user}', [UserController::class, 'update'])->middleware('auth');
 
 //inventories
-Route::resource('inventories', InventoryController::class)->middleware('auth', 'context.inventory');
+Route::resource('inventories', InventoryController::class)->middleware('auth', 'context.inventory')
+    ->except(['update', 'edit']);;
 Route::get('warehouses', [WarehouseController::class, 'index'])->middleware('auth');
 Route::delete('warehouses/{inventory}', [WarehouseController::class, 'destroy'])->middleware('auth');
 Route::get('warehouses/{inventory}/edit', [WarehouseController::class, 'edit'])->middleware('auth');

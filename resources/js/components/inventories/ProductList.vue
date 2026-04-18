@@ -1,9 +1,13 @@
 <template>
     <div v-if="inventory" class="justify-center">
-        <div class="p-2 rounded-sm shadow-sm mb-4 bg-primary font-mono  text-white">
-            {{ inventory && inventory.name ? inventory.name : '' }} | Existencias totales: <span class="font-bold text-slate-800">{{
-    totalStocks
-}}</span></div>
+        <div class="p-2 rounded-sm shadow-sm mb-1  font-mono text-lg text-gray-700 bg-white text-center">
+            <warehouse-icon></warehouse-icon>
+            {{ inventory && inventory.name ? inventory.name : '' }} | Existencias totales: <span
+                class="font-bold text-slate-800">{{
+                    totalStocks
+                }}</span>
+        </div>
+
         <div class="
                 flex flex-wrap
                 justify-center
@@ -95,8 +99,8 @@
             </thead>
             <transition-group tag="tbody" class="block md:table-row-group alternate-table-row " name="bounce"
                 @after-leave="afterLeave">
-                <produc-list-item v-for="(product, index) in products" :key="product.id" :index="index" :product="product"
-                    :inventory="inventory">
+                <produc-list-item v-for="(product, index) in products" :key="product.id" :index="index"
+                    :product="product" :inventory="inventory">
                 </produc-list-item>
             </transition-group>
         </table>
@@ -149,12 +153,11 @@ export default {
                 .get(`/inventories/${this.inventory.id}`, {
                     params: {
                         page: this.page,
-                        inventory_id: this.inventory.id,
+                        // inventory_id: this.inventory.id,
                         ...this.filters,
                     },
                 })
                 .then((res) => {
-                    console.log(res.data?.total_stocks)
                     if (res.data?.total_stocks) {
                         this.totalStocks = res.data.total_stocks;
                     }

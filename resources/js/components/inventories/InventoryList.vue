@@ -1,17 +1,12 @@
 <template>
-    <ul
-        class="bg-white shadow-sm rounded w-full text-center"
-    >
-        <li
-            v-for="(inventory, index) in inventories"
-            :key="inventory.id"
-            @click="selectedInventory(index, inventory)"
-            class="border-gray-500 border-b last:border-b-0"
-            :class="{ 'bg-gray-500 text-white': selectedIndex === index }"
-        >
-            <a href="#" class="block p-2 hover:line-through hover:bg-gray-200 uppercase font-normal text-gray-800" @click.prevent="">{{
-                inventory.name
-            }}</a>
+    <ul class="bg-white  px-6 flex flex-wrap justify-center py-2 gap-2 w-full text-center  shadow-sm">
+        <li v-for="(inventory, index) in inventories" :key="inventory.id" @click="selectedInventory(index, inventory)"
+            class="border border-gray-300 rounded-sm "
+            :class="{ 'bg-[#4D4D4D] text-gray-100': selectedIndex === index }">
+            <a href="#" class="block p-2 rounded-sm  hover:bg-[#4D4D4D] hover:text-gray-100 uppercase font-normal "
+                @click.prevent="">{{
+                    inventory.name
+                }}</a>
         </li>
     </ul>
 </template>

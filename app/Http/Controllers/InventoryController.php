@@ -34,30 +34,28 @@ class InventoryController extends Controller
         return Inventory::create($request->only('name', 'address'));
     }
 
-    public function edit(Inventory $inventory, Request $request)
-    {
-    }
+    public function edit(Inventory $inventory, Request $request) {}
     /**
      * Update the stock of a product
      */
-    public function update(Inventory $inventory, Request $request)
-    {
-        Gate::authorize('edit-stock', $inventory);
-        request()->validate([
-            'product_id' => ['required', 'exists:products,id'],
-            'stock' => ['min:0', 'required', 'numeric']
-        ], [
-            'stock.required' => 'Las existencias son requiredas.',
-            'stock.min' => 'Las existencias deben ser al menos cero',
-            'stock.numeric' => 'El tipo de dato debe ser númerico'
-        ]);
+    // public function update(Inventory $inventory, Request $request)
+    // {
+    //     Gate::authorize('edit-stock', $inventory);
+    //     request()->validate([
+    //         'product_id' => ['required', 'exists:products,id'],
+    //         'stock' => ['min:0', 'required', 'numeric']
+    //     ], [
+    //         'stock.required' => 'Las existencias son requiredas.',
+    //         'stock.min' => 'Las existencias deben ser al menos cero',
+    //         'stock.numeric' => 'El tipo de dato debe ser númerico'
+    //     ]);
 
-        $updated = $inventory->updateStock(request('product_id'), request('stock'));
+    //     $updated = $inventory->updateStock(request('product_id'), request('stock'));
 
-        return response()->json([
-            'newStock' => request('stock')
-        ]);
-    }
+    //     return response()->json([
+    //         'newStock' => request('stock')
+    //     ]);
+    // }
 
     /**
      * Empty stocks

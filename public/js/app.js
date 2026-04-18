@@ -5827,75 +5827,6 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/inventories/InputStock.vue?vue&type=script&lang=js&":
-/*!*****************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/inventories/InputStock.vue?vue&type=script&lang=js& ***!
-  \*****************************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _icons_EditIcon_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../icons/EditIcon.vue */ "./resources/js/components/icons/EditIcon.vue");
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  components: {
-    EditIcon: _icons_EditIcon_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
-  },
-  props: {
-    product: {
-      type: Object
-    },
-    inventory: {
-      type: Object
-    },
-    index: {
-      type: Number
-    }
-  },
-  data: function data() {
-    return {
-      form: {
-        stock: this.product.stock,
-        product_id: this.product.id
-      }
-    };
-  },
-  methods: {
-    submit: function submit() {
-      var _this = this;
-      this.form._method = "put";
-      axios.post("/inventories/" + this.inventory.id, this.form).then(function (res) {
-        EventBus.$emit("updated-stock", {
-          index: _this.index,
-          newStock: res.data.newStock
-        });
-      })["catch"](function (err) {
-        _this.getErrors(err);
-      });
-    }
-  }
-});
-
-/***/ }),
-
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/inventories/InventoryList.vue?vue&type=script&lang=js&":
 /*!********************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/inventories/InventoryList.vue?vue&type=script&lang=js& ***!
@@ -5907,11 +5838,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-//
-//
-//
-//
-//
 //
 //
 //
@@ -5963,10 +5889,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-//
-//
-//
-//
 //
 //
 //
@@ -6044,7 +5966,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _InputStock_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./InputStock.vue */ "./resources/js/components/inventories/InputStock.vue");
 //
 //
 //
@@ -6099,31 +6020,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
@@ -6137,19 +6033,11 @@ __webpack_require__.r(__webpack_exports__);
       type: Number
     }
   },
-  components: {
-    InputStock: _InputStock_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
-  },
   created: function created() {
     var _this = this;
     EventBus.$on("updated-stock", function (data) {
       _this.show = false;
     });
-  },
-  data: function data() {
-    return {
-      show: false
-    };
   }
 });
 
@@ -6182,6 +6070,10 @@ function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t =
 function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
 function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
 function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+//
+//
+//
+//
 //
 //
 //
@@ -6333,13 +6225,11 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
       var _this2 = this;
       axios.get("/inventories/".concat(this.inventory.id), {
         params: _objectSpread({
-          page: this.page,
-          inventory_id: this.inventory.id
+          page: this.page
         }, this.filters)
       }).then(function (res) {
-        var _res$data, _res$data2;
-        console.log((_res$data = res.data) === null || _res$data === void 0 ? void 0 : _res$data.total_stocks);
-        if ((_res$data2 = res.data) !== null && _res$data2 !== void 0 && _res$data2.total_stocks) {
+        var _res$data;
+        if ((_res$data = res.data) !== null && _res$data !== void 0 && _res$data.total_stocks) {
           _this2.totalStocks = res.data.total_stocks;
         }
         if (res.data.products.length) {
@@ -38429,73 +38319,6 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/inventories/InputStock.vue?vue&type=template&id=029eab4c&":
-/*!**********************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/inventories/InputStock.vue?vue&type=template&id=029eab4c& ***!
-  \**********************************************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   render: () => (/* binding */ render),
-/* harmony export */   staticRenderFns: () => (/* binding */ staticRenderFns)
-/* harmony export */ });
-var render = function () {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "form",
-    {
-      on: {
-        submit: function ($event) {
-          $event.preventDefault()
-          return _vm.submit.apply(null, arguments)
-        },
-      },
-    },
-    [
-      _c("errors-component", {
-        staticClass: "mb-2",
-        attrs: { "errors-found": _vm.errors },
-      }),
-      _vm._v(" "),
-      _c("div", { staticClass: "flex flex-wrap" }, [
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.form.stock,
-              expression: "form.stock",
-            },
-          ],
-          staticClass:
-            "text-center  appearance-none bg-gray-300 border-none rounded text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none",
-          attrs: { type: "number", name: "stock" },
-          domProps: { value: _vm.form.stock },
-          on: {
-            input: function ($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.$set(_vm.form, "stock", $event.target.value)
-            },
-          },
-        }),
-      ]),
-    ],
-    1
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-
-
-
-/***/ }),
-
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/inventories/InventoryList.vue?vue&type=template&id=e72c612c&":
 /*!*************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/inventories/InventoryList.vue?vue&type=template&id=e72c612c& ***!
@@ -38514,14 +38337,17 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c(
     "ul",
-    { staticClass: "bg-white shadow-sm rounded w-full text-center" },
+    {
+      staticClass:
+        "bg-white  px-6 flex flex-wrap justify-center py-2 gap-2 w-full text-center  shadow-sm",
+    },
     _vm._l(_vm.inventories, function (inventory, index) {
       return _c(
         "li",
         {
           key: inventory.id,
-          staticClass: "border-gray-500 border-b last:border-b-0",
-          class: { "bg-gray-500 text-white": _vm.selectedIndex === index },
+          staticClass: "border border-gray-300 rounded-sm ",
+          class: { "bg-[#4D4D4D] text-gray-100": _vm.selectedIndex === index },
           on: {
             click: function ($event) {
               return _vm.selectedInventory(index, inventory)
@@ -38533,7 +38359,7 @@ var render = function () {
             "a",
             {
               staticClass:
-                "block p-2 hover:line-through hover:bg-gray-200 uppercase font-normal text-gray-800",
+                "block p-2 rounded-sm  hover:bg-[#4D4D4D] hover:text-gray-100 uppercase font-normal ",
               attrs: { href: "#" },
               on: {
                 click: function ($event) {
@@ -38575,6 +38401,7 @@ var render = function () {
   return _c(
     "form",
     {
+      staticClass: "w-full flex justify-end",
       on: {
         submit: function ($event) {
           $event.preventDefault()
@@ -38593,7 +38420,7 @@ var render = function () {
           },
         ],
         staticClass:
-          "w-full  border-l-4  bg-gray border-purple-500 appearance-none py-5 sm:pl-64  mb-2 sm:mt-0 mt-2 leading-tight focus:outline-none mr-4 sm:text-center",
+          "w-full sm:w-3/5 shadow-sm border-l-4  border-[#0098D9] appearance-none py-2  sm:mt-1 mt-1 leading-tight focus:outline-none sm:text-center",
         attrs: { type: "text", placeholder: "Busca por el SKU ó Descripción" },
         domProps: { value: _vm.value },
         on: {
@@ -38649,14 +38476,14 @@ var render = function () {
       [
         _c(
           "div",
-          { staticClass: "w-full max-w-full sm:w-1/5 " },
+          { staticClass: "w-full max-w-full mb-1" },
           [_c("inventory-list")],
           1
         ),
         _vm._v(" "),
         _c(
           "div",
-          { staticClass: "w-full max-w-full sm:w-4/5" },
+          { staticClass: "w-full max-w-full " },
           [_c("product-list")],
           1
         ),
@@ -38755,33 +38582,19 @@ var render = function () {
             [_vm._v("Existencias")]
           ),
           _vm._v(" "),
-          _vm.show
-            ? _c("input-stock", {
-                attrs: {
-                  product: _vm.product,
-                  inventory: _vm.inventory,
-                  index: _vm.index,
-                },
-              })
-            : _c(
-                "div",
-                {
-                  staticClass:
-                    "\n                text-lg text-blue-700\n                hover:text-indigo-500\n                transition-all\n                cursor-pointer\n                inline-block\n            ",
-                  on: {
-                    dblclick: function ($event) {
-                      _vm.show = true
-                    },
-                  },
-                },
-                [
-                  _vm._v(
-                    "\n            " + _vm._s(_vm.product.stock) + "\n        "
-                  ),
-                ]
+          _c(
+            "div",
+            {
+              staticClass:
+                "\n                text-lg \n                transition-all\n                inline-block\n                text-gray-700\n            ",
+            },
+            [
+              _vm._v(
+                "\n            " + _vm._s(_vm.product.stock) + "\n        "
               ),
-        ],
-        1
+            ]
+          ),
+        ]
       ),
     ]
   )
@@ -38818,11 +38631,12 @@ var render = function () {
             "div",
             {
               staticClass:
-                "p-2 rounded-sm shadow-sm mb-4 bg-primary font-mono  text-white",
+                "p-2 rounded-sm shadow-sm mb-1  font-mono text-lg text-gray-700 bg-white text-center",
             },
             [
+              _c("warehouse-icon"),
               _vm._v(
-                "\n            " +
+                "\n        " +
                   _vm._s(
                     _vm.inventory && _vm.inventory.name
                       ? _vm.inventory.name
@@ -38833,25 +38647,26 @@ var render = function () {
               _c("span", { staticClass: "font-bold text-slate-800" }, [
                 _vm._v(_vm._s(_vm.totalStocks)),
               ]),
-            ]
+            ],
+            1
           ),
           _vm._v(" "),
           _c(
             "div",
             {
               staticClass:
-                "\n                flex flex-wrap\n                justify-center\n                items-center\n                border-gray-300\n                relative\n            ",
+                "\n            flex flex-wrap\n            justify-center\n            items-center\n            border-gray-300\n            relative\n        ",
             },
             [
               _c(
                 "h3",
                 {
                   staticClass:
-                    "\n                    w-64\n                    text-gray-800\n                    font-mono font-semibold\n                    text-center\n                    bg-purple-200\n                    absolute\n                    left-0\n                    py-5\n                    invisible\n                    m:visible\n                    px-4\n                    leading-tight\n                ",
+                    "\n                w-64\n                text-gray-800\n                font-mono font-semibold\n                text-center\n                bg-purple-200\n                absolute\n                left-0\n                py-5\n                invisible\n                m:visible\n                px-4\n                leading-tight\n            ",
                 },
                 [
                   _c("warehouse-icon"),
-                  _vm._v(" " + _vm._s(_vm.inventory.name) + "\n            "),
+                  _vm._v(" " + _vm._s(_vm.inventory.name) + "\n        "),
                 ],
                 1
               ),
@@ -38916,55 +38731,43 @@ var staticRenderFns = [
         "tr",
         {
           staticClass:
-            "\n                        border-b border-gray-500\n                        md:border-none\n                        block\n                        md:table-row\n                        absolute\n                        -top-full\n                        md:top-auto\n                        -left-full\n                        md:left-auto md:relative\n                    ",
+            "\n                    border-b border-gray-500\n                    md:border-none\n                    block\n                    md:table-row\n                    absolute\n                    -top-full\n                    md:top-auto\n                    -left-full\n                    md:left-auto md:relative\n                ",
         },
         [
           _c(
             "th",
             {
               staticClass:
-                "\n                            bg-blue-700\n                            p-2\n                            text-white\n                            font-semibold\n                            md:border md:border-grey-500\n                            text-left\n                            block\n                            md:table-cell\n                        ",
+                "\n                        bg-blue-700\n                        p-2\n                        text-white\n                        font-semibold\n                        md:border md:border-grey-500\n                        text-left\n                        block\n                        md:table-cell\n                    ",
             },
-            [
-              _vm._v(
-                "\n                        Categoría\n                    "
-              ),
-            ]
+            [_vm._v("\n                    Categoría\n                ")]
           ),
           _vm._v(" "),
           _c(
             "th",
             {
               staticClass:
-                "\n                            bg-blue-700\n                            p-2\n                            text-white\n                            font-semibold\n                            md:border md:border-grey-500\n                            text-left\n                            block\n                            md:table-cell\n                        ",
+                "\n                        bg-blue-700\n                        p-2\n                        text-white\n                        font-semibold\n                        md:border md:border-grey-500\n                        text-left\n                        block\n                        md:table-cell\n                    ",
             },
-            [_vm._v("\n                        SKU\n                    ")]
+            [_vm._v("\n                    SKU\n                ")]
           ),
           _vm._v(" "),
           _c(
             "th",
             {
               staticClass:
-                "\n                            bg-blue-700\n                            p-2\n                            text-white\n                            font-semibold\n                            md:border md:border-grey-500\n                            text-left\n                            block\n                            md:table-cell\n                        ",
+                "\n                        bg-blue-700\n                        p-2\n                        text-white\n                        font-semibold\n                        md:border md:border-grey-500\n                        text-left\n                        block\n                        md:table-cell\n                    ",
             },
-            [
-              _vm._v(
-                "\n                        Descripción\n                    "
-              ),
-            ]
+            [_vm._v("\n                    Descripción\n                ")]
           ),
           _vm._v(" "),
           _c(
             "th",
             {
               staticClass:
-                "\n                            bg-blue-700\n                            p-2\n                            text-white\n                            font-semibold\n                            md:border md:border-grey-500\n                            text-left\n                            block\n                            md:table-cell\n                        ",
+                "\n                        bg-blue-700\n                        p-2\n                        text-white\n                        font-semibold\n                        md:border md:border-grey-500\n                        text-left\n                        block\n                        md:table-cell\n                    ",
             },
-            [
-              _vm._v(
-                "\n                        Existencias\n                    "
-              ),
-            ]
+            [_vm._v("\n                    Existencias\n                ")]
           ),
         ]
       ),
@@ -67064,79 +66867,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   staticRenderFns: () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateInventory_vue_vue_type_template_id_b3b87be0___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateInventory_vue_vue_type_template_id_b3b87be0___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./CreateInventory.vue?vue&type=template&id=b3b87be0& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/inventories/CreateInventory.vue?vue&type=template&id=b3b87be0&");
-
-
-/***/ }),
-
-/***/ "./resources/js/components/inventories/InputStock.vue":
-/*!************************************************************!*\
-  !*** ./resources/js/components/inventories/InputStock.vue ***!
-  \************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _InputStock_vue_vue_type_template_id_029eab4c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./InputStock.vue?vue&type=template&id=029eab4c& */ "./resources/js/components/inventories/InputStock.vue?vue&type=template&id=029eab4c&");
-/* harmony import */ var _InputStock_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./InputStock.vue?vue&type=script&lang=js& */ "./resources/js/components/inventories/InputStock.vue?vue&type=script&lang=js&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-/* normalize component */
-;
-var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _InputStock_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _InputStock_vue_vue_type_template_id_029eab4c___WEBPACK_IMPORTED_MODULE_0__.render,
-  _InputStock_vue_vue_type_template_id_029eab4c___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* hot reload */
-if (false) // removed by dead control flow
-{ var api; }
-component.options.__file = "resources/js/components/inventories/InputStock.vue"
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/js/components/inventories/InputStock.vue?vue&type=script&lang=js&":
-/*!*************************************************************************************!*\
-  !*** ./resources/js/components/inventories/InputStock.vue?vue&type=script&lang=js& ***!
-  \*************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_InputStock_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./InputStock.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/inventories/InputStock.vue?vue&type=script&lang=js&");
- /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_InputStock_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./resources/js/components/inventories/InputStock.vue?vue&type=template&id=029eab4c&":
-/*!*******************************************************************************************!*\
-  !*** ./resources/js/components/inventories/InputStock.vue?vue&type=template&id=029eab4c& ***!
-  \*******************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   render: () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_InputStock_vue_vue_type_template_id_029eab4c___WEBPACK_IMPORTED_MODULE_0__.render),
-/* harmony export */   staticRenderFns: () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_InputStock_vue_vue_type_template_id_029eab4c___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
-/* harmony export */ });
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_InputStock_vue_vue_type_template_id_029eab4c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./InputStock.vue?vue&type=template&id=029eab4c& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/inventories/InputStock.vue?vue&type=template&id=029eab4c&");
 
 
 /***/ }),
