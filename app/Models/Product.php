@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Intervention\Image\ImageManagerStatic as Image;
@@ -15,6 +16,17 @@ class Product extends Model
 
     protected $fillable = ['sku', 'distributor_price', 'image', 'wholesale_price', 'retail_price', 'description', 'category_id'];
     protected $hidden = ['distributor_price'];
+
+    public function scopeWithTotalStock(Builder $query)
+    {
+        $sub = DB::table('inventory_product')
+            ->selectRaw('product_id, SUM(stock) as total_stock')
+            ->groupBy('product_id');
+
+        return $query->leftJoinSub($sub, 'stocks', function ($join) {
+            $join->on('products.id', '=', 'stocks.product_id');
+        })->select('products.*', DB::raw('COALESCE(stocks.total_stock, 0) as stock'));
+    }
     public function setAttribute($key, $value)
     {
         if ($key === 'sku' || $key === 'description') {

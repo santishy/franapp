@@ -6,7 +6,7 @@ use App\Http\Controllers\SaleController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductsSearchController;
 use App\Http\Controllers\ProductInPurchaseController;
-use App\Http\Controllers\{ClientController, CurrentUserController, ImpersonationController, InventoryController, PDFController, ProductBarcodeController, ProductValidation, RolesPermissionsController, SaleToClientController, TicketController, TransactionProductsController, UserController, WarehouseController};
+use App\Http\Controllers\{ClientController, CurrentUserController, ImpersonationController, InventoryController, PDFController, ProductBarcodeController, ProductStockController, ProductValidation, RolesPermissionsController, SaleToClientController, TicketController, TransactionProductsController, UserController, WarehouseController};
 use App\Http\Controllers\{PurchaseController, ProductInSaleController, RoleController};
 use App\Http\Controllers\InventoryContextController;
 
@@ -136,3 +136,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('select-inventory', [InventoryContextController::class, 'show'])->name('select-inventory');
     Route::post('select-inventory', [InventoryContextController::class, 'store'])->name('select.inventory.store');
 });
+
+/**
+ * Product stock
+ */
+Route::get('products-stock', [ProductStockController::class, 'index'])->middleware('auth');
+Route::get('products/{product}/stock', [ProductStockController::class, 'show'])->middleware('auth');

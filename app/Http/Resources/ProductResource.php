@@ -15,7 +15,7 @@ class ProductResource extends JsonResource
     public function toArray($request)
     {
         $attrs = $this->attributesToArray();
-        $hasDistributorPrice = array_key_exists('distributor_price', $attrs);
+        $hasDistributorPrice = array_key_exists('distributor_price', $this->resource->getAttributes());
 
         return [
             'id' => $this->id,
@@ -41,9 +41,13 @@ class ProductResource extends JsonResource
             'purchase_price' => $this->whenPivotLoaded('product_purchase', function () {
                 return $this->pivot->purchase_price;
             }),
-            'stock' =>  $this->whenPivotLoaded('inventory_product', function () {
-                return $this->pivot->stock;
-            }),
+            'stock' => $this->when(
+                array_key_exists('stock', $attrs),
+                $this->stock,
+                $this->whenPivotLoaded('inventory_product', function () {
+                    return $this->pivot->stock;
+                })
+            ),
             'category_name' =>  $this->category->name,
         ];
     }

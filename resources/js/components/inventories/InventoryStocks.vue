@@ -1,9 +1,9 @@
 <template>
     <layout-component>
         <div class="w-full px-4 mx-auto  flex flex-wrap max-w-full overscroll-auto" v-can="'view warehouses'">
-            <div class="w-full max-w-full mb-1">
+            <!-- <div class="w-full max-w-full mb-1">
                 <inventory-list></inventory-list>
-            </div>
+            </div> -->
             <div class="w-full max-w-full ">
                 <product-list></product-list>
             </div>

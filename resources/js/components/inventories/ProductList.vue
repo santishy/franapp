@@ -1,43 +1,22 @@
 <template>
-    <div v-if="inventory" class="justify-center">
-        <div class="p-2 rounded-sm shadow-sm mb-1  font-mono text-lg text-gray-700 bg-white text-center">
-            <warehouse-icon></warehouse-icon>
-            {{ inventory && inventory.name ? inventory.name : '' }} | Existencias totales: <span
-                class="font-bold text-slate-800">{{
-                    totalStocks
-                }}</span>
-        </div>
+    <div class="justify-center">
+        <portal to="modals">
+            <information-component id="product-stock" size="xl">
+                <template #title>
+                    Existencias por inventario
+                </template>
+                <product-stock-detail v-if="productSelected" :product="productSelected" />
+            </information-component>
+        </portal>
 
-        <div class="
-                flex flex-wrap
-                justify-center
-                items-center
-                border-gray-300
-                relative
-            ">
-            <h3 class="
-                    w-64
-                    text-gray-800
-                    font-mono font-semibold
-                    text-center
-                    bg-purple-200
-                    absolute
-                    left-0
-                    py-5
-                    invisible
-                    m:visible
-                    px-4
-                    leading-tight
-                ">
-                <warehouse-icon></warehouse-icon> {{ inventory.name }}
-            </h3>
-            <inventory-search-filter class="w-full"></inventory-search-filter>
-        </div>
 
-        <table v-if="inventory" class="min-w-full border-collapse block md:table shadow-sm text-center rounded-sm">
+        <inventory-search-filter class="mb-4" />
+
+
+        <table class="min-w-full border-collapse block md:table shadow-sm text-center rounded-sm">
             <thead class="block md:table-header-group">
                 <tr class="
-                        border-b border-gray-500
+                      
                         md:border-none
                         block
                         md:table-row
@@ -46,13 +25,14 @@
                         md:top-auto
                         -left-full
                         md:left-auto md:relative
+                        bg-sky-600
                     ">
                     <th class="
-                            bg-blue-700
+                           
                             p-2
                             text-white
                             font-semibold
-                            md:border md:border-grey-500
+                           
                             text-left
                             block
                             md:table-cell
@@ -60,11 +40,11 @@
                         Categoría
                     </th>
                     <th class="
-                            bg-blue-700
+                           
                             p-2
                             text-white
                             font-semibold
-                            md:border md:border-grey-500
+                           
                             text-left
                             block
                             md:table-cell
@@ -72,11 +52,11 @@
                         SKU
                     </th>
                     <th class="
-                            bg-blue-700
+                           
                             p-2
                             text-white
                             font-semibold
-                            md:border md:border-grey-500
+                           
                             text-left
                             block
                             md:table-cell
@@ -84,11 +64,10 @@
                         Descripción
                     </th>
                     <th class="
-                            bg-blue-700
                             p-2
                             text-white
                             font-semibold
-                            md:border md:border-grey-500
+                           
                             text-left
                             block
                             md:table-cell
@@ -99,12 +78,11 @@
             </thead>
             <transition-group tag="tbody" class="block md:table-row-group alternate-table-row " name="bounce"
                 @after-leave="afterLeave">
-                <produc-list-item v-for="(product, index) in products" :key="product.id" :index="index"
-                    :product="product" :inventory="inventory">
+                <produc-list-item v-for="(product, index) in products" @product-selected="onProductSelected"
+                    :key="product.id" :index="index" :product="product" :inventory="inventory">
                 </produc-list-item>
             </transition-group>
         </table>
-
         <infinite-loading :identifier="infiniteId" @infinite="getProducts" ref="infiniteLoading"></infinite-loading>
     </div>
 </template>
@@ -112,7 +90,9 @@
 import SearchComponent from "../products/SearchComponent.vue";
 import InventorySearchFilter from "./InventorySearchFilter.vue";
 import ProducListItem from "./ProducListItem.vue";
+import InformationComponent from "../modals/InformationComponent.vue";
 import WarehouseIcon from "../icons/WarehouseIcon.vue";
+import ProductStockDetail from "./ProductStockDetail.vue";
 export default {
     props: {
         index: {
@@ -124,6 +104,9 @@ export default {
         SearchComponent,
         InventorySearchFilter,
         WarehouseIcon,
+        ProductStockDetail,
+        InformationComponent,
+
     },
     data() {
         return {
@@ -132,6 +115,7 @@ export default {
             page: 1,
             infiniteId: +new Date(),
             filters: {},
+            productSelected: null,
             totalStocks: 0 //cuando exista mas d un inventario habria que resetar este valor o setear mejor dicho para una nueva busqueda d existencias
         };
     },
@@ -150,10 +134,9 @@ export default {
     methods: {
         getProducts($state) {
             axios
-                .get(`/inventories/${this.inventory.id}`, {
+                .get(`/products-stock`, {
                     params: {
                         page: this.page,
-                        // inventory_id: this.inventory.id,
                         ...this.filters,
                     },
                 })
@@ -200,6 +183,10 @@ export default {
         addFilterSearch(value) {
             this.filters["filter[search]"] = value;
             this.reloadIndex();
+        },
+        onProductSelected(product) {
+            this.productSelected = product;
+            EventBus.$emit("open-modal-product-stock", true);
         },
     },
 };
