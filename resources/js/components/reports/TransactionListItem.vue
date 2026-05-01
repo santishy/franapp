@@ -1,101 +1,76 @@
 <template>
-    <tr
-        class="
+    <tr class="
             bg-white
             border-b border-gray-400
             md:border-none
             block
             md:table-row
-        "
-    >
-        <td
-            class="
+        ">
+        <td class="
                 p-2
                 md:border md:border-grey-500
                 text-left
                 block
                 md:table-cell
-            "
-        >
+            ">
             <span class="inline-block w-1/3 md:hidden font-bold">Nota</span>
             {{ transaction.id }}
         </td>
-        <td
-            class="
+        <td class="
                 p-2
                 md:border md:border-grey-500
                 text-left
                 block
                 md:table-cell
-            "
-        >
-            <span class="inline-block w-1/3 md:hidden font-bold">Usuario</span
-            >{{ transaction.username }}
+            ">
+            <span class="inline-block w-1/3 md:hidden font-bold">Usuario</span>{{ transaction.username }}
         </td>
-        <td
-            v-if="areTheySales"
-            class="
+        <td v-if="areTheySales" class="
                 p-2
                 md:border md:border-grey-500
                 text-left
                 block
                 md:table-cell
-            "
-        >
-            <span class="inline-block w-1/3 md:hidden font-bold">Cliente</span
-            >{{ getCustomerName }}
+            ">
+            <span class="inline-block w-1/3 md:hidden font-bold">Cliente</span>{{ getCustomerName }}
         </td>
-        <td
-            class="
+        <td class="
                 p-2
                 md:border md:border-grey-500
                 text-left
                 block
                 md:table-cell
-            "
-        >
-            <span class="inline-block w-1/3 md:hidden font-bold">Fecha</span
-            >{{ transaction.created_at }}
+            ">
+            <span class="inline-block w-1/3 md:hidden font-bold">Fecha</span>{{ transaction.created_at }}
         </td>
-        <td
-            class="
+        <td class="
                 p-2
                 md:border md:border-grey-500
                 text-left
                 block
                 md:table-cell
-            "
-        >
-            <span class="inline-block w-1/3 md:hidden font-bold">Total</span
-            >{{ transaction.total }}
+            ">
+            <span class="inline-block w-1/3 md:hidden font-bold">Total</span>{{ transaction.total }}
         </td>
-        <td
-            class="
+        <td class="
                 p-2
                 md:border md:border-grey-500
                 text-left
                 block
                 md:table-cell
-            "
-        >
-            <span class="inline-block w-1/3 md:hidden font-bold">Ver</span>
-            <modal-component class="inline-block" :transaction="transaction"> </modal-component>
+            ">
+            <span class="inline-block w-1/3 sms:hidden font-bold">Ver</span>
+            <modal-component class="inline-block" :transaction="transaction" />
         </td>
-        <td
-            class="
+        <td class="
                 p-2
                 md:border md:border-grey-500
                 text-left
                 block
                 md:table-cell
-            "
-        >
+            ">
             <span class="inline-block w-1/3 md:hidden font-bold">Acciones</span>
-            <cancel-transaction
-                class="inline-block"
-                :uri="uri"
-                :transaction="transaction"
-            ></cancel-transaction>
+            <cancel-transaction class="inline-block" :uri="uri" :transaction="transaction"></cancel-transaction>
         </td>
     </tr>
 </template>

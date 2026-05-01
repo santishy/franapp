@@ -17,6 +17,7 @@
 </template>
 <script>
 import ProductList from './reports/products/ProductList.vue';
+import ListIcon from './icons/ListIcon.vue'
 export default {
 
     props: {
@@ -29,7 +30,7 @@ export default {
             toggleModal: false,
         };
     },
-    components: { ProductList }
+    components: { ProductList, ListIcon }
 };
 </script>
 <style scoped>
