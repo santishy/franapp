@@ -1,10 +1,11 @@
 <?php
 
 return [
-    'create product'=> 'Crear producto',
+    'create product' => 'Crear producto',
     'view product' => 'Ver producto',
     'delete product' => 'Borrar producto',
     'edit product' => 'Editar producto',
+    'view products' => 'Ver productos',
 
     // permissions to users
     'create user' => 'Crear usuario',

@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Permission;
+use Illuminate\Support\Facades\DB;
 
 class PermissionSeeder extends Seeder
 {
@@ -14,66 +15,54 @@ class PermissionSeeder extends Seeder
      */
     public function run()
     {
-        Permission::truncate();
-        // permissions to products
-        Permission::create(['name' => 'create product']);
-        Permission::create(['name' => 'view product']);
-        Permission::create(['name' => 'view products']);
-        Permission::create(['name' => 'delete product']);
-        Permission::create(['name' => 'edit product']);
 
-        // permissions to users
-        Permission::create(['name' => 'create user']);
-        Permission::create(['name' => 'view user']);
-        Permission::create(['name' => 'view users']);
-        Permission::create(['name' => 'delete user']);
-        Permission::create(['name' => 'edit user']);
+        $permissions = [
+            'create product',
+            'view product',
+            'view products',
+            'delete product',
+            'edit product',
+            'create user',
+            'view user',
+            'view users',
+            'delete user',
+            'edit user',
+            'create purchase',
+            'view purchase',
+            'view purchases',
+            'delete purchase',
+            'edit purchase',
+            'create sale',
+            'view sale',
+            'view sales',
+            'delete sale',
+            'edit sale',
+            'create client',
+            'view client',
+            'view clients',
+            'delete client',
+            'edit client',
+            'create category',
+            'view category',
+            'delete category',
+            'create warehouse',
+            'view warehouse',
+            'view warehouses',
+            'delete warehouse',
+            'edit warehouse',
+            'edit stock',
+            'empty stock',
+            'view stock',
+            'create role',
+            'view roles',
+            'view role',
+            'delete role',
+            'edit role',
+            'edit ticket',
+        ];
 
-        // permissions to purchases
-        Permission::create(['name' => 'create purchase']);
-        Permission::create(['name' => 'view purchase']);
-        Permission::create(['name' => 'view purchases']);
-        Permission::create(['name' => 'delete purchase']);
-        Permission::create(['name' => 'edit purchase']);
-
-        // permissions to sales
-        Permission::create(['name' => 'create sale']);
-        Permission::create(['name' => 'view sale']);
-        Permission::create(['name' => 'view sales']);
-        Permission::create(['name' => 'delete sale']);
-        Permission::create(['name' => 'edit sale']);
-
-        // permissions to clients
-        Permission::create(['name' => 'create client']);
-        Permission::create(['name' => 'view client']);
-        Permission::create(['name' => 'view clients']);
-        Permission::create(['name' => 'delete client']);
-        Permission::create(['name' => 'edit client']);
-
-        // permissions to categories
-        Permission::create(['name' => 'create category']);
-        Permission::create(['name' => 'view category']);
-        Permission::create(['name' => 'delete category']);
-
-        //permissions to warehouses
-        Permission::create(['name' => 'create warehouse']);
-        Permission::create(['name' => 'view warehouse']);
-        Permission::create(['name' => 'view warehouses']);
-        Permission::create(['name' => 'delete warehouse']);
-        Permission::create(['name' => 'edit warehouse']);
-
-        Permission::create(['name' => 'edit stock']);
-        Permission::create(['name' => 'empty stock']);
-        Permission::create(['name' => 'view stock']);
-
-        //permissions to roles
-        Permission::create(['name' => 'create role']);
-        Permission::create(['name' => 'view roles']);
-        Permission::create(['name' => 'view role']);
-        Permission::create(['name' => 'delete role']);
-        Permission::create(['name' => 'edit role']);
-
-        //permissions to ticket
-        Permission::create(['name' => 'edit ticket']);
+        foreach ($permissions as $permission) {
+            Permission::firstOrCreate(['name' => $permission]);
+        }
     }
 }
