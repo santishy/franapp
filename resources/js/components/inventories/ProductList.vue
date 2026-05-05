@@ -9,8 +9,16 @@
             </information-component>
         </portal>
 
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4">
 
-        <inventory-search-filter class="mb-4" />
+            <p
+                class="text-lg px-3 py-1 sm:w-2/5 text-center font-semibold uppercase text-gray-500 bg-white border border-sky-700 rounded">
+                Existencias totales: <span class="font-bold text-gray-900">{{ totalStocks }}</span>
+            </p>
+
+            <inventory-search-filter class="w-full sm:w-3/5" />
+        </div>
+
 
 
         <table class="min-w-full border-collapse block md:table shadow-sm text-center rounded-sm">
