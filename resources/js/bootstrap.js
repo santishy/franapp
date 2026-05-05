@@ -10,6 +10,14 @@ window.axios = require('axios');
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
+window.axios.interceptors.response.use(response => response, error => {
+    const status = error.response ? error.response.status : null;
+    if( [401, 419].includes(status) ) {
+        window.location.href = '/login?session_expired=1';
+    }
+    return Promise.reject(error);
+});
+
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
  * for events that are broadcast by Laravel. Echo and event broadcasting
