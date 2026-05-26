@@ -10,7 +10,7 @@
                 </div>
             </div>
             <div class="flex flex-wrap justify-end">
-                <button v-show="products.length" class="
+                <button v-show="products.length && localSale.status == 'pending'" class="
                         rounded
                         transition-all
                         duration-500
@@ -20,7 +20,7 @@
                         py-2
                         px-4
                     " :class="[getClass]">
-                    {{ modifyTo }}
+                    Finalizar Venta
                 </button>
             </div>
         </form>
@@ -51,7 +51,6 @@
 <script>
 import ProductListItem from "./ProductListItem";
 import ProductList from "./ProductList.vue";
-import { mapMutations } from "vuex";
 import Errors from "../../mixins/Errors";
 
 export default {
@@ -114,19 +113,13 @@ export default {
             return total.toFixed(2);
         },
 
-        modifyTo() {
-            if (this.localSale.status == "pending") return "Finalizar Venta";
-            if (this.localSale.status == "completed") return "Modificar Venta";
-        },
+
         getStatus() {
             return this.localSale.status;
         },
     },
     methods: {
         submit() {
-            // this.form.inventory_id = this.isAdmin
-            //     ? sessionStorage.getItem("inventory_id")
-            //     : this.user.inventory_id;
             if (this.getStatus === "pending") this.form.status = "completed";
             else this.form.status = "pending";
             axios
@@ -135,8 +128,8 @@ export default {
                     this.localSale.status = res.data.sale_status;
                     if (this.localSale.status == "completed") {
                         sessionStorage.removeItem("salePriceOption");
+                        window.open(`/pdf-tickets/${this.localSale.id}`, "_blank");
                     }
-                    window.open(`/pdf-tickets/${this.localSale.id}`, "_blank");
                 })
                 .catch((err) => {
                     this.getErrors(err);

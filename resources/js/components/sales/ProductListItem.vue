@@ -10,16 +10,27 @@
             {{ product.description }}
         </td>
         <td class="p-2">
-            <editable-product-quantity :product="product"></editable-product-quantity>
+            <editable-product-quantity v-if="saleStatus === 'pending'" :product="product"></editable-product-quantity>
+            <span v-else>
+                {{ product.sale_quantity }}
+            </span>
+
         </td>
         <td class="p-2">
-            <editable-product-price :product="product"></editable-product-price>
+            <editable-product-price v-if="saleStatus === 'pending'" :product="product"></editable-product-price>
+            <span v-else>
+                {{ product.sale_price }}
+            </span>
         </td>
         <td class="p-2">
             {{ product.sale_price * product.sale_quantity }}
         </td>
-        <td class="p-2">
-            <delete-sale-product :id="product.id" :index="index"></delete-sale-product>
+        <td class="p-2 ">
+            <div class="flex justify-center items-center">
+                <delete-sale-product v-if="saleStatus === 'pending'" :id="product.id"
+                    :index="index"></delete-sale-product>
+                <NoSymbol class="w-5 h-5 text-gray-500" v-else />
+            </div>
         </td>
     </tr>
 </template>
@@ -29,6 +40,7 @@ import DeleteSaleProduct from "./DeleteSaleProduct.vue";
 import EditableProductQuantity from "./partials/EditableProductQuantity.vue";
 import EditableProductPrice from "./partials/EditableProductPrice.vue";
 import { mapState } from "vuex";
+import NoSymbol from "../icons/NoSymbol.vue";
 import EditIcon from "../icons/EditIcon.vue";
 export default {
     props: {
@@ -43,7 +55,7 @@ export default {
             type: String,
         },
     },
-    components: { DeleteSaleProduct, EditIcon, EditableProductQuantity, EditableProductPrice },
+    components: { DeleteSaleProduct, EditIcon, EditableProductQuantity, EditableProductPrice, NoSymbol },
     data() {
         return {
             form: {},
