@@ -1,87 +1,127 @@
-require('./bootstrap');
-window.Vue = require('vue').default;
-window.EventBus = new Vue();
-import Vuex from 'vuex'
-import PortalVue from 'portal-vue'
+import './bootstrap';
+import mitt from 'mitt';
+import { createApp } from 'vue';
+import InfiniteLoading from 'v3-infinite-loading/lib/v3-infinite-loading.es.js';
+import 'v3-infinite-loading/lib/style.css';
 
-Vue.use(Vuex)
-Vue.use(PortalVue)
-import Notifications from 'vue-notification'
-Vue.component('notifications', Notifications);
-Vue.use(Notifications);
+import Notifications from '@kyvg/vue3-notification'
 import { store } from './vuex/store.js';
 import Errors from "./mixins/Errors";
 import Notify from "./mixins/Notify";
+import Authorizations from './mixins/Authorizations.js';
+import LayoutComponent from './components/LayoutComponent.vue';
+import ErrorsComponent from './components/ErrorsComponent.vue';
+import DropdownComponent from './components/DropdownComponent.vue';
+import ProductForm from './components/products/ProductForm.vue';
+import ProductsIndex from './components/products/IndexComponent.vue';
+import PurchaseComponent from './components/purchases/PurchaseComponent.vue';
+import ClientForm from './components/clients/ClientForm.vue';
+import ClientList from './components/clients/ClientList.vue';
+import CategoryForm from './components/categories/CategoryForm.vue';
+import CategoryList from './components/categories/CategoryList.vue';
+import CategoryIndex from './components/categories/Index.vue';
+import EditCategory from './components/categories/EditCategory.vue';
+import SaleComponent from './components/sales/SaleComponent.vue';
+import TransactionReport from './components/reports/Transactions.vue';
+import TransactionList from './components/reports/TransactionList.vue';
+import RegistrationForm from './components/auth/RegistrationForm.vue';
+import Register from './components/auth/Register.vue';
+import CreateNewRole from './components/auth/CreateNewRole.vue';
+import AssignRole from './components/auth/AssignRole.vue';
+import RoleComponent from './components/auth/RoleComponent.vue';
+import PermissionList from './components/auth/PermissionList.vue';
+import UserList from './components/users/UserList.vue';
+import CreateInventory from './components/inventories/CreateInventory.vue';
+import InventoryStocks from './components/inventories/InventoryStocks.vue';
+import EditWarehouse from './components/warehouses/EditWarehouse.vue';
+import WarehouseList from './components/warehouses/WarehouseList.vue';
+import Dashboard from './components/Dashboard.vue';
+import Forbidden from './components/errors/Forbidden.vue';
+import TicketForm from './components/tickets/TicketForm.vue';
+import SelectInventory from './components/inventories/SelectInventory.vue';
 
-//await store.dispatch('getUser');
+
+const emitter = mitt();
+
+window.EventBus = {
+    $on: (event, callback) => emitter.on(event, callback),
+    $emit: (event, data) => emitter.emit(event, data),
+    $off: (event, callback) => emitter.off(event, callback),
+}
 store.commit('SET_USER');
-Vue.mixin(Errors);
-Vue.mixin(Authorizations);
-Vue.mixin(Notify);
 
+const app = createApp({});
 
-Vue.component('layout-component', require('./components/LayoutComponent.vue').default)
-Vue.component('errors-component', require('./components/ErrorsComponent.vue').default)
-Vue.component('dropdown-component', require('./components/DropdownComponent.vue').default);
-Vue.component('product-form', require('./components/products/ProductForm.vue').default);
-Vue.component('products-index', require('./components/products/IndexComponent.vue').default);
-Vue.component('purchase-component', require('./components/purchases/PurchaseComponent.vue').default)
-//Vue.component('product-in-purchase', require('./components/purchases/ProductInPurchase.vue').default)
-Vue.component('client-form', require('./components/clients/ClientForm.vue').default)
-Vue.component('client-list', require('./components/clients/ClientList.vue').default)
+app.use(Notifications);
+
+app.config.compilerOptions.whitespace = 'preserve';
+app.mixin(Errors);
+app.mixin(Authorizations);
+app.mixin(Notify);
+
+app.component('infinite-loading', InfiniteLoading);
+app.component('layout-component', LayoutComponent)
+app.component('errors-component', ErrorsComponent)
+app.component('dropdown-component', DropdownComponent);
+app.component('product-form', ProductForm);
+app.component('products-index', IndexComponent);
+app.component('purchase-component', PurchaseComponent)
+//Vue.component('product-in-purchase', purchases/ProductInPurchase)
+app.component('client-form', ClientForm)
+app.component('client-list', ClientList)
 
 //CATEGORIES COMPONENTS
-Vue.component('category-form', require('./components/categories/CategoryForm.vue').default)
-Vue.component('category-list', require('./components/categories/CategoryList.vue').default)
-Vue.component('category-index', require('./components/categories/Index.vue').default)
-Vue.component('edit-category', require('./components/categories/EditCategory.vue').default)
+app.component('category-form', CategoryForm)
+app.component('category-list', CategoryList)
+app.component('category-index',Index)
+app.component('edit-category', EditCategory)
 
 //VENTAS COMPONENTES
-Vue.component('sale-component', require('./components/sales/SaleComponent').default)
-Vue.component('transaction-report', require('./components/reports/Transactions').default)
+app.component('sale-component',SaleComponent)
+app.component('transaction-report', Transactions)
 
 
 //transactions
-Vue.component('transaction-list', require('./components/reports/TransactionList.vue').default);
+app.component('transaction-list', TransactionList);
 
 //auth
-Vue.component('registration-form', require('./components/auth/RegistrationForm.vue').default);
-Vue.component('register', require('./components/auth/Register.vue').default);
+app.component('registration-form', RegistrationForm);
+app.component('register',Register);
 
 //roles
-Vue.component('create-new-role', require('./components/auth/CreateNewRole.vue').default);
-Vue.component('assign-role', require('./components/auth/AssignRole.vue').default);
-Vue.component('role-component', require('./components/auth/RoleComponent.vue').default)
+app.component('create-new-role', CreateNewRole);
+app.component('assign-role', AssignRole);
+app.component('role-component', RoleComponent)
 
 //permissions
-Vue.component('permission-list', require('./components/auth/PermissionList.vue').default);
+app.component('permission-list', PermissionList);
 
 //users
-Vue.component('user-list', require('./components/users/UserList.vue').default);
+app.component('user-list', UserList);
 
 //inventories
-Vue.component('create-inventory', require('./components/inventories/CreateInventory.vue').default)
-Vue.component('inventory-stocks', require('./components/inventories/InventoryStocks.vue').default)
-Vue.component('edit-warehouse', require('./components/warehouses/EditWarehouse.vue').default);
+app.component('create-inventory', CreateInventory)
+app.component('inventory-stocks', InventoryStocks)
+app.component('edit-warehouse', EditWarehouse);
 
 //Inventories -> warehouses
 
-Vue.component('warehouse-list', require('./components/warehouses/WarehouseList.vue').default);
+app.component('warehouse-list',WarehouseList);
 
 //dashboard
-Vue.component('dashboard', require('./components/Dashboard.vue').default);
+app.component('dashboard', Dashboard);
 
 //errors
-Vue.component('forbidden', require('./components/errors/Forbidden.vue').default);
+app.component('forbidden',Forbidden);
 
 /**
  * tickets
  */
-Vue.component('ticket-form', require('./components/tickets/TicketForm.vue').default);
+app.component('ticket-form', TicketForm);
 //select inventory
-Vue.component('select-inventory', require('./components/inventories/SelectInventory.vue').default);
+app.component('select-inventory', SelectInventory);
 
-Vue.directive('can',
+app.directive('can',
     async function (el, binding) {
         if (store.getters.isAdmin || store.state.user?.permissions?.includes(binding.value))
             return;
@@ -89,10 +129,5 @@ Vue.directive('can',
     }
 );
 
-
-import Vue from 'vue';
-import Authorizations from './mixins/Authorizations.js';
-const app = new Vue({
-    el: "#app",
-    store,
-});
+app.use(store)
+app.mount('#app')

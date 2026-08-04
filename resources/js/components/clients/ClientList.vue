@@ -1,8 +1,7 @@
 <template>
     <layout-component>
         <div class="w-full flex justify-center px-4">
-            <div
-                class="
+            <div class="
                     flex
                     justify-center
                     bg-white
@@ -12,12 +11,8 @@
                     max-w-full
                     sm:overflow-x-hidden
                     overflow-x-auto
-                "
-            >
-                <table
-                    v-if="clients.length"
-                    v-can="'view clients'"
-                    class="
+                ">
+                <table v-if="clients.length" v-can="'view clients'" class="
                         min-w-full
                         border-collapse
                         block
@@ -25,11 +20,9 @@
                         shadow-sm
                         text-center
                         rounded-lg
-                    "
-                >
+                    ">
                     <thead class="block md:table-header-group">
-                        <tr
-                            class="
+                        <tr class="
                                 border-b border-gray-500
                                 rounded-t-sm
                                 md:border-none
@@ -40,10 +33,8 @@
                                 md:top-auto
                                 -left-full
                                 md:left-auto md:relative
-                            "
-                        >
-                            <th
-                                class="
+                            ">
+                            <th class="
                                     bg-blue-700
                                     p-2
                                     text-white
@@ -52,12 +43,10 @@
                                     text-left
                                     block
                                     md:table-cell
-                                "
-                            >
+                                ">
                                 Nombre
                             </th>
-                            <th
-                                class="
+                            <th class="
                                     bg-blue-700
                                     p-2
                                     text-white
@@ -66,12 +55,10 @@
                                     text-left
                                     block
                                     md:table-cell
-                                "
-                            >
+                                ">
                                 Dirección
                             </th>
-                            <th
-                                class="
+                            <th class="
                                     bg-blue-700
                                     p-2
                                     text-white
@@ -80,12 +67,10 @@
                                     text-left
                                     block
                                     md:table-cell
-                                "
-                            >
+                                ">
                                 Número tel.
                             </th>
-                            <th
-                                class="
+                            <th class="
                                     bg-blue-700
                                     p-2
                                     text-white
@@ -94,13 +79,11 @@
                                     text-left
                                     block
                                     md:table-cell
-                                "
-                            >
+                                ">
                                 Email
                             </th>
 
-                            <th
-                                class="
+                            <th class="
                                     bg-blue-700
                                     p-2
                                     text-white
@@ -109,19 +92,14 @@
                                     text-left
                                     block
                                     md:table-cell
-                                "
-                            >
+                                ">
                                 Acciones
                             </th>
                         </tr>
                     </thead>
                     <tbody class="block md:table-row-group alternate-table-row">
-                        <client-list-item
-                            v-for="(client, index) in clients"
-                            :key="client.id"
-                            :client="client"
-                            :index="index"
-                        />
+                        <client-list-item v-for="(client, index) in clients" :key="client.id" :client="client"
+                            :index="index" />
                     </tbody>
                 </table>
             </div>
@@ -140,12 +118,16 @@ export default {
     },
 
     mounted() {
-        EventBus.$on("client-removed", (index) => {
-            this.clients.splice(index, 1);
-        });
+        EventBus.$on("client-removed", this.removeClient);
         this.getClients();
     },
+    beforeUnmount() {
+        EventBus.$off("client-removed", this.removeClient);
+    },
     methods: {
+        removeClient(index) {
+            this.clients.splice(index, 1);
+        },
         getClients() {
             axios
                 .get("/clients")

@@ -1,8 +1,7 @@
 <template>
     <layout-component>
         <div class="grid grid-cols-1 gap-4 px-4 md:grid-cols-4 2xl:grid-cols-4">
-            <div
-                class="
+            <div class="
                     flex flex-col
                     items-baseline
                     justify-center
@@ -10,79 +9,24 @@
                     md:col-span-4
                     2xl:col-span-5
                     sm:flex-row
-                "
-            >
-                <search-by-category
-                    class="w-full mb-4 mr-2 md:w-2/4 sm:mb-0"
-                    :categories="categories"
-                ></search-by-category>
+                ">
+                <search-by-category class="w-full mb-4 mr-2 md:w-2/4 sm:mb-0"
+                    :categories="categories"></search-by-category>
                 <search-component ref="search" class="w-full md:w-2/4" />
             </div>
             <product-list :showDistributorPrice="true" v-if="!isMobile && windowResizing > 960" class="col-span-5">
-                <product-list-item
-                    v-for="(product, index) in products"
-                    :key="product.id"
-                    :product="product"
-                    :index="index"
-                >
+                <product-list-item v-for="(product, index) in products" :key="product.id" :product="product"
+                    :index="index">
                 </product-list-item>
             </product-list>
 
-            <!-- <product-card
-
-                v-for="(product, index) in products"
-                :key="product.id"
-                :product="product"
-                :index="index"
-                transaction-type="purchase"
-                class="col-span-5 md:col-span-1"
-            >
-                <template slot="options">
-                    <add-to-purchase
-                        v-if="product.distributor_price"
-                        :product_id="product.id"
-                        :purchase_price="product.distributor_price"
-                        :index="index"
-                    ></add-to-purchase>
-                    <a
-                        :href="`/products/${product.id}/edit`"
-                        class="
-                            px-2
-                            py-2
-                            text-2xl
-                            font-bold
-                            text-gray-600
-                            bg-white
-                            rounded-full
-                            shadow-xs
-                            hover:text-gray-800
-                        "
-                        v-can="'edit product'"
-                    >
-                        <edit-icon></edit-icon>
-                    </a>
-                    <remove-product-component
-                        :product="product"
-                        :index="index"
-                    />
-                </template>
-            </product-card> -->
-            <infinite-loading
-                :identifier="infiniteId"
-                @infinite="infiniteHandler"
-            ></infinite-loading>
+            <infinite-loading :identifier="infiniteId" @infinite="infiniteHandler"></infinite-loading>
         </div>
         <information-component>
-            <template slot="title"> Productos </template>
-            <message
-                :title="modalDataConfirm.title"
-                :message="modalDataConfirm.message"
-            ></message>
-            <template slot="button">
-                <agree
-                    :method="modalDataConfirm.action"
-                    @deleteProduct="deleteProduct"
-                ></agree>
+            <template #title> Productos </template>
+            <message :title="modalDataConfirm.title" :message="modalDataConfirm.message"></message>
+            <template #button>
+                <agree :method="modalDataConfirm.action" @deleteProduct="deleteProduct"></agree>
             </template>
         </information-component>
     </layout-component>
@@ -90,7 +34,7 @@
 <script>
 import Agree from "../alerts/Agree.vue";
 import Message from "../alerts/Message.vue";
-import InfiniteLoading from "vue-infinite-loading";
+import InfiniteLoading from "v3-infinite-loading/lib/v3-infinite-loading.es.js";
 import SearchComponent from "./SearchComponent.vue";
 import SearchByCategory from "./SearchByCategory.vue";
 import { mapActions, mapState, mapMutations } from "vuex";
@@ -133,7 +77,7 @@ export default {
             obj: new Object(),
             arr: new Array(),
             message: null,
-            resizeObserver:null,
+            resizeObserver: null,
         };
     },
     created() {
@@ -147,14 +91,21 @@ export default {
         this.cleanLocalStorage();
         EventBus.$on("matching-products", this.matchingProducts);
         EventBus.$on("empty-search", this.reloadIndex);
-        EventBus.$on("failed-deletion", (message) => {
-            this.message = message;
-        });
+        EventBus.$on("failed-deletion", this.setFailedDeletionMessage);
+    },
+    beforeUnmount() {
+
+        EventBus.$off("matching-products", this.matchingProducts);
+        EventBus.$off("empty-search", this.reloadIndex);
+        EventBus.$off("failed-deletion", this.setFailedDeletionMessage);
     },
     methods: {
         ...mapActions(["getProducts", "search"]),
-        ...mapMutations(["setModalDataConfirm","SET_QUERY_TYPE"]),
-        getQueryType(){
+        ...mapMutations(["setModalDataConfirm", "SET_QUERY_TYPE"]),
+        setFailedDeletionMessage(message) {
+            this.message = message;
+        },
+        getQueryType() {
             let url = new URL(window.location.href);
             this.SET_QUERY_TYPE(url.searchParams.get('queryType'));
         },
@@ -172,7 +123,7 @@ export default {
                         $state.complete();
                     }
                 })
-                .catch((err) => {});
+                .catch((err) => { });
         },
         matchingProducts(data) {
             this.products = data.products;
@@ -219,10 +170,10 @@ export default {
     },
     computed: {
         ...mapState(["modalDataConfirm"]),
-        isMobile(){
+        isMobile() {
             return checkMobile();
         },
-        windowResizing(){
+        windowResizing() {
             return this.resizeObserver.windowWidth;
         }
 

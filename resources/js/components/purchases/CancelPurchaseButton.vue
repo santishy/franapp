@@ -1,39 +1,40 @@
 <template>
-    <button
-        class="rounded-full text-2xl p-1 bg-red-600 hover:bg-red-400 text-white"
-        @click="cancelPurchase"
-    >
-        <x-icon/>
+    <button class="rounded-full text-2xl p-1 bg-red-600 hover:bg-red-400 text-white" @click="cancelPurchase">
+        <x-icon />
     </button>
 </template>
 <script>
 import XIcon from "../icons/XIcon.vue"
 export default {
-    components:{XIcon},
-    data(){
+    components: { XIcon },
+    data() {
         return {
-            inventory_id:null
+            inventory_id: null
         }
     },
     props: {
         purchase: {
             type: Object,
-            required:true
+            required: true
         }
     },
-    mounted(){
-        EventBus.$on('selected-inventory',(id)=>{
-            this.inventory_id = id;
-        })
+    mounted() {
+        EventBus.$on('selected-inventory', this.setInventoryId)
         this.inventory_id = this.purchase.inventory_id;
     },
+    beforeUnmount() {
+        EventBus.$off('selected-inventory', this.setInventoryId)
+    },
     methods: {
+        setInventoryId(id) {
+            this.inventory_id = id;
+        },
         cancelPurchase() {
             axios
-                .delete("/purchases/" + this.purchase.id,{
-                    params:{
-                        inventory_id:this.inventory_id,
-                        factor:-1
+                .delete("/purchases/" + this.purchase.id, {
+                    params: {
+                        inventory_id: this.inventory_id,
+                        factor: -1
                     }
                 })
                 .then(res => {

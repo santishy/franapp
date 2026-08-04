@@ -1,4 +1,5 @@
-module.exports = {
+
+export default {
     data: () => {
         return {
             errors: null,
@@ -6,11 +7,16 @@ module.exports = {
         }
     },
     created(){
-        EventBus.$on('emptyErrors',()=>{
-            this.errors = null;
-        })
+        EventBus.$on('emptyErrors',this.emptyErrors);
+    },
+    beforeUnmount()
+    {
+        EventBus.$off('emptyErrors',this.emptyErrors);
     },
     methods: {
+        emptyErrors(){
+            this.errors = null;
+        },
         getErrors(err) {
             console.log(err)
             if (err?.response?.status === 403) {

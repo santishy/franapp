@@ -1,6 +1,5 @@
 <template>
-    <div
-        class="
+    <div class="
             block
             transition-all
             duration-500
@@ -9,38 +8,17 @@
             lg:mt-0
             text-gray-700
             md:hover:text-gray-900 md:hover:font-bold md:mr-4
-        "
-        :class="getZ"
-    >
-        <div
-            @click="toggleOpen"
-            class="relative md:text-base text-lg flex justify-between"
-            :class="getZ"
-        >
+        " :class="getZ">
+        <div @click="toggleOpen" class="relative md:text-base text-lg flex justify-between" :class="getZ">
             {{ name }}
-            <svg
-                aria-hidden="true"
-                focusable="false"
-                data-prefix="fas"
-                data-icon="chevron-down"
-                class="inline-block"
-                role="img"
-                height="1em"
-                width="1em"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 448 512"
-            >
-                <path
-                    fill="currentColor"
-                    d="M207.029 381.476L12.686 187.132c-9.373-9.373-9.373-24.569 0-33.941l22.667-22.667c9.357-9.357 24.522-9.375 33.901-.04L224 284.505l154.745-154.021c9.379-9.335 24.544-9.317 33.901.04l22.667 22.667c9.373 9.373 9.373 24.569 0 33.941L240.971 381.476c-9.373 9.372-24.569 9.372-33.942 0z"
-                ></path>
+            <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-down" class="inline-block"
+                role="img" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                <path fill="currentColor"
+                    d="M207.029 381.476L12.686 187.132c-9.373-9.373-9.373-24.569 0-33.941l22.667-22.667c9.357-9.357 24.522-9.375 33.901-.04L224 284.505l154.745-154.021c9.379-9.335 24.544-9.317 33.901.04l22.667 22.667c9.373 9.373 9.373 24.569 0 33.941L240.971 381.476c-9.373 9.372-24.569 9.372-33.942 0z">
+                </path>
             </svg>
         </div>
-        <button
-            v-if="isOpen"
-            tabindex="-1"
-            @click="isOpen = false"
-            class="
+        <button v-if="isOpen" tabindex="-1" @click="isOpen = false" class="
                 hidden
                 sm:block
                 fixed
@@ -51,18 +29,9 @@
                 cursor-default
                 md:z-5
                 focus:outline-none
-            "
-        ></button>
-        <transition
-            name="expand"
-            @enter="enter"
-            @after-enter="afterEnter"
-            @leave="leave"
-        >
-            <div
-                v-if="isOpen"
-                :ref="name"
-                class="
+            "></button>
+        <transition name="expand" @enter="enter" @after-enter="afterEnter" @leave="leave">
+            <div v-if="isOpen" :ref="name" class="
                     w-full
                     md:bg-white md:w-40
                     rounded-md
@@ -72,13 +41,8 @@
                     md:mt-3
                     md:p-2
                     md:text-center
-                "
-            >
-                <a
-                    v-for="item in items"
-                    :key="item.name"
-                    :href="item.url"
-                    class="
+                ">
+                <a v-for="item in items" :key="item.name" :href="item.url" class="
                         sm:pl-1
                         pl-2
                         text-gray-800
@@ -90,8 +54,7 @@
                         md:border-none
                         border-b border-white
                         md:bg-transparent md:p-1 md:hover:text-red-400
-                    "
-                >
+                    ">
                     {{ item.name }}
                 </a>
             </div>
@@ -103,6 +66,7 @@ export default {
     data() {
         return {
             isOpen: false,
+            handleEscape: null,
         };
     },
     props: {
@@ -114,20 +78,15 @@ export default {
         },
     },
     created() {
-        const handleEscape = (e) => {
+        this.handleEscape = (e) => {
             if (e.key == "Esc" || e.key == "Escape") {
                 this.isOpen = false;
             }
         };
-
-        document.addEventListener("keydown", handleEscape);
-
-        this.$once("hook:beforeDestroy", () => {
-            document.removeEventListener("keydown", handleEscape);
-        });
-        // EventBus.$on("open", (name) => {
-        //     if (name != this.name) this.isOpen = false;
-        // });
+        document.addEventListener("keydown", this.handleEscape);
+    },
+    beforeUnmount() {
+        document.removeEventListener("keydown", this.handleEscape);
     },
     watch: {
         // isOpen() {
@@ -177,8 +136,8 @@ export default {
 };
 </script>
 <style scoped>
-
-.expand-enter-active,.expand-leave-active {
+.expand-enter-active,
+.expand-leave-active {
     transition: height 0.5s ease-in-out;
     overflow: hidden;
 }

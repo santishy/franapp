@@ -1,4 +1,4 @@
-module.exports = {
+export default {
     methods: {
         notify({ type = 'sucess', title, message }) {
 
@@ -6,7 +6,7 @@ module.exports = {
                 group: "foo",
                 title: title,
                 text: message,
-                type: type 
+                type: type
             });
         }
     }

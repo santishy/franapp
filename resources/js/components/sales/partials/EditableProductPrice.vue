@@ -23,6 +23,9 @@ export default {
         this.$watch("product.sale_price", this.updateCart);
         EventBus.$on('enabled', this.enabled)
     },
+    beforeUnmount() {
+        EventBus.$off('enabled', this.enabled);
+    },
     methods: {
 
         updateCart(value) {

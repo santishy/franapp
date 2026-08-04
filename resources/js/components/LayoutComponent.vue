@@ -163,21 +163,21 @@
             </div>
             <div id="mobile-menu" class="hidden sm:hidden  relative border-t pt-2 w-full mt-3  ">
                 <submenu-container name="Catalagos">
-                    <template slot="descriptive-icon">
+                    <template #descriptive-icon>
 
                         <view-boards class="mr-2 h-6 w-6 text-sky-500   rounded-sm"></view-boards>
 
                     </template>
-                    <template slot="icon">
+                    <template #icon>
                         <dots-vertical class=" h-7 w-7 p-1 text-primary  rounded-sm"></dots-vertical>
                     </template>
-                    <template slot="list">
+                    <template #list>
                         <li class="bg-slate-100">
                             <accordion :items-menu="clientsMenu" :is-submenu="true" name="Clientes">
-                                <template slot="descriptive-icon">
+                                <template #descriptive-icon>
                                     <users-icon class="mr-2 h-7 w-7 p-1 rounded-sm"></users-icon>
                                 </template>
-                                <template slot="icon">
+                                <template #icon>
                                     <down-arrow class="text-xs h-4 w-4"></down-arrow>
                                 </template>
                             </accordion>
@@ -185,10 +185,10 @@
                         <li class="bg-slate-100">
                             <accordion textColor="text-white" :items-menu="ProductsMenu" :is-submenu="true"
                                 name="Productos">
-                                <template slot="descriptive-icon">
+                                <template #descriptive-icon>
                                     <star class="mr-2 h-7 w-7 p-1 rounded-sm"></star>
                                 </template>
-                                <template slot="icon">
+                                <template #icon>
                                     <down-arrow class="text-xs h-4 w-4"></down-arrow>
                                 </template>
                             </accordion>
@@ -196,10 +196,10 @@
                         <li class="bg-slate-100">
                             <accordion textColor="text-white" :items-menu="WarehousesMenu" :is-submenu="true"
                                 name="Almacenes">
-                                <template slot="descriptive-icon">
+                                <template #descriptive-icon>
                                     <view-grid-icon class="mr-2 h-7 w-7 p-1 rounded-sm"></view-grid-icon>
                                 </template>
-                                <template slot="icon">
+                                <template #icon>
                                     <down-arrow class="text-xs h-4 w-4"></down-arrow>
                                 </template>
                             </accordion>
@@ -207,10 +207,10 @@
                         <li class="bg-slate-100">
                             <accordion textColor="text-white" :items-menu="CategoriesMenu" :is-submenu="true"
                                 name="Categorías">
-                                <template slot="descriptive-icon">
+                                <template #descriptive-icon>
                                     <color-swatch class="mr-2 h-7 w-7 p-1 rounded-sm"></color-swatch>
                                 </template>
-                                <template slot="icon">
+                                <template #icon>
                                     <down-arrow class="text-xs h-4 w-4"></down-arrow>
                                 </template>
                             </accordion>
@@ -218,26 +218,26 @@
                     </template>
                 </submenu-container>
                 <accordion :is-submenu="false" :items-menu="movementsMenu" name="Movimientos">
-                    <template slot="descriptive-icon">
+                    <template #descriptive-icon>
                         <switch-horizontal class="mr-2 h-7 w-7 p-1 text-gray-700 rounded-sm"></switch-horizontal>
                     </template>
-                    <template slot="icon">
+                    <template #icon>
                         <down-arrow class="text-xs w-6 h-6"></down-arrow>
                     </template>
                 </accordion>
                 <accordion class="" :items-menu="ReportsMenu" name="Reportes">
-                    <template slot="descriptive-icon">
+                    <template #descriptive-icon>
                         <bars-icon class="mr-2 h-7 w-7 p-1 text-gray-700 rounded-sm"></bars-icon>
                     </template>
-                    <template slot="icon">
+                    <template #icon>
                         <down-arrow class="text-xs w-6 h-6"></down-arrow>
                     </template>
                 </accordion>
                 <accordion class="" :items-menu="ConfigMenu" name="Configuración">
-                    <template slot="descriptive-icon">
+                    <template #descriptive-icon>
                         <setting-icon class="mr-2 h-7 w-7 p-1 text-gray-700 rounded-sm"></setting-icon>
                     </template>
-                    <template slot="icon">
+                    <template #icon>
                         <down-arrow class="text-xs w-6 h-6"></down-arrow>
                     </template>
                 </accordion>
@@ -248,19 +248,19 @@
         <main class="mt-20 w-full z-0 flex flex-col flex-1 mb-4">
             <sidebar>
                 <submenu-container name="Catalagos">
-                    <template slot="descriptive-icon">
+                    <template #descriptive-icon>
                         <view-boards class="mr-2 h-7 w-7 p-1 text-primary rounded-sm"></view-boards>
                     </template>
-                    <template slot="icon">
+                    <template #icon>
                         <dots-vertical class=" h-7 w-7 p-1 text-slate-400 rounded-sm"></dots-vertical>
                     </template>
-                    <template slot="list">
+                    <template #list>
                         <li class="pl-3">
                             <accordion :items-menu="clientsMenu" :is-submenu="true" name="Clientes">
-                                <template slot="descriptive-icon">
+                                <template #descriptive-icon>
                                     <users-icon class="mr-2 h-7 w-7 p-1 text-primary rounded-sm"></users-icon>
                                 </template>
-                                <template slot="icon">
+                                <template #icon>
                                     <down-arrow class="text-xs h-4 w-4 text-slate-400"></down-arrow>
                                 </template>
                             </accordion>
@@ -268,10 +268,10 @@
                         <li class="pl-3">
                             <accordion textColor="text-white" :items-menu="ProductsMenu" :is-submenu="true"
                                 name="Productos">
-                                <template slot="descriptive-icon">
+                                <template #descriptive-icon>
                                     <star class="mr-2 h-7 w-7 p-1 text-primary rounded-sm"></star>
                                 </template>
-                                <template slot="icon">
+                                <template #icon>
                                     <down-arrow class="text-xs text-slate-400 h-4 w-4"></down-arrow>
                                 </template>
                             </accordion>
@@ -279,10 +279,10 @@
                         <li class="pl-3">
                             <accordion textColor="text-white" :items-menu="WarehousesMenu" :is-submenu="true"
                                 name="Almacenes">
-                                <template slot="descriptive-icon">
+                                <template #descriptive-icon>
                                     <view-grid-icon class="mr-2 h-7 w-7 text-primary p-1 rounded-sm"></view-grid-icon>
                                 </template>
-                                <template slot="icon">
+                                <template #icon>
                                     <down-arrow class="text-xs h-4 text-slate-400 w-4"></down-arrow>
                                 </template>
                             </accordion>
@@ -290,10 +290,10 @@
                         <li class="pl-3">
                             <accordion textColor="text-white" :items-menu="CategoriesMenu" :is-submenu="true"
                                 name="Categorías">
-                                <template slot="descriptive-icon">
+                                <template #descriptive-icon>
                                     <color-swatch class="mr-2 h-7 w-7 text-primary p-1 rounded-sm"></color-swatch>
                                 </template>
-                                <template slot="icon">
+                                <template #icon>
                                     <down-arrow class="text-xs text-slate-400 h-4 w-4"></down-arrow>
                                 </template>
                             </accordion>
@@ -301,26 +301,26 @@
                     </template>
                 </submenu-container>
                 <accordion :is-submenu="false" :items-menu="movementsMenu" name="Movimientos">
-                    <template slot="descriptive-icon">
+                    <template #descriptive-icon>
                         <switch-horizontal class="mr-2 h-7 w-7 p-1 text-primary rounded-sm"></switch-horizontal>
                     </template>
-                    <template slot="icon">
+                    <template #icon>
                         <down-arrow class="text-xs w-6 h-6 text-slate-400"></down-arrow>
                     </template>
                 </accordion>
                 <accordion class="" :items-menu="ReportsMenu" name="Reportes">
-                    <template slot="descriptive-icon">
+                    <template #descriptive-icon>
                         <bars-icon class="mr-2 h-7 w-7 p-1 text-primary rounded-sm"></bars-icon>
                     </template>
-                    <template slot="icon">
+                    <template #icon>
                         <down-arrow class="text-xs w-6 text-slate-400 h-6"></down-arrow>
                     </template>
                 </accordion>
                 <accordion class="" :items-menu="ConfigMenu" name="Configuración">
-                    <template slot="descriptive-icon">
+                    <template #descriptive-icon>
                         <setting-icon class="mr-2 h-7 w-7 p-1 text-primary rounded-sm"></setting-icon>
                     </template>
-                    <template slot="icon">
+                    <template #icon>
                         <down-arrow class="text-xs w-6 h-6 text-slate-400"></down-arrow>
                     </template>
                 </accordion>
@@ -329,7 +329,6 @@
                 <slot />
             </div>
         </main>
-        <portal-target name="modals" multiple></portal-target>
         <notifications group="foo"></notifications>
     </div>
 </template>
@@ -389,6 +388,9 @@ export default {
         ).content;
         EventBus.$on("purchase-created", this.setPurchaseId);
         this.cleanLocalStorage();
+    },
+    beforeUnmount() {
+        EventBus.$off("purchase-created", this.setPurchaseId);
     },
     methods: {
         toggleNavigation() {

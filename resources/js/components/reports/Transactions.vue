@@ -2,8 +2,7 @@
     <layout-component>
         <div class="w-full px-4">
             <div class="shadow pb-4 bg-white rounded-sm">
-                <h1
-                    class="
+                <h1 class="
                         text-blue-800
                         form-header
                         text-center
@@ -11,14 +10,11 @@
                         py-3
                         text-xl
                         font-extralight
-                    "
-                >
+                    ">
                     Reporte de {{ name }}
                 </h1>
                 <transition name="fade">
-                    <div
-                        v-if="total != null"
-                        class="
+                    <div v-if="total != null" class="
                             border-b-2
                             py-3
                             text-gray-800
@@ -26,8 +22,7 @@
                             flex
                             justify-center
                             items-center
-                        "
-                    >
+                        ">
                         <span class="font-semibold text-xl">Total:</span>
                         <div class="font-bold text-2xl ml-2">${{ total }}</div>
                     </div>
@@ -52,7 +47,7 @@ import ErrorsComponent from "../ErrorsComponent.vue";
 import WarehouseChecklist from "../warehouses/WarehouseChecklist.vue";
 
 export default {
-    components: { ReportBy,  ErrorsComponent, WarehouseChecklist },
+    components: { ReportBy, ErrorsComponent, WarehouseChecklist },
     props: {
         name: {
             type: String,
@@ -78,15 +73,16 @@ export default {
         };
     },
     mounted() {
-        EventBus.$on("calculated-total", (total) => {
-            this.total = total;
-        });
+        EventBus.$on("calculated-total", this.setCalculatedTotal);
         EventBus.$on("errors-found", this.errorsFound);
-        console.log(this.users, "usuarios en Transactions.vue");
+    },
+    beforeUnmount() {
+        EventBus.$off("calculated-total", this.setCalculatedTotal);
+        EventBus.$off("errors-found", this.errorsFound);
     },
     methods: {
+        setCalculatedTotal(total) { this.total = total; },
         errorsFound(errors) {
-            console.log("entro a los errors");
             this.getErrors(errors);
         },
 

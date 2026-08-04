@@ -1,13 +1,13 @@
 <template>
     <div class="justify-center">
-        <portal to="modals">
+        <teleport to="#modals">
             <information-component id="product-stock" size="xl">
                 <template #title>
                     Existencias por inventario
                 </template>
                 <product-stock-detail v-if="productSelected" :product="productSelected" />
             </information-component>
-        </portal>
+        </teleport>
 
         <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4">
 
@@ -19,12 +19,10 @@
             <inventory-search-filter class="w-full sm:w-3/5" />
         </div>
 
-
-
         <table class="min-w-full border-collapse block md:table shadow-sm text-center rounded-sm">
             <thead class="block md:table-header-group">
                 <tr class="
-                      
+
                         md:border-none
                         block
                         md:table-row
@@ -36,11 +34,11 @@
                         bg-sky-600
                     ">
                     <th class="
-                           
+
                             p-2
                             text-white
                             font-semibold
-                           
+
                             text-left
                             block
                             md:table-cell
@@ -48,11 +46,11 @@
                         Categoría
                     </th>
                     <th class="
-                           
+
                             p-2
                             text-white
                             font-semibold
-                           
+
                             text-left
                             block
                             md:table-cell
@@ -60,11 +58,11 @@
                         SKU
                     </th>
                     <th class="
-                           
+
                             p-2
                             text-white
                             font-semibold
-                           
+
                             text-left
                             block
                             md:table-cell
@@ -75,7 +73,7 @@
                             p-2
                             text-white
                             font-semibold
-                           
+
                             text-left
                             block
                             md:table-cell
@@ -84,8 +82,7 @@
                     </th>
                 </tr>
             </thead>
-            <transition-group tag="tbody" class="block md:table-row-group alternate-table-row " name="bounce"
-                @after-leave="afterLeave">
+            <transition-group tag="tbody" class="block md:table-row-group alternate-table-row " name="bounce">
                 <produc-list-item v-for="(product, index) in products" @product-selected="onProductSelected"
                     :key="product.id" :index="index" :product="product" :inventory="inventory">
                 </produc-list-item>
@@ -128,18 +125,25 @@ export default {
         };
     },
     created() {
-        EventBus.$on("selected-inventory", (inventory) => {
+        EventBus.$on("selected-inventory", this.setSelectedInventory);
+        EventBus.$on("updated-stock", this.updateStock);
+        EventBus.$on("search-value-added", this.addFilterSearch);
+    },
+    beforeUnmount() {
+        EventBus.$off("selected-inventory", this.setSelectedInventory);
+        EventBus.$off("updated-stock", this.updateStock);
+        EventBus.$off("search-value-added", this.addFilterSearch);
+    },
+    methods: {
+        setSelectedInventory(inventory) {
             this.totalStocks = "..."
             this.filters = {};
             this.inventory = inventory;
             this.reloadIndex();
-        });
-        EventBus.$on("updated-stock", (data) => {
+        },
+        updateStock(data) {
             this.products[data.index].stock = data.newStock;
-        });
-        EventBus.$on("search-value-added", this.addFilterSearch);
-    },
-    methods: {
+        },
         getProducts($state) {
             axios
                 .get(`/products-stock`, {
@@ -177,17 +181,9 @@ export default {
             this.page = 1;
             this.products = [];
             this.infiniteId++;
-            /*setTimeout(()=>{
-                this.$refs.infiniteLoading.stateChanger.reset();
-            },1000)*/
+
         },
-        afterLeave() {
-            this.$nextTick(() => {
-                if (!this.$refs.infiniteLoading.status) {
-                    this.$refs.infiniteLoading.stateChanger.reset();
-                }
-            });
-        },
+
         addFilterSearch(value) {
             this.filters["filter[search]"] = value;
             this.reloadIndex();

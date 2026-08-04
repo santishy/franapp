@@ -49,7 +49,6 @@ export default {
                     }
                 })
                 .then(res => {
-                    console.log(res.data);
                     if (res.data.products.length) {
                         this.page += 1;
                         this.products.push(...res.data.products);

@@ -1,8 +1,8 @@
-module.exports = {
+export default {
     data() {
         return {
             // Use moment.js instead of the default
-            
+
             lang: {
                 formatLocale: {
                     // MMMM

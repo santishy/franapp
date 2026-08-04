@@ -1,8 +1,7 @@
 <template>
     <layout-component>
         <div class="w-full mx-auto flex justify-center px-4">
-            <div
-                class="
+            <div class="
                     flex
                     justify-center
                     bg-white
@@ -12,12 +11,8 @@
                     max-w-full
                     sm:overflow-x-hidden
                     overflow-x-auto
-                "
-            >
-                <table
-                    v-if="inventories.length"
-                    v-can="'view warehouses'"
-                    class="
+                ">
+                <table v-if="inventories.length" v-can="'view warehouses'" class="
                         min-w-full
                         border-collapse
                         block
@@ -25,11 +20,9 @@
                         shadow-sm
                         text-center
                         rounded-lg
-                    "
-                >
+                    ">
                     <thead class="block md:table-header-group ">
-                        <tr
-                            class="
+                        <tr class="
                                 border-b border-gray-500
                                 rounded-t-sm
                                 md:border-none
@@ -40,10 +33,8 @@
                                 md:top-auto
                                 -left-full
                                 md:left-auto md:relative
-                            "
-                        >
-                            <th
-                                class="
+                            ">
+                            <th class="
                                     bg-blue-700
                                     p-2
                                     text-white
@@ -53,12 +44,10 @@
                                     block
                                     rounded-sm
                                     md:table-cell
-                                "
-                            >
+                                ">
                                 Nombre
                             </th>
-                            <th
-                                class="
+                            <th class="
                                     bg-blue-700
                                     p-2
                                     text-white
@@ -67,12 +56,10 @@
                                     text-left
                                     block
                                     md:table-cell
-                                "
-                            >
+                                ">
                                 Dirección
                             </th>
-                            <th
-                                class="
+                            <th class="
                                     bg-blue-700
                                     p-2
                                     text-white
@@ -81,37 +68,25 @@
                                     text-left
                                     block
                                     md:table-cell
-                                "
-                            >
+                                ">
                                 Acciones
                             </th>
                         </tr>
                     </thead>
                     <tbody class="block md:table-row-group alternate-table-row">
-                        <warehouse-list-item
-                            v-for="(inventory, index) in localInventories"
-                            :key="inventory.id"
-                            :inventory="inventory"
-                            :index="index"
-                        />
+                        <warehouse-list-item v-for="(inventory, index) in localInventories" :key="inventory.id"
+                            :inventory="inventory" :index="index" />
                     </tbody>
                 </table>
             </div>
         </div>
         <information-component>
-            <template slot="title"> Almacenes </template>
+            <template #title> Almacenes </template>
 
-            <message
-                :title="modalDataConfirm.title"
-                :message="modalDataConfirm.message"
-            ></message>
-            <template slot="button">
-                <agree
-                    v-if="modalDataConfirm.actionEnabled"
-                    :method="modalDataConfirm.action"
-                    @deleteWarehouse="deleteWarehouse"
-                    @emptyWarehouse="emptyWarehouse"
-                ></agree>
+            <message :title="modalDataConfirm.title" :message="modalDataConfirm.message"></message>
+            <template #button>
+                <agree v-if="modalDataConfirm.actionEnabled" :method="modalDataConfirm.action"
+                    @deleteWarehouse="deleteWarehouse" @emptyWarehouse="emptyWarehouse"></agree>
             </template>
         </information-component>
     </layout-component>

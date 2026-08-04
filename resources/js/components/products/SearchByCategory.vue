@@ -1,10 +1,8 @@
 <template>
     <div class="w-full">
-        <category-select
-            list-container="sm:top-12"
-            class="
+        <category-select list-container="sm:top-12" class="
                 relative
-                
+
                 block
                 shadow-sm
                 appearance-none
@@ -16,9 +14,7 @@
                 rounded-sm
                 leading-tight
                 focus:outline-none focus:shadow-outline
-            "
-            :categories="categories"
-        ></category-select>
+            " :categories="categories"></category-select>
     </div>
 </template>
 <script>
@@ -38,13 +34,17 @@ export default {
         };
     },
     mounted() {
-        EventBus.$on("selected-category", (id) => {
-            this.category_id = id;
-            if (id) this.handleSearh();
-        });
+        EventBus.$on("selected-category", this.setSelectedCategory);
+    },
+    beforeUnmount() {
+        EventBus.$off("selected-category", this.setSelectedCategory);
     },
     methods: {
-        async handleSearh() {
+        setSelectedCategory(id) {
+            this.category_id = id;
+            if (id) this.handleSearch();
+        },
+        async handleSearch() {
             try {
                 this.params["filter[byCategory]"] = this.category_id;
                 this.params.page = 1;

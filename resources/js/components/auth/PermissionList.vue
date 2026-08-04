@@ -1,19 +1,15 @@
 <template>
-    <div
-        class="
+    <div class="
             rounded
             bg-white
             shadow
-            
+
             px-4
             grid
             sm:grid-cols-3
             grid-cols-2
-        "
-    >
-        <div
-            v-if="role != null"
-            class="
+        ">
+        <div v-if="role != null" class="
                 w-full
                 text-xl text-blue-800
                 font-extralight
@@ -23,25 +19,16 @@
                 col-span-2
                 mb-2
                 p-2
-            "
-        >
+            ">
             Agregar permisos al rol:
             <span v-if="!!role" class="text-dark font-semibold">{{
                 role.name.toUpperCase()
             }}</span>
         </div>
-        <div
-            v-for="permission in permissions"
-            :key="permission.id"
-            class="sm:mr-8 mb-1"
-        >
+        <div v-for="permission in permissions" :key="permission.id" class="sm:mr-8 mb-1">
             <label class="inline-flex items-center">
-                <input
-                    @change="togglePermission(permission, $event)"
-                    type="checkbox"
-                    class="form-checkbox"
-                    :checked="isChecked(permission.name)"
-                />
+                <input @change="togglePermission(permission, $event)" type="checkbox" class="form-checkbox"
+                    :checked="isChecked(permission.name)" />
                 <span class="ml-2 text-gray-900 sm:text-xs text-base">{{
                     permission.translate.toUpperCase()
                 }}</span>
@@ -61,11 +48,15 @@ export default {
         role: false,
     }),
     created() {
-        EventBus.$on("permissions-found", (role) => {
-            Vue.set(this.$data, "role", role.data);
-        });
+        EventBus.$on("permissions-found", this.setRole);
+    },
+    beforeUnmount() {
+        EventBus.$off("permissions-found", this.setRole);
     },
     methods: {
+        setRole(role) {
+            this.role = role.data
+        },
         isChecked(name) {
             if (!!this.role) {
                 return this.role.permissions.some((permission, index) => {

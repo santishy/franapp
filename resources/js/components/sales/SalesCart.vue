@@ -6,7 +6,7 @@
             </div>
             <div v-if="localSale != null" class="flex justify-end">
                 <div v-show="products.length">
-                    <input name="total" type="hidden" :v-model="(form.total = getTotal)" />
+                    <input name="total" type="hidden" :value="getTotal" />
                 </div>
             </div>
             <div class="flex flex-wrap justify-end">
@@ -75,28 +75,20 @@ export default {
         }
     },
     mounted() {
-        EventBus.$on("updated-sales-product", (obj) => {
-            this.products[obj.index].sale_quantity = obj.transaction.qty;
-            this.products[obj.index].sale_price = obj.transaction.sale_price;
-        });
-        EventBus.$on("product-added-sales-cart", (res) => {
-            this.localSale = res;
-            this.products = res.products;
-        });
-        EventBus.$on("product-removed", (index) => {
-            this.products.splice(index, 1);
-        });
-        EventBus.$on("sale-deleted", (res) => {
-            if (res) {
-                this.products = [];
-                this.localSale = {};
-                this.form = {};
-            }
-        });
-        EventBus.$on("sale-to-client", (data) => {
-            this.localSale = data.sale;
-        });
-        EventBus.$on("update-cart", data => this.updateCart(data))
+        EventBus.$on("updated-sales-product", this.updateSalesProduct);
+        EventBus.$on("product-added-sales-cart", this.setSaleCart);
+        EventBus.$on("product-removed", this.removeProduct);
+        EventBus.$on("sale-deleted", this.clearSale);
+        EventBus.$on("sale-to-client", this.setSaleToClient);
+        EventBus.$on("update-cart", this.updateCart)
+    },
+    beforeUnmount() {
+        EventBus.$off("update-cart", this.updateCart);
+        EventBus.$off("product-removed", this.removeProduct);
+        EventBus.$off("sale-to-client", this.setSaleToClient);
+        EventBus.$off("product-added-sales-cart", this.setSaleCart);
+        EventBus.$off("sale-deleted", this.clearSale);
+        EventBus.$off("updated-sales-product", this.updateSalesProduct);
     },
     computed: {
         getClass() {
@@ -119,7 +111,29 @@ export default {
         },
     },
     methods: {
+        updateSalesProduct(obj) {
+            this.products[obj.index].sale_quantity = obj.transaction.qty;
+            this.products[obj.index].sale_price = obj.transaction.sale_price;
+        },
+        clearSale(res) {
+            if (res) {
+                this.products = [];
+                this.localSale = {};
+                this.form = {};
+            }
+        },
+        setSaleCart(res) {
+            this.localSale = res;
+            this.products = res.products;
+        },
+        setSaleToClient(data) {
+            this.localSale = data.sale;
+        },
+        removeProduct(index) {
+            this.products.splice(index, 1);
+        },
         submit() {
+            this.form.total = this.getTotal
             if (this.getStatus === "pending") this.form.status = "completed";
             else this.form.status = "pending";
             axios

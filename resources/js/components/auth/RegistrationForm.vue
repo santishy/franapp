@@ -205,7 +205,7 @@
 
         <div class="flex justify-center mt-0 mb-0">
             <button class="
-                    mt-4 
+                    mt-4
                     sm:mt-0
                     bg-blue-500
                     transition-all
@@ -254,13 +254,8 @@ export default {
         },
     }),
     created() {
-        EventBus.$on("assign-role", (role) => {
-            this.roles.push(role);
-        });
-        EventBus.$on("remove-role", (role) => {
-            let index = this.roles.indexOf(role);
-            this.roles.splice(index, 1);
-        });
+        EventBus.$on("assign-role", this.assignRole);
+        EventBus.$on("remove-role", this.removeRole);
         if (this.editableUser) {
             this.form = this.editableUser;
             this.editableUser.roles.map(({ id }) => {
@@ -268,7 +263,18 @@ export default {
             });
         }
     },
+    beforeUnmount() {
+        EventBus.$off("assign-role", this.assignRole);
+        EventBus.$off("remove-role", this.removeRole);
+    },
     methods: {
+        assignRole(role) {
+            this.roles.push(role)
+        },
+        removeRole(role) {
+            let index = this.roles.indexOf(role);
+            this.roles.splice(index, 1);
+        },
         submit() {
             this.form.roles = this.roles;
             this.form._method = this.method;

@@ -42,7 +42,7 @@
             ">
             <span class="inline-block w-1/3 md:hidden font-bold">Existencias</span>
             <div class="
-                    text-lg 
+                    text-lg
                     transition-all
                     inline-block
                     text-gray-700
@@ -67,6 +67,8 @@
 <script>
 import TableCells from '../icons/TableCells.vue';
 export default {
+    emits: ["product-selected"],
+
     components: {
         TableCells,
     },
@@ -85,12 +87,16 @@ export default {
         productSelect() {
             this.$emit("product-selected", this.product);
         },
+        hideStockEditor() {
+            this.show = false;
+        }
     },
     created() {
-        EventBus.$on("updated-stock", (data) => {
-            this.show = false;
-        });
+        EventBus.$on("updated-stock", this.hideStockEditor);
     },
+    beforeUnmount() {
+        EventBus.$off("updated-stock", this.hideStockEditor);
+    }
 
 };
 </script>

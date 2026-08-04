@@ -1,21 +1,14 @@
 <template>
     <div class="container mx-auto mt-4 flex justify-center px-4">
         <information-component>
-            <template slot="title"> Reportes </template>
+            <template #title> Reportes </template>
 
-            <message
-                :title="modalDataConfirm.title"
-                :message="modalDataConfirm.message"
-            ></message>
-
-            <agree
-                slot="button"
-                :method="modalDataConfirm.action"
-                @cancelTransaction="cancelTransaction"
-            ></agree>
+            <message :title="modalDataConfirm.title" :message="modalDataConfirm.message"></message>
+            <template #button>
+                <agree :method="modalDataConfirm.action" @cancelTransaction="cancelTransaction"></agree>
+            </template>
         </information-component>
-        <div
-            class="
+        <div class="
                 bg-white
                 shadow-sm
                 w-full
@@ -24,12 +17,8 @@
                 sm:overflow-x-hidden
                 overflow-x-auto
                 overflow-y-hidden
-            "
-
-        >
-            <table
-                v-if="params"
-                class="
+            ">
+            <table v-if="params" class="
                     min-w-full
                     border-collapse
                     block
@@ -37,11 +26,9 @@
                     shadow-sm
                     text-center
                     rounded-lg
-                "
-            >
+                ">
                 <thead class="block md:table-header-group">
-                    <tr
-                        class="
+                    <tr class="
                             border-b border-gray-500
                             rounded-t-sm
                             md:border-none
@@ -52,10 +39,8 @@
                             md:top-auto
                             -left-full
                             md:left-auto md:relative
-                        "
-                    >
-                        <th
-                            class="
+                        ">
+                        <th class="
                                 bg-blue-700
                                 p-2
                                 text-white
@@ -64,12 +49,10 @@
                                 text-left
                                 block
                                 md:table-cell
-                            "
-                        >
+                            ">
                             ID
                         </th>
-                        <th
-                            class="
+                        <th class="
                                 bg-blue-700
                                 p-2
                                 text-white
@@ -78,13 +61,11 @@
                                 text-left
                                 block
                                 md:table-cell
-                            "
-                        >
+                            ">
                             Usuario
                         </th>
                         <th v-if="areTheySales">Cliente</th>
-                        <th
-                            class="
+                        <th class="
                                 bg-blue-700
                                 p-2
                                 text-white
@@ -93,12 +74,10 @@
                                 text-left
                                 block
                                 md:table-cell
-                            "
-                        >
+                            ">
                             Fecha
                         </th>
-                        <th
-                            class="
+                        <th class="
                                 bg-blue-700
                                 p-2
                                 text-white
@@ -107,12 +86,10 @@
                                 text-left
                                 block
                                 md:table-cell
-                            "
-                        >
+                            ">
                             Total
                         </th>
-                        <th
-                            class="
+                        <th class="
                                 bg-blue-700
                                 p-2
                                 text-white
@@ -121,12 +98,10 @@
                                 text-left
                                 block
                                 md:table-cell
-                            "
-                        >
+                            ">
                             Ver
                         </th>
-                        <th
-                            class="
+                        <th class="
                                 bg-blue-700
                                 p-2
                                 text-white
@@ -135,43 +110,27 @@
                                 text-left
                                 block
                                 md:table-cell
-                            "
-                        >
+                            ">
                             Acciones
                         </th>
                     </tr>
                 </thead>
 
-                <transition-group
-                    name="bounce"
-                    tag="tbody"
-                    class="block md:table-row-group alternate-table-row"
-                    @after-leave="afterLeave"
-                >
-                    <transaction-list-item
-                        v-for="(transaction, index) in transactions"
-                        :transaction="transaction"
-                        :index="index"
-                        :transaction-type="transaction.transactionType"
-                        :key="transaction.id"
-                        :uri="uri"
-                        :are-they-sales="areTheySales"
-                    >
+                <transition-group name="bounce" tag="tbody" class="block md:table-row-group alternate-table-row">
+                    <transaction-list-item v-for="(transaction, index) in transactions" :transaction="transaction"
+                        :index="index" :transaction-type="transaction.transactionType" :key="transaction.id" :uri="uri"
+                        :are-they-sales="areTheySales">
                     </transaction-list-item>
                 </transition-group>
-                <infinite-loading
-                    @infinite="infiniteHandler"
-                    :identifier="infiniteId"
-                    ref="infiniteLoading"
-                ></infinite-loading>
+                <infinite-loading @infinite="infiniteHandler" :identifier="infiniteId"
+                    ref="infiniteLoading"></infinite-loading>
             </table>
         </div>
     </div>
 </template>
 <script>
 import { mapMutations, mapState } from "vuex";
-import InfiniteLoading from "vue-infinite-loading";
-
+import InfiniteLoading from "v3-infinite-loading/lib/v3-infinite-loading.es.js";
 import Message from "../alerts/Message.vue";
 import Agree from "../alerts/Agree.vue";
 import InformationComponent from "../modals/InformationComponent.vue";
@@ -204,15 +163,22 @@ export default {
         };
     },
     mounted() {
-        EventBus.$on("set-parameters", (data) => {
-            this.changeParams(data);
-        });
-        EventBus.$on("selected-warehouses", (warehouses) => {
-            this.searchTheWarehouses["filter[byWarehouses]"] =
-                warehouses.toString();
-        });
+        EventBus.$on("set-parameters", this.changeParams);
+        EventBus.$on("selected-warehouses", this.setSelectedWarehouses);
+    },
+    beforeUnmount() {
+        EventBus.$off("set-parameters", this.changeParams);
+        EventBus.$off("selected-warehouses", this.setSelectedWarehouses);
     },
     methods: {
+
+        setSelectedWarehouses(warehouses) {
+            this.searchTheWarehouses["filter[byWarehouses]"] =
+                warehouses.toString();
+            this.page = 1;
+            this.transactions = [];
+            this.infiniteId += 1;
+        },
         infiniteHandler($state) {
             axios
                 .get(this.uri, {
@@ -270,13 +236,8 @@ export default {
             if (this.modalDataConfirm.transaction.transactionType == "sale")
                 return 1;
         },
-        afterLeave() {
-            this.$nextTick(() => {
-                if (!this.$refs.infiniteLoading.status) {
-                    this.$refs.infiniteLoading.stateChanger.reset();
-                }
-            });
-        },
+
+
     },
     computed: {
         ...mapState(["modalDataConfirm"]),

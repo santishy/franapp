@@ -89,22 +89,19 @@ export default {
             this.sale_status = this.sale.status;
             this.localSale = this.sale;
         }
-        EventBus.$on("selected-inventory", (inventory_id) => {
-            this.selectedInventoryId = inventory_id;
-        });
-        EventBus.$on("sale-deleted", (res) => {
-            this.sale_status = null;
-            this.localSale = null;
-            this.show = false;
-        });
-        EventBus.$on("product-added-sales-cart", (sale) => {
-            this.localSale = sale;
-            this.sale_status = sale.status;
-        });
-        EventBus.$on("sale-to-client", (data) => {
-            this.localSale = data.sale;
-        });
+        EventBus.$on("selected-inventory", this.setSelectedInventory);
+
+        EventBus.$on("sale-deleted", this.clearSale);
+        EventBus.$on("product-added-sales-cart", this.setSaleCart);
+        EventBus.$on("sale-to-client", this.setSaleToClient);
         this.getQueryType();
+    },
+    beforeUnmount() {
+        EventBus.$off("selected-inventory", this.setSelectedInventory);
+        EventBus.$off("sale-deleted", this.clearSale);
+        EventBus.$off("product-added-sales-cart", this.setSaleCart);
+        EventBus.$off("sale-to-client", this.setSaleToClient);
+
     },
     data() {
         return {
@@ -115,6 +112,21 @@ export default {
     },
     methods: {
         ...mapMutations(["SET_QUERY_TYPE"]),
+        setSaleToClient(data) {
+            this.localSale = data.sale;
+        },
+        setSaleCart(sale) {
+            this.localSale = sale;
+            this.sale_status = sale.status;
+        },
+        clearSale(res) {
+            this.sale_status = null;
+            this.localSale = null;
+            this.show = false;
+        },
+        setSelectedInventory(inventory_id) {
+            this.selectedInventoryId = inventory_id;
+        },
         getQueryType() {
             let url = new URL(window.location.href);
             this.SET_QUERY_TYPE(url.searchParams.get("queryType"));

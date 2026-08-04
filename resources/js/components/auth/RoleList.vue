@@ -2,12 +2,8 @@
     <div v-if="localRoles.length" class="bg-white rounded shadow p-4" v-can="'view roles'">
         <ul class="list-inside bg-gray-200">
             <li v-for="role in localRoles" :key="role.id">
-                <a
-                    href="#"
-                    @click.prevent="getPermissions(role.id)"
-                    class="w-full p-2 block border-white border-b-2 "
-                    >{{ role.name }}</a
-                >
+                <a href="#" @click.prevent="getPermissions(role.id)"
+                    class="w-full p-2 block border-white border-b-2 ">{{ role.name }}</a>
             </li>
         </ul>
     </div>
@@ -24,11 +20,16 @@ export default {
     },
     mounted() {
         this.localRoles = this.roles;
-        EventBus.$on("role-created", role => {
-            this.roles.unshift(role);
-        });
+        EventBus.$on("role-created", this.addRole);
+    },
+    beforeUnmount() {
+        EventBus.$off("role-created", this.addRole);
     },
     methods: {
+        addRole(role) {
+            this.roles.unshift(role);
+
+        },
         async getPermissions(id) {
             const response = await axios.get(`/roles/${id}`, {
                 params: {

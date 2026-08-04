@@ -1,50 +1,27 @@
 <template>
     <div
-        class="flex flex-col-reverse px-2 sm:px-0 sm:flex-row sm:items-center sm:border-b sm:border-t border-gray-300 relative"
-    >
-        <input
-            v-model="term_search"
-            ref="searchInput"
-            :class="[inputClass]"
+        class="flex flex-col-reverse px-2 sm:px-0 sm:flex-row sm:items-center sm:border-b sm:border-t border-gray-300 relative">
+        <input v-model="term_search" ref="searchInput" :class="[inputClass]"
             class="appearance-none bg-gray-200 sm:bg-transparent p-2 sm:p-0 rounded-sm border-none w-full text-gray-700 mr-3 focus:outline-none placeholder-gray-600"
-            autocomplete="off"
-            @focus="allCategories"
-            @keyup.prevent="search"
-            @keyup.esc.prevent="close"
-            @keyup.down.prevent="nextFocused"
-            @keyup.up.prevent="previousFocused"
-            @keyup.exact.enter.prevent="selectedCategory(focusedIndex, $event)"
-            type="text"
-            placeholder="Click o Enter para seleccionar | Presione la tecla ESC para limpiar"
-            aria-label="Full name"
-        />
+            autocomplete="off" @focus="allCategories" @keyup.prevent="search" @keyup.esc.prevent="close"
+            @keyup.down.prevent="nextFocused" @keyup.up.prevent="previousFocused"
+            @keyup.exact.enter.prevent="selectedCategory(focusedIndex, $event)" type="text"
+            placeholder="Click o Enter para seleccionar | Presione la tecla ESC para limpiar" aria-label="Full name" />
         <slot name="labelCategory"> </slot>
 
-        <button
-            @click.prevent="close"
-            class="absolute text-gray-700 border border-gray-400 font-semibold sm:right-0 px-3 sm:py-1 py-2 right-2 bg-white hover:bg-gray-300 rounded-sm shadow"
-        >
+        <button @click.prevent="close"
+            class="absolute text-gray-700 border border-gray-400 font-semibold sm:right-0 px-3 sm:py-1 py-2 right-2 bg-white hover:bg-gray-300 rounded-sm shadow">
             X
         </button>
-        <div
-            :class="listContainer"
+        <div :class="listContainer"
             class="absolute sm:mt-0 top-10 mt-10 sm:w-10/12 w-10/12 shadow-lg z-5 rounded overflow-x-auto"
-            v-if="items.length"
-        >
-            <ul
-                class="bg-white border border-orange-300 w-full relative"
-                ref="dropdown"
-            >
+            v-if="items.length">
+            <ul class="bg-white border border-orange-300 w-full relative" ref="dropdown">
                 <li v-for="(item, index) in items" :key="item.id">
-                    <a
-                        class="pl-4 block w-full focus:ring-2 focus:bg-gray-300 focus:border-transparent font-mono font-light hover:bg-gray-300 cursor-pointer"
-                        href="#"
-                        :class="{ 'bg-gray-300': index == focusedIndex }"
-                        @keyup.exact.down="nextFocused"
-                        @keyup.exact.up="previousFocused"
-                        @keyup.enter.prevent="selectedCategory(index)"
-                        @click.prevent="selectedCategory(index)"
-                    >
+                    <a class="pl-4 block w-full focus:ring-2 focus:bg-gray-300 focus:border-transparent font-mono font-light hover:bg-gray-300 cursor-pointer"
+                        href="#" :class="{ 'bg-gray-300': index == focusedIndex }" @keyup.exact.down="nextFocused"
+                        @keyup.exact.up="previousFocused" @keyup.enter.prevent="selectedCategory(index)"
+                        @click.prevent="selectedCategory(index)">
                         {{ item.name }}
                     </a>
                 </li>
@@ -54,6 +31,7 @@
 </template>
 <script>
 export default {
+    emits: ['focus-next'],
     props: {
         categories: {
             type: Array,
@@ -74,9 +52,10 @@ export default {
             );
             this.term_search = category.name;
         }
-        EventBus.$on("clean-search-term", () => {
-            this.term_search = "";
-        });
+        EventBus.$on("clean-search-term", this.cleanSearchTerm);
+    },
+    beforeUnmount() {
+        EventBus.$off("clean-search-term", this.cleanSearchTerm);
     },
     data() {
         return {
@@ -88,6 +67,9 @@ export default {
         };
     },
     methods: {
+        cleanSearchTerm() {
+            this.term_search = "";
+        },
         search(event) {
             if (event.key === "ArrowDown" || event.key === "ArrowUp") return;
             this.focusedIndex = 0;
@@ -110,14 +92,13 @@ export default {
         },
         selectedCategory(index, event) {
             if (this.items.length) {
-                console.log('items: '+this.items.length)
                 EventBus.$emit("selected-category", this.items[index].id);
                 this.term_search = this.items[index].name.toUpperCase();
                 this.items = [];
                 this.$emit("focus-next");
             }
         },
-        focus(){
+        focus() {
             this.$refs.searchInput.focus();
         },
         close() {

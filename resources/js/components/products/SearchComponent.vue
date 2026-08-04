@@ -12,9 +12,6 @@ export default {
             page: 1
         };
     },
-    created() {
-        EventBus.$on("selected-inventory", this.addFilter);
-    },
     methods: {
         ...mapActions(["search"]),
         handleSearch(e) {

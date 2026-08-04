@@ -11,7 +11,8 @@
             +
         </button>
         <input v-model="product.sale_quantity" name="qty" class="px-4 py-2 bg-white text-center sm:w-3/12 " type="text"
-            :class="[disabled ? 'text-gray-400' : 'text-gray-600']" placeholder="Precio de venta" aria-label="Full name" />
+            :class="[disabled ? 'text-gray-400' : 'text-gray-600']" placeholder="Precio de venta"
+            aria-label="Full name" />
         <button @click.prevent="decrease" class="
                 px-3
                 py-2
@@ -40,6 +41,9 @@ export default {
     created() {
         this.$watch("product.sale_quantity", this.updateCart);
         EventBus.$on('enabled', this.enabled)
+    },
+    beforeUnmount() {
+        EventBus.$off("enabled", this.enabled);
     },
     methods: {
         increase() {
@@ -71,4 +75,3 @@ export default {
     },
 };
 </script>
-

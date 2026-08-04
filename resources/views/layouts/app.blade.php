@@ -17,15 +17,14 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Gentium+Basic&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ mix('css/app.css') }}">
-
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
 <body class="bg-slate-300 h-screen max-w-full">
     <div id="app">
         @yield('content')
     </div>
-    <script src="{{ mix('js/app.js') }}"></script>
+    <div id="modals"></div>
 </body>
 
 </html>

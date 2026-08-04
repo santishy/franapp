@@ -1,16 +1,12 @@
 <template>
     <form @submit.prevent="destroy">
-        <button
-            type="submit"
-            class="transition-all rounded border-2 border-red-800 px-2 text-red-700 hover:bg-red-800 hover:text-white"
-        >
+        <button type="submit"
+            class="transition-all rounded border-2 border-red-800 px-2 text-red-700 hover:bg-red-800 hover:text-white">
             <trash-icon></trash-icon>
         </button>
         <information-component :id="category.id">
-            <template v-slot:title>Categorías</template>
-            <template>
-                <p class="text-gray-700 text-xs mt-3">{{ message }}</p>
-            </template>
+            <template #title>Categorías</template>
+            <p class="text-gray-700 text-xs mt-3">{{ message }}</p>
         </information-component>
     </form>
 </template>

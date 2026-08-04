@@ -1,6 +1,5 @@
-import Vue from 'vue';
-import Vuex from 'vuex';
-Vue.use(Vuex)
+import { createStore } from 'vuex';
+
 
 import actions from './actions'
 import mutations from './mutations'
@@ -8,7 +7,7 @@ import getters from './getters';
 
 
 
-export const store = new Vuex.Store({
+export const store = createStore({
 
   state:{
     productsInPurchase:JSON.parse(localStorage.getItem('productsInPurchase')),

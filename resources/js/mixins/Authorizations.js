@@ -1,8 +1,6 @@
-const { mapGetters, mapState, mapActions } = require("vuex");
+import { mapGetters, mapState } from 'vuex';
+export default {
 
-module.exports = 
-{
-    
     computed:{
         ...mapState(['auth','user']),
         ...mapGetters(['isAdmin','getCurrentUser'])

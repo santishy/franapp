@@ -1,7 +1,7 @@
 <template>
     <!-- This example requires Tailwind CSS v2.0+ -->
-    <transition enter-active-class="ease-out duration-300" enter-class="opacity-0" enter-to-class="opacity-100"
-        leave-active-class="ease-in duration-200" leave-class="opacity-100" leave-to-class="opacity-0">
+    <transition enter-active-class="ease-out duration-300" enter-from-class="opacity-0" enter-to-class="opacity-100"
+        leave-active-class="ease-in duration-200" leave-from-class="opacity-100" leave-to-class="opacity-0">
         <div class="fixed z-50 inset-0 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true"
             v-show="modal">
             <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
@@ -32,9 +32,9 @@
                 To: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
             -->
                 <transition enter-active-class="ease-out duration-300"
-                    enter-class="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                    enter-to-class="opacity-100 translate-y-0 sm:scale-100" leave-class="ease-in duration-200"
-                    leave-active-class="opacity-100 translate-y-0 sm:scale-100"
+                    enter-from-class="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                    enter-to-class="opacity-100 translate-y-0 sm:scale-100" leave-active-class="ease-in duration-200"
+                    leave-from-class="opacity-100 translate-y-0 sm:scale-100"
                     leave-to-class="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95">
                     <!-- Se usa v-show aki y arriba para que funcione la transicion -->
                     <div v-show="modal"
@@ -44,7 +44,7 @@
                                 <!-- <div
                                     class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"
                                 >
-                                    
+
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
                                         class="h-6 w-6"
@@ -98,14 +98,14 @@ export default {
         };
     },
     created() {
-        if (this.id) {
-            EventBus.$on("open-modal-" + this.id, value => {
-                this.modal = value;
-            });
-        } else {
-            EventBus.$on("open-modal", value => {
-                this.modal = value;
-            });
+        EventBus.$on(this.eventName, this.setModal);
+    },
+    beforeUnmount() {
+        EventBus.$off(this.eventName, this.setModal);
+    },
+    methods: {
+        setModal(value) {
+            this.modal = value;
         }
     },
     computed: {
@@ -118,8 +118,10 @@ export default {
                 full: 'sm:max-w-6xl'
             }
             return sizes[this.size] || sizes.md;
+        },
+        eventName() {
+            return this.id ? 'open-modal-' + this.id : 'open-modal'
         }
-
     }
 };
 </script>

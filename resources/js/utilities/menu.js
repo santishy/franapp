@@ -132,4 +132,4 @@ const menuData = {
     ],
 }
 
-module.exports = menuData;
+export default menuData;

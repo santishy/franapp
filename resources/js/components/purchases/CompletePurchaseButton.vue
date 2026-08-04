@@ -25,12 +25,16 @@ export default {
         };
     },
     mounted() {
-        EventBus.$on("selected-inventory", (id) => {
-            this.inventory_id = id;
-        });
+        EventBus.$on("selected-inventory", this.setInventoryId);
+    },
+    beforeUnmount() {
+        EventBus.$off("selected-inventory", this.setInventoryId);
     },
     methods: {
         ...mapMutations(["setErrors"]),
+        setInventoryId(id) {
+            this.inventory_id = id;
+        },
         completePurchase() {
             this.disabled = true;
             axios
