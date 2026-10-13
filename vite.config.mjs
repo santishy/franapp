@@ -19,6 +19,9 @@ export default defineConfig({
         }),
     ],
     resolve: {
+        alias:{
+             vue: 'vue/dist/vue.esm-bundler.js',
+        },
         extensions: ['.mjs', '.js', '.mts', '.ts', '.jsx', '.tsx', '.json', '.vue'],
     },
     css: {
