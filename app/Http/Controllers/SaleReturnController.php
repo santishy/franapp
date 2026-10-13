@@ -90,6 +90,7 @@ class SaleReturnController extends Controller
                 "amount" => $total,
                 "payment_method" => $request->payment_method,
                 "user_id" => $request->user()->id,
+                "direction" => "refund",
             ]);
 
             return $saleReturn;
