@@ -100,7 +100,6 @@ const menuData = {
             name: "Catalago",
             url: "/products/?queryType=list",
         },
-
     ],
     ReportsMenu: [
         {
@@ -110,6 +109,10 @@ const menuData = {
         {
             name: "Compras",
             url: "/purchases",
+        },
+        {
+            name: "Devoluciones",
+            url: "/returns",
         },
     ],
     ConfigMenu: [
@@ -130,6 +133,6 @@ const menuData = {
             url: "/tickets/1/edit",
         },
     ],
-}
+};
 
 export default menuData;

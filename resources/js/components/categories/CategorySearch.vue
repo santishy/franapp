@@ -54,7 +54,9 @@
 <script>
 import { mapMutations, mapState } from "vuex";
 import CategoryList from './CategoryList'
+import Errors from "../../mixins/Errors";
 export default {
+    mixins: [Errors],
     data: () => ({
         name: "",
         errors: null,

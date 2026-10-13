@@ -7,54 +7,18 @@
                 class="w-full shadow-sm rounded-sm bg-white"
             >
                 <div
-                    class="
-                        flex
-                        items-center
-                        py-2
-                        text-blue-800
-                        form-header
-                        text-dark text-center
-                        justify-center
-                        text-xl
-                        font-extralight
-                    "
+                    class="flex items-center py-2 text-blue-800 form-header text-dark text-center justify-center text-xl font-extralight"
                 >
                     {{ getTitle }}
                 </div>
                 <div
-                    class="
-                        flex flex-col-reverse
-                        px-2
-                        sm:px-0
-                        sm:flex-row
-                        sm:items-center
-                        sm:border-b
-                        sm:border-t
-                        border-gray-300
-                        sm:py-2 sm:relative
-                    "
+                    class="flex flex-col-reverse px-2 sm:px-0 sm:flex-row sm:items-center sm:border-b sm:border-t border-gray-300 sm:py-2 sm:relative"
                 >
                     <input
                         v-model="form.phone_number"
                         name="phone_number"
                         autocomplete="off"
-
-                        class="
-                            appearance-none
-                            sm:shadow-none
-                            static
-                            sm:p-0
-                            p-2
-                            bg-gray-200
-                            sm:bg-transparent
-                            border-none
-                            w-full
-                            text-gray-700
-                            mr-3
-                            sm:py-1 sm:pr-2 sm:pl-56
-                            leading-tight
-                            focus:outline-none
-                        "
+                        class="appearance-none sm:shadow-none static sm:p-0 p-2 bg-gray-200 sm:bg-transparent border-none w-full text-gray-700 mr-3 sm:py-1 sm:pr-2 sm:pl-56 leading-tight focus:outline-none"
                         @keyup="searchPhoneNumber"
                         type="text"
                         placeholder="NUMERO DE TELEFONO"
@@ -62,221 +26,73 @@
                     />
                     <label
                         for=""
-                        class="
-                            sm:absolute
-                            pl-2
-                            sm:pl-0 sm:p-0
-                            p-2
-                            sm:bg-gray-200
-                            h-full
-                            flex
-                            items-center
-                            sm:w-52 sm:justify-center
-                            text-indigo-800
-                            font-mono
-                        "
+                        class="sm:absolute pl-2 sm:pl-0 sm:p-0 p-2 sm:bg-gray-200 h-full flex items-center sm:w-52 sm:justify-center text-indigo-800 font-mono"
                         >Telefono</label
                     >
                 </div>
                 <div
-                    class="
-                        flex flex-col-reverse
-                        px-2
-                        sm:px-0
-                        sm:flex-row
-                        sm:items-center
-                        sm:border-b
-                        sm:border-t
-                        border-gray-300
-                        sm:py-2 sm:relative
-                    "
+                    class="flex flex-col-reverse px-2 sm:px-0 sm:flex-row sm:items-center sm:border-b sm:border-t border-gray-300 sm:py-2 sm:relative"
                 >
                     <input
                         v-model="form.name"
                         autocomplete="off"
                         name="name"
-                        class="
-                            appearance-none
-                            sm:shadow-none
-                            static
-                            sm:p-0
-                            p-2
-                            bg-gray-200
-                            sm:bg-transparent
-                            border-none
-                            w-full
-                            text-gray-700
-                            mr-3
-                            sm:py-1 sm:pr-2 sm:pl-56
-                            leading-tight
-                            focus:outline-none
-                        "
+                        class="appearance-none sm:shadow-none static sm:p-0 p-2 bg-gray-200 sm:bg-transparent border-none w-full text-gray-700 mr-3 sm:py-1 sm:pr-2 sm:pl-56 leading-tight focus:outline-none"
                         type="text"
                         placeholder="NOMBRE"
                         aria-label="Full name"
                     />
                     <label
                         for=""
-                        class="
-                            sm:absolute
-                            pl-2
-                            sm:pl-0 sm:p-0
-                            p-2
-                            sm:bg-gray-200
-                            h-full
-                            flex
-                            items-center
-                            sm:w-52 sm:justify-center
-                            text-indigo-800
-                            font-mono
-                        "
+                        class="sm:absolute pl-2 sm:pl-0 sm:p-0 p-2 sm:bg-gray-200 h-full flex items-center sm:w-52 sm:justify-center text-indigo-800 font-mono"
                         >Nombre</label
                     >
                 </div>
                 <div
-                    class="
-                        flex flex-col-reverse
-                        px-2
-                        sm:px-0
-                        sm:flex-row
-                        sm:items-center
-                        sm:border-b
-                        sm:border-t
-                        border-gray-300
-                        sm:py-2 sm:relative
-                    "
+                    class="flex flex-col-reverse px-2 sm:px-0 sm:flex-row sm:items-center sm:border-b sm:border-t border-gray-300 sm:py-2 sm:relative"
                 >
                     <input
                         v-model="form.address"
                         autocomplete="off"
                         name="address"
-                        class="
-                            appearance-none
-                            sm:shadow-none
-                            static
-                            sm:p-0
-                            p-2
-                            bg-gray-200
-                            sm:bg-transparent
-                            border-none
-                            w-full
-                            text-gray-700
-                            mr-3
-                            sm:py-1 sm:pr-2 sm:pl-56
-                            leading-tight
-                            focus:outline-none
-                        "
+                        class="appearance-none sm:shadow-none static sm:p-0 p-2 bg-gray-200 sm:bg-transparent border-none w-full text-gray-700 mr-3 sm:py-1 sm:pr-2 sm:pl-56 leading-tight focus:outline-none"
                         type="text"
                         placeholder="DIRECCION"
                         aria-label="Full name"
                     />
                     <label
                         for=""
-                        class="
-                            sm:absolute
-                            pl-2
-                            sm:pl-0 sm:p-0
-                            p-2
-                            sm:bg-gray-200
-                            h-full
-                            flex
-                            items-center
-                            sm:w-52 sm:justify-center
-                            text-indigo-800
-                            font-mono
-                        "
+                        class="sm:absolute pl-2 sm:pl-0 sm:p-0 p-2 sm:bg-gray-200 h-full flex items-center sm:w-52 sm:justify-center text-indigo-800 font-mono"
                         >Dirección</label
                     >
                 </div>
 
                 <div
-                    class="
-                        flex flex-col-reverse
-                        px-2
-                        sm:px-0
-                        sm:flex-row
-                        sm:items-center
-                        sm:border-b
-                        sm:border-t
-                        border-gray-300
-                        sm:py-2 sm:relative
-                    "
+                    class="flex flex-col-reverse px-2 sm:px-0 sm:flex-row sm:items-center sm:border-b sm:border-t border-gray-300 sm:py-2 sm:relative"
                 >
                     <input
                         v-model="form.email"
                         name="email"
                         autocomplete="off"
-                        class="
-                            appearance-none
-                            sm:shadow-none
-                            static
-                            sm:p-0
-                            p-2
-                            bg-gray-200
-                            sm:bg-transparent
-                            border-none
-                            w-full
-                            text-gray-700
-                            mr-3
-                            sm:py-1 sm:pr-2 sm:pl-56
-                            leading-tight
-                            focus:outline-none
-                        "
+                        class="appearance-none sm:shadow-none static sm:p-0 p-2 bg-gray-200 sm:bg-transparent border-none w-full text-gray-700 mr-3 sm:py-1 sm:pr-2 sm:pl-56 leading-tight focus:outline-none"
                         type="email"
                         placeholder="EMAIL"
                         aria-label="Full name"
                     />
                     <label
                         for=""
-                        class="
-                            sm:absolute
-                            pl-2
-                            sm:pl-0 sm:p-0
-                            p-2
-                            sm:bg-gray-200
-                            h-full
-                            flex
-                            items-center
-                            sm:w-52 sm:justify-center
-                            text-indigo-800
-                            font-mono
-                        "
+                        class="sm:absolute pl-2 sm:pl-0 sm:p-0 p-2 sm:bg-gray-200 h-full flex items-center sm:w-52 sm:justify-center text-indigo-800 font-mono"
                         >Email</label
                     >
                 </div>
                 <div
-                    class="
-                        flex flex-col-reverse
-                        px-2
-                        sm:px-0
-                        sm:flex-row
-                        sm:items-center
-                        sm:border-b
-                        sm:border-t
-                        border-gray-300
-                        sm:py-2 sm:relative
-                    "
+                    class="flex flex-col-reverse px-2 sm:px-0 sm:flex-row sm:items-center sm:border-b sm:border-t border-gray-300 sm:py-2 sm:relative"
                 >
                     <select
                         name="assigned_price"
                         v-model="form.assigned_price"
                         plahceholder="Asigna un precio al cliente"
-                        class="
-                            appearance-none
-                            sm:shadow-none
-                            static
-                            sm:p-0
-                            p-2
-                            bg-gray-200
-                            sm:bg-transparent
-                            border-none
-                            w-full
-                            text-gray-700
-                            mr-3
-                            sm:py-1 sm:pr-2 sm:pl-56
-                            leading-tight
-                            focus:outline-none
-                        "
+                        class="appearance-none sm:shadow-none static sm:p-0 p-2 bg-gray-200 sm:bg-transparent border-none w-full text-gray-700 mr-3 sm:py-1 sm:pr-2 sm:pl-56 leading-tight focus:outline-none"
                     >
                         <option
                             disabled
@@ -295,19 +111,7 @@
                     </select>
                     <label
                         for=""
-                        class="
-                            sm:absolute
-                            pl-2
-                            sm:pl-0 sm:p-0
-                            p-2
-                            sm:bg-gray-200
-                            h-full
-                            flex
-                            items-center
-                            sm:w-52 sm:justify-center
-                            text-indigo-800
-                            font-mono
-                        "
+                        class="sm:absolute pl-2 sm:pl-0 sm:p-0 p-2 sm:bg-gray-200 h-full flex items-center sm:w-52 sm:justify-center text-indigo-800 font-mono"
                         >Precio asignado</label
                     >
                 </div>
@@ -375,24 +179,7 @@
 
                 <div class="flex justify-center mt-0 mb-0">
                     <button
-                        class="
-                            mt-2
-                            sm:mt-0
-                            bg-transparent
-                            transition-all
-                            duration-500
-                            ease-in-out
-                            hover:bg-blue-700
-                            text-white
-                            bg-blue-500
-                            font-semibold
-                            hover:text-white
-                            py-2
-                            px-4
-                            border-b-2 border-blue-500
-                            hover:border-transparent
-                            w-full
-                        "
+                        class="mt-2 sm:mt-0 bg-transparent transition-all duration-500 ease-in-out hover:bg-blue-700 text-white bg-blue-500 font-semibold hover:text-white py-2 px-4 border-b-2 border-blue-500 hover:border-transparent w-full"
                     >
                         Guardar
                     </button>
@@ -403,14 +190,17 @@
 </template>
 
 <script>
+import Errors from "../../mixins/Errors";
+
 export default {
     data() {
         return {
             form: { assigned_price: "" },
             errors: null,
-            localMethod:''
+            localMethod: "",
         };
     },
+    mixins: [Errors],
     mounted() {
         if (!!this.client) {
             this.form = this.client;
@@ -427,21 +217,20 @@ export default {
         },
     },
     methods: {
-        async searchPhoneNumber(){
-            if(this.form?.phone_number.length === 10){
-                axios.get('/clients/' + this.form.phone_number)
-                    .then( res => {
-                        if(res.data.error){
+        async searchPhoneNumber() {
+            if (this.form?.phone_number.length === 10) {
+                axios
+                    .get("/clients/" + this.form.phone_number)
+                    .then((res) => {
+                        if (res.data.error) {
                             return;
                         }
                         this.form = res.data.client;
-                        this.localMethod = 'put';
+                        this.localMethod = "put";
                     })
-                    .catch(e => {
-                        console.log(e)
-                    })
-
-
+                    .catch((e) => {
+                        console.log(e);
+                    });
             }
         },
         submit() {
@@ -468,11 +257,13 @@ export default {
     },
     computed: {
         definePermission() {
-            if (this.localMethod.toUpperCase() === "POST") return "create client";
+            if (this.localMethod.toUpperCase() === "POST")
+                return "create client";
             return "edit client";
         },
         getTitle() {
-            if (this.localMethod.toUpperCase() === "POST") return "Nuevo cliente";
+            if (this.localMethod.toUpperCase() === "POST")
+                return "Nuevo cliente";
             return "Modificar cliente";
         },
     },

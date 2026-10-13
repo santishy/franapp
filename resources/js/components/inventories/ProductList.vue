@@ -98,7 +98,9 @@ import ProducListItem from "./ProducListItem.vue";
 import InformationComponent from "../modals/InformationComponent.vue";
 import WarehouseIcon from "../icons/WarehouseIcon.vue";
 import ProductStockDetail from "./ProductStockDetail.vue";
+import Errors from "../../mixins/Errors";
 export default {
+    mixins: [Errors],
     props: {
         index: {
             type: Number,

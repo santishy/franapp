@@ -9,41 +9,58 @@
                     <input name="total" type="hidden" :value="getTotal" />
                 </div>
             </div>
-            <div class="flex flex-wrap justify-end">
-                <button v-show="products.length && localSale.status == 'pending'" class="
-                        rounded
-                        transition-all
-                        duration-500
-                        ease-in-out
-                        font-bold
-                        mb-2
-                        py-2
-                        px-4
-                    " :class="[getClass]">
+            <div
+                v-show="products.length && localSale.status == 'pending'"
+                class="flex flex-wrap justify-end items-center gap-4 mb-2"
+            >
+                <div class="max-w-xl w-full">
+                    <select
+                        v-model="form.payment_method"
+                        name="payment_method"
+                        class="w-full border-transparent focus:outline-none rounded-sm px-3 py-1 bg-slate-50 ring-1 ring-purple-500 ring-offset-1"
+                    >
+                        <option class="text-slate-500" value="" disabled>
+                            Elige un método de pago
+                        </option>
+                        <option value="cash">Efectivo</option>
+                        <option value="card">Tarjeta</option>
+                        <option value="bank_transfer">Transferencia</option>
+                    </select>
+                </div>
+                <button
+                    class="rounded transition-all duration-500 ease-in-out font-bold py-2 px-4"
+                    :class="[getClass]"
+                >
                     Finalizar Venta
                 </button>
             </div>
         </form>
-        <div v-if="localSale !== null" class="relative md:max-h-80 overflow-y-auto shadow-inner p-2">
+        <div
+            v-if="localSale !== null"
+            class="relative md:max-h-80 overflow-y-auto shadow-inner p-2"
+        >
             <product-list>
-                <product-list-item v-for="(product, index) in products" :key="product.id" :product="product"
-                    :sale-status="getStatus" :index="index">
+                <product-list-item
+                    v-for="(product, index) in products"
+                    :key="product.id"
+                    :product="product"
+                    :sale-status="getStatus"
+                    :index="index"
+                >
                 </product-list-item>
             </product-list>
         </div>
         <div v-if="localSale != null" class="mt-2 flex justify-end">
-            <div v-show="products.length" class="
-                        flex flex-wrap
-                        justify-center
-                        items-center
-                        md:w-64
-                        px-4
-                        py-2
-                        rounded
-                        bg-amber-300
-                    ">
-                <label class="mr-4 text-2xl font-semibold text-secondary">Total</label>
-                <p class="text-secondary text-3xl  font-semibold">${{ getTotal }}</p>
+            <div
+                v-show="products.length"
+                class="flex flex-wrap justify-center items-center md:w-64 px-4 py-2 rounded bg-amber-300"
+            >
+                <label class="mr-4 text-2xl font-semibold text-secondary"
+                    >Total</label
+                >
+                <p class="text-secondary text-3xl font-semibold">
+                    ${{ getTotal }}
+                </p>
             </div>
         </div>
     </div>
@@ -58,7 +75,9 @@ export default {
     mixins: [Errors],
     data() {
         return {
-            form: {},
+            form: {
+                payment_method: "",
+            },
             products: [],
             localSale: {},
         };
@@ -80,7 +99,7 @@ export default {
         EventBus.$on("product-removed", this.removeProduct);
         EventBus.$on("sale-deleted", this.clearSale);
         EventBus.$on("sale-to-client", this.setSaleToClient);
-        EventBus.$on("update-cart", this.updateCart)
+        EventBus.$on("update-cart", this.updateCart);
     },
     beforeUnmount() {
         EventBus.$off("update-cart", this.updateCart);
@@ -104,7 +123,6 @@ export default {
             });
             return total.toFixed(2);
         },
-
 
         getStatus() {
             return this.localSale.status;
@@ -133,16 +151,18 @@ export default {
             this.products.splice(index, 1);
         },
         submit() {
-            this.form.total = this.getTotal
-            if (this.getStatus === "pending") this.form.status = "completed";
-            else this.form.status = "pending";
+            this.form.total = this.getTotal;
+            this.form.status = "completed";
             axios
                 .post(`/sales/${this.localSale.id}`, this.form)
                 .then((res) => {
                     this.localSale.status = res.data.sale_status;
                     if (this.localSale.status == "completed") {
                         sessionStorage.removeItem("salePriceOption");
-                        window.open(`/pdf-tickets/${this.localSale.id}`, "_blank");
+                        window.open(
+                            `/pdf-tickets/${this.localSale.id}`,
+                            "_blank",
+                        );
                     }
                 })
                 .catch((err) => {
@@ -157,12 +177,11 @@ export default {
         },
         async updateCart(data) {
             try {
-
-                const res = await axios.post(`/sales/${data?.product_id}/products`,
-                    { _method: 'put', ...data }
+                const res = await axios.post(
+                    `/sales/${data?.product_id}/products`,
+                    { _method: "put", ...data },
                 );
-                EventBus.$emit('enabled');
-
+                EventBus.$emit("enabled");
             } catch (error) {
                 this.getErrors(error);
                 this.$notify({
@@ -172,7 +191,7 @@ export default {
                     text: this.errors[0],
                 });
             }
-        }
+        },
     },
 };
 </script>

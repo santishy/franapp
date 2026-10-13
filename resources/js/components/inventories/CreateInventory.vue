@@ -156,7 +156,9 @@
 
 <script>
 import DatabaseIcon from "../icons/DatabaseIcon.vue";
+import Errors from "../../mixins/Errors";
 export default {
+    mixins: [Errors],
     created() {
         if (!!this.inventory) {
             this.form = this.inventory;

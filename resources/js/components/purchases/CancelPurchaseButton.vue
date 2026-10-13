@@ -1,29 +1,34 @@
 <template>
-    <button class="rounded-full text-2xl p-1 bg-red-600 hover:bg-red-400 text-white" @click="cancelPurchase">
+    <button
+        class="rounded-full text-2xl p-1 bg-red-600 hover:bg-red-400 text-white"
+        @click="cancelPurchase"
+    >
         <x-icon />
     </button>
 </template>
 <script>
-import XIcon from "../icons/XIcon.vue"
+import Errors from "../../mixins/Errors";
+import XIcon from "../icons/XIcon.vue";
 export default {
     components: { XIcon },
     data() {
         return {
-            inventory_id: null
-        }
+            inventory_id: null,
+        };
     },
+    mixins: [Errors],
     props: {
         purchase: {
             type: Object,
-            required: true
-        }
+            required: true,
+        },
     },
     mounted() {
-        EventBus.$on('selected-inventory', this.setInventoryId)
+        EventBus.$on("selected-inventory", this.setInventoryId);
         this.inventory_id = this.purchase.inventory_id;
     },
     beforeUnmount() {
-        EventBus.$off('selected-inventory', this.setInventoryId)
+        EventBus.$off("selected-inventory", this.setInventoryId);
     },
     methods: {
         setInventoryId(id) {
@@ -34,19 +39,19 @@ export default {
                 .delete("/purchases/" + this.purchase.id, {
                     params: {
                         inventory_id: this.inventory_id,
-                        factor: -1
-                    }
+                        factor: -1,
+                    },
                 })
-                .then(res => {
+                .then((res) => {
                     if (res.data.status == "cancelled") {
-                        localStorage.removeItem('productsInPurchase');
+                        localStorage.removeItem("productsInPurchase");
                         window.location.replace("/products");
                     }
                 })
-                .catch(err => {
+                .catch((err) => {
                     this.getErrors(err);
                 });
-        }
-    }
+        },
+    },
 };
 </script>

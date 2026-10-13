@@ -2,7 +2,7 @@
     <form @submit.prevent="submit">
         <button
             type="submit"
-            class="transition-all text-xs rounded border-2 border-red-800 px-2 text-red-700 hover:bg-red-800 hover:text-white"
+            class="transition-all text-xs rounded border-2 border-red-800 px-1 text-red-700 hover:bg-red-800 hover:text-white"
         >
             <ban-icon></ban-icon> Cancelar
         </button>
@@ -10,21 +10,21 @@
 </template>
 <script>
 import { mapMutations } from "vuex";
-import BanIcon from '../icons/BanIcon.vue'
+import BanIcon from "../icons/BanIcon.vue";
 export default {
-    components: {BanIcon},
+    components: { BanIcon },
     props: {
         uri: {
-            type: String
+            type: String,
         },
         index: {
-            type: Number
+            type: Number,
         },
-        transaction: { type: Object }
+        transaction: { type: Object },
     },
     data() {
         return {
-            translate: { purchase: "Compra", sale: "Venta" }
+            translate: { purchase: "Compra", sale: "Venta" },
         };
     },
     methods: {
@@ -39,10 +39,10 @@ export default {
                 title: `¿Estas seguro de eliminar esta ${
                     this.translate[this.transaction.transactionType]
                 }?`,
-                action: "cancelTransaction"
+                action: "cancelTransaction",
             });
             EventBus.$emit("open-modal", true);
-        }
-    }
+        },
+    },
 };
 </script>

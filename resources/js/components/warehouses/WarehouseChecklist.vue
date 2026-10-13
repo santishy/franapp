@@ -1,16 +1,7 @@
 <template>
-    <div class="flex flex-wrap space-x-2 px-2">
+    <div class="flex flex-wrap space-x-2">
         <label
-            class="
-                inline-flex
-                items-center
-                mt-3
-                border
-                p-2
-                border-gray-300
-                rounded-lg
-                cursor-pointer
-            "
+            class="inline-flex items-center mt-3 border p-2 border-gray-300 rounded-lg cursor-pointer"
             v-for="warehouse in warehouses"
             :key="warehouse.id"
         >

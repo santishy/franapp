@@ -22,23 +22,39 @@
                     ></search-by-category> -->
                 <search-component
                     styles="bg-white placeholder:text-slate-300 rounded-sm focus:bg-slate-100 transition-colors focus:ring-sky-500 focus:ring-2 mb-2"
-                    class="md:w-2/4 w-full sm:mt-0 mt-4" />
+                    class="md:w-2/4 w-full sm:mt-0 mt-4"
+                />
                 <!-- </div> -->
                 <product-matching></product-matching>
-                <div class="w-full bg-white rounded-sm flex flex-wrap justify-center items-center">
-                    <div class=" mt-4 sm:mt-0 px-2 py-2 w-full md:mx-0 rounded-sm shadow-sm">
-                        <div class="w-full flex flex-wrap md:justify-between text-gray-600 md:items-center">
+                <div
+                    class="w-full bg-white rounded-sm flex flex-wrap justify-center items-center"
+                >
+                    <div
+                        class="mt-4 sm:mt-0 px-2 py-2 w-full md:mx-0 rounded-sm shadow-sm"
+                    >
+                        <div
+                            class="w-full flex flex-wrap md:justify-between text-gray-600 md:items-center"
+                        >
                             <sale-to-customer class="mr-4" v-if="show" />
-                            <button v-else @click="show = true"
-                                class="bg-teal-300 rounded transition-all duration-500 ease-in-out hover:bg-teal-500 text-primary font-semibold hover:text-white py-1 px-4 border-b-2 border-teal-500 hover:border-transparent mr-1">
+                            <button
+                                v-else
+                                @click="show = true"
+                                class="bg-teal-300 rounded transition-all duration-500 ease-in-out hover:bg-teal-500 text-primary font-semibold hover:text-white py-1 px-4 border-b-2 border-teal-500 hover:border-transparent mr-1"
+                            >
                                 Cliente registrado
                             </button>
-                            <delete-sale v-if="localSale" :sale="localSale"></delete-sale>
+                            <delete-sale
+                                v-if="localSale"
+                                :sale="localSale"
+                            ></delete-sale>
                         </div>
-                        <div v-if="localSale" :class="[
-                            'flex flex-wrap  px-2 py-2 items-center mb-4 border-b-2 border-blue-400',
-                            alignStatus,
-                        ]">
+                        <div
+                            v-if="localSale"
+                            :class="[
+                                'flex flex-wrap  px-2 py-2 items-center mb-4 border-b-2 border-blue-400',
+                                alignStatus,
+                            ]"
+                        >
                             <div class="text-gray-600">
                                 ID Venta - #{{ localSale.id }}
                             </div>
@@ -101,7 +117,6 @@ export default {
         EventBus.$off("sale-deleted", this.clearSale);
         EventBus.$off("product-added-sales-cart", this.setSaleCart);
         EventBus.$off("sale-to-client", this.setSaleToClient);
-
     },
     data() {
         return {

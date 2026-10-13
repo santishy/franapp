@@ -30,10 +30,12 @@
 </template>
 <script>
 import InformationComponent from "../modals/InformationComponent.vue";
+import Errors from "../../mixins/Errors";
 export default {
     components: {
         InformationComponent
     },
+    mixins: [Errors],
     data() {
         return {
             form: {},

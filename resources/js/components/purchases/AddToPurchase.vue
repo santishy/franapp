@@ -2,23 +2,23 @@
     <form @submit.prevent="submit" v-can="'create purchase'">
         <input type="hidden" name="product_id" />
         <button
-            class="
-                hover:text-gray-800
-                shadow-xs
-                text-gray-600
-                font-bold               
-                text-2xl                
-                flex flex-wrap justify-center items-center
-            "
-            :class="[qtyPurchase(productExistsInPurchase(product_id)) ? 'rounded-sm p-1 bg-teal-100' : 'py-2 rounded-full px-2 bg-white']"
+            class="hover:text-gray-800 shadow-xs text-gray-600 font-bold text-2xl flex flex-wrap justify-center items-center"
+            :class="[
+                qtyPurchase(productExistsInPurchase(product_id))
+                    ? 'rounded-sm p-1 bg-teal-100'
+                    : 'py-2 rounded-full px-2 bg-white',
+            ]"
         >
             <div
                 v-if="qtyPurchase(productExistsInPurchase(product_id))"
                 class="inline-block mr-2"
             >
-                <span class="text-teal-500 text-xl font-extralight underline decoration-wavy">{{
-                    qtyPurchase(productExistsInPurchase(product_id))
-                }}</span>
+                <span
+                    class="text-teal-500 text-xl font-extralight underline decoration-wavy"
+                    >{{
+                        qtyPurchase(productExistsInPurchase(product_id))
+                    }}</span
+                >
             </div>
             <purchase-icon></purchase-icon>
         </button>
@@ -28,18 +28,20 @@
 import { mapGetters, mapMutations } from "vuex";
 
 import PurchaseIcon from "../icons/PurchaseIcon.vue";
+import Errors from "../../mixins/Errors";
 export default {
     components: { PurchaseIcon },
     props: {
         product_id: {
             type: Number,
-            required: true
+            required: true,
         },
         purchase_price: {
             type: Number,
-            required: true
+            required: true,
         },
     },
+    mixins: [Errors],
     data() {
         return {
             purchase_id: null,
@@ -47,7 +49,7 @@ export default {
     },
     mounted() {
         this.purchase_id = document.head.querySelector(
-            'meta[name="purchase_id"]'
+            'meta[name="purchase_id"]',
         ).content;
     },
     methods: {
@@ -72,10 +74,10 @@ export default {
                     if (this.purchase_id == "") {
                         EventBus.$emit(
                             "purchase-created",
-                            res.data.purchase_id
+                            res.data.purchase_id,
                         );
                         document.head.querySelector(
-                            'meta[name="purchase_id"]'
+                            'meta[name="purchase_id"]',
                         ).content = res.data.purchase_id;
                     }
                     this.setProductsInPurchase(obj);

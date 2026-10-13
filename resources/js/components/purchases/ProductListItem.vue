@@ -209,8 +209,10 @@
 import { mapMutations, mapGetters } from "vuex";
 import EditIcon from "../icons/EditIcon.vue";
 import TrashIcon from "../icons/TrashIcon.vue";
+import Errors from "../../mixins/Errors";
 export default {
     components: { TrashIcon, EditIcon },
+    mixins: [Errors],
     props: {
         product: {
             type: Object,

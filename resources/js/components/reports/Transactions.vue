@@ -45,8 +45,10 @@
 import ReportBy from "./ReportBy.vue";
 import ErrorsComponent from "../ErrorsComponent.vue";
 import WarehouseChecklist from "../warehouses/WarehouseChecklist.vue";
+import Errors from "../../mixins/Errors";
 
 export default {
+    mixins: [Errors],
     components: { ReportBy, ErrorsComponent, WarehouseChecklist },
     props: {
         name: {

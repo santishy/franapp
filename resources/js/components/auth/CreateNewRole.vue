@@ -98,8 +98,10 @@
 <script>
 import RoleList from "./RoleList.vue";
 import ErrorsComponent from "../ErrorsComponent";
+import Errors from "../../mixins/Errors";
 
 export default {
+    mixins: [Errors],
     data: () => ({
         form: {},
         obj: { title: "Roles", message: "Rol creado correctamente." },

@@ -1,28 +1,16 @@
 <template>
-    <transition
-        name="expand"
-        class=""
-        @enter="enter"
-        @after-enter="afterEnter"
-        @leave="leave"
-    >
+    <transition name="alert">
         <div
             v-if="show"
-            class="
-                w-full
-                
-                bg-blue-100
-                border-t border-b border-red-500
-                text-red-700
-                px-4
-                py-3
-            "
+            class="w-full bg-red-50 border-l-4 border-red-500 text-red-700 px-4 py-3"
             role="alert"
         >
             <p class="font-bold">Se detecto los siguientes errores:</p>
-            <p v-for="error in errorsFound" class="text-sm" :key="error">
-                {{ error }}
-            </p>
+            <ul>
+                <li v-for="error in errorsFound" :key="error">
+                    {{ error }}
+                </li>
+            </ul>
         </div>
     </transition>
 </template>
@@ -32,6 +20,7 @@ export default {
     data() {
         return {
             show: false,
+            timeoutId: null,
         };
     },
     props: {
@@ -45,38 +34,51 @@ export default {
     watch: {
         errorsFound: {
             deep: true,
-            async handler() {
+            handler() {
                 if (this.errorsFound) {
+                    clearTimeout(this.timeoutId);
                     this.show = true;
+                    this.timeoutId = setTimeout(() => {
+                        this.show = false;
+                        EventBus.$emit("emptyErrors");
+                        this.timeoutId = null;
+                    }, 5000);
                 }
-
-                await setTimeout(() => {
-                    this.show = false;
-                    EventBus.$emit("emptyErrors");
-                }, 5000);
             },
         },
     },
-    methods:{
-        enter(el) {
-            el.style.height = "auto";
-            const height = getComputedStyle(el).height;
-            el.style.height = 0;
-            //getComputedStyle(el);
-            setTimeout(() => {
-                el.style.height = height;
-            });
-        },
-        afterEnter(el) {
-            el.style.height = "auto";
-        },
-        leave(el) {
-            el.style.height = getComputedStyle(el).height;
-            // getComputedStyle(el);
-            setTimeout(() => {
-                el.style.height = 0;
-            });
-        },
-    }
 };
 </script>
+<style>
+/*
+ * Transición "alert": Vue agrega y quita estas clases solo,
+ * nosotros únicamente describimos el inicio, el final y el "cómo".
+ */
+
+/* CÓMO se anima: qué propiedades, cuánto dura y con qué curva.
+   Vue la mantiene puesta durante toda la animación. */
+.alert-enter-active {
+    transition:
+        opacity 250ms ease-out,
+        transform 250ms ease-out;
+}
+
+/* La salida un poco más rápida: al usuario le importa menos ver algo irse. */
+.alert-leave-active {
+    transition:
+        opacity 150ms ease-in,
+        transform 150ms ease-in;
+}
+
+/* DESDE dónde aparece (primer frame de la entrada)
+   y HACIA dónde se va (último frame de la salida).
+   Es el mismo estado: invisible y 8px más arriba. */
+.alert-enter-from,
+.alert-leave-to {
+    opacity: 0;
+    transform: translateY(-8px);
+}
+
+/* No hace falta .alert-enter-to ni .alert-leave-from:
+   el estado "normal" del div (visible, en su sitio) ya es ese. */
+</style>

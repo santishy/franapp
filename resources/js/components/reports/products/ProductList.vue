@@ -26,7 +26,9 @@
     </div>
 </template>
 <script>
+import Errors from "../../../mixins/Errors";
 export default {
+    mixins: [Errors],
     props: {
         transaction: {
             type: Object

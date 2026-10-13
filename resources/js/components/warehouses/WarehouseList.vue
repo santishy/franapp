@@ -98,6 +98,7 @@ import Agree from "../alerts/Agree.vue";
 import Message from "../alerts/Message.vue";
 import WarehouseListItem from "./WarehouseListItem.vue";
 import InformationComponent from "../modals/InformationComponent.vue";
+import Errors from "../../mixins/Errors";
 
 export default {
     components: {
@@ -106,6 +107,7 @@ export default {
         InformationComponent,
         Message,
     },
+    mixins: [Errors],
     props: {
         inventories: {
             type: Array,
