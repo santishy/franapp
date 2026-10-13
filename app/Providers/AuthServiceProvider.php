@@ -15,15 +15,16 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        'App\Models\Client' => 'App\Policies\ClientPolicy',
-        'App\Models\Category' => 'App\Policies\CategoryPolicy',
-        'App\Models\Product' => 'App\Policies\ProductPolicy',
-        'App\Models\Purchase' => 'App\Policies\PurchasePolicy',
-        'App\Models\Sale' => 'App\Policies\SalePolicy',
-        'App\Models\Ticket' => 'App\Policies\TicketPolicy',
-        'App\Models\Inventory' => 'App\Policies\WarehousePolicy',
-        'Spatie\Permission\Models\Role' => 'App\Policies\RolePolicy',
-        'App\Models\User' => 'App\Policies\UserPolicy',
+        "App\Models\Client" => "App\Policies\ClientPolicy",
+        "App\Models\Category" => "App\Policies\CategoryPolicy",
+        "App\Models\Product" => "App\Policies\ProductPolicy",
+        "App\Models\Purchase" => "App\Policies\PurchasePolicy",
+        "App\Models\Sale" => "App\Policies\SalePolicy",
+        "App\Models\Ticket" => "App\Policies\TicketPolicy",
+        "App\Models\Inventory" => "App\Policies\WarehousePolicy",
+        "Spatie\Permission\Models\Role" => "App\Policies\RolePolicy",
+        "App\Models\User" => "App\Policies\UserPolicy",
+        "App\Models\SaleReturn" => "App\Policies\SaleReturnPolicy",
     ];
 
     /**
@@ -35,17 +36,18 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        Gate::define('register',function(User $user,User $model){
-            return $user->hasPermissionTo('create user') || $user->hasRole('admin');
+        Gate::define("register", function (User $user, User $model) {
+            return $user->hasPermissionTo("create user") ||
+                $user->hasRole("admin");
         });
         /*
-        *Invokando las demas gates de autorizacion para las existencias
-        * */
-        $this->app->make('stockValidations');
+         *Invokando las demas gates de autorizacion para las existencias
+         * */
+        $this->app->make("stockValidations");
         //resolve('stockValidations');
-        
     }
-    public function before(){
+    public function before()
+    {
         return false;
     }
 }

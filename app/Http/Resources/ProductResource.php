@@ -15,40 +15,71 @@ class ProductResource extends JsonResource
     public function toArray($request)
     {
         $attrs = $this->attributesToArray();
-        $hasDistributorPrice = array_key_exists('distributor_price', $this->resource->getAttributes());
+        $hasDistributorPrice = array_key_exists(
+            "distributor_price",
+            $this->resource->getAttributes(),
+        );
 
         return [
-            'id' => $this->id,
-            'sku' => $this->sku,
-            'description' => $this->description,
-            'wholesale_price' => $this->wholesale_price,
-            'retail_price' => $this->retail_price,
-            'image_url' => $this->image,
-            'distributor_price' => $this->when($hasDistributorPrice, $this->resource->distributor_price),
-            'formatted_wholesale_price' => '$' . number_format($this->wholesale_price, 2),
-            'formatted_retail_price' => '$' . number_format($this->retail_price, 2),
-            'formatted_distributor_price' =>
-            $this->when($hasDistributorPrice, '$' . number_format($this->resource->distributor_price, 2)),
-            'sale_quantity' => $this->whenPivotLoaded('product_sale', function () {
-                return $this->pivot->qty;
-            }),
-            'sale_price' => $this->whenPivotLoaded('product_sale', function () {
+            "id" => $this->id,
+            "sku" => $this->sku,
+            "description" => $this->description,
+            "wholesale_price" => $this->wholesale_price,
+            "retail_price" => $this->retail_price,
+            "image_url" => $this->image,
+            "distributor_price" => $this->when(
+                $hasDistributorPrice,
+                $this->resource->distributor_price,
+            ),
+            "formatted_wholesale_price" =>
+                '$' . number_format($this->wholesale_price, 2),
+            "formatted_retail_price" =>
+                '$' . number_format($this->retail_price, 2),
+            "formatted_distributor_price" => $this->when(
+                $hasDistributorPrice,
+                '$' . number_format($this->resource->distributor_price, 2),
+            ),
+            "sale_quantity" => $this->whenPivotLoaded(
+                "product_sale",
+                function () {
+                    return $this->pivot->qty;
+                },
+            ),
+            "return_quantity" => $this->whenPivotLoaded(
+                "product_sale_return",
+                function () {
+                    return $this->pivot->qty;
+                },
+            ),
+            "return_price" => $this->whenPivotLoaded(
+                "product_sale_return",
+                function () {
+                    return $this->pivot->return_price;
+                },
+            ),
+            "sale_price" => $this->whenPivotLoaded("product_sale", function () {
                 return $this->pivot->sale_price;
             }),
-            'purchase_quantity' => $this->whenPivotLoaded('product_purchase', function () {
-                return $this->pivot->qty;
-            }),
-            'purchase_price' => $this->whenPivotLoaded('product_purchase', function () {
-                return $this->pivot->purchase_price;
-            }),
-            'stock' => $this->when(
-                array_key_exists('stock', $attrs),
-                $this->stock,
-                $this->whenPivotLoaded('inventory_product', function () {
-                    return $this->pivot->stock;
-                })
+            "purchase_quantity" => $this->whenPivotLoaded(
+                "product_purchase",
+                function () {
+                    return $this->pivot->qty;
+                },
             ),
-            'category_name' =>  $this->category->name,
+            "purchase_price" => $this->whenPivotLoaded(
+                "product_purchase",
+                function () {
+                    return $this->pivot->purchase_price;
+                },
+            ),
+            "stock" => $this->when(
+                array_key_exists("stock", $attrs),
+                $this->stock,
+                $this->whenPivotLoaded("inventory_product", function () {
+                    return $this->pivot->stock;
+                }),
+            ),
+            "category_name" => $this->category->name,
         ];
     }
 }

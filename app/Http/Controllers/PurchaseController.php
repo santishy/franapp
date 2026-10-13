@@ -19,87 +19,93 @@ class PurchaseController extends Controller
     use HasTransaction;
     public function index()
     {
-        $this->authorize('viewAny', new Purchase);
+        $this->authorize("viewAny", new Purchase());
         if (request()->wantsJson()) {
             return new ReportResponse(Purchase::query());
         }
-        $inventories = Inventory::all('id', 'name');
-        return view(
-            'transactions.index',
-            [
-                'uri' => '/purchases',
-                'name' => 'Compras',
-                'users' => DB::table('users')->select('id', 'name')->get(),
-                'inventories' => $inventories
-            ]
-        );
+        $inventories = Inventory::all("id", "name");
+        return view("transactions.index", [
+            "uri" => "/purchases",
+            "name" => "Compras",
+            "users" => DB::table("users")->select("id", "name")->get(),
+            "inventories" => $inventories,
+        ]);
     }
     /*FALTA VALIDAR QUE EL PRODUCTO NO SE REPITA EN LA MISMA COMPRA!!!  PUEDE AGREGARSE OTRO AL DARLE DOBLE CLICK ;) */
     public function store(Request $request)
     {
-
-        $this->authorize('create', new Purchase);
-        request()->validate(
-            [
-                'product_id' => 'exists:products,id'
-            ]
-        );
+        $this->authorize("create", new Purchase());
+        request()->validate([
+            "product_id" => "exists:products,id",
+        ]);
         $purchase = Purchase::findOrCreateThePurchase();
 
         $purchase->addProduct();
 
         return response()->json([
-            'qty' => $purchase->products()->where('product_id', $request->product_id)->sum('qty'),
-            'purchase_id' => $purchase->id,
+            "qty" => $purchase
+                ->products()
+                ->where("product_id", $request->product_id)
+                ->sum("qty"),
+            "purchase_id" => $purchase->id,
         ]);
     }
 
     public function show(Purchase $purchase)
     {
-        $this->authorize('view', $purchase);
-        $productsInPurchase = ProductResource::collection($purchase->products()->with('category')->get())->resolve();
+        $this->authorize("view", $purchase);
+        $productsInPurchase = ProductResource::collection(
+            $purchase->products()->with("category")->get(),
+        )->resolve();
         $totalPurchase = $purchase->totalPurchase();
         $inventories = Inventory::all();
-        return view('purchases.show')
-            ->with(compact('productsInPurchase'))
-            ->with(compact('totalPurchase'))
-            ->with(compact('purchase'))
-            ->with(compact('inventories'));
+        return view("purchases.show")
+            ->with(compact("productsInPurchase"))
+            ->with(compact("totalPurchase"))
+            ->with(compact("purchase"))
+            ->with(compact("inventories"));
     }
     public function edit(Purchase $purchase) {}
     public function update(Request $request, Purchase $purchase)
     {
-        $this->authorize('update', $purchase); // puede ser el metodo create?
+        $this->authorize("update", $purchase); // puede ser el metodo create?
 
-        $request->validate([
-            'status' => ['required'],
-            'inventory_id' => ['required']
-        ], [
-            'status.required' => 'El status es requerido.',
-            'inventory_id.required' => 'El inventario es requerido.',
-        ]);
+        $request->validate(
+            [
+                "status" => ["required"],
+                "inventory_id" => ["required"],
+            ],
+            [
+                "status.required" => "El status es requerido.",
+                "inventory_id.required" => "El inventario es requerido.",
+            ],
+        );
 
-        if ($request->status === 'completed')
-            $this->deleteSessionVariable('purchase_id');
+        DB::transaction(function () use ($request, $purchase) {
+            $purchase->update($request->all());
 
-        $purchase->update($request->all());
-
-        TransactionComplete::dispatch($purchase);
+            TransactionComplete::dispatch($purchase);
+        });
+        if ($request->status === "completed") {
+            $this->deleteSessionVariable("purchase_id");
+        }
 
         return new PurchaseResource($purchase);
     }
     public function destroy(Purchase $purchase)
     {
-        $this->authorize('delete', $purchase);
+        $this->authorize("delete", $purchase);
+        DB::transaction(function () use ($purchase) {
+            if ($purchase->status === "completed") {
+                TransactionComplete::dispatch($purchase, request("factor"));
+            }
 
-        if ($purchase->status === 'completed')
-            TransactionComplete::dispatch($purchase, request('factor'));
-
-        $purchase->status = 'cancelled';
-        $purchase->save();
-        $this->deleteSessionVariable('purchase_id');
+            $purchase->status = "cancelled";
+            $purchase->save();
+        });
+        $this->deleteSessionVariable("purchase_id");
         return response()->json([
-            'status' => $purchase->status
+            "status" => $purchase->status,
         ]);
     }
 }
